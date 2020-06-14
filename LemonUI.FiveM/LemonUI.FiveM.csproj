@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net452</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <AssemblyName>$(AssemblyName).net</AssemblyName>
+    <DefineConstants>FIVEM</DefineConstants>
+    <Version>1.0</Version>
+    <OutputPath>..\bin\$(Configuration)\FiveM\</OutputPath>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CitizenFX.Core.Client" Version="1.0.2514">
+      <IncludeAssets>compile</IncludeAssets>
+    </PackageReference>
+    <Compile Include="../$(SolutionName)/**" />
+  </ItemGroup>
+
+</Project>
