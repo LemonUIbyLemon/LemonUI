@@ -5,7 +5,7 @@ namespace LemonUI.Items
     /// <summary>
     /// A menu item that can go Left and Right.
     /// </summary>
-    public interface IItemSlidable : IItem
+    public interface ISlidableItem : IItem
     {
         #region Public Functions
 
