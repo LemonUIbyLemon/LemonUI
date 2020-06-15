@@ -12,8 +12,39 @@ namespace LemonUI.NativeMenu
     /// </summary>
     public class NativeMenu : INativeMenu
     {
+        #region Private Fields
+
+        /// <summary>
+        /// If the menu is visible or not.
+        /// </summary>
+        private bool visible = false;
+
+        #endregion
+
         #region Public Properties
 
+        /// <summary>
+        /// If the menu is visible on the screen.
+        /// </summary>
+        public bool Visible
+        {
+            get
+            {
+                return visible;
+            }
+            set
+            {
+                visible = value;
+                if (visible)
+                {
+                    Close();
+                }
+                else
+                {
+                    Shown?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
         /// <summary>
         /// The title of the menu.
         /// </summary>
