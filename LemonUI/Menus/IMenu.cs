@@ -1,6 +1,7 @@
 using LemonUI.Items;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace LemonUI.Menus
 {
@@ -28,6 +29,18 @@ namespace LemonUI.Menus
 
         #region Events
 
+        /// <summary>
+        /// Event triggered when the menu is opened and shown to the user.
+        /// </summary>
+        event EventHandler Shown;
+        /// <summary>
+        /// Event triggered when the menu starts closing.
+        /// </summary>
+        event CancelEventHandler Closing;
+        /// <summary>
+        /// Event triggered when the menu finishes closing.
+        /// </summary>
+        event EventHandler Closed;
         /// <summary>
         /// Event triggered when an item is selected.
         /// </summary>
