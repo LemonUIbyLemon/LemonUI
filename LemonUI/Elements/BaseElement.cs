@@ -96,7 +96,7 @@ namespace LemonUI
         /// <summary>
         /// Recalculates the size and position of this item.
         /// </summary>
-        private void Recalculate()
+        protected virtual void Recalculate()
         {
             // Get the resolution of the game window
 #if SHVDN2
