@@ -75,5 +75,28 @@ namespace LemonUI.NativeMenu
         }
 
         #endregion
+
+        #region Public Functions
+
+        /// <summary>
+        /// Closes the menu.
+        /// </summary>
+        public void Close()
+        {
+            // Create a new set of event arguments
+            CancelEventArgs args = new CancelEventArgs();
+            // And trigger the event
+            Closed?.Invoke(this, args);
+
+            // If we need to cancel the closure of the menu, return
+            if (args.Cancel)
+            {
+                return;
+            }
+            // Otherwise, hide the menu
+            visible = false;
+        }
+
+        #endregion
     }
 }
