@@ -8,6 +8,19 @@
     <DefineConstants>SHVDN2</DefineConstants>
     <Version>1.0</Version>
     <OutputPath>..\bin\$(Configuration)\SHVDN2\</OutputPath>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageId>LemonUI.SHVDN2</PackageId>
+    <Authors>Hannele "Lemon" Ruiz</Authors>
+    <Company>Hannele "Lemon" Ruiz</Company>
+    <Product>LemonUI</Product>
+    <Description>UI system for Grand Theft Auto V. This package is for ScriptHookVDotNet2.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/justalemon/LemonUI</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/justalemon/LemonUI.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
