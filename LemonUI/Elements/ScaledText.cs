@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace LemonUI
+namespace LemonUI.Elements
 {
 #if SHVDN2
     /// <summary>

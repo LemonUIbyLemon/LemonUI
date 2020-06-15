@@ -5,7 +5,7 @@ using GTA.Native;
 #endif
 using System.Drawing;
 
-namespace LemonUI
+namespace LemonUI.Elements
 {
     /// <summary>
     /// A 2D rectangle.

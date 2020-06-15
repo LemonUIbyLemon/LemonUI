@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace LemonUI
+namespace LemonUI.Elements
 {
     /// <summary>
     /// A 2D item that can be drawn on the screen.

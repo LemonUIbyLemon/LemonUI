@@ -7,7 +7,7 @@ using GTA.UI;
 #endif
 using System.Drawing;
 
-namespace LemonUI
+namespace LemonUI.Elements
 {
     /// <summary>
     /// Base class for all of the 2D elements.
