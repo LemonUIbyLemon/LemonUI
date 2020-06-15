@@ -3,7 +3,7 @@ using LemonUI.Elements;
 namespace LemonUI.Menus
 {
     /// <summary>
-    /// Interface for Rockstar-like menus.
+    /// Interface for menus that behave like the ones by Rockstar.
     /// </summary>
     public interface INativeMenu : IMenu
     {
