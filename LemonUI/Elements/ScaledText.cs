@@ -120,10 +120,27 @@ namespace LemonUI.Elements
 
         #region Constructors
 
-        public ScaledText(PointF pos, string text) : base(pos, SizeF.Empty)
+        /// <summary>
+        /// Creates a text with the specified options.
+        /// </summary>
+        /// <param name="pos">The position where the text should be located.</param>
+        /// <param name="text">The text to show.</param>
+        public ScaledText(PointF pos, string text) : this(pos, text, 1f, Font.ChaletLondon)
         {
-            // Just save the text
+        }
+
+        /// <summary>
+        /// Creates a text with the specified options
+        /// </summary>
+        /// <param name="pos">The position where the text should be located.</param>
+        /// <param name="text">The text to show.</param>
+        /// <param name="scale">The scale of the text.</param>
+        /// <param name="font">The font to use.</param>
+        public ScaledText(PointF pos, string text, float scale, Font font) : base(pos, SizeF.Empty)
+        {
             Text = text;
+            Scale = scale;
+            Font = font;
         }
 
         #endregion
