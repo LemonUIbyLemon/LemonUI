@@ -8,7 +8,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Base interface for implementing menus.
     /// </summary>
-    public interface IMenu
+    public interface IMenu : IRecalculable
     {
         #region Public Properties
 

@@ -168,6 +168,14 @@ namespace LemonUI.Menus
             bannerText?.Draw();
         }
         /// <summary>
+        /// Calculates the positions and sizes of the elements.
+        /// </summary>
+        public void Recalculate()
+        {
+            bannerImage?.Recalculate();
+            bannerText?.Recalculate();
+        }
+        /// <summary>
         /// Closes the menu.
         /// </summary>
         public void Close()
