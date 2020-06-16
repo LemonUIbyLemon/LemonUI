@@ -39,6 +39,14 @@ namespace LemonUI.Menus
         /// The text of the menu.
         /// </summary>
         private ScaledText bannerText = null;
+        /// <summary>
+        /// The background of the drawable text.
+        /// </summary>
+        private IDrawable subtitleImage = null;
+        /// <summary>
+        /// The text of the subtitle.
+        /// </summary>
+        private ScaledText subtitleText = null;
 
         #endregion
 
@@ -127,6 +135,14 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
+        /// The subtitle of the menu.
+        /// </summary>
+        public string Subtitle
+        {
+            get => subtitleText.Text;
+            set => subtitleText.Text = value;
+        }
+        /// <summary>
         /// The items that this menu contain.
         /// </summary>
         public List<IItem> Items { get; }
@@ -172,7 +188,8 @@ namespace LemonUI.Menus
         /// Creates a new menu with the default banner texture.
         /// </summary>
         /// <param name="title">The title of the menu.</param>
-        public NativeMenu(string title) : this(title, new ScaledTexture(new PointF(0, 0), new SizeF(863, 215), "commonmenu", "interaction_bgd"))
+        /// <param name="subtitle">Subtitle of this menu.</param>
+        public NativeMenu(string title, string subtitle) : this(title, new ScaledTexture(new PointF(0, 0), new SizeF(863, 215), "commonmenu", "interaction_bgd"), subtitle)
         {
         }
 
@@ -181,13 +198,22 @@ namespace LemonUI.Menus
         /// </summary>
         /// <param name="title">The title of the menu.</param>
         /// <param name="banner">The drawable to use as the banner.</param>
-        public NativeMenu(string title, IDrawable banner)
+        /// <param name="subtitle">Subtitle of this menu.</param>
+        public NativeMenu(string title, IDrawable banner, string subtitle)
         {
             bannerImage = banner;
             bannerText = new ScaledText(new PointF(209, 22), title, 1.02f, Font.HouseScript)
             {
                 Color = Color.FromArgb(255, 255, 255),
                 Alignment = Alignment.Center
+            };
+            subtitleImage = new ScaledRectangle(new PointF(0, 127), new SizeF(863, 38))
+            {
+                Color = Color.FromArgb(0, 0, 0)
+            };
+            subtitleText = new ScaledText(new PointF(6, 112), subtitle, 0.35f, Font.ChaletLondon)
+            {
+                Color = Color.FromArgb(255, 255, 255)
             };
         }
 
@@ -205,9 +231,12 @@ namespace LemonUI.Menus
             {
                 return;
             }
+
             // Otherwise, draw all other things
             bannerImage?.Draw();
             bannerText?.Draw();
+            subtitleImage?.Draw();
+            subtitleText?.Draw();
         }
         /// <summary>
         /// Calculates the positions and sizes of the elements.
@@ -216,6 +245,8 @@ namespace LemonUI.Menus
         {
             bannerImage?.Recalculate();
             bannerText?.Recalculate();
+            subtitleImage?.Recalculate();
+            subtitleText?.Recalculate();
         }
         /// <summary>
         /// Closes the menu.
