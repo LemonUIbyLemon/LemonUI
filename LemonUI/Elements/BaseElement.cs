@@ -70,7 +70,7 @@ namespace LemonUI.Elements
         /// <summary>
         /// The Color of the drawable.
         /// </summary>
-        public Color Color { get; set; }
+        public Color Color { get; set; } = Color.FromArgb(255, 255, 255, 255);
         /// <summary>
         /// The rotation of the drawable.
         /// </summary>
