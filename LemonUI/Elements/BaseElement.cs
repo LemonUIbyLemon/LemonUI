@@ -74,7 +74,7 @@ namespace LemonUI.Elements
         /// <summary>
         /// The rotation of the drawable.
         /// </summary>
-        public float Heading { get; set; }
+        public float Heading { get; set; } = 0;
 
         #endregion
 
@@ -110,7 +110,7 @@ namespace LemonUI.Elements
             float width = 1080f * ratio;
 
             // And save the correct position and sizes
-            relativePosition = new PointF(literalPosition.X / width, literalPosition.Y);
+            relativePosition = new PointF(literalPosition.X / width, literalPosition.Y / 1080f);
             relativeSize = new SizeF(literalSize.Width / width, literalSize.Height / 1080f);
         }
 
