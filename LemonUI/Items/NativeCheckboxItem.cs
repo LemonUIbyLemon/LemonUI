@@ -51,7 +51,16 @@ namespace LemonUI.Items
         {
         }
 
-        public NativeCheckboxItem(string title, bool check) : base (title, "")
+        public NativeCheckboxItem(string title, bool check) : base(title, "")
+        {
+            Checked = check;
+        }
+
+        public NativeCheckboxItem(string title, string description) : base(title, description)
+        {
+        }
+
+        public NativeCheckboxItem(string title, string description, bool check) : base(title, description)
         {
             Checked = check;
         }
