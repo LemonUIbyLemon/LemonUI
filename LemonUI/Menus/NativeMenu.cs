@@ -67,8 +67,34 @@ namespace LemonUI.Menus
         /// </summary>
         public string Title
         {
-            get => bannerText.Text;
-            set => bannerText.Text = value;
+            get
+            {
+                if (bannerText == null)
+                {
+                    throw new NullReferenceException("The Text parameter of this Menu is null.");
+                }
+                return bannerText.Text;
+            }
+            set
+            {
+                bannerText.Text = value;
+            }
+        }
+        /// <summary>
+        /// The banner shown at the top of the menu.
+        /// </summary>
+        public IDrawable Banner
+        {
+            get => bannerImage;
+            set => bannerImage = value;
+        }
+        /// <summary>
+        /// The text object on top of the banner.
+        /// </summary>
+        public ScaledText Text
+        {
+            get => bannerText;
+            set => bannerText = value;
         }
         /// <summary>
         /// The current index of the menu.
@@ -78,14 +104,6 @@ namespace LemonUI.Menus
         /// The items that this menu contain.
         /// </summary>
         public List<IItem> Items { get; }
-        /// <summary>
-        /// The banner shown at the top of the menu.
-        /// </summary>
-        public IDrawable Banner
-        {
-            get => bannerImage;
-            set => bannerImage = value;
-        }
         /// <summary>
         /// Text shown when there are no items in the menu.
         /// </summary>
