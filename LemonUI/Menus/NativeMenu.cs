@@ -1,11 +1,10 @@
 using LemonUI.Elements;
 using LemonUI.Items;
-using LemonUI.Menus;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace LemonUI.NativeMenu
+namespace LemonUI.Menus
 {
     /// <summary>
     /// Menu that looks like the ones used by Rockstar.
@@ -109,6 +108,13 @@ namespace LemonUI.NativeMenu
 
         #region Public Functions
 
+        /// <summary>
+        /// Draws the menu and handles the controls.
+        /// </summary>
+        public void Process()
+        {
+
+        }
         /// <summary>
         /// Closes the menu.
         /// </summary>
