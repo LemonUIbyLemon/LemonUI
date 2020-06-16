@@ -190,7 +190,7 @@ namespace LemonUI.Elements
         /// <summary>
         /// Recalculates the size, position and word wrap of this item.
         /// </summary>
-        protected override void Recalculate()
+        public override void Recalculate()
         {
             // Do the normal Size and Position recalculation
             base.Recalculate();
