@@ -113,12 +113,26 @@ namespace LemonUI.Menus
 
         #region Constructor
 
-        public NativeMenu(string title)
+        /// <summary>
+        /// Creates a new menu with the default banner texture.
+        /// </summary>
+        /// <param name="title">The title of the menu.</param>
+        public NativeMenu(string title) : this(title, "commonmenu", "interaction_bgd")
+        {
+        }
+
+        /// <summary>
+        /// Creates a new menu with the specified banner texture.
+        /// </summary>
+        /// <param name="title">The title of the menu.</param>
+        /// <param name="dictionary">The dictionary where the texture is located.</param>
+        /// <param name="texture">The name of the banner texture.</param>
+        public NativeMenu(string title, string dictionary, string texture)
         {
             // Just save the title
             Title = title;
             // And create the default banner
-            banner = new ScaledTexture(new PointF(0, 0), new SizeF(863, 215), "commonmenu", "interaction_bgd");
+            banner = new ScaledTexture(new PointF(0, 0), new SizeF(863, 215), dictionary, texture);
         }
 
         #endregion
