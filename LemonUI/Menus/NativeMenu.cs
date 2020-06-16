@@ -36,11 +36,11 @@ namespace LemonUI.Menus
                 visible = value;
                 if (visible)
                 {
-                    Close();
+                    Shown?.Invoke(this, EventArgs.Empty);
                 }
                 else
                 {
-                    Shown?.Invoke(this, EventArgs.Empty);
+                    Close();
                 }
             }
         }
