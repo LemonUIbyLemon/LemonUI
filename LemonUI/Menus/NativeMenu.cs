@@ -28,6 +28,10 @@ namespace LemonUI.Menus
         /// </summary>
         private bool visible = false;
         /// <summary>
+        /// The index of the selected item in the menu.
+        /// </summary>
+        private int index = -1;
+        /// <summary>
         /// The banner of the menu.
         /// </summary>
         private IDrawable bannerImage = null;
@@ -99,7 +103,29 @@ namespace LemonUI.Menus
         /// <summary>
         /// The current index of the menu.
         /// </summary>
-        public int Index { get; set; }
+        public int Index
+        {
+            get
+            {
+                if (Items == null || Items.Count == 0)
+                {
+                    return -1;
+                }
+                return index;
+            }
+            set
+            {
+                if (Items == null || Items.Count == 0)
+                {
+                    throw new InvalidOperationException("There are no items in this menu.");
+                }
+                else if (Items.Count >= value)
+                {
+                    throw new InvalidOperationException($"The index is over {Items.Count - 1}");
+                }
+                index = value;
+            }
+        }
         /// <summary>
         /// The items that this menu contain.
         /// </summary>
