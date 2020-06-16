@@ -189,7 +189,7 @@ namespace LemonUI.Menus
         /// </summary>
         /// <param name="title">The title of the menu.</param>
         /// <param name="subtitle">Subtitle of this menu.</param>
-        public NativeMenu(string title, string subtitle) : this(title, new ScaledTexture(new PointF(0, 0), new SizeF(863, 215), "commonmenu", "interaction_bgd"), subtitle)
+        public NativeMenu(string title, string subtitle) : this(title, new ScaledTexture(new PointF(0, 0), new SizeF(865, 216), "commonmenu", "interaction_bgd"), subtitle)
         {
         }
 
@@ -208,7 +208,7 @@ namespace LemonUI.Menus
                 Color = Color.FromArgb(255, 255, 255),
                 Alignment = Alignment.Center
             };
-            subtitleImage = new ScaledRectangle(new PointF(0, 126), new SizeF(863, 38))
+            subtitleImage = new ScaledRectangle(new PointF(0, 108), new SizeF(433, 37))
             {
                 Color = Color.FromArgb(0, 0, 0)
             };
