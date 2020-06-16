@@ -207,11 +207,11 @@ namespace LemonUI.Menus
                 Color = Color.FromArgb(255, 255, 255),
                 Alignment = Alignment.Center
             };
-            subtitleImage = new ScaledRectangle(new PointF(0, 127), new SizeF(863, 38))
+            subtitleImage = new ScaledRectangle(new PointF(0, 126), new SizeF(863, 38))
             {
                 Color = Color.FromArgb(0, 0, 0)
             };
-            subtitleText = new ScaledText(new PointF(6, 112), subtitle, 0.35f, Font.ChaletLondon)
+            subtitleText = new ScaledText(new PointF(6, 111), subtitle, 0.35f, Font.ChaletLondon)
             {
                 Color = Color.FromArgb(255, 255, 255)
             };
