@@ -1,4 +1,6 @@
+using LemonUI.Elements;
 using System;
+using System.Drawing;
 
 namespace LemonUI.Items
 {
@@ -12,11 +14,27 @@ namespace LemonUI.Items
         /// <summary>
         /// The title of the item.
         /// </summary>
-        public string Title { get; set; }
+        public string Title
+        {
+            get => TitleObj.Text;
+            set => TitleObj.Text = value;
+        }
         /// <summary>
         /// The description of the item.
         /// </summary>
-        public string Description { get; set; }
+        public string Description
+        {
+            get => DescriptionObj.Text;
+            set => DescriptionObj.Text = value;
+        }
+        /// <summary>
+        /// The title object.
+        /// </summary>
+        protected internal ScaledText TitleObj { get; }
+        /// <summary>
+        /// The description object.
+        /// </summary>
+        protected internal ScaledText DescriptionObj { get; }
 
         #endregion
 
@@ -37,8 +55,21 @@ namespace LemonUI.Items
 
         public NativeItem(string title, string description)
         {
-            Title = title;
-            Description = description;
+            TitleObj = new ScaledText(PointF.Empty, title, 0.345f);
+            DescriptionObj = new ScaledText(PointF.Empty, description);
+        }
+
+        #endregion
+
+        #region Public Functions
+
+        /// <summary>
+        /// Draws the item.
+        /// </summary>
+        public void Process()
+        {
+            TitleObj?.Process();
+            TitleObj?.Process();
         }
 
         #endregion
