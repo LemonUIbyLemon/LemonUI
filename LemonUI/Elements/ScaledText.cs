@@ -130,6 +130,16 @@ namespace LemonUI.Elements
         }
 
         /// <summary>
+        /// Creates a text with the specified options.
+        /// </summary>
+        /// <param name="pos">The position where the text should be located.</param>
+        /// <param name="text">The text to show.</param>
+        /// <param name="scale">The scale of the text.</param>
+        public ScaledText(PointF pos, string text, float scale) : this(pos, text, scale, Font.ChaletLondon)
+        {
+        }
+
+        /// <summary>
         /// Creates a text with the specified options
         /// </summary>
         /// <param name="pos">The position where the text should be located.</param>
