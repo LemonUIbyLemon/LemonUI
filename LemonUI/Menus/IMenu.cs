@@ -8,7 +8,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Base interface for implementing menus.
     /// </summary>
-    public interface IMenu : IRecalculable
+    public interface IMenu : IRecalculable, IProcessable
     {
         #region Public Properties
 
@@ -57,15 +57,6 @@ namespace LemonUI.Menus
         /// Event triggered when the index has been changed.
         /// </summary>
         event EventHandler IndexChanged;
-
-        #endregion
-
-        #region Public Functions
-
-        /// <summary>
-        /// Processes the menu by drawing items on the screen and detecting key presses.
-        /// </summary>
-        void Process();
 
         #endregion
     }

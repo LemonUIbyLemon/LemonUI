@@ -121,7 +121,7 @@ namespace LemonUI.Elements
         /// <summary>
         /// Draws the item on the screen.
         /// </summary>
-        public abstract void Draw();
+        public abstract void Process();
 
         #endregion
     }

@@ -19,7 +19,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Menu that looks like the ones used by Rockstar.
     /// </summary>
-    public class NativeMenu : INativeMenu
+    public class NativeMenu : INativeMenu, IProcessable
     {
         #region Private Fields
 
@@ -233,10 +233,10 @@ namespace LemonUI.Menus
             }
 
             // Otherwise, draw all other things
-            bannerImage?.Draw();
-            bannerText?.Draw();
-            subtitleImage?.Draw();
-            subtitleText?.Draw();
+            bannerImage?.Process();
+            bannerText?.Process();
+            subtitleImage?.Process();
+            subtitleText?.Process();
         }
         /// <summary>
         /// Calculates the positions and sizes of the elements.

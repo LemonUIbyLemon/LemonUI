@@ -5,7 +5,7 @@ namespace LemonUI.Elements
     /// <summary>
     /// A 2D item that can be drawn on the screen.
     /// </summary>
-    public interface IDrawable : IRecalculable
+    public interface IDrawable : IRecalculable, IProcessable
     {
         #region Public Properties
 
@@ -25,15 +25,6 @@ namespace LemonUI.Elements
         /// The rotation of the drawable.
         /// </summary>
         float Heading { get; set; }
-
-        #endregion
-
-        #region Public Functions
-
-        /// <summary>
-        /// Draws the item on the screen.
-        /// </summary>
-        void Draw();
 
         #endregion
     }
