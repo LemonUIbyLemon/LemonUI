@@ -3,6 +3,7 @@ using LemonUI.Items;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace LemonUI.Menus
 {
@@ -17,6 +18,10 @@ namespace LemonUI.Menus
         /// If the menu is visible or not.
         /// </summary>
         private bool visible = false;
+        /// <summary>
+        /// The banner of the menu.
+        /// </summary>
+        private IDrawable banner = null;
 
         #endregion
 
@@ -59,7 +64,17 @@ namespace LemonUI.Menus
         /// <summary>
         /// The banner shown at the top of the menu.
         /// </summary>
-        public IDrawable Banner { get; set; }
+        public IDrawable Banner
+        {
+            get
+            {
+                return banner;
+            }
+            set
+            {
+                banner = value;
+            }
+        }
         /// <summary>
         /// Text shown when there are no items in the menu.
         /// </summary>
@@ -102,6 +117,8 @@ namespace LemonUI.Menus
         {
             // Just save the title
             Title = title;
+            // And create the default banner
+            banner = new ScaledTexture(new PointF(0, 0), new SizeF(863, 215), "commonmenu", "interaction_bgd");
         }
 
         #endregion
@@ -113,7 +130,13 @@ namespace LemonUI.Menus
         /// </summary>
         public void Process()
         {
-
+            // If the menu is not visible, return
+            if (!visible)
+            {
+                return;
+            }
+            // Otherwise, draw all other things
+            banner?.Draw();
         }
         /// <summary>
         /// Closes the menu.
