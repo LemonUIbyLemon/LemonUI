@@ -172,7 +172,7 @@ namespace LemonUI.Menus
         /// Creates a new menu with the default banner texture.
         /// </summary>
         /// <param name="title">The title of the menu.</param>
-        public NativeMenu(string title) : this(title, "commonmenu", "interaction_bgd")
+        public NativeMenu(string title) : this(title, new ScaledTexture(new PointF(0, 0), new SizeF(863, 215), "commonmenu", "interaction_bgd"))
         {
         }
 
@@ -180,12 +180,10 @@ namespace LemonUI.Menus
         /// Creates a new menu with the specified banner texture.
         /// </summary>
         /// <param name="title">The title of the menu.</param>
-        /// <param name="dictionary">The dictionary where the texture is located.</param>
-        /// <param name="texture">The name of the banner texture.</param>
-        public NativeMenu(string title, string dictionary, string texture)
+        /// <param name="banner">The drawable to use as the banner.</param>
+        public NativeMenu(string title, IDrawable banner)
         {
-            // And create the default banner
-            bannerImage = new ScaledTexture(new PointF(0, 0), new SizeF(863, 215), dictionary, texture);
+            bannerImage = banner;
             bannerText = new ScaledText(new PointF(209, 22), title, 1.02f, Font.HouseScript)
             {
                 Color = Color.FromArgb(255, 255, 255),
