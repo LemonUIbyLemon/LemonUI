@@ -5,7 +5,7 @@ namespace LemonUI.Items
     /// <summary>
     /// A standard menu item.
     /// </summary>
-    public interface IItem : IProcessable
+    public interface IItem
     {
         #region Public Properties
 
