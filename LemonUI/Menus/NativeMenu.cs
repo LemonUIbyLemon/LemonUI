@@ -201,6 +201,7 @@ namespace LemonUI.Menus
         /// <param name="subtitle">Subtitle of this menu.</param>
         public NativeMenu(string title, IDrawable banner, string subtitle)
         {
+            Items = new List<IItem>();
             bannerImage = banner;
             bannerText = new ScaledText(new PointF(209, 22), title, 1.02f, Font.HouseScript)
             {
@@ -222,6 +223,33 @@ namespace LemonUI.Menus
         #region Public Functions
 
         /// <summary>
+        /// Adds an item onto the menu.
+        /// </summary>
+        /// <param name="item">The item to add.</param>
+        public void Add(NativeItem item)
+        {
+            // If the item is already on the list, raise an exception
+            if (Items.Contains(item))
+            {
+                throw new InvalidOperationException("The item is already part of the menu.");
+            }
+            // Otherwise, set the correct position
+            float y = 149 + (37.5f * Items.Count);
+            item.TitleObj.Position = new PointF(7.5f, y);
+            // And add it
+            Items.Add(item);
+        }
+        /// <summary>
+        /// Removes an item from the menu.
+        /// </summary>
+        /// <param name="item">The item to remove.</param>
+        public void Remove(NativeItem item)
+        {
+            // Remove it if there
+            // If not, ignore it
+            Items.Remove(item);
+        }
+        /// <summary>
         /// Draws the menu and handles the controls.
         /// </summary>
         public void Process()
@@ -237,6 +265,14 @@ namespace LemonUI.Menus
             bannerText?.Process();
             subtitleImage?.Process();
             subtitleText?.Process();
+
+            foreach (IItem item in Items)
+            {
+                if (item is NativeItem native)
+                {
+                    native.Process();
+                }
+            }
         }
         /// <summary>
         /// Calculates the positions and sizes of the elements.
