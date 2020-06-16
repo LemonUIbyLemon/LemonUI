@@ -1,3 +1,12 @@
+#if FIVEM
+using CitizenFX.Core.UI;
+using Font = CitizenFX.Core.UI.Font;
+#elif SHVDN2
+using Font = GTA.Font;
+#elif SHVDN3
+using GTA.UI;
+using Font = GTA.UI.Font;
+#endif
 using LemonUI.Elements;
 using LemonUI.Items;
 using System;
@@ -21,7 +30,11 @@ namespace LemonUI.Menus
         /// <summary>
         /// The banner of the menu.
         /// </summary>
-        private IDrawable banner = null;
+        private IDrawable bannerImage = null;
+        /// <summary>
+        /// The text of the menu.
+        /// </summary>
+        private ScaledText bannerText = null;
 
         #endregion
 
@@ -52,7 +65,11 @@ namespace LemonUI.Menus
         /// <summary>
         /// The title of the menu.
         /// </summary>
-        public string Title { get; set; }
+        public string Title
+        {
+            get => bannerText.Text;
+            set => bannerText.Text = value;
+        }
         /// <summary>
         /// The current index of the menu.
         /// </summary>
@@ -66,14 +83,8 @@ namespace LemonUI.Menus
         /// </summary>
         public IDrawable Banner
         {
-            get
-            {
-                return banner;
-            }
-            set
-            {
-                banner = value;
-            }
+            get => bannerImage;
+            set => bannerImage = value;
         }
         /// <summary>
         /// Text shown when there are no items in the menu.
@@ -129,10 +140,13 @@ namespace LemonUI.Menus
         /// <param name="texture">The name of the banner texture.</param>
         public NativeMenu(string title, string dictionary, string texture)
         {
-            // Just save the title
-            Title = title;
             // And create the default banner
-            banner = new ScaledTexture(new PointF(0, 0), new SizeF(863, 215), dictionary, texture);
+            bannerImage = new ScaledTexture(new PointF(0, 0), new SizeF(863, 215), dictionary, texture);
+            bannerText = new ScaledText(new PointF(209, 22), title, 1.02f, Font.HouseScript)
+            {
+                Color = Color.FromArgb(255, 255, 255),
+                Alignment = Alignment.Center
+            };
         }
 
         #endregion
@@ -150,7 +164,8 @@ namespace LemonUI.Menus
                 return;
             }
             // Otherwise, draw all other things
-            banner?.Draw();
+            bannerImage?.Draw();
+            bannerText?.Draw();
         }
         /// <summary>
         /// Closes the menu.
