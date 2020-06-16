@@ -66,10 +66,10 @@ namespace LemonUI.Items
         /// <summary>
         /// Draws the item.
         /// </summary>
-        public void Process()
+        public void Draw()
         {
-            TitleObj?.Process();
-            TitleObj?.Process();
+            TitleObj?.Draw();
+            TitleObj?.Draw();
         }
 
         #endregion

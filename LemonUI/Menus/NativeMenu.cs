@@ -34,7 +34,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The banner of the menu.
         /// </summary>
-        private IDrawable bannerImage = null;
+        private IScreenDrawable bannerImage = null;
         /// <summary>
         /// The text of the menu.
         /// </summary>
@@ -42,7 +42,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The background of the drawable text.
         /// </summary>
-        private IDrawable subtitleImage = null;
+        private IScreenDrawable subtitleImage = null;
         /// <summary>
         /// The text of the subtitle.
         /// </summary>
@@ -95,7 +95,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The banner shown at the top of the menu.
         /// </summary>
-        public IDrawable Banner
+        public IScreenDrawable Banner
         {
             get => bannerImage;
             set => bannerImage = value;
@@ -199,7 +199,7 @@ namespace LemonUI.Menus
         /// <param name="title">The title of the menu.</param>
         /// <param name="banner">The drawable to use as the banner.</param>
         /// <param name="subtitle">Subtitle of this menu.</param>
-        public NativeMenu(string title, IDrawable banner, string subtitle)
+        public NativeMenu(string title, IScreenDrawable banner, string subtitle)
         {
             Items = new List<IItem>();
             bannerImage = banner;
@@ -261,17 +261,14 @@ namespace LemonUI.Menus
             }
 
             // Otherwise, draw all other things
-            bannerImage?.Process();
-            bannerText?.Process();
-            subtitleImage?.Process();
-            subtitleText?.Process();
+            bannerImage?.Draw();
+            bannerText?.Draw();
+            subtitleImage?.Draw();
+            subtitleText?.Draw();
 
             foreach (IItem item in Items)
             {
-                if (item is NativeItem native)
-                {
-                    native.Process();
-                }
+                item.Draw();
             }
         }
         /// <summary>

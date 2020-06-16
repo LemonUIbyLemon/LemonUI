@@ -5,7 +5,7 @@ namespace LemonUI.Elements
     /// <summary>
     /// A 2D item that can be drawn on the screen.
     /// </summary>
-    public interface IDrawable : IRecalculable, IProcessable
+    public interface IScreenDrawable : IRecalculable, IDrawable
     {
         #region Public Properties
 

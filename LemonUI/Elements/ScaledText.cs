@@ -233,7 +233,7 @@ namespace LemonUI.Elements
         /// <summary>
         /// Draws the text on the screen.
         /// </summary>
-        public override void Process()
+        public override void Draw()
         {
 #if FIVEM
             API.SetTextFont((int)Font);

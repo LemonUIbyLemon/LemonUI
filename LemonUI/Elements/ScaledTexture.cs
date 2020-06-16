@@ -65,7 +65,7 @@ namespace LemonUI.Elements
         /// <summary>
         /// Draws the texture on the screen.
         /// </summary>
-        public override void Process()
+        public override void Draw()
         {
             Request();
 #if FIVEM

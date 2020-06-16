@@ -12,7 +12,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The banner shown at the top of the menu.
         /// </summary>
-        IDrawable Banner { get; set; }
+        IScreenDrawable Banner { get; set; }
         /// <summary>
         /// Text shown when there are no items in the menu.
         /// </summary>

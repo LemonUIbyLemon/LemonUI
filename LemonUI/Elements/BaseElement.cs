@@ -12,7 +12,7 @@ namespace LemonUI.Elements
     /// <summary>
     /// Base class for all of the 2D elements.
     /// </summary>
-    public abstract class BaseElement : IDrawable
+    public abstract class BaseElement : IScreenDrawable
     {
         #region Private Fields
 
@@ -121,7 +121,7 @@ namespace LemonUI.Elements
         /// <summary>
         /// Draws the item on the screen.
         /// </summary>
-        public abstract void Process();
+        public abstract void Draw();
 
         #endregion
     }

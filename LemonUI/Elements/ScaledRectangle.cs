@@ -25,7 +25,7 @@ namespace LemonUI.Elements
         /// <summary>
         /// Draws the rectangle on the screen.
         /// </summary>
-        public override void Process()
+        public override void Draw()
         {
 #if FIVEM
             API.DrawRect(relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
