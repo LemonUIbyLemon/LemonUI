@@ -19,19 +19,19 @@ namespace LemonUI.Elements
         /// <summary>
         /// The 1080 scaled position.
         /// </summary>
-        protected PointF literalPosition = PointF.Empty;
+        protected internal PointF literalPosition = PointF.Empty;
         /// <summary>
         /// The relative position between 0 and 1.
         /// </summary>
-        protected PointF relativePosition = PointF.Empty;
+        protected internal PointF relativePosition = PointF.Empty;
         /// <summary>
         /// The 1080 scaled size.
         /// </summary>
-        protected SizeF literalSize = SizeF.Empty;
+        protected internal SizeF literalSize = SizeF.Empty;
         /// <summary>
         /// The relative size between 0 and 1.
         /// </summary>
-        protected SizeF relativeSize = SizeF.Empty;
+        protected internal SizeF relativeSize = SizeF.Empty;
 
         #endregion
 

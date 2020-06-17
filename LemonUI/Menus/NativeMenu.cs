@@ -189,7 +189,7 @@ namespace LemonUI.Menus
         /// </summary>
         /// <param name="title">The title of the menu.</param>
         /// <param name="subtitle">Subtitle of this menu.</param>
-        public NativeMenu(string title, string subtitle) : this(title, new ScaledTexture(new PointF(0, 0), new SizeF(865, 216), "commonmenu", "interaction_bgd"), subtitle)
+        public NativeMenu(string title, string subtitle) : this(title, new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "interaction_bgd"), subtitle)
         {
         }
 
@@ -203,19 +203,20 @@ namespace LemonUI.Menus
         {
             Items = new List<IItem>();
             bannerImage = banner;
-            bannerText = new ScaledText(new PointF(209, 22), title, 1.02f, Font.HouseScript)
+            bannerText = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
             {
                 Color = Color.FromArgb(255, 255, 255),
                 Alignment = Alignment.Center
             };
-            subtitleImage = new ScaledRectangle(new PointF(0, 108), new SizeF(433, 37))
+            subtitleImage = new ScaledRectangle(PointF.Empty, SizeF.Empty)
             {
                 Color = Color.FromArgb(0, 0, 0)
             };
-            subtitleText = new ScaledText(new PointF(6, 111), subtitle, 0.35f, Font.ChaletLondon)
+            subtitleText = new ScaledText(PointF.Empty, subtitle, 0.35f, Font.ChaletLondon)
             {
                 Color = Color.FromArgb(255, 255, 255)
             };
+            Recalculate();
         }
 
         #endregion
@@ -276,10 +277,26 @@ namespace LemonUI.Menus
         /// </summary>
         public void Recalculate()
         {
-            bannerImage?.Recalculate();
-            bannerText?.Recalculate();
-            subtitleImage?.Recalculate();
-            subtitleText?.Recalculate();
+            if (bannerImage != null && bannerImage is BaseElement bannerImageBase)
+            {
+                bannerImageBase.literalPosition = PointF.Empty;
+                bannerImageBase.literalSize = new SizeF(866, 216);
+                bannerImageBase.Recalculate();
+            }
+            if (bannerText != null)
+            {
+                bannerText.Position = new PointF(209, 22);
+            }
+            if (subtitleImage != null && subtitleImage is BaseElement subtitleImageBase)
+            {
+                subtitleImageBase.literalPosition = new PointF(0, 108);
+                subtitleImageBase.literalSize = new SizeF(433, 37);
+                subtitleImageBase.Recalculate();
+            }
+            if (subtitleText != null)
+            {
+                subtitleText.Position = new PointF(6, 111);
+            }
         }
         /// <summary>
         /// Closes the menu.
