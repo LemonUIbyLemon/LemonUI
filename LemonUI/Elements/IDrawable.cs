@@ -1,3 +1,8 @@
+#if FIVEM
+using CitizenFX.Core.UI;
+#elif SHVDN3
+using GTA.UI;
+#endif
 using System.Drawing;
 
 namespace LemonUI.Elements
@@ -25,6 +30,10 @@ namespace LemonUI.Elements
         /// The rotation of the drawable.
         /// </summary>
         float Heading { get; set; }
+        /// <summary>
+        /// The alignment of the element.
+        /// </summary>
+        Alignment Alignment { get; set; }
 
         #endregion
     }

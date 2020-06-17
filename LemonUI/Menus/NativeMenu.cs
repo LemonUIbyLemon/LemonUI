@@ -36,6 +36,10 @@ namespace LemonUI.Menus
         /// </summary>
         private float width = 866f;
         /// <summary>
+        /// The alignment of the menu.
+        /// </summary>
+        private Alignment alignment = Alignment.Left;
+        /// <summary>
         /// The banner of the menu.
         /// </summary>
         private IScreenDrawable bannerImage = null;
@@ -148,6 +152,21 @@ namespace LemonUI.Menus
             {
                 width = value;
                 Recalculate();
+            }
+        }
+        /// <summary>
+        /// The alignment of the menu.
+        /// </summary>
+        public Alignment Alignment
+        {
+            get
+            {
+                return alignment;
+            }
+            set
+            {
+                alignment = value;
+                UpdateAlignment();
             }
         }
         /// <summary>
@@ -286,6 +305,21 @@ namespace LemonUI.Menus
             foreach (IItem item in Items)
             {
                 item.Draw();
+            }
+        }
+        /// <summary>
+        /// Updates the alignment of the items.
+        /// This will automatically recalculate the sizes and positions.
+        /// </summary>
+        public void UpdateAlignment()
+        {
+            if (bannerImage != null)
+            {
+                bannerImage.Alignment = alignment;
+            }
+            if (subtitleImage != null)
+            {
+                subtitleImage.Alignment = alignment;
             }
         }
         /// <summary>

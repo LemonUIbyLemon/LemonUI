@@ -7,7 +7,6 @@ using GTA;
 using GTA.Native;
 using Font = GTA.Font;
 #elif SHVDN3
-using GTA;
 using GTA.UI;
 using GTA.Native;
 using Font = GTA.UI.Font;
@@ -19,18 +18,6 @@ using System.Text;
 
 namespace LemonUI.Elements
 {
-#if SHVDN2
-    /// <summary>
-    /// The alignment of the text to draw.
-    /// </summary>
-    public enum Alignment
-    {
-        Center = 0,
-        Left = 1,
-        Right = 2,
-    }
-#endif
-
     /// <summary>
     /// A text string.
     /// </summary>
@@ -102,7 +89,15 @@ namespace LemonUI.Elements
         /// <summary>
         /// The alignment of the text.
         /// </summary>
-        public Alignment Alignment { get; set; } = Alignment.Left;
+        public override Alignment Alignment
+        {
+            get => alignment;
+            set
+            {
+                alignment = value;
+                Recalculate();
+            }
+        }
         public float WordWrap
         {
             get

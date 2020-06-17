@@ -5,6 +5,7 @@ using GTA;
 #elif SHVDN3
 using GTA.UI;
 #endif
+using System;
 using System.Drawing;
 
 namespace LemonUI.Elements
@@ -16,6 +17,10 @@ namespace LemonUI.Elements
     {
         #region Private Fields
 
+        /// <summary>
+        /// The alignment of the item.
+        /// </summary>
+        protected internal Alignment alignment = Alignment.Left;
         /// <summary>
         /// The 1080 scaled position.
         /// </summary>
@@ -68,6 +73,23 @@ namespace LemonUI.Elements
             }
         }
         /// <summary>
+        /// The alignment of the element.
+        /// </summary>
+        public virtual Alignment Alignment
+        {
+            get => alignment;
+            set
+            {
+                if (value != Alignment.Left && value != Alignment.Right)
+                {
+                    throw new InvalidOperationException("This Element can't be centered.");
+                }
+
+                alignment = value;
+                Recalculate();
+            }
+        }
+        /// <summary>
         /// The Color of the drawable.
         /// </summary>
         public Color Color { get; set; } = Color.FromArgb(255, 255, 255, 255);
@@ -107,11 +129,21 @@ namespace LemonUI.Elements
             // Calculate the ratio of the resolution (height relative to the width)
             float ratio = screenSize.Width / screenSize.Height;
             // And get the real width
-            float width = 1080f * ratio;
+            float realWidth = 1080f * ratio;
+
+            // Calculate the width
+            float width = literalSize.Width / realWidth;
+            // If this is aligned to the left, use it as-is
+            float x = literalPosition.X / realWidth;
+            // If is aligned to the right, use the full width minus the specified size
+            if (alignment == Alignment.Right)
+            {
+                x = 1 - x - width;
+            }
 
             // And save the correct position and sizes
-            relativePosition = new PointF(literalPosition.X / width, literalPosition.Y / 1080f);
-            relativeSize = new SizeF(literalSize.Width / width, literalSize.Height / 1080f);
+            relativePosition = new PointF(x, literalPosition.Y / 1080f);
+            relativeSize = new SizeF(width, literalSize.Height / 1080f);
         }
 
         #endregion
