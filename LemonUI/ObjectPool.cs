@@ -1,9 +1,11 @@
 #if FIVEM
 using CitizenFX.Core.UI;
+using CitizenFX.Core.Native;
 #elif SHVDN2
 using GTA;
-using System;
+using GTA.Native;
 #elif SHVDN3
+using GTA.Native;
 using GTA.UI;
 #endif
 using System.Collections.Generic;
@@ -27,6 +29,14 @@ namespace LemonUI
         private SizeF lastKnownResolution = Screen.Resolution;
 #endif
         /// <summary>
+        /// The last know Safezone size.
+        /// </summary>
+#if FIVEM
+        private float lastKnownSafezone = API.GetSafeZoneSize();
+#else
+        private float lastKnownSafezone = Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
+#endif
+        /// <summary>
         /// The list of processable objects.
         /// </summary>
         private readonly List<IProcessable> objects = new List<IProcessable>();
@@ -43,6 +53,10 @@ namespace LemonUI
         /// Event triggered when the game resolution is changed.
         /// </summary>
         public event ResolutionChangedEventHandler ResolutionChanged;
+        /// <summary>
+        /// Event triggered when the Safezone size option in the Display settings is changed.
+        /// </summary>
+        public event SafeZoneChangedEventHandler SafezoneChanged;
 
         #endregion
 
@@ -72,6 +86,29 @@ namespace LemonUI
                 RefreshAll();
                 // And save the new resolution
                 lastKnownResolution = resolution;
+            }
+        }
+        /// <summary>
+        /// Detects Safezone changes by comparing the last known value to the current one.
+        /// </summary>
+        private void DetectSafezoneChanges()
+        {
+            // Get the current Safezone size
+#if FIVEM
+            float safezone = API.GetSafeZoneSize();
+#else
+            float safezone = Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
+#endif
+
+            // If is not the same as the last one
+            if (lastKnownSafezone != safezone)
+            {
+                // Trigger the event
+                SafezoneChanged?.Invoke(this, new SafeZoneChangedEventArgs(lastKnownSafezone, safezone));
+                // Refresh everything
+                RefreshAll();
+                // And save the new safezone
+                lastKnownSafezone = safezone;
             }
         }
 
@@ -111,12 +148,14 @@ namespace LemonUI
             }
         }
         /// <summary>
-        /// Processes the objects in the pool.
+        /// Processes the objects and features in this pool.
+        /// This needs to be called every tick.
         /// </summary>
         public void Process()
         {
-            // See if there is a resolution change
+            // See if there are resolution or safezone changes
             DetectResolutionChanges();
+            DetectSafezoneChanges();
 
             // Then go ahead and process all of the objects
             foreach (IProcessable obj in objects)
