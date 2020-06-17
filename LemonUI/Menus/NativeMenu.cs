@@ -32,6 +32,10 @@ namespace LemonUI.Menus
         /// </summary>
         private int index = -1;
         /// <summary>
+        /// The width of the menu itself.
+        /// </summary>
+        private float width = 866f;
+        /// <summary>
         /// The banner of the menu.
         /// </summary>
         private IScreenDrawable bannerImage = null;
@@ -132,6 +136,18 @@ namespace LemonUI.Menus
                     throw new InvalidOperationException($"The index is over {Items.Count - 1}");
                 }
                 index = value;
+            }
+        }
+        /// <summary>
+        /// The width of the menu.
+        /// </summary>
+        public float Width
+        {
+            get => width;
+            set
+            {
+                width = value;
+                Recalculate();
             }
         }
         /// <summary>
@@ -280,7 +296,7 @@ namespace LemonUI.Menus
             if (bannerImage != null && bannerImage is BaseElement bannerImageBase)
             {
                 bannerImageBase.literalPosition = PointF.Empty;
-                bannerImageBase.literalSize = new SizeF(866, 216);
+                bannerImageBase.literalSize = new SizeF(width, 216);
                 bannerImageBase.Recalculate();
             }
             if (bannerText != null)
@@ -290,7 +306,7 @@ namespace LemonUI.Menus
             if (subtitleImage != null && subtitleImage is BaseElement subtitleImageBase)
             {
                 subtitleImageBase.literalPosition = new PointF(0, 108);
-                subtitleImageBase.literalSize = new SizeF(433, 37);
+                subtitleImageBase.literalSize = new SizeF(width * 0.5f, 37);
                 subtitleImageBase.Recalculate();
             }
             if (subtitleText != null)
