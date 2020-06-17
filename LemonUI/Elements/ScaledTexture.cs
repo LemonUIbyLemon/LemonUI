@@ -74,6 +74,15 @@ namespace LemonUI.Elements
             Function.Call(Hash.DRAW_SPRITE, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
 #endif
         }
+        /// <summary>
+        /// Recalculates the position based on the size.
+        /// </summary>
+        public override void Recalculate()
+        {
+            base.Recalculate();
+            relativePosition.X = relativePosition.X + (relativeSize.Width * 0.5f);
+            relativePosition.Y = relativePosition.Y + (relativeSize.Height * 0.5f);
+        }
 
         #endregion
     }

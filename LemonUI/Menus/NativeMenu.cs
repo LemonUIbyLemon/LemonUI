@@ -34,7 +34,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The width of the menu itself.
         /// </summary>
-        private float width = 866f;
+        private float width = 433;
         /// <summary>
         /// The alignment of the menu.
         /// </summary>
@@ -330,7 +330,7 @@ namespace LemonUI.Menus
             if (bannerImage != null && bannerImage is BaseElement bannerImageBase)
             {
                 bannerImageBase.literalPosition = PointF.Empty;
-                bannerImageBase.literalSize = new SizeF(width, 216);
+                bannerImageBase.literalSize = new SizeF(width, 108);
                 bannerImageBase.Recalculate();
             }
             if (bannerText != null)
@@ -340,7 +340,7 @@ namespace LemonUI.Menus
             if (subtitleImage != null && subtitleImage is BaseElement subtitleImageBase)
             {
                 subtitleImageBase.literalPosition = new PointF(0, 108);
-                subtitleImageBase.literalSize = new SizeF(width * 0.5f, 37);
+                subtitleImageBase.literalSize = new SizeF(width, 37);
                 subtitleImageBase.Recalculate();
             }
             if (subtitleText != null)

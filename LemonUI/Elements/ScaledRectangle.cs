@@ -35,14 +35,11 @@ namespace LemonUI.Elements
 #endif
         }
         /// <summary>
-        /// Recalculates the position of the rectangle while keeping the original position.
+        /// Recalculates the position based on the size.
         /// </summary>
         public override void Recalculate()
         {
-            // Recalculate as usual
             base.Recalculate();
-            // And set the correct positions from based on the size
-            // They start on the center, not on the top left corner (why R*)
             relativePosition.X = relativePosition.X + (relativeSize.Width * 0.5f);
             relativePosition.Y = relativePosition.Y + (relativeSize.Height * 0.5f);
         }
