@@ -5,6 +5,7 @@ using GTA;
 #elif SHVDN3
 using GTA.UI;
 #endif
+using LemonUI.Extensions;
 using System;
 using System.Drawing;
 
@@ -120,30 +121,12 @@ namespace LemonUI.Elements
         /// </summary>
         public virtual void Recalculate()
         {
-            // Get the resolution of the game window
-#if SHVDN2
-            SizeF screenSize = Game.ScreenResolution;
-#else
-            SizeF screenSize = Screen.Resolution;
-#endif
-            // Calculate the ratio of the resolution (height relative to the width)
-            float ratio = screenSize.Width / screenSize.Height;
-            // And get the real width
-            float realWidth = 1080f * ratio;
-
-            // Calculate the width
-            float width = literalSize.Width / realWidth;
-            // If this is aligned to the left, use it as-is
-            float x = literalPosition.X / realWidth;
-            // If is aligned to the right, use the full width minus the specified size
+            relativePosition = literalPosition.ToRelative();
+            relativeSize = literalSize.ToRelative();
             if (alignment == Alignment.Right)
             {
-                x = 1 - x - width;
+                relativePosition.X = 1 - relativePosition.X - relativeSize.Width;
             }
-
-            // And save the correct position and sizes
-            relativePosition = new PointF(x, literalPosition.Y / 1080f);
-            relativeSize = new SizeF(width, literalSize.Height / 1080f);
         }
 
         #endregion
