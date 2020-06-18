@@ -435,6 +435,12 @@ namespace LemonUI.Menus
             {
                 throw new InvalidOperationException("The item is already part of the menu.");
             }
+            // Also raise an exception if is null
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
             // Otherwise, just add it
             Items.Add(item);
             // Set the correct index if this is the only item
