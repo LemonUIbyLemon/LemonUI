@@ -25,6 +25,10 @@ namespace LemonUI.Menus
         #region Private Fields
 
         /// <summary>
+        /// The White color.
+        /// </summary>
+        private static readonly Color white = Color.FromArgb(255, 255, 255);
+        /// <summary>
         /// The White Smoke color.
         /// </summary>
         private static readonly Color whiteSmoke = Color.FromArgb(245, 245, 245);
@@ -65,6 +69,10 @@ namespace LemonUI.Menus
         /// The image on the background of the menu.
         /// </summary>
         private ScaledTexture backgroundImage = null;
+        /// <summary>
+        /// The rectangle that shows the currently selected item.
+        /// </summary>
+        private ScaledRectangle selectedRect = null;
 
         #endregion
 
@@ -255,7 +263,7 @@ namespace LemonUI.Menus
             bannerImage = banner;
             bannerText = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
             {
-                Color = Color.FromArgb(255, 255, 255),
+                Color = white,
                 Alignment = Alignment.Center
             };
             subtitleImage = new ScaledRectangle(PointF.Empty, SizeF.Empty)
@@ -267,6 +275,10 @@ namespace LemonUI.Menus
                 Color = whiteSmoke
             };
             backgroundImage = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "gradient_bgd");
+            selectedRect = new ScaledRectangle(PointF.Empty, SizeF.Empty)
+            {
+                Color = whiteSmoke
+            };
             Recalculate();
         }
 
@@ -401,6 +413,8 @@ namespace LemonUI.Menus
             {
                 item.Draw();
             }
+
+            selectedRect?.Draw();
         }
         /// <summary>
         /// Updates the alignment of the items.
@@ -424,6 +438,8 @@ namespace LemonUI.Menus
         /// </summary>
         public void Recalculate()
         {
+            const float itemHeight = 38f;
+
             // Save the start of the X value
             float start = 0;
 
@@ -455,8 +471,16 @@ namespace LemonUI.Menus
             {
                 // Set the position and size
                 backgroundImage.literalPosition = new PointF(0, start);
-                backgroundImage.literalSize = new SizeF(width, 38f * Items.Count);
+                backgroundImage.literalSize = new SizeF(width, itemHeight * Items.Count);
                 backgroundImage.Recalculate();
+            }
+            // If there is a rectangle for the currently selected item
+            if (selectedRect != null)
+            {
+                // Set the size
+                selectedRect.literalPosition = new PointF(0, start);
+                selectedRect.literalSize = new SizeF(width, itemHeight);
+                selectedRect.Recalculate();
             }
 
             RecalculateTexts();
