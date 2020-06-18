@@ -8,6 +8,8 @@ using GTA.Native;
 using GTA.Native;
 using GTA.UI;
 #endif
+using LemonUI.Menus;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -40,6 +42,10 @@ namespace LemonUI
         /// The list of processable objects.
         /// </summary>
         private readonly List<IProcessable> objects = new List<IProcessable>();
+        /// <summary>
+        /// The menus that are part of this pool.
+        /// </summary>
+        private readonly List<IMenu> menus = new List<IMenu>();
 
         #endregion
 
@@ -122,7 +128,32 @@ namespace LemonUI
         /// <param name="obj">The object to add.</param>
         public void Add(IProcessable obj)
         {
-            objects.Add(obj);
+            // Don't allow null objects
+            if (obj == null)
+            {
+                throw new ArgumentNullException(nameof(obj));
+            }
+
+            // If is a menu, add it to the menus
+            if (obj is IMenu menu)
+            {
+                if (menus.Contains(menu))
+                {
+                    throw new InvalidOperationException("The menu is already part of this pool.");
+                }
+
+                menus.Add(menu);
+            }
+            // Otherwise, add it to the general pool
+            else
+            {
+                if (objects.Contains(obj))
+                {
+                    throw new InvalidOperationException("The object is already part of this pool.");
+                }
+
+                objects.Add(obj);
+            }
         }
         /// <summary>
         /// Removes the object from the pool.
@@ -130,6 +161,7 @@ namespace LemonUI
         /// <param name="obj">The object to remove.</param>
         public void Remove(IProcessable obj)
         {
+            menus.Remove(obj as IMenu);
             objects.Remove(obj);
         }
         /// <summary>
@@ -137,14 +169,18 @@ namespace LemonUI
         /// </summary>
         public void RefreshAll()
         {
-            // Iterate over the objects
+            // Iterate over the objects and recalculate those possible
             foreach (IProcessable obj in objects)
             {
-                // If it can be recalculated, do it
                 if (obj is IRecalculable recal)
                 {
                     recal.Recalculate();
                 }
+            }
+            // And do the same with the menus
+            foreach (IMenu menu in objects)
+            {
+                menu.Recalculate();
             }
         }
         /// <summary>
@@ -157,7 +193,11 @@ namespace LemonUI
             DetectResolutionChanges();
             DetectSafezoneChanges();
 
-            // Then go ahead and process all of the objects
+            // Then go ahead and process all of the menus and objects
+            foreach (IMenu menu in menus)
+            {
+                menu.Process();
+            }
             foreach (IProcessable obj in objects)
             {
                 obj.Process();
