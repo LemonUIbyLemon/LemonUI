@@ -366,6 +366,12 @@ namespace LemonUI.Menus
             // Remove it if there
             // If not, ignore it
             Items.Remove(item);
+            // If the index is higher or equal than the max number of items
+            // Set the max - 1
+            if (index >= Items.Count)
+            {
+                index = Items.Count - 1;
+            }
         }
         /// <summary>
         /// Draws the menu and handles the controls.
