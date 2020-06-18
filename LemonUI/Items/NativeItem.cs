@@ -69,7 +69,6 @@ namespace LemonUI.Items
         public void Draw()
         {
             TitleObj?.Draw();
-            TitleObj?.Draw();
         }
 
         #endregion
