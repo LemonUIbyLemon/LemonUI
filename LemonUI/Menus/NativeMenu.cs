@@ -90,6 +90,44 @@ namespace LemonUI.Menus
         /// The rectangle that shows the currently selected item.
         /// </summary>
         private ScaledRectangle selectedRect = null;
+        /// <summary>
+        /// The maximum allowed number of items in the menu at once.
+        /// </summary>
+        private int maxItems = 9;
+        /// <summary>
+        /// The first item in the menu.
+        /// </summary>
+        private int firstItem = 0;
+
+        #endregion
+
+        #region Private Properties
+
+        /// <summary>
+        /// The items that are visible and useable on the screen.
+        /// </summary>
+        private IEnumerable<NativeItem> VisibleItems
+        {
+            get
+            {
+                // Iterate over the number of items while staying under the maximum
+                for (int i = 0; i < MaxItems; i++)
+                {
+                    // Calculate the start of our items
+                    int start = firstItem + i;
+
+                    // If the number of items is over the ones in the list, something went wrong
+                    // TODO: Decide what to do in this case (exception? silently ignore?)
+                    if (start >= Items.Count)
+                    {
+                        break;
+                    }
+
+                    // Otherwise, return it as part of the iterator
+                    yield return (NativeItem)Items[i];
+                }
+            }
+        }
 
         #endregion
 
@@ -226,6 +264,23 @@ namespace LemonUI.Menus
         /// Text shown when there are no items in the menu.
         /// </summary>
         public string NoItemsText { get; set; }
+        /// <summary>
+        /// The maximum allowed number of items in the menu at once.
+        /// </summary>
+        public int MaxItems
+        {
+            get => maxItems;
+            set
+            {
+                // If the number is under one, raise an exception
+                if (value < 1)
+                {
+                    throw new InvalidOperationException("The maximum numbers on the screen can't be under 1.");
+                }
+                // Otherwise, save it
+                maxItems = value;
+            }
+        }
 
         #endregion
 
@@ -327,16 +382,16 @@ namespace LemonUI.Menus
                 itemStart = 1 - width.ToXRelative() + itemStart;
             }
 
-            // Iterate over the number of items
-            for (int i = 0; i < Items.Count; i++)
+            // Iterate over the number of items while counting the number of them
+            int i = 0;
+            foreach (NativeItem item in VisibleItems)
             {
-                // Get the item as a native item
-                NativeItem item = (NativeItem)Items[i];
-
                 // Add the space between items if this is not the first
                 y += i == 0 ? 0 : 37.5f;
                 // And convert it to a relative value
                 item.TitleObj.relativePosition = new PointF(itemStart, y.ToYRelative());
+                // Finally, increase the count by one and move to the next item
+                i++;
             }
         }
         /// <summary>
@@ -425,7 +480,7 @@ namespace LemonUI.Menus
             subtitleText?.Draw();
             backgroundImage?.Draw();
 
-            foreach (IItem item in Items)
+            foreach (NativeItem item in VisibleItems)
             {
                 item.Draw();
             }
@@ -485,9 +540,11 @@ namespace LemonUI.Menus
             // If there is a background image
             if (backgroundImage != null)
             {
+                // See if we should draw the total number of items or the max allowed
+                int count = Items.Count > maxItems ? maxItems : Items.Count;
                 // Set the position and size
                 backgroundImage.literalPosition = new PointF(0, start);
-                backgroundImage.literalSize = new SizeF(width, itemHeight * Items.Count);
+                backgroundImage.literalSize = new SizeF(width, itemHeight * count);
                 backgroundImage.Recalculate();
             }
             // If there is a rectangle for the currently selected item
