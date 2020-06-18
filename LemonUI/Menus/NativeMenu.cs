@@ -578,6 +578,20 @@ namespace LemonUI.Menus
             visible = false;
             soundBack.PlayFrontend();
         }
+        /// <summary>
+        /// Moves to the previous item.
+        /// Does nothing if the menu has no items.
+        /// </summary>
+        public void Previous()
+        {
+        }
+        /// <summary>
+        /// Moves to the next item.
+        /// Does nothing if the menu has no items.
+        /// </summary>
+        public void Next()
+        {
+        }
 
         #endregion
     }

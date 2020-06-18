@@ -59,5 +59,18 @@ namespace LemonUI.Menus
         event EventHandler IndexChanged;
 
         #endregion
+
+        #region Public Functions
+
+        /// <summary>
+        /// Switches to the previous item.
+        /// </summary>
+        void Previous();
+        /// <summary>
+        /// Switches to the next item.
+        /// </summary>
+        void Next();
+
+        #endregion
     }
 }
