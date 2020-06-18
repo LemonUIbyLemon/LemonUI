@@ -523,6 +523,14 @@ namespace LemonUI.Menus
             {
                 subtitleImage.Alignment = alignment;
             }
+            if (backgroundImage != null)
+            {
+                backgroundImage.Alignment = alignment;
+            }
+            if (selectedRect != null)
+            {
+                selectedRect.Alignment = alignment;
+            }
             RecalculateTexts();
             UpdateItems();
         }
