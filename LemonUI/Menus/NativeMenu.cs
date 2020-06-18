@@ -56,6 +56,10 @@ namespace LemonUI.Menus
         /// The text of the subtitle.
         /// </summary>
         private ScaledText subtitleText = null;
+        /// <summary>
+        /// The image on the background of the menu.
+        /// </summary>
+        private ScaledTexture backgroundImage = null;
 
         #endregion
 
@@ -257,6 +261,7 @@ namespace LemonUI.Menus
             {
                 Color = Color.FromArgb(255, 255, 255)
             };
+            backgroundImage = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "gradient_bgd");
             Recalculate();
         }
 
@@ -377,6 +382,7 @@ namespace LemonUI.Menus
             }
             subtitleImage?.Draw();
             subtitleText?.Draw();
+            backgroundImage?.Draw();
 
             foreach (IItem item in Items)
             {
@@ -405,24 +411,41 @@ namespace LemonUI.Menus
         /// </summary>
         public void Recalculate()
         {
+            // Save the start of the X value
             float start = 0;
 
+            // If there is a banner and is an element
             if (bannerImage != null && bannerImage is BaseElement bannerImageBase)
             {
+                // Get the height of the banner
                 float bannerHeight = bannerImageBase.Size.Height;
+                // Set the position and size
                 bannerImageBase.literalPosition = PointF.Empty;
                 bannerImageBase.literalSize = new SizeF(width, bannerHeight);
+                // Increaser the start location of the next item
                 start += bannerHeight;
                 bannerImageBase.Recalculate();
             }
+            // If there is a subtitle image
             if (subtitleImage != null && subtitleImage is BaseElement subtitleImageBase)
             {
+                // Set the position and start
                 const float subtitleHeight = 37;
                 subtitleImageBase.literalPosition = new PointF(0, start);
                 subtitleImageBase.literalSize = new SizeF(width, subtitleHeight);
+                // Increase the start location
                 start += subtitleHeight;
                 subtitleImageBase.Recalculate();
             }
+            // If there is a background image
+            if (backgroundImage != null)
+            {
+                // Set the position and size
+                backgroundImage.literalPosition = new PointF(0, start);
+                backgroundImage.literalSize = new SizeF(width, 38f * Items.Count);
+                backgroundImage.Recalculate();
+            }
+
             RecalculateTexts();
             UpdateItemPositions();
         }
