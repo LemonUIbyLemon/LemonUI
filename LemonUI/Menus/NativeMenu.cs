@@ -8,6 +8,7 @@ using GTA.UI;
 using Font = GTA.UI.Font;
 #endif
 using LemonUI.Elements;
+using LemonUI.Extensions;
 using LemonUI.Items;
 using System;
 using System.Collections.Generic;
@@ -256,6 +257,37 @@ namespace LemonUI.Menus
 
         #endregion
 
+        #region Tools
+
+        /// <summary>
+        /// Updates the positions of the items.
+        /// </summary>
+        private void UpdateItemPositions()
+        {
+            // Before we do anything, calculate the X position
+            float itemStart = 7.5f.ToXRelative();
+            if (alignment == Alignment.Right)
+            {
+                itemStart = 1 - width.ToXRelative() + itemStart;
+            }
+
+            // Iterate over the number of items
+            for (int i = 0; i < Items.Count; i++)
+            {
+                // Get the item as a native item
+                NativeItem item = (NativeItem)Items[i];
+
+                // Calculate the position based on the number of items in the menu
+                const float start = 149;
+                const float jump = 37.5f;
+                float y = start + (jump * i);
+                // And convert it to a relative value
+                item.TitleObj.relativePosition = new PointF(itemStart, y.ToYRelative());
+            }
+        }
+
+        #endregion
+
         #region Public Functions
 
         /// <summary>
@@ -269,11 +301,11 @@ namespace LemonUI.Menus
             {
                 throw new InvalidOperationException("The item is already part of the menu.");
             }
-            // Otherwise, set the correct position
-            float y = 149 + (37.5f * Items.Count);
-            item.TitleObj.Position = new PointF(7.5f, y);
-            // And add it
+            // Otherwise, just add it
             Items.Add(item);
+            // And recalculate the positions
+            Recalculate();
+            UpdateItemPositions();
         }
         /// <summary>
         /// Removes an item from the menu.
@@ -321,6 +353,7 @@ namespace LemonUI.Menus
             {
                 subtitleImage.Alignment = alignment;
             }
+            UpdateItemPositions();
         }
         /// <summary>
         /// Calculates the positions and sizes of the elements.
