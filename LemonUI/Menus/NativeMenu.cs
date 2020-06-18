@@ -34,6 +34,15 @@ namespace LemonUI.Menus
         private static readonly Color whiteSmoke = Color.FromArgb(245, 245, 245);
 
         /// <summary>
+        /// Sound played when the user selects an option.
+        /// </summary>
+        private static readonly Sound.Sound soundSelect = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
+        /// <summary>
+        /// Sound played whenn the user returns or closes the menu.
+        /// </summary>
+        private static readonly Sound.Sound soundBack = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "BACK");
+
+        /// <summary>
         /// If the menu is visible or not.
         /// </summary>
         private bool visible = false;
@@ -92,6 +101,7 @@ namespace LemonUI.Menus
                 visible = value;
                 if (visible)
                 {
+                    soundSelect.PlayFrontend();
                     Shown?.Invoke(this, EventArgs.Empty);
                 }
                 else
@@ -503,6 +513,7 @@ namespace LemonUI.Menus
             }
             // Otherwise, hide the menu
             visible = false;
+            soundBack.PlayFrontend();
         }
 
         #endregion
