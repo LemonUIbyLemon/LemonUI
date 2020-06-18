@@ -25,6 +25,11 @@ namespace LemonUI.Menus
         #region Private Fields
 
         /// <summary>
+        /// The White Smoke color.
+        /// </summary>
+        private static readonly Color whiteSmoke = Color.FromArgb(245, 245, 245);
+
+        /// <summary>
         /// If the menu is visible or not.
         /// </summary>
         private bool visible = false;
@@ -259,7 +264,7 @@ namespace LemonUI.Menus
             };
             subtitleText = new ScaledText(PointF.Empty, subtitle, 0.35f, Font.ChaletLondon)
             {
-                Color = Color.FromArgb(255, 255, 255)
+                Color = whiteSmoke
             };
             backgroundImage = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "gradient_bgd");
             Recalculate();
@@ -347,6 +352,8 @@ namespace LemonUI.Menus
             }
             // Otherwise, just add it
             Items.Add(item);
+            // Change the color
+            item.TitleObj.Color = whiteSmoke;
             // And recalculate the positions
             Recalculate();
         }
