@@ -437,6 +437,11 @@ namespace LemonUI.Menus
             }
             // Otherwise, just add it
             Items.Add(item);
+            // Set the correct index if this is the only item
+            if (Items.Count != 0 && index == -1)
+            {
+                index = 0;
+            }
             // And recalculate the positions
             Recalculate();
         }
