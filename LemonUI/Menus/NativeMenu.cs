@@ -33,6 +33,10 @@ namespace LemonUI.Menus
         /// </summary>
         internal static readonly Color colorWhiteSmoke = Color.FromArgb(245, 245, 245);
         /// <summary>
+        /// The Black color.
+        /// </summary>
+        internal static readonly Color colorBlack = Color.FromArgb(0, 0, 0);
+        /// <summary>
         /// The color for disabled items.
         /// </summary>
         internal static readonly Color colorDisabled = Color.FromArgb(163, 159, 148);
@@ -362,7 +366,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// Updates the positions of the items.
         /// </summary>
-        private void UpdateItemPositions()
+        private void UpdateItems()
         {
             // Calculate the Y position based on the existance of a banner and description
             float y = 3;
@@ -390,6 +394,13 @@ namespace LemonUI.Menus
                 y += i == 0 ? 0 : 37.5f;
                 // And convert it to a relative value
                 item.TitleObj.relativePosition = new PointF(itemStart, y.ToYRelative());
+
+                // If this matches the currently selected item
+                if (i + firstItem == index)
+                {
+                    item.TitleObj.Color = colorBlack;
+                }
+
                 // Finally, increase the count by one and move to the next item
                 i++;
             }
@@ -513,7 +524,7 @@ namespace LemonUI.Menus
                 subtitleImage.Alignment = alignment;
             }
             RecalculateTexts();
-            UpdateItemPositions();
+            UpdateItems();
         }
         /// <summary>
         /// Calculates the positions and sizes of the elements.
@@ -568,7 +579,7 @@ namespace LemonUI.Menus
             }
 
             RecalculateTexts();
-            UpdateItemPositions();
+            UpdateItems();
         }
         /// <summary>
         /// Closes the menu.
