@@ -107,7 +107,12 @@ namespace LemonUI.Menus
         public IScreenDrawable Banner
         {
             get => bannerImage;
-            set => bannerImage = value;
+            set
+            {
+                bannerImage = value;
+                Recalculate();
+                RecalculateTexts();
+            }
         }
         /// <summary>
         /// The text object on top of the banner.
@@ -225,7 +230,7 @@ namespace LemonUI.Menus
         /// </summary>
         /// <param name="title">The title of the menu.</param>
         /// <param name="subtitle">Subtitle of this menu.</param>
-        public NativeMenu(string title, string subtitle) : this(title, new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "interaction_bgd"), subtitle)
+        public NativeMenu(string title, string subtitle) : this(title, new ScaledTexture(PointF.Empty, new SizeF(0, 108), "commonmenu", "interaction_bgd"), subtitle)
         {
         }
 
@@ -264,6 +269,17 @@ namespace LemonUI.Menus
         /// </summary>
         private void UpdateItemPositions()
         {
+            // Calculate the Y position based on the existance of a banner and description
+            float y = 3;
+            if (bannerImage != null)
+            {
+                y += bannerImage.Size.Height;
+            }
+            if (subtitleImage != null && !string.IsNullOrWhiteSpace(subtitleText.Text))
+            {
+                y += subtitleImage.Size.Height;
+            }
+
             // Before we do anything, calculate the X position
             float itemStart = 7.5f.ToXRelative();
             if (alignment == Alignment.Right)
@@ -277,10 +293,8 @@ namespace LemonUI.Menus
                 // Get the item as a native item
                 NativeItem item = (NativeItem)Items[i];
 
-                // Calculate the position based on the number of items in the menu
-                const float start = 149;
-                const float jump = 37.5f;
-                float y = start + (jump * i);
+                // Add the space between items if this is not the first
+                y += i == 0 ? 0 : 37.5f;
                 // And convert it to a relative value
                 item.TitleObj.relativePosition = new PointF(itemStart, y.ToYRelative());
             }
@@ -291,6 +305,12 @@ namespace LemonUI.Menus
         public void RecalculateTexts()
         {
             float offset = alignment == Alignment.Right ? 1f - width.ToXRelative() : 0;
+            float start = 0;
+
+            if (bannerImage != null)
+            {
+                start += bannerImage.Size.Height;
+            }
 
             if (bannerText != null)
             {
@@ -299,7 +319,8 @@ namespace LemonUI.Menus
             }
             if (subtitleText != null)
             {
-                subtitleText.Position = new PointF(6, 111);
+                start += 3;
+                subtitleText.Position = new PointF(6, start);
                 subtitleText.relativePosition.X += offset;
             }
         }
@@ -346,8 +367,14 @@ namespace LemonUI.Menus
             }
 
             // Otherwise, draw all other things
-            bannerImage?.Draw();
-            bannerText?.Draw();
+            if (bannerImage != null)
+            {
+                bannerImage.Draw();
+                if (bannerText != null && !string.IsNullOrWhiteSpace(bannerText.Text))
+                {
+                    bannerText.Draw();
+                }
+            }
             subtitleImage?.Draw();
             subtitleText?.Draw();
 
@@ -378,16 +405,22 @@ namespace LemonUI.Menus
         /// </summary>
         public void Recalculate()
         {
+            float start = 0;
+
             if (bannerImage != null && bannerImage is BaseElement bannerImageBase)
             {
+                float bannerHeight = bannerImageBase.Size.Height;
                 bannerImageBase.literalPosition = PointF.Empty;
-                bannerImageBase.literalSize = new SizeF(width, 108);
+                bannerImageBase.literalSize = new SizeF(width, bannerHeight);
+                start += bannerHeight;
                 bannerImageBase.Recalculate();
             }
             if (subtitleImage != null && subtitleImage is BaseElement subtitleImageBase)
             {
-                subtitleImageBase.literalPosition = new PointF(0, 108);
-                subtitleImageBase.literalSize = new SizeF(width, 37);
+                const float subtitleHeight = 37;
+                subtitleImageBase.literalPosition = new PointF(0, start);
+                subtitleImageBase.literalSize = new SizeF(width, subtitleHeight);
+                start += subtitleHeight;
                 subtitleImageBase.Recalculate();
             }
             RecalculateTexts();
