@@ -1,4 +1,5 @@
 using LemonUI.Elements;
+using LemonUI.Menus;
 using System;
 using System.Drawing;
 
@@ -9,8 +10,34 @@ namespace LemonUI.Items
     /// </summary>
     public class NativeItem : IItem
     {
+        #region Private Fields
+
+        /// <summary>
+        /// If this item can be used or not.
+        /// </summary>
+        private bool enabled = true;
+
+        #endregion
+
         #region Public Properties
 
+        /// <summary>
+        /// If this item can be used or not.
+        /// </summary>
+        public bool Enabled
+        {
+            get
+            {
+                return enabled;
+            }
+            set
+            {
+                // Save the value
+                enabled = value;
+                // And set the correct color for enabled and disabled
+                TitleObj.Color = value ? NativeMenu.colorWhite : NativeMenu.colorDisabled;
+            }
+        }
         /// <summary>
         /// The title of the item.
         /// </summary>
@@ -55,7 +82,10 @@ namespace LemonUI.Items
 
         public NativeItem(string title, string description)
         {
-            TitleObj = new ScaledText(PointF.Empty, title, 0.345f);
+            TitleObj = new ScaledText(PointF.Empty, title, 0.345f)
+            {
+                Color = NativeMenu.colorWhiteSmoke
+            };
             DescriptionObj = new ScaledText(PointF.Empty, description);
         }
 

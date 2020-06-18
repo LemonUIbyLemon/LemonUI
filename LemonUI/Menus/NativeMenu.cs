@@ -32,6 +32,10 @@ namespace LemonUI.Menus
         /// The White Smoke color.
         /// </summary>
         internal static readonly Color colorWhiteSmoke = Color.FromArgb(245, 245, 245);
+        /// <summary>
+        /// The color for disabled items.
+        /// </summary>
+        internal static readonly Color colorDisabled = Color.FromArgb(163, 159, 148);
 
         /// <summary>
         /// Sound played when the user selects an option.
@@ -378,8 +382,6 @@ namespace LemonUI.Menus
             }
             // Otherwise, just add it
             Items.Add(item);
-            // Change the color
-            item.TitleObj.Color = colorWhiteSmoke;
             // And recalculate the positions
             Recalculate();
         }

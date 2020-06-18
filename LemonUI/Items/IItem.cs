@@ -8,7 +8,11 @@ namespace LemonUI.Items
     public interface IItem : IDrawable
     {
         #region Public Properties
-
+        
+        /// <summary>
+        /// If this item can be used or not.
+        /// </summary>
+        bool Enabled { get; set; }
         /// <summary>
         /// The title of this item.
         /// </summary>
