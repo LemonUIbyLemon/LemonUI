@@ -22,25 +22,29 @@ namespace LemonUI.Menus
     /// </summary>
     public class NativeMenu : INativeMenu, IProcessable
     {
-        #region Private Fields
+        #region Internal Fields
 
         /// <summary>
         /// The White color.
         /// </summary>
-        private static readonly Color white = Color.FromArgb(255, 255, 255);
+        internal static readonly Color colorWhite = Color.FromArgb(255, 255, 255);
         /// <summary>
         /// The White Smoke color.
         /// </summary>
-        private static readonly Color whiteSmoke = Color.FromArgb(245, 245, 245);
+        internal static readonly Color colorWhiteSmoke = Color.FromArgb(245, 245, 245);
 
         /// <summary>
         /// Sound played when the user selects an option.
         /// </summary>
-        private static readonly Sound.Sound soundSelect = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
+        internal static readonly Sound.Sound soundSelect = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
         /// <summary>
         /// Sound played whenn the user returns or closes the menu.
         /// </summary>
-        private static readonly Sound.Sound soundBack = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "BACK");
+        internal static readonly Sound.Sound soundBack = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "BACK");
+
+        #endregion
+
+        #region Private Fields
 
         /// <summary>
         /// If the menu is visible or not.
@@ -273,7 +277,7 @@ namespace LemonUI.Menus
             bannerImage = banner;
             bannerText = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
             {
-                Color = white,
+                Color = colorWhite,
                 Alignment = Alignment.Center
             };
             subtitleImage = new ScaledRectangle(PointF.Empty, SizeF.Empty)
@@ -282,12 +286,12 @@ namespace LemonUI.Menus
             };
             subtitleText = new ScaledText(PointF.Empty, subtitle, 0.35f, Font.ChaletLondon)
             {
-                Color = whiteSmoke
+                Color = colorWhiteSmoke
             };
             backgroundImage = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "gradient_bgd");
             selectedRect = new ScaledRectangle(PointF.Empty, SizeF.Empty)
             {
-                Color = whiteSmoke
+                Color = colorWhiteSmoke
             };
             Recalculate();
         }
@@ -375,7 +379,7 @@ namespace LemonUI.Menus
             // Otherwise, just add it
             Items.Add(item);
             // Change the color
-            item.TitleObj.Color = whiteSmoke;
+            item.TitleObj.Color = colorWhiteSmoke;
             // And recalculate the positions
             Recalculate();
         }
