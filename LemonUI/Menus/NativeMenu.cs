@@ -285,6 +285,24 @@ namespace LemonUI.Menus
                 item.TitleObj.relativePosition = new PointF(itemStart, y.ToYRelative());
             }
         }
+        /// <summary>
+        /// Recalculates the text labels.
+        /// </summary>
+        public void RecalculateTexts()
+        {
+            float offset = alignment == Alignment.Right ? 1f - width.ToXRelative() : 0;
+
+            if (bannerText != null)
+            {
+                bannerText.Position = new PointF(209, 22);
+                bannerText.relativePosition.X += offset;
+            }
+            if (subtitleText != null)
+            {
+                subtitleText.Position = new PointF(6, 111);
+                subtitleText.relativePosition.X += offset;
+            }
+        }
 
         #endregion
 
@@ -305,7 +323,6 @@ namespace LemonUI.Menus
             Items.Add(item);
             // And recalculate the positions
             Recalculate();
-            UpdateItemPositions();
         }
         /// <summary>
         /// Removes an item from the menu.
@@ -353,6 +370,7 @@ namespace LemonUI.Menus
             {
                 subtitleImage.Alignment = alignment;
             }
+            RecalculateTexts();
             UpdateItemPositions();
         }
         /// <summary>
@@ -366,20 +384,14 @@ namespace LemonUI.Menus
                 bannerImageBase.literalSize = new SizeF(width, 108);
                 bannerImageBase.Recalculate();
             }
-            if (bannerText != null)
-            {
-                bannerText.Position = new PointF(209, 22);
-            }
             if (subtitleImage != null && subtitleImage is BaseElement subtitleImageBase)
             {
                 subtitleImageBase.literalPosition = new PointF(0, 108);
                 subtitleImageBase.literalSize = new SizeF(width, 37);
                 subtitleImageBase.Recalculate();
             }
-            if (subtitleText != null)
-            {
-                subtitleText.Position = new PointF(6, 111);
-            }
+            RecalculateTexts();
+            UpdateItemPositions();
         }
         /// <summary>
         /// Closes the menu.
