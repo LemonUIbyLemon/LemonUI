@@ -468,6 +468,12 @@ namespace LemonUI.Menus
         /// <param name="item">The item to remove.</param>
         public void Remove(NativeItem item)
         {
+            // If the item is not in the menu, ignore it
+            if (!Items.Contains(item))
+            {
+                return;
+            }
+
             // Remove it if there
             // If not, ignore it
             Items.Remove(item);
