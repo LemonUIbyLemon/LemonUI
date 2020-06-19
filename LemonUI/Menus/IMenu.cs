@@ -52,11 +52,11 @@ namespace LemonUI.Menus
         /// <summary>
         /// Event triggered when the selected index has been changed.
         /// </summary>
-        event EventHandler ItemChanged;
+        event EventHandler SelectedItemChanged;
         /// <summary>
         /// Event triggered when the index has been changed.
         /// </summary>
-        event EventHandler IndexChanged;
+        event EventHandler SelectedIndexChanged;
 
         #endregion
 

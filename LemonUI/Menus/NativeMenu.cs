@@ -309,11 +309,11 @@ namespace LemonUI.Menus
         /// <summary>
         /// Event triggered when the selected index has been changed.
         /// </summary>
-        public event EventHandler ItemChanged;
+        public event EventHandler SelectedItemChanged;
         /// <summary>
         /// Event triggered when the index has been changed.
         /// </summary>
-        public event EventHandler IndexChanged;
+        public event EventHandler SelectedIndexChanged;
 
         #endregion
 
