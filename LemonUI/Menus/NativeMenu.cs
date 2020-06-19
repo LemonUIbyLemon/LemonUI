@@ -202,7 +202,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The current index of the menu.
         /// </summary>
-        public int Index
+        public int SelectedIndex
         {
             get
             {
@@ -621,14 +621,14 @@ namespace LemonUI.Menus
             }
 
             // If we are on the first item, go back to the last one
-            if (Index == 0)
+            if (SelectedIndex == 0)
             {
-                Index = Items.Count - 1;
+                SelectedIndex = Items.Count - 1;
             }
             // Otherwise, reduce it by one
             else
             {
-                Index -= 1;
+                SelectedIndex -= 1;
             }
         }
         /// <summary>
@@ -646,12 +646,12 @@ namespace LemonUI.Menus
             // If we are on the last item, go back to the first one
             if (Items.Count - 1 == index)
             {
-                Index = 0;
+                SelectedIndex = 0;
             }
             // Otherwise, increase it by one
             else
             {
-                Index += 1;
+                SelectedIndex += 1;
             }
         }
 

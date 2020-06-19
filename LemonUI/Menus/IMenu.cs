@@ -23,7 +23,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The current index of the menu.
         /// </summary>
-        int Index { get; set; }
+        int SelectedIndex { get; set; }
         /// <summary>
         /// The items that this menu contain.
         /// </summary>
