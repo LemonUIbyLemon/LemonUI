@@ -1,10 +1,12 @@
 #if FIVEM
+using CitizenFX.Core;
 using CitizenFX.Core.UI;
 using CitizenFX.Core.Native;
 #elif SHVDN2
 using GTA;
 using GTA.Native;
 #elif SHVDN3
+using GTA;
 using GTA.Native;
 using GTA.UI;
 #endif
@@ -46,10 +48,49 @@ namespace LemonUI
         /// The menus that are part of this pool.
         /// </summary>
         private readonly List<IMenu> menus = new List<IMenu>();
-
-        #endregion
-
-        #region Public Properties
+        /// <summary>
+        /// The controls required by the menu with both a gamepad and mouse + keyboard.
+        /// </summary>
+        private readonly List<Control> controlsRequired = new List<Control>
+        {
+            Control.FrontendAccept,
+            Control.FrontendAxisX,
+            Control.FrontendAxisY,
+            Control.FrontendDown,
+            Control.FrontendUp,
+            Control.FrontendLeft,
+            Control.FrontendRight,
+            Control.FrontendCancel,
+            Control.FrontendSelect,
+            Control.CursorScrollDown,
+            Control.CursorScrollUp,
+            Control.CursorX,
+            Control.CursorY,
+            Control.MoveUpDown,
+            Control.MoveLeftRight,
+            Control.Sprint,
+            Control.Jump,
+            Control.Enter,
+            Control.VehicleExit,
+            Control.VehicleAccelerate,
+            Control.VehicleBrake,
+            Control.VehicleMoveLeftRight,
+            Control.VehicleFlyYawLeft,
+            Control.FlyLeftRight,
+            Control.FlyUpDown,
+            Control.VehicleFlyYawRight,
+            Control.VehicleHandbrake
+        };
+        /// <summary>
+        /// The controls required in a gamepad.
+        /// </summary>
+        private readonly List<Control> controlsGamepad = new List<Control>
+        {
+            Control.LookUpDown,
+            Control.LookLeftRight,
+            Control.Aim,
+            Control.Attack
+        };
 
         #endregion
 
@@ -63,10 +104,6 @@ namespace LemonUI
         /// Event triggered when the Safezone size option in the Display settings is changed.
         /// </summary>
         public event SafeZoneChangedEventHandler SafezoneChanged;
-
-        #endregion
-
-        #region Constructor
 
         #endregion
 
@@ -193,11 +230,47 @@ namespace LemonUI
             DetectResolutionChanges();
             DetectSafezoneChanges();
 
-            // Then go ahead and process all of the menus and objects
+            // Iterate over the menus
             foreach (IMenu menu in menus)
             {
-                menu.Process();
+                // If the menu is visible
+                if (menu.Visible)
+                {
+                    // Disable all of the controls
+                    Controls.DisableAll(2);
+                    // And enable only those required
+                    Controls.EnableThisFrame(controlsRequired);
+                    // If we are using a controller, also enable those required by a gamepad
+                    if (Controls.IsUsingController)
+                    {
+                        Controls.EnableThisFrame(controlsGamepad);
+                    }
+                    // And break the iterator
+                    break;
+                }
             }
+
+            // Check if the controls necessary were pressed
+            bool backPressed = Controls.IsJustPressed(Control.PhoneCancel) || Controls.IsJustPressed(Control.FrontendPause);
+
+            // Then go ahead and process the menus
+            foreach (IMenu menu in menus)
+            {
+                // If the menu should be visible on the screen
+                if (menu.Visible)
+                {
+                    // Process it
+                    menu.Process();
+
+                    // If the player pressed the back button
+                    if (backPressed)
+                    {
+                        menu.Visible = false;
+                    }
+                }
+            }
+
+            // And finally process all other objects
             foreach (IProcessable obj in objects)
             {
                 obj.Process();
