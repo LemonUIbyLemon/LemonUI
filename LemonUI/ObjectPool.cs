@@ -252,21 +252,37 @@ namespace LemonUI
 
             // Check if the controls necessary were pressed
             bool backPressed = Controls.IsJustPressed(Control.PhoneCancel) || Controls.IsJustPressed(Control.FrontendPause);
+            bool upPressed = Controls.IsJustPressed(Control.PhoneUp) || Controls.IsJustPressed(Control.CursorScrollUp);
+            bool downPressed = Controls.IsJustPressed(Control.PhoneDown) || Controls.IsJustPressed(Control.CursorScrollDown);
 
             // Then go ahead and process the menus
             foreach (IMenu menu in menus)
             {
-                // If the menu should be visible on the screen
-                if (menu.Visible)
+                // If the menu should be not visible on the screen, skip it
+                if (!menu.Visible)
                 {
-                    // Process it
-                    menu.Process();
+                    continue;
+                }
 
-                    // If the player pressed the back button
-                    if (backPressed)
-                    {
-                        menu.Visible = false;
-                    }
+                // Process the changes and draw it
+                menu.Process();
+
+                // If the player pressed the back button, close the menu and continue to the next menu
+                if (backPressed)
+                {
+                    menu.Visible = false;
+                    continue;
+                }
+
+                // If the player pressed up, go to the previous item
+                if (upPressed && !downPressed)
+                {
+                    menu.Previous();
+                }
+                // If he pressed down, go to the next item
+                else if (downPressed && !upPressed)
+                {
+                    menu.Next();
                 }
             }
 
