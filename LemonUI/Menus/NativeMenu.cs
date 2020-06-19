@@ -52,6 +52,15 @@ namespace LemonUI.Menus
 
         #endregion
 
+        #region Constant fields
+
+        /// <summary>
+        /// The height of one of the items in the screen.
+        /// </summary>
+        const float itemHeight = 38f;
+
+        #endregion
+
         #region Private Fields
 
         /// <summary>
@@ -214,15 +223,20 @@ namespace LemonUI.Menus
             }
             set
             {
+                // If the list of items is empty, don't allow the user to set the index
                 if (Items == null || Items.Count == 0)
                 {
                     throw new InvalidOperationException("There are no items in this menu.");
                 }
+                // If the value is over or equal than the number of items, raise an exception
                 else if (value >= Items.Count)
                 {
                     throw new InvalidOperationException($"The index is over {Items.Count - 1}");
                 }
+                // Save the index
                 index = value;
+                // And update the items visually
+                UpdateItems();
             }
         }
         /// <summary>
@@ -368,8 +382,9 @@ namespace LemonUI.Menus
         /// </summary>
         private void UpdateItems()
         {
-            // Calculate the Y position based on the existance of a banner and description
-            float y = 3;
+            // Create a float to store the Y position
+            float y = 0;
+            // Add the heights of the banner and subtitle (if they are there)
             if (bannerImage != null)
             {
                 y += bannerImage.Size.Height;
@@ -379,6 +394,9 @@ namespace LemonUI.Menus
                 y += subtitleImage.Size.Height;
             }
 
+            // Set the position of the rectangle for the current item
+            selectedRect.Position = new PointF(selectedRect.Position.X, y + (index * itemHeight));
+
             // Before we do anything, calculate the X position
             float itemStart = 7.5f.ToXRelative();
             if (alignment == Alignment.Right)
@@ -386,21 +404,29 @@ namespace LemonUI.Menus
                 itemStart = 1 - width.ToXRelative() + itemStart;
             }
 
+            // Add 3 units to compensate for the text not being in the same place as the background
+            y += 3f;
             // Iterate over the number of items while counting the number of them
             int i = 0;
             foreach (NativeItem item in VisibleItems)
             {
                 // Add the space between items if this is not the first
-                y += i == 0 ? 0 : 37.5f;
-                // And convert it to a relative value
-                item.TitleObj.relativePosition = new PointF(itemStart, y.ToYRelative());
+                y += i == 0 ? 0 : 37.6f;
+                float yRelative = y.ToYRelative();
+                // Convert it to a relative value
+                item.TitleObj.relativePosition = new PointF(itemStart, yRelative);
+                // And select the correct color (just in case)
+                Color color = colorWhiteSmoke;
 
                 // If this matches the currently selected item
                 if (i + firstItem == SelectedIndex)
                 {
-                    item.TitleObj.Color = colorBlack;
+                    // Set the correct color to black
+                    color = colorBlack;
                 }
 
+                // Set the color of the item
+                item.TitleObj.Color = color;
                 // Finally, increase the count by one and move to the next item
                 i++;
             }
@@ -545,8 +571,6 @@ namespace LemonUI.Menus
         /// </summary>
         public void Recalculate()
         {
-            const float itemHeight = 38f;
-
             // Save the start of the X value
             float start = 0;
 
