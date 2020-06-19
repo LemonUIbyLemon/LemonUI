@@ -396,7 +396,7 @@ namespace LemonUI.Menus
                 item.TitleObj.relativePosition = new PointF(itemStart, y.ToYRelative());
 
                 // If this matches the currently selected item
-                if (i + firstItem == index)
+                if (i + firstItem == SelectedIndex)
                 {
                     item.TitleObj.Color = colorBlack;
                 }
@@ -455,9 +455,9 @@ namespace LemonUI.Menus
             // Otherwise, just add it
             Items.Add(item);
             // Set the correct index if this is the only item
-            if (Items.Count != 0 && index == -1)
+            if (Items.Count != 0 && SelectedIndex == -1)
             {
-                index = 0;
+                SelectedIndex = 0;
             }
             // And recalculate the positions
             Recalculate();
@@ -473,9 +473,9 @@ namespace LemonUI.Menus
             Items.Remove(item);
             // If the index is higher or equal than the max number of items
             // Set the max - 1
-            if (index >= Items.Count)
+            if (SelectedIndex >= Items.Count)
             {
-                index = Items.Count - 1;
+                SelectedIndex = Items.Count - 1;
             }
         }
         /// <summary>
@@ -644,7 +644,7 @@ namespace LemonUI.Menus
             }
 
             // If we are on the last item, go back to the first one
-            if (Items.Count - 1 == index)
+            if (Items.Count - 1 == SelectedIndex)
             {
                 SelectedIndex = 0;
             }
