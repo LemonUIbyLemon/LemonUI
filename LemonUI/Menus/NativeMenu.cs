@@ -218,7 +218,7 @@ namespace LemonUI.Menus
                 {
                     throw new InvalidOperationException("There are no items in this menu.");
                 }
-                else if (Items.Count >= value)
+                else if (value >= Items.Count)
                 {
                     throw new InvalidOperationException($"The index is over {Items.Count - 1}");
                 }
