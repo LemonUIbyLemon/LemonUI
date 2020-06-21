@@ -106,7 +106,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The maximum allowed number of items in the menu at once.
         /// </summary>
-        private int maxItems = 9;
+        private int maxItems = 10;
         /// <summary>
         /// The first item in the menu.
         /// </summary>
