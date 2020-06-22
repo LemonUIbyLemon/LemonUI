@@ -98,6 +98,22 @@ namespace LemonUI.Elements
             }
         }
         /// <summary>
+        /// The relative height of each line in the text.
+        /// </summary>
+        public float LineHeight
+        {
+            get
+            {
+#if FIVEM
+                return API.GetTextScaleHeight(Scale, (int)Font);
+#elif SHVDN2
+                return Function.Call<float>(Hash._0xDB88A37483346780, Scale, (int)Font);
+#elif SHVDN3
+                return Function.Call<float>(Hash._GET_TEXT_SCALE_HEIGHT, Scale, (int)Font);
+#endif
+            }
+        }
+        /// <summary>
         /// The game font to use.
         /// </summary>
         public Font Font { get; set; } = Font.ChaletLondon;
