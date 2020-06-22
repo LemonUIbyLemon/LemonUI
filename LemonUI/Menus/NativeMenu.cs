@@ -233,6 +233,36 @@ namespace LemonUI.Menus
                 {
                     throw new InvalidOperationException($"The index is over {Items.Count - 1}");
                 }
+
+                // Calculate the bounds of the menu
+                int lower = firstItem;
+                int upper = firstItem + maxItems;
+
+                // Time to set the first item based on the total number of items
+                // If the item is between the allowed values, do nothing because we are on the correct first item
+                if (value >= lower && value < upper - 1)
+                {
+                }
+                // If the upper bound + 1 equals the new index, increase it by one
+                else if (upper == value)
+                {
+                    firstItem += 1;
+                }
+                // If the first item minus one equals the value, decrease it by one
+                else if (lower - 1 == value)
+                {
+                    firstItem -= 1;
+                }
+                // Otherwise, set it somewhere
+                else
+                {
+                    // If the value is under the max items, set it to zero
+                    if (value < maxItems)
+                    {
+                        firstItem = 0;
+                    }
+                }
+
                 // Save the index
                 index = value;
                 // And update the items visually
@@ -395,7 +425,7 @@ namespace LemonUI.Menus
             }
 
             // Set the position of the rectangle for the current item
-            selectedRect.Position = new PointF(selectedRect.Position.X, y + (index * itemHeight));
+            selectedRect.Position = new PointF(selectedRect.Position.X, y + ((index - firstItem) * itemHeight));
 
             // Before we do anything, calculate the X position
             float itemStart = 7.5f.ToXRelative();
