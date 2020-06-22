@@ -25,6 +25,10 @@ namespace LemonUI.Menus
         #region Internal Fields
 
         /// <summary>
+        /// A Pink-Purple used for debugging.
+        /// </summary>
+        internal static readonly Color colorDebug = Color.FromArgb(255, 0, 255);
+        /// <summary>
         /// The White color.
         /// </summary>
         internal static readonly Color colorWhite = Color.FromArgb(255, 255, 255);
