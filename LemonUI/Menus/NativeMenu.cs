@@ -66,6 +66,18 @@ namespace LemonUI.Menus
         /// The height of one of the items in the screen.
         /// </summary>
         private const float itemHeight = 37.4f;
+        /// <summary>
+        /// The height difference between the description and the end of the items.
+        /// </summary>
+        private const float heightDiffDescImg = 4;
+        /// <summary>
+        /// The height difference between the background and text of the description.
+        /// </summary>
+        private const float heightDiffDescTxt = 3;
+        /// <summary>
+        /// The X position of the description text.
+        /// </summary>
+        private const float posXDescTxt = 6;
 
         #endregion
 
@@ -111,6 +123,14 @@ namespace LemonUI.Menus
         /// The rectangle that shows the currently selected item.
         /// </summary>
         private ScaledRectangle selectedRect = null;
+        /// <summary>
+        /// The rectangle with the description text.
+        /// </summary>
+        private ScaledTexture descriptionRect = null;
+        /// <summary>
+        /// The text with the description text.
+        /// </summary>
+        private ScaledText descriptionText = null;
         /// <summary>
         /// The maximum allowed number of items in the menu at once.
         /// </summary>
@@ -217,6 +237,25 @@ namespace LemonUI.Menus
             set => bannerText = value;
         }
         /// <summary>
+        /// Returns the currently selected item.
+        /// </summary>
+        public IItem SelectedItem
+        {
+            get
+            {
+                // If there are no items, return null
+                if (Items.Count == 0)
+                {
+                    return null;
+                }
+                // Otherwise, return the correct item from the list
+                else
+                {
+                    return Items[SelectedIndex];
+                }
+            }
+        }
+        /// <summary>
         /// The current index of the menu.
         /// </summary>
         public int SelectedIndex
@@ -283,6 +322,12 @@ namespace LemonUI.Menus
                 if (Visible)
                 {
                     soundUpDown.PlayFrontend();
+                }
+
+                // If an item was selected, the correct description
+                if (SelectedItem != null)
+                {
+                    descriptionText.Text = SelectedItem.Description;
                 }
 
                 // And update the items visually
@@ -420,6 +465,8 @@ namespace LemonUI.Menus
             {
                 Color = colorWhiteSmoke
             };
+            descriptionRect = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "gradient_bgd");
+            descriptionText = new ScaledText(PointF.Empty, "", 0.351f);
             Recalculate();
         }
 
@@ -445,7 +492,13 @@ namespace LemonUI.Menus
             }
 
             // Set the position of the rectangle for the current item
-            selectedRect.Position = new PointF(selectedRect.Position.X, y + ((index - firstItem) * itemHeight));
+            float selected = y + ((index - firstItem) * itemHeight);
+            selectedRect.Position = new PointF(selectedRect.Position.X, selected);
+            // And the description text and background
+            float description = y + ((Items.Count > maxItems ? maxItems : Items.Count) * itemHeight) + heightDiffDescImg;
+            descriptionRect.Size = new SizeF(width, descriptionText.LineCount * 35);
+            descriptionRect.Position = new PointF(descriptionRect.Position.X, description);
+            descriptionText.Position = new PointF(descriptionText.Position.X, description + heightDiffDescTxt);
 
             // Before we do anything, calculate the X position
             float itemStart = 7.5f.ToXRelative();
@@ -462,9 +515,8 @@ namespace LemonUI.Menus
             {
                 // Add the space between items if this is not the first
                 y += i == 0 ? 0 : 37.6f;
-                float yRelative = y.ToYRelative();
                 // Convert it to a relative value
-                item.TitleObj.relativePosition = new PointF(itemStart, yRelative);
+                item.TitleObj.relativePosition = new PointF(itemStart, y.ToYRelative());
                 // And select the correct color (just in case)
                 Color color = colorWhiteSmoke;
 
@@ -590,6 +642,14 @@ namespace LemonUI.Menus
             }
 
             selectedRect?.Draw();
+
+            // If the description rectangle and text is there and we have text to draw
+            if (descriptionRect != null && descriptionText != null && !string.IsNullOrWhiteSpace(descriptionText.Text))
+            {
+                // Draw the text and the background
+                descriptionRect.Draw();
+                descriptionText.Draw();
+            }
         }
         /// <summary>
         /// Updates the alignment of the items.
@@ -612,6 +672,10 @@ namespace LemonUI.Menus
             if (selectedRect != null)
             {
                 selectedRect.Alignment = alignment;
+            }
+            if (descriptionRect != null)
+            {
+                descriptionRect.Alignment = alignment;
             }
             RecalculateTexts();
             UpdateItems();
@@ -664,6 +728,20 @@ namespace LemonUI.Menus
                 selectedRect.literalPosition = new PointF(0, start);
                 selectedRect.literalSize = new SizeF(width, itemHeight);
                 selectedRect.Recalculate();
+            }
+            // If there is a description rectangle
+            if (descriptionRect != null)
+            {
+                // Set the size
+                descriptionRect.Size = new SizeF(width, 0);
+            }
+            // If there is an object for the description
+            if (descriptionText != null)
+            {
+                // Set the width
+                descriptionText.Position = new PointF(posXDescTxt, 0);
+                // And set the correct word wrap
+                descriptionText.WordWrap = width - posXDescTxt;
             }
 
             RecalculateTexts();
