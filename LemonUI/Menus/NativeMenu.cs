@@ -46,9 +46,13 @@ namespace LemonUI.Menus
         /// </summary>
         internal static readonly Sound.Sound soundSelect = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
         /// <summary>
-        /// Sound played whenn the user returns or closes the menu.
+        /// Sound played when the user returns or closes the menu.
         /// </summary>
         internal static readonly Sound.Sound soundBack = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "BACK");
+        /// <summary>
+        /// Sound played when the menu goes up and down.
+        /// </summary>
+        internal static readonly Sound.Sound soundUpDown = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_UP_DOWN");
 
         #endregion
 
@@ -270,6 +274,13 @@ namespace LemonUI.Menus
 
                 // Save the index
                 index = value;
+
+                // If the menu is visible, play the up and down sound
+                if (Visible)
+                {
+                    soundUpDown.PlayFrontend();
+                }
+
                 // And update the items visually
                 UpdateItems();
             }
