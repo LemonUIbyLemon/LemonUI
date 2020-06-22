@@ -65,7 +65,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The height of one of the items in the screen.
         /// </summary>
-        const float itemHeight = 38f;
+        private const float itemHeight = 37.4f;
 
         #endregion
 
@@ -411,7 +411,7 @@ namespace LemonUI.Menus
             {
                 Color = Color.FromArgb(0, 0, 0)
             };
-            subtitleText = new ScaledText(PointF.Empty, subtitle, 0.35f, Font.ChaletLondon)
+            subtitleText = new ScaledText(PointF.Empty, subtitle, 0.345f, Font.ChaletLondon)
             {
                 Color = colorWhiteSmoke
             };
@@ -501,7 +501,7 @@ namespace LemonUI.Menus
             }
             if (subtitleText != null)
             {
-                start += 3;
+                start += 4.2f;
                 subtitleText.Position = new PointF(6, start);
                 subtitleText.relativePosition.X += offset;
             }
@@ -640,7 +640,7 @@ namespace LemonUI.Menus
             if (subtitleImage != null && subtitleImage is BaseElement subtitleImageBase)
             {
                 // Set the position and start
-                const float subtitleHeight = 37;
+                const float subtitleHeight = 38;
                 subtitleImageBase.literalPosition = new PointF(0, start);
                 subtitleImageBase.literalSize = new SizeF(width, subtitleHeight);
                 // Increase the start location
