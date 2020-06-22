@@ -71,6 +71,33 @@ namespace LemonUI.Elements
             }
         }
         /// <summary>
+        /// The number of lines that this text uses.
+        /// </summary>
+        public int LineCount
+        {
+            get
+            {
+                // Start the string measuring
+#if FIVEM
+                API.BeginTextCommandLineCount("CELL_EMAIL_BCON");
+#elif SHVDN2
+                Function.Call(Hash._SET_TEXT_GXT_ENTRY, "CELL_EMAIL_BCON");
+#elif SHVDN3
+                Function.Call(Hash._BEGIN_TEXT_COMMAND_LINE_COUNT, "CELL_EMAIL_BCON");
+#endif
+                // Add the information of this text
+                Add();
+                // And return the number of lines reported by the game
+#if FIVEM
+                return API.EndTextCommandGetLineCount(relativePosition.X, relativePosition.Y);
+#elif SHVDN2
+                return Function.Call<int>(Hash._0x9040DFB09BE75706, relativePosition.X, relativePosition.Y);
+#elif SHVDN3
+                return Function.Call<int>(Hash._END_TEXT_COMMAND_LINE_COUNT, relativePosition.X, relativePosition.Y);
+#endif
+            }
+        }
+        /// <summary>
         /// The game font to use.
         /// </summary>
         public Font Font { get; set; } = Font.ChaletLondon;
