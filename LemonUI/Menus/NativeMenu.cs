@@ -261,6 +261,11 @@ namespace LemonUI.Menus
                     {
                         firstItem = 0;
                     }
+                    // Otherwise, set it at the bottom
+                    else
+                    {
+                        firstItem = value - maxItems + 1;
+                    }
                 }
 
                 // Save the index
