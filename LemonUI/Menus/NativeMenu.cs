@@ -137,7 +137,7 @@ namespace LemonUI.Menus
                     }
 
                     // Otherwise, return it as part of the iterator
-                    yield return (NativeItem)Items[i];
+                    yield return (NativeItem)Items[start];
                 }
             }
         }
