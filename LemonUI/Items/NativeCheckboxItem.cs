@@ -47,16 +47,15 @@ namespace LemonUI.Items
 
         #region Constructor
 
-        public NativeCheckboxItem(string title) : base(title, "")
+        public NativeCheckboxItem(string title) : this(title, "", false)
         {
         }
 
-        public NativeCheckboxItem(string title, bool check) : base(title, "")
+        public NativeCheckboxItem(string title, bool check) : this(title, "", check)
         {
-            Checked = check;
         }
 
-        public NativeCheckboxItem(string title, string description) : base(title, description)
+        public NativeCheckboxItem(string title, string description) : this(title, description, false)
         {
         }
 
