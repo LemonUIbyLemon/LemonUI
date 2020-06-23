@@ -26,11 +26,12 @@ namespace LemonUI.Items
             get => checked_;
             set
             {
-                if (checked_ != value)
+                if (checked_ == value)
                 {
-                    CheckboxChanged?.Invoke(this, EventArgs.Empty);
+                    return;
                 }
                 checked_ = value;
+                CheckboxChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
