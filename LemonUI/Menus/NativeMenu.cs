@@ -387,6 +387,7 @@ namespace LemonUI.Menus
                 {
                     descriptionText.Text = SelectedItem.Description;
                     SelectedItem.OnSelected();
+                    SelectedIndexChanged.Invoke(this, EventArgs.Empty);
                 }
 
                 // And update the items visually
