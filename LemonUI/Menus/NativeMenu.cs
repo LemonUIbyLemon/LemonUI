@@ -24,7 +24,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Menu that looks like the ones used by Rockstar.
     /// </summary>
-    public class NativeMenu : INativeMenu<NativeItem>, IProcessable
+    public class NativeMenu : IMenu<NativeItem>, IProcessable
     {
         #region Internal Fields
 
