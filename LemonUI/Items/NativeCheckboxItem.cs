@@ -12,7 +12,7 @@ namespace LemonUI.Items
         /// <summary>
         /// If this item is checked or not.
         /// </summary>
-        public bool checked_ = false;
+        private bool checked_ = false;
 
         #endregion
 
