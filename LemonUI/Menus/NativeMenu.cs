@@ -297,7 +297,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// Returns the currently selected item.
         /// </summary>
-        public IItem SelectedItem
+        public NativeItem SelectedItem
         {
             get
             {
