@@ -96,12 +96,18 @@ namespace LemonUI.Menus
             Control.VehicleHandbrake
         };
         /// <summary>
+        /// Controls required for the camera to work.
+        /// </summary>
+        internal static readonly List<Control> controlsCamera = new List<Control>
+        {
+            Control.LookUpDown,
+            Control.LookLeftRight,
+        };
+        /// <summary>
         /// The controls required in a gamepad.
         /// </summary>
         internal static readonly List<Control> controlsGamepad = new List<Control>
         {
-            Control.LookUpDown,
-            Control.LookLeftRight,
             Control.Aim,
             Control.Attack
         };
@@ -419,6 +425,10 @@ namespace LemonUI.Menus
             set => subtitleText.Text = value;
         }
         /// <summary>
+        /// If the mouse should be used for navigating the menu.
+        /// </summary>
+        public bool UseMouse { get; set; } = true;
+        /// <summary>
         /// The items that this menu contain.
         /// </summary>
         public List<NativeItem> Items { get; }
@@ -727,10 +737,15 @@ namespace LemonUI.Menus
             Controls.DisableAll(2);
             // And enable only those required
             Controls.EnableThisFrame(controlsRequired);
-            // If we are using a controller, also enable those required by a gamepad
+            // Enable those required when using a gamepad
             if (Controls.IsUsingController)
             {
                 Controls.EnableThisFrame(controlsGamepad);
+            }
+            // Or those required for the camera
+            if (Controls.IsUsingController || !UseMouse)
+            {
+                Controls.EnableThisFrame(controlsCamera);
             }
 
             // Check if the controls necessary were pressed
