@@ -387,7 +387,7 @@ namespace LemonUI.Menus
                 {
                     descriptionText.Text = SelectedItem.Description;
                     SelectedItem.OnSelected();
-                    SelectedIndexChanged.Invoke(this, EventArgs.Empty);
+                    SelectedIndexChanged?.Invoke(this, EventArgs.Empty);
                 }
 
                 // And update the items visually
@@ -878,7 +878,7 @@ namespace LemonUI.Menus
             }
             // Otherwise, close the menu
             visible = false;
-            Closed.Invoke(this, EventArgs.Empty);
+            Closed?.Invoke(this, EventArgs.Empty);
             soundBack.PlayFrontend();
         }
         /// <summary>
