@@ -182,12 +182,21 @@ namespace LemonUI.Scaleform
             // Clear all of the existing items
 #if FIVEM
             API.CallScaleformMovieMethod(scaleform, "CLEAR_ALL");
+            API.BeginScaleformMovieMethod(scaleform, "TOGGLE_MOUSE_BUTTONS");
+            API.ScaleformMovieMethodAddParamInt(0);
+            API.EndScaleformMovieMethod();
             API.CallScaleformMovieMethod(scaleform, "CREATE_CONTAINER");
 #elif SHVDN2
             Function.Call(Hash._CALL_SCALEFORM_MOVIE_FUNCTION_VOID, scaleform, "CLEAR_ALL");
+            Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION, scaleform, "TOGGLE_MOUSE_BUTTONS");
+            Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_INT, 0);
+            Function.Call(Hash._POP_SCALEFORM_MOVIE_FUNCTION_VOID);
             Function.Call(Hash._CALL_SCALEFORM_MOVIE_FUNCTION_VOID, scaleform, "CREATE_CONTAINER");
 #elif SHVDN3
             Function.Call(Hash.CALL_SCALEFORM_MOVIE_METHOD, scaleform, "CLEAR_ALL");
+            Function.Call(Hash.BEGIN_SCALEFORM_MOVIE_METHOD, scaleform, "TOGGLE_MOUSE_BUTTONS");
+            Function.Call(Hash.SCALEFORM_MOVIE_METHOD_ADD_PARAM_INT, 0);
+            Function.Call(Hash.END_SCALEFORM_MOVIE_METHOD);
             Function.Call(Hash.CALL_SCALEFORM_MOVIE_METHOD, scaleform, "CREATE_CONTAINER");
 #endif
 
