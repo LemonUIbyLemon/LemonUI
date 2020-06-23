@@ -868,15 +868,16 @@ namespace LemonUI.Menus
             // Create a new set of event arguments
             CancelEventArgs args = new CancelEventArgs();
             // And trigger the event
-            Closed?.Invoke(this, args);
+            Closing?.Invoke(this, args);
 
             // If we need to cancel the closure of the menu, return
             if (args.Cancel)
             {
                 return;
             }
-            // Otherwise, hide the menu
+            // Otherwise, close the menu
             visible = false;
+            Closed.Invoke(this, EventArgs.Empty);
             soundBack.PlayFrontend();
         }
         /// <summary>
