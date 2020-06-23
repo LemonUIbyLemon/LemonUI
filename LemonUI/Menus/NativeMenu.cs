@@ -243,6 +243,10 @@ namespace LemonUI.Menus
             }
             set
             {
+                if (visible == value)
+                {
+                    return;
+                }
                 visible = value;
                 if (visible)
                 {
