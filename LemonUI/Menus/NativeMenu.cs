@@ -24,7 +24,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Menu that looks like the ones used by Rockstar.
     /// </summary>
-    public class NativeMenu : INativeMenu, IProcessable
+    public class NativeMenu : INativeMenu<NativeItem>, IProcessable
     {
         #region Internal Fields
 
@@ -173,7 +173,7 @@ namespace LemonUI.Menus
                     }
 
                     // Otherwise, return it as part of the iterator
-                    yield return (NativeItem)Items[start];
+                    yield return Items[start];
                 }
             }
         }
@@ -380,7 +380,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The items that this menu contain.
         /// </summary>
-        public List<IItem> Items { get; }
+        public List<NativeItem> Items { get; }
         /// <summary>
         /// Text shown when there are no items in the menu.
         /// </summary>
@@ -457,7 +457,7 @@ namespace LemonUI.Menus
         /// <param name="subtitle">Subtitle of this menu.</param>
         public NativeMenu(string title, IScreenDrawable banner, string subtitle)
         {
-            Items = new List<IItem>();
+            Items = new List<NativeItem>();
             bannerImage = banner;
             bannerText = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
             {

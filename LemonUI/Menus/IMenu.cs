@@ -8,7 +8,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Base interface for implementing menus.
     /// </summary>
-    public interface IMenu : IRecalculable, IProcessable
+    public interface IMenu<T> : IRecalculable, IProcessable
     {
         #region Public Properties
 
@@ -25,9 +25,9 @@ namespace LemonUI.Menus
         /// </summary>
         int SelectedIndex { get; set; }
         /// <summary>
-        /// The items that this menu contain.
+        /// The items in this menu.
         /// </summary>
-        List<IItem> Items { get; }
+        List<T> Items { get; }
 
         #endregion
 

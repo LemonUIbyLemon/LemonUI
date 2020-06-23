@@ -5,7 +5,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Interface for menus that behave like the ones by Rockstar.
     /// </summary>
-    public interface INativeMenu : IMenu
+    public interface INativeMenu<T> : IMenu<T>
     {
         #region Public Properties
 
