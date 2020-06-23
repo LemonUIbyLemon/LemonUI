@@ -10,7 +10,6 @@ using GTA;
 using GTA.Native;
 using GTA.UI;
 #endif
-using LemonUI.Menus;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -44,53 +43,6 @@ namespace LemonUI
         /// The list of processable objects.
         /// </summary>
         private readonly List<IProcessable> objects = new List<IProcessable>();
-        /// <summary>
-        /// The menus that are part of this pool.
-        /// </summary>
-        private readonly List<IMenu> menus = new List<IMenu>();
-        /// <summary>
-        /// The controls required by the menu with both a gamepad and mouse + keyboard.
-        /// </summary>
-        private readonly List<Control> controlsRequired = new List<Control>
-        {
-            Control.FrontendAccept,
-            Control.FrontendAxisX,
-            Control.FrontendAxisY,
-            Control.FrontendDown,
-            Control.FrontendUp,
-            Control.FrontendLeft,
-            Control.FrontendRight,
-            Control.FrontendCancel,
-            Control.FrontendSelect,
-            Control.CursorScrollDown,
-            Control.CursorScrollUp,
-            Control.CursorX,
-            Control.CursorY,
-            Control.MoveUpDown,
-            Control.MoveLeftRight,
-            Control.Sprint,
-            Control.Jump,
-            Control.Enter,
-            Control.VehicleExit,
-            Control.VehicleAccelerate,
-            Control.VehicleBrake,
-            Control.VehicleMoveLeftRight,
-            Control.VehicleFlyYawLeft,
-            Control.FlyLeftRight,
-            Control.FlyUpDown,
-            Control.VehicleFlyYawRight,
-            Control.VehicleHandbrake
-        };
-        /// <summary>
-        /// The controls required in a gamepad.
-        /// </summary>
-        private readonly List<Control> controlsGamepad = new List<Control>
-        {
-            Control.LookUpDown,
-            Control.LookLeftRight,
-            Control.Aim,
-            Control.Attack
-        };
 
         #endregion
 
@@ -165,32 +117,18 @@ namespace LemonUI
         /// <param name="obj">The object to add.</param>
         public void Add(IProcessable obj)
         {
-            // Don't allow null objects
+            // Make sure that the object is not null
             if (obj == null)
             {
                 throw new ArgumentNullException(nameof(obj));
             }
 
-            // If is a menu, add it to the menus
-            if (obj is IMenu menu)
-            {
-                if (menus.Contains(menu))
-                {
-                    throw new InvalidOperationException("The menu is already part of this pool.");
-                }
-
-                menus.Add(menu);
-            }
             // Otherwise, add it to the general pool
-            else
+            if (objects.Contains(obj))
             {
-                if (objects.Contains(obj))
-                {
-                    throw new InvalidOperationException("The object is already part of this pool.");
-                }
-
-                objects.Add(obj);
+                throw new InvalidOperationException("The object is already part of this pool.");
             }
+            objects.Add(obj);
         }
         /// <summary>
         /// Removes the object from the pool.
@@ -198,7 +136,6 @@ namespace LemonUI
         /// <param name="obj">The object to remove.</param>
         public void Remove(IProcessable obj)
         {
-            menus.Remove(obj as IMenu);
             objects.Remove(obj);
         }
         /// <summary>
@@ -214,11 +151,6 @@ namespace LemonUI
                     recal.Recalculate();
                 }
             }
-            // And do the same with the menus
-            foreach (IMenu menu in objects)
-            {
-                menu.Recalculate();
-            }
         }
         /// <summary>
         /// Processes the objects and features in this pool.
@@ -229,64 +161,7 @@ namespace LemonUI
             // See if there are resolution or safezone changes
             DetectResolutionChanges();
             DetectSafezoneChanges();
-
-            // Iterate over the menus
-            foreach (IMenu menu in menus)
-            {
-                // If the menu is visible
-                if (menu.Visible)
-                {
-                    // Disable all of the controls
-                    Controls.DisableAll(2);
-                    // And enable only those required
-                    Controls.EnableThisFrame(controlsRequired);
-                    // If we are using a controller, also enable those required by a gamepad
-                    if (Controls.IsUsingController)
-                    {
-                        Controls.EnableThisFrame(controlsGamepad);
-                    }
-                    // And break the iterator
-                    break;
-                }
-            }
-
-            // Check if the controls necessary were pressed
-            bool backPressed = Controls.IsJustPressed(Control.PhoneCancel) || Controls.IsJustPressed(Control.FrontendPause);
-            bool upPressed = Controls.IsJustPressed(Control.PhoneUp) || Controls.IsJustPressed(Control.CursorScrollUp);
-            bool downPressed = Controls.IsJustPressed(Control.PhoneDown) || Controls.IsJustPressed(Control.CursorScrollDown);
-
-            // Then go ahead and process the menus
-            foreach (IMenu menu in menus)
-            {
-                // If the menu should be not visible on the screen, skip it
-                if (!menu.Visible)
-                {
-                    continue;
-                }
-
-                // Process the changes and draw it
-                menu.Process();
-
-                // If the player pressed the back button, close the menu and continue to the next menu
-                if (backPressed)
-                {
-                    menu.Visible = false;
-                    continue;
-                }
-
-                // If the player pressed up, go to the previous item
-                if (upPressed && !downPressed)
-                {
-                    menu.Previous();
-                }
-                // If he pressed down, go to the next item
-                else if (downPressed && !upPressed)
-                {
-                    menu.Next();
-                }
-            }
-
-            // And finally process all other objects
+            // And process the objects in the pool
             foreach (IProcessable obj in objects)
             {
                 obj.Process();

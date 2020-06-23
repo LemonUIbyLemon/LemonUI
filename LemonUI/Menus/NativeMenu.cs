@@ -61,6 +61,50 @@ namespace LemonUI.Menus
         /// Sound played when the menu goes up and down.
         /// </summary>
         internal static readonly Sound.Sound soundUpDown = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_UP_DOWN");
+        
+        /// <summary>
+        /// The controls required by the menu with both a gamepad and mouse + keyboard.
+        /// </summary>
+        internal static List<Control> controlsRequired = new List<Control>
+        {
+            Control.FrontendAccept,
+            Control.FrontendAxisX,
+            Control.FrontendAxisY,
+            Control.FrontendDown,
+            Control.FrontendUp,
+            Control.FrontendLeft,
+            Control.FrontendRight,
+            Control.FrontendCancel,
+            Control.FrontendSelect,
+            Control.CursorScrollDown,
+            Control.CursorScrollUp,
+            Control.CursorX,
+            Control.CursorY,
+            Control.MoveUpDown,
+            Control.MoveLeftRight,
+            Control.Sprint,
+            Control.Jump,
+            Control.Enter,
+            Control.VehicleExit,
+            Control.VehicleAccelerate,
+            Control.VehicleBrake,
+            Control.VehicleMoveLeftRight,
+            Control.VehicleFlyYawLeft,
+            Control.FlyLeftRight,
+            Control.FlyUpDown,
+            Control.VehicleFlyYawRight,
+            Control.VehicleHandbrake
+        };
+        /// <summary>
+        /// The controls required in a gamepad.
+        /// </summary>
+        internal static readonly List<Control> controlsGamepad = new List<Control>
+        {
+            Control.LookUpDown,
+            Control.LookLeftRight,
+            Control.Aim,
+            Control.Attack
+        };
 
         #endregion
 
@@ -359,10 +403,7 @@ namespace LemonUI.Menus
         /// </summary>
         public Alignment Alignment
         {
-            get
-            {
-                return alignment;
-            }
+            get => alignment;
             set
             {
                 alignment = value;
@@ -644,24 +685,30 @@ namespace LemonUI.Menus
                 return;
             }
 
-            // Otherwise, draw all other things
+            // Otherwise, draw the elements
+            // Start with the banner
             if (bannerImage != null)
             {
+                // Draw the background image and text if is present
                 bannerImage.Draw();
                 if (bannerText != null && !string.IsNullOrWhiteSpace(bannerText.Text))
                 {
                     bannerText.Draw();
                 }
             }
+            // Continue with the subtitle image and text
             subtitleImage?.Draw();
             subtitleText?.Draw();
+            // The background of the items
             backgroundImage?.Draw();
 
+            // Then go for the visible items
             foreach (NativeItem item in VisibleItems)
             {
                 item.Draw();
             }
 
+            // And the rectangle for the currently selected item
             selectedRect?.Draw();
 
             // If the description rectangle and text is there and we have text to draw
@@ -672,7 +719,41 @@ namespace LemonUI.Menus
                 descriptionText.Draw();
             }
 
+            // Finish the drawing with the instructional buttons
             buttons?.Draw();
+
+            // Time to work on the controls!
+            // Disable all of them
+            Controls.DisableAll(2);
+            // And enable only those required
+            Controls.EnableThisFrame(controlsRequired);
+            // If we are using a controller, also enable those required by a gamepad
+            if (Controls.IsUsingController)
+            {
+                Controls.EnableThisFrame(controlsGamepad);
+            }
+
+            // Check if the controls necessary were pressed
+            bool backPressed = Controls.IsJustPressed(Control.PhoneCancel) || Controls.IsJustPressed(Control.FrontendPause);
+            bool upPressed = Controls.IsJustPressed(Control.PhoneUp) || Controls.IsJustPressed(Control.CursorScrollUp);
+            bool downPressed = Controls.IsJustPressed(Control.PhoneDown) || Controls.IsJustPressed(Control.CursorScrollDown);
+
+            // If the player pressed the back button, close the menu and continue to the next menu
+            if (backPressed)
+            {
+                Visible = false;
+            }
+
+            // If the player pressed up, go to the previous item
+            if (upPressed && !downPressed)
+            {
+                Previous();
+            }
+            // If he pressed down, go to the next item
+            else if (downPressed && !upPressed)
+            {
+                Next();
+            }
         }
         /// <summary>
         /// Updates the alignment of the items.
