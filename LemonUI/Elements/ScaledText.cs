@@ -60,10 +60,7 @@ namespace LemonUI.Elements
         /// </summary>
         public string Text
         {
-            get
-            {
-                return text;
-            }
+            get => text;
             set
             {
                 text = value;
@@ -141,6 +138,9 @@ namespace LemonUI.Elements
                 Recalculate();
             }
         }
+        /// <summary>
+        /// The distance from the start position where the text will be wrapped into new lines.
+        /// </summary>
         public float WordWrap
         {
             get
@@ -255,7 +255,7 @@ namespace LemonUI.Elements
             }
             if (WordWrap > 0)
             {
-                Function.Call(Hash.SET_TEXT_WRAP, relativePosition.X, realWrap);
+                Function.Call(Hash.SET_TEXT_WRAP, relativePosition.X, relativePosition.X + realWrap);
             }
             Function.Call((Hash)0x25FBB336DF1804CB, "CELL_EMAIL_BCON"); // _SET_TEXT_ENTRY on v2, BEGIN_TEXT_COMMAND_DISPLAY_TEXT on v3
             foreach (string chunk in chunks)
