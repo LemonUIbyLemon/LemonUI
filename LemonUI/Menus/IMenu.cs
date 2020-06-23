@@ -70,6 +70,21 @@ namespace LemonUI.Menus
         #region Public Functions
 
         /// <summary>
+        /// Adds a specific item to the menu.
+        /// </summary>
+        /// <param name="item">The item to add.</param>
+        void Add(T item);
+        /// <summary>
+        /// Removes a specific item to the menu.
+        /// </summary>
+        /// <param name="item">The item to remove.</param>
+        void Remove(T item);
+        /// <summary>
+        /// Checks if an item is part of the menu.
+        /// </summary>
+        /// <param name="item">The item to check.</param>
+        bool Contains(T item);
+        /// <summary>
         /// Switches to the previous item.
         /// </summary>
         void Previous();
