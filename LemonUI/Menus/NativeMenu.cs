@@ -1,15 +1,19 @@
 #if FIVEM
+using CitizenFX.Core;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
 #elif SHVDN2
+using GTA;
 using Font = GTA.Font;
 #elif SHVDN3
+using GTA;
 using GTA.UI;
 using Font = GTA.UI.Font;
 #endif
 using LemonUI.Elements;
 using LemonUI.Extensions;
 using LemonUI.Items;
+using LemonUI.Scaleform;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -131,6 +135,10 @@ namespace LemonUI.Menus
         /// The text with the description text.
         /// </summary>
         private ScaledText descriptionText = null;
+        /// <summary>
+        /// The instructional buttons for the menu.
+        /// </summary>
+        private InstructionalButtons buttons = null;
         /// <summary>
         /// The maximum allowed number of items in the menu at once.
         /// </summary>
@@ -394,6 +402,10 @@ namespace LemonUI.Menus
                 maxItems = value;
             }
         }
+        /// <summary>
+        /// The instructional buttons shown in the bottom right.
+        /// </summary>
+        public InstructionalButtons Buttons => buttons;
 
         #endregion
 
@@ -467,6 +479,10 @@ namespace LemonUI.Menus
             };
             descriptionRect = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "gradient_bgd");
             descriptionText = new ScaledText(PointF.Empty, "", 0.351f);
+            buttons = new InstructionalButtons(new InstructionalButton("Select", Control.PhoneSelect), new InstructionalButton("Back", Control.PhoneCancel))
+            {
+                Visible = true
+            };
             Recalculate();
         }
 
@@ -650,6 +666,8 @@ namespace LemonUI.Menus
                 descriptionRect.Draw();
                 descriptionText.Draw();
             }
+
+            buttons?.Draw();
         }
         /// <summary>
         /// Updates the alignment of the items.
