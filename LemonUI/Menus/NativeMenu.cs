@@ -176,7 +176,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The rectangle that shows the currently selected item.
         /// </summary>
-        private ScaledRectangle selectedRect = null;
+        private ScaledTexture selectedRect = null;
         /// <summary>
         /// The rectangle with the description text.
         /// </summary>
@@ -522,10 +522,7 @@ namespace LemonUI.Menus
                 Color = colorWhiteSmoke
             };
             backgroundImage = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "gradient_bgd");
-            selectedRect = new ScaledRectangle(PointF.Empty, SizeF.Empty)
-            {
-                Color = colorWhiteSmoke
-            };
+            selectedRect = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "gradient_nav");
             descriptionRect = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "gradient_bgd");
             descriptionText = new ScaledText(PointF.Empty, "", 0.351f);
             buttons = new InstructionalButtons(new InstructionalButton("Select", Control.PhoneSelect), new InstructionalButton("Back", Control.PhoneCancel))
