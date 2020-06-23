@@ -476,14 +476,6 @@ namespace LemonUI.Menus
         /// </summary>
         public event EventHandler Closed;
         /// <summary>
-        /// Event triggered when an item is selected.
-        /// </summary>
-        public event EventHandler Selected;
-        /// <summary>
-        /// Event triggered when the selected index has been changed.
-        /// </summary>
-        public event EventHandler SelectedItemChanged;
-        /// <summary>
         /// Event triggered when the index has been changed.
         /// </summary>
         public event EventHandler SelectedIndexChanged;
