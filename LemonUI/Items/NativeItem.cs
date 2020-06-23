@@ -26,10 +26,7 @@ namespace LemonUI.Items
         /// </summary>
         public bool Enabled
         {
-            get
-            {
-                return enabled;
-            }
+            get => enabled;
             set
             {
                 // Save the value
@@ -88,6 +85,15 @@ namespace LemonUI.Items
             };
             DescriptionObj = new ScaledText(PointF.Empty, description);
         }
+
+        #endregion
+
+        #region Event Triggers
+
+        /// <summary>
+        /// Triggers the Selected event.
+        /// </summary>
+        protected internal void OnSelected() => Selected.Invoke(this, EventArgs.Empty);
 
         #endregion
 
