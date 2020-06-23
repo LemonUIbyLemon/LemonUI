@@ -629,6 +629,11 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
+        /// Checks if an item is part of the menu.
+        /// </summary>
+        /// <param name="item">The item to check.</param>
+        public bool Contains(NativeItem item) => Items.Contains(item);
+        /// <summary>
         /// Draws the menu and handles the controls.
         /// </summary>
         public void Process()
