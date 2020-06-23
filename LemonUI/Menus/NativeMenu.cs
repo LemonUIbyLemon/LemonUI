@@ -566,6 +566,7 @@ namespace LemonUI.Menus
             descriptionRect.Size = new SizeF(width, descriptionText.LineCount * 35);
             descriptionRect.Position = new PointF(descriptionRect.Position.X, description);
             descriptionText.Position = new PointF(descriptionText.Position.X, description + heightDiffDescTxt);
+            descriptionText.relativePosition.X += alignment == Alignment.Right ? 1f - width.ToXRelative() : 0;
 
             // Before we do anything, calculate the X position
             float itemStart = 7.5f.ToXRelative();
