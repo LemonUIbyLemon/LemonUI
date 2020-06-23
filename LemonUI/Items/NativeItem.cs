@@ -10,6 +10,15 @@ namespace LemonUI.Items
     /// </summary>
     public class NativeItem : IItem
     {
+        #region Protected Internal Fields
+
+        /// <summary>
+        /// The title of the object.
+        /// </summary>
+        protected internal ScaledText title = null;
+
+        #endregion
+
         #region Private Fields
 
         /// <summary>
@@ -32,7 +41,7 @@ namespace LemonUI.Items
                 // Save the value
                 enabled = value;
                 // And set the correct color for enabled and disabled
-                TitleObj.Color = value ? NativeMenu.colorWhite : NativeMenu.colorDisabled;
+                title.Color = value ? NativeMenu.colorWhite : NativeMenu.colorDisabled;
             }
         }
         /// <summary>
@@ -40,25 +49,13 @@ namespace LemonUI.Items
         /// </summary>
         public string Title
         {
-            get => TitleObj.Text;
-            set => TitleObj.Text = value;
+            get => title.Text;
+            set => title.Text = value;
         }
         /// <summary>
         /// The description of the item.
         /// </summary>
-        public string Description
-        {
-            get => DescriptionObj.Text;
-            set => DescriptionObj.Text = value;
-        }
-        /// <summary>
-        /// The title object.
-        /// </summary>
-        protected internal ScaledText TitleObj { get; }
-        /// <summary>
-        /// The description object.
-        /// </summary>
-        protected internal ScaledText DescriptionObj { get; }
+        public string Description { get; set; }
 
         #endregion
 
@@ -79,11 +76,11 @@ namespace LemonUI.Items
 
         public NativeItem(string title, string description)
         {
-            TitleObj = new ScaledText(PointF.Empty, title, 0.345f)
+            this.title = new ScaledText(PointF.Empty, title, 0.345f)
             {
                 Color = NativeMenu.colorWhiteSmoke
             };
-            DescriptionObj = new ScaledText(PointF.Empty, description);
+            Description = description;
         }
 
         #endregion
@@ -102,10 +99,7 @@ namespace LemonUI.Items
         /// <summary>
         /// Draws the item.
         /// </summary>
-        public void Draw()
-        {
-            TitleObj?.Draw();
-        }
+        public virtual void Draw() => title?.Draw();
 
         #endregion
     }

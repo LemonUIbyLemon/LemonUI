@@ -582,7 +582,7 @@ namespace LemonUI.Menus
                 // Add the space between items if this is not the first
                 y += i == 0 ? 0 : 37.6f;
                 // Convert it to a relative value
-                item.TitleObj.relativePosition = new PointF(itemStart, y.ToYRelative());
+                item.title.relativePosition = new PointF(itemStart, y.ToYRelative());
                 // And select the correct color (just in case)
                 Color color = colorWhiteSmoke;
 
@@ -594,7 +594,7 @@ namespace LemonUI.Menus
                 }
 
                 // Set the color of the item
-                item.TitleObj.Color = color;
+                item.title.Color = color;
                 // Finally, increase the count by one and move to the next item
                 i++;
             }
