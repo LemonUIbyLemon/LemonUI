@@ -119,19 +119,19 @@ namespace LemonUI.Menus
         /// <summary>
         /// The height of one of the items in the screen.
         /// </summary>
-        private const float itemHeight = 37.4f;
+        internal const float itemHeight = 37.4f;
         /// <summary>
         /// The height difference between the description and the end of the items.
         /// </summary>
-        private const float heightDiffDescImg = 4;
+        internal const float heightDiffDescImg = 4;
         /// <summary>
         /// The height difference between the background and text of the description.
         /// </summary>
-        private const float heightDiffDescTxt = 3;
+        internal const float heightDiffDescTxt = 3;
         /// <summary>
         /// The X position of the description text.
         /// </summary>
-        private const float posXDescTxt = 6;
+        internal const float posXDescTxt = 6;
 
         #endregion
 
