@@ -117,6 +117,10 @@ namespace LemonUI.Menus
         #region Constant fields
 
         /// <summary>
+        /// The height of the menu subtitle background.
+        /// </summary>
+        internal const float subtitleHeight = 38;
+        /// <summary>
         /// The height of one of the items in the screen.
         /// </summary>
         internal const float itemHeight = 37.4f;
@@ -840,7 +844,6 @@ namespace LemonUI.Menus
             if (subtitleImage != null && subtitleImage is BaseElement subtitleImageBase)
             {
                 // Set the position and start
-                const float subtitleHeight = 38;
                 subtitleImageBase.literalPosition = new PointF(0, start);
                 subtitleImageBase.literalSize = new SizeF(width, subtitleHeight);
                 // Increase the start location
