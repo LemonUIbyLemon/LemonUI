@@ -795,7 +795,7 @@ namespace LemonUI.Menus
             bool backPressed = Controls.IsJustPressed(Control.PhoneCancel) || Controls.IsJustPressed(Control.FrontendPause);
             bool upPressed = Controls.IsJustPressed(Control.PhoneUp) || Controls.IsJustPressed(Control.CursorScrollUp);
             bool downPressed = Controls.IsJustPressed(Control.PhoneDown) || Controls.IsJustPressed(Control.CursorScrollDown);
-            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept);
+            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || (Controls.IsJustPressed(Control.PhoneSelect) && !UseMouse);
 
             // If the player pressed the back button, close the menu and continue to the next menu
             if (backPressed)
