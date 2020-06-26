@@ -29,7 +29,7 @@ namespace LemonUI.Items
         /// <summary>
         /// Event triggered when the item is selected.
         /// </summary>
-        event EventHandler Selected;
+        event SelectedEventHandler Selected;
 
         #endregion
     }

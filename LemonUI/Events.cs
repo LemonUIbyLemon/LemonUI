@@ -16,6 +16,12 @@ namespace LemonUI
     /// <param name="sender">The object that triggered the event.</param>
     /// <param name="e">The Safezone information.</param>
     public delegate void SafeZoneChangedEventHandler(object sender, SafeZoneChangedEventArgs e);
+    /// <summary>
+    /// Event triggered when a specific item is selected.
+    /// </summary>
+    /// <param name="sender">The object that triggered the event.</param>
+    /// <param name="e">The index information.</param>
+    public delegate void SelectedEventHandler(object sender, SelectedEventArgs e);
 
     #endregion
 
@@ -59,6 +65,26 @@ namespace LemonUI
         {
             Before = before;
             After = after;
+        }
+    }
+    /// <summary>
+    /// Represents the selection of an item in the screen.
+    /// </summary>
+    public class SelectedEventArgs
+    {
+        /// <summary>
+        /// The index of the item in the full list of items.
+        /// </summary>
+        public int Index { get; }
+        /// <summary>
+        /// The index of the item in the screen.
+        /// </summary>
+        public int OnScreen { get; }
+
+        public SelectedEventArgs(int index, int screen)
+        {
+            Index = index;
+            OnScreen = screen;
         }
     }
 

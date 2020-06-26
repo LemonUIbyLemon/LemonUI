@@ -252,6 +252,7 @@ namespace LemonUI.Menus
                 {
                     soundSelect.PlayFrontend();
                     Shown?.Invoke(this, EventArgs.Empty);
+                    TriggerSelectedItem();
                 }
                 else
                 {
@@ -386,12 +387,13 @@ namespace LemonUI.Menus
                     soundUpDown.PlayFrontend();
                 }
 
-                // If an item was selected, the correct description
+                // If an item was selected, change some values related to it
                 if (SelectedItem != null)
                 {
+                    // Save the description
                     descriptionText.Text = SelectedItem.Description;
-                    SelectedItem.OnSelected();
-                    SelectedIndexChanged?.Invoke(this, EventArgs.Empty);
+                    // And trigger the selected event
+                    TriggerSelectedItem();
                 }
 
                 // And update the items visually
@@ -483,7 +485,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// Event triggered when the index has been changed.
         /// </summary>
-        public event EventHandler SelectedIndexChanged;
+        public event SelectedEventHandler SelectedIndexChanged;
 
         #endregion
 
@@ -536,6 +538,25 @@ namespace LemonUI.Menus
 
         #region Tools
 
+        /// <summary>
+        /// Triggers the Selected event for the current item.
+        /// </summary>
+        private void TriggerSelectedItem()
+        {
+            // Get the currently selected item
+            NativeItem item = SelectedItem;
+
+            // If is null or the menu is closed, return
+            if (item == null || !Visible)
+            {
+                return;
+            }
+
+            // Otherwise, trigger the selected event for this menu
+            SelectedEventArgs args = new SelectedEventArgs(index, index - firstItem);
+            SelectedItem.OnSelected(this, args);
+            SelectedIndexChanged?.Invoke(this, args);
+        }
         /// <summary>
         /// Updates the positions of the items.
         /// </summary>
