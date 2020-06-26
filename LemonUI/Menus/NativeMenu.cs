@@ -595,16 +595,12 @@ namespace LemonUI.Menus
                 itemStart = 1 - width.ToXRelative() + itemStart;
             }
 
-            // Add 3 units to compensate for the text not being in the same place as the background
-            y += 3f;
             // Iterate over the number of items while counting the number of them
             int i = 0;
             foreach (NativeItem item in VisibleItems)
             {
-                // Add the space between items if this is not the first
-                y += i == 0 ? 0 : 37.6f;
                 // Convert it to a relative value
-                item.title.relativePosition = new PointF(itemStart, y.ToYRelative());
+                item.title.relativePosition = new PointF(itemStart, (y + 3).ToYRelative());
                 // And select the correct color (just in case)
                 Color color = colorWhiteSmoke;
 
@@ -614,11 +610,12 @@ namespace LemonUI.Menus
                     // Set the correct color to black
                     color = colorBlack;
                 }
-
                 // Set the color of the item
                 item.title.Color = color;
+
                 // Finally, increase the count by one and move to the next item
                 i++;
+                y += itemHeight;
             }
         }
         /// <summary>
