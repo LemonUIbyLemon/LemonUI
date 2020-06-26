@@ -615,6 +615,7 @@ namespace LemonUI.Menus
                     // And set the position and size of the checkbox
                     checkbox.check.Position = new PointF(width - 50, y - 6);
                     checkbox.check.Size = new SizeF(50, 50);
+                    checkbox.check.relativePosition.X = alignment == Alignment.Right ? 1f - 27f.ToXRelative() : checkbox.check.relativePosition.X;
                 }
 
                 // Convert it to a relative value
