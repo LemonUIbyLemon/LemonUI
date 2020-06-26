@@ -607,6 +607,16 @@ namespace LemonUI.Menus
             int i = 0;
             foreach (NativeItem item in VisibleItems)
             {
+                // If this item is a checkbox
+                if (item is NativeCheckboxItem checkbox)
+                {
+                    // Update the texture to show the selected and not selected design
+                    checkbox.UpdateTexture(item == SelectedItem);
+                    // And set the position and size of the checkbox
+                    checkbox.check.Position = new PointF(width - 50, y - 6);
+                    checkbox.check.Size = new SizeF(50, 50);
+                }
+
                 // Convert it to a relative value
                 item.title.relativePosition = new PointF(itemStart, (y + 3).ToYRelative());
                 // And select the correct color (just in case)
@@ -747,6 +757,12 @@ namespace LemonUI.Menus
             // And the rectangle for the currently selected item
             selectedRect?.Draw();
 
+            // If the selected item is a checkbox, draw the checkbox again on top of the selection rectangle
+            if (SelectedItem is NativeCheckboxItem checkbox)
+            {
+                checkbox.check.Draw();
+            }
+
             // If the description rectangle and text is there and we have text to draw
             if (descriptionRect != null && descriptionText != null && !string.IsNullOrWhiteSpace(descriptionText.Text))
             {
@@ -805,6 +821,11 @@ namespace LemonUI.Menus
                 {
                     SelectedItem.OnActivated(this);
                     soundSelect.PlayFrontend();
+
+                    if (SelectedItem is NativeCheckboxItem check)
+                    {
+                        check.UpdateTexture(true);
+                    }
                 }
                 // Otherwise, play the error sound
                 else

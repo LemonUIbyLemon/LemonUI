@@ -1,4 +1,6 @@
+using LemonUI.Elements;
 using System;
+using System.Drawing;
 
 namespace LemonUI.Items
 {
@@ -9,6 +11,10 @@ namespace LemonUI.Items
     {
         #region Fields
 
+        /// <summary>
+        /// The image shown on the checkbox.
+        /// </summary>
+        internal protected ScaledTexture check = null;
         /// <summary>
         /// If this item is checked or not.
         /// </summary>
@@ -63,6 +69,44 @@ namespace LemonUI.Items
         public NativeCheckboxItem(string title, string description, bool check) : base(title, description)
         {
             Checked = check;
+            this.check = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "");
+            Activated += Toggle;
+        }
+
+        #endregion
+
+        #region Internal Functions
+
+        /// <summary>
+        /// Inverts the checkbox activation.
+        /// </summary>
+        private void Toggle(object sender, EventArgs e) => Checked = !Checked;
+        /// <summary>
+        /// Updates the texture of the sprite.
+        /// </summary>
+        internal protected void UpdateTexture(bool selected)
+        {
+            if (selected)
+            {
+                check.Texture = Checked ? "shop_box_tickb" : "shop_box_blankb";
+            }
+            else
+            {
+                check.Texture = Checked ? "shop_box_tick" : "shop_box_blank";
+            }
+        }
+
+        #endregion
+
+        #region Public Functions
+
+        /// <summary>
+        /// Draws the Checkbox on the screen.
+        /// </summary>
+        public override void Draw()
+        {
+            base.Draw();
+            check.Draw();
         }
 
         #endregion
