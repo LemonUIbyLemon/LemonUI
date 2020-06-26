@@ -67,6 +67,10 @@ namespace LemonUI.Elements
         /// </summary>
         public override void Draw()
         {
+            if (Size == SizeF.Empty)
+            {
+                return;
+            }
             Request();
 #if FIVEM
             API.DrawSprite(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);

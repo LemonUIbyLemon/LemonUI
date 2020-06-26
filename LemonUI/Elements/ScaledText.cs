@@ -200,6 +200,10 @@ namespace LemonUI.Elements
         /// </summary>
         private void Add()
         {
+            if (Scale == 0)
+            {
+                return;
+            }
 #if FIVEM
             API.SetTextFont((int)Font);
             API.SetTextScale(1f, Scale);

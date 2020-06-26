@@ -27,6 +27,10 @@ namespace LemonUI.Elements
         /// </summary>
         public override void Draw()
         {
+            if (Size == SizeF.Empty)
+            {
+                return;
+            }
 #if FIVEM
             API.DrawRect(relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
 #else
