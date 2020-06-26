@@ -61,6 +61,14 @@ namespace LemonUI.Menus
         /// Sound played when the menu goes up and down.
         /// </summary>
         internal static readonly Sound.Sound soundUpDown = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_UP_DOWN");
+        /// <summary>
+        /// Sound played when an item is selected.
+        /// </summary>
+        internal static readonly Sound.Sound soundSelected = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
+        /// <summary>
+        /// Sound played when an item is disabled.
+        /// </summary>
+        internal static readonly Sound.Sound soundError = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "ERROR");
         
         /// <summary>
         /// The controls required by the menu with both a gamepad and mouse + keyboard.
