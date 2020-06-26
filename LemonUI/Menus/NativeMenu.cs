@@ -778,6 +778,7 @@ namespace LemonUI.Menus
             bool backPressed = Controls.IsJustPressed(Control.PhoneCancel) || Controls.IsJustPressed(Control.FrontendPause);
             bool upPressed = Controls.IsJustPressed(Control.PhoneUp) || Controls.IsJustPressed(Control.CursorScrollUp);
             bool downPressed = Controls.IsJustPressed(Control.PhoneDown) || Controls.IsJustPressed(Control.CursorScrollDown);
+            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept);
 
             // If the player pressed the back button, close the menu and continue to the next menu
             if (backPressed)
@@ -794,6 +795,22 @@ namespace LemonUI.Menus
             else if (downPressed && !upPressed)
             {
                 Next();
+            }
+
+            // If the player pressed the confirm button
+            if (selectPressed)
+            {
+                // If there is an item selected and is enabled, trigger it and play the selected sound
+                if (SelectedItem != null && SelectedItem.Enabled)
+                {
+                    SelectedItem.OnActivated(this);
+                    soundSelect.PlayFrontend();
+                }
+                // Otherwise, play the error sound
+                else
+                {
+                    soundError.PlayFrontend();
+                }
             }
         }
         /// <summary>
