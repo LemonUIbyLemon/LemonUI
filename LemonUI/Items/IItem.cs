@@ -30,6 +30,10 @@ namespace LemonUI.Items
         /// Event triggered when the item is selected.
         /// </summary>
         event SelectedEventHandler Selected;
+        /// <summary>
+        /// Event triggered when the item is activated by the user.
+        /// </summary>
+        event EventHandler Activated;
 
         #endregion
     }

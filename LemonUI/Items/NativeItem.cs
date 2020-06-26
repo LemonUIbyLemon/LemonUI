@@ -65,6 +65,10 @@ namespace LemonUI.Items
         /// Event triggered when the item is selected.
         /// </summary>
         public event SelectedEventHandler Selected;
+        /// <summary>
+        /// Event triggered when the item is activated.
+        /// </summary>
+        public event EventHandler Activated;
 
         #endregion
 
@@ -91,6 +95,10 @@ namespace LemonUI.Items
         /// Triggers the Selected event.
         /// </summary>
         protected internal void OnSelected(object sender, SelectedEventArgs e) => Selected?.Invoke(sender, e);
+        /// <summary>
+        /// Triggers the Activated event.
+        /// </summary>
+        protected internal void OnActivated(object sender) => Activated?.Invoke(sender, EventArgs.Empty);
 
         #endregion
 
