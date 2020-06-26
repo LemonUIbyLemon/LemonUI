@@ -19,18 +19,5 @@ namespace LemonUI.Items
         void GoRight();
 
         #endregion
-
-        #region Events
-
-        /// <summary>
-        /// Event triggered when the item has gone to the left.
-        /// </summary>
-        event EventHandler Left;
-        /// <summary>
-        /// Event triggered when the item has gone to the right.
-        /// </summary>
-        event EventHandler Right;
-
-        #endregion
     }
 }
