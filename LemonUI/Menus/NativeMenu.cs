@@ -62,6 +62,10 @@ namespace LemonUI.Menus
         /// </summary>
         internal static readonly Sound.Sound soundUpDown = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_UP_DOWN");
         /// <summary>
+        /// Sound played when the items are moved to the left and right.
+        /// </summary>
+        internal static readonly Sound.Sound soundLeftRight = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_LEFT_RIGHT");
+        /// <summary>
         /// Sound played when an item is selected.
         /// </summary>
         internal static readonly Sound.Sound soundSelected = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
@@ -796,6 +800,8 @@ namespace LemonUI.Menus
             bool upPressed = Controls.IsJustPressed(Control.PhoneUp) || Controls.IsJustPressed(Control.CursorScrollUp);
             bool downPressed = Controls.IsJustPressed(Control.PhoneDown) || Controls.IsJustPressed(Control.CursorScrollDown);
             bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || (Controls.IsJustPressed(Control.PhoneSelect) && !UseMouse);
+            bool leftPressed = Controls.IsJustPressed(Control.PhoneLeft);
+            bool rightPressed = Controls.IsJustPressed(Control.PhoneRight);
 
             // If the player pressed the back button, close the menu and continue to the next menu
             if (backPressed)
@@ -812,6 +818,35 @@ namespace LemonUI.Menus
             else if (downPressed && !upPressed)
             {
                 Next();
+            }
+
+            // If the player pressed the left or right button, trigger the event and sound
+            if (SelectedItem is ISlidableItem slidable)
+            {
+                if (leftPressed)
+                {
+                    if (SelectedItem.Enabled)
+                    {
+                        slidable.GoLeft();
+                        soundLeftRight.PlayFrontend();
+                    }
+                    else
+                    {
+                        soundError.PlayFrontend();
+                    }
+                }
+                if (rightPressed)
+                {
+                    if (SelectedItem.Enabled)
+                    {
+                        slidable.GoRight();
+                        soundLeftRight.PlayFrontend();
+                    }
+                    else
+                    {
+                        soundError.PlayFrontend();
+                    }
+                }
             }
 
             // If the player pressed the confirm button
