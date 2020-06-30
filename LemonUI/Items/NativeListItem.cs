@@ -1,8 +1,3 @@
-#if FIVEM
-using CitizenFX.Core.UI;
-#elif SHVDN3
-using GTA.UI;
-#endif
 using LemonUI.Elements;
 using LemonUI.Menus;
 using System;
