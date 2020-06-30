@@ -260,7 +260,7 @@ namespace LemonUI.Elements
             }
             if (WordWrap > 0)
             {
-                Function.Call(Hash.SET_TEXT_WRAP, relativePosition.X, relativePosition.X + realWrap);
+                Function.Call(Hash.SET_TEXT_WRAP, relativePosition.X, realWrap);
             }
             Function.Call((Hash)0x25FBB336DF1804CB, "CELL_EMAIL_BCON"); // _SET_TEXT_ENTRY on v2, BEGIN_TEXT_COMMAND_DISPLAY_TEXT on v3
             foreach (string chunk in chunks)
