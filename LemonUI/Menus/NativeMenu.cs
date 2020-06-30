@@ -599,6 +599,9 @@ namespace LemonUI.Menus
             descriptionRect.Position = new PointF(descriptionRect.Position.X, description);
             descriptionText.Position = new PointF(startX + posXDescTxt, description + heightDiffDescTxt);
 
+            // Calculate the start position for the item objects (checkbox for items, text and arrows for lists)
+            float itemObjX = startX + width;
+
             // Iterate over the number of items while counting the number of them
             int i = 0;
             foreach (NativeItem item in VisibleItems)
@@ -609,8 +612,22 @@ namespace LemonUI.Menus
                     // Update the texture to show the selected and not selected design
                     checkbox.UpdateTexture(item == SelectedItem);
                     // And set the position and size of the checkbox
-                    checkbox.check.Position = new PointF(startX + width - 50, startY - 6);
+                    checkbox.check.Position = new PointF(itemObjX - 50, startY - 6);
                     checkbox.check.Size = new SizeF(50, 50);
+                }
+                // If this item is a slider
+                if (item is NativeListItem list)
+                {
+                    // Set the color of the text
+                    list.text.Color = item == SelectedItem ? colorBlack : colorWhiteSmoke;
+                    // Set the sizes of the arrows
+                    list.arrowLeft.Size = item == SelectedItem ? new SizeF(30, 30) : SizeF.Empty;
+                    list.arrowRight.Size = item == SelectedItem ? new SizeF(30, 30) : SizeF.Empty;
+                    // And set the positions of the items from left to right
+                    float textWidth = list.arrowRight.Size.Width;
+                    list.arrowRight.Position = new PointF(itemObjX - 35, startY + 4);
+                    list.text.Position = new PointF(itemObjX - textWidth - 1 - list.text.Width, startY + 3);
+                    list.arrowLeft.Position = new PointF(list.text.Position.X - list.arrowLeft.Size.Width, startY + 4);
                 }
 
                 // Convert it to a relative value
@@ -751,10 +768,16 @@ namespace LemonUI.Menus
             // And the rectangle for the currently selected item
             selectedRect?.Draw();
 
-            // If the selected item is a checkbox, draw the checkbox again on top of the selection rectangle
+            // If the selected item is a checkbox or a list, draw the elements again on top of the selection rectangle
             if (SelectedItem is NativeCheckboxItem checkbox)
             {
                 checkbox.check.Draw();
+            }
+            if (SelectedItem is NativeListItem list)
+            {
+                list.arrowLeft.Draw();
+                list.arrowRight.Draw();
+                list.text.Draw();
             }
 
             // If the description rectangle and text is there and we have text to draw

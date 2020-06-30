@@ -22,6 +22,13 @@ namespace LemonUI
     /// <param name="sender">The object that triggered the event.</param>
     /// <param name="e">The index information.</param>
     public delegate void SelectedEventHandler(object sender, SelectedEventArgs e);
+    /// <summary>
+    /// Event triggered when the selected item changes.
+    /// </summary>
+    /// <typeparam name="T">The type of item that was changed.</typeparam>
+    /// <param name="sender">The object that triggered the event.</param>
+    /// <param name="e">The change information.</param>
+    public delegate void ItemChangedEventHandler<T>(object sender, ItemChangedEventArgs<T> e);
 
     #endregion
 
@@ -85,6 +92,27 @@ namespace LemonUI
         {
             Index = index;
             OnScreen = screen;
+        }
+    }
+    /// <summary>
+    /// Represents the change of the selection of an item.
+    /// </summary>
+    /// <typeparam name="T">The type of object that got changed.</typeparam>
+    public class ItemChangedEventArgs<T>
+    {
+        /// <summary>
+        /// The new object.
+        /// </summary>
+        public T Object { get; }
+        /// <summary>
+        /// The index of the object.
+        /// </summary>
+        public int Index { get; }
+
+        public ItemChangedEventArgs(T obj, int index)
+        {
+            Object = obj;
+            Index = index;
         }
     }
 
