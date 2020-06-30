@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using LemonUI.Extensions;
 
 namespace LemonUI.Elements
 {
@@ -322,18 +323,7 @@ namespace LemonUI.Elements
             }
             else
             {
-                // Get the game resolution
-#if SHVDN2
-                SizeF screenSize = Game.ScreenResolution;
-#else
-                SizeF screenSize = Screen.Resolution;
-#endif
-                // Calculate the ratio
-                float ratio = screenSize.Width / screenSize.Height;
-                // And scaled width
-                float width = 1080f * ratio;
-                // Finally, set the word wrap based on the ratio
-                realWrap = (Position.X + internalWrap) / width;
+                realWrap = (Position.X + internalWrap) / 1f.ToXAbsolute();
             }
         }
 
