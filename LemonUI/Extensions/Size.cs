@@ -17,5 +17,15 @@ namespace LemonUI.Extensions
             Resolution.ToRelative(size.Width, size.Height, out float width, out float height);
             return new SizeF(width, height);
         }
+        /// <summary>
+        /// Converts a normalized 0-1 size into an absolute one.
+        /// </summary>
+        /// <param name="size">The relative SizeF.</param>
+        /// <returns>A new SizeF with absolute values.</returns>
+        public static SizeF ToAbsolute(this SizeF size)
+        {
+            Resolution.ToAbsolute(size.Width, size.Height, out float width, out float height);
+            return new SizeF(width, height);
+        }
     }
 }

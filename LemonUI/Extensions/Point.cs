@@ -17,5 +17,15 @@ namespace LemonUI.Extensions
             Resolution.ToRelative(point.X, point.Y, out float x, out float y);
             return new PointF(x, y);
         }
+        /// <summary>
+        /// Converts a normalized 0-1 position into an absolute one.
+        /// </summary>
+        /// <param name="point">The relative PointF.</param>
+        /// <returns>A new PointF with absolute values.</returns>
+        public static PointF ToAbsolute(this PointF point)
+        {
+            Resolution.ToAbsolute(point.X, point.Y, out float x, out float y);
+            return new PointF(x, y);
+        }
     }
 }
