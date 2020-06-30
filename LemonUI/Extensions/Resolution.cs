@@ -1,11 +1,8 @@
 #if FIVEM
-using CitizenFX.Core.UI;
-#elif SHVDN2
-using GTA;
-#elif SHVDN3
-using GTA.UI;
+using CitizenFX.Core.Native;
+#else
+using GTA.Native;
 #endif
-using System.Drawing;
 
 namespace LemonUI.Extensions
 {
@@ -23,15 +20,14 @@ namespace LemonUI.Extensions
         /// <param name="yout">The absolute Y value.</param>
         public static void ToRelative(float xin, float yin, out float xout, out float yout)
         {
-
-            // Get the resolution of the game window
-#if SHVDN2
-            SizeF screenSize = Game.ScreenResolution;
-#else
-            SizeF screenSize = Screen.Resolution;
+            // Get the ratio of the resolution (height relative to the width)
+#if FIVEM
+            float ratio = API.GetAspectRatio(false);
+#elif SHVDN2
+            float ratio = Function.Call<float>(Hash._0xF1307EF624A80D87, false);
+#elif SHVDN3
+            float ratio = Function.Call<float>(Hash._GET_ASPECT_RATIO, false);
 #endif
-            // Calculate the ratio of the resolution (height relative to the width)
-            float ratio = screenSize.Width / screenSize.Height;
             // And get the real width
             float width = 1080f * ratio;
 
