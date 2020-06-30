@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <AssemblyName>$(AssemblyName)</AssemblyName>
+    <DefineConstants>SHVDN3</DefineConstants>
+    <Version>1.0</Version>
+    <OutputPath>..\bin\$(Configuration)\Demo\SHVDN3\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ScriptHookVDotNet3" Version="3.0.2">
+      <IncludeAssets>compile</IncludeAssets>
+    </PackageReference>
+    <ProjectReference Include="..\LemonUI.SHVDN3\LemonUI.SHVDN3.csproj" />
+    <Compile Include="../$(SolutionName).Example/**" />
+  </ItemGroup>
+
+</Project>
