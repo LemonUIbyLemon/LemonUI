@@ -44,8 +44,8 @@ namespace LemonUI.Elements
         public override void Recalculate()
         {
             base.Recalculate();
-            relativePosition.X = relativePosition.X + (relativeSize.Width * 0.5f);
-            relativePosition.Y = relativePosition.Y + (relativeSize.Height * 0.5f);
+            relativePosition.X += relativeSize.Width * 0.5f;
+            relativePosition.Y += relativeSize.Height * 0.5f;
         }
 
         #endregion

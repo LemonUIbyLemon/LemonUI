@@ -578,34 +578,26 @@ namespace LemonUI.Menus
         /// </summary>
         private void UpdateItems()
         {
-            // Create a float to store the Y position
-            float y = 0;
+            // Store the start positions for the X and Y axis
+            float startX = alignment == Alignment.Right ? 1f.ToXAbsolute() - width : 0;
+            float startY = 0;
             // Add the heights of the banner and subtitle (if they are there)
             if (bannerImage != null)
             {
-                y += bannerImage.Size.Height;
+                startY += bannerImage.Size.Height;
             }
             if (subtitleImage != null && !string.IsNullOrWhiteSpace(subtitleText.Text))
             {
-                y += subtitleImage.Size.Height;
+                startY += subtitleImage.Size.Height;
             }
 
-            // Set the position of the rectangle for the current item
-            float selected = y + ((index - firstItem) * itemHeight);
-            selectedRect.Position = new PointF(selectedRect.Position.X, selected);
-            // And the description text and background
-            float description = y + ((Items.Count > maxItems ? maxItems : Items.Count) * itemHeight) + heightDiffDescImg;
+            // Set the position of the rectangle that marks the current item
+            selectedRect.Position = new PointF(selectedRect.Position.X, startY + ((index - firstItem) * itemHeight));
+            // And then do the description background and text
+            float description = startY + ((Items.Count > maxItems ? maxItems : Items.Count) * itemHeight) + heightDiffDescImg;
             descriptionRect.Size = new SizeF(width, descriptionText.LineCount * 35);
             descriptionRect.Position = new PointF(descriptionRect.Position.X, description);
-            descriptionText.Position = new PointF(descriptionText.Position.X, description + heightDiffDescTxt);
-            descriptionText.relativePosition.X += alignment == Alignment.Right ? 1f - width.ToXRelative() : 0;
-
-            // Before we do anything, calculate the X position
-            float itemStart = 7.5f.ToXRelative();
-            if (alignment == Alignment.Right)
-            {
-                itemStart = 1 - width.ToXRelative() + itemStart;
-            }
+            descriptionText.Position = new PointF(startX + posXDescTxt, description + heightDiffDescTxt);
 
             // Iterate over the number of items while counting the number of them
             int i = 0;
@@ -617,13 +609,12 @@ namespace LemonUI.Menus
                     // Update the texture to show the selected and not selected design
                     checkbox.UpdateTexture(item == SelectedItem);
                     // And set the position and size of the checkbox
-                    checkbox.check.Position = new PointF(width - 50, y - 6);
+                    checkbox.check.Position = new PointF(startX + width - 50, startY - 6);
                     checkbox.check.Size = new SizeF(50, 50);
-                    checkbox.check.relativePosition.X = alignment == Alignment.Right ? 1f - 27f.ToXRelative() : checkbox.check.relativePosition.X;
                 }
 
                 // Convert it to a relative value
-                item.title.relativePosition = new PointF(itemStart, (y + 3).ToYRelative());
+                item.title.Position = new PointF(startX + 6, startY + 3);
                 // And select the correct color (just in case)
                 Color color = colorWhiteSmoke;
 
@@ -638,7 +629,7 @@ namespace LemonUI.Menus
 
                 // Finally, increase the count by one and move to the next item
                 i++;
-                y += itemHeight;
+                startY += itemHeight;
             }
         }
         /// <summary>
@@ -646,7 +637,7 @@ namespace LemonUI.Menus
         /// </summary>
         public void RecalculateTexts()
         {
-            float offset = alignment == Alignment.Right ? 1f - width.ToXRelative() : 0;
+            float offset = alignment == Alignment.Right ? 1f.ToXAbsolute() - width : 0;
             float start = 0;
 
             if (bannerImage != null)
@@ -656,14 +647,12 @@ namespace LemonUI.Menus
 
             if (bannerText != null)
             {
-                bannerText.Position = new PointF(209, 22);
-                bannerText.relativePosition.X += offset;
+                bannerText.Position = new PointF(offset + 209, 22);
             }
             if (subtitleText != null)
             {
                 start += 4.2f;
-                subtitleText.Position = new PointF(6, start);
-                subtitleText.relativePosition.X += offset;
+                subtitleText.Position = new PointF(offset + 6, start);
             }
         }
 
