@@ -154,6 +154,28 @@ namespace LemonUI.Elements
                 Recalculate();
             }
         }
+        /// <summary>
+        /// The absolute Width that this text takes on the screen.
+        /// </summary>
+        public float Width
+        {
+            get
+            {
+#if FIVEM
+                API.BeginTextCommandWidth("CELL_EMAIL_BCON");
+                Add();
+                return API.EndTextCommandGetWidth(true) * 1f.ToXAbsolute();
+#elif SHVDN2
+                Function.Call(Hash._SET_TEXT_ENTRY_FOR_WIDTH, "CELL_EMAIL_BCON");
+                Add();
+                return Function.Call<float>(Hash._GET_TEXT_SCREEN_WIDTH, true) * 1f.ToXAbsolute();
+#elif SHVDN3
+                Function.Call(Hash._BEGIN_TEXT_COMMAND_GET_WIDTH, "CELL_EMAIL_BCON");
+                Add();
+                return Function.Call<float>(Hash._END_TEXT_COMMAND_GET_WIDTH, true) * 1f.ToXAbsolute();
+#endif
+            }
+        }
 
         #endregion
 
@@ -206,6 +228,10 @@ namespace LemonUI.Elements
                 return;
             }
 #if FIVEM
+            foreach (string chunk in chunks)
+            {
+                API.AddTextComponentString(chunk);
+            }
             API.SetTextFont((int)Font);
             API.SetTextScale(1f, Scale);
             API.SetTextColour(Color.R, Color.G, Color.B, Color.A);
@@ -231,12 +257,11 @@ namespace LemonUI.Elements
             {
                 API.SetTextWrap(relativePosition.X, realWrap);
             }
-            API.SetTextEntry("CELL_EMAIL_BCON");
+#else
             foreach (string chunk in chunks)
             {
-                API.AddTextComponentString(chunk);
+                Function.Call((Hash)0x6C188BE134E074AA, chunk); // _ADD_TEXT_COMPONENT_STRING on v2, ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME on v3
             }
-#else
             Function.Call(Hash.SET_TEXT_FONT, (int)Font);
             Function.Call(Hash.SET_TEXT_SCALE, 1f, Scale);
             Function.Call(Hash.SET_TEXT_COLOUR, Color.R, Color.G, Color.B, Color.A);
@@ -261,11 +286,6 @@ namespace LemonUI.Elements
             if (WordWrap > 0)
             {
                 Function.Call(Hash.SET_TEXT_WRAP, relativePosition.X, realWrap);
-            }
-            Function.Call((Hash)0x25FBB336DF1804CB, "CELL_EMAIL_BCON"); // _SET_TEXT_ENTRY on v2, BEGIN_TEXT_COMMAND_DISPLAY_TEXT on v3
-            foreach (string chunk in chunks)
-            {
-                Function.Call((Hash)0x6C188BE134E074AA, chunk); // _ADD_TEXT_COMPONENT_STRING on v2, ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME on v3
             }
 #endif
         }
@@ -336,10 +356,13 @@ namespace LemonUI.Elements
         /// </summary>
         public override void Draw()
         {
-            Add();
 #if FIVEM
+            API.SetTextEntry("CELL_EMAIL_BCON");
+            Add();
             API.DrawText(relativePosition.X, relativePosition.Y);
 #else
+            Function.Call((Hash)0x25FBB336DF1804CB, "CELL_EMAIL_BCON"); // _SET_TEXT_ENTRY on v2, BEGIN_TEXT_COMMAND_DISPLAY_TEXT on v3
+            Add();
             Function.Call((Hash)0xCD015E5BB0D96A57, relativePosition.X, relativePosition.Y); // _DRAW_TEXT on v2, END_TEXT_COMMAND_DISPLAY_TEXT on v3
 #endif
         }
