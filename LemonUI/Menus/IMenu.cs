@@ -6,13 +6,6 @@ using System.ComponentModel;
 namespace LemonUI.Menus
 {
     /// <summary>
-    /// Base interface for generic menus that accept any type of item.
-    /// </summary>
-    public interface IMenu : IMenu<IItem>
-    {
-    }
-
-    /// <summary>
     /// Base interface for implementing menus that accept specific items.
     /// </summary>
     public interface IMenu<T> : IRecalculable, IProcessable
