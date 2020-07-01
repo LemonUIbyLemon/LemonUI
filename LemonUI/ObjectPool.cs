@@ -19,7 +19,7 @@ namespace LemonUI
     /// <summary>
     /// Manager for Menus and Items.
     /// </summary>
-    public class ObjectPool : IProcessable
+    public class ObjectPool
     {
         #region Private Fields
 
