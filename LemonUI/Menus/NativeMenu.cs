@@ -253,10 +253,7 @@ namespace LemonUI.Menus
         /// </summary>
         public bool Visible
         {
-            get
-            {
-                return visible;
-            }
+            get => visible;
             set
             {
                 if (visible == value)

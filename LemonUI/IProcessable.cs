@@ -6,6 +6,10 @@ namespace LemonUI
     public interface IProcessable
     {
         /// <summary>
+        /// If this processable item is visible on the screen.
+        /// </summary>
+        bool Visible { get; set; }
+        /// <summary>
         /// Processes the object.
         /// </summary>
         void Process();

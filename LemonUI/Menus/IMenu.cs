@@ -13,10 +13,6 @@ namespace LemonUI.Menus
         #region Public Properties
 
         /// <summary>
-        /// If the menu is visible on the screen.
-        /// </summary>
-        bool Visible { get; set; }
-        /// <summary>
         /// The title of the menu.
         /// </summary>
         string Title { get; set; }
