@@ -27,7 +27,7 @@
     <PackageReference Include="ScriptHookVDotNet3" Version="3.0.2">
       <IncludeAssets>compile</IncludeAssets>
     </PackageReference>
-    <Compile Include="../$(SolutionName)/**" />
+    <Compile Include="$(ProjectDir)/../LemonUI/**" />
   </ItemGroup>
 
 </Project>
