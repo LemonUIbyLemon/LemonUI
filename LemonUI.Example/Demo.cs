@@ -34,6 +34,10 @@ namespace LemonUI.Example
         /// </summary>
         private static readonly NativeMenu menu = new NativeMenu("LemonUI", "LEMONUI DEMO/EXAMPLES");
         /// <summary>
+        /// Ditto, but this one is going to be added as a submenu.
+        /// </summary>
+        private static readonly NativeMenu submenu = new NativeMenu("LemonUI", "LEMONUI SUBMENU");
+        /// <summary>
         /// This is a checkbox item. Is an item that contains a checkbox that users can turn on or off.
         /// For this example, this checkbox is going to allow you to keep the menu open.
         /// </summary>
@@ -51,6 +55,8 @@ namespace LemonUI.Example
         /// All of the other items are basic.
         /// </summary>
         private static readonly NativeItem flip = new NativeItem("Flip", "Flips the Menu from the left to the Right.");
+        private static readonly NativeItem addRandom = new NativeItem("Add Item to Submenu", "Adds a random item to the submenu.");
+        private static readonly NativeItem removeRandom = new NativeItem("Remove Items of Submenu", "Removes all of the random items on the submenu.");
 
         /// <summary>
         /// This creates a loading screen that looks like the one when transitioning from story mode to GTA Online.
@@ -72,14 +78,20 @@ namespace LemonUI.Example
             showLoadingScreen.Activated += ShowLoadingScreen_Activated;
             showBigMessage.Activated += ShowBigMessage_Activated;
             flip.Activated += Flip_Activated;
-            // And then the item themselves
+            addRandom.Activated += AddRandom_Activated;
+            removeRandom.Activated += RemoveRandom_Activated;
+            // And then the items and submenus themselves
             menu.Add(keepOpen);
             menu.Add(showLoadingScreen);
             menu.Add(showBigMessage);
             menu.Add(flip);
+            menu.AddSubMenu(submenu);
+            submenu.Add(addRandom);
+            submenu.Add(removeRandom);
 
             // Items need to be part of the pool, so add them
             pool.Add(menu);
+            pool.Add(submenu);
             pool.Add(loadingScreen);
             pool.Add(bigMessage);
 
@@ -126,6 +138,18 @@ namespace LemonUI.Example
             // This is simple C# one-liners
             // If is on the right, move it to the left and vice versa
             menu.Alignment = menu.Alignment == Alignment.Left ? Alignment.Right : Alignment.Left;
+        }
+
+        private void AddRandom_Activated(object sender, EventArgs e)
+        {
+            // Here, we just create a new item and add it onto the submenu
+            submenu.Add(new NativeItem("Random", "This is a random item that we added."));
+        }
+
+        private void RemoveRandom_Activated(object sender, EventArgs e)
+        {
+            // Here, we remove the random items with the exception of the add and remove items
+            submenu.Remove(item => item != addRandom && item != removeRandom);
         }
 
 #if FIVEM
