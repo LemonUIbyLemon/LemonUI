@@ -1,12 +1,15 @@
 #if FIVEM
 using CitizenFX.Core;
+using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
 #elif SHVDN2
 using GTA;
+using GTA.Native;
 using Font = GTA.Font;
 #elif SHVDN3
 using GTA;
+using GTA.Native;
 using GTA.UI;
 using Font = GTA.UI.Font;
 #endif
@@ -740,6 +743,22 @@ namespace LemonUI.Menus
             }
 
             // Otherwise, draw the elements
+            // Start by setting the alignment for the UI Elements
+            // This is to make the UI appear in the correct position in non standard aspect ratios
+            // For example: 21:6, 32:9, 11:4, 48:9 (3 16:9 in Surround) and more
+            const int L = 76;
+            const int T = 84;
+#if FIVEM
+            API.SetScriptGfxAlign(L, T);
+            API.SetScriptGfxAlignParams(0, 0, 0, 0);
+#elif SHVDN2
+            Function.Call(Hash._SET_SCREEN_DRAW_POSITION, L, T);
+            Function.Call(Hash._0xF5A2C681787E579D, 0, 0, 0, 0);
+#elif SHVDN3
+            Function.Call(Hash.SET_SCRIPT_GFX_ALIGN, L, T);
+            Function.Call(Hash.SET_SCRIPT_GFX_ALIGN_PARAMS, 0, 0, 0, 0);
+#endif
+
             // Start with the banner
             if (bannerImage != null)
             {
@@ -785,7 +804,15 @@ namespace LemonUI.Menus
                 descriptionText.Draw();
             }
 
-            // Finish the drawing with the instructional buttons
+            // Before drawing the instructional buttons, reset the alignment
+#if FIVEM
+            API.ResetScriptGfxAlign();
+#elif SHVDN2
+            Function.Call(Hash._0xE3A3DB414A373DAB);
+#elif SHVDN3
+            Function.Call(Hash.RESET_SCRIPT_GFX_ALIGN);
+#endif
+            // And draw the buttons after that
             buttons?.Draw();
 
             // Time to work on the controls!
