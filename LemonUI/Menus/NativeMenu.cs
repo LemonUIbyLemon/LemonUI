@@ -224,6 +224,10 @@ namespace LemonUI.Menus
         /// The first item in the menu.
         /// </summary>
         private int firstItem = 0;
+        /// <summary>
+        /// A specific menu to open during the next tick.
+        /// </summary>
+        private NativeMenu openNextTick = null;
 
         #endregion
 
@@ -272,7 +276,7 @@ namespace LemonUI.Menus
                     return;
                 }
                 visible = value;
-                if (visible)
+                if (value)
                 {
                     soundSelect.PlayFrontend();
                     Shown?.Invoke(this, EventArgs.Empty);
@@ -935,8 +939,7 @@ namespace LemonUI.Menus
             // Add the activated event
             item.Activated += (sender, e) =>
             {
-                Visible = false;
-                menu.Visible = true;
+                openNextTick = menu;
             };
             // Set this menu as the parent of the other one
             menu.Parent = this;
@@ -1004,6 +1007,14 @@ namespace LemonUI.Menus
             if (!visible)
             {
                 return;
+            }
+
+            // If there is a submenu to open, show it and return
+            if (openNextTick != null)
+            {
+                Visible = false;
+                openNextTick.visible = true;
+                openNextTick = null;
             }
 
             // Otherwise, draw the elements
