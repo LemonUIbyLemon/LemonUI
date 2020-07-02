@@ -691,6 +691,200 @@ namespace LemonUI.Menus
                 subtitleText.Position = new PointF(offset + 6, start);
             }
         }
+        /// <summary>
+        /// Processes the button presses.
+        /// </summary>
+        private void ProcessControls()
+        {
+            // Start by disabling all of the controls
+            Controls.DisableAll(2);
+            // And enable only those required at all times and specific situations
+            Controls.EnableThisFrame(controlsRequired);
+            if (Controls.IsUsingController)
+            {
+                Controls.EnableThisFrame(controlsGamepad);
+            }
+            if (Controls.IsUsingController || !UseMouse)
+            {
+                Controls.EnableThisFrame(controlsCamera);
+            }
+
+            // Check if the controls necessary were pressed
+            bool backPressed = Controls.IsJustPressed(Control.PhoneCancel) || Controls.IsJustPressed(Control.FrontendPause);
+            bool upPressed = Controls.IsJustPressed(Control.PhoneUp) || Controls.IsJustPressed(Control.CursorScrollUp);
+            bool downPressed = Controls.IsJustPressed(Control.PhoneDown) || Controls.IsJustPressed(Control.CursorScrollDown);
+            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || Controls.IsJustPressed(Control.PhoneSelect);
+            bool leftPressed = Controls.IsJustPressed(Control.PhoneLeft);
+            bool rightPressed = Controls.IsJustPressed(Control.PhoneRight);
+
+            // If the player pressed the back button, go back or close the menu
+            if (backPressed)
+            {
+                Back();
+                return;
+            }
+
+            // If the player pressed up, go to the previous item
+            if (upPressed && !downPressed)
+            {
+                Previous();
+                return;
+            }
+            // If he pressed down, go to the next item
+            else if (downPressed && !upPressed)
+            {
+                Next();
+                return;
+            }
+
+            // If the player pressed the left or right button, trigger the event and sound
+            if (SelectedItem is ISlidableItem slidable)
+            {
+                if (leftPressed)
+                {
+                    if (SelectedItem.Enabled)
+                    {
+                        slidable.GoLeft();
+                        soundLeftRight.PlayFrontend();
+                        return;
+                    }
+                    else
+                    {
+                        soundError.PlayFrontend();
+                        return;
+                    }
+                }
+                if (rightPressed)
+                {
+                    if (SelectedItem.Enabled)
+                    {
+                        slidable.GoRight();
+                        soundLeftRight.PlayFrontend();
+                        return;
+                    }
+                    else
+                    {
+                        soundError.PlayFrontend();
+                        return;
+                    }
+                }
+            }
+
+            // If the player is using the mouse controls and pressed select
+            if (UseMouse)
+            {
+                // Enable the mouse cursor
+#if FIVEM
+                API.SetMouseCursorActiveThisFrame();
+#elif SHVDN2
+                Function.Call(Hash._SHOW_CURSOR_THIS_FRAME);
+#elif SHVDN3
+                Function.Call(Hash._SET_MOUSE_CURSOR_ACTIVE_THIS_FRAME);
+#endif
+
+                // If the select button was not pressed, return
+                if (!selectPressed)
+                {
+                    return;
+                }
+
+                // Iterate over the items while keeping the index
+                int i = 0;
+                foreach (NativeItem item in VisibleItems)
+                {
+                    // If this is a list item and the user pressed the right arrow
+                    if (item is NativeListItem list1 && Resolution.IsCursorInBounds(list1.arrowRight.Position, list1.arrowRight.Size))
+                    {
+                        // If the item is enabled, move to the right
+                        if (item.Enabled)
+                        {
+                            list1.GoRight();
+                            soundLeftRight.PlayFrontend();
+                            return;
+                        }
+                        // Otherwise, play the error sound
+                        else
+                        {
+                            soundError.PlayFrontend();
+                            return;
+                        }
+                    }
+                    // If this is a list item and the user pressed the left arrow
+                    else if (item is NativeListItem list2 && Resolution.IsCursorInBounds(list2.arrowRight.Position, list2.arrowRight.Size))
+                    {
+                        // If the item is enabled, move to the left
+                        if (item.Enabled)
+                        {
+                            list2.GoLeft();
+                            soundLeftRight.PlayFrontend();
+                            return;
+                        }
+                        // Otherwise, play the error sound
+                        else
+                        {
+                            soundError.PlayFrontend();
+                            return;
+                        }
+                    }
+                    // If the user selected somewhere in the item area
+                    else if (Resolution.IsCursorInBounds(item.title.Position.X - itemOffsetX, item.title.Position.Y - itemOffsetY, Width, itemHeight))
+                    {
+                        if (item == SelectedItem)
+                        {
+                            // If is enabled, activate it and play the select sound
+                            if (item.Enabled)
+                            {
+                                item.OnActivated(this);
+                                soundSelect.PlayFrontend();
+                                if (item is NativeCheckboxItem checkboxItem)
+                                {
+                                    checkboxItem.UpdateTexture(true);
+                                }
+                                return;
+                            }
+                            // Otherwise, play the error sound
+                            else
+                            {
+                                soundError.PlayFrontend();
+                                return;
+                            }
+                        }
+                        // Otherwise, change the index
+                        else
+                        {
+                            SelectedIndex = firstItem + i;
+                            soundUpDown.PlayFrontend();
+                            return;
+                        }
+                    }
+
+                    // Finally, increase the number
+                    i++;
+                }
+            }
+
+            // If the player selected an item
+            if (selectPressed)
+            {
+                // If there is an item selected and is enabled, trigger it and play the selected sound
+                if (SelectedItem != null && SelectedItem.Enabled)
+                {
+                    SelectedItem.OnActivated(this);
+                    soundSelect.PlayFrontend();
+                    if (SelectedItem is NativeCheckboxItem check)
+                    {
+                        check.UpdateTexture(true);
+                    }
+                    return;
+                }
+                // Otherwise, play the error sound
+                else
+                {
+                    soundError.PlayFrontend();
+                    return;
+                }
+            }
+        }
 
         #endregion
 
@@ -881,184 +1075,7 @@ namespace LemonUI.Menus
             }
 
             // Time to work on the controls!
-            // Disable all of them
-            Controls.DisableAll(2);
-            // And enable only those required
-            Controls.EnableThisFrame(controlsRequired);
-            // Enable those required when using a gamepad
-            if (Controls.IsUsingController)
-            {
-                Controls.EnableThisFrame(controlsGamepad);
-            }
-            // Or those required for the camera
-            if (Controls.IsUsingController || !UseMouse)
-            {
-                Controls.EnableThisFrame(controlsCamera);
-            }
-
-            // Check if the controls necessary were pressed
-            bool backPressed = Controls.IsJustPressed(Control.PhoneCancel) || Controls.IsJustPressed(Control.FrontendPause);
-            bool upPressed = Controls.IsJustPressed(Control.PhoneUp) || Controls.IsJustPressed(Control.CursorScrollUp);
-            bool downPressed = Controls.IsJustPressed(Control.PhoneDown) || Controls.IsJustPressed(Control.CursorScrollDown);
-            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || Controls.IsJustPressed(Control.PhoneSelect);
-            bool leftPressed = Controls.IsJustPressed(Control.PhoneLeft);
-            bool rightPressed = Controls.IsJustPressed(Control.PhoneRight);
-
-            // If the player pressed the back button, go back or close the menu
-            if (backPressed)
-            {
-                Back();
-            }
-
-            // If the player pressed up, go to the previous item
-            if (upPressed && !downPressed)
-            {
-                Previous();
-            }
-            // If he pressed down, go to the next item
-            else if (downPressed && !upPressed)
-            {
-                Next();
-            }
-
-            // If the player pressed the left or right button, trigger the event and sound
-            if (SelectedItem is ISlidableItem slidable)
-            {
-                if (leftPressed)
-                {
-                    if (SelectedItem.Enabled)
-                    {
-                        slidable.GoLeft();
-                        soundLeftRight.PlayFrontend();
-                    }
-                    else
-                    {
-                        soundError.PlayFrontend();
-                    }
-                }
-                if (rightPressed)
-                {
-                    if (SelectedItem.Enabled)
-                    {
-                        slidable.GoRight();
-                        soundLeftRight.PlayFrontend();
-                    }
-                    else
-                    {
-                        soundError.PlayFrontend();
-                    }
-                }
-            }
-
-            // If the player is using the mouse controls
-            if (UseMouse)
-            {
-                // Enable the mouse cursor
-#if FIVEM
-                API.SetMouseCursorActiveThisFrame();
-#elif SHVDN2
-                Function.Call(Hash._SHOW_CURSOR_THIS_FRAME);
-#elif SHVDN3
-                Function.Call(Hash._SET_MOUSE_CURSOR_ACTIVE_THIS_FRAME);
-#endif
-
-                // Iterate over the items while keeping the index
-                int i = 0;
-                foreach (NativeItem item in VisibleItems)
-                {
-                    // If the user didn't pressed select, continue to the next iteration
-                    if (!selectPressed)
-                    {
-                        continue;
-                    }
-
-                    // If this is a list item and the user pressed the right arrow
-                    if (item is NativeListItem list1 && Resolution.IsCursorInBounds(list1.arrowRight.Position, list1.arrowRight.Size))
-                    {
-                        // If the item is enabled, move to the right
-                        if (item.Enabled)
-                        {
-                            list1.GoRight();
-                            soundLeftRight.PlayFrontend();
-                        }
-                        // Otherwise, play the error sound
-                        else
-                        {
-                            soundError.PlayFrontend();
-                        }
-                        break;
-                    }
-                    // If this is a list item and the user pressed the left arrow
-                    else if (item is NativeListItem list2 && Resolution.IsCursorInBounds(list2.arrowRight.Position, list2.arrowRight.Size))
-                    {
-                        // If the item is enabled, move to the left
-                        if (item.Enabled)
-                        {
-                            list2.GoLeft();
-                            soundLeftRight.PlayFrontend();
-                        }
-                        // Otherwise, play the error sound
-                        else
-                        {
-                            soundError.PlayFrontend();
-                        }
-                        break;
-                    }
-                    // If the user selected somewhere in the item area
-                    else if (Resolution.IsCursorInBounds(item.title.Position.X - itemOffsetX, item.title.Position.Y - itemOffsetY, Width, itemHeight))
-                    {
-                        if (item == SelectedItem)
-                        {
-                            // If is enabled, activate it and play the select sound
-                            if (item.Enabled)
-                            {
-                                item.OnActivated(this);
-                                soundSelect.PlayFrontend();
-                                if (item is NativeCheckboxItem checkboxItem)
-                                {
-                                    checkboxItem.UpdateTexture(true);
-                                }
-                            }
-                            // Otherwise, play the error sound
-                            else
-                            {
-                                soundError.PlayFrontend();
-                            }
-                        }
-                        // Otherwise, change the index
-                        else
-                        {
-                            SelectedIndex = firstItem + i;
-                            soundUpDown.PlayFrontend();
-                        }
-                        break;
-                    }
-
-                    // Finally, increase the number
-                    i++;
-                }
-            }
-
-            // If the player selected an item
-            if (selectPressed)
-            {
-                // If there is an item selected and is enabled, trigger it and play the selected sound
-                if (SelectedItem != null && SelectedItem.Enabled)
-                {
-                    SelectedItem.OnActivated(this);
-                    soundSelect.PlayFrontend();
-
-                    if (SelectedItem is NativeCheckboxItem check)
-                    {
-                        check.UpdateTexture(true);
-                    }
-                }
-                // Otherwise, play the error sound
-                else
-                {
-                    soundError.PlayFrontend();
-                }
-            }
+            ProcessControls();
 
             // Reset the alignment if this menu should be aware of the safe zone
             if (SafeZoneAware)
