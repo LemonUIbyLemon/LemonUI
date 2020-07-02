@@ -411,13 +411,16 @@ namespace LemonUI.Menus
                     soundUpDown.PlayFrontend();
                 }
 
-                // If an item was selected, change some values related to it
+                // If an item was selected, set the description and trigger it
                 if (SelectedItem != null)
                 {
-                    // Save the description
                     descriptionText.Text = SelectedItem.Description;
-                    // And trigger the selected event
                     TriggerSelectedItem();
+                }
+                // Otherwise, set the generic description text
+                else
+                {
+                    descriptionText.Text = NoItemsText;
                 }
 
                 // And update the items visually
@@ -467,7 +470,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// Text shown when there are no items in the menu.
         /// </summary>
-        public string NoItemsText { get; set; }
+        public string NoItemsText { get; set; } = "There are no items available";
         /// <summary>
         /// The maximum allowed number of items in the menu at once.
         /// </summary>
