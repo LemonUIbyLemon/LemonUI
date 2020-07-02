@@ -828,8 +828,11 @@ namespace LemonUI.Menus
                 item.Draw();
             }
 
-            // And the rectangle for the currently selected item
-            selectedRect?.Draw();
+            // If this menu has items, draw the rectangle for the selected item
+            if (Items.Count > 0)
+            {
+                selectedRect?.Draw();
+            }
 
             // If the selected item is a checkbox or a list, draw the elements again on top of the selection rectangle
             if (SelectedItem is NativeCheckboxItem checkbox)
