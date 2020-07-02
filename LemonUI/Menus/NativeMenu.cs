@@ -76,7 +76,7 @@ namespace LemonUI.Menus
         /// Sound played when an item is disabled.
         /// </summary>
         internal static readonly Sound.Sound soundError = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "ERROR");
-        
+
         /// <summary>
         /// The controls required by the menu with both a gamepad and mouse + keyboard.
         /// </summary>
@@ -1038,28 +1038,25 @@ namespace LemonUI.Menus
                     i++;
                 }
             }
-            // If he is not
-            else
-            {
-                // If the player selected an item
-                if (selectPressed)
-                {
-                    // If there is an item selected and is enabled, trigger it and play the selected sound
-                    if (SelectedItem != null && SelectedItem.Enabled)
-                    {
-                        SelectedItem.OnActivated(this);
-                        soundSelect.PlayFrontend();
 
-                        if (SelectedItem is NativeCheckboxItem check)
-                        {
-                            check.UpdateTexture(true);
-                        }
-                    }
-                    // Otherwise, play the error sound
-                    else
+            // If the player selected an item
+            if (selectPressed)
+            {
+                // If there is an item selected and is enabled, trigger it and play the selected sound
+                if (SelectedItem != null && SelectedItem.Enabled)
+                {
+                    SelectedItem.OnActivated(this);
+                    soundSelect.PlayFrontend();
+
+                    if (SelectedItem is NativeCheckboxItem check)
                     {
-                        soundError.PlayFrontend();
+                        check.UpdateTexture(true);
                     }
+                }
+                // Otherwise, play the error sound
+                else
+                {
+                    soundError.PlayFrontend();
                 }
             }
 
