@@ -32,10 +32,7 @@ namespace LemonUI.Example
         /// <summary>
         /// The Native Menus are the same as NativeUI's UIMenu.
         /// </summary>
-        private static readonly NativeMenu menu = new NativeMenu("LemonUI", "LEMONUI DEMO/EXAMPLES")
-        {
-            UseMouse = false // We need to disable mouse usage because is not yet implemented :)
-        };
+        private static readonly NativeMenu menu = new NativeMenu("LemonUI", "LEMONUI DEMO/EXAMPLES");
         /// <summary>
         /// This is a checkbox item. Is an item that contains a checkbox that users can turn on or off.
         /// For this example, this checkbox is going to allow you to keep the menu open.

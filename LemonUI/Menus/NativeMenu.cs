@@ -151,6 +151,14 @@ namespace LemonUI.Menus
         /// The X position of the description text.
         /// </summary>
         internal const float posXDescTxt = 6;
+        /// <summary>
+        /// The offset to the X value of the item title.
+        /// </summary>
+        internal const float itemOffsetX = 6;
+        /// <summary>
+        /// The offset to the Y value of the item title.
+        /// </summary>
+        internal const float itemOffsetY = 3;
 
         #endregion
 
@@ -478,6 +486,10 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
+        /// If this menu should be aware of the Safe Zone.
+        /// </summary>
+        public bool SafeZoneAware { get; set; } = true;
+        /// <summary>
         /// The instructional buttons shown in the bottom right.
         /// </summary>
         public InstructionalButtons Buttons => buttons;
@@ -631,7 +643,7 @@ namespace LemonUI.Menus
                 }
 
                 // Convert it to a relative value
-                item.title.Position = new PointF(startX + 6, startY + 3);
+                item.title.Position = new PointF(startX + itemOffsetX, startY + itemOffsetY);
                 // And select the correct color (just in case)
                 Color color = colorWhiteSmoke;
 
@@ -748,16 +760,19 @@ namespace LemonUI.Menus
             // For example: 21:6, 32:9, 11:4, 48:9 (3 16:9 in Surround) and more
             const int L = 76;
             const int T = 84;
+            if (SafeZoneAware)
+            {
 #if FIVEM
-            API.SetScriptGfxAlign(L, T);
-            API.SetScriptGfxAlignParams(0, 0, 0, 0);
+                API.SetScriptGfxAlign(L, T);
+                API.SetScriptGfxAlignParams(0, 0, 0, 0);
 #elif SHVDN2
-            Function.Call(Hash._SET_SCREEN_DRAW_POSITION, L, T);
-            Function.Call(Hash._0xF5A2C681787E579D, 0, 0, 0, 0);
+                Function.Call(Hash._SET_SCREEN_DRAW_POSITION, L, T);
+                Function.Call(Hash._0xF5A2C681787E579D, 0, 0, 0, 0);
 #elif SHVDN3
-            Function.Call(Hash.SET_SCRIPT_GFX_ALIGN, L, T);
-            Function.Call(Hash.SET_SCRIPT_GFX_ALIGN_PARAMS, 0, 0, 0, 0);
+                Function.Call(Hash.SET_SCRIPT_GFX_ALIGN, L, T);
+                Function.Call(Hash.SET_SCRIPT_GFX_ALIGN_PARAMS, 0, 0, 0, 0);
 #endif
+            }
 
             // Start with the banner
             if (bannerImage != null)
@@ -804,17 +819,6 @@ namespace LemonUI.Menus
                 descriptionText.Draw();
             }
 
-            // Before drawing the instructional buttons, reset the alignment
-#if FIVEM
-            API.ResetScriptGfxAlign();
-#elif SHVDN2
-            Function.Call(Hash._0xE3A3DB414A373DAB);
-#elif SHVDN3
-            Function.Call(Hash.RESET_SCRIPT_GFX_ALIGN);
-#endif
-            // And draw the buttons after that
-            buttons?.Draw();
-
             // Time to work on the controls!
             // Disable all of them
             Controls.DisableAll(2);
@@ -835,7 +839,7 @@ namespace LemonUI.Menus
             bool backPressed = Controls.IsJustPressed(Control.PhoneCancel) || Controls.IsJustPressed(Control.FrontendPause);
             bool upPressed = Controls.IsJustPressed(Control.PhoneUp) || Controls.IsJustPressed(Control.CursorScrollUp);
             bool downPressed = Controls.IsJustPressed(Control.PhoneDown) || Controls.IsJustPressed(Control.CursorScrollDown);
-            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || (Controls.IsJustPressed(Control.PhoneSelect) && !UseMouse);
+            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || Controls.IsJustPressed(Control.PhoneSelect);
             bool leftPressed = Controls.IsJustPressed(Control.PhoneLeft);
             bool rightPressed = Controls.IsJustPressed(Control.PhoneRight);
 
@@ -885,26 +889,132 @@ namespace LemonUI.Menus
                 }
             }
 
-            // If the player pressed the confirm button
-            if (selectPressed)
+            // If the player is using the mouse controls
+            if (UseMouse)
             {
-                // If there is an item selected and is enabled, trigger it and play the selected sound
-                if (SelectedItem != null && SelectedItem.Enabled)
-                {
-                    SelectedItem.OnActivated(this);
-                    soundSelect.PlayFrontend();
+                // Enable the mouse cursor
+#if FIVEM
+                API.SetMouseCursorActiveThisFrame();
+#elif SHVDN2
+                Function.Call(Hash._SHOW_CURSOR_THIS_FRAME);
+#elif SHVDN3
+                Function.Call(Hash._SET_MOUSE_CURSOR_ACTIVE_THIS_FRAME);
+#endif
 
-                    if (SelectedItem is NativeCheckboxItem check)
-                    {
-                        check.UpdateTexture(true);
-                    }
-                }
-                // Otherwise, play the error sound
-                else
+                // Iterate over the items while keeping the index
+                int i = 0;
+                foreach (NativeItem item in VisibleItems)
                 {
-                    soundError.PlayFrontend();
+                    // If the user didn't pressed select, continue to the next iteration
+                    if (!selectPressed)
+                    {
+                        continue;
+                    }
+
+                    // If this is a list item and the user pressed the right arrow
+                    if (item is NativeListItem list1 && Resolution.IsCursorInBounds(list1.arrowRight.Position, list1.arrowRight.Size))
+                    {
+                        // If the item is enabled, move to the right
+                        if (item.Enabled)
+                        {
+                            list1.GoRight();
+                            soundLeftRight.PlayFrontend();
+                        }
+                        // Otherwise, play the error sound
+                        else
+                        {
+                            soundError.PlayFrontend();
+                        }
+                        break;
+                    }
+                    // If this is a list item and the user pressed the left arrow
+                    else if (item is NativeListItem list2 && Resolution.IsCursorInBounds(list2.arrowRight.Position, list2.arrowRight.Size))
+                    {
+                        // If the item is enabled, move to the left
+                        if (item.Enabled)
+                        {
+                            list2.GoLeft();
+                            soundLeftRight.PlayFrontend();
+                        }
+                        // Otherwise, play the error sound
+                        else
+                        {
+                            soundError.PlayFrontend();
+                        }
+                        break;
+                    }
+                    // If the user selected somewhere in the item area
+                    else if (Resolution.IsCursorInBounds(item.title.Position.X - itemOffsetX, item.title.Position.Y - itemOffsetY, Width, itemHeight))
+                    {
+                        if (item == SelectedItem)
+                        {
+                            // If is enabled, activate it and play the select sound
+                            if (item.Enabled)
+                            {
+                                item.OnActivated(this);
+                                soundSelect.PlayFrontend();
+                                if (item is NativeCheckboxItem checkboxItem)
+                                {
+                                    checkboxItem.UpdateTexture(true);
+                                }
+                            }
+                            // Otherwise, play the error sound
+                            else
+                            {
+                                soundError.PlayFrontend();
+                            }
+                        }
+                        // Otherwise, change the index
+                        else
+                        {
+                            SelectedIndex = firstItem + i;
+                            soundUpDown.PlayFrontend();
+                        }
+                        break;
+                    }
+
+                    // Finally, increase the number
+                    i++;
                 }
             }
+            // If he is not
+            else
+            {
+                // If the player selected an item
+                if (selectPressed)
+                {
+                    // If there is an item selected and is enabled, trigger it and play the selected sound
+                    if (SelectedItem != null && SelectedItem.Enabled)
+                    {
+                        SelectedItem.OnActivated(this);
+                        soundSelect.PlayFrontend();
+
+                        if (SelectedItem is NativeCheckboxItem check)
+                        {
+                            check.UpdateTexture(true);
+                        }
+                    }
+                    // Otherwise, play the error sound
+                    else
+                    {
+                        soundError.PlayFrontend();
+                    }
+                }
+            }
+
+            // Reset the alignment if this menu should be aware of the safe zone
+            if (SafeZoneAware)
+            {
+#if FIVEM
+                API.ResetScriptGfxAlign();
+#elif SHVDN2
+                Function.Call(Hash._0xE3A3DB414A373DAB);
+#elif SHVDN3
+                Function.Call(Hash.RESET_SCRIPT_GFX_ALIGN);
+#endif
+            }
+            // And finish by drawing the instructional buttons
+            buttons?.Draw();
         }
         /// <summary>
         /// Updates the alignment of the items.
