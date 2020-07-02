@@ -774,6 +774,29 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
+        /// Removes the items that match the predicate.
+        /// </summary>
+        /// <param name="pred">The function to use as a check.</param>
+        public void Remove(Func<NativeItem, bool> pred)
+        {
+            // Create a copy of the list with the existing items and iterate them in order
+            List<NativeItem> items = new List<NativeItem>(Items);
+            foreach (NativeItem item in items)
+            {
+                // If the predicate says that this item should be removed, do it
+                if (pred(item))
+                {
+                    Items.Remove(item);
+                }
+            }
+            // Once we finish, make sure that the index is under the limit
+            // Set it to the max if it does
+            if (SelectedIndex >= Items.Count)
+            {
+                SelectedIndex = Items.Count - 1;
+            }
+        }
+        /// <summary>
         /// Checks if an item is part of the menu.
         /// </summary>
         /// <param name="item">The item to check.</param>
