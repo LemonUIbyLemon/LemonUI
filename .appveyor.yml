@@ -1,0 +1,64 @@
+# WARNING: We expect the Solution to be named exactly like the AppVeyor project
+# For example: A project called NewProject needs a solution called NewProject.sln
+
+# The Version to use and the Build Image
+version: "1.0.0.{build}"
+image: Visual Studio 2019
+
+# This triggers a webhook to #appveyor on Discord with SkyHook
+# https://github.com/Commit451/skyhook
+notifications:
+  - provider: Webhook
+    url:
+      secure: >
+        RQOjbD0a6023xZNVZ7zzk7PjRpoF448yAGSM8koDLhmkmzUM5yPCgmaad8aJqIs8
+        RUNIyviWWVKgyVoHDnXu54LGOTNVOCWgVLopKG8FA/Ofnc/R3wb8e0Y1VLME2TDc
+        4OyE8nUxd78/lJY7qiz0pR1OZDgDregNYwczlizdDJNHSumbS17VNKQygVqdwoqd
+
+# This patches the AssemblyInfo.cs for old csproj files
+assembly_info:
+  patch: true
+  file: Properties\AssemblyInfo.cs
+  assembly_version: "{version}"
+  assembly_file_version: "{version}"
+
+# Ditto, but for new csproj files (VS 2017 and newer)
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: "{version}"
+  package_version: "{version}"
+  assembly_version: "{version}"
+  file_version: "{version}"
+  informational_version: "{version}"
+
+# If this build is from a tag, use the tag as the version without the V at the start
+init:
+  - ps: if ($env:APPVEYOR_REPO_TAG -eq "true") { Update-AppveyorBuild -Version "$($env:APPVEYOR_REPO_TAG_NAME.TrimStart("v"))" }
+
+# Restore Git Submodules and NuGet Packages
+install:
+  - git submodule update --init --recursive
+  - nuget restore %APPVEYOR_PROJECT_NAME%.sln
+
+# Build the solution with the same name as the AppVeyor project
+build_script:
+  - msbuild %APPVEYOR_PROJECT_NAME%.sln /t:Build /p:Configuration=Release
+
+# After building everything, package it in a 7zip and upload it as an Artifact
+after_build:
+  - 7z a %APPVEYOR_PROJECT_NAME%.7z %APPVEYOR_BUILD_FOLDER%\bin\Release\*
+  - appveyor PushArtifact %APPVEYOR_PROJECT_NAME%.7z
+
+# If this is a tag, deploy the 7zip file(s) to GitHub Releases
+deploy:
+  release: v$(APPVEYOR_BUILD_VERSION)
+  provider: GitHub
+  auth_token:
+    secure: "DkvKC8KRj8AipGu/oWW/J2e6jMWt2xXQfKU7oefFMsp0ZMfzz+OR9Y9XpML+ZmG4"
+  artifact: /.*\.7z/
+  draft: false
+  prerelease: false
+  on:
+    branch: master
+    appveyor_repo_tag: true
