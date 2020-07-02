@@ -493,6 +493,10 @@ namespace LemonUI.Menus
         /// The instructional buttons shown in the bottom right.
         /// </summary>
         public InstructionalButtons Buttons => buttons;
+        /// <summary>
+        /// The parent menu of this menu.
+        /// </summary>
+        public NativeMenu Parent { get; set; } = null;
 
         #endregion
 
@@ -717,6 +721,34 @@ namespace LemonUI.Menus
             Recalculate();
         }
         /// <summary>
+        /// Adds a specific menu as a submenu with an item.
+        /// </summary>
+        /// <param name="menu">The menu to add.</param>
+        /// <returns>The item that points to the submenu.</returns>
+        public NativeItem AddSubMenu(NativeMenu menu)
+        {
+            // If the menu is null, raise an exception
+            if (menu == null)
+            {
+                throw new ArgumentNullException(nameof(menu));
+            }
+
+            // Create a new menu item
+            NativeItem item = new NativeItem(menu.Subtitle);
+            // Add the activated event
+            item.Activated += (sender, e) =>
+            {
+                Visible = false;
+                menu.Visible = true;
+            };
+            // Set this menu as the parent of the other one
+            menu.Parent = this;
+            // Add the item to this menu
+            Add(item);
+            // And return the new item
+            return item;
+        }
+        /// <summary>
         /// Removes an item from the menu.
         /// </summary>
         /// <param name="item">The item to remove.</param>
@@ -843,10 +875,10 @@ namespace LemonUI.Menus
             bool leftPressed = Controls.IsJustPressed(Control.PhoneLeft);
             bool rightPressed = Controls.IsJustPressed(Control.PhoneRight);
 
-            // If the player pressed the back button, close the menu and continue to the next menu
+            // If the player pressed the back button, go back or close the menu
             if (backPressed)
             {
-                Visible = false;
+                Back();
             }
 
             // If the player pressed up, go to the previous item
@@ -1110,6 +1142,19 @@ namespace LemonUI.Menus
 
             RecalculateTexts();
             UpdateItems();
+        }
+        /// <summary>
+        /// Returns to the previous menu or closes the existing one.
+        /// </summary>
+        public void Back()
+        {
+            // Try to close the menu
+            Close();
+            // If this menu has been closed and there is a parent menu, open it
+            if (!Visible && Parent != null)
+            {
+                Parent.Visible = true;
+            }
         }
         /// <summary>
         /// Closes the menu.
