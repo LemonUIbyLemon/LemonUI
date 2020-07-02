@@ -638,17 +638,22 @@ namespace LemonUI.Menus
                     checkbox.check.Position = new PointF(itemObjX - 50, startY - 6);
                     checkbox.check.Size = new SizeF(50, 50);
                 }
-                // If this item is a slider
+                // If this item is a slidable
+                if (item is NativeSlidableItem slidable)
+                {
+                    // Set the sizes of the arrows
+                    slidable.arrowLeft.Size = item == SelectedItem ? new SizeF(30, 30) : SizeF.Empty;
+                    slidable.arrowRight.Size = item == SelectedItem ? new SizeF(30, 30) : SizeF.Empty;
+                    // And set the positions of the left arrow
+                    slidable.arrowRight.Position = new PointF(itemObjX - 35, startY + 4);
+                }
+                // If this item is a list
                 if (item is NativeListItem list)
                 {
                     // Set the color of the text
                     list.text.Color = item == SelectedItem ? colorBlack : colorWhiteSmoke;
-                    // Set the sizes of the arrows
-                    list.arrowLeft.Size = item == SelectedItem ? new SizeF(30, 30) : SizeF.Empty;
-                    list.arrowRight.Size = item == SelectedItem ? new SizeF(30, 30) : SizeF.Empty;
-                    // And set the positions of the items from left to right
+                    // And set the position of the left arrow and text
                     float textWidth = list.arrowRight.Size.Width;
-                    list.arrowRight.Position = new PointF(itemObjX - 35, startY + 4);
                     list.text.Position = new PointF(itemObjX - textWidth - 1 - list.text.Width, startY + 3);
                     list.arrowLeft.Position = new PointF(list.text.Position.X - list.arrowLeft.Size.Width, startY + 4);
                 }
@@ -797,12 +802,12 @@ namespace LemonUI.Menus
                 foreach (NativeItem item in VisibleItems)
                 {
                     // If this is a list item and the user pressed the right arrow
-                    if (item is NativeListItem list1 && Resolution.IsCursorInBounds(list1.arrowRight.Position, list1.arrowRight.Size))
+                    if (item is NativeSlidableItem slidable1 && Resolution.IsCursorInBounds(slidable1.arrowRight.Position, slidable1.arrowRight.Size))
                     {
                         // If the item is enabled, move to the right
                         if (item.Enabled)
                         {
-                            list1.GoRight();
+                            slidable1.GoRight();
                             soundLeftRight.PlayFrontend();
                             return;
                         }
@@ -814,12 +819,12 @@ namespace LemonUI.Menus
                         }
                     }
                     // If this is a list item and the user pressed the left arrow
-                    else if (item is NativeListItem list2 && Resolution.IsCursorInBounds(list2.arrowRight.Position, list2.arrowRight.Size))
+                    else if (item is NativeSlidableItem slidable2 && Resolution.IsCursorInBounds(slidable2.arrowRight.Position, slidable2.arrowRight.Size))
                     {
                         // If the item is enabled, move to the left
                         if (item.Enabled)
                         {
-                            list2.GoLeft();
+                            slidable2.GoLeft();
                             soundLeftRight.PlayFrontend();
                             return;
                         }
@@ -1070,10 +1075,13 @@ namespace LemonUI.Menus
             {
                 checkbox.check.Draw();
             }
+            if (SelectedItem is NativeSlidableItem slidable)
+            {
+                slidable.arrowLeft.Draw();
+                slidable.arrowRight.Draw();
+            }
             if (SelectedItem is NativeListItem list)
             {
-                list.arrowLeft.Draw();
-                list.arrowRight.Draw();
                 list.text.Draw();
             }
 

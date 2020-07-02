@@ -7,49 +7,22 @@ using System.Drawing;
 namespace LemonUI.Items
 {
     /// <summary>
-    /// Class with the basic elements for a list item.
+    /// Base class for list items.
     /// </summary>
-    public abstract class NativeListItem : NativeItem, ISlidableItem
+    public abstract class NativeListItem : NativeSlidableItem
     {
-        #region Internal Fields
-
         /// <summary>
         /// The text of the current item.
         /// </summary>
         internal protected ScaledText text = null;
-        /// <summary>
-        /// The arrow pointing to the left.
-        /// </summary>
-        internal protected ScaledTexture arrowLeft = null;
-        /// <summary>
-        /// The arrow pointing to the right.
-        /// </summary>
-        internal protected ScaledTexture arrowRight = null;
-
-        #endregion
-
-        #region Constructors
 
         public NativeListItem(string title, string subtitle) : base(title, subtitle)
         {
-            arrowLeft = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowleft");
-            arrowRight = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowright");
+            text = new ScaledText(PointF.Empty, "", 0.35f)
+            {
+                Color = NativeMenu.colorWhiteSmoke
+            };
         }
-
-        #endregion
-
-        #region Public Functions
-
-        /// <summary>
-        /// Moves to the previous item.
-        /// </summary>
-        public abstract void GoLeft();
-        /// <summary>
-        /// Moves to the next item.
-        /// </summary>
-        public abstract void GoRight();
-
-        #endregion
     }
 
     /// <summary>
@@ -157,18 +130,6 @@ namespace LemonUI.Items
         {
             // Create the basic stuff
             Items = new List<T>();
-            text = new ScaledText(PointF.Empty, "", 0.35f)
-            {
-                Color = NativeMenu.colorWhiteSmoke
-            };
-            arrowLeft = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowleft")
-            {
-                Color = NativeMenu.colorBlack
-            };
-            arrowRight = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowright")
-            {
-                Color = NativeMenu.colorBlack
-            };
             // And add the objects passed
             Items.AddRange(objs);
             // Finally, update the visible item
