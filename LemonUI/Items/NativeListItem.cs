@@ -213,8 +213,6 @@ namespace LemonUI.Items
         {
             base.Draw();
             text.Draw();
-            arrowLeft.Draw();
-            arrowRight.Draw();
         }
 
         #endregion

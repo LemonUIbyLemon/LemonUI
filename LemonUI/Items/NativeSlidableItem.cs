@@ -48,6 +48,15 @@ namespace LemonUI.Items
         /// Moves to the next item.
         /// </summary>
         public abstract void GoRight();
+        /// <summary>
+        /// Draws the left and right arrow.
+        /// </summary>
+        public override void Draw()
+        {
+            base.Draw();
+            arrowLeft.Draw();
+            arrowRight.Draw();
+        }
 
         #endregion
     }
