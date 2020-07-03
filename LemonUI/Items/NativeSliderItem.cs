@@ -62,6 +62,7 @@ namespace LemonUI.Items
                 if (_value > maximum)
                 {
                     _value = maximum;
+                    ValueChanged?.Invoke(this, EventArgs.Empty);
                 }
                 // Finally, update the location of the slider
                 UpdatePosition();
@@ -82,6 +83,8 @@ namespace LemonUI.Items
                 }
                 // Otherwise, save it
                 _value = value;
+                // Trigger the respective event
+                ValueChanged?.Invoke(this, EventArgs.Empty);
                 // And update the location of the slider
                 UpdatePosition();
             }
@@ -90,6 +93,15 @@ namespace LemonUI.Items
         /// The multiplier for increasing and decreasing the value.
         /// </summary>
         public int Multiplier { get; set; } = 1;
+
+        #endregion
+
+        #region Event
+
+        /// <summary>
+        /// Event triggered when the value of the menu changes.
+        /// </summary>
+        public event EventHandler ValueChanged;
 
         #endregion
 
