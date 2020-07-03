@@ -46,6 +46,31 @@ namespace LemonUI
 
         #endregion
 
+        #region Public Properties
+
+        /// <summary>
+        /// Checks if there are objects visible on the screen.
+        /// </summary>
+        public bool AreAnyVisible
+        {
+            get
+            {
+                // Iterate over the objects
+                foreach (IProcessable obj in objects)
+                {
+                    // If is visible return true
+                    if (obj.Visible)
+                    {
+                        return true;
+                    }
+                }
+                // If none were visible return false
+                return false;
+            }
+        }
+
+        #endregion
+
         #region Events
 
         /// <summary>
