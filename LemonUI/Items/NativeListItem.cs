@@ -157,14 +157,8 @@ namespace LemonUI.Items
         /// </summary>
         private void UpdateIndex()
         {
-            // If there are no items available, return
-            if (Items.Count == 0)
-            {
-                return;
-            }
-
             // Set the text based on the current item
-            text.Text = SelectedItem.ToString();
+            text.Text = SelectedIndex != -1 ? SelectedItem.ToString() : "";
             // And set the correct position
             text.Position = new PointF(arrowRight.Position.X - text.Width + 3, text.Position.Y);
             arrowLeft.Position = new PointF(text.Position.X - arrowLeft.Size.Width, arrowLeft.Position.Y);
