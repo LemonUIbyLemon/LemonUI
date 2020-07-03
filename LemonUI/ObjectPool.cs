@@ -178,6 +178,16 @@ namespace LemonUI
             }
         }
         /// <summary>
+        /// Hides all of the objects.
+        /// </summary>
+        public void HideAll()
+        {
+            foreach (IProcessable obj in objects)
+            {
+                obj.Visible = false;
+            }
+        }
+        /// <summary>
         /// Processes the objects and features in this pool.
         /// This needs to be called every tick.
         /// </summary>
