@@ -472,6 +472,10 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
+        /// The description used when this menu is used as a submenu.
+        /// </summary>
+        public string Description { get; set; } = "";
+        /// <summary>
         /// If the mouse should be used for navigating the menu.
         /// </summary>
         public bool UseMouse { get; set; } = true;
@@ -539,23 +543,43 @@ namespace LemonUI.Menus
         #region Constructor
 
         /// <summary>
-        /// Creates a new menu with the default banner texture.
+        /// Creates a new menu with the specified title.
         /// </summary>
         /// <param name="title">The title of the menu.</param>
-        /// <param name="subtitle">Subtitle of this menu.</param>
-        public NativeMenu(string title, string subtitle) : this(title, new ScaledTexture(PointF.Empty, new SizeF(0, 108), "commonmenu", "interaction_bgd"), subtitle)
+        public NativeMenu(string title) : this(title, "", "")
         {
         }
 
         /// <summary>
-        /// Creates a new menu with the specified banner texture.
+        /// Creates a new menu with the specified title and subtitle.
         /// </summary>
         /// <param name="title">The title of the menu.</param>
+        /// <param name="subtitle">The subtitle of this menu.</param>
+        public NativeMenu(string title, string subtitle) : this(title, subtitle, "")
+        {
+        }
+
+        /// <summary>
+        /// Creates a new menu with the specified title, subtitle and description.
+        /// </summary>
+        /// <param name="title">The title of the menu.</param>
+        /// <param name="subtitle">The subtitle of this menu.</param>
+        /// <param name="description">The description used for submenus.</param>
+        public NativeMenu(string title, string subtitle, string description) : this(title, subtitle, description, new ScaledTexture(PointF.Empty, new SizeF(0, 108), "commonmenu", "interaction_bgd"))
+        {
+        }
+
+        /// <summary>
+        /// Creates a new menu with the specified title, subtitle, description and banner.
+        /// </summary>
+        /// <param name="title">The title of the menu.</param>
+        /// <param name="subtitle">The subtitle of this menu.</param>
+        /// <param name="description">The description used for submenus.</param>
         /// <param name="banner">The drawable to use as the banner.</param>
-        /// <param name="subtitle">Subtitle of this menu.</param>
-        public NativeMenu(string title, IScreenDrawable banner, string subtitle)
+        public NativeMenu(string title, string subtitle, string description, IScreenDrawable banner)
         {
             this.subtitle = subtitle;
+            Description = description;
             Items = new List<NativeItem>();
             bannerImage = banner;
             bannerText = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
@@ -961,7 +985,7 @@ namespace LemonUI.Menus
             }
 
             // Create a new menu item
-            NativeItem item = new NativeItem(menu.Subtitle);
+            NativeItem item = new NativeItem(menu.Subtitle, menu.Description);
             // Add the activated event
             item.Activated += (sender, e) =>
             {
