@@ -657,6 +657,18 @@ namespace LemonUI.Menus
                     list.text.Position = new PointF(itemObjX - textWidth - 1 - list.text.Width, startY + 3);
                     list.arrowLeft.Position = new PointF(list.text.Position.X - list.arrowLeft.Size.Width, startY + 4);
                 }
+                // If this item is a slider
+                if (item is NativeSliderItem slider)
+                {
+                    // Set the position and size of the background
+                    slider.background.Size = new SizeF(150, 9);
+                    slider.background.Position = new PointF(itemObjX - slider.background.Size.Width - 7 - slider.arrowLeft.Size.Width, startY + 14);
+                    // And do the same for the left arrow
+                    slider.arrowLeft.Position = new PointF(slider.background.Position.X - slider.arrowLeft.Size.Width, startY + 4);
+                    // Finally, set the correct position of the slider
+                    slider.slider.Size = new SizeF(75, 9);
+                    slider.UpdatePosition();
+                }
 
                 // Convert it to a relative value
                 item.title.Position = new PointF(startX + itemOffsetX, startY + itemOffsetY);
@@ -1083,6 +1095,11 @@ namespace LemonUI.Menus
             if (SelectedItem is NativeListItem list)
             {
                 list.text.Draw();
+            }
+            if (SelectedItem is NativeSliderItem slider)
+            {
+                slider.background.Draw();
+                slider.slider.Draw();
             }
 
             // If the description rectangle and text is there and we have text to draw
