@@ -36,6 +36,10 @@ namespace LemonUI.Items
         /// The index of the currently selected index.
         /// </summary>
         private int index = 0;
+        /// <summary>
+        /// The objects used by this item.
+        /// </summary>
+        private List<T> items = new List<T>();
 
         #endregion
 
@@ -107,7 +111,15 @@ namespace LemonUI.Items
         /// <summary>
         /// The objects used by this item.
         /// </summary>
-        public List<T> Items { get; }
+        public List<T> Items
+        {
+            get => items;
+            set
+            {
+                items = value;
+                UpdateIndex();
+            }
+        }
 
         #endregion
 
