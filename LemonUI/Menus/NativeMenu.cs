@@ -644,8 +644,8 @@ namespace LemonUI.Menus
                     // Set the sizes of the arrows
                     slidable.arrowLeft.Size = item == SelectedItem ? new SizeF(30, 30) : SizeF.Empty;
                     slidable.arrowRight.Size = item == SelectedItem ? new SizeF(30, 30) : SizeF.Empty;
-                    // And set the positions of the left arrow
-                    slidable.arrowRight.Position = new PointF(itemObjX - 35, startY + 4);
+                    // And set the positions of the right arrow
+                    slidable.arrowRight.Position = new PointF(itemObjX - slidable.arrowRight.Size.Width - 5, startY + 4);
                 }
                 // If this item is a list
                 if (item is NativeListItem list)
