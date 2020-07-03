@@ -32,11 +32,11 @@ namespace LemonUI.Example
         /// <summary>
         /// The Native Menus are the same as NativeUI's UIMenu.
         /// </summary>
-        private static readonly NativeMenu menu = new NativeMenu("LemonUI", "LEMONUI DEMO/EXAMPLES");
+        private static readonly NativeMenu menu = new NativeMenu("LemonUI", "LemonUI Demo/Examples");
         /// <summary>
         /// Ditto, but this one is going to be added as a submenu.
         /// </summary>
-        private static readonly NativeMenu submenu = new NativeMenu("LemonUI", "LEMONUI SUBMENU");
+        private static readonly NativeMenu submenu = new NativeMenu("LemonUI", "LemonUI Submenu");
         /// <summary>
         /// This is a checkbox item. Is an item that contains a checkbox that users can turn on or off.
         /// For this example, this checkbox is going to allow you to keep the menu open.

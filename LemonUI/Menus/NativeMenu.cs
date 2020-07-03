@@ -165,6 +165,10 @@ namespace LemonUI.Menus
         #region Private Fields
 
         /// <summary>
+        /// The subtitle of the menu, without any changes.
+        /// </summary>
+        private string subtitle = "";
+        /// <summary>
         /// If the menu is visible or not.
         /// </summary>
         private bool visible = false;
@@ -460,8 +464,12 @@ namespace LemonUI.Menus
         /// </summary>
         public string Subtitle
         {
-            get => subtitleText.Text;
-            set => subtitleText.Text = value;
+            get => subtitle;
+            set
+            {
+                subtitle = value;
+                subtitleText.Text = value.ToUpperInvariant();
+            }
         }
         /// <summary>
         /// If the mouse should be used for navigating the menu.
@@ -547,6 +555,7 @@ namespace LemonUI.Menus
         /// <param name="subtitle">Subtitle of this menu.</param>
         public NativeMenu(string title, IScreenDrawable banner, string subtitle)
         {
+            this.subtitle = subtitle;
             Items = new List<NativeItem>();
             bannerImage = banner;
             bannerText = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
@@ -558,7 +567,7 @@ namespace LemonUI.Menus
             {
                 Color = Color.FromArgb(0, 0, 0)
             };
-            subtitleText = new ScaledText(PointF.Empty, subtitle, 0.345f, Font.ChaletLondon)
+            subtitleText = new ScaledText(PointF.Empty, subtitle.ToUpperInvariant(), 0.345f, Font.ChaletLondon)
             {
                 Color = colorWhiteSmoke
             };
