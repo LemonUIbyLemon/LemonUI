@@ -34,23 +34,23 @@ namespace LemonUI.Menus
         /// <summary>
         /// A Pink-Purple used for debugging.
         /// </summary>
-        internal static readonly Color colorDebug = Color.FromArgb(255, 0, 255);
+        internal static readonly Color colorDebug = Color.FromArgb(255, 255, 0, 255);
         /// <summary>
         /// The White color.
         /// </summary>
-        internal static readonly Color colorWhite = Color.FromArgb(255, 255, 255);
+        internal static readonly Color colorWhite = Color.FromArgb(255, 255, 255, 255);
         /// <summary>
         /// The White Smoke color.
         /// </summary>
-        internal static readonly Color colorWhiteSmoke = Color.FromArgb(245, 245, 245);
+        internal static readonly Color colorWhiteSmoke = Color.FromArgb(255, 245, 245, 245);
         /// <summary>
         /// The Black color.
         /// </summary>
-        internal static readonly Color colorBlack = Color.FromArgb(0, 0, 0);
+        internal static readonly Color colorBlack = Color.FromArgb(255, 0, 0, 0);
         /// <summary>
         /// The color for disabled items.
         /// </summary>
-        internal static readonly Color colorDisabled = Color.FromArgb(163, 159, 148);
+        internal static readonly Color colorDisabled = Color.FromArgb(255, 163, 159, 148);
 
         /// <summary>
         /// Sound played when the user selects an option.
@@ -589,7 +589,7 @@ namespace LemonUI.Menus
             };
             subtitleImage = new ScaledRectangle(PointF.Empty, SizeF.Empty)
             {
-                Color = Color.FromArgb(0, 0, 0)
+                Color = Color.FromArgb(255, 0, 0, 0)
             };
             subtitleText = new ScaledText(PointF.Empty, subtitle.ToUpperInvariant(), 0.345f, Font.ChaletLondon)
             {

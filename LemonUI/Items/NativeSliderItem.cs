@@ -16,14 +16,14 @@ namespace LemonUI.Items
         /// </summary>
         internal protected ScaledRectangle background = new ScaledRectangle(PointF.Empty, SizeF.Empty)
         {
-            Color = Color.FromArgb(4, 32, 57)
+            Color = Color.FromArgb(255, 4, 32, 57)
         };
         /// <summary>
         /// THe front of the slider.
         /// </summary>
         internal protected ScaledRectangle slider = new ScaledRectangle(PointF.Empty, SizeF.Empty)
         {
-            Color = Color.FromArgb(57, 116, 200)
+            Color = Color.FromArgb(255, 57, 116, 200)
         };
 
         #endregion
