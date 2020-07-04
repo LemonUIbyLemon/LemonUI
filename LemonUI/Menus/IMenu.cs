@@ -33,10 +33,12 @@ namespace LemonUI.Menus
         /// Event triggered when the menu is opened and shown to the user.
         /// </summary>
         event EventHandler Shown;
+#if !FIVEM
         /// <summary>
         /// Event triggered when the menu starts closing.
         /// </summary>
         event CancelEventHandler Closing;
+#endif
         /// <summary>
         /// Event triggered when the menu finishes closing.
         /// </summary>

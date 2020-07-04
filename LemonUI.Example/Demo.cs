@@ -74,7 +74,9 @@ namespace LemonUI.Example
         {
             // Add the events of the menu and the items
             menu.Shown += Menu_Shown;
+#if !FIVEM
             menu.Closing += Menu_Closing;
+#endif
             showLoadingScreen.Activated += ShowLoadingScreen_Activated;
             showBigMessage.Activated += ShowBigMessage_Activated;
             flip.Activated += Flip_Activated;
