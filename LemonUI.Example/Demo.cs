@@ -165,12 +165,12 @@ namespace LemonUI.Example
 
             // If the user pressed Z/Down, toggle the activation of the menu
 #if SHVDN3
-            if (Game.IsControlJustPressed(Control.MultiplayerInfo))
+            if (Game.IsControlJustPressed(Control.MultiplayerInfo) && !menu.Visible && !submenu.Visible)
 #else
-            if (Game.IsControlJustPressed(0, Control.MultiplayerInfo))
+            if (Game.IsControlJustPressed(0, Control.MultiplayerInfo) && !menu.Visible && !submenu.Visible)
 #endif
             {
-                menu.Visible = !menu.Visible;
+                menu.Visible = true;
             }
         }
     }
