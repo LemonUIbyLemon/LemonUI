@@ -827,7 +827,7 @@ namespace LemonUI.Menus
             }
 
             // If the player is using the mouse controls and pressed select
-            if (UseMouse)
+            if (UseMouse && !Controls.IsUsingController)
             {
                 // Enable the mouse cursor
 #if FIVEM
