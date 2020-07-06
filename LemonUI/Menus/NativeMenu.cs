@@ -652,6 +652,10 @@ namespace LemonUI.Menus
                 startY += subtitleImage.Size.Height;
             }
 
+            // Set the position and size of the background image
+            backgroundImage.literalPosition = new PointF(0, startY);
+            backgroundImage.literalSize = new SizeF(width, itemHeight * visibleItems.Count);
+            backgroundImage.Recalculate();
             // Set the position of the rectangle that marks the current item
             selectedRect.Position = new PointF(selectedRect.Position.X, startY + ((index - firstItem) * itemHeight));
             // And then do the description background and text
@@ -1239,16 +1243,6 @@ namespace LemonUI.Menus
                 // Increase the start location
                 start += subtitleHeight;
                 subtitleImageBase.Recalculate();
-            }
-            // If there is a background image
-            if (backgroundImage != null)
-            {
-                // See if we should draw the total number of items or the max allowed
-                int count = Items.Count > maxItems ? maxItems : Items.Count;
-                // Set the position and size
-                backgroundImage.literalPosition = new PointF(0, start);
-                backgroundImage.literalSize = new SizeF(width, itemHeight * count);
-                backgroundImage.Recalculate();
             }
             // If there is a rectangle for the currently selected item
             if (selectedRect != null)
