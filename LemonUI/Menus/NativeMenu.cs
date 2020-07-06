@@ -165,6 +165,10 @@ namespace LemonUI.Menus
         #region Private Fields
 
         /// <summary>
+        /// The list of visible items on the screen.
+        /// </summary>
+        private List<NativeItem> visibleItems = new List<NativeItem>();
+        /// <summary>
         /// The subtitle of the menu, without any changes.
         /// </summary>
         private string subtitle = "";
@@ -232,36 +236,6 @@ namespace LemonUI.Menus
         /// A specific menu to open during the next tick.
         /// </summary>
         private NativeMenu openNextTick = null;
-
-        #endregion
-
-        #region Private Properties
-
-        /// <summary>
-        /// The items that are visible and useable on the screen.
-        /// </summary>
-        private IEnumerable<NativeItem> VisibleItems
-        {
-            get
-            {
-                // Iterate over the number of items while staying under the maximum
-                for (int i = 0; i < MaxItems; i++)
-                {
-                    // Calculate the start of our items
-                    int start = firstItem + i;
-
-                    // If the number of items is over the ones in the list, something went wrong
-                    // TODO: Decide what to do in this case (exception? silently ignore?)
-                    if (start >= Items.Count)
-                    {
-                        break;
-                    }
-
-                    // Otherwise, return it as part of the iterator
-                    yield return Items[start];
-                }
-            }
-        }
 
         #endregion
 
@@ -431,7 +405,8 @@ namespace LemonUI.Menus
                     descriptionText.Text = NoItemsText;
                 }
 
-                // And update the items visually
+                // And update the items
+                UpdateItemList();
                 UpdateItems();
             }
         }
@@ -613,6 +588,34 @@ namespace LemonUI.Menus
         #region Tools
 
         /// <summary>
+        /// Updates the list of visible items on the screen.
+        /// </summary>
+        private void UpdateItemList()
+        {
+            // Create a new list for the items
+            List<NativeItem> list = new List<NativeItem>();
+
+            // Iterate over the number of items while staying under the maximum
+            for (int i = 0; i < MaxItems; i++)
+            {
+                // Calculate the start of our items
+                int start = firstItem + i;
+
+                // If the number of items is over the ones in the list, something went wrong
+                // TODO: Decide what to do in this case (exception? silently ignore?)
+                if (start >= Items.Count)
+                {
+                    break;
+                }
+
+                // Otherwise, return it as part of the iterator or add it to the list
+                list.Add(Items[start]);
+            }
+
+            // Finally, replace the list of items
+            visibleItems = list;
+        }
+        /// <summary>
         /// Triggers the Selected event for the current item.
         /// </summary>
         private void TriggerSelectedItem()
@@ -662,7 +665,7 @@ namespace LemonUI.Menus
 
             // Iterate over the number of items while counting the number of them
             int i = 0;
-            foreach (NativeItem item in VisibleItems)
+            foreach (NativeItem item in visibleItems)
             {
                 // If this item is a checkbox
                 if (item is NativeCheckboxItem checkbox)
@@ -846,7 +849,7 @@ namespace LemonUI.Menus
 
                 // Iterate over the items while keeping the index
                 int i = 0;
-                foreach (NativeItem item in VisibleItems)
+                foreach (NativeItem item in visibleItems)
                 {
                     // If this is a list item and the user pressed the right arrow
                     if (item is NativeSlidableItem slidable1 && Resolution.IsCursorInBounds(slidable1.arrowRight.Position, slidable1.arrowRight.Size))
@@ -970,8 +973,12 @@ namespace LemonUI.Menus
             {
                 SelectedIndex = 0;
             }
-            // And recalculate the positions
-            Recalculate();
+            else
+            {
+                UpdateItemList();
+            }
+            // And update the items
+            UpdateItems();
         }
         /// <summary>
         /// Adds a specific menu as a submenu with an item.
@@ -1021,6 +1028,12 @@ namespace LemonUI.Menus
             {
                 SelectedIndex = Items.Count - 1;
             }
+            else
+            {
+                UpdateItemList();
+            }
+            // And update the items
+            UpdateItems();
         }
         /// <summary>
         /// Removes the items that match the predicate.
@@ -1044,6 +1057,12 @@ namespace LemonUI.Menus
             {
                 SelectedIndex = Items.Count - 1;
             }
+            else
+            {
+                UpdateItemList();
+            }
+            // And update the items
+            UpdateItems();
         }
         /// <summary>
         /// Checks if an item is part of the menu.
@@ -1106,7 +1125,7 @@ namespace LemonUI.Menus
             backgroundImage?.Draw();
 
             // Then go for the visible items
-            foreach (NativeItem item in VisibleItems)
+            foreach (NativeItem item in visibleItems)
             {
                 item.Draw();
             }
