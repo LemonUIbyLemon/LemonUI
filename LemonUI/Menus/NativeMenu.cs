@@ -6,11 +6,15 @@ using Font = CitizenFX.Core.UI.Font;
 #elif SHVDN2
 using GTA;
 using GTA.Native;
+using CancelEventArgs = System.ComponentModel.CancelEventArgs;
+using CancelEventHandler = System.ComponentModel.CancelEventHandler;
 using Font = GTA.Font;
 #elif SHVDN3
 using GTA;
 using GTA.Native;
 using GTA.UI;
+using CancelEventArgs = System.ComponentModel.CancelEventArgs;
+using CancelEventHandler = System.ComponentModel.CancelEventHandler;
 using Font = GTA.UI.Font;
 #endif
 using LemonUI.Elements;
@@ -19,7 +23,6 @@ using LemonUI.Items;
 using LemonUI.Scaleform;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 
 namespace LemonUI.Menus
@@ -500,12 +503,10 @@ namespace LemonUI.Menus
         /// Event triggered when the menu is opened and shown to the user.
         /// </summary>
         public event EventHandler Shown;
-#if !FIVEM
         /// <summary>
         /// Event triggered when the menu starts closing.
         /// </summary>
         public event CancelEventHandler Closing;
-#endif
         /// <summary>
         /// Event triggered when the menu finishes closing.
         /// </summary>
@@ -1288,7 +1289,6 @@ namespace LemonUI.Menus
         /// </summary>
         public void Close()
         {
-#if !FIVEM
             // Create a new set of event arguments
             CancelEventArgs args = new CancelEventArgs();
             // And trigger the event
@@ -1299,7 +1299,6 @@ namespace LemonUI.Menus
             {
                 return;
             }
-#endif
             // Otherwise, close the menu
             visible = false;
             Closed?.Invoke(this, EventArgs.Empty);

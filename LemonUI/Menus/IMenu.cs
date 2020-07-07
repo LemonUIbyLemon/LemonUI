@@ -1,7 +1,8 @@
-using LemonUI.Items;
+#if SHVDN2 || SHVDN3
+using CancelEventHandler = System.ComponentModel.CancelEventHandler;
+#endif
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace LemonUI.Menus
 {
@@ -33,12 +34,10 @@ namespace LemonUI.Menus
         /// Event triggered when the menu is opened and shown to the user.
         /// </summary>
         event EventHandler Shown;
-#if !FIVEM
         /// <summary>
         /// Event triggered when the menu starts closing.
         /// </summary>
         event CancelEventHandler Closing;
-#endif
         /// <summary>
         /// Event triggered when the menu finishes closing.
         /// </summary>

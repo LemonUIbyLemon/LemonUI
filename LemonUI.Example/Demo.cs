@@ -1,21 +1,20 @@
 #if FIVEM
 using CitizenFX.Core;
-using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Script = CitizenFX.Core.BaseScript;
 #elif SHVDN2
 using GTA;
 using GTA.Native;
+using CancelEventArgs = System.ComponentModel.CancelEventArgs;
 #elif SHVDN3
 using GTA;
 using GTA.UI;
+using CancelEventArgs = System.ComponentModel.CancelEventArgs;
 #endif
 using LemonUI.Items;
 using LemonUI.Menus;
 using LemonUI.Scaleform;
 using System;
-using System.ComponentModel;
-using System.Threading.Tasks;
 
 namespace LemonUI.Example
 {
@@ -74,9 +73,7 @@ namespace LemonUI.Example
         {
             // Add the events of the menu and the items
             menu.Shown += Menu_Shown;
-#if !FIVEM
             menu.Closing += Menu_Closing;
-#endif
             showLoadingScreen.Activated += ShowLoadingScreen_Activated;
             showBigMessage.Activated += ShowBigMessage_Activated;
             flip.Activated += Flip_Activated;
@@ -155,7 +152,7 @@ namespace LemonUI.Example
         }
 
 #if FIVEM
-        private async Task Basics_Tick()
+        private async System.Threading.Tasks.Task Basics_Tick()
 #else
         private void Basics_Tick(object sender, EventArgs e)
 #endif
