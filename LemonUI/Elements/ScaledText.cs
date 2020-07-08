@@ -22,7 +22,7 @@ namespace LemonUI.Elements
     /// <summary>
     /// A text string.
     /// </summary>
-    public class ScaledText : BaseElement
+    public class ScaledText : IText
     {
         #region Consistent Values
 
@@ -36,6 +36,14 @@ namespace LemonUI.Elements
         #region Private Fields
 
         /// <summary>
+        /// The absolute 1080p based screen position.
+        /// </summary>
+        private PointF absolutePosition = PointF.Empty;
+        /// <summary>
+        /// The relative 0-1 relative position.
+        /// </summary>
+        private PointF relativePosition = PointF.Empty;
+        /// <summary>
         /// The raw string of text.
         /// </summary>
         private string text = "";
@@ -43,6 +51,10 @@ namespace LemonUI.Elements
         /// The raw string split into equally sized strings.
         /// </summary>
         private List<string> chunks = new List<string>();
+        /// <summary>
+        /// The alignment of the item.
+        /// </summary>
+        private Alignment alignment = Alignment.Left;
         /// <summary>
         /// The word wrap value passed by the user.
         /// </summary>
@@ -57,6 +69,18 @@ namespace LemonUI.Elements
         #region Public Properties
 
         /// <summary>
+        /// The position of the text.
+        /// </summary>
+        public PointF Position
+        {
+            get => absolutePosition;
+            set
+            {
+                absolutePosition = value;
+                relativePosition = value.ToRelative();
+            }
+        }
+        /// <summary>
         /// The text to draw.
         /// </summary>
         public string Text
@@ -69,7 +93,76 @@ namespace LemonUI.Elements
             }
         }
         /// <summary>
-        /// The number of lines that this text uses.
+        /// The color of the text.
+        /// </summary>
+        public Color Color { get; set; } = Color.FromArgb(255, 255, 255, 255);
+        /// <summary>
+        /// The game font to use.
+        /// </summary>
+        public Font Font { get; set; } = Font.ChaletLondon;
+        /// <summary>
+        /// The scale of the text.
+        /// </summary>
+        public float Scale { get; set; } = 1f;
+        /// <summary>
+        /// If the text should have a drop down shadow.
+        /// </summary>
+        public bool Shadow { get; set; } = false;
+        /// <summary>
+        /// If the test should have an outline.
+        /// </summary>
+        public bool Outline { get; set; } = false;
+        /// <summary>
+        /// The alignment of the text.
+        /// </summary>
+        public Alignment Alignment
+        {
+            get => alignment;
+            set
+            {
+                alignment = value;
+                Recalculate();
+            }
+        }
+        /// <summary>
+        /// The distance from the start position where the text will be wrapped into new lines.
+        /// </summary>
+        public float WordWrap
+        {
+            get
+            {
+                return internalWrap;
+            }
+            set
+            {
+                internalWrap = value;
+                Recalculate();
+            }
+        }
+        /// <summary>
+        /// The width that the text takes from the screen.
+        /// </summary>
+        public float Width
+        {
+            get
+            {
+#if FIVEM
+                API.BeginTextCommandWidth("CELL_EMAIL_BCON");
+                Add();
+                return API.EndTextCommandGetWidth(true) * 1f.ToXAbsolute();
+#elif SHVDN2
+                Function.Call(Hash._SET_TEXT_ENTRY_FOR_WIDTH, "CELL_EMAIL_BCON");
+                Add();
+                return Function.Call<float>(Hash._GET_TEXT_SCREEN_WIDTH, true) * 1f.ToXAbsolute();
+#elif SHVDN3
+                Function.Call(Hash._BEGIN_TEXT_COMMAND_GET_WIDTH, "CELL_EMAIL_BCON");
+                Add();
+                return Function.Call<float>(Hash._END_TEXT_COMMAND_GET_WIDTH, true) * 1f.ToXAbsolute();
+#endif
+            }
+        }
+        /// <summary>
+        /// The number of lines used by this text.
         /// </summary>
         public int LineCount
         {
@@ -111,71 +204,6 @@ namespace LemonUI.Elements
 #endif
             }
         }
-        /// <summary>
-        /// The game font to use.
-        /// </summary>
-        public Font Font { get; set; } = Font.ChaletLondon;
-        /// <summary>
-        /// The scale of the text.
-        /// </summary>
-        public float Scale { get; set; } = 1f;
-        /// <summary>
-        /// If the text should have a drop down shadow.
-        /// </summary>
-        public bool Shadow { get; set; } = false;
-        /// <summary>
-        /// If the test should have an outline.
-        /// </summary>
-        public bool Outline { get; set; } = false;
-        /// <summary>
-        /// The alignment of the text.
-        /// </summary>
-        public override Alignment Alignment
-        {
-            get => alignment;
-            set
-            {
-                alignment = value;
-                Recalculate();
-            }
-        }
-        /// <summary>
-        /// The distance from the start position where the text will be wrapped into new lines.
-        /// </summary>
-        public float WordWrap
-        {
-            get
-            {
-                return internalWrap;
-            }
-            set
-            {
-                internalWrap = value;
-                Recalculate();
-            }
-        }
-        /// <summary>
-        /// The absolute Width that this text takes on the screen.
-        /// </summary>
-        public float Width
-        {
-            get
-            {
-#if FIVEM
-                API.BeginTextCommandWidth("CELL_EMAIL_BCON");
-                Add();
-                return API.EndTextCommandGetWidth(true) * 1f.ToXAbsolute();
-#elif SHVDN2
-                Function.Call(Hash._SET_TEXT_ENTRY_FOR_WIDTH, "CELL_EMAIL_BCON");
-                Add();
-                return Function.Call<float>(Hash._GET_TEXT_SCREEN_WIDTH, true) * 1f.ToXAbsolute();
-#elif SHVDN3
-                Function.Call(Hash._BEGIN_TEXT_COMMAND_GET_WIDTH, "CELL_EMAIL_BCON");
-                Add();
-                return Function.Call<float>(Hash._END_TEXT_COMMAND_GET_WIDTH, true) * 1f.ToXAbsolute();
-#endif
-            }
-        }
 
         #endregion
 
@@ -207,8 +235,9 @@ namespace LemonUI.Elements
         /// <param name="text">The text to show.</param>
         /// <param name="scale">The scale of the text.</param>
         /// <param name="font">The font to use.</param>
-        public ScaledText(PointF pos, string text, float scale, Font font) : base(pos, SizeF.Empty)
+        public ScaledText(PointF pos, string text, float scale, Font font)
         {
+            Position = pos;
             Text = text;
             Scale = scale;
             Font = font;
@@ -332,10 +361,10 @@ namespace LemonUI.Elements
         /// <summary>
         /// Recalculates the size, position and word wrap of this item.
         /// </summary>
-        public override void Recalculate()
+        public void Recalculate()
         {
             // Do the normal Size and Position recalculation
-            base.Recalculate();
+            relativePosition = absolutePosition.ToRelative();
             // And recalculate the word wrap if necessary
             if (internalWrap <= 0)
             {
@@ -354,7 +383,7 @@ namespace LemonUI.Elements
         /// <summary>
         /// Draws the text on the screen.
         /// </summary>
-        public override void Draw()
+        public void Draw()
         {
 #if FIVEM
             API.SetTextEntry("CELL_EMAIL_BCON");

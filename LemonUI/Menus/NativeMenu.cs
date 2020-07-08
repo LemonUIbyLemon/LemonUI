@@ -198,7 +198,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The banner of the menu.
         /// </summary>
-        private IScreenDrawable bannerImage = null;
+        private I2Dimensional bannerImage = null;
         /// <summary>
         /// The text of the menu.
         /// </summary>
@@ -206,7 +206,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The background of the drawable text.
         /// </summary>
-        private IScreenDrawable subtitleImage = null;
+        private I2Dimensional subtitleImage = null;
         /// <summary>
         /// The text of the subtitle.
         /// </summary>
@@ -294,7 +294,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The banner shown at the top of the menu.
         /// </summary>
-        public IScreenDrawable Banner
+        public I2Dimensional Banner
         {
             get => bannerImage;
             set
@@ -563,7 +563,7 @@ namespace LemonUI.Menus
         /// <param name="subtitle">The subtitle of this menu.</param>
         /// <param name="description">The description used for submenus.</param>
         /// <param name="banner">The drawable to use as the banner.</param>
-        public NativeMenu(string title, string subtitle, string description, IScreenDrawable banner)
+        public NativeMenu(string title, string subtitle, string description, I2Dimensional banner)
         {
             this.subtitle = subtitle;
             Description = description;

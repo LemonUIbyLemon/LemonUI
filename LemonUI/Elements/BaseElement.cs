@@ -1,12 +1,4 @@
-#if FIVEM
-using CitizenFX.Core.UI;
-#elif SHVDN2
-using GTA;
-#elif SHVDN3
-using GTA.UI;
-#endif
 using LemonUI.Extensions;
-using System;
 using System.Drawing;
 
 namespace LemonUI.Elements
@@ -14,14 +6,10 @@ namespace LemonUI.Elements
     /// <summary>
     /// Base class for all of the 2D elements.
     /// </summary>
-    public abstract class BaseElement : IScreenDrawable
+    public abstract class BaseElement : I2Dimensional
     {
         #region Private Fields
 
-        /// <summary>
-        /// The alignment of the item.
-        /// </summary>
-        protected internal Alignment alignment = Alignment.Left;
         /// <summary>
         /// The 1080 scaled position.
         /// </summary>
@@ -74,23 +62,6 @@ namespace LemonUI.Elements
             }
         }
         /// <summary>
-        /// The alignment of the element.
-        /// </summary>
-        public virtual Alignment Alignment
-        {
-            get => alignment;
-            set
-            {
-                if (value != Alignment.Left && value != Alignment.Right)
-                {
-                    throw new InvalidOperationException("This Element can't be centered.");
-                }
-
-                alignment = value;
-                Recalculate();
-            }
-        }
-        /// <summary>
         /// The Color of the drawable.
         /// </summary>
         public Color Color { get; set; } = Color.FromArgb(255, 255, 255, 255);
@@ -123,10 +94,6 @@ namespace LemonUI.Elements
         {
             relativePosition = literalPosition.ToRelative();
             relativeSize = literalSize.ToRelative();
-            if (alignment == Alignment.Right)
-            {
-                relativePosition.X = 1 - relativePosition.X - relativeSize.Width;
-            }
         }
 
         #endregion

@@ -1,8 +1,3 @@
-#if FIVEM
-using CitizenFX.Core.UI;
-#elif SHVDN3
-using GTA.UI;
-#endif
 using System.Drawing;
 
 namespace LemonUI.Elements
@@ -10,10 +5,8 @@ namespace LemonUI.Elements
     /// <summary>
     /// A 2D item that can be drawn on the screen.
     /// </summary>
-    public interface IScreenDrawable : IRecalculable, IDrawable
+    public interface I2Dimensional : IRecalculable, IDrawable
     {
-        #region Public Properties
-
         /// <summary>
         /// The Position of the drawable.
         /// </summary>
@@ -26,15 +19,5 @@ namespace LemonUI.Elements
         /// The Color of the drawable.
         /// </summary>
         Color Color { get; set; }
-        /// <summary>
-        /// The rotation of the drawable.
-        /// </summary>
-        float Heading { get; set; }
-        /// <summary>
-        /// The alignment of the element.
-        /// </summary>
-        Alignment Alignment { get; set; }
-
-        #endregion
     }
 }
