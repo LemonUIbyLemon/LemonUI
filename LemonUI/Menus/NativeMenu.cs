@@ -192,6 +192,10 @@ namespace LemonUI.Menus
         /// </summary>
         private Alignment alignment = Alignment.Left;
         /// <summary>
+        /// The offset of the menu.
+        /// </summary>
+        private PointF offset = PointF.Empty;
+        /// <summary>
         /// The banner of the menu.
         /// </summary>
         private IScreenDrawable bannerImage = null;
@@ -306,6 +310,18 @@ namespace LemonUI.Menus
         {
             get => bannerText;
             set => bannerText = value;
+        }
+        /// <summary>
+        /// The offset of the menu position.
+        /// </summary>
+        public PointF Offset
+        {
+            get => offset;
+            set
+            {
+                offset = value;
+                Recalculate();
+            }
         }
         /// <summary>
         /// Returns the currently selected item.
@@ -634,8 +650,8 @@ namespace LemonUI.Menus
         private void UpdateItems()
         {
             // Store the current values of X and Y
-            float currentX = alignment == Alignment.Right ? 1f.ToXAbsolute() - width : 0;
-            float currentY = 0;
+            float currentX = alignment == Alignment.Right ? 1f.ToXAbsolute() - width - offset.X : offset.X;
+            float currentY = offset.Y;
             // And the end of the item
             float endX = currentX + width;
 
@@ -1174,8 +1190,8 @@ namespace LemonUI.Menus
         public void Recalculate()
         {
             // Store the current values of X and Y
-            float currentX = alignment == Alignment.Right ? 1f.ToXAbsolute() - width : 0;
-            float currentY = 0;
+            float currentX = alignment == Alignment.Right ? 1f.ToXAbsolute() - width - offset.X : offset.X;
+            float currentY = offset.Y;
 
             // If there is a banner and is a valid element
             if (bannerImage != null && bannerImage is BaseElement bannerImageBase)
