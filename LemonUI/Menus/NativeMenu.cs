@@ -297,7 +297,6 @@ namespace LemonUI.Menus
             {
                 bannerImage = value;
                 Recalculate();
-                RecalculateTexts();
             }
         }
         /// <summary>
@@ -428,7 +427,7 @@ namespace LemonUI.Menus
             set
             {
                 alignment = value;
-                UpdateAlignment();
+                Recalculate();
             }
         }
         /// <summary>
@@ -634,34 +633,34 @@ namespace LemonUI.Menus
         /// </summary>
         private void UpdateItems()
         {
-            // Store the start positions for the X and Y axis
-            float startX = alignment == Alignment.Right ? 1f.ToXAbsolute() - width : 0;
-            float startY = 0;
-            // Add the heights of the banner and subtitle (if they are there)
+            // Store the current values of X and Y
+            float currentX = alignment == Alignment.Right ? 1f.ToXAbsolute() - width : 0;
+            float currentY = 0;
+            // And the end of the item
+            float endX = currentX + width;
+
+            // Add the heights of the banner and subtitle (if there are any)
             if (bannerImage != null)
             {
-                startY += bannerImage.Size.Height;
+                currentY += bannerImage.Size.Height;
             }
             if (subtitleImage != null && !string.IsNullOrWhiteSpace(subtitleText.Text))
             {
-                startY += subtitleImage.Size.Height;
+                currentY += subtitleImage.Size.Height;
             }
 
             // Set the position and size of the background image
-            backgroundImage.literalPosition = new PointF(0, startY);
+            backgroundImage.literalPosition = new PointF(currentX, currentY);
             backgroundImage.literalSize = new SizeF(width, itemHeight * visibleItems.Count);
             backgroundImage.Recalculate();
             // Set the position of the rectangle that marks the current item
-            selectedRect.Position = new PointF(selectedRect.Position.X, startY + ((index - firstItem) * itemHeight));
+            selectedRect.Position = new PointF(currentX, currentY + ((index - firstItem) * itemHeight));
             // And then do the description background and text
             descriptionText.Text = Items.Count == 0 ? NoItemsText : SelectedItem.Description;
-            float description = startY + ((Items.Count > maxItems ? maxItems : Items.Count) * itemHeight) + heightDiffDescImg;
+            float description = currentY + ((Items.Count > maxItems ? maxItems : Items.Count) * itemHeight) + heightDiffDescImg;
             descriptionRect.Size = new SizeF(width, descriptionText.LineCount * 35);
-            descriptionRect.Position = new PointF(descriptionRect.Position.X, description);
-            descriptionText.Position = new PointF(startX + posXDescTxt, description + heightDiffDescTxt);
-
-            // Calculate the start position for the item objects (checkbox for items, text and arrows for lists)
-            float itemObjX = startX + width;
+            descriptionRect.Position = new PointF(currentX, description);
+            descriptionText.Position = new PointF(currentX + posXDescTxt, description + heightDiffDescTxt);
 
             // Iterate over the number of items while counting the number of them
             int i = 0;
@@ -673,7 +672,7 @@ namespace LemonUI.Menus
                     // Update the texture to show the selected and not selected design
                     checkbox.UpdateTexture(item == SelectedItem);
                     // And set the position and size of the checkbox
-                    checkbox.check.Position = new PointF(itemObjX - 50, startY - 6);
+                    checkbox.check.Position = new PointF(endX - 50, currentY - 6);
                     checkbox.check.Size = new SizeF(50, 50);
                 }
                 // If this item is a slidable
@@ -683,7 +682,7 @@ namespace LemonUI.Menus
                     slidable.arrowLeft.Size = item == SelectedItem ? new SizeF(30, 30) : SizeF.Empty;
                     slidable.arrowRight.Size = item == SelectedItem ? new SizeF(30, 30) : SizeF.Empty;
                     // And set the positions of the right arrow
-                    slidable.arrowRight.Position = new PointF(itemObjX - slidable.arrowRight.Size.Width - 5, startY + 4);
+                    slidable.arrowRight.Position = new PointF(endX - slidable.arrowRight.Size.Width - 5, currentY + 4);
                 }
                 // If this item is a list
                 if (item is NativeListItem list)
@@ -692,24 +691,24 @@ namespace LemonUI.Menus
                     list.text.Color = item == SelectedItem ? colorBlack : colorWhiteSmoke;
                     // And set the position of the left arrow and text
                     float textWidth = list.arrowRight.Size.Width;
-                    list.text.Position = new PointF(itemObjX - textWidth - 1 - list.text.Width, startY + 3);
-                    list.arrowLeft.Position = new PointF(list.text.Position.X - list.arrowLeft.Size.Width, startY + 4);
+                    list.text.Position = new PointF(endX - textWidth - 1 - list.text.Width, currentY + 3);
+                    list.arrowLeft.Position = new PointF(list.text.Position.X - list.arrowLeft.Size.Width, currentY + 4);
                 }
                 // If this item is a slider
                 if (item is NativeSliderItem slider)
                 {
                     // Set the position and size of the background
                     slider.background.Size = new SizeF(150, 9);
-                    slider.background.Position = new PointF(itemObjX - slider.background.Size.Width - 7 - slider.arrowLeft.Size.Width, startY + 14);
+                    slider.background.Position = new PointF(endX - slider.background.Size.Width - 7 - slider.arrowLeft.Size.Width, currentY + 14);
                     // And do the same for the left arrow
-                    slider.arrowLeft.Position = new PointF(slider.background.Position.X - slider.arrowLeft.Size.Width, startY + 4);
+                    slider.arrowLeft.Position = new PointF(slider.background.Position.X - slider.arrowLeft.Size.Width, currentY + 4);
                     // Finally, set the correct position of the slider
                     slider.slider.Size = new SizeF(75, 9);
                     slider.UpdatePosition();
                 }
 
                 // Convert it to a relative value
-                item.title.Position = new PointF(startX + itemOffsetX, startY + itemOffsetY);
+                item.title.Position = new PointF(currentX + itemOffsetX, currentY + itemOffsetY);
                 // And select the correct color (just in case)
                 Color color = colorWhiteSmoke;
 
@@ -724,30 +723,7 @@ namespace LemonUI.Menus
 
                 // Finally, increase the count by one and move to the next item
                 i++;
-                startY += itemHeight;
-            }
-        }
-        /// <summary>
-        /// Recalculates the text labels.
-        /// </summary>
-        public void RecalculateTexts()
-        {
-            float offset = alignment == Alignment.Right ? 1f.ToXAbsolute() - width : 0;
-            float start = 0;
-
-            if (bannerImage != null)
-            {
-                start += bannerImage.Size.Height;
-            }
-
-            if (bannerText != null)
-            {
-                bannerText.Position = new PointF(offset + 209, 22);
-            }
-            if (subtitleText != null)
-            {
-                start += 4.2f;
-                subtitleText.Position = new PointF(offset + 6, start);
+                currentY += itemHeight;
             }
         }
         /// <summary>
@@ -1193,88 +1169,59 @@ namespace LemonUI.Menus
             buttons?.Draw();
         }
         /// <summary>
-        /// Updates the alignment of the items.
-        /// This will automatically recalculate the sizes and positions.
-        /// </summary>
-        public void UpdateAlignment()
-        {
-            if (bannerImage != null)
-            {
-                bannerImage.Alignment = alignment;
-            }
-            if (subtitleImage != null)
-            {
-                subtitleImage.Alignment = alignment;
-            }
-            if (backgroundImage != null)
-            {
-                backgroundImage.Alignment = alignment;
-            }
-            if (selectedRect != null)
-            {
-                selectedRect.Alignment = alignment;
-            }
-            if (descriptionRect != null)
-            {
-                descriptionRect.Alignment = alignment;
-            }
-            RecalculateTexts();
-            UpdateItems();
-        }
-        /// <summary>
         /// Calculates the positions and sizes of the elements.
         /// </summary>
         public void Recalculate()
         {
-            // Save the start of the X value
-            float start = 0;
+            // Store the current values of X and Y
+            float currentX = alignment == Alignment.Right ? 1f.ToXAbsolute() - width : 0;
+            float currentY = 0;
 
-            // If there is a banner and is an element
+            // If there is a banner and is a valid element
             if (bannerImage != null && bannerImage is BaseElement bannerImageBase)
             {
-                // Get the height of the banner
-                float bannerHeight = bannerImageBase.Size.Height;
-                // Set the position and size
-                bannerImageBase.literalPosition = PointF.Empty;
-                bannerImageBase.literalSize = new SizeF(width, bannerHeight);
-                // Increaser the start location of the next item
-                start += bannerHeight;
+                // Set the position and size of the banner
+                bannerImageBase.literalPosition = new PointF(currentX, currentY);
+                bannerImageBase.literalSize = new SizeF(width, bannerImageBase.Size.Height);
                 bannerImageBase.Recalculate();
+                // If there is a text element, also set the position of it
+                if (bannerText != null)
+                {
+                    bannerText.Position = new PointF(currentX + 209, currentY + 22);
+                }
+                // Finally, increase the current position of Y based on the banner height
+                currentY += bannerImageBase.Size.Height;
             }
-            // If there is a subtitle image
+
+            // If there is a subtitle image and is a valid element
             if (subtitleImage != null && subtitleImage is BaseElement subtitleImageBase)
             {
-                // Set the position and start
-                subtitleImageBase.literalPosition = new PointF(0, start);
+                // Set the position and size of it
+                subtitleImageBase.literalPosition = new PointF(currentX, currentY);
                 subtitleImageBase.literalSize = new SizeF(width, subtitleHeight);
-                // Increase the start location
-                start += subtitleHeight;
                 subtitleImageBase.Recalculate();
+                // If there is a text, also set the position of it
+                if (subtitleText != null)
+                {
+                    subtitleText.Position = new PointF(currentX + 6, currentY + 4.2f);
+                }
+                // Finally, increase the size based on the subtitle height
+                currentY += subtitleHeight;
             }
-            // If there is a rectangle for the currently selected item
+
+            // If there is a selection rectangle, set the size of it
             if (selectedRect != null)
             {
-                // Set the size
-                selectedRect.literalPosition = new PointF(0, start);
-                selectedRect.literalSize = new SizeF(width, itemHeight);
-                selectedRect.Recalculate();
+                selectedRect.Size = new SizeF(width, itemHeight);
             }
-            // If there is a description rectangle
-            if (descriptionRect != null)
-            {
-                // Set the size
-                descriptionRect.Size = new SizeF(width, 0);
-            }
-            // If there is an object for the description
+
+            // If there is a background description, set the word wrap
             if (descriptionText != null)
             {
-                // Set the width
-                descriptionText.Position = new PointF(posXDescTxt, 0);
-                // And set the correct word wrap
                 descriptionText.WordWrap = width - posXDescTxt;
             }
 
-            RecalculateTexts();
+            // Continue with an item update
             UpdateItems();
         }
         /// <summary>
