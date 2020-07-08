@@ -54,6 +54,7 @@ namespace LemonUI.Example
         /// All of the other items are basic.
         /// </summary>
         private static readonly NativeItem flip = new NativeItem("Flip", "Flips the Menu from the left to the Right.");
+        private static readonly NativeItem clear = new NativeItem("Clear", "Removes all of the items from this menu. A script restart will be needed to restore the items.");
         private static readonly NativeItem addRandom = new NativeItem("Add Item to Submenu", "Adds a random item to the submenu.");
         private static readonly NativeItem removeRandom = new NativeItem("Remove Items of Submenu", "Removes all of the random items on the submenu.");
 
@@ -77,6 +78,7 @@ namespace LemonUI.Example
             showLoadingScreen.Activated += ShowLoadingScreen_Activated;
             showBigMessage.Activated += ShowBigMessage_Activated;
             flip.Activated += Flip_Activated;
+            clear.Activated += Clear_Activated;
             addRandom.Activated += AddRandom_Activated;
             removeRandom.Activated += RemoveRandom_Activated;
             // And then the items and submenus themselves
@@ -84,6 +86,7 @@ namespace LemonUI.Example
             menu.Add(showLoadingScreen);
             menu.Add(showBigMessage);
             menu.Add(flip);
+            menu.Add(clear);
             menu.AddSubMenu(submenu);
             submenu.Add(addRandom);
             submenu.Add(removeRandom);
@@ -137,6 +140,12 @@ namespace LemonUI.Example
             // This is simple C# one-liners
             // If is on the right, move it to the left and vice versa
             menu.Alignment = menu.Alignment == Alignment.Left ? Alignment.Right : Alignment.Left;
+        }
+
+        private void Clear_Activated(object sender, EventArgs e)
+        {
+            // Here we call the Clear function to remove all of the items
+            menu.Clear();
         }
 
         private void AddRandom_Activated(object sender, EventArgs e)

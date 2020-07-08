@@ -399,13 +399,7 @@ namespace LemonUI.Menus
                 // If an item was selected, set the description and trigger it
                 if (SelectedItem != null)
                 {
-                    descriptionText.Text = SelectedItem.Description;
                     TriggerSelectedItem();
-                }
-                // Otherwise, set the generic description text
-                else
-                {
-                    descriptionText.Text = NoItemsText;
                 }
 
                 // And update the items
@@ -660,6 +654,7 @@ namespace LemonUI.Menus
             // Set the position of the rectangle that marks the current item
             selectedRect.Position = new PointF(selectedRect.Position.X, startY + ((index - firstItem) * itemHeight));
             // And then do the description background and text
+            descriptionText.Text = Items.Count == 0 ? NoItemsText : SelectedItem.Description;
             float description = startY + ((Items.Count > maxItems ? maxItems : Items.Count) * itemHeight) + heightDiffDescImg;
             descriptionRect.Size = new SizeF(width, descriptionText.LineCount * 35);
             descriptionRect.Position = new PointF(descriptionRect.Position.X, description);
@@ -1067,6 +1062,17 @@ namespace LemonUI.Menus
                 UpdateItemList();
             }
             // And update the items
+            UpdateItems();
+        }
+        /// <summary>
+        /// Removes all of the items from this menu.
+        /// </summary>
+        public void Clear()
+        {
+            // Clear the existing items
+            Items.Clear();
+            // And update the menu information
+            UpdateItemList();
             UpdateItems();
         }
         /// <summary>
