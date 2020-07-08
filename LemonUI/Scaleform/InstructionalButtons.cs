@@ -116,14 +116,8 @@ namespace LemonUI.Scaleform
         /// Creates a new set of Instructional Buttons.
         /// </summary>
         /// <param name="buttons">The buttons to add into this menu.</param>
-        public InstructionalButtons(params InstructionalButton[] buttons)
+        public InstructionalButtons(params InstructionalButton[] buttons) : base("INSTRUCTIONAL_BUTTONS")
         {
-            // Request the scaleform
-#if FIVEM
-            scaleform = API.RequestScaleformMovie("INSTRUCTIONAL_BUTTONS");
-#else
-            scaleform = Function.Call<int>(Hash.REQUEST_SCALEFORM_MOVIE, "INSTRUCTIONAL_BUTTONS");
-#endif
             // Add the buttons to the list
             this.buttons.AddRange(buttons);
             // And refresh the items in the scaleform itself
@@ -180,64 +174,18 @@ namespace LemonUI.Scaleform
         public void Refresh()
         {
             // Clear all of the existing items
-#if FIVEM
-            API.CallScaleformMovieMethod(scaleform, "CLEAR_ALL");
-            API.BeginScaleformMovieMethod(scaleform, "TOGGLE_MOUSE_BUTTONS");
-            API.ScaleformMovieMethodAddParamInt(0);
-            API.EndScaleformMovieMethod();
-            API.CallScaleformMovieMethod(scaleform, "CREATE_CONTAINER");
-#elif SHVDN2
-            Function.Call(Hash._CALL_SCALEFORM_MOVIE_FUNCTION_VOID, scaleform, "CLEAR_ALL");
-            Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION, scaleform, "TOGGLE_MOUSE_BUTTONS");
-            Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_INT, 0);
-            Function.Call(Hash._POP_SCALEFORM_MOVIE_FUNCTION_VOID);
-            Function.Call(Hash._CALL_SCALEFORM_MOVIE_FUNCTION_VOID, scaleform, "CREATE_CONTAINER");
-#elif SHVDN3
-            Function.Call(Hash.CALL_SCALEFORM_MOVIE_METHOD, scaleform, "CLEAR_ALL");
-            Function.Call(Hash.BEGIN_SCALEFORM_MOVIE_METHOD, scaleform, "TOGGLE_MOUSE_BUTTONS");
-            Function.Call(Hash.SCALEFORM_MOVIE_METHOD_ADD_PARAM_INT, 0);
-            Function.Call(Hash.END_SCALEFORM_MOVIE_METHOD);
-            Function.Call(Hash.CALL_SCALEFORM_MOVIE_METHOD, scaleform, "CREATE_CONTAINER");
-#endif
+            scaleform.CallFunction("CLEAR_ALL");
+            scaleform.CallFunction("TOGGLE_MOUSE_BUTTONS", 0);
+            scaleform.CallFunction("CREATE_CONTAINER");
 
             // And add them again
             for (int i = 0; i < buttons.Count; i++)
             {
                 InstructionalButton button = buttons[i];
-#if FIVEM
-                API.BeginScaleformMovieMethod(scaleform, "SET_DATA_SLOT");
-                API.ScaleformMovieMethodAddParamInt(i);
-                API.ScaleformMovieMethodAddParamPlayerNameString(button.Raw);
-                API.ScaleformMovieMethodAddParamPlayerNameString(button.Description);
-                API.EndScaleformMovieMethod();
-#elif SHVDN2
-                Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION, scaleform, "SET_DATA_SLOT");
-                Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_INT, i);
-                Function.Call(Hash._0xE83A3E3557A56640, button.Raw);
-                Function.Call(Hash._0xE83A3E3557A56640, button.Description);
-                Function.Call(Hash._POP_SCALEFORM_MOVIE_FUNCTION_VOID);
-#elif SHVDN3
-                Function.Call(Hash.BEGIN_SCALEFORM_MOVIE_METHOD, scaleform, "SET_DATA_SLOT");
-                Function.Call(Hash.SCALEFORM_MOVIE_METHOD_ADD_PARAM_INT, i);
-                Function.Call(Hash.SCALEFORM_MOVIE_METHOD_ADD_PARAM_PLAYER_NAME_STRING, button.Raw);
-                Function.Call(Hash.SCALEFORM_MOVIE_METHOD_ADD_PARAM_PLAYER_NAME_STRING, button.Description);
-                Function.Call(Hash.END_SCALEFORM_MOVIE_METHOD);
-#endif
+                scaleform.CallFunction("SET_DATA_SLOT", i, button.Raw, button.Description);
             }
 
-#if FIVEM
-            API.BeginScaleformMovieMethod(scaleform, "DRAW_INSTRUCTIONAL_BUTTONS");
-            API.ScaleformMovieMethodAddParamInt(-1);
-            API.EndScaleformMovieMethod();
-#elif SHVDN2
-            Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION, scaleform, "DRAW_INSTRUCTIONAL_BUTTONS");
-            Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_INT, -1);
-            Function.Call(Hash._POP_SCALEFORM_MOVIE_FUNCTION_VOID);
-#elif SHVDN3
-            Function.Call(Hash.BEGIN_SCALEFORM_MOVIE_METHOD, scaleform, "DRAW_INSTRUCTIONAL_BUTTONS");
-            Function.Call(Hash.SCALEFORM_MOVIE_METHOD_ADD_PARAM_INT, -1);
-            Function.Call(Hash.END_SCALEFORM_MOVIE_METHOD);
-#endif
+            scaleform.CallFunction("DRAW_INSTRUCTIONAL_BUTTONS", -1);
         }
 
         #endregion

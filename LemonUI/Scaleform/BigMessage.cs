@@ -288,15 +288,8 @@ namespace LemonUI.Scaleform
         /// <param name="colorText">The color of the text.</param>
         /// <param name="colorBackground">The color of the background.</param>
         /// <param name="type">The type of message.</param>
-        public BigMessage(string title, string message, string rank, WeaponHash weapon, int colorText, int colorBackground, MessageType type)
+        public BigMessage(string title, string message, string rank, WeaponHash weapon, int colorText, int colorBackground, MessageType type) : base("MP_BIG_MESSAGE_FREEMODE")
         {
-            // Request the scaleform
-#if FIVEM
-            scaleform = API.RequestScaleformMovie("MP_BIG_MESSAGE_FREEMODE");
-#else
-            scaleform = Function.Call<int>(Hash.REQUEST_SCALEFORM_MOVIE, "MP_BIG_MESSAGE_FREEMODE");
-#endif
-            // And update the parameters
             this.title = title;
             this.message = message;
             this.rank = rank;
@@ -317,7 +310,7 @@ namespace LemonUI.Scaleform
         private void Update()
         {
             // Select the correct function to call
-            string function = "";
+            string function;
             switch (type)
             {
                 case MessageType.Customizable:
@@ -349,61 +342,21 @@ namespace LemonUI.Scaleform
             }
 
             // And add the parameters
-#if FIVEM
-            API.BeginScaleformMovieMethod(scaleform, function);
-            API.ScaleformMovieMethodAddParamTextureNameString(title);
-            API.ScaleformMovieMethodAddParamTextureNameString(message);
-            if (type == MessageType.Customizable)
+            switch (type)
             {
-                API.ScaleformMovieMethodAddParamInt(colorText);
-                API.ScaleformMovieMethodAddParamInt(colorBackground);
+                case MessageType.Customizable:
+                    scaleform.CallFunction(function, title, message, colorText, colorBackground);
+                    break;
+                case MessageType.CopsAndCrooks:
+                    scaleform.CallFunction(function, title, message, rank);
+                    break;
+                case MessageType.Weapon:
+                    scaleform.CallFunction(function, title, message, (int)weapon);
+                    break;
+                default:
+                    scaleform.CallFunction(function, title, message);
+                    break;
             }
-            else if (type == MessageType.CopsAndCrooks)
-            {
-                API.ScaleformMovieMethodAddParamTextureNameString(rank);
-            }
-            else if (type == MessageType.Weapon)
-            {
-                API.ScaleformMovieMethodAddParamInt((int)weapon);
-            }
-            API.EndScaleformMovieMethod();
-#elif SHVDN2
-            Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION, scaleform, function);
-            Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_STRING, title);
-            Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_STRING, message);
-            if (type == MessageType.Customizable)
-            {
-                Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_INT, colorText);
-                Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_INT, colorBackground);
-            }
-            else if (type == MessageType.CopsAndCrooks)
-            {
-                Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_STRING, rank);
-            }
-            else if (type == MessageType.Weapon)
-            {
-                Function.Call(Hash._PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_INT, (int)weapon);
-            }
-            Function.Call(Hash._POP_SCALEFORM_MOVIE_FUNCTION_VOID);
-#elif SHVDN3
-            Function.Call(Hash.BEGIN_SCALEFORM_MOVIE_METHOD, scaleform, function);
-            Function.Call(Hash.SCALEFORM_MOVIE_METHOD_ADD_PARAM_TEXTURE_NAME_STRING, title);
-            Function.Call(Hash.SCALEFORM_MOVIE_METHOD_ADD_PARAM_TEXTURE_NAME_STRING, message);
-            if (type == MessageType.Customizable)
-            {
-                Function.Call(Hash.SCALEFORM_MOVIE_METHOD_ADD_PARAM_INT, colorText);
-                Function.Call(Hash.SCALEFORM_MOVIE_METHOD_ADD_PARAM_INT, colorBackground);
-            }
-            else if (type == MessageType.CopsAndCrooks)
-            {
-                Function.Call(Hash.SCALEFORM_MOVIE_METHOD_ADD_PARAM_TEXTURE_NAME_STRING, rank);
-            }
-            else if (type == MessageType.Weapon)
-            {
-                Function.Call(Hash.SCALEFORM_MOVIE_METHOD_ADD_PARAM_INT, (int)weapon);
-            }
-            Function.Call(Hash.END_SCALEFORM_MOVIE_METHOD);
-#endif
         }
 
         #endregion

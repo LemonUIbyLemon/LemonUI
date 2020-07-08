@@ -16,7 +16,11 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The ID of the scaleform.
         /// </summary>
-        protected int scaleform = 0;
+#if FIVEM
+        protected CitizenFX.Core.Scaleform scaleform = null;
+#else
+        protected GTA.Scaleform scaleform = null;
+#endif
 
         #endregion
 
@@ -26,6 +30,23 @@ namespace LemonUI.Scaleform
         /// If the Scaleform should be visible or not.
         /// </summary>
         public bool Visible { get; set; }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Creates a new Scaleform class with the specified Scaleform object name.
+        /// </summary>
+        /// <param name="sc">The Scalform object.</param>
+        public BaseScaleform(string sc)
+        {
+#if FIVEM
+            scaleform = new CitizenFX.Core.Scaleform(sc);
+#else
+            scaleform = new GTA.Scaleform(sc);
+#endif
+        }
 
         #endregion
 
@@ -40,11 +61,10 @@ namespace LemonUI.Scaleform
             {
                 return;
             }
-
 #if FIVEM
-            API.DrawScaleformMovieFullscreen(scaleform, 255, 255, 255, 255, 0);
+            API.DrawScaleformMovieFullscreen(scaleform.Handle, 255, 255, 255, 255, 0);
 #else
-            Function.Call(Hash.DRAW_SCALEFORM_MOVIE_FULLSCREEN, scaleform, 255, 255, 255, 255, 0);
+            Function.Call(Hash.DRAW_SCALEFORM_MOVIE_FULLSCREEN, scaleform.Handle, 255, 255, 255, 255, 0);
 #endif
         }
         /// <summary>
@@ -60,7 +80,7 @@ namespace LemonUI.Scaleform
         /// </summary>
         public void Dispose()
         {
-            int id = scaleform;
+            int id = scaleform.Handle;
 #if FIVEM
             API.SetScaleformMovieAsNoLongerNeeded(ref id);
 #else
