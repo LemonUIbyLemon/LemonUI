@@ -1,9 +1,9 @@
 #if FIVEM
 using CitizenFX.Core;
-using CitizenFX.Core.Native;
-#else
-using GTA;
+#elif SHVDN2
 using GTA.Native;
+#elif SHVDN3
+using GTA;
 #endif
 using System;
 
@@ -64,30 +64,6 @@ namespace LemonUI.Scaleform
         #region Private Fields
 
         /// <summary>
-        /// The title of the message.
-        /// </summary>
-        private string title;
-        /// <summary>
-        /// The subtitle or description of the message.
-        /// </summary>
-        private string message;
-        /// <summary>
-        /// The color of the text.
-        /// </summary>
-        private int colorText;
-        /// <summary>
-        /// The color of the background.
-        /// </summary>
-        private int colorBackground;
-        /// <summary>
-        /// The Rank on Cops and Crooks.
-        /// </summary>
-        private string rank;
-        /// <summary>
-        /// The hash of the weapon.
-        /// </summary>
-        private WeaponHash weapon;
-        /// <summary>
         /// The type of message to show.
         /// </summary>
         private MessageType type;
@@ -99,77 +75,29 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The title of the message.
         /// </summary>
-        public string Title
-        {
-            get => title;
-            set
-            {
-                title = value;
-                Update();
-            }
-        }
+        public string Title { get; set; }
         /// <summary>
         /// The subtitle or description of the message.
         /// </summary>
-        public string Message
-        {
-            get => message;
-            set
-            {
-                message = value;
-                Update();
-            }
-        }
+        public string Message { get; set; }
         /// <summary>
         /// The color of the text.
         /// Only used on the Customizable message type.
         /// </summary>
-        public int TextColor
-        {
-            get => colorText;
-            set
-            {
-                colorText = value;
-                Update();
-            }
-        }
+        public int TextColor { get; set; }
         /// <summary>
         /// The color of the background.
         /// Only used on the Customizable message type.
         /// </summary>
-        public int BackgroundColor
-        {
-            get => colorBackground;
-            set
-            {
-                colorBackground = value;
-                Update();
-            }
-        }
+        public int BackgroundColor { get; set; }
         /// <summary>
         /// The Rank on Cops and Crooks.
         /// </summary>
-        public string Rank
-        {
-            get => rank;
-            set
-            {
-                rank = value;
-                Update();
-            }
-        }
+        public string Rank { get; set; }
         /// <summary>
         /// The hash of the Weapon.
         /// </summary>
-        public WeaponHash Weapon
-        {
-            get => weapon;
-            set
-            {
-                weapon = value;
-                Update();
-            }
-        }
+        public WeaponHash Weapon { get; set; }
         /// <summary>
         /// The type of message to show.
         /// </summary>
@@ -183,14 +111,12 @@ namespace LemonUI.Scaleform
                     throw new InvalidOperationException($"{value} is not a valid message type.");
                 }
                 type = value;
-                Update();
             }
         }
 
         #endregion
 
         #region Constructors
-
 
         /// <summary>
         /// Creates a standard customizable message with just a title.
@@ -290,24 +216,24 @@ namespace LemonUI.Scaleform
         /// <param name="type">The type of message.</param>
         public BigMessage(string title, string message, string rank, WeaponHash weapon, int colorText, int colorBackground, MessageType type) : base("MP_BIG_MESSAGE_FREEMODE")
         {
-            this.title = title;
-            this.message = message;
-            this.rank = rank;
-            this.weapon = weapon;
-            this.colorText = colorText;
-            this.colorBackground = colorBackground;
-            this.type = type;
+            Title = title;
+            Message = message;
+            Rank = rank;
+            Weapon = weapon;
+            TextColor = colorText;
+            BackgroundColor = colorBackground;
+            Type = type;
             Update();
         }
 
         #endregion
 
-        #region Private Functions
+        #region Public Functions
 
         /// <summary>
-        /// Updates the texts in the scaleform.
+        /// Updates the Message information in the Scaleform.
         /// </summary>
-        private void Update()
+        public override void Update()
         {
             // Select the correct function to call
             string function;
@@ -345,16 +271,16 @@ namespace LemonUI.Scaleform
             switch (type)
             {
                 case MessageType.Customizable:
-                    scaleform.CallFunction(function, title, message, colorText, colorBackground);
+                    scaleform.CallFunction(function, Title, Message, TextColor, BackgroundColor);
                     break;
                 case MessageType.CopsAndCrooks:
-                    scaleform.CallFunction(function, title, message, rank);
+                    scaleform.CallFunction(function, Title, Message, Rank);
                     break;
                 case MessageType.Weapon:
-                    scaleform.CallFunction(function, title, message, (int)weapon);
+                    scaleform.CallFunction(function, Title, Message, (int)Weapon);
                     break;
                 default:
-                    scaleform.CallFunction(function, title, message);
+                    scaleform.CallFunction(function, Title, Message);
                     break;
             }
         }

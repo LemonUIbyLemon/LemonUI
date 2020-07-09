@@ -118,10 +118,7 @@ namespace LemonUI.Scaleform
         /// <param name="buttons">The buttons to add into this menu.</param>
         public InstructionalButtons(params InstructionalButton[] buttons) : base("INSTRUCTIONAL_BUTTONS")
         {
-            // Add the buttons to the list
             this.buttons.AddRange(buttons);
-            // And refresh the items in the scaleform itself
-            Refresh();
         }
 
         #endregion
@@ -140,9 +137,8 @@ namespace LemonUI.Scaleform
                 throw new InvalidOperationException("The button is already in the Scaleform.");
             }
 
-            // Otherwise, add it and refresh the items
+            // Otherwise, add it to the list of items
             buttons.Add(button);
-            Refresh();
         }
         /// <summary>
         /// Removes an Instructional Button.
@@ -156,9 +152,8 @@ namespace LemonUI.Scaleform
                 return;
             }
 
-            // Otherwise, remove it and refresh the items
+            // Otherwise, remove it
             buttons.Remove(button);
-            Refresh();
         }
         /// <summary>
         /// Removes all of the instructional buttons.
@@ -166,12 +161,11 @@ namespace LemonUI.Scaleform
         public void Clear()
         {
             buttons.Clear();
-            Refresh();
         }
         /// <summary>
         /// Refreshes the items shown in the Instructional buttons.
         /// </summary>
-        public void Refresh()
+        public override void Update()
         {
             // Clear all of the existing items
             scaleform.CallFunction("CLEAR_ALL");

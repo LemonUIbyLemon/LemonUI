@@ -1,9 +1,3 @@
-#if FIVEM
-using CitizenFX.Core.Native;
-#else
-using GTA.Native;
-#endif
-
 namespace LemonUI.Scaleform
 {
     /// <summary>
@@ -75,7 +69,7 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// Updates the Title, Description and Image of the loading screen.
         /// </summary>
-        public void Update()
+        public override void Update()
         {
             scaleform.CallFunction("SET_BIGFEED_INFO", "footerStr", Description, 0, Dictionary, Texture, Subtitle, "urlDeprecated", Title);
         }

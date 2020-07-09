@@ -53,6 +53,10 @@ namespace LemonUI.Scaleform
         #region Public Functions
 
         /// <summary>
+        /// Updates the parameters of the Scaleform.
+        /// </summary>
+        public abstract void Update();
+        /// <summary>
         /// Draws the scaleform full screen.
         /// </summary>
         public void DrawFullScreen()
@@ -61,6 +65,7 @@ namespace LemonUI.Scaleform
             {
                 return;
             }
+            Update();
 #if FIVEM
             API.DrawScaleformMovieFullscreen(scaleform.Handle, 255, 255, 255, 255, 0);
 #else
