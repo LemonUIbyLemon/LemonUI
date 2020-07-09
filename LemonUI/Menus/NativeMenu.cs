@@ -990,6 +990,7 @@ namespace LemonUI.Menus
             // Add the activated event
             item.Activated += (sender, e) =>
             {
+                Visible = false;
                 openNextTick = menu;
             };
             // Set this menu as the parent of the other one
@@ -1077,18 +1078,17 @@ namespace LemonUI.Menus
         /// </summary>
         public void Process()
         {
+            // If there is a submenu to open and this menu is closed, show it and return
+            if (openNextTick != null && !Visible)
+            {
+                openNextTick.Visible = true;
+                openNextTick = null;
+            }
+
             // If the menu is not visible, return
             if (!visible)
             {
                 return;
-            }
-
-            // If there is a submenu to open, show it and return
-            if (openNextTick != null)
-            {
-                Visible = false;
-                openNextTick.visible = true;
-                openNextTick = null;
             }
 
             // Otherwise, draw the elements
