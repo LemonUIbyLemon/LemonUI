@@ -314,7 +314,7 @@ namespace LemonUI.Elements
             }
             if (WordWrap > 0)
             {
-                Function.Call(Hash.SET_TEXT_WRAP, relativePosition.X, realWrap);
+                Function.Call(Hash.SET_TEXT_WRAP, relativePosition.X, relativePosition.X + realWrap);
             }
 #endif
         }
@@ -372,7 +372,7 @@ namespace LemonUI.Elements
             }
             else
             {
-                realWrap = (Position.X + internalWrap) / 1f.ToXAbsolute();
+                realWrap = internalWrap.ToXRelative();
             }
         }
 
