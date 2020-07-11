@@ -16,6 +16,18 @@ namespace LemonUI.Items
         /// The title of the object.
         /// </summary>
         protected internal ScaledText title = null;
+        /// <summary>
+        /// The last known Item Position.
+        /// </summary>
+        protected internal PointF lastPosition = PointF.Empty;
+        /// <summary>
+        /// The last known Item Size.
+        /// </summary>
+        protected internal SizeF lastSize = SizeF.Empty;
+        /// <summary>
+        /// The last known Item Selection.
+        /// </summary>
+        protected internal bool lastSelected = false;
 
         #endregion
 
@@ -102,6 +114,15 @@ namespace LemonUI.Items
 
         #endregion
 
+        #region Private Functions
+
+        /// <summary>
+        /// Recalculates the item with the last known values.
+        /// </summary>
+        private void Recalculate() => Recalculate(lastPosition, lastSize, lastSelected);
+
+        #endregion
+
         #region Public Functions
 
         /// <summary>
@@ -112,6 +133,11 @@ namespace LemonUI.Items
         /// <param name="selected">If this item has been selected.</param>
         public virtual void Recalculate(PointF pos, SizeF size, bool selected)
         {
+            // Save the values for later use
+            lastPosition = pos;
+            lastSize = size;
+            lastSelected = selected;
+
             // Just set the color and position of the title
             if (!Enabled)
             {
