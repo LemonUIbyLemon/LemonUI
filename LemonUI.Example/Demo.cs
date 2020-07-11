@@ -15,6 +15,7 @@ using LemonUI.Items;
 using LemonUI.Menus;
 using LemonUI.Scaleform;
 using System;
+using LemonUI.Elements;
 
 namespace LemonUI.Example
 {
@@ -40,7 +41,10 @@ namespace LemonUI.Example
         /// This is a checkbox item. Is an item that contains a checkbox that users can turn on or off.
         /// For this example, this checkbox is going to allow you to keep the menu open.
         /// </summary>
-        private static readonly NativeCheckboxItem keepOpen = new NativeCheckboxItem("Keep Menu Open", "Keeps this menu open. The value of this checkbox is going to be checked by the Closing event of the menu.");
+        private static readonly NativeCheckboxItem keepOpen = new NativeCheckboxItem("Keep Menu Open", "Keeps this menu open. The value of this checkbox is going to be checked by the Closing event of the menu.")
+        {
+            LeftBadge = new ScaledTexture("commonmenu", "shop_new_star") // This is a Badge, shown on the left side of the item
+        };
         /// <summary>
         /// This is a basic menu item. It only has a title.
         /// </summary>

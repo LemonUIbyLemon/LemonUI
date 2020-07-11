@@ -28,6 +28,14 @@ namespace LemonUI.Items
         /// The last known Item Selection.
         /// </summary>
         protected internal bool lastSelected = false;
+        /// <summary>
+        /// The left badge of the Item.
+        /// </summary>
+        protected internal I2Dimensional badgeLeft = null;
+        /// <summary>
+        /// The left badge of the Item.
+        /// </summary>
+        protected internal I2Dimensional badgeRight = null;
 
         #endregion
 
@@ -68,6 +76,30 @@ namespace LemonUI.Items
         /// The description of the item.
         /// </summary>
         public string Description { get; set; }
+        /// <summary>
+        /// The Left badge of the Item.
+        /// </summary>
+        public I2Dimensional LeftBadge
+        {
+            get => badgeLeft;
+            set
+            {
+                badgeLeft = value;
+                Recalculate();
+            }
+        }
+        /// <summary>
+        /// The Right badge of the Item.
+        /// </summary>
+        public I2Dimensional RightBadge
+        {
+            get => badgeRight;
+            set
+            {
+                badgeRight = value;
+                Recalculate();
+            }
+        }
 
         #endregion
 
@@ -138,6 +170,17 @@ namespace LemonUI.Items
             lastSize = size;
             lastSelected = selected;
 
+            // If there is a left badge, set the size and position
+            if (badgeLeft != null)
+            {
+                badgeLeft.Position = new PointF(pos.X + 2, pos.Y - 3);
+                badgeLeft.Size = new SizeF(45, 45);
+            }
+            if (badgeRight != null)
+            {
+                badgeRight.Position = new PointF(pos.X + size.Width - 47, pos.Y - 3);
+                badgeRight.Size = new SizeF(45, 45);
+            }
             // Just set the color and position of the title
             if (!Enabled)
             {
@@ -151,12 +194,17 @@ namespace LemonUI.Items
             {
                 title.Color = NativeMenu.colorWhiteSmoke;
             }
-            title.Position = new PointF(pos.X + 6, pos.Y + 3);
+            title.Position = new PointF(pos.X + (badgeLeft == null ? 0 : 34) + 6, pos.Y + 3);
         }
         /// <summary>
         /// Draws the item.
         /// </summary>
-        public virtual void Draw() => title?.Draw();
+        public virtual void Draw()
+        {
+            title?.Draw();
+            badgeLeft?.Draw();
+            badgeRight?.Draw();
+        }
 
         #endregion
     }

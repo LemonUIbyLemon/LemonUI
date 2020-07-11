@@ -68,7 +68,8 @@ namespace LemonUI.Items
         /// </summary>
         public override void Draw()
         {
-            base.Draw();
+            title.Draw();
+            badgeLeft?.Draw();
             arrowLeft.Draw();
             arrowRight.Draw();
         }

@@ -244,7 +244,7 @@ namespace LemonUI.Items
         /// </summary>
         public override void Draw()
         {
-            base.Draw();
+            base.Draw(); // Arrows, Title and Left Badge
             text.Draw();
         }
 

@@ -205,9 +205,7 @@ namespace LemonUI.Items
         /// </summary>
         public override void Draw()
         {
-            // Draw all arrows
-            base.Draw();
-            // And draw the background with the slider
+            base.Draw(); // Arrows, Title and Left Badge
             background.Draw();
             slider.Draw();
         }
