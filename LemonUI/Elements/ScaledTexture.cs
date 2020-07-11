@@ -27,6 +27,10 @@ namespace LemonUI.Elements
 
         #region Constructors
 
+        public ScaledTexture(string dictionary, string texture) : this(PointF.Empty, SizeF.Empty, dictionary, texture)
+        {
+        }
+
         public ScaledTexture(PointF pos, SizeF size, string dictionary, string texture) : base(pos, size)
         {
             // Save the dictionary and textures
