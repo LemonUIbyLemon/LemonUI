@@ -58,7 +58,10 @@ namespace LemonUI.Example
         /// All of the other items are basic.
         /// </summary>
         private static readonly NativeItem flip = new NativeItem("Flip", "Flips the Menu from the left to the Right.");
-        private static readonly NativeItem clear = new NativeItem("Clear", "Removes all of the items from this menu. A script restart will be needed to restore the items.");
+        private static readonly NativeItem clear = new NativeItem("Clear", "Removes all of the items from this menu. A script restart will be needed to restore the items.", "Danger!")
+        {
+            RightBadge = new ScaledTexture("commonmenu", "mp_alerttriangle") // This is a Badge, shown on the left side of the item
+        };
         private static readonly NativeItem addRandom = new NativeItem("Add Item to Submenu", "Adds a random item to the submenu.");
         private static readonly NativeItem removeRandom = new NativeItem("Remove Items of Submenu", "Removes all of the random items on the submenu.");
 

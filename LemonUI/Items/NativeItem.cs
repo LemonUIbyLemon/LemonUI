@@ -36,6 +36,10 @@ namespace LemonUI.Items
         /// The left badge of the Item.
         /// </summary>
         protected internal I2Dimensional badgeRight = null;
+        /// <summary>
+        /// The alternate title of the menu.
+        /// </summary>
+        protected internal ScaledText altTitle = null;
 
         #endregion
 
@@ -71,6 +75,14 @@ namespace LemonUI.Items
         {
             get => title.Text;
             set => title.Text = value;
+        }
+        /// <summary>
+        /// The alternative title of the item shown on the right.
+        /// </summary>
+        public string AltTitle
+        {
+            get => altTitle.Text;
+            set => altTitle.Text = value;
         }
         /// <summary>
         /// The description of the item.
@@ -118,17 +130,25 @@ namespace LemonUI.Items
 
         #region Constructors
 
-        public NativeItem(string title) : this(title, "")
+        public NativeItem(string title) : this(title, "", "")
         {
         }
 
-        public NativeItem(string title, string description)
+        public NativeItem(string title, string description) : this(title, description, "")
+        {
+        }
+
+        public NativeItem(string title, string description, string altTitle)
         {
             this.title = new ScaledText(PointF.Empty, title, 0.345f)
             {
                 Color = NativeMenu.colorWhiteSmoke
             };
             Description = description;
+            this.altTitle = new ScaledText(PointF.Empty, altTitle, 0.345f)
+            {
+                Color = NativeMenu.colorWhiteSmoke
+            };
         }
 
         #endregion
@@ -185,23 +205,28 @@ namespace LemonUI.Items
             if (!Enabled)
             {
                 title.Color = NativeMenu.colorDisabled;
+                altTitle.Color = NativeMenu.colorDisabled;
             }
             else if (selected)
             {
                 title.Color = NativeMenu.colorBlack;
+                altTitle.Color = NativeMenu.colorBlack;
             }
             else
             {
                 title.Color = NativeMenu.colorWhiteSmoke;
+                altTitle.Color = NativeMenu.colorWhiteSmoke;
             }
             title.Position = new PointF(pos.X + (badgeLeft == null ? 0 : 34) + 6, pos.Y + 3);
+            altTitle.Position = new PointF(pos.X + size.Width - (badgeRight == null ? 0 : 34) - altTitle.Width - 6, pos.Y + 3);
         }
         /// <summary>
         /// Draws the item.
         /// </summary>
         public virtual void Draw()
         {
-            title?.Draw();
+            title.Draw();
+            altTitle.Draw();
             badgeLeft?.Draw();
             badgeRight?.Draw();
         }
