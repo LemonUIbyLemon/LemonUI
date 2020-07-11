@@ -1076,10 +1076,13 @@ namespace LemonUI.Menus
             // The background of the items
             backgroundImage?.Draw();
 
-            // Then go for the visible items
+            // Then go for the visible items with the exception of the one selected
             foreach (NativeItem item in visibleItems)
             {
-                item.Draw();
+                if (item != SelectedItem)
+                {
+                    item.Draw();
+                }
             }
 
             // If this menu has items, draw the rectangle for the selected item
@@ -1088,24 +1091,10 @@ namespace LemonUI.Menus
                 selectedRect?.Draw();
             }
 
-            // If the selected item is a checkbox or a list, draw the elements again on top of the selection rectangle
-            if (SelectedItem is NativeCheckboxItem checkbox)
+            // If there is an item selected, draw it
+            if (SelectedItem != null)
             {
-                checkbox.check.Draw();
-            }
-            if (SelectedItem is NativeSlidableItem slidable)
-            {
-                slidable.arrowLeft.Draw();
-                slidable.arrowRight.Draw();
-            }
-            if (SelectedItem is NativeListItem list)
-            {
-                list.text.Draw();
-            }
-            if (SelectedItem is NativeSliderItem slider)
-            {
-                slider.background.Draw();
-                slider.slider.Draw();
+                SelectedItem.Draw();
             }
 
             // If the description rectangle and text is there and we have text to draw
