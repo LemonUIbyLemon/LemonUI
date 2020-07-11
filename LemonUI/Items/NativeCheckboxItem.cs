@@ -101,6 +101,21 @@ namespace LemonUI.Items
         #region Public Functions
 
         /// <summary>
+        /// Recalculates the item positions and sizes with the specified values.
+        /// </summary>
+        /// <param name="pos">The position of the item.</param>
+        /// <param name="size">The size of the item.</param>
+        /// <param name="selected">If this item has been selected.</param>
+        public override void Recalculate(PointF pos, SizeF size, bool selected)
+        {
+            base.Recalculate(pos, size, selected);
+            // Set the correct texture
+            UpdateTexture(selected);
+            // And set the checkbox positions
+            check.Position = new PointF(pos.X + size.Width - 50, pos.Y - 6);
+            check.Size = new SizeF(50, 50);
+        }
+        /// <summary>
         /// Draws the Checkbox on the screen.
         /// </summary>
         public override void Draw()

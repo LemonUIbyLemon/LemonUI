@@ -147,6 +147,24 @@ namespace LemonUI.Items
         #region Public Functions
 
         /// <summary>
+        /// Recalculates the item positions and sizes with the specified values.
+        /// </summary>
+        /// <param name="pos">The position of the item.</param>
+        /// <param name="size">The size of the item.</param>
+        /// <param name="selected">If this item has been selected.</param>
+        public override void Recalculate(PointF pos, SizeF size, bool selected)
+        {
+            base.Recalculate(pos, size, selected);
+            // Set the position and size of the background
+            background.Size = new SizeF(150, 9);
+            background.Position = new PointF(pos.X + size.Width - background.Size.Width - 7 - arrowLeft.Size.Width, pos.Y + 14);
+            // And do the same for the left arrow
+            arrowLeft.Position = new PointF(background.Position.X - arrowLeft.Size.Width, pos.Y + 4);
+            // Finally, set the correct position of the slider
+            slider.Size = new SizeF(75, 9);
+            UpdatePosition();
+        }
+        /// <summary>
         /// Reduces the value of the slider.
         /// </summary>
         public override void GoLeft()

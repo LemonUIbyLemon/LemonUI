@@ -678,66 +678,15 @@ namespace LemonUI.Menus
             descriptionRect.Position = new PointF(currentX, description);
             descriptionText.Position = new PointF(currentX + posXDescTxt, description + heightDiffDescTxt);
 
-            // Iterate over the number of items while counting the number of them
+            // Save the size of the items
+            SizeF size = new SizeF(width, itemHeight);
+            // And start recalculating them
             int i = 0;
             foreach (NativeItem item in visibleItems)
             {
-                // If this item is a checkbox
-                if (item is NativeCheckboxItem checkbox)
-                {
-                    // Update the texture to show the selected and not selected design
-                    checkbox.UpdateTexture(item == SelectedItem);
-                    // And set the position and size of the checkbox
-                    checkbox.check.Position = new PointF(endX - 50, currentY - 6);
-                    checkbox.check.Size = new SizeF(50, 50);
-                }
-                // If this item is a slidable
-                if (item is NativeSlidableItem slidable)
-                {
-                    // Set the sizes of the arrows
-                    slidable.arrowLeft.Size = item == SelectedItem ? new SizeF(30, 30) : SizeF.Empty;
-                    slidable.arrowRight.Size = item == SelectedItem ? new SizeF(30, 30) : SizeF.Empty;
-                    // And set the positions of the right arrow
-                    slidable.arrowRight.Position = new PointF(endX - slidable.arrowRight.Size.Width - 5, currentY + 4);
-                }
-                // If this item is a list
-                if (item is NativeListItem list)
-                {
-                    // Set the color of the text
-                    list.text.Color = item == SelectedItem ? colorBlack : colorWhiteSmoke;
-                    // And set the position of the left arrow and text
-                    float textWidth = list.arrowRight.Size.Width;
-                    list.text.Position = new PointF(endX - textWidth - 1 - list.text.Width, currentY + 3);
-                    list.arrowLeft.Position = new PointF(list.text.Position.X - list.arrowLeft.Size.Width, currentY + 4);
-                }
-                // If this item is a slider
-                if (item is NativeSliderItem slider)
-                {
-                    // Set the position and size of the background
-                    slider.background.Size = new SizeF(150, 9);
-                    slider.background.Position = new PointF(endX - slider.background.Size.Width - 7 - slider.arrowLeft.Size.Width, currentY + 14);
-                    // And do the same for the left arrow
-                    slider.arrowLeft.Position = new PointF(slider.background.Position.X - slider.arrowLeft.Size.Width, currentY + 4);
-                    // Finally, set the correct position of the slider
-                    slider.slider.Size = new SizeF(75, 9);
-                    slider.UpdatePosition();
-                }
-
-                // Convert it to a relative value
-                item.title.Position = new PointF(currentX + itemOffsetX, currentY + itemOffsetY);
-                // And select the correct color (just in case)
-                Color color = colorWhiteSmoke;
-
-                // If this matches the currently selected item
-                if (i + firstItem == SelectedIndex)
-                {
-                    // Set the correct color to black
-                    color = colorBlack;
-                }
-                // Set the color of the item
-                item.title.Color = color;
-
-                // Finally, increase the count by one and move to the next item
+                // Tell the item to recalculate the position
+                item.Recalculate(new PointF(currentX, currentY), size, item == SelectedItem);
+                // And increase the index of the item and Y position
                 i++;
                 currentY += itemHeight;
             }

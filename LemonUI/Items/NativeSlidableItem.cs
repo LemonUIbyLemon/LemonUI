@@ -41,6 +41,21 @@ namespace LemonUI.Items
         #region Public Functions
 
         /// <summary>
+        /// Recalculates the item positions and sizes with the specified values.
+        /// </summary>
+        /// <param name="pos">The position of the item.</param>
+        /// <param name="size">The size of the item.</param>
+        /// <param name="selected">If this item has been selected.</param>
+        public override void Recalculate(PointF pos, SizeF size, bool selected)
+        {
+            base.Recalculate(pos, size, selected);
+            // Set the sizes of the arrows
+            arrowLeft.Size = selected && Enabled ? new SizeF(30, 30) : SizeF.Empty;
+            arrowRight.Size = selected && Enabled ? new SizeF(30, 30) : SizeF.Empty;
+            // And set the positions of the right arrow
+            arrowRight.Position = new PointF(pos.X + size.Width - arrowRight.Size.Width - 5, pos.Y + 4);
+        }
+        /// <summary>
         /// Moves to the previous item.
         /// </summary>
         public abstract void GoLeft();

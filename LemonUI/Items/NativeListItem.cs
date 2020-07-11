@@ -169,6 +169,33 @@ namespace LemonUI.Items
         #region Public Functions
 
         /// <summary>
+        /// Recalculates the item positions and sizes with the specified values.
+        /// </summary>
+        /// <param name="pos">The position of the item.</param>
+        /// <param name="size">The size of the item.</param>
+        /// <param name="selected">If this item has been selected.</param>
+        public override void Recalculate(PointF pos, SizeF size, bool selected)
+        {
+            base.Recalculate(pos, size, selected);
+            // Set the color of the selected item
+            if (!Enabled)
+            {
+                text.Color = NativeMenu.colorDisabled;
+            }
+            else if (selected)
+            {
+                text.Color = NativeMenu.colorBlack;
+            }
+            else
+            {
+                text.Color = NativeMenu.colorWhiteSmoke;
+            }
+            // And set the position of the left arrow and text
+            float textWidth = arrowRight.Size.Width;
+            text.Position = new PointF(pos.X + size.Width - textWidth - 1 - text.Width, pos.Y + 3);
+            arrowLeft.Position = new PointF(text.Position.X - arrowLeft.Size.Width, pos.Y + 4);
+        }
+        /// <summary>
         /// Moves to the previous item.
         /// </summary>
         public override void GoLeft()
