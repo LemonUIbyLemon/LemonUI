@@ -28,7 +28,7 @@ namespace LemonUI.Example
         /// The Object Pool stores all of your LemonUI Elements so they can be processed every tick.
         /// </summary>
         private static readonly ObjectPool pool = new ObjectPool();
-    
+
         /// <summary>
         /// The Native Menus are the same as NativeUI's UIMenu.
         /// </summary>
@@ -39,7 +39,10 @@ namespace LemonUI.Example
         /// <summary>
         /// Ditto, but this one is going to be added as a submenu.
         /// </summary>
-        private static readonly NativeMenu submenu = new NativeMenu("LemonUI", "LemonUI Submenu", "A submenu that shows how you can add and remove items during runtime.");
+        private static readonly NativeMenu submenu = new NativeMenu("LemonUI", "LemonUI Submenu", "A submenu that shows how you can add and remove items during runtime.")
+        {
+            MaxItems = 17 // This will set the maximum number of items shown at once to 17
+        };
         /// <summary>
         /// This is a checkbox item. Is an item that contains a checkbox that users can turn on or off.
         /// For this example, this checkbox is going to allow you to keep the menu open.
