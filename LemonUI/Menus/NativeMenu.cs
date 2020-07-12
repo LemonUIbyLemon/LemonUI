@@ -229,7 +229,10 @@ namespace LemonUI.Menus
         /// <summary>
         /// The text of the subtitle.
         /// </summary>
-        private ScaledText subtitleText = null;
+        private readonly ScaledText subtitleText = new ScaledText(PointF.Empty, "", 0.345f, Font.ChaletLondon)
+        {
+            Color = colorWhiteSmoke
+        };
         /// <summary>
         /// The text that shows the current total and index of items.
         /// </summary>
@@ -240,23 +243,19 @@ namespace LemonUI.Menus
         /// <summary>
         /// The image on the background of the menu.
         /// </summary>
-        private ScaledTexture backgroundImage = null;
+        private readonly ScaledTexture backgroundImage = new ScaledTexture("commonmenu", "gradient_bgd");
         /// <summary>
         /// The rectangle that shows the currently selected item.
         /// </summary>
-        private ScaledTexture selectedRect = null;
+        private readonly ScaledTexture selectedRect = new ScaledTexture("commonmenu", "gradient_nav");
         /// <summary>
         /// The rectangle with the description text.
         /// </summary>
-        private ScaledTexture descriptionRect = null;
+        private readonly ScaledTexture descriptionRect = new ScaledTexture("commonmenu", "gradient_bgd");
         /// <summary>
         /// The text with the description text.
         /// </summary>
-        private ScaledText descriptionText = null;
-        /// <summary>
-        /// The instructional buttons for the menu.
-        /// </summary>
-        private InstructionalButtons buttons = null;
+        private readonly ScaledText descriptionText = new ScaledText(PointF.Empty, "", 0.351f);
         /// <summary>
         /// The maximum allowed number of items in the menu at once.
         /// </summary>
@@ -495,7 +494,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The items that this menu contain.
         /// </summary>
-        public List<NativeItem> Items { get; }
+        public List<NativeItem> Items { get; } = new List<NativeItem>();
         /// <summary>
         /// Text shown when there are no items in the menu.
         /// </summary>
@@ -528,7 +527,10 @@ namespace LemonUI.Menus
         /// <summary>
         /// The instructional buttons shown in the bottom right.
         /// </summary>
-        public InstructionalButtons Buttons => buttons;
+        public InstructionalButtons Buttons { get; } = new InstructionalButtons(new InstructionalButton("Select", Control.PhoneSelect), new InstructionalButton("Back", Control.PhoneCancel))
+        {
+            Visible = true
+        };
         /// <summary>
         /// The parent menu of this menu.
         /// </summary>
@@ -597,7 +599,6 @@ namespace LemonUI.Menus
         {
             this.subtitle = subtitle;
             Description = description;
-            Items = new List<NativeItem>();
             bannerImage = banner;
             bannerText = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
             {
@@ -608,18 +609,7 @@ namespace LemonUI.Menus
             {
                 Color = Color.FromArgb(255, 0, 0, 0)
             };
-            subtitleText = new ScaledText(PointF.Empty, subtitle.ToUpperInvariant(), 0.345f, Font.ChaletLondon)
-            {
-                Color = colorWhiteSmoke
-            };
-            backgroundImage = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "gradient_bgd");
-            selectedRect = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "gradient_nav");
-            descriptionRect = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "gradient_bgd");
-            descriptionText = new ScaledText(PointF.Empty, "", 0.351f);
-            buttons = new InstructionalButtons(new InstructionalButton("Select", Control.PhoneSelect), new InstructionalButton("Back", Control.PhoneCancel))
-            {
-                Visible = true
-            };
+            subtitleText.Text = subtitle.ToUpperInvariant();
             Recalculate();
         }
 
@@ -688,7 +678,7 @@ namespace LemonUI.Menus
             {
                 currentY += bannerImage.Size.Height;
             }
-            if (subtitleImage != null && !string.IsNullOrWhiteSpace(subtitleText.Text))
+            if (!string.IsNullOrWhiteSpace(subtitleText.Text))
             {
                 countText.Text = $"{SelectedIndex + 1} / {Items.Count}";
                 countText.Position = new PointF(currentX + width - countText.Width - 6, currentY + 4.2f);
@@ -1132,10 +1122,9 @@ namespace LemonUI.Menus
                 SelectedItem.Draw();
             }
 
-            // If the description rectangle and text is there and we have text to draw
-            if (descriptionRect != null && descriptionText != null && !string.IsNullOrWhiteSpace(descriptionText.Text))
+            // If there is some description text, draw the text and background
+            if (!string.IsNullOrWhiteSpace(descriptionText.Text))
             {
-                // Draw the text and the background
                 descriptionRect.Draw();
                 descriptionText.Draw();
             }
@@ -1155,7 +1144,7 @@ namespace LemonUI.Menus
 #endif
             }
             // And finish by drawing the instructional buttons
-            buttons?.Draw();
+            Buttons.Draw();
         }
         /// <summary>
         /// Calculates the positions and sizes of the elements.
@@ -1198,19 +1187,12 @@ namespace LemonUI.Menus
                 currentY += subtitleHeight;
             }
 
-            // If there is a selection rectangle, set the size of it
-            if (selectedRect != null)
-            {
-                selectedRect.Size = new SizeF(width, itemHeight);
-            }
+            // Set the size of the selection rectangle
+            selectedRect.Size = new SizeF(width, itemHeight);
+            // And set the word wrap of the description
+            descriptionText.WordWrap = width - posXDescTxt;
 
-            // If there is a background description, set the word wrap
-            if (descriptionText != null)
-            {
-                descriptionText.WordWrap = width - posXDescTxt;
-            }
-
-            // Continue with an item update
+            // Then, continue with an item update
             UpdateItems();
         }
         /// <summary>
