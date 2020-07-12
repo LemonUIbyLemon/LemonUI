@@ -63,6 +63,7 @@ namespace LemonUI.Example
         /// <summary>
         /// All of the other items should be the same as one of the previously mentioned.
         /// </summary>
+        private static readonly NativeCheckboxItem useMouse = new NativeCheckboxItem("Use Mouse", "If the mouse should be used for selecting different items.", menu.UseMouse);
         private static readonly NativeItem flip = new NativeItem("Flip", "Flips the Menu from the left to the Right.");
         private static readonly NativeItem clear = new NativeItem("Clear", "Removes all of the items from this menu. A script restart will be needed to restore the items.", "Danger!")
         {
@@ -90,6 +91,7 @@ namespace LemonUI.Example
             menu.Closing += Menu_Closing;
             showLoadingScreen.Activated += ShowLoadingScreen_Activated;
             showBigMessage.Activated += ShowBigMessage_Activated;
+            useMouse.CheckboxChanged += UseMouse_CheckboxChanged;
             flip.Activated += Flip_Activated;
             clear.Activated += Clear_Activated;
             addRandom.Activated += AddRandom_Activated;
@@ -98,6 +100,7 @@ namespace LemonUI.Example
             menu.Add(keepOpen);
             menu.Add(showLoadingScreen);
             menu.Add(showBigMessage);
+            menu.Add(useMouse);
             menu.Add(flip);
             menu.Add(clear);
             menu.AddSubMenu(submenu);
@@ -146,6 +149,12 @@ namespace LemonUI.Example
             // And hide everything else
             menu.Visible = false;
             loadingScreen.Visible = false;
+        }
+
+        private void UseMouse_CheckboxChanged(object sender, EventArgs e)
+        {
+            // This will toggle mouse usage on all of the menus
+            pool.ForEach<NativeMenu>(m => m.UseMouse = useMouse.Checked);
         }
 
         private void Flip_Activated(object sender, EventArgs e)
