@@ -225,7 +225,10 @@ namespace LemonUI.Menus
         /// <summary>
         /// The background of the drawable text.
         /// </summary>
-        private I2Dimensional subtitleImage = null;
+        private readonly ScaledRectangle subtitleImage = new ScaledRectangle(PointF.Empty, SizeF.Empty)
+        {
+            Color = Color.FromArgb(255, 0, 0, 0)
+        };
         /// <summary>
         /// The text of the subtitle.
         /// </summary>
@@ -604,10 +607,6 @@ namespace LemonUI.Menus
             {
                 Color = colorWhite,
                 Alignment = Alignment.Center
-            };
-            subtitleImage = new ScaledRectangle(PointF.Empty, SizeF.Empty)
-            {
-                Color = Color.FromArgb(255, 0, 0, 0)
             };
             subtitleText.Text = subtitle.ToUpperInvariant();
             Recalculate();
@@ -1091,7 +1090,7 @@ namespace LemonUI.Menus
                 }
             }
             // Continue with the subtitle image and text
-            subtitleImage?.Draw();
+            subtitleImage.Draw();
             subtitleText?.Draw();
             // The background of the items
             backgroundImage?.Draw();
@@ -1171,21 +1170,18 @@ namespace LemonUI.Menus
                 currentY += bannerImageBase.Size.Height;
             }
 
-            // If there is a subtitle image and is a valid element
-            if (subtitleImage != null && subtitleImage is BaseElement subtitleImageBase)
+            // Time for the subtitle background
+            // Set the position and size of it
+            subtitleImage.literalPosition = new PointF(currentX, currentY);
+            subtitleImage.literalSize = new SizeF(width, subtitleHeight);
+            subtitleImage.Recalculate();
+            // If there is a text, also set the position of it
+            if (subtitleText != null)
             {
-                // Set the position and size of it
-                subtitleImageBase.literalPosition = new PointF(currentX, currentY);
-                subtitleImageBase.literalSize = new SizeF(width, subtitleHeight);
-                subtitleImageBase.Recalculate();
-                // If there is a text, also set the position of it
-                if (subtitleText != null)
-                {
-                    subtitleText.Position = new PointF(currentX + 6, currentY + 4.2f);
-                }
-                // Finally, increase the size based on the subtitle height
-                currentY += subtitleHeight;
+                subtitleText.Position = new PointF(currentX + 6, currentY + 4.2f);
             }
+            // Finally, increase the size based on the subtitle height
+            // currentY += subtitleHeight;
 
             // Set the size of the selection rectangle
             selectedRect.Size = new SizeF(width, itemHeight);
