@@ -58,7 +58,7 @@ namespace LemonUI.Example
         /// </summary>
         private static readonly NativeListItem<MessageType> showBigMessage = new NativeListItem<MessageType>("Show Big Message", "Shows a custom Big Message. A coupe of examples of the Big Message Scaleforma are the Wasted/Busted and Mission Passed messages.", (MessageType[])Enum.GetValues(typeof(MessageType)));
         /// <summary>
-        /// All of the other items are basic.
+        /// All of the other items should be the same as one of the previously mentioned.
         /// </summary>
         private static readonly NativeItem flip = new NativeItem("Flip", "Flips the Menu from the left to the Right.");
         private static readonly NativeItem clear = new NativeItem("Clear", "Removes all of the items from this menu. A script restart will be needed to restore the items.", "Danger!")
@@ -148,8 +148,8 @@ namespace LemonUI.Example
         private void Flip_Activated(object sender, EventArgs e)
         {
             // This is simple C# one-liners
-            // If is on the right, move it to the left and vice versa
-            menu.Alignment = menu.Alignment == Alignment.Left ? Alignment.Right : Alignment.Left;
+            // If the main menu the right, move all of them to the left and vice versa
+            pool.ForEach<NativeMenu>(m => m.Alignment = menu.Alignment == Alignment.Left ? Alignment.Right : Alignment.Left);
         }
 
         private void Clear_Activated(object sender, EventArgs e)

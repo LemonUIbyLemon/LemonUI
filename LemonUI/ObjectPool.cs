@@ -164,6 +164,21 @@ namespace LemonUI
             objects.Remove(obj);
         }
         /// <summary>
+        /// Performs the specified action on each element that matches T.
+        /// </summary>
+        /// <typeparam name="T">The type to match.</typeparam>
+        /// <param name="action">The action delegate to perform on each T.</param>
+        public void ForEach<T>(Action<T> action)
+        {
+            foreach (IProcessable obj in objects)
+            {
+                if (obj is T conv)
+                {
+                    action(conv);
+                }
+            }
+        }
+        /// <summary>
         /// Refreshes all of the items.
         /// </summary>
         public void RefreshAll()
