@@ -28,6 +28,25 @@ using System.Drawing;
 namespace LemonUI.Menus
 {
     /// <summary>
+    /// THe visibility setting for the Item Count of the Menu.
+    /// </summary>
+    public enum CountVisibility
+    {
+        /// <summary>
+        /// The Item Count is never shown.
+        /// </summary>
+        Never = -1,
+        /// <summary>
+        /// The Item Count is shown when is not possible to show all of the items in the screen.
+        /// </summary>
+        Auto = 0,
+        /// <summary>
+        /// The Item Count is always shown.
+        /// </summary>
+        Always = 1
+    }
+
+    /// <summary>
     /// Menu that looks like the ones used by Rockstar.
     /// </summary>
     public class NativeMenu : IMenu<NativeItem>, IProcessable
@@ -211,6 +230,13 @@ namespace LemonUI.Menus
         /// The text of the subtitle.
         /// </summary>
         private ScaledText subtitleText = null;
+        /// <summary>
+        /// The text that shows the current total and index of items.
+        /// </summary>
+        private readonly ScaledText countText = new ScaledText(PointF.Empty, "", 0.345f, Font.ChaletLondon)
+        {
+            Color = colorWhiteSmoke
+        };
         /// <summary>
         /// The image on the background of the menu.
         /// </summary>
@@ -496,6 +522,10 @@ namespace LemonUI.Menus
         /// </summary>
         public bool SafeZoneAware { get; set; } = true;
         /// <summary>
+        /// If the count of items should be shown on the right of the subtitle.
+        /// </summary>
+        public CountVisibility ItemCount { get; set; }
+        /// <summary>
         /// The instructional buttons shown in the bottom right.
         /// </summary>
         public InstructionalButtons Buttons => buttons;
@@ -652,8 +682,6 @@ namespace LemonUI.Menus
             // Store the current values of X and Y
             float currentX = alignment == Alignment.Right ? 1f.ToXAbsolute() - width - offset.X : offset.X;
             float currentY = offset.Y;
-            // And the end of the item
-            float endX = currentX + width;
 
             // Add the heights of the banner and subtitle (if there are any)
             if (bannerImage != null)
@@ -662,6 +690,8 @@ namespace LemonUI.Menus
             }
             if (subtitleImage != null && !string.IsNullOrWhiteSpace(subtitleText.Text))
             {
+                countText.Text = $"{SelectedIndex + 1} / {Items.Count}";
+                countText.Position = new PointF(currentX + width - countText.Width - 6, currentY + 4.2f);
                 currentY += subtitleImage.Size.Height;
             }
 
@@ -1075,6 +1105,11 @@ namespace LemonUI.Menus
             subtitleText?.Draw();
             // The background of the items
             backgroundImage?.Draw();
+            // And the item count
+            if (ItemCount == CountVisibility.Always || (ItemCount == CountVisibility.Auto && Items.Count > MaxItems))
+            {
+                countText.Draw();
+            }
 
             // Then go for the visible items with the exception of the one selected
             foreach (NativeItem item in visibleItems)

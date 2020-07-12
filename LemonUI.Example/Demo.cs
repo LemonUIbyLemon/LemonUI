@@ -32,7 +32,10 @@ namespace LemonUI.Example
         /// <summary>
         /// The Native Menus are the same as NativeUI's UIMenu.
         /// </summary>
-        private static readonly NativeMenu menu = new NativeMenu("LemonUI", "LemonUI Demo/Examples", "The main menu with examples.");
+        private static readonly NativeMenu menu = new NativeMenu("LemonUI", "LemonUI Demo/Examples", "The main menu with examples.")
+        {
+            ItemCount = CountVisibility.Always // This will show the Index of the Current Item and Total Number of Items at all times
+        };
         /// <summary>
         /// Ditto, but this one is going to be added as a submenu.
         /// </summary>
