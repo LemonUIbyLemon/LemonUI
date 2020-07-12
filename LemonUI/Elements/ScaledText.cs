@@ -323,40 +323,41 @@ namespace LemonUI.Elements
         /// </summary>
         private void Slice()
         {
-            // Start by getting the total number of bytes in the string
-            int byteCount = Encoding.UTF8.GetByteCount(text);
-            // And calculate the total number of slices that we need
-            int chunkCount = (int)Math.Ceiling((float)byteCount / chunkSize);
-
-            // If we only need one slice, add the entire text
-            if (chunkCount == 1)
+            // If the entire text is under 90 characters, save it as is and return
+            if (Encoding.UTF8.GetByteCount(text) >= chunkSize)
             {
                 chunks.Clear();
                 chunks.Add(text);
+                return;
             }
-            // Otherwise
-            else
+
+            // Create a new list of chunks and a temporary string
+            List<string> newChunks = new List<string>();
+            string temp = "";
+
+            // Iterate over the characters in the string
+            foreach (char character in text)
             {
-                // Create a new list of chunks
-                List<string> newChunks = new List<string>();
-                // And get the entire string as UTF-8 bytes
-                byte[] bytes = Encoding.UTF8.GetBytes(text);
-
-                // And add the chunks that we need
-                for (int i = 0; i < chunkCount; i++)
+                // Create a temporary string with the character
+                string with = string.Concat(temp, character);
+                // If this string is higher than 90 bytes, add the existing string onto the list
+                if (Encoding.UTF8.GetByteCount(with) > chunkSize)
                 {
-                    // Calculate where we should start and how many we should grab
-                    int start = i * chunkCount;
-                    int count = Math.Min(chunkSize, byteCount - start);
-                    // And snatch them as a string
-                    string chunk = Encoding.UTF8.GetString(bytes, start, count);
-                    // And add it to the temp list
-                    newChunks.Add(chunk);
+                    newChunks.Add(temp);
+                    temp = "";
                 }
-
-                // Once we have finished, replace the old chunks
-                chunks = newChunks;
+                // And add the character that we got
+                temp += character;
             }
+
+            // If after finishing we still have a piece, save it
+            if (temp != "")
+            {
+                newChunks.Add(temp);
+            }
+
+            // Once we have finished, replace the old chunks
+            chunks = newChunks;
         }
         /// <summary>
         /// Recalculates the size, position and word wrap of this item.
