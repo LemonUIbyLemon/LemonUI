@@ -538,6 +538,10 @@ namespace LemonUI.Menus
         /// The parent menu of this menu.
         /// </summary>
         public NativeMenu Parent { get; set; } = null;
+        /// <summary>
+        /// If the menu accepts user input for navigation.
+        /// </summary>
+        public bool AcceptsInput { get; set; } = true;
 
         #endregion
 
@@ -726,6 +730,12 @@ namespace LemonUI.Menus
             if (Controls.IsUsingController || !UseMouse)
             {
                 Controls.EnableThisFrame(controlsCamera);
+            }
+
+            // If the controls are disabled, return
+            if (!AcceptsInput)
+            {
+                return;
             }
 
             // Check if the controls necessary were pressed
