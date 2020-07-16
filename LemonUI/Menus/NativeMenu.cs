@@ -270,7 +270,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// A specific menu to open during the next tick.
         /// </summary>
-        private NativeMenu openNextTick = null;
+        internal NativeMenu openNextTick = null;
 
         #endregion
 
@@ -955,7 +955,7 @@ namespace LemonUI.Menus
         /// </summary>
         /// <param name="menu">The menu to add.</param>
         /// <returns>The item that points to the submenu.</returns>
-        public NativeItem AddSubMenu(NativeMenu menu)
+        public NativeSubmenuItem AddSubMenu(NativeMenu menu)
         {
             // If the menu is null, raise an exception
             if (menu == null)
@@ -963,19 +963,9 @@ namespace LemonUI.Menus
                 throw new ArgumentNullException(nameof(menu));
             }
 
-            // Create a new menu item
-            NativeItem item = new NativeItem(menu.Subtitle, menu.Description);
-            // Add the activated event
-            item.Activated += (sender, e) =>
-            {
-                Visible = false;
-                openNextTick = menu;
-            };
-            // Set this menu as the parent of the other one
-            menu.Parent = this;
-            // Add the item to this menu
+            // Create a new menu item, add it and return it
+            NativeSubmenuItem item = new NativeSubmenuItem(menu, this);
             Add(item);
-            // And return the new item
             return item;
         }
         /// <summary>
