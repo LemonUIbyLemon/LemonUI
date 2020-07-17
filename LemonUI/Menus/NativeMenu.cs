@@ -50,6 +50,31 @@ namespace LemonUI.Menus
     /// </summary>
     public class NativeMenu : IMenu<NativeItem>, IProcessable
     {
+        #region Public Fields
+
+        /// <summary>
+        /// The default <see cref="Sound"/> played when the current <see cref="NativeItem"> is changed or activated.
+        /// </summary>
+        public static readonly Sound DefaultActivatedSound = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
+        /// <summary>
+        /// The default <see cref="Sound"> played when the menu is closed.
+        /// </summary>
+        public static readonly Sound DefaultCloseSound = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "BACK");
+        /// <summary>
+        /// The default <see cref="Sound"/> played when the user navigates Up and Down.
+        /// </summary>
+        public static readonly Sound DefaultUpDownSound = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_UP_DOWN");
+        /// <summary>
+        /// The default <see cref="Sound"> played when the user navigates Left and Right on a <see cref="ISlidableItem">.
+        /// </summary>
+        public static readonly Sound DefaultLeftRightSound = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_LEFT_RIGHT");
+        /// <summary>
+        /// The default <see cref="Sound"/> played when the user activates a <see cref="NativeItem"/> that is disabled.
+        /// </summary>
+        public static readonly Sound DefaultDisabledSound = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "ERROR");
+
+        #endregion
+
         #region Internal Fields
 
         /// <summary>
@@ -72,31 +97,6 @@ namespace LemonUI.Menus
         /// The color for disabled items.
         /// </summary>
         internal static readonly Color colorDisabled = Color.FromArgb(255, 163, 159, 148);
-
-        /// <summary>
-        /// Sound played when the user selects an option.
-        /// </summary>
-        internal static readonly Sound soundSelect = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
-        /// <summary>
-        /// Sound played when the user returns or closes the menu.
-        /// </summary>
-        internal static readonly Sound soundBack = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "BACK");
-        /// <summary>
-        /// Sound played when the menu goes up and down.
-        /// </summary>
-        internal static readonly Sound soundUpDown = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_UP_DOWN");
-        /// <summary>
-        /// Sound played when the items are moved to the left and right.
-        /// </summary>
-        internal static readonly Sound soundLeftRight = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_LEFT_RIGHT");
-        /// <summary>
-        /// Sound played when an item is selected.
-        /// </summary>
-        internal static readonly Sound soundSelected = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
-        /// <summary>
-        /// Sound played when an item is disabled.
-        /// </summary>
-        internal static readonly Sound soundError = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "ERROR");
 
         /// <summary>
         /// The controls required by the menu with both a gamepad and mouse + keyboard.
@@ -290,7 +290,7 @@ namespace LemonUI.Menus
                 visible = value;
                 if (value)
                 {
-                    soundSelect.PlayFrontend();
+                    SoundOpened?.PlayFrontend();
                     Shown?.Invoke(this, EventArgs.Empty);
                     TriggerSelectedItem();
                 }
@@ -435,7 +435,7 @@ namespace LemonUI.Menus
                 // If the menu is visible, play the up and down sound
                 if (Visible)
                 {
-                    soundUpDown.PlayFrontend();
+                    SoundUpDown?.PlayFrontend();
                 }
 
                 // If an item was selected, set the description and trigger it
@@ -541,6 +541,30 @@ namespace LemonUI.Menus
         /// If the menu accepts user input for navigation.
         /// </summary>
         public bool AcceptsInput { get; set; } = true;
+        /// <summary>
+        /// The <see cref="Sound"/> played when the menu is opened.
+        /// </summary>
+        public Sound SoundOpened { get; set; } = DefaultActivatedSound;
+        /// <summary>
+        /// The <see cref="Sound"/> played when a <see cref="NativeItem"> is activated.
+        /// </summary>
+        public Sound SoundActivated { get; set; } = DefaultActivatedSound;
+        /// <summary>
+        /// The <see cref="Sound"/> played when the menu is closed.
+        /// </summary>
+        public Sound SoundClose { get; set; } = DefaultCloseSound;
+        /// <summary>
+        /// The <see cref="Sound"/> played when the user navigates Up or Down the menu.
+        /// </summary>
+        public Sound SoundUpDown { get; set; } = DefaultUpDownSound;
+        /// <summary>
+        /// The <see cref="Sound"/> played when the user navigates Left and Right on a <see cref="ISlidableItem">.
+        /// </summary>
+        public Sound SoundLeftRight { get; set; } = DefaultLeftRightSound;
+        /// <summary>
+        /// The <see cref="Sound"/> played when the user activates a <see cref="NativeItem"/> that is disabled.
+        /// </summary>
+        public Sound SoundDisabled { get; set; } = DefaultDisabledSound;
 
         #endregion
 
@@ -773,12 +797,12 @@ namespace LemonUI.Menus
                     if (SelectedItem.Enabled)
                     {
                         slidable.GoLeft();
-                        soundLeftRight.PlayFrontend();
+                        SoundLeftRight?.PlayFrontend();
                         return;
                     }
                     else
                     {
-                        soundError.PlayFrontend();
+                        SoundDisabled?.PlayFrontend();
                         return;
                     }
                 }
@@ -787,12 +811,12 @@ namespace LemonUI.Menus
                     if (SelectedItem.Enabled)
                     {
                         slidable.GoRight();
-                        soundLeftRight.PlayFrontend();
+                        SoundLeftRight?.PlayFrontend();
                         return;
                     }
                     else
                     {
-                        soundError.PlayFrontend();
+                        SoundDisabled?.PlayFrontend();
                         return;
                     }
                 }
@@ -827,13 +851,13 @@ namespace LemonUI.Menus
                         if (item.Enabled)
                         {
                             slidable1.GoRight();
-                            soundLeftRight.PlayFrontend();
+                            SoundLeftRight?.PlayFrontend();
                             return;
                         }
                         // Otherwise, play the error sound
                         else
                         {
-                            soundError.PlayFrontend();
+                            SoundDisabled?.PlayFrontend();
                             return;
                         }
                     }
@@ -844,13 +868,13 @@ namespace LemonUI.Menus
                         if (item.Enabled)
                         {
                             slidable2.GoLeft();
-                            soundLeftRight.PlayFrontend();
+                            SoundLeftRight?.PlayFrontend();
                             return;
                         }
                         // Otherwise, play the error sound
                         else
                         {
-                            soundError.PlayFrontend();
+                            SoundDisabled?.PlayFrontend();
                             return;
                         }
                     }
@@ -863,7 +887,7 @@ namespace LemonUI.Menus
                             if (item.Enabled)
                             {
                                 item.OnActivated(this);
-                                soundSelect.PlayFrontend();
+                                SoundActivated?.PlayFrontend();
                                 if (item is NativeCheckboxItem checkboxItem)
                                 {
                                     checkboxItem.UpdateTexture(true);
@@ -873,7 +897,7 @@ namespace LemonUI.Menus
                             // Otherwise, play the error sound
                             else
                             {
-                                soundError.PlayFrontend();
+                                SoundDisabled?.PlayFrontend();
                                 return;
                             }
                         }
@@ -881,7 +905,7 @@ namespace LemonUI.Menus
                         else
                         {
                             SelectedIndex = firstItem + i;
-                            soundUpDown.PlayFrontend();
+                            SoundUpDown?.PlayFrontend();
                             return;
                         }
                     }
@@ -898,7 +922,7 @@ namespace LemonUI.Menus
                 if (SelectedItem != null && SelectedItem.Enabled)
                 {
                     SelectedItem.OnActivated(this);
-                    soundSelect.PlayFrontend();
+                    SoundActivated?.PlayFrontend();
                     if (SelectedItem is NativeCheckboxItem check)
                     {
                         check.UpdateTexture(true);
@@ -908,7 +932,7 @@ namespace LemonUI.Menus
                 // Otherwise, play the error sound
                 else
                 {
-                    soundError.PlayFrontend();
+                    SoundDisabled?.PlayFrontend();
                     return;
                 }
             }
@@ -1221,7 +1245,7 @@ namespace LemonUI.Menus
             // Otherwise, close the menu
             visible = false;
             Closed?.Invoke(this, EventArgs.Empty);
-            soundBack.PlayFrontend();
+            SoundClose?.PlayFrontend();
         }
         /// <summary>
         /// Moves to the previous item.
