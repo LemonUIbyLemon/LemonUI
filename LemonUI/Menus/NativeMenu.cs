@@ -27,7 +27,7 @@ using System.Drawing;
 namespace LemonUI.Menus
 {
     /// <summary>
-    /// THe visibility setting for the Item Count of the Menu.
+    /// The visibility setting for the Item Count of the Menu.
     /// </summary>
     public enum CountVisibility
     {
