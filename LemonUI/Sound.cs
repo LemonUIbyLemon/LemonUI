@@ -6,28 +6,36 @@ using GTA.Native;
 using GTA.Native;
 #endif
 
-namespace LemonUI.Sound
+namespace LemonUI
 {
     /// <summary>
-    /// Class used for playing a sound.
+    /// Contains information for a Game Sound that is played at specific times.
     /// </summary>
-    internal class Sound
+    public class Sound
     {
         /// <summary>
-        /// The set where this file is part of.
+        /// The Set where the sound is located.
         /// </summary>
-        public string Set { get; }
+        public string Set { get; set; }
         /// <summary>
         /// The name of the sound file.
         /// </summary>
-        public string File { get; }
+        public string File { get; set; }
 
+        /// <summary>
+        /// Creates a new <see cref="Sound"/> class with the specified Sound Set and File.
+        /// </summary>
+        /// <param name="set">The Set where the sound is located.</param>
+        /// <param name="file">The name of the sound file.</param>
         public Sound(string set, string file)
         {
             Set = set;
             File = file;
         }
 
+        /// <summary>
+        /// Plays the sound for the local user.
+        /// </summary>
         public void PlayFrontend()
         {
 #if FIVEM

@@ -76,27 +76,27 @@ namespace LemonUI.Menus
         /// <summary>
         /// Sound played when the user selects an option.
         /// </summary>
-        internal static readonly Sound.Sound soundSelect = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
+        internal static readonly Sound soundSelect = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
         /// <summary>
         /// Sound played when the user returns or closes the menu.
         /// </summary>
-        internal static readonly Sound.Sound soundBack = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "BACK");
+        internal static readonly Sound soundBack = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "BACK");
         /// <summary>
         /// Sound played when the menu goes up and down.
         /// </summary>
-        internal static readonly Sound.Sound soundUpDown = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_UP_DOWN");
+        internal static readonly Sound soundUpDown = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_UP_DOWN");
         /// <summary>
         /// Sound played when the items are moved to the left and right.
         /// </summary>
-        internal static readonly Sound.Sound soundLeftRight = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_LEFT_RIGHT");
+        internal static readonly Sound soundLeftRight = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_LEFT_RIGHT");
         /// <summary>
         /// Sound played when an item is selected.
         /// </summary>
-        internal static readonly Sound.Sound soundSelected = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
+        internal static readonly Sound soundSelected = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
         /// <summary>
         /// Sound played when an item is disabled.
         /// </summary>
-        internal static readonly Sound.Sound soundError = new Sound.Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "ERROR");
+        internal static readonly Sound soundError = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "ERROR");
 
         /// <summary>
         /// The controls required by the menu with both a gamepad and mouse + keyboard.
