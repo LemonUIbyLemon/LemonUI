@@ -1,10 +1,9 @@
 using LemonUI.Elements;
-using LemonUI.Menus;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace LemonUI.Items
+namespace LemonUI.Menus
 {
     /// <summary>
     /// Base class for list items.

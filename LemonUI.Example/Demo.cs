@@ -11,11 +11,10 @@ using GTA;
 using GTA.UI;
 using CancelEventArgs = System.ComponentModel.CancelEventArgs;
 #endif
-using LemonUI.Items;
+using LemonUI.Elements;
 using LemonUI.Menus;
 using LemonUI.Scaleform;
 using System;
-using LemonUI.Elements;
 
 namespace LemonUI.Example
 {

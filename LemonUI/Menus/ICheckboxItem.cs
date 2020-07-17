@@ -1,6 +1,6 @@
 using System;
 
-namespace LemonUI.Items
+namespace LemonUI.Menus
 {
     /// <summary>
     /// Interface for menu items that have checkboxes.

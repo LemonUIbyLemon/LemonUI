@@ -1,8 +1,7 @@
 using LemonUI.Elements;
-using LemonUI.Menus;
 using System.Drawing;
 
-namespace LemonUI.Items
+namespace LemonUI.Menus
 {
     /// <summary>
     /// Basic elements for a slidable item.

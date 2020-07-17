@@ -1,9 +1,8 @@
 using LemonUI.Elements;
-using LemonUI.Menus;
 using System;
 using System.Drawing;
 
-namespace LemonUI.Items
+namespace LemonUI.Menus
 {
     /// <summary>
     /// Basic Rockstar-like item.

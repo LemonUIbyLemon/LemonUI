@@ -2,7 +2,7 @@ using LemonUI.Elements;
 using System;
 using System.Drawing;
 
-namespace LemonUI.Items
+namespace LemonUI.Menus
 {
     /// <summary>
     /// Rockstar-like checkbox item.

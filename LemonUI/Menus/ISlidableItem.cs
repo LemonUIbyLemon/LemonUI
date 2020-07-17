@@ -1,6 +1,6 @@
 using System;
 
-namespace LemonUI.Items
+namespace LemonUI.Menus
 {
     /// <summary>
     /// A menu item that can go Left and Right.

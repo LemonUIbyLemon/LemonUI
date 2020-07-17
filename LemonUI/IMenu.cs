@@ -4,7 +4,7 @@ using CancelEventHandler = System.ComponentModel.CancelEventHandler;
 using System;
 using System.Collections.Generic;
 
-namespace LemonUI.Menus
+namespace LemonUI
 {
     /// <summary>
     /// Base interface for implementing menus that accept specific items.

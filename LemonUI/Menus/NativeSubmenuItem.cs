@@ -1,7 +1,6 @@
-using LemonUI.Menus;
 using System;
 
-namespace LemonUI.Items
+namespace LemonUI.Menus
 {
     /// <summary>
     /// Item used for opening submenus.

@@ -19,7 +19,6 @@ using Font = GTA.UI.Font;
 #endif
 using LemonUI.Elements;
 using LemonUI.Extensions;
-using LemonUI.Items;
 using LemonUI.Scaleform;
 using System;
 using System.Collections.Generic;

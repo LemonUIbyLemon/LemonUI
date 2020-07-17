@@ -1,6 +1,6 @@
 using System;
 
-namespace LemonUI.Items
+namespace LemonUI
 {
     /// <summary>
     /// A standard menu item.
