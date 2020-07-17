@@ -6,7 +6,6 @@ using CitizenFX.Core.Native;
 using GTA;
 using GTA.Native;
 #elif SHVDN3
-using GTA;
 using GTA.Native;
 using GTA.UI;
 #endif
@@ -16,6 +15,60 @@ using System.Drawing;
 
 namespace LemonUI
 {
+    /// <summary>
+    /// Represents the method that reports a Resolution change in the Game Settings.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">A <see cref="ResolutionChangedEventArgs"> containing the Previous and Current resolution.</param>
+    public delegate void ResolutionChangedEventHandler(object sender, ResolutionChangedEventArgs e);
+    /// <summary>
+    /// Represents the method that reports a Safe Zone change in the Game Settings.
+    /// </summary>
+    /// <param name="sender">The source of the event event.</param>
+    /// <param name="e">A <see cref="ResolutionChangedEventArgs"> containing the Previous and Current Safe Zone.</param>
+    public delegate void SafeZoneChangedEventHandler(object sender, SafeZoneChangedEventArgs e);
+
+    /// <summary>
+    /// Represents the information after a Resolution Change in the game.
+    /// </summary>
+    public class ResolutionChangedEventArgs
+    {
+        /// <summary>
+        /// The Game Resolution before it was changed.
+        /// </summary>
+        public SizeF Before { get; }
+        /// <summary>
+        /// The Game Resolution after it was changed.
+        /// </summary>
+        public SizeF After { get; }
+
+        public ResolutionChangedEventArgs(SizeF before, SizeF after)
+        {
+            Before = before;
+            After = after;
+        }
+    }
+    /// <summary>
+    /// Represents the information after a Safe Zone Change in the game.
+    /// </summary>
+    public class SafeZoneChangedEventArgs
+    {
+        /// <summary>
+        /// The raw Safezone size before the change.
+        /// </summary>
+        public float Before { get; }
+        /// <summary>
+        /// The Safezone size after the change.
+        /// </summary>
+        public float After { get; }
+
+        public SafeZoneChangedEventArgs(float before, float after)
+        {
+            Before = before;
+            After = after;
+        }
+    }
+
     /// <summary>
     /// Manager for Menus and Items.
     /// </summary>

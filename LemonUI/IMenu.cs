@@ -7,6 +7,34 @@ using System.Collections.Generic;
 namespace LemonUI
 {
     /// <summary>
+    /// Represents the method that is called when a new item is selected in the Menu.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">A <see cref="SelectedEventArgs"/> with the index informationn.</param>
+    public delegate void SelectedEventHandler(object sender, SelectedEventArgs e);
+
+    /// <summary>
+    /// Represents the selection of an item in the screen.
+    /// </summary>
+    public class SelectedEventArgs
+    {
+        /// <summary>
+        /// The index of the item in the full list of items.
+        /// </summary>
+        public int Index { get; }
+        /// <summary>
+        /// The index of the item in the screen.
+        /// </summary>
+        public int OnScreen { get; }
+
+        public SelectedEventArgs(int index, int screen)
+        {
+            Index = index;
+            OnScreen = screen;
+        }
+    }
+
+    /// <summary>
     /// Base interface for implementing menus that accept specific items.
     /// </summary>
     public interface IMenu<T> : IRecalculable, IProcessable
