@@ -27,6 +27,34 @@ using System.Drawing;
 namespace LemonUI.Menus
 {
     /// <summary>
+    /// Represents the method that is called when a new item is selected in the Menu.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">A <see cref="SelectedEventArgs"/> with the index informationn.</param>
+    public delegate void SelectedEventHandler(object sender, SelectedEventArgs e);
+
+    /// <summary>
+    /// Represents the selection of an item in the screen.
+    /// </summary>
+    public class SelectedEventArgs
+    {
+        /// <summary>
+        /// The index of the item in the full list of items.
+        /// </summary>
+        public int Index { get; }
+        /// <summary>
+        /// The index of the item in the screen.
+        /// </summary>
+        public int OnScreen { get; }
+
+        internal SelectedEventArgs(int index, int screen)
+        {
+            Index = index;
+            OnScreen = screen;
+        }
+    }
+
+    /// <summary>
     /// The visibility setting for the Item Count of the Menu.
     /// </summary>
     public enum CountVisibility
@@ -48,7 +76,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Menu that looks like the ones used by Rockstar.
     /// </summary>
-    public class NativeMenu : IMenu<NativeItem>, IProcessable
+    public class NativeMenu : IRecalculable, IProcessable
     {
         #region Public Fields
 
@@ -65,7 +93,7 @@ namespace LemonUI.Menus
         /// </summary>
         public static readonly Sound DefaultUpDownSound = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_UP_DOWN");
         /// <summary>
-        /// The default <see cref="Sound"/> played when the user navigates Left and Right on a <see cref="ISlidableItem"/>.
+        /// The default <see cref="Sound"/> played when the user navigates Left and Right on a <see cref="NativeSlidableItem"/>.
         /// </summary>
         public static readonly Sound DefaultLeftRightSound = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_LEFT_RIGHT");
         /// <summary>
@@ -558,7 +586,7 @@ namespace LemonUI.Menus
         /// </summary>
         public Sound SoundUpDown { get; set; } = DefaultUpDownSound;
         /// <summary>
-        /// The <see cref="Sound"/> played when the user navigates Left and Right on a <see cref="ISlidableItem"/>.
+        /// The <see cref="Sound"/> played when the user navigates Left and Right on a <see cref="NativeSlidableItem"/>.
         /// </summary>
         public Sound SoundLeftRight { get; set; } = DefaultLeftRightSound;
         /// <summary>
@@ -790,7 +818,7 @@ namespace LemonUI.Menus
             }
 
             // If the player pressed the left or right button, trigger the event and sound
-            if (SelectedItem is ISlidableItem slidable)
+            if (SelectedItem is NativeSlidableItem slidable)
             {
                 if (leftPressed)
                 {

@@ -7,7 +7,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Rockstar-like checkbox item.
     /// </summary>
-    public class NativeCheckboxItem : NativeItem, ICheckboxItem
+    public class NativeCheckboxItem : NativeItem
     {
         #region Fields
 

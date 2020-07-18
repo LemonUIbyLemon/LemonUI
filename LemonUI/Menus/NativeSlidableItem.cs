@@ -6,7 +6,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Basic elements for a slidable item.
     /// </summary>
-    public abstract class NativeSlidableItem : NativeItem, ISlidableItem
+    public abstract class NativeSlidableItem : NativeItem
     {
         #region Internal Fields
 

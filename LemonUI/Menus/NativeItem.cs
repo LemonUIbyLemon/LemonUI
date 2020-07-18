@@ -7,7 +7,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Basic Rockstar-like item.
     /// </summary>
-    public class NativeItem : IItem
+    public class NativeItem : IDrawable
     {
         #region Protected Internal Fields
 
