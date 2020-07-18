@@ -8,6 +8,8 @@
     <DefineConstants>FIVEM</DefineConstants>
     <Version>1.0</Version>
     <OutputPath>..\bin\$(Configuration)\FiveM\</OutputPath>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>..\bin\$(Configuration)\FiveM\$(AssemblyName).xml</DocumentationFile>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
 
