@@ -28,7 +28,7 @@ namespace LemonUI.Menus
         /// </summary>
         public int Index { get; }
 
-        public ItemChangedEventArgs(T obj, int index)
+        internal ItemChangedEventArgs(T obj, int index)
         {
             Object = obj;
             Index = index;

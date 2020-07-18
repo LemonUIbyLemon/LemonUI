@@ -27,7 +27,7 @@ namespace LemonUI
         /// </summary>
         public int OnScreen { get; }
 
-        public SelectedEventArgs(int index, int screen)
+        internal SelectedEventArgs(int index, int screen)
         {
             Index = index;
             OnScreen = screen;

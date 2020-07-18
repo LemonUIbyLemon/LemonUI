@@ -42,7 +42,7 @@ namespace LemonUI
         /// </summary>
         public SizeF After { get; }
 
-        public ResolutionChangedEventArgs(SizeF before, SizeF after)
+        internal ResolutionChangedEventArgs(SizeF before, SizeF after)
         {
             Before = before;
             After = after;
@@ -62,7 +62,7 @@ namespace LemonUI
         /// </summary>
         public float After { get; }
 
-        public SafeZoneChangedEventArgs(float before, float after)
+        internal SafeZoneChangedEventArgs(float before, float after)
         {
             Before = before;
             After = after;
