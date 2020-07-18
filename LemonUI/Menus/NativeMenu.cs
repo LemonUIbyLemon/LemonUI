@@ -53,11 +53,11 @@ namespace LemonUI.Menus
         #region Public Fields
 
         /// <summary>
-        /// The default <see cref="Sound"/> played when the current <see cref="NativeItem"> is changed or activated.
+        /// The default <see cref="Sound"/> played when the current <see cref="NativeItem"/> is changed or activated.
         /// </summary>
         public static readonly Sound DefaultActivatedSound = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "SELECT");
         /// <summary>
-        /// The default <see cref="Sound"> played when the menu is closed.
+        /// The default <see cref="Sound"/> played when the menu is closed.
         /// </summary>
         public static readonly Sound DefaultCloseSound = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "BACK");
         /// <summary>
@@ -65,7 +65,7 @@ namespace LemonUI.Menus
         /// </summary>
         public static readonly Sound DefaultUpDownSound = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_UP_DOWN");
         /// <summary>
-        /// The default <see cref="Sound"> played when the user navigates Left and Right on a <see cref="ISlidableItem">.
+        /// The default <see cref="Sound"/> played when the user navigates Left and Right on a <see cref="ISlidableItem"/>.
         /// </summary>
         public static readonly Sound DefaultLeftRightSound = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "NAV_LEFT_RIGHT");
         /// <summary>
@@ -546,7 +546,7 @@ namespace LemonUI.Menus
         /// </summary>
         public Sound SoundOpened { get; set; } = DefaultActivatedSound;
         /// <summary>
-        /// The <see cref="Sound"/> played when a <see cref="NativeItem"> is activated.
+        /// The <see cref="Sound"/> played when a <see cref="NativeItem"/> is activated.
         /// </summary>
         public Sound SoundActivated { get; set; } = DefaultActivatedSound;
         /// <summary>
@@ -558,7 +558,7 @@ namespace LemonUI.Menus
         /// </summary>
         public Sound SoundUpDown { get; set; } = DefaultUpDownSound;
         /// <summary>
-        /// The <see cref="Sound"/> played when the user navigates Left and Right on a <see cref="ISlidableItem">.
+        /// The <see cref="Sound"/> played when the user navigates Left and Right on a <see cref="ISlidableItem"/>.
         /// </summary>
         public Sound SoundLeftRight { get; set; } = DefaultLeftRightSound;
         /// <summary>
