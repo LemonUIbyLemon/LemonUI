@@ -74,12 +74,15 @@ namespace LemonUI.Elements
 
         #region Constructors
 
+        /// <summary>
+        /// Creates a new <see cref="BaseElement"/> with the specified Position and Size.
+        /// </summary>
+        /// <param name="pos">The position of the Element.</param>
+        /// <param name="size">The size of the Element.</param>
         public BaseElement(PointF pos, SizeF size)
         {
-            // Save the position and size
             literalPosition = pos;
             literalSize = size;
-            // And recalculate the relative values
             Recalculate();
         }
 

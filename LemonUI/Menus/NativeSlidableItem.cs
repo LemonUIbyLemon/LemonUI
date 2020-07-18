@@ -23,6 +23,11 @@ namespace LemonUI.Menus
 
         #region Constructors
 
+        /// <summary>
+        /// Creates a new item that can be sliden.
+        /// </summary>
+        /// <param name="title">The title of the Item.</param>
+        /// <param name="subtitle">The subtitle of the Item.</param>
         public NativeSlidableItem(string title, string subtitle) : base(title, subtitle)
         {
             arrowLeft = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowleft")

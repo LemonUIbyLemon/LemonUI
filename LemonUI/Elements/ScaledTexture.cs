@@ -27,16 +27,25 @@ namespace LemonUI.Elements
 
         #region Constructors
 
+        /// <summary>
+        /// Creates a new <see cref="ScaledTexture"/> with a Position and Size of Zero.
+        /// </summary>
+        /// <param name="dictionary">The dictionary where the texture is located.</param>
+        /// <param name="texture">The texture to draw.</param>
         public ScaledTexture(string dictionary, string texture) : this(PointF.Empty, SizeF.Empty, dictionary, texture)
         {
         }
-
+        /// <summary>
+        /// Creates a new <see cref="ScaledTexture"/> with a Position and Size of zero.
+        /// </summary>
+        /// <param name="pos">The position of the Texture.</param>
+        /// <param name="size">The size of the Texture.</param>
+        /// <param name="dictionary">The dictionary where the texture is located.</param>
+        /// <param name="texture">The texture to draw.</param>
         public ScaledTexture(PointF pos, SizeF size, string dictionary, string texture) : base(pos, size)
         {
-            // Save the dictionary and textures
             Dictionary = dictionary;
             Texture = texture;
-            // And request the texture dictionary
             Request();
         }
 

@@ -14,6 +14,11 @@ namespace LemonUI.Elements
     {
         #region Constructor
 
+        /// <summary>
+        /// Creates a new <see cref="ScaledRectangle"/> with the specified Position and Size.
+        /// </summary>
+        /// <param name="pos">The position of the Rectangle.</param>
+        /// <param name="size">The size of the Rectangle.</param>
         public ScaledRectangle(PointF pos, SizeF size) : base(pos, size)
         {
         }

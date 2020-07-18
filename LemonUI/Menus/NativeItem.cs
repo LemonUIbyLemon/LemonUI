@@ -129,14 +129,27 @@ namespace LemonUI.Menus
 
         #region Constructors
 
+        /// <summary>
+        /// Creates a new <see cref="NativeItem"/>.
+        /// </summary>
+        /// <param name="title">The title of the item.</param>
         public NativeItem(string title) : this(title, "", "")
         {
         }
-
+        /// <summary>
+        /// Creates a new <see cref="NativeItem"/>.
+        /// </summary>
+        /// <param name="title">The title of the item.</param>
+        /// <param name="description">The description of the item.</param>
         public NativeItem(string title, string description) : this(title, description, "")
         {
         }
-
+        /// <summary>
+        /// Creates a new <see cref="NativeItem"/>.
+        /// </summary>
+        /// <param name="title">The title of the item.</param>
+        /// <param name="description">The description of the item.</param>
+        /// <param name="altTitle">The alternative title of the item, shown on the right.</param>
         public NativeItem(string title, string description, string altTitle)
         {
             this.title = new ScaledText(PointF.Empty, title, 0.345f)

@@ -45,6 +45,11 @@ namespace LemonUI.Menus
         /// </summary>
         internal protected ScaledText text = null;
 
+        /// <summary>
+        /// Creates a new list item with a title and subtitle.
+        /// </summary>
+        /// <param name="title">The title of the Item.</param>
+        /// <param name="subtitle">The subtitle of the Item.</param>
         public NativeListItem(string title, string subtitle) : base(title, subtitle)
         {
             text = new ScaledText(PointF.Empty, "", 0.35f)
@@ -163,10 +168,20 @@ namespace LemonUI.Menus
 
         #region Constructors
 
+        /// <summary>
+        /// Creates a new <see cref="NativeListItem"/>.
+        /// </summary>
+        /// <param name="title">The title of the Item.</param>
+        /// <param name="objs">The objects that are available on the Item.</param>
         public NativeListItem(string title, params T[] objs) : this(title, "", objs)
         {
         }
-
+        /// <summary>
+        /// Creates a new <see cref="NativeListItem"/>.
+        /// </summary>
+        /// <param name="title">The title of the Item.</param>
+        /// <param name="subtitle">The subtitle of the Item.</param>
+        /// <param name="objs">The objects that are available on the Item.</param>
         public NativeListItem(string title, string subtitle, params T[] objs) : base(title, subtitle)
         {
             // Create the basic stuff

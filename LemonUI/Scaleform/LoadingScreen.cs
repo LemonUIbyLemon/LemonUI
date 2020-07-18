@@ -32,10 +32,23 @@ namespace LemonUI.Scaleform
 
         #region Constructors
 
+        /// <summary>
+        /// Creates a new GTA Online like loading screen with no image.
+        /// </summary>
+        /// <param name="title">The title of the screen.</param>
+        /// <param name="subtitle">The subtitle of the screen.</param>
+        /// <param name="description">The description of the screen.</param>
         public LoadingScreen(string title, string subtitle, string description) : this(title, subtitle, description, "", "")
         {
         }
-
+        /// <summary>
+        /// Creates a new GTA Online like loading screen with a custom texture.
+        /// </summary>
+        /// <param name="title">The title of the screen.</param>
+        /// <param name="subtitle">The subtitle of the screen.</param>
+        /// <param name="description">The description of the screen.</param>
+        /// <param name="dictionary">The dictionary where the texture is located.</param>
+        /// <param name="texture">The texture to use on the right.</param>
         public LoadingScreen(string title, string subtitle, string description, string dictionary, string texture) : base("GTAV_ONLINE")
         {
             // Tell the Scaleform to use the online loading screen

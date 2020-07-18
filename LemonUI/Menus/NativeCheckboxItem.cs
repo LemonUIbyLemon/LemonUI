@@ -54,18 +54,35 @@ namespace LemonUI.Menus
 
         #region Constructor
 
+        /// <summary>
+        /// Creates a new <see cref="NativeCheckboxItem"/>.
+        /// </summary>
+        /// <param name="title">The title used for the Item.</param>
         public NativeCheckboxItem(string title) : this(title, "", false)
         {
         }
-
+        /// <summary>
+        /// Creates a new <see cref="NativeCheckboxItem"/>.
+        /// </summary>
+        /// <param name="title">The title used for the Item.</param>
+        /// <param name="check">If the checkbox should be enabled or not.</param>
         public NativeCheckboxItem(string title, bool check) : this(title, "", check)
         {
         }
-
+        /// <summary>
+        /// Creates a new <see cref="NativeCheckboxItem"/>.
+        /// </summary>
+        /// <param name="title">The title used for the Item.</param>
+        /// <param name="description">The description of the Item.</param>
         public NativeCheckboxItem(string title, string description) : this(title, description, false)
         {
         }
-
+        /// <summary>
+        /// Creates a new <see cref="NativeCheckboxItem"/>.
+        /// </summary>
+        /// <param name="title">The title used for the Item.</param>
+        /// <param name="description">The description of the Item.</param>
+        /// <param name="check">If the checkbox should be enabled or not.</param>
         public NativeCheckboxItem(string title, string description, bool check) : base(title, description)
         {
             Checked = check;
