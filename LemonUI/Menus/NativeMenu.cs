@@ -1083,6 +1083,9 @@ namespace LemonUI.Menus
         {
             // Clear the existing items
             Items.Clear();
+            // Set the indexes to zero
+            index = 0;
+            firstItem = 0;
             // And update the menu information
             UpdateItemList();
             UpdateItems();
