@@ -284,7 +284,7 @@ namespace LemonUI.Elements
             }
             if (WordWrap > 0)
             {
-                API.SetTextWrap(relativePosition.X, realWrap);
+                API.SetTextWrap(relativePosition.X, relativePosition.X + realWrap);
             }
 #else
             foreach (string chunk in chunks)
