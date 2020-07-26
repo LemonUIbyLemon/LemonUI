@@ -214,6 +214,10 @@ namespace LemonUI.Menus
         #region Private Fields
 
         /// <summary>
+        /// If the menu has just been opened.
+        /// </summary>
+        private bool justOpened = false;
+        /// <summary>
         /// The list of visible items on the screen.
         /// </summary>
         private List<NativeItem> visibleItems = new List<NativeItem>();
@@ -318,6 +322,7 @@ namespace LemonUI.Menus
                 visible = value;
                 if (value)
                 {
+                    justOpened = true;
                     SoundOpened?.PlayFrontend();
                     Shown?.Invoke(this, EventArgs.Empty);
                     TriggerSelectedItem();
@@ -1198,6 +1203,10 @@ namespace LemonUI.Menus
             }
             // And finish by drawing the instructional buttons
             Buttons.Draw();
+
+            // We just finished a processing run
+            // So the menu theoretically has not just been opened
+            justOpened = false;
         }
         /// <summary>
         /// Calculates the positions and sizes of the elements.
