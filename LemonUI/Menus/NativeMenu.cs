@@ -674,7 +674,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Tools
+        #region Private Functions
 
         /// <summary>
         /// Updates the list of visible items on the screen.
@@ -970,6 +970,57 @@ namespace LemonUI.Menus
                 }
             }
         }
+        /// <summary>
+        /// Draws the UI Elements.
+        /// </summary>
+        private void Draw()
+        {
+            // Let's start with the basics
+            // Draw the banner image and text
+            if (bannerImage != null)
+            {
+                bannerImage.Draw();
+                bannerText?.Draw();
+            }
+            // And then the subtitle with text and item count
+            if (subtitleImage != null)
+            {
+                subtitleImage.Draw();
+                subtitleText?.Draw();
+                if (ItemCount == CountVisibility.Always || (ItemCount == CountVisibility.Auto && Items.Count > MaxItems))
+                {
+                    countText.Draw();
+                }
+            }
+            // If there is some description text, draw the text and background
+            if (!string.IsNullOrWhiteSpace(descriptionText.Text))
+            {
+                descriptionRect.Draw();
+                descriptionText.Draw();
+            }
+
+            // Time for the items!
+            // If there are none, return and do nothing
+            if (Items.Count == 0)
+            {
+                return;
+            }
+
+            // Otherwise, start with the background
+            backgroundImage?.Draw();
+            // Then, draw all of the items with the exception of the one selected
+            foreach (NativeItem item in visibleItems)
+            {
+                if (item != SelectedItem)
+                {
+                    item.Draw();
+                }
+            }
+            // Continue with the white selection rectangle
+            selectedRect?.Draw();
+            // And finish with the selected item on top (if any)
+            SelectedItem?.Draw();
+        }
 
         #endregion
 
@@ -1138,56 +1189,9 @@ namespace LemonUI.Menus
 #endif
             }
 
-            // Start with the banner
-            if (bannerImage != null)
-            {
-                // Draw the background image and text if is present
-                bannerImage.Draw();
-                if (bannerText != null && !string.IsNullOrWhiteSpace(bannerText.Text))
-                {
-                    bannerText.Draw();
-                }
-            }
-            // Continue with the subtitle image and text
-            subtitleImage.Draw();
-            subtitleText?.Draw();
-            // The background of the items
-            backgroundImage?.Draw();
-            // And the item count
-            if (ItemCount == CountVisibility.Always || (ItemCount == CountVisibility.Auto && Items.Count > MaxItems))
-            {
-                countText.Draw();
-            }
-
-            // Then go for the visible items with the exception of the one selected
-            foreach (NativeItem item in visibleItems)
-            {
-                if (item != SelectedItem)
-                {
-                    item.Draw();
-                }
-            }
-
-            // If this menu has items, draw the rectangle for the selected item
-            if (Items.Count > 0)
-            {
-                selectedRect?.Draw();
-            }
-
-            // If there is an item selected, draw it
-            if (SelectedItem != null)
-            {
-                SelectedItem.Draw();
-            }
-
-            // If there is some description text, draw the text and background
-            if (!string.IsNullOrWhiteSpace(descriptionText.Text))
-            {
-                descriptionRect.Draw();
-                descriptionText.Draw();
-            }
-
-            // Time to work on the controls!
+            // Then go ahead and draw the UI
+            Draw();
+            // And then work on the controls
             ProcessControls();
 
             // Reset the alignment if this menu should be aware of the safe zone
