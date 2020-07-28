@@ -1,6 +1,5 @@
 using LemonUI.Elements;
 using System.Drawing;
-using System.Reflection;
 
 namespace LemonUI.TimerBars
 {
@@ -26,6 +25,12 @@ namespace LemonUI.TimerBars
 
         #endregion
 
+        #region Private Fields
+
+        private string rawTitle = "";
+
+        #endregion
+
         #region Internal Fields
 
         /// <summary>
@@ -35,6 +40,13 @@ namespace LemonUI.TimerBars
         {
             Color = Color.FromArgb(160, 255, 255, 255)
         };
+        /// <summary>
+        /// The title of the timer bar.
+        /// </summary>
+        internal protected readonly ScaledText title = new ScaledText(PointF.Empty, "", 1)
+        {
+
+        };
 
         #endregion
 
@@ -43,7 +55,15 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The title of the bar, shown on the left.
         /// </summary>
-        public string Title { get; set; }
+        public string Title
+        {
+            get => rawTitle;
+            set
+            {
+                rawTitle = value;
+                title.Text = value.ToUpperInvariant();
+            }
+        }
         /// <summary>
         /// The information shown on the right.
         /// </summary>
@@ -77,6 +97,7 @@ namespace LemonUI.TimerBars
             // Set the size of the background
             background.Position = pos;
             background.Size = new SizeF(backgroundWidth, backgroundHeight);
+            title.Position = Screen.GetRealPosition(PointF.Empty);
         }
         /// <summary>
         /// Draws the timer bar information.
@@ -84,6 +105,7 @@ namespace LemonUI.TimerBars
         public void Draw()
         {
             background.Draw();
+            title.Draw();
         }
 
         #endregion
