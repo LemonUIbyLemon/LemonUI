@@ -1167,20 +1167,9 @@ namespace LemonUI.Menus
             // Start by setting the alignment for the UI Elements
             // This is to make the UI appear in the correct position in non standard aspect ratios
             // For example: 21:6, 32:9, 11:4, 48:9 (3 16:9 in Surround) and more
-            const int L = 76;
-            const int T = 84;
             if (SafeZoneAware)
             {
-#if FIVEM
-                API.SetScriptGfxAlign(L, T);
-                API.SetScriptGfxAlignParams(0, 0, 0, 0);
-#elif SHVDN2
-                Function.Call(Hash._SET_SCREEN_DRAW_POSITION, L, T);
-                Function.Call(Hash._0xF5A2C681787E579D, 0, 0, 0, 0);
-#elif SHVDN3
-                Function.Call(Hash.SET_SCRIPT_GFX_ALIGN, L, T);
-                Function.Call(Hash.SET_SCRIPT_GFX_ALIGN_PARAMS, 0, 0, 0, 0);
-#endif
+                Screen.SetElementAlignment(GFXAlignment.Left, GFXAlignment.Top);
             }
 
             // Then go ahead and draw the UI
@@ -1191,13 +1180,7 @@ namespace LemonUI.Menus
             // Reset the alignment if this menu should be aware of the safe zone
             if (SafeZoneAware)
             {
-#if FIVEM
-                API.ResetScriptGfxAlign();
-#elif SHVDN2
-                Function.Call(Hash._0xE3A3DB414A373DAB);
-#elif SHVDN3
-                Function.Call(Hash.RESET_SCRIPT_GFX_ALIGN);
-#endif
+                Screen.ResetElementAlignment();
             }
             // And finish by drawing the instructional buttons
             Buttons.Draw();

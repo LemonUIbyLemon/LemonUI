@@ -10,6 +10,33 @@ using System.Drawing;
 namespace LemonUI
 {
     /// <summary>
+    /// Represents the internal alignment of screen elements.
+    /// </summary>
+    public enum GFXAlignment
+    {
+        /// <summary>
+        /// Vertical Alignment to the Bottom.
+        /// </summary>
+        Bottom = 66,
+        /// <summary>
+        /// Vertical Alignment to the Top.
+        /// </summary>
+        Top = 84,
+        /// <summary>
+        /// Centered Vertically or Horizontally.
+        /// </summary>
+        Center = 67,
+        /// <summary>
+        /// Horizontal Alignment to the Left.
+        /// </summary>
+        Left = 76,
+        /// <summary>
+        /// Horizontal Alignment to the Right.
+        /// </summary>
+        Right = 82,
+    }
+
+    /// <summary>
     /// Contains a set of tools to work with the screen information.
     /// </summary>
     public static class Screen
@@ -123,6 +150,37 @@ namespace LemonUI
             Function.Call(Hash._SHOW_CURSOR_THIS_FRAME);
 #elif SHVDN3
             Function.Call(Hash._SET_MOUSE_CURSOR_ACTIVE_THIS_FRAME);
+#endif
+        }
+        /// <summary>
+        /// Sets the alignment of game elements like <see cref="Elements.ScaledRectangle"/>, <see cref="Elements.ScaledText"/> and <see cref="Elements.ScaledTexture"/>.
+        /// </summary>
+        /// <param name="horizontal">The Horizontal alignment of the items.</param>
+        /// <param name="vertical">The vertical alignment of the items.</param>
+        public static void SetElementAlignment(GFXAlignment horizontal, GFXAlignment vertical)
+        {
+#if FIVEM
+            API.SetScriptGfxAlign((int)horizontal, (int)vertical);
+            API.SetScriptGfxAlignParams(0, 0, 0, 0);
+#elif SHVDN2
+            Function.Call(Hash._SET_SCREEN_DRAW_POSITION, (int)horizontal, (int)vertical);
+            Function.Call(Hash._0xF5A2C681787E579D, 0, 0, 0, 0);
+#elif SHVDN3
+            Function.Call(Hash.SET_SCRIPT_GFX_ALIGN, (int)horizontal, (int)vertical);
+            Function.Call(Hash.SET_SCRIPT_GFX_ALIGN_PARAMS, 0, 0, 0, 0);
+#endif
+        }
+        /// <summary>
+        /// Resets the alignment of the game elements.
+        /// </summary>
+        public static void ResetElementAlignment()
+        {
+#if FIVEM
+            API.ResetScriptGfxAlign();
+#elif SHVDN2
+            Function.Call(Hash._0xE3A3DB414A373DAB);
+#elif SHVDN3
+            Function.Call(Hash.RESET_SCRIPT_GFX_ALIGN);
 #endif
         }
     }
