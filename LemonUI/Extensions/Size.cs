@@ -14,7 +14,7 @@ namespace LemonUI.Extensions
         /// <returns>A new SizeF with relative values.</returns>
         public static SizeF ToRelative(this SizeF size)
         {
-            Resolution.ToRelative(size.Width, size.Height, out float width, out float height);
+            Screen.ToRelative(size.Width, size.Height, out float width, out float height);
             return new SizeF(width, height);
         }
         /// <summary>
@@ -24,7 +24,7 @@ namespace LemonUI.Extensions
         /// <returns>A new SizeF with absolute values.</returns>
         public static SizeF ToAbsolute(this SizeF size)
         {
-            Resolution.ToAbsolute(size.Width, size.Height, out float width, out float height);
+            Screen.ToAbsolute(size.Width, size.Height, out float width, out float height);
             return new SizeF(width, height);
         }
     }

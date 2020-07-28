@@ -14,7 +14,7 @@ namespace LemonUI.Extensions
         /// <returns>A new PointF with relative values.</returns>
         public static PointF ToRelative(this PointF point)
         {
-            Resolution.ToRelative(point.X, point.Y, out float x, out float y);
+            Screen.ToRelative(point.X, point.Y, out float x, out float y);
             return new PointF(x, y);
         }
         /// <summary>
@@ -24,7 +24,7 @@ namespace LemonUI.Extensions
         /// <returns>A new PointF with absolute values.</returns>
         public static PointF ToAbsolute(this PointF point)
         {
-            Resolution.ToAbsolute(point.X, point.Y, out float x, out float y);
+            Screen.ToAbsolute(point.X, point.Y, out float x, out float y);
             return new PointF(x, y);
         }
     }

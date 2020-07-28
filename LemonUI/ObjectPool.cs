@@ -79,10 +79,12 @@ namespace LemonUI
         /// <summary>
         /// The last known resolution by the object pool.
         /// </summary>
-#if SHVDN2
+#if FIVEM
+        private SizeF lastKnownResolution = CitizenFX.Core.UI.Screen.Resolution;
+#elif SHVDN2
         private SizeF lastKnownResolution = Game.ScreenResolution;
-#else
-        private SizeF lastKnownResolution = Screen.Resolution;
+#elif SHVDN3
+        private SizeF lastKnownResolution = GTA.UI.Screen.Resolution;
 #endif
         /// <summary>
         /// The last know Safezone size.
@@ -145,10 +147,12 @@ namespace LemonUI
         private void DetectResolutionChanges()
         {
             // Get the current resolution
-#if SHVDN2
+#if FIVEM
+            SizeF resolution = CitizenFX.Core.UI.Screen.Resolution;
+#elif SHVDN2
             SizeF resolution = Game.ScreenResolution;
-#else
-            SizeF resolution = Screen.Resolution;
+#elif SHVDN3
+            SizeF resolution = GTA.UI.Screen.Resolution;
 #endif
             // If the old res does not matches the current one
             if (lastKnownResolution != resolution)

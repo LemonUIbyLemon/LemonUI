@@ -878,7 +878,7 @@ namespace LemonUI.Menus
                 foreach (NativeItem item in visibleItems)
                 {
                     // If this is a list item and the user pressed the right arrow
-                    if (item is NativeSlidableItem slidable1 && Resolution.IsCursorInBounds(slidable1.arrowRight.Position, slidable1.arrowRight.Size))
+                    if (item is NativeSlidableItem slidable1 && Screen.IsCursorInArea(slidable1.arrowRight.Position, slidable1.arrowRight.Size))
                     {
                         // If the item is enabled, move to the right
                         if (item.Enabled)
@@ -895,7 +895,7 @@ namespace LemonUI.Menus
                         }
                     }
                     // If this is a list item and the user pressed the left arrow
-                    else if (item is NativeSlidableItem slidable2 && Resolution.IsCursorInBounds(slidable2.arrowRight.Position, slidable2.arrowRight.Size))
+                    else if (item is NativeSlidableItem slidable2 && Screen.IsCursorInArea(slidable2.arrowRight.Position, slidable2.arrowRight.Size))
                     {
                         // If the item is enabled, move to the left
                         if (item.Enabled)
@@ -912,7 +912,7 @@ namespace LemonUI.Menus
                         }
                     }
                     // If the user selected somewhere in the item area
-                    else if (Resolution.IsCursorInBounds(item.title.Position.X - itemOffsetX, item.title.Position.Y - itemOffsetY, Width, itemHeight))
+                    else if (Screen.IsCursorInArea(item.title.Position.X - itemOffsetX, item.title.Position.Y - itemOffsetY, Width, itemHeight))
                     {
                         if (item == SelectedItem)
                         {

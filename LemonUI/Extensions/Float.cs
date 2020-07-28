@@ -12,7 +12,7 @@ namespace LemonUI.Extensions
         /// <returns>A relative float between 0 and 1.</returns>
         public static float ToXRelative(this float fin)
         {
-            Resolution.ToRelative(fin, 0, out float fout, out _);
+            Screen.ToRelative(fin, 0, out float fout, out _);
             return fout;
         }
         /// <summary>
@@ -22,7 +22,7 @@ namespace LemonUI.Extensions
         /// <returns>A relative float between 0 and 1.</returns>
         public static float ToYRelative(this float fin)
         {
-            Resolution.ToRelative(0, fin, out _, out float fout);
+            Screen.ToRelative(0, fin, out _, out float fout);
             return fout;
         }
         /// <summary>
@@ -32,7 +32,7 @@ namespace LemonUI.Extensions
         /// <returns>An absolute float.</returns>
         public static float ToXAbsolute(this float fin)
         {
-            Resolution.ToAbsolute(fin, 0, out float fout, out _);
+            Screen.ToAbsolute(fin, 0, out float fout, out _);
             return fout;
         }
         /// <summary>
@@ -42,7 +42,7 @@ namespace LemonUI.Extensions
         /// <returns>An absolute float.</returns>
         public static float ToYAbsolute(this float fin)
         {
-            Resolution.ToAbsolute(0, fin, out _, out float fout);
+            Screen.ToAbsolute(0, fin, out _, out float fout);
             return fout;
         }
     }
