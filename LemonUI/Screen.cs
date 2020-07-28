@@ -112,5 +112,18 @@ namespace LemonUI
             // And return the result of those checks
             return isX && isY;
         }
+        /// <summary>
+        /// Shows the cursor during the current game frame.
+        /// </summary>
+        public static void ShowCursorThisFrame()
+        {
+#if FIVEM
+            API.SetMouseCursorActiveThisFrame();
+#elif SHVDN2
+            Function.Call(Hash._SHOW_CURSOR_THIS_FRAME);
+#elif SHVDN3
+            Function.Call(Hash._SET_MOUSE_CURSOR_ACTIVE_THIS_FRAME);
+#endif
+        }
     }
 }

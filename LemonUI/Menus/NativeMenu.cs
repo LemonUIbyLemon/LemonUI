@@ -859,13 +859,7 @@ namespace LemonUI.Menus
             if (UseMouse && !Controls.IsUsingController)
             {
                 // Enable the mouse cursor
-#if FIVEM
-                API.SetMouseCursorActiveThisFrame();
-#elif SHVDN2
-                Function.Call(Hash._SHOW_CURSOR_THIS_FRAME);
-#elif SHVDN3
-                Function.Call(Hash._SET_MOUSE_CURSOR_ACTIVE_THIS_FRAME);
-#endif
+                Screen.ShowCursorThisFrame();
 
                 // If the select button was not pressed, return
                 if (!selectPressed)
