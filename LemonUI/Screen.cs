@@ -15,6 +15,23 @@ namespace LemonUI
     public static class Screen
     {
         /// <summary>
+        /// The Aspect Ratio of the screen resolution.
+        /// </summary>
+        public static float AspectRatio
+        {
+            get
+            {
+#if FIVEM
+                return API.GetAspectRatio(false);
+#elif SHVDN2
+                return Function.Call<float>(Hash._0xF1307EF624A80D87, false);
+#elif SHVDN3
+                return Function.Call<float>(Hash._GET_ASPECT_RATIO, false);
+#endif
+            }
+        }
+
+        /// <summary>
         /// Converts a relative resolution into one scaled to 1080p.
         /// </summary>
         /// <param name="relativeX">The relative value of X.</param>
@@ -23,16 +40,8 @@ namespace LemonUI
         /// <param name="absoluteY">The value of Y scaled to 1080p.</param>
         public static void ToAbsolute(float relativeX, float relativeY, out float absoluteX, out float absoluteY)
         {
-            // Get the ratio of the resolution
-#if FIVEM
-            float ratio = API.GetAspectRatio(false);
-#elif SHVDN2
-            float ratio = Function.Call<float>(Hash._0xF1307EF624A80D87, false);
-#elif SHVDN3
-            float ratio = Function.Call<float>(Hash._GET_ASPECT_RATIO, false);
-#endif
-            // Get the real width
-            float width = 1080f * ratio;
+            // Get the real width based on the aspect ratio
+            float width = 1080f * AspectRatio;
             // And save the correct values
             absoluteX = width * relativeX;
             absoluteY = 1080f * relativeY;
@@ -46,16 +55,8 @@ namespace LemonUI
         /// <param name="relativeY">The value of Y converted to relative.</param>
         public static void ToRelative(float absoluteX, float absoluteY, out float relativeX, out float relativeY)
         {
-            // Get the ratio of the resolution
-#if FIVEM
-            float ratio = API.GetAspectRatio(false);
-#elif SHVDN2
-            float ratio = Function.Call<float>(Hash._0xF1307EF624A80D87, false);
-#elif SHVDN3
-            float ratio = Function.Call<float>(Hash._GET_ASPECT_RATIO, false);
-#endif
-            // Get the real width
-            float width = 1080f * ratio;
+            // Get the real width based on the aspect ratio
+            float width = 1080f * AspectRatio;
             // And save the correct values
             relativeX = absoluteX / width;
             relativeY = absoluteY / 1080f;
