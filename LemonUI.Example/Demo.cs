@@ -14,6 +14,7 @@ using CancelEventArgs = System.ComponentModel.CancelEventArgs;
 using LemonUI.Elements;
 using LemonUI.Menus;
 using LemonUI.Scaleform;
+using LemonUI.TimerBars;
 using System;
 
 namespace LemonUI.Example
@@ -42,6 +43,11 @@ namespace LemonUI.Example
         {
             MaxItems = 17 // This will set the maximum number of items shown at once to 17
         };
+        /// <summary>
+        /// Here we create a new collection of Timer Bars with two bars.
+        /// </summary>
+        private static readonly TimerBarCollection collection = new TimerBarCollection(new TimerBar("First", "I'm 1st!"), new TimerBar("Second", "2nd :("));
+
         /// <summary>
         /// This is a checkbox item. Is an item that contains a checkbox that users can turn on or off.
         /// For this example, this checkbox is going to allow you to keep the menu open.
@@ -109,6 +115,7 @@ namespace LemonUI.Example
             // Items need to be part of the pool, so add them
             pool.Add(menu);
             pool.Add(submenu);
+            pool.Add(collection);
             pool.Add(loadingScreen);
             pool.Add(bigMessage);
 
