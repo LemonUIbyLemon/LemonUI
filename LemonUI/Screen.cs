@@ -5,6 +5,7 @@ using CitizenFX.Core.Native;
 using GTA;
 using GTA.Native;
 #endif
+using LemonUI.Extensions;
 using System.Drawing;
 
 namespace LemonUI
@@ -120,24 +121,45 @@ namespace LemonUI
             float cursorY = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorY);
 #endif
             // Convert the search area values to relative
-            ToRelative(x, y, out float startX, out float startY);
             ToRelative(width, height, out float realWidth, out float realHeight);
             // And get the correct on screen positions based on the GFX Alignment
+            PointF realPos = GetRealPosition(x, y).ToRelative();
+            // Check if the values are in the correct positions
+            bool isX = cursorX >= realPos.X && cursorX <= realPos.X + realWidth;
+            bool isY = cursorY > realPos.Y && cursorY < realPos.Y + realHeight;
+            // And return the result of those checks
+            return isX && isY;
+        }
+        /// <summary>
+        /// Converts the specified position into one that is aware of <see cref="SetElementAlignment(GFXAlignment, GFXAlignment)"/>.
+        /// </summary>
+        /// <param name="og">The original 1080p based position.</param>
+        /// <returns>A new 1080p based position that is aware of the the Alignment.</returns>
+        public static PointF GetRealPosition(PointF og) => GetRealPosition(og.X, og.Y);
+        /// <summary>
+        /// Converts the specified position into one that is aware of <see cref="SetElementAlignment(GFXAlignment, GFXAlignment)"/>.
+        /// </summary>
+        /// <param name="x">The 1080p based X position.</param>
+        /// <param name="y">The 1080p based Y position.</param>
+        /// <returns>A new 1080p based position that is aware of the the Alignment.</returns>
+        public static PointF GetRealPosition(float x, float y)
+        {
+            // Convert the resolution to relative
+            ToRelative(x, y, out float relativeX, out float relativeY);
+            // Request the real location of the position
             float realX = 0, realY = 0;
 #if FIVEM
-            API.GetScriptGfxPosition(startX, startY, ref realX, ref realY);
+            API.GetScriptGfxPosition(relativeX, relativeY, ref realX, ref realY);
 #else
             OutputArgument argX = new OutputArgument();
             OutputArgument argY = new OutputArgument();
-            Function.Call((Hash)0x6DD8F5AA635EB4B2, startX, startY, argX, argY); // _GET_SCRIPT_GFX_POSITION
+            Function.Call((Hash)0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY); // _GET_SCRIPT_GFX_POSITION
             realX = argX.GetResult<float>();
             realY = argY.GetResult<float>();
 #endif
-            // Check if the values are in the correct positions
-            bool isX = cursorX >= realX && cursorX <= realX + realWidth;
-            bool isY = cursorY > realY && cursorY < realY + realHeight;
-            // And return the result of those checks
-            return isX && isY;
+            // And return it converted to absolute
+            ToAbsolute(realX, realY, out float absoluteX, out float absoluteY);
+            return new PointF(absoluteX, absoluteY);
         }
         /// <summary>
         /// Shows the cursor during the current game frame.
