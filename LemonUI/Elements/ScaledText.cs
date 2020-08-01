@@ -264,6 +264,7 @@ namespace LemonUI.Elements
             API.SetTextFont((int)Font);
             API.SetTextScale(1f, Scale);
             API.SetTextColour(Color.R, Color.G, Color.B, Color.A);
+            API.SetTextJustification((int)Alignment);
             if (Shadow)
             {
                 API.SetTextDropShadow();
@@ -272,19 +273,24 @@ namespace LemonUI.Elements
             {
                 API.SetTextOutline();
             }
-            switch (Alignment)
-            {
-                case Alignment.Center:
-                    API.SetTextCentre(true);
-                    break;
-                case Alignment.Right:
-                    API.SetTextRightJustify(true);
-                    API.SetTextWrap(0f, relativePosition.X);
-                    break;
-            }
             if (WordWrap > 0)
             {
-                API.SetTextWrap(relativePosition.X, relativePosition.X + realWrap);
+                switch (Alignment)
+                {
+                    case Alignment.Center:
+                        API.SetTextWrap(relativePosition.X - (realWrap * 0.5f), relativePosition.X + (realWrap * 0.5f));
+                        break;
+                    case Alignment.Left:
+                        API.SetTextWrap(relativePosition.X, relativePosition.X + realWrap);
+                        break;
+                    case Alignment.Right:
+                        API.SetTextWrap(relativePosition.X - realWrap, relativePosition.X);
+                        break;
+                }
+            }
+            else if (Alignment == Alignment.Right)
+            {
+                API.SetTextWrap(0f, relativePosition.X);
             }
 #else
             foreach (string chunk in chunks)
@@ -294,6 +300,7 @@ namespace LemonUI.Elements
             Function.Call(Hash.SET_TEXT_FONT, (int)Font);
             Function.Call(Hash.SET_TEXT_SCALE, 1f, Scale);
             Function.Call(Hash.SET_TEXT_COLOUR, Color.R, Color.G, Color.B, Color.A);
+            Function.Call(Hash.SET_TEXT_JUSTIFICATION, (int)Alignment);
             if (Shadow)
             {
                 Function.Call(Hash.SET_TEXT_DROP_SHADOW);
@@ -302,19 +309,24 @@ namespace LemonUI.Elements
             {
                 Function.Call(Hash.SET_TEXT_OUTLINE);
             }
-            switch (Alignment)
-            {
-                case Alignment.Center:
-                    Function.Call(Hash.SET_TEXT_CENTRE, true);
-                    break;
-                case Alignment.Right:
-                    Function.Call(Hash.SET_TEXT_RIGHT_JUSTIFY, true);
-                    Function.Call(Hash.SET_TEXT_WRAP, 0f, relativePosition.X);
-                    break;
-            }
             if (WordWrap > 0)
             {
-                Function.Call(Hash.SET_TEXT_WRAP, relativePosition.X, relativePosition.X + realWrap);
+                switch (Alignment)
+                {
+                    case Alignment.Center:
+                        Function.Call(Hash.SET_TEXT_WRAP, relativePosition.X - (realWrap * 0.5f), relativePosition.X + (realWrap * 0.5f));
+                        break;
+                    case Alignment.Left:
+                        Function.Call(Hash.SET_TEXT_WRAP, relativePosition.X, relativePosition.X + realWrap);
+                        break;
+                    case Alignment.Right:
+                        Function.Call(Hash.SET_TEXT_WRAP, relativePosition.X - realWrap, relativePosition.X);
+                        break;
+                }
+            }
+            else if (Alignment == Alignment.Right)
+            {
+                Function.Call(Hash.SET_TEXT_WRAP, 0f, relativePosition.X);
             }
 #endif
         }
