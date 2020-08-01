@@ -86,16 +86,11 @@ namespace LemonUI.TimerBars
             Hud.HideComponentThisFrame(HudComponent.StreetName);
             Hud.HideComponentThisFrame(HudComponent.VehicleName);
 #endif
-
-            // Set the correct alignment
-            Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
             // Draw the existing timer bars
             foreach (TimerBar timerBar in TimerBars)
             {
                 timerBar.Draw();
             }
-            // And reset the custom alignment
-            Screen.ResetElementAlignment();
         }
 
         #endregion

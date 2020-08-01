@@ -18,7 +18,7 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The separation between the different timer bars.
         /// </summary>
-        internal const float separation = 4;
+        internal const float separation = 6.25f;
         /// <summary>
         /// The width of the background.
         /// </summary>
@@ -132,18 +132,21 @@ namespace LemonUI.TimerBars
             // Set the correct size and position of the background
             background.Position = pos;
             background.Size = new SizeF(backgroundWidth, backgroundHeight);
-            Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
             // Get the real position for the texts and apply it
+            Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
             PointF real = Screen.GetRealPosition(pos);
-            title.Position = new PointF(real.X - 498, real.Y - 738);
-            info.Position = new PointF(real.X - 373, real.Y - 525);
+            Screen.ResetElementAlignment();
+            title.Position = new PointF(real.X - 129, real.Y - 28);
+            info.Position = new PointF(real.X - 3, real.Y - 39);
         }
         /// <summary>
         /// Draws the timer bar information.
         /// </summary>
         public virtual void Draw()
         {
+            Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
             background.Draw();
+            Screen.ResetElementAlignment();
             title.Draw();
             info.Draw();
         }
