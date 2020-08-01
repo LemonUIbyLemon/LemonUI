@@ -195,12 +195,13 @@ namespace LemonUI.Elements
         {
             get
             {
+                // Height will always be 1080
 #if FIVEM
-                return API.GetTextScaleHeight(Scale, (int)Font);
+                return 1080 * API.GetTextScaleHeight(Scale, (int)Font);
 #elif SHVDN2
-                return Function.Call<float>(Hash._0xDB88A37483346780, Scale, (int)Font);
+                return 1080 * Function.Call<float>(Hash._0xDB88A37483346780, Scale, (int)Font);
 #elif SHVDN3
-                return Function.Call<float>(Hash._GET_TEXT_SCALE_HEIGHT, Scale, (int)Font);
+                return 1080 * Function.Call<float>(Hash._GET_TEXT_SCALE_HEIGHT, Scale, (int)Font);
 #endif
             }
         }
