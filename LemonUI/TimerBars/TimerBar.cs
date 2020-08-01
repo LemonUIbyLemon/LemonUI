@@ -49,7 +49,7 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The title of the timer bar.
         /// </summary>
-        internal protected readonly ScaledText title = new ScaledText(PointF.Empty, "", 0.295f)
+        internal protected readonly ScaledText title = new ScaledText(PointF.Empty, "", 0.29f)
         {
             Alignment = Alignment.Right,
             WordWrap = 1000
@@ -135,7 +135,7 @@ namespace LemonUI.TimerBars
             Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
             // Get the real position for the texts and apply it
             PointF real = Screen.GetRealPosition(pos);
-            title.Position = new PointF(real.X - 452, real.Y - 735);
+            title.Position = new PointF(real.X - 498, real.Y - 738);
             info.Position = new PointF(real.X - 373, real.Y - 525);
         }
         /// <summary>
