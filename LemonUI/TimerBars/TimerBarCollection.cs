@@ -1,11 +1,10 @@
 #if FIVEM
-using CitizenFX.Core.Native;
+using CitizenFX.Core.UI;
 #elif SHVDN2
-using GTA.Native;
+using GTA;
 #elif SHVDN3
-using GTA.Native;
+using GTA.UI;
 #endif
-using LemonUI.Extensions;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -67,6 +66,27 @@ namespace LemonUI.TimerBars
         /// </summary>
         public void Process()
         {
+            // If there are no timer bars, return
+            if (TimerBars.Count == 0)
+            {
+                return;
+            }
+
+            // Hide the texts in the bottom right corner of the screen
+#if FIVEM
+            CitizenFX.Core.UI.Screen.Hud.HideComponentThisFrame(HudComponent.AreaName);
+            CitizenFX.Core.UI.Screen.Hud.HideComponentThisFrame(HudComponent.StreetName);
+            CitizenFX.Core.UI.Screen.Hud.HideComponentThisFrame(HudComponent.VehicleName);
+#elif SHVDN2
+            UI.HideHudComponentThisFrame(HudComponent.AreaName);
+            UI.HideHudComponentThisFrame(HudComponent.StreetName);
+            UI.HideHudComponentThisFrame(HudComponent.VehicleName);
+#elif SHVDN3
+            Hud.HideComponentThisFrame(HudComponent.AreaName);
+            Hud.HideComponentThisFrame(HudComponent.StreetName);
+            Hud.HideComponentThisFrame(HudComponent.VehicleName);
+#endif
+
             // Set the correct alignment
             Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
             // Draw the existing timer bars
