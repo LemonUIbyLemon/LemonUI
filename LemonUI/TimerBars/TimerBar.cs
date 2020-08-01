@@ -1,10 +1,15 @@
+#if FIVEM
+using CitizenFX.Core.UI;
+#elif SHVDN3
+using GTA.UI;
+#endif
 using LemonUI.Elements;
 using System.Drawing;
 
 namespace LemonUI.TimerBars
 {
     /// <summary>
-    /// A Bar with information shown in the bottom right corner of the screen.
+    /// Represents a Bar with text information shown in the bottom right.
     /// </summary>
     public class TimerBar : IDrawable
     {
@@ -28,6 +33,7 @@ namespace LemonUI.TimerBars
         #region Private Fields
 
         private string rawTitle = "";
+        private string rawInfo = "";
 
         #endregion
 
@@ -43,9 +49,18 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The title of the timer bar.
         /// </summary>
-        internal protected readonly ScaledText title = new ScaledText(PointF.Empty, "", 1)
+        internal protected readonly ScaledText title = new ScaledText(PointF.Empty, "", 0.295f)
         {
-
+            Alignment = Alignment.Right,
+            WordWrap = 1000
+        };
+        /// <summary>
+        /// The information of the Timer Bar.
+        /// </summary>
+        internal protected readonly ScaledText info = new ScaledText(PointF.Empty, "", 0.5f)
+        {
+            Alignment = Alignment.Right,
+            WordWrap = 1000
         };
 
         #endregion
@@ -67,7 +82,27 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The information shown on the right.
         /// </summary>
-        public string Info { get; set; }
+        public string Info
+        {
+            get => rawInfo;
+            set
+            {
+                rawInfo = value;
+                info.Text = value.ToUpperInvariant();
+            }
+        }
+        /// <summary>
+        /// The Width of the information text.
+        /// </summary>
+        public float InfoWidth => info.Width;
+        /// <summary>
+        /// The color of the information text.
+        /// </summary>
+        public Color Color
+        {
+            get => info.Color;
+            set => info.Color = value;
+        }
 
         #endregion
 
@@ -94,18 +129,23 @@ namespace LemonUI.TimerBars
         /// <param name="pos">The position of the item.</param>
         public virtual void Recalculate(PointF pos)
         {
-            // Set the size of the background
+            // Set the correct size and position of the background
             background.Position = pos;
             background.Size = new SizeF(backgroundWidth, backgroundHeight);
-            title.Position = Screen.GetRealPosition(PointF.Empty);
+            Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
+            // Get the real position for the texts and apply it
+            PointF real = Screen.GetRealPosition(pos);
+            title.Position = new PointF(real.X - 452, real.Y - 735);
+            info.Position = new PointF(real.X - 373, real.Y - 525);
         }
         /// <summary>
         /// Draws the timer bar information.
         /// </summary>
-        public void Draw()
+        public virtual void Draw()
         {
             background.Draw();
             title.Draw();
+            info.Draw();
         }
 
         #endregion
