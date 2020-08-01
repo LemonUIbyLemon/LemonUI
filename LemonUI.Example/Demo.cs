@@ -16,6 +16,7 @@ using LemonUI.Menus;
 using LemonUI.Scaleform;
 using LemonUI.TimerBars;
 using System;
+using System.Drawing;
 
 namespace LemonUI.Example
 {
@@ -45,8 +46,9 @@ namespace LemonUI.Example
         };
         /// <summary>
         /// Here we create a new collection of Timer Bars with two bars.
+        /// The first one shows a time in HH:MM:SS, the second shows a timer in MM:SS with the color red, and the third one shows a generic text.
         /// </summary>
-        private static readonly TimerBarCollection collection = new TimerBarCollection(new TimerBar("First", "I'm 1st!"), new TimerBar("Second", "2nd :("));
+        private static readonly TimerBarCollection collection = new TimerBarCollection(new TimerBar("Yay!", "01:00:00"), new TimerBar("Oh No", "00:00") { Color = Color.FromArgb(200, 255, 0, 0) }, new TimerBar("Begone", "No U"));
 
         /// <summary>
         /// This is a checkbox item. Is an item that contains a checkbox that users can turn on or off.
