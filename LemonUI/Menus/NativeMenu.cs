@@ -753,7 +753,8 @@ namespace LemonUI.Menus
             // And then do the description background and text
             descriptionText.Text = Items.Count == 0 ? NoItemsText : SelectedItem.Description;
             float description = currentY + ((Items.Count > maxItems ? maxItems : Items.Count) * itemHeight) + heightDiffDescImg;
-            descriptionRect.Size = new SizeF(width, descriptionText.LineCount * 35);
+            int lineCount = descriptionText.LineCount;
+            descriptionRect.Size = new SizeF(width, (lineCount * (descriptionText.LineHeight + 5)) + (lineCount - 1) + 10);
             descriptionRect.Position = new PointF(currentX, description);
             descriptionText.Position = new PointF(currentX + posXDescTxt, description + heightDiffDescTxt);
 
