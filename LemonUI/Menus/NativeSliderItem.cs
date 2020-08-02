@@ -118,8 +118,8 @@ namespace LemonUI.Menus
         /// Creates a <see cref="NativeSliderItem"/> with a maximum of 100.
         /// </summary>
         /// <param name="title">The title of the Item.</param>
-        /// <param name="subtitle">The subtitle of the Item.</param>
-        public NativeSliderItem(string title, string subtitle) : this(title, subtitle, 100, 0)
+        /// <param name="description">The description of the Item.</param>
+        public NativeSliderItem(string title, string description) : this(title, description, 100, 0)
         {
         }
         /// <summary>
@@ -135,10 +135,10 @@ namespace LemonUI.Menus
         /// Creates a <see cref="NativeSliderItem"/> with a specific maximum.
         /// </summary>
         /// <param name="title">The title of the Item.</param>
-        /// <param name="subtitle">The subtitle of the Item.</param>
+        /// <param name="description">The description of the Item.</param>
         /// <param name="max">The maximum value of the Slider.</param>
         /// <param name="value">The current value of the Slider.</param>
-        public NativeSliderItem(string title, string subtitle, int max, int value) : base(title, subtitle)
+        public NativeSliderItem(string title, string description, int max, int value) : base(title, description)
         {
             maximum = max;
             _value = value;
