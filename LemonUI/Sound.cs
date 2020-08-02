@@ -1,8 +1,11 @@
 #if FIVEM
+using CitizenFX.Core;
 using CitizenFX.Core.Native;
 #elif SHVDN2
+using GTA;
 using GTA.Native;
 #elif SHVDN3
+using GTA;
 using GTA.Native;
 #endif
 
@@ -34,7 +37,7 @@ namespace LemonUI
         }
 
         /// <summary>
-        /// Plays the sound for the local user.
+        /// Plays the sound for the local <see cref="Player"/>.
         /// </summary>
         public void PlayFrontend()
         {
