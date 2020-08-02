@@ -703,34 +703,47 @@ namespace LemonUI.Menus
         private void UpdateItems()
         {
             // Store the current values of X and Y
-            float currentX = alignment == Alignment.Right ? 1f.ToXAbsolute() - width - offset.X : offset.X;
-            float currentY = offset.Y;
+            if (SafeZoneAware)
+            {
+                Screen.SetElementAlignment(Alignment == Alignment.Right ? GFXAlignment.Right : GFXAlignment.Left, GFXAlignment.Top);
+            }
+            PointF pos = Screen.GetRealPosition(offset);
+            if (SafeZoneAware)
+            {
+                Screen.ResetElementAlignment();
+            }
+
+            // If this menu is aligned to the right, reduce the width
+            if (Alignment == Alignment.Right)
+            {
+                pos.X -= Width;
+            }
 
             // Add the heights of the banner and subtitle (if there are any)
             if (bannerImage != null)
             {
-                currentY += bannerImage.Size.Height;
+                pos.Y += bannerImage.Size.Height;
             }
             if (!string.IsNullOrWhiteSpace(subtitleText.Text))
             {
                 countText.Text = $"{SelectedIndex + 1} / {Items.Count}";
-                countText.Position = new PointF(currentX + width - countText.Width - 6, currentY + 4.2f);
-                currentY += subtitleImage.Size.Height;
+                countText.Position = new PointF(pos.X + width - countText.Width - 6, pos.Y + 4.2f);
+                pos.Y += subtitleImage.Size.Height;
             }
 
             // Set the position and size of the background image
-            backgroundImage.literalPosition = new PointF(currentX, currentY);
+            backgroundImage.literalPosition = new PointF(pos.X, pos.Y);
             backgroundImage.literalSize = new SizeF(width, itemHeight * visibleItems.Count);
             backgroundImage.Recalculate();
             // Set the position of the rectangle that marks the current item
-            selectedRect.Position = new PointF(currentX, currentY + ((index - firstItem) * itemHeight));
+            selectedRect.Position = new PointF(pos.X, pos.Y + ((index - firstItem) * itemHeight));
             // And then do the description background and text
             descriptionText.Text = Items.Count == 0 ? NoItemsText : SelectedItem.Description;
-            float description = currentY + ((Items.Count > maxItems ? maxItems : Items.Count) * itemHeight) + heightDiffDescImg;
+            float description = pos.Y + ((Items.Count > maxItems ? maxItems : Items.Count) * itemHeight) + heightDiffDescImg;
             int lineCount = descriptionText.LineCount;
             descriptionRect.Size = new SizeF(width, (lineCount * (descriptionText.LineHeight + 5)) + (lineCount - 1) + 10);
-            descriptionRect.Position = new PointF(currentX, description);
-            descriptionText.Position = new PointF(currentX + posXDescTxt, description + heightDiffDescTxt);
+            descriptionRect.Position = new PointF(pos.X, description);
+            descriptionText.Position = new PointF(pos.X + posXDescTxt, description + heightDiffDescTxt);
 
             // Save the size of the items
             SizeF size = new SizeF(width, itemHeight);
@@ -739,10 +752,10 @@ namespace LemonUI.Menus
             foreach (NativeItem item in visibleItems)
             {
                 // Tell the item to recalculate the position
-                item.Recalculate(new PointF(currentX, currentY), size, item == SelectedItem);
+                item.Recalculate(new PointF(pos.X, pos.Y), size, item == SelectedItem);
                 // And increase the index of the item and Y position
                 i++;
-                currentY += itemHeight;
+                pos.Y += itemHeight;
             }
         }
         /// <summary>
@@ -1139,24 +1152,9 @@ namespace LemonUI.Menus
             }
 
             // Otherwise, draw the elements
-            // Start by setting the alignment for the UI Elements
-            // This is to make the UI appear in the correct position in non standard aspect ratios
-            // For example: 21:6, 32:9, 11:4, 48:9 (3 16:9 in Surround) and more
-            if (SafeZoneAware)
-            {
-                Screen.SetElementAlignment(GFXAlignment.Left, GFXAlignment.Top);
-            }
-
-            // Then go ahead and draw the UI
             Draw();
             // And then work on the controls
             ProcessControls();
-
-            // Reset the alignment if this menu should be aware of the safe zone
-            if (SafeZoneAware)
-            {
-                Screen.ResetElementAlignment();
-            }
             // And finish by drawing the instructional buttons
             Buttons.Draw();
 
@@ -1170,34 +1168,47 @@ namespace LemonUI.Menus
         public void Recalculate()
         {
             // Store the current values of X and Y
-            float currentX = alignment == Alignment.Right ? 1f.ToXAbsolute() - width - offset.X : offset.X;
-            float currentY = offset.Y;
+            if (SafeZoneAware)
+            {
+                Screen.SetElementAlignment(Alignment == Alignment.Right ? GFXAlignment.Right : GFXAlignment.Left, GFXAlignment.Top);
+            }
+            PointF pos = Screen.GetRealPosition(offset);
+            if (SafeZoneAware)
+            {
+                Screen.ResetElementAlignment();
+            }
+
+            // If this menu is aligned to the right, reduce the width
+            if (Alignment == Alignment.Right)
+            {
+                pos.X -= Width;
+            }
 
             // If there is a banner and is a valid element
             if (bannerImage != null && bannerImage is BaseElement bannerImageBase)
             {
                 // Set the position and size of the banner
-                bannerImageBase.literalPosition = new PointF(currentX, currentY);
+                bannerImageBase.literalPosition = new PointF(pos.X, pos.Y);
                 bannerImageBase.literalSize = new SizeF(width, bannerImageBase.Size.Height);
                 bannerImageBase.Recalculate();
                 // If there is a text element, also set the position of it
                 if (Title != null)
                 {
-                    Title.Position = new PointF(currentX + 209, currentY + 22);
+                    Title.Position = new PointF(pos.X + 209, pos.Y + 22);
                 }
                 // Finally, increase the current position of Y based on the banner height
-                currentY += bannerImageBase.Size.Height;
+                pos.Y += bannerImageBase.Size.Height;
             }
 
             // Time for the subtitle background
             // Set the position and size of it
-            subtitleImage.literalPosition = new PointF(currentX, currentY);
+            subtitleImage.literalPosition = new PointF(pos.X, pos.Y);
             subtitleImage.literalSize = new SizeF(width, subtitleHeight);
             subtitleImage.Recalculate();
             // If there is a text, also set the position of it
             if (subtitleText != null)
             {
-                subtitleText.Position = new PointF(currentX + 6, currentY + 4.2f);
+                subtitleText.Position = new PointF(pos.X + 6, pos.Y + 4.2f);
             }
             // Finally, increase the size based on the subtitle height
             // currentY += subtitleHeight;
