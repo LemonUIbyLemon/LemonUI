@@ -5,6 +5,7 @@ using GTA;
 #elif SHVDN3
 using GTA.UI;
 #endif
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -13,7 +14,7 @@ namespace LemonUI.TimerBars
     /// <summary>
     /// A collection or Set of <see cref="TimerBar"/>.
     /// </summary>
-    public class TimerBarCollection : IRecalculable, IProcessable
+    public class TimerBarCollection : IContainer<TimerBar>
     {
         #region Public Properties
 
@@ -45,7 +46,72 @@ namespace LemonUI.TimerBars
         #region Public Functions
 
         /// <summary>
-        /// Recalculates the positions and sizes of the Timer Bars.
+        /// Adds a <see cref="TimerBar"/> onto this collection.
+        /// </summary>
+        /// <param name="bar">The <see cref="TimerBar"/> to add.</param>
+        public void Add(TimerBar bar)
+        {
+            // If the item is already on the list, raise an exception
+            if (TimerBars.Contains(bar))
+            {
+                throw new InvalidOperationException("The item is already part of the menu.");
+            }
+            // Also raise an exception if is null
+            if (bar == null)
+            {
+                throw new ArgumentNullException(nameof(bar));
+            }
+            // If we got here, add it
+            TimerBars.Add(bar);
+            // And recalculate the positions of the existing items
+            Recalculate();
+        }
+        /// <summary>
+        /// Removes a <see cref="TimerBar"/> from the Collection.
+        /// </summary>
+        /// <param name="bar">The <see cref="TimerBar"/> to remove.</param>
+        public void Remove(TimerBar bar)
+        {
+            // If the bar is not present, return
+            if (!TimerBars.Contains(bar))
+            {
+                return;
+            }
+
+            // Otherwise, remove it
+            TimerBars.Remove(bar);
+            // And recalculate the positions
+            Recalculate();
+        }
+        /// <summary>
+        /// Removes all of the <see cref="TimerBar"/> that match the function.
+        /// </summary>
+        /// <param name="func">The function to check the <see cref="TimerBar"/>.</param>
+        public void Remove(Func<TimerBar, bool> func)
+        {
+            // Iterate over the timer bars
+            foreach (TimerBar bar in new List<TimerBar>(TimerBars))
+            {
+                // If it matches the function, remove it
+                if (func(bar))
+                {
+                    TimerBars.Remove(bar);
+                }
+            }
+            // Finally, recalculate the positions
+            Recalculate();
+        }
+        /// <summary>
+        /// Removes all of the <see cref="TimerBar"/> in this collection.
+        /// </summary>
+        public void Clear() => TimerBars.Clear();
+        /// <summary>
+        /// Checks if the <see cref="TimerBar"/> is part of this collection.
+        /// </summary>
+        /// <param name="bar">The <see cref="TimerBar"/> to check.</param>
+        public bool Contains(TimerBar bar) => TimerBars.Contains(bar);
+        /// <summary>
+        /// Recalculates the positions and sizes of the <see cref="TimerBar"/>.
         /// </summary>
         public void Recalculate()
         {
