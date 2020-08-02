@@ -808,8 +808,8 @@ namespace LemonUI.Menus
                 Controls.EnableThisFrame(controlsCamera);
             }
 
-            // If the controls are disabled, return
-            if (!AcceptsInput)
+            // If the controls are disabled or the menu has just been opened, return
+            if (!AcceptsInput || justOpened)
             {
                 return;
             }
