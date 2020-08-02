@@ -126,27 +126,20 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// Recalculates the position of the timer bar elements based on the location of it on the screen.
         /// </summary>
-        /// <param name="pos">The position of the item.</param>
+        /// <param name="pos">The Top Left position of the Timer Bar.</param>
         public virtual void Recalculate(PointF pos)
         {
-            // Set the correct size and position of the background
             background.Position = pos;
             background.Size = new SizeF(backgroundWidth, backgroundHeight);
-            // Get the real position for the texts and apply it
-            Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
-            PointF real = Screen.GetRealPosition(pos);
-            Screen.ResetElementAlignment();
-            title.Position = new PointF(real.X - 129, real.Y - 28);
-            info.Position = new PointF(real.X - 3, real.Y - 39);
+            title.Position = new PointF(pos.X + 91, pos.Y + 8);
+            info.Position = new PointF(pos.X + 218, pos.Y - 3);
         }
         /// <summary>
         /// Draws the timer bar information.
         /// </summary>
         public virtual void Draw()
         {
-            Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
             background.Draw();
-            Screen.ResetElementAlignment();
             title.Draw();
             info.Draw();
         }

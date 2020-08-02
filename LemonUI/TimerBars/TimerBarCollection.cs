@@ -115,14 +115,17 @@ namespace LemonUI.TimerBars
         /// </summary>
         public void Recalculate()
         {
+            // Get the position of 0,0 while staying safe zone aware
+            Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
+            PointF pos = Screen.GetRealPosition(PointF.Empty);
+            Screen.ResetElementAlignment();
+
             // Iterate over the existing timer bars and save the count
             int count = 0;
             foreach (TimerBar timerBar in TimerBars)
             {
-                // Calculate the Y position
-                float y = (TimerBar.backgroundHeight + TimerBar.separation) * count;
                 // And send them to the timer bar
-                timerBar.Recalculate(new PointF(0, -y));
+                timerBar.Recalculate(new PointF(pos.X - TimerBar.backgroundWidth, pos.Y - (TimerBar.backgroundHeight * (count + 1)) - (TimerBar.separation * count)));
                 // Finish by increasing the total count of items
                 count++;
             }
