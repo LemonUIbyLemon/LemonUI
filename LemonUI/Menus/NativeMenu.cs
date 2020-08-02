@@ -318,6 +318,10 @@ namespace LemonUI.Menus
                 visible = value;
                 if (value)
                 {
+                    if (ResetCursorWhenOpened)
+                    {
+                        ResetCursor();
+                    }
                     justOpened = true;
                     SoundOpened?.PlayFrontend();
                     Shown?.Invoke(this, EventArgs.Empty);
@@ -509,6 +513,10 @@ namespace LemonUI.Menus
         /// </summary>
         public string NoItemsText { get; set; } = "There are no items available";
         /// <summary>
+        /// If the cursor should be reset when the menu is opened.
+        /// </summary>
+        public bool ResetCursorWhenOpened { get; set; } = true;
+        /// <summary>
         /// The maximum allowed number of items in the menu at once.
         /// </summary>
         public int MaxItems
@@ -696,6 +704,30 @@ namespace LemonUI.Menus
             SelectedEventArgs args = new SelectedEventArgs(index, index - firstItem);
             SelectedItem.OnSelected(this, args);
             SelectedIndexChanged?.Invoke(this, args);
+        }
+        /// <summary>
+        /// Resets the current position of the cursor.
+        /// </summary>
+        private void ResetCursor()
+        {
+            // Get the correct desired position of the cursor as relative
+            if (SafeZoneAware)
+            {
+                Screen.SetElementAlignment(Alignment == Alignment.Right ? GFXAlignment.Right : GFXAlignment.Left, GFXAlignment.Top);
+            }
+            PointF pos = Screen.GetRealPosition(Offset.X + (Alignment == Alignment.Right ? -Width - 35 : Width + 35), Offset.Y + 325).ToRelative();
+            if (SafeZoneAware)
+            {
+                Screen.ResetElementAlignment();
+            }
+            // And set the position of the cursor
+#if FIVEM
+            API.SetCursorLocation(pos.X, pos.Y);
+#elif SHVDN2
+            Function.Call(Hash._0xFC695459D4D0E219, pos.X, pos.Y);
+#elif SHVDN3
+            Function.Call(Hash._SET_CURSOR_LOCATION, pos.X, pos.Y);
+#endif
         }
         /// <summary>
         /// Updates the positions of the items.
