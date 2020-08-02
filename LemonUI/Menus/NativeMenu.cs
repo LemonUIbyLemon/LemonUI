@@ -250,10 +250,6 @@ namespace LemonUI.Menus
         /// </summary>
         private I2Dimensional bannerImage = null;
         /// <summary>
-        /// The text of the menu.
-        /// </summary>
-        private ScaledText bannerText = null;
-        /// <summary>
         /// The background of the drawable text.
         /// </summary>
         private readonly ScaledRectangle subtitleImage = new ScaledRectangle(PointF.Empty, SizeF.Empty)
@@ -336,21 +332,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The title of the menu.
         /// </summary>
-        public string Title
-        {
-            get
-            {
-                if (bannerText == null)
-                {
-                    throw new NullReferenceException("The Text parameter of this Menu is null.");
-                }
-                return bannerText.Text;
-            }
-            set
-            {
-                bannerText.Text = value;
-            }
-        }
+        public ScaledText Title { get; set; }
         /// <summary>
         /// The banner shown at the top of the menu.
         /// </summary>
@@ -362,14 +344,6 @@ namespace LemonUI.Menus
                 bannerImage = value;
                 Recalculate();
             }
-        }
-        /// <summary>
-        /// The text object on top of the banner.
-        /// </summary>
-        public ScaledText Text
-        {
-            get => bannerText;
-            set => bannerText = value;
         }
         /// <summary>
         /// The offset of the menu position.
@@ -663,7 +637,7 @@ namespace LemonUI.Menus
             this.subtitle = subtitle;
             Description = description;
             bannerImage = banner;
-            bannerText = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
+            Title = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
             {
                 Color = colorWhite,
                 Alignment = Alignment.Center
@@ -975,7 +949,7 @@ namespace LemonUI.Menus
             if (bannerImage != null)
             {
                 bannerImage.Draw();
-                bannerText?.Draw();
+                Title?.Draw();
             }
             // And then the subtitle with text and item count
             if (subtitleImage != null)
@@ -1207,9 +1181,9 @@ namespace LemonUI.Menus
                 bannerImageBase.literalSize = new SizeF(width, bannerImageBase.Size.Height);
                 bannerImageBase.Recalculate();
                 // If there is a text element, also set the position of it
-                if (bannerText != null)
+                if (Title != null)
                 {
-                    bannerText.Position = new PointF(currentX + 209, currentY + 22);
+                    Title.Position = new PointF(currentX + 209, currentY + 22);
                 }
                 // Finally, increase the current position of Y based on the banner height
                 currentY += bannerImageBase.Size.Height;
