@@ -46,9 +46,9 @@ namespace LemonUI.Example
         };
         /// <summary>
         /// Here we create a new collection of Timer Bars with two bars.
-        /// The first one shows a time in HH:MM:SS, the second shows a timer in MM:SS with the color red, and the third one shows a generic text.
+        /// The first one shows a time in HH:MM:SS, the second shows some text information, and the third one shows a progress bar.
         /// </summary>
-        private static readonly TimerBarCollection collection = new TimerBarCollection(new TimerBar("Yay!", "01:00:00"), new TimerBar("Oh No", "00:00") { Color = Color.FromArgb(200, 255, 0, 0) }, new TimerBar("Begone", "No U"));
+        private static readonly TimerBarCollection collection = new TimerBarCollection(new TimerBar("Oh No", "00:00:00") { Color = Color.FromArgb(200, 255, 0, 0) }, new TimerBar("Begone", "No U"), new TimerBarProgress("Progress") { Progress = 75 });
 
         /// <summary>
         /// This is a checkbox item. Is an item that contains a checkbox that users can turn on or off.
