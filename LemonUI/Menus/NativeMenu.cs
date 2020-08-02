@@ -125,6 +125,10 @@ namespace LemonUI.Menus
         /// The color for disabled items.
         /// </summary>
         internal static readonly Color colorDisabled = Color.FromArgb(255, 163, 159, 148);
+        /// <summary>
+        /// The search area size for the cursor rotation.
+        /// </summary>
+        internal static readonly SizeF searchAreaSize = new SizeF(30, 1080);
 
         /// <summary>
         /// The controls required by the menu with both a gamepad and mouse + keyboard.
@@ -294,6 +298,10 @@ namespace LemonUI.Menus
         /// The first item in the menu.
         /// </summary>
         private int firstItem = 0;
+        /// <summary>
+        /// The search area on the right side of the screen.
+        /// </summary>
+        private PointF searchAreaRight = PointF.Empty;
         /// <summary>
         /// A specific menu to open during the next tick.
         /// </summary>
@@ -504,6 +512,10 @@ namespace LemonUI.Menus
         /// If the mouse should be used for navigating the menu.
         /// </summary>
         public bool UseMouse { get; set; } = true;
+        /// <summary>
+        /// If the camera should be rotated when the cursor is on the left and right corners of the screen.
+        /// </summary>
+        public bool RotateCamera { get; set; } = false;
         /// <summary>
         /// The items that this menu contain.
         /// </summary>
@@ -881,6 +893,21 @@ namespace LemonUI.Menus
                 // Enable the mouse cursor
                 Screen.ShowCursorThisFrame();
 
+                // If the camera rotation is checked
+                if (RotateCamera)
+                {
+                    // If the cursor is on the left area, rotate it to the left
+                    if (Screen.IsCursorInArea(PointF.Empty, searchAreaSize))
+                    {
+                        GameplayCamera.RelativeHeading += 5;
+                    }
+                    // If the cursor is on the right area, rotate it to the right
+                    else if (Screen.IsCursorInArea(searchAreaRight, searchAreaSize))
+                    {
+                        GameplayCamera.RelativeHeading -= 5;
+                    }
+                }
+
                 // If the select button was not pressed, return
                 if (!selectPressed)
                 {
@@ -1249,6 +1276,9 @@ namespace LemonUI.Menus
             selectedRect.Size = new SizeF(width, itemHeight);
             // And set the word wrap of the description
             descriptionText.WordWrap = width - posXDescTxt;
+
+            // Set the right size of the rotation
+            searchAreaRight = new PointF(1f.ToXAbsolute() - 30, 0);
 
             // Then, continue with an item update
             UpdateItems();
