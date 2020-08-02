@@ -135,8 +135,8 @@ namespace LemonUI.TimerBars
         /// </summary>
         public void Process()
         {
-            // If there are no timer bars, return
-            if (TimerBars.Count == 0)
+            // If there are no timer bars or the collection is disabled, return
+            if (TimerBars.Count == 0 || !Visible)
             {
                 return;
             }
