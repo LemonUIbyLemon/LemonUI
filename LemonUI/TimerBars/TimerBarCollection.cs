@@ -125,7 +125,7 @@ namespace LemonUI.TimerBars
             foreach (TimerBar timerBar in TimerBars)
             {
                 // And send them to the timer bar
-                timerBar.Recalculate(new PointF(pos.X - TimerBar.backgroundWidth, pos.Y - (TimerBar.backgroundHeight * (count + 1)) - (TimerBar.separation * count)));
+                timerBar.Recalculate(new PointF(pos.X - TimerBar.backgroundWidth, pos.Y - (TimerBar.backgroundHeight * (TimerBars.Count - count)) - (TimerBar.separation * (TimerBars.Count - count - 1))));
                 // Finish by increasing the total count of items
                 count++;
             }
