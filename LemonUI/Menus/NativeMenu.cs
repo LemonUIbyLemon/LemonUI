@@ -234,6 +234,10 @@ namespace LemonUI.Menus
         /// </summary>
         private bool visible = false;
         /// <summary>
+        /// If this menu should be aware of the Safe Zone when doing calculations.
+        /// </summary>
+        private bool safeZoneAware = true;
+        /// <summary>
         /// The index of the selected item in the menu.
         /// </summary>
         private int index = -1;
@@ -546,9 +550,17 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
-        /// If this menu should be aware of the Safe Zone.
+        /// If this menu should be aware of the Safe Zone when doing calculations.
         /// </summary>
-        public bool SafeZoneAware { get; set; } = true;
+        public bool SafeZoneAware
+        {
+            get => safeZoneAware;
+            set
+            {
+                safeZoneAware = value;
+                Recalculate();
+            }
+        }
         /// <summary>
         /// If the count of items should be shown on the right of the subtitle.
         /// </summary>
@@ -722,15 +734,20 @@ namespace LemonUI.Menus
         /// </summary>
         private void ResetCursor()
         {
+            const float extraX = 35;
+            const float extraY = 325;
+
             // Get the correct desired position of the cursor as relative
+            PointF pos = PointF.Empty;
             if (SafeZoneAware)
             {
                 Screen.SetElementAlignment(Alignment == Alignment.Right ? GFXAlignment.Right : GFXAlignment.Left, GFXAlignment.Top);
-            }
-            PointF pos = Screen.GetRealPosition(Offset.X + (Alignment == Alignment.Right ? -Width - 35 : Width + 35), Offset.Y + 325).ToRelative();
-            if (SafeZoneAware)
-            {
+                pos = Screen.GetRealPosition(Offset.X + (Alignment == Alignment.Right ? -Width - extraX : Width + extraX), Offset.Y + extraY).ToRelative();
                 Screen.ResetElementAlignment();
+            }
+            else
+            {
+                pos = new PointF(Alignment == Alignment.Right ? 1f.ToXAbsolute() - Offset.X - Width - extraX : Offset.X + Width + extraX, Offset.Y + extraY).ToRelative();
             }
             // And set the position of the cursor
 #if FIVEM
@@ -747,20 +764,16 @@ namespace LemonUI.Menus
         private void UpdateItems()
         {
             // Store the current values of X and Y
+            PointF pos;
             if (SafeZoneAware)
             {
                 Screen.SetElementAlignment(Alignment == Alignment.Right ? GFXAlignment.Right : GFXAlignment.Left, GFXAlignment.Top);
-            }
-            PointF pos = Screen.GetRealPosition(offset);
-            if (SafeZoneAware)
-            {
+                pos = Screen.GetRealPosition(Alignment == Alignment.Right ? Offset.X - Width : Offset.X, Offset.Y);
                 Screen.ResetElementAlignment();
             }
-
-            // If this menu is aligned to the right, reduce the width
-            if (Alignment == Alignment.Right)
+            else
             {
-                pos.X -= Width;
+                pos = new PointF(Alignment == Alignment.Right ? 1f.ToXAbsolute() - Width - Offset.X : Offset.X, Offset.Y);
             }
 
             // Add the heights of the banner and subtitle (if there are any)
@@ -1227,20 +1240,16 @@ namespace LemonUI.Menus
         public void Recalculate()
         {
             // Store the current values of X and Y
+            PointF pos;
             if (SafeZoneAware)
             {
                 Screen.SetElementAlignment(Alignment == Alignment.Right ? GFXAlignment.Right : GFXAlignment.Left, GFXAlignment.Top);
-            }
-            PointF pos = Screen.GetRealPosition(offset);
-            if (SafeZoneAware)
-            {
+                pos = Screen.GetRealPosition(Alignment == Alignment.Right ? Offset.X - Width : Offset.X, Offset.Y);
                 Screen.ResetElementAlignment();
             }
-
-            // If this menu is aligned to the right, reduce the width
-            if (Alignment == Alignment.Right)
+            else
             {
-                pos.X -= Width;
+                pos = new PointF(Alignment == Alignment.Right ? 1f.ToXAbsolute() - Width - Offset.X : Offset.X, Offset.Y);
             }
 
             // If there is a banner and is a valid element
