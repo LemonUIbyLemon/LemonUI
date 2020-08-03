@@ -66,7 +66,7 @@ namespace LemonUI.Example
         /// This is a list of items that you can select between them.
         /// Here, we are going to use them for changing and showing the Big Message Scaleform.
         /// </summary>
-        private static readonly NativeListItem<MessageType> showBigMessage = new NativeListItem<MessageType>("Show Big Message", "Shows a custom Big Message. A coupe of examples of the Big Message Scaleforma are the Wasted/Busted and Mission Passed messages.", (MessageType[])Enum.GetValues(typeof(MessageType)));
+        private static readonly NativeListItem<MessageType> showBigMessage = new NativeListItem<MessageType>("Show Big Message", "Shows a custom Big Message. A couple of examples of the Big Message Scaleforma are the Wasted/Busted and Mission Passed messages.", (MessageType[])Enum.GetValues(typeof(MessageType)));
         /// <summary>
         /// All of the other items should be the same as one of the previously mentioned.
         /// </summary>
