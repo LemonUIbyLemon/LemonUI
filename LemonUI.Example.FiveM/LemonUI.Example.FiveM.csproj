@@ -7,7 +7,7 @@
     <AssemblyName>$(AssemblyName).net</AssemblyName>
     <DefineConstants>FIVEM</DefineConstants>
     <Version>1.0</Version>
-    <OutputPath>..\bin\$(Configuration)\Demo\FiveM\</OutputPath>
+    <OutputPath>..\bin\$(Configuration)Demo\FiveM\</OutputPath>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
