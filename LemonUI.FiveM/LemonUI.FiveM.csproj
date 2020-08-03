@@ -19,7 +19,7 @@
     <Authors>Hannele "Lemon" Ruiz</Authors>
     <Company>Hannele "Lemon" Ruiz</Company>
     <Product>LemonUI</Product>
-    <Description>UI system for Grand Theft Auto V. This package is for FiveM Clients.</Description>
+    <Description>UI system for Grand Theft Auto V. This package is for FiveM Client.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/justalemon/LemonUI</PackageProjectUrl>
     <RepositoryUrl>https://github.com/justalemon/LemonUI.git</RepositoryUrl>
