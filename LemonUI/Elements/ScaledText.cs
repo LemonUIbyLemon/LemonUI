@@ -336,8 +336,8 @@ namespace LemonUI.Elements
         /// </summary>
         private void Slice()
         {
-            // If the entire text is under 90 characters, save it as is and return
-            if (Encoding.UTF8.GetByteCount(text) >= chunkSize)
+            // If the entire text is under 90 bytes, save it as is and return
+            if (Encoding.UTF8.GetByteCount(text) <= chunkSize)
             {
                 chunks.Clear();
                 chunks.Add(text);
@@ -357,10 +357,11 @@ namespace LemonUI.Elements
                 if (Encoding.UTF8.GetByteCount(with) > chunkSize)
                 {
                     newChunks.Add(temp);
-                    temp = "";
+                    temp = character.ToString();
+                    continue;
                 }
-                // And add the character that we got
-                temp += character;
+                // And save the new string generated
+                temp = with;
             }
 
             // If after finishing we still have a piece, save it
