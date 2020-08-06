@@ -380,8 +380,8 @@ namespace LemonUI.Menus
         {
             get
             {
-                // If there are no items, return null
-                if (Items.Count == 0)
+                // If there are no items or is over the maximum, return null
+                if (Items.Count == 0 || SelectedIndex >= Items.Count)
                 {
                     return null;
                 }
@@ -399,10 +399,12 @@ namespace LemonUI.Menus
         {
             get
             {
-                if (Items == null || Items.Count == 0)
+                // If there are no items or is over the maximum, return -1
+                if (Items.Count == 0 || SelectedIndex >= Items.Count)
                 {
                     return -1;
                 }
+                // Otherwise, return the real index
                 return index;
             }
             set
