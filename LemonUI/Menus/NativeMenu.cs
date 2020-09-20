@@ -446,21 +446,22 @@ namespace LemonUI.Menus
                 // Save the index
                 index = value;
 
+                // And update the items
+                UpdateItemList();
+                UpdateItems();
+
                 // If the menu is visible, play the up and down sound
                 if (Visible)
                 {
                     SoundUpDown?.PlayFrontend();
                 }
 
-                // If an item was selected, set the description and trigger it
+                // If an item was selected
                 if (SelectedItem != null)
                 {
+                    // And trigger it
                     TriggerSelectedItem();
                 }
-
-                // And update the items
-                UpdateItemList();
-                UpdateItems();
             }
         }
         /// <summary>
@@ -719,7 +720,17 @@ namespace LemonUI.Menus
                 return;
             }
 
-            // Otherwise, trigger the selected event for this menu
+            // Update the position of the Panel (if present)
+            if (SelectedItem.Panel != null)
+            {
+                float y = descriptionRect.Position.Y;
+                if (!string.IsNullOrWhiteSpace(descriptionText.Text))
+                {
+                    y += descriptionRect.Size.Height + 10;
+                }
+                SelectedItem.Panel.Recalculate(new PointF(descriptionRect.Position.X, y), Width);
+            }
+            // And trigger the selected event for this menu
             SelectedEventArgs args = new SelectedEventArgs(index, index - firstItem);
             SelectedItem.OnSelected(this, args);
             SelectedIndexChanged?.Invoke(this, args);

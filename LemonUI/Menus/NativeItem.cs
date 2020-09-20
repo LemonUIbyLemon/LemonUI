@@ -111,6 +111,10 @@ namespace LemonUI.Menus
                 Recalculate();
             }
         }
+        /// <summary>
+        /// The Panel asociated to this <see cref="NativeItem"/>.
+        /// </summary>
+        public NativePanel Panel { get; set; } = null;
 
         #endregion
 
@@ -241,6 +245,7 @@ namespace LemonUI.Menus
             altTitle.Draw();
             badgeLeft?.Draw();
             badgeRight?.Draw();
+            Panel?.Draw();
         }
 
         #endregion
