@@ -64,14 +64,8 @@ namespace LemonUI.Menus
         /// <param name="description">The description of the Item.</param>
         public NativeSlidableItem(string title, string description) : base(title, description)
         {
-            LeftArrow = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowleft")
-            {
-                Color = NativeMenu.colorBlack
-            };
-            RightArrow = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowright")
-            {
-                Color = NativeMenu.colorBlack
-            };
+            LeftArrow = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowleft");
+            RightArrow = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowright");
             arrowLeft = LeftArrow;
             arrowRight = RightArrow;
         }
@@ -91,7 +85,9 @@ namespace LemonUI.Menus
             base.Recalculate(pos, size, selected);
             // Set the sizes of the arrows
             LeftArrow.Size = (selected && Enabled) || ArrowsAlwaysVisible ? new SizeF(30, 30) : SizeF.Empty;
-            LeftArrow.Size = (selected && Enabled) || ArrowsAlwaysVisible ? new SizeF(30, 30) : SizeF.Empty;
+            LeftArrow.Color = selected ? NativeMenu.colorBlack : NativeMenu.colorWhiteSmoke;
+            RightArrow.Size = (selected && Enabled) || ArrowsAlwaysVisible ? new SizeF(30, 30) : SizeF.Empty;
+            RightArrow.Color = selected ? NativeMenu.colorBlack : NativeMenu.colorWhiteSmoke;
             // And set the positions of the right arrow
             RightArrow.Position = new PointF(pos.X + size.Width - RightArrow.Size.Width - 5, pos.Y + 4);
         }
