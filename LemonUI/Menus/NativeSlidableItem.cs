@@ -1,4 +1,5 @@
 using LemonUI.Elements;
+using System;
 using System.Drawing;
 
 namespace LemonUI.Menus
@@ -11,13 +12,28 @@ namespace LemonUI.Menus
         #region Internal Fields
 
         /// <summary>
-        /// The arrow pointing to the left.
+        /// The arrow pointing to the Left.
         /// </summary>
+        [Obsolete("arrowLeft is Obsolete, use LeftArrow instead.")]
         internal protected ScaledTexture arrowLeft = null;
         /// <summary>
-        /// The arrow pointing to the right.
+        /// The arrow pointing to the Right.
         /// </summary>
+        [Obsolete("arrowRight is Obsolete, use RightArrow instead.")]
         internal protected ScaledTexture arrowRight = null;
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// The arrow pointing to the Left.
+        /// </summary>
+        public ScaledTexture LeftArrow { get; }
+        /// <summary>
+        /// The arrow pointing to the Right.
+        /// </summary>
+        public ScaledTexture RightArrow { get; }
 
         #endregion
 
@@ -30,14 +46,16 @@ namespace LemonUI.Menus
         /// <param name="description">The description of the Item.</param>
         public NativeSlidableItem(string title, string description) : base(title, description)
         {
-            arrowLeft = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowleft")
+            LeftArrow = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowleft")
             {
                 Color = NativeMenu.colorBlack
             };
-            arrowRight = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowright")
+            RightArrow = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowright")
             {
                 Color = NativeMenu.colorBlack
             };
+            arrowLeft = LeftArrow;
+            arrowRight = RightArrow;
         }
 
         #endregion
@@ -54,10 +72,10 @@ namespace LemonUI.Menus
         {
             base.Recalculate(pos, size, selected);
             // Set the sizes of the arrows
-            arrowLeft.Size = selected && Enabled ? new SizeF(30, 30) : SizeF.Empty;
-            arrowRight.Size = selected && Enabled ? new SizeF(30, 30) : SizeF.Empty;
+            LeftArrow.Size = selected && Enabled ? new SizeF(30, 30) : SizeF.Empty;
+            RightArrow.Size = selected && Enabled ? new SizeF(30, 30) : SizeF.Empty;
             // And set the positions of the right arrow
-            arrowRight.Position = new PointF(pos.X + size.Width - arrowRight.Size.Width - 5, pos.Y + 4);
+            RightArrow.Position = new PointF(pos.X + size.Width - RightArrow.Size.Width - 5, pos.Y + 4);
         }
         /// <summary>
         /// Moves to the previous item.
@@ -74,8 +92,8 @@ namespace LemonUI.Menus
         {
             title.Draw();
             badgeLeft?.Draw();
-            arrowLeft.Draw();
-            arrowRight.Draw();
+            LeftArrow.Draw();
+            RightArrow.Draw();
         }
 
         #endregion
