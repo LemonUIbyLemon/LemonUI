@@ -9,6 +9,12 @@ namespace LemonUI.Menus
     /// </summary>
     public abstract class NativeSlidableItem : NativeItem
     {
+        #region Private Fields
+
+        private bool alwaysVisible = false;
+
+        #endregion
+
         #region Internal Fields
 
         /// <summary>
@@ -34,9 +40,21 @@ namespace LemonUI.Menus
         /// The arrow pointing to the Right.
         /// </summary>
         public ScaledTexture RightArrow { get; }
+        /// <summary>
+        /// Whether the arrows should always be shown regardless of the visibility of the Item.
+        /// </summary>
+        public bool ArrowsAlwaysVisible
+        {
+            get => alwaysVisible;
+            set
+            {
+                alwaysVisible = value;
+                Recalculate();
+            }
+        }
 
         #endregion
-
+        
         #region Constructors
 
         /// <summary>
@@ -72,8 +90,8 @@ namespace LemonUI.Menus
         {
             base.Recalculate(pos, size, selected);
             // Set the sizes of the arrows
-            LeftArrow.Size = selected && Enabled ? new SizeF(30, 30) : SizeF.Empty;
-            RightArrow.Size = selected && Enabled ? new SizeF(30, 30) : SizeF.Empty;
+            LeftArrow.Size = (selected && Enabled) || ArrowsAlwaysVisible ? new SizeF(30, 30) : SizeF.Empty;
+            LeftArrow.Size = (selected && Enabled) || ArrowsAlwaysVisible ? new SizeF(30, 30) : SizeF.Empty;
             // And set the positions of the right arrow
             RightArrow.Position = new PointF(pos.X + size.Width - RightArrow.Size.Width - 5, pos.Y + 4);
         }

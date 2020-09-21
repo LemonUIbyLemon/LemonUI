@@ -187,7 +187,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// Recalculates the item with the last known values.
         /// </summary>
-        private void Recalculate() => Recalculate(lastPosition, lastSize, lastSelected);
+        protected void Recalculate() => Recalculate(lastPosition, lastSize, lastSelected);
 
         #endregion
 
