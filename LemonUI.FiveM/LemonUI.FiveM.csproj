@@ -33,9 +33,6 @@
       <IncludeAssets>compile</IncludeAssets>
     </PackageReference>
     <Compile Include="$(ProjectDir)/../LemonUI/**" />
-    <Compile Update="..\LemonUI\Menus\NativeSeparatorItem.cs">
-      <Link>Menus\NativeSeparatorItem.cs</Link>
-    </Compile>
   </ItemGroup>
 
 </Project>

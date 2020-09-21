@@ -3,10 +3,10 @@
     /// <summary>
     /// A blank separator item for dividing menus.
     /// </summary>
-    public class NativeSeparatorItem: NativeItem
+    public class NativeSeparatorItem : NativeItem
     {
         /// <summary>
-        /// Creates a new NativeSeparator
+        /// Creates a new NativeSeparator.
         /// </summary>
         public NativeSeparatorItem() : base("", "", "")
         {
