@@ -8,6 +8,12 @@ namespace LemonUI.Menus
     /// </summary>
     public abstract class NativeSlidableItem : NativeItem
     {
+        #region Private Fields
+
+        private bool alwaysVisible = false;
+
+        #endregion
+
         #region Internal Fields
 
         /// <summary>
@@ -24,13 +30,20 @@ namespace LemonUI.Menus
         #region Public Properties
 
         /// <summary>
-        /// Whether the arrows should always be shown regardless of state.
+        /// Whether the arrows should always be shown regardless of the visibility of the Item.
         /// </summary>
-        public bool ArrowsAlwaysVisible = false;
+        public bool ArrowsAlwaysVisible
+        {
+            get => alwaysVisible;
+            set
+            {
+                alwaysVisible = value;
+                Recalculate();
+            }
+        }
 
         #endregion
         
-
         #region Constructors
 
         /// <summary>
