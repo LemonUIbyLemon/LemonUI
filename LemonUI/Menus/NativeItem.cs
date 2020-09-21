@@ -111,7 +111,7 @@ namespace LemonUI.Menus
                 Recalculate();
             }
         }
-
+        
         #endregion
 
         #region Events

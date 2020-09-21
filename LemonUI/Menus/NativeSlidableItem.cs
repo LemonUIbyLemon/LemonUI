@@ -20,6 +20,16 @@ namespace LemonUI.Menus
         internal protected ScaledTexture arrowRight = null;
 
         #endregion
+        
+        #region Public Properties
+
+        /// <summary>
+        /// Whether the arrows should always be shown regardless of state.
+        /// </summary>
+        public bool ArrowsAlwaysVisible = false;
+
+        #endregion
+        
 
         #region Constructors
 
@@ -54,8 +64,8 @@ namespace LemonUI.Menus
         {
             base.Recalculate(pos, size, selected);
             // Set the sizes of the arrows
-            arrowLeft.Size = selected && Enabled ? new SizeF(30, 30) : SizeF.Empty;
-            arrowRight.Size = selected && Enabled ? new SizeF(30, 30) : SizeF.Empty;
+            arrowLeft.Size = (selected && Enabled) || ArrowsAlwaysVisible ? new SizeF(30, 30) : SizeF.Empty;
+            arrowRight.Size = (selected && Enabled) || ArrowsAlwaysVisible ? new SizeF(30, 30) : SizeF.Empty;
             // And set the positions of the right arrow
             arrowRight.Position = new PointF(pos.X + size.Width - arrowRight.Size.Width - 5, pos.Y + 4);
         }
