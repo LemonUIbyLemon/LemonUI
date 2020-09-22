@@ -135,6 +135,7 @@ namespace LemonUI.Menus
         /// </summary>
         internal static List<Control> controlsRequired = new List<Control>
         {
+            // Menu Controls
             Control.FrontendAccept,
             Control.FrontendAxisX,
             Control.FrontendAxisY,
@@ -150,18 +151,35 @@ namespace LemonUI.Menus
             Control.CursorY,
             Control.MoveUpDown,
             Control.MoveLeftRight,
+            // Movement
             Control.Sprint,
             Control.Jump,
             Control.Enter,
+            // Driving
             Control.VehicleExit,
             Control.VehicleAccelerate,
             Control.VehicleBrake,
             Control.VehicleMoveLeftRight,
+            Control.VehicleHandbrake,
+            // Bikes
+            Control.VehiclePushbikePedal,
+            Control.VehiclePushbikeSprint,
+            Control.VehiclePushbikeFrontBrake,
+            Control.VehiclePushbikeRearBrake,
+            // Flying
+            Control.VehicleFlyThrottleUp,
+            Control.VehicleFlyThrottleDown,
             Control.VehicleFlyYawLeft,
+            Control.VehicleFlyYawRight,
+            Control.VehicleFlyRollLeftRight,
+            Control.VehicleFlyRollLeftOnly,
+            Control.VehicleFlyRollRightOnly,
+            Control.VehicleFlyPitchUpDown,
+            Control.VehicleFlyPitchUpOnly,
+            Control.VehicleFlyPitchDownOnly,
+
             Control.FlyLeftRight,
             Control.FlyUpDown,
-            Control.VehicleFlyYawRight,
-            Control.VehicleHandbrake
         };
         /// <summary>
         /// Controls required for the camera to work.
