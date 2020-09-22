@@ -6,7 +6,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Represents a panel shown under the description of the item description.
     /// </summary>
-    public abstract class NativePanel : IDrawable
+    public abstract class NativePanel
     {
         #region Public Properties
 
@@ -29,9 +29,9 @@ namespace LemonUI.Menus
             Background.Position = position;
         }
         /// <summary>
-        /// Draws the Panel.
+        /// Processes and Draws the panel.
         /// </summary>
-        public virtual void Draw()
+        public virtual void Process()
         {
             Background.Draw();
         }
