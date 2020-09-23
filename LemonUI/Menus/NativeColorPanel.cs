@@ -83,6 +83,19 @@ namespace LemonUI.Menus
     /// </summary>
     public class NativeColorPanel : NativePanel
     {
+        #region Constants
+
+        /// <summary>
+        /// The space difference for the colors and opacity bar on the left.
+        /// </summary>
+        private const float leftDifference = 16;
+        /// <summary>
+        /// The space difference for the colors and opacity bar on the left.
+        /// </summary>
+        private const float rightDifference = 12;
+
+        #endregion
+
         #region Private Fields
 
         /// <summary>
@@ -104,6 +117,43 @@ namespace LemonUI.Menus
         /// The rectangle used for marking the item selection on the screen.
         /// </summary>
         private ScaledRectangle selectionRectangle = new ScaledRectangle(PointF.Empty, SizeF.Empty);
+        /// <summary>
+        /// The "Opacity" text when the opacity bar is enabled
+        /// </summary>
+        private ScaledText opacityText = new ScaledText(PointF.Empty, "Opacity", 0.325f)
+        {
+            Alignment = Alignment.Center
+        };
+        /// <summary>
+        /// The zero percent text when the opacity bar is enabled.
+        /// </summary>
+        private ScaledText percentMin = new ScaledText(PointF.Empty, "0%", 0.325f);
+        /// <summary>
+        /// The 100 percent text when the opacity bar is enabled.
+        /// </summary>
+        private ScaledText percentMax = new ScaledText(PointF.Empty, "100%", 0.325f);
+        /// <summary>
+        /// The top section of the opacity bar.
+        /// </summary>
+        private ScaledRectangle opacityForeground = new ScaledRectangle(PointF.Empty, SizeF.Empty)
+        {
+            Color = Color.FromArgb(255, 240, 240, 240)
+        };
+        /// <summary>
+        /// The background of the opacity bar.
+        /// </summary>
+        private ScaledRectangle opacityBackground = new ScaledRectangle(PointF.Empty, SizeF.Empty)
+        {
+            Color = Color.FromArgb(150, 88, 88, 88)
+        };
+        /// <summary>
+        /// If the opacity bar is available to the user.
+        /// </summary>
+        private bool showOpacity = false;
+        /// <summary>
+        /// The current value of the opacity slider.
+        /// </summary>
+        private int opacity = 0;
         /// <summary>
         /// The current index of the Colors.
         /// </summary>
@@ -145,7 +195,47 @@ namespace LemonUI.Menus
         #endregion
 
         #region Public Properties
-
+        
+        /// <summary>
+        /// If the Opacity selector should be shown.
+        /// </summary>
+        public bool ShowOpacity
+        {
+            get => showOpacity;
+            set
+            {
+                showOpacity = value;
+                Recalculate();
+            }
+        }
+        /// <summary>
+        /// The opacity value from 0 to 100.
+        /// </summary>
+        /// <returns></returns>
+        public int Opacity
+        {
+            get
+            {
+                if (!ShowOpacity)
+                {
+                    return -1;
+                }
+                return opacity;
+            }
+            set
+            {
+                if (!ShowOpacity)
+                {
+                    return;
+                }
+                if (value > 100 || value < 0)
+                {
+                    throw new IndexOutOfRangeException("The value needs to be over 0 and under 100.");
+                }
+                opacity = value;
+                UpdateOpacityBar();
+            }
+        }
         /// <summary>
         /// Returns the currently selected Color.
         /// </summary>
@@ -372,19 +462,19 @@ namespace LemonUI.Menus
 
             visibleItems = list;
 
-            // This is the difference of size in both sides (cuz symetric)
-            const float leftDifference = 16;
-            const float rightDifference = 12;
             // Get the width based on the maximum number of items
             float width = (lastWidth - leftDifference - rightDifference) / maxItems;
             // And store the number of items already completed
             int count = 0;
 
+            // Select the correct extra distance based on the prescence of the Opacity toggle
+            float extra = ShowOpacity ? 78 : 0;
+
             // Then, start iterating over the colors visible on the screen
             foreach (NativeColorData color in visibleItems)
             {
                 // Set the position based on the number of items completed
-                color.rectangle.Position = new PointF(lastPosition.X + leftDifference + (width * count), lastPosition.Y + 54);
+                color.rectangle.Position = new PointF(lastPosition.X + leftDifference + (width * count), lastPosition.Y + extra + 54);
                 // And set the size of it based on the number of items
                 color.rectangle.Size = new SizeF(width, 45);
                 // Finally, increase the count by one
@@ -403,6 +493,27 @@ namespace LemonUI.Menus
 
             // Finally, update the text of the title
             UpdateTitle();
+        }
+        /// <summary>
+        /// Updates the size of the opacity bar.
+        /// </summary>
+        private void UpdateOpacityBar()
+        {
+            // If the opacity bar is disabled, return
+            if (!ShowOpacity)
+            {
+                return;
+            }
+
+            // Otherwise, set the size based in the last known position
+            float x = lastPosition.X + 13;
+            float y = lastPosition.Y + 48;
+            float width = lastWidth - leftDifference - rightDifference;
+            const float height = 9;
+            opacityBackground.Position = new PointF(x, y);
+            opacityBackground.Size = new SizeF(width, height);
+            opacityForeground.Position = new PointF(x, y);
+            opacityForeground.Size = new SizeF(width * (Opacity * 0.01f), height);
         }
         /// <summary>
         /// Recalculates the Color panel with the last known Position and Width.
@@ -529,11 +640,19 @@ namespace LemonUI.Menus
             lastPosition = position;
             lastWidth = width;
 
+            // Select the correct extra distance based on the prescence of the Opacity toggle
+            float extra = ShowOpacity ? 78 : 0;
+
             // Set the position and size of the Background
             Background.Position = position;
-            Background.Size = new SizeF(width, 111);
+            Background.Size = new SizeF(width, ShowOpacity ? 188 : 111);
             // And then set the position of the text
-            title.Position = new PointF(position.X + 218, position.Y + 10);
+            title.Position = new PointF(position.X + (width * 0.5f), position.Y + extra + 10f);
+            // Then, set the position of the opacity bar and texts
+            UpdateOpacityBar();
+            opacityText.Position = new PointF(position.X + (width * 0.5f), position.Y + 10f);
+            percentMin.Position = new PointF(position.X + 9, position.Y + 11);
+            percentMax.Position = new PointF(position.X + width - 60, position.Y + 11);
 
             // Finally, update the list of items
             UpdateItems();
@@ -552,6 +671,23 @@ namespace LemonUI.Menus
             {
                 Next();
             }
+            // If the user pressed one of the bumpers with the Opacity bar enabled, increase or decrease it
+            else if (ShowOpacity && Controls.IsJustPressed(Control.FrontendLb))
+            {
+                if (Opacity > 0)
+                {
+                    Opacity--;
+                    Sound?.PlayFrontend();
+                }
+            }
+            else if (ShowOpacity && Controls.IsJustPressed(Control.FrontendRb))
+            {
+                if (Opacity < 100)
+                {
+                    Opacity++;
+                    Sound?.PlayFrontend();
+                }
+            }
 
             // Draw the items
             base.Process();
@@ -563,6 +699,14 @@ namespace LemonUI.Menus
             if (Colors.Count != 0)
             {
                 selectionRectangle.Draw();
+            }
+            if (ShowOpacity)
+            {
+                opacityText.Draw();
+                percentMin.Draw();
+                percentMax.Draw();
+                opacityBackground.Draw();
+                opacityForeground.Draw();
             }
         }
 
