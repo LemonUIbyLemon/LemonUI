@@ -140,7 +140,6 @@ namespace LemonUI.Menus
             title.Draw();
             badgeLeft?.Draw();
             check.Draw();
-            Panel?.Process();
         }
 
         #endregion

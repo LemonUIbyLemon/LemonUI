@@ -245,7 +245,6 @@ namespace LemonUI.Menus
             altTitle.Draw();
             badgeLeft?.Draw();
             badgeRight?.Draw();
-            Panel?.Process();
         }
 
         #endregion

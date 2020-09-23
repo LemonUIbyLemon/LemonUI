@@ -1112,6 +1112,7 @@ namespace LemonUI.Menus
             selectedRect?.Draw();
             // And finish with the selected item on top (if any)
             SelectedItem?.Draw();
+            SelectedItem?.Panel?.Process();
         }
 
         #endregion
