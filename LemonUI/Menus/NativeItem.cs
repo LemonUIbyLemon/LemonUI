@@ -61,10 +61,12 @@ namespace LemonUI.Menus
             get => enabled;
             set
             {
-                // Save the value
+                if (enabled == value)
+                {
+                    return;
+                }
                 enabled = value;
-                // And set the correct color for enabled and disabled
-                title.Color = value ? NativeMenu.colorWhite : NativeMenu.colorDisabled;
+                EnabledChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -128,6 +130,10 @@ namespace LemonUI.Menus
         /// Event triggered when the item is activated.
         /// </summary>
         public event EventHandler Activated;
+        /// <summary>
+        /// Event triggered when the <see cref="Enabled"/> property is changed.
+        /// </summary>
+        public event EventHandler EnabledChanged;
 
         #endregion
 
@@ -165,6 +171,17 @@ namespace LemonUI.Menus
             {
                 Color = NativeMenu.colorWhiteSmoke
             };
+            EnabledChanged += NativeItem_EnabledChanged;
+        }
+
+        #endregion
+
+        #region Local Events
+
+        private void NativeItem_EnabledChanged(object sender, EventArgs e)
+        {
+            title.Color = Enabled ? NativeMenu.colorWhite : NativeMenu.colorDisabled;
+            altTitle.Color = Enabled ? NativeMenu.colorWhite : NativeMenu.colorDisabled;
         }
 
         #endregion

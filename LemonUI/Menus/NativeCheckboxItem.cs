@@ -88,7 +88,14 @@ namespace LemonUI.Menus
         {
             Checked = check;
             Activated += Toggle;
+            EnabledChanged += NativeCheckboxItem_EnabledChanged;
         }
+
+        #endregion
+
+        #region Local Events
+
+        private void NativeCheckboxItem_EnabledChanged(object sender, EventArgs e) => UpdateTexture(lastSelected);
 
         #endregion
 
@@ -103,14 +110,19 @@ namespace LemonUI.Menus
         /// </summary>
         internal protected void UpdateTexture(bool selected)
         {
-            if (selected)
-            {
-                check.Texture = Checked ? "shop_box_tickb" : "shop_box_blankb";
-            }
-            else
+            // If the item is not selected or is not enabled, use the white pictures
+            if (!selected || !Enabled)
             {
                 check.Texture = Checked ? "shop_box_tick" : "shop_box_blank";
             }
+            // Otherwise, use the black ones
+            else
+            {
+                check.Texture = Checked ? "shop_box_tickb" : "shop_box_blankb";
+            }
+
+            // Then, set the color based on the item activation
+            check.Color = Enabled ? NativeMenu.colorWhite : NativeMenu.colorDisabled;
         }
 
         #endregion

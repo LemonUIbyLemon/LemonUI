@@ -54,7 +54,7 @@ namespace LemonUI.Menus
         }
 
         #endregion
-        
+
         #region Constructors
 
         /// <summary>
@@ -68,7 +68,14 @@ namespace LemonUI.Menus
             RightArrow = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowright");
             arrowLeft = LeftArrow;
             arrowRight = RightArrow;
+            EnabledChanged += NativeSlidableItem_EnabledChanged;
         }
+
+        #endregion
+
+        #region Local Events
+
+        private void NativeSlidableItem_EnabledChanged(object sender, EventArgs e) => Recalculate();
 
         #endregion
 
