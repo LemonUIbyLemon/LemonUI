@@ -14,7 +14,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The image shown on the checkbox.
         /// </summary>
-        internal protected ScaledTexture check = null;
+        internal protected ScaledTexture check = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "");
         /// <summary>
         /// If this item is checked or not.
         /// </summary>
@@ -37,6 +37,7 @@ namespace LemonUI.Menus
                     return;
                 }
                 checked_ = value;
+                UpdateTexture(lastSelected);
                 CheckboxChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -86,7 +87,6 @@ namespace LemonUI.Menus
         public NativeCheckboxItem(string title, string description, bool check) : base(title, description)
         {
             Checked = check;
-            this.check = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "");
             Activated += Toggle;
         }
 
