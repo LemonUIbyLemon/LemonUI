@@ -738,20 +738,31 @@ namespace LemonUI.Menus
                 return;
             }
 
-            // Update the position of the Panel (if present)
-            if (SelectedItem.Panel != null)
-            {
-                float y = descriptionRect.Position.Y;
-                if (!string.IsNullOrWhiteSpace(descriptionText.Text))
-                {
-                    y += descriptionRect.Size.Height + 10;
-                }
-                SelectedItem.Panel.Recalculate(new PointF(descriptionRect.Position.X, y), Width);
-            }
+            // Update the panel
+            RecalculatePanel();
             // And trigger the selected event for this menu
             SelectedEventArgs args = new SelectedEventArgs(index, index - firstItem);
             SelectedItem.OnSelected(this, args);
             SelectedIndexChanged?.Invoke(this, args);
+        }
+        /// <summary>
+        /// Recalculates the Position and Size of the Panel of the Selected Item.
+        /// </summary>
+        private void RecalculatePanel()
+        {
+            // If the selected item has a panel
+            if (SelectedItem?.Panel != null)
+            {
+                // Save the Y value of the description
+                float y = descriptionRect.Position.Y;
+                // If it has text, show it after the description instead of taking it's place
+                if (!string.IsNullOrWhiteSpace(descriptionText.Text))
+                {
+                    y += descriptionRect.Size.Height + 10;
+                }
+                // Finally, set the position of the panel
+                SelectedItem.Panel.Recalculate(new PointF(descriptionRect.Position.X, y), Width);
+            }
         }
         /// <summary>
         /// Resets the current position of the cursor.
@@ -838,6 +849,9 @@ namespace LemonUI.Menus
                 i++;
                 pos.Y += itemHeight;
             }
+
+            // Finally, recalculate the panel of the selected item
+            RecalculatePanel();
         }
         /// <summary>
         /// Processes the button presses.
