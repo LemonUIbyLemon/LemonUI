@@ -15,5 +15,16 @@
         }
 
         #endregion
+
+        #region Public Functions
+
+        /// <summary>
+        /// Draws nothing.
+        /// </summary>
+        public override void Draw()
+        {
+        }
+
+        #endregion
     }
 }
