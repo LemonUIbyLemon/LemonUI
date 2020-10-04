@@ -1,15 +1,19 @@
 ﻿namespace LemonUI.Menus
 {
     /// <summary>
-    /// A blank separator item for dividing menus.
+    /// A Blank Separator Item for creating empty spaces between menu items.
     /// </summary>
     public class NativeSeparatorItem : NativeItem
     {
+        #region Constructor
+
         /// <summary>
-        /// Creates a new NativeSeparator.
+        /// Creates a new Menu Separator.
         /// </summary>
         public NativeSeparatorItem() : base("", "", "")
         {
         }
+
+        #endregion
     }
 }
