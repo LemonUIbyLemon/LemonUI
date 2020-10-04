@@ -237,9 +237,26 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
-        /// Returns the currently selected Color.
+        /// Returns the currently selected color with the opacity taken into account.
         /// </summary>
-        public NativeColorData SelectedColor
+        public Color SelectedColor
+        {
+            get
+            {
+                // If there is no selected color information, return
+                NativeColorData data = SelectedItem;
+                if (data == null)
+                {
+                    return default;
+                }
+                // Otherwise, return the color
+                return Color.FromArgb(ShowOpacity ? (int)(255 * (Opacity * 0.01f)) : 255, data.Color.R, data.Color.G, data.Color.B);
+            }
+        }
+        /// <summary>
+        /// Returns the currently selected <see cref="NativeColorData"/>.
+        /// </summary>
+        public NativeColorData SelectedItem
         {
             get
             {
@@ -420,7 +437,7 @@ namespace LemonUI.Menus
                     newTitle = Title;
                     break;
                 case ColorTitleStyle.ColorName:
-                    newTitle = SelectedColor == null ? "" : SelectedColor.Name;
+                    newTitle = SelectedItem == null ? "" : SelectedItem.Name;
                     break;
             }
 
@@ -482,10 +499,10 @@ namespace LemonUI.Menus
             }
 
             // If there is a selected color item
-            if (SelectedColor != null)
+            if (SelectedItem != null)
             {
                 // Set the position and size of the selection rectangle based on the currently selected color
-                ScaledRectangle colorRect = SelectedColor.rectangle;
+                ScaledRectangle colorRect = SelectedItem.rectangle;
                 const float height = 8;
                 selectionRectangle.Position = new PointF(colorRect.Position.X, colorRect.Position.Y - height);
                 selectionRectangle.Size = new SizeF(colorRect.Size.Width, height);
