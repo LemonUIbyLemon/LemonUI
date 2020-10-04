@@ -1120,15 +1120,26 @@ namespace LemonUI.Menus
         #region Public Functions
 
         /// <summary>
-        /// Adds an item onto the menu.
+        /// Adds an item at the end of the menu.
         /// </summary>
         /// <param name="item">The item to add.</param>
-        public void Add(NativeItem item)
+        public void Add(NativeItem item) => Add(Items.Count, item);
+        /// <summary>
+        /// Adds an item at the specified position.
+        /// </summary>
+        /// <param name="position">The position of the item.</param>
+        /// <param name="item">The item to add.</param>
+        public void Add(int position, NativeItem item)
         {
             // If the item is already on the list, raise an exception
             if (Items.Contains(item))
             {
                 throw new InvalidOperationException("The item is already part of the menu.");
+            }
+            // If the item position is under zero or over the maximum, raise an exception
+            if (position < 0 || position > Items.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(position), "The index under Zero or is over the Item Count.");
             }
             // Also raise an exception if is null
             if (item == null)
@@ -1137,7 +1148,7 @@ namespace LemonUI.Menus
             }
 
             // Otherwise, just add it
-            Items.Add(item);
+            Items.Insert(position, item);
             // Set the correct index if this is the only item
             if (Items.Count != 0 && SelectedIndex == -1)
             {
