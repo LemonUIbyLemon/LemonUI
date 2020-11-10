@@ -204,8 +204,8 @@ namespace LemonUI.Menus
             // Set the text based on the current item
             text.Text = SelectedIndex != -1 ? SelectedItem.ToString() : "";
             // And set the correct position
-            text.Position = new PointF(arrowRight.Position.X - text.Width + 3, text.Position.Y);
-            arrowLeft.Position = new PointF(text.Position.X - arrowLeft.Size.Width, arrowLeft.Position.Y);
+            text.Position = new PointF(RightArrow.Position.X - text.Width + 3, text.Position.Y);
+            LeftArrow.Position = new PointF(text.Position.X - LeftArrow.Size.Width, LeftArrow.Position.Y);
         }
 
         #endregion
@@ -235,9 +235,9 @@ namespace LemonUI.Menus
                 text.Color = NativeMenu.colorWhiteSmoke;
             }
             // And set the position of the left arrow and text
-            float textWidth = arrowRight.Size.Width;
+            float textWidth = RightArrow.Size.Width;
             text.Position = new PointF(pos.X + size.Width - textWidth - 1 - text.Width, pos.Y + 3);
-            arrowLeft.Position = new PointF(text.Position.X - arrowLeft.Size.Width, pos.Y + 4);
+            LeftArrow.Position = new PointF(text.Position.X - LeftArrow.Size.Width, pos.Y + 4);
         }
         /// <summary>
         /// Moves to the previous item.

@@ -175,9 +175,9 @@ namespace LemonUI.Menus
             base.Recalculate(pos, size, selected);
             // Set the position and size of the background
             background.Size = new SizeF(150, 9);
-            background.Position = new PointF(pos.X + size.Width - background.Size.Width - 7 - arrowLeft.Size.Width, pos.Y + 14);
+            background.Position = new PointF(pos.X + size.Width - background.Size.Width - 7 - LeftArrow.Size.Width, pos.Y + 14);
             // And do the same for the left arrow
-            arrowLeft.Position = new PointF(background.Position.X - arrowLeft.Size.Width, pos.Y + 4);
+            LeftArrow.Position = new PointF(background.Position.X - LeftArrow.Size.Width, pos.Y + 4);
             // Finally, set the correct position of the slider
             slider.Size = new SizeF(75, 9);
             UpdatePosition();

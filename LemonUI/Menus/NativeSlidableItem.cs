@@ -66,8 +66,10 @@ namespace LemonUI.Menus
         {
             LeftArrow = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowleft");
             RightArrow = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", "arrowright");
+#pragma warning disable CS0618
             arrowLeft = LeftArrow;
             arrowRight = RightArrow;
+#pragma warning restore CS0618
             EnabledChanged += NativeSlidableItem_EnabledChanged;
         }
 
