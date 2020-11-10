@@ -398,6 +398,16 @@ namespace LemonUI.Menus
                 // Otherwise, return the correct item from the list
                 return Items[SelectedIndex];
             }
+            set
+            {
+                // If the item is not part of the menu, raise an exception
+                if (!Items.Contains(value))
+                {
+                    throw new InvalidOperationException("Item is not part of the Menu.");
+                }
+                // Otherwise, set the correct index
+                SelectedIndex = Items.IndexOf(value);
+            }
         }
         /// <summary>
         /// The current index of the menu.
