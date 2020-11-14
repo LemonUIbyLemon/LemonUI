@@ -537,6 +537,10 @@ namespace LemonUI.Menus
         /// </summary>
         public bool UseMouse { get; set; } = true;
         /// <summary>
+        /// If the menu should be closed when the user clicks out of bounds (aka anywhere else other than the items).
+        /// </summary>
+        public bool CloseOnInvalidClick { get; set; } = true;
+        /// <summary>
         /// If the camera should be rotated when the cursor is on the left and right corners of the screen.
         /// </summary>
         public bool RotateCamera { get; set; } = false;
@@ -1009,8 +1013,11 @@ namespace LemonUI.Menus
                     }
 
                     // If we got here, the user clicked outside of the selected item area
-                    // So close the menu (same behavior of the interaction menu)
-                    Close();
+                    // So close the menu if required (same behavior of the interaction menu)
+                    if (CloseOnInvalidClick)
+                    {
+                        Close();
+                    }
                     return;
                 }
             }
