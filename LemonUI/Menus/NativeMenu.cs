@@ -1071,6 +1071,8 @@ namespace LemonUI.Menus
         /// </summary>
         private void Draw()
         {
+            NativeItem selected = SelectedItem;
+
             // Let's start with the basics
             // Draw the banner image and text
             if (bannerImage != null)
@@ -1107,7 +1109,7 @@ namespace LemonUI.Menus
             // Then, draw all of the items with the exception of the one selected
             foreach (NativeItem item in visibleItems)
             {
-                if (item != SelectedItem)
+                if (item != selected)
                 {
                     item.Draw();
                 }
@@ -1115,8 +1117,14 @@ namespace LemonUI.Menus
             // Continue with the white selection rectangle
             selectedRect?.Draw();
             // And finish with the selected item on top (if any)
-            SelectedItem?.Draw();
-            SelectedItem?.Panel?.Process();
+            if (selected != null)
+            {
+                selected.Draw();
+                if (selected.Panel != null && selected.Panel.Visible)
+                {
+                    selected.Panel.Process();
+                }
+            }
         }
 
         #endregion

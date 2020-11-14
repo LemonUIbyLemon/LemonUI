@@ -11,6 +11,10 @@ namespace LemonUI.Menus
         #region Public Properties
 
         /// <summary>
+        /// If this panel is visible to the user.
+        /// </summary>
+        public virtual bool Visible { get; set; } = true;
+        /// <summary>
         /// The Background of the panel itself.
         /// </summary>
         public ScaledTexture Background { get; } = new ScaledTexture("commonmenu", "gradient_bgd");
