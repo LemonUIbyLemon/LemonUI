@@ -14,6 +14,25 @@ namespace LemonUI.Menus
     public delegate void ItemChangedEventHandler<T>(object sender, ItemChangedEventArgs<T> e);
 
     /// <summary>
+    /// The movement direction of the item change.
+    /// </summary>
+    public enum Direction
+    {
+        /// <summary>
+        /// The Direction is Unknown.
+        /// </summary>
+        Unknown = 0,
+        /// <summary>
+        /// The item was moved to the Left.
+        /// </summary>
+        Left = 1,
+        /// <summary>
+        /// The item was moved to the Right.
+        /// </summary>
+        Right = 2,
+    }
+
+    /// <summary>
     /// Represents the change of the selection of an item.
     /// </summary>
     /// <typeparam name="T">The type of object that got changed.</typeparam>
@@ -22,16 +41,21 @@ namespace LemonUI.Menus
         /// <summary>
         /// The new object.
         /// </summary>
-        public T Object { get; }
+        public T Object { get; set; }
         /// <summary>
         /// The index of the object.
         /// </summary>
         public int Index { get; }
+        /// <summary>
+        /// The direction of the Item Changed event.
+        /// </summary>
+        public Direction Direction { get; }
 
-        internal ItemChangedEventArgs(T obj, int index)
+        internal ItemChangedEventArgs(T obj, int index, Direction direction)
         {
             Object = obj;
             Index = index;
+            Direction = direction;
         }
     }
 
@@ -111,7 +135,7 @@ namespace LemonUI.Menus
                     return;
                 }
                 index = value;
-                ItemChanged?.Invoke(this, new ItemChangedEventArgs<T>(SelectedItem, index));
+                TriggerEvent(value, Direction.Unknown);
                 UpdateIndex();
             }
         }
@@ -197,6 +221,13 @@ namespace LemonUI.Menus
         #region Private Functions
 
         /// <summary>
+        /// Triggers the <seealso cref="ItemChangedEventHandler{T}"/> event.
+        /// </summary>
+        private void TriggerEvent(int index, Direction direction)
+        {
+            ItemChanged?.Invoke(this, new ItemChangedEventArgs<T>(items[index], index, direction));
+        }
+        /// <summary>
         /// Updates the currently selected item based on the index.
         /// </summary>
         private void UpdateIndex()
@@ -251,15 +282,17 @@ namespace LemonUI.Menus
             }
 
             // If this is the first item, go back to the last one
-            if (SelectedIndex == 0)
+            if (index == 0)
             {
-                SelectedIndex = Items.Count - 1;
+                index = Items.Count - 1;
             }
             // Otherwise, return to the previous one
             else
             {
-                SelectedIndex--;
+                index--;
             }
+            TriggerEvent(index, Direction.Left);
+            UpdateIndex();
         }
         /// <summary>
         /// Moves to the next item.
@@ -273,15 +306,17 @@ namespace LemonUI.Menus
             }
 
             // If this is the last item, go back to the first one
-            if (SelectedIndex == Items.Count - 1)
+            if (index == Items.Count - 1)
             {
-                SelectedIndex = 0;
+                index = 0;
             }
             // Otherwise, continue to the next one
             else
             {
-                SelectedIndex++;
+                index++;
             }
+            TriggerEvent(index, Direction.Right);
+            UpdateIndex();
         }
         /// <summary>
         /// Draws the List on the screen.
