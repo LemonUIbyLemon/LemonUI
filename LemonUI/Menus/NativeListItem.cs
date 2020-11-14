@@ -266,8 +266,7 @@ namespace LemonUI.Menus
                 text.Color = NativeMenu.colorWhiteSmoke;
             }
             // And set the position of the left arrow and text
-            float textWidth = RightArrow.Size.Width;
-            text.Position = new PointF(pos.X + size.Width - textWidth - 1 - text.Width, pos.Y + 3);
+            text.Position = new PointF(pos.X + size.Width - RightArrow.Size.Width - 1 - text.Width, pos.Y + 3);
             LeftArrow.Position = new PointF(text.Position.X - LeftArrow.Size.Width, pos.Y + 4);
         }
         /// <summary>
