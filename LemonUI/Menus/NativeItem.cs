@@ -70,6 +70,10 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
+        /// Object that contains data about this Item.
+        /// </summary>
+        public virtual object Tag { get; set; }
+        /// <summary>
         /// The title of the item.
         /// </summary>
         public string Title
