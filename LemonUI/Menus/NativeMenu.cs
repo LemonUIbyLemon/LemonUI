@@ -47,7 +47,12 @@ namespace LemonUI.Menus
         /// </summary>
         public int OnScreen { get; }
 
-        internal SelectedEventArgs(int index, int screen)
+        /// <summary>
+        /// Creates a new <see cref="SelectedEventArgs"/>.
+        /// </summary>
+        /// <param name="index">The index of the item in the menu.</param>
+        /// <param name="screen">The index of the item based on the number of items shown on screen,</param>
+        public SelectedEventArgs(int index, int screen)
         {
             Index = index;
             OnScreen = screen;
