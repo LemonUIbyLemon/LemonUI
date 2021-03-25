@@ -81,5 +81,18 @@ namespace LemonUI
                 EnableThisFrame(control);
             }
         }
+
+        /// <summary>
+        /// Disables a control during the next frame.
+        /// </summary>
+        /// <param name="control">The control to disable.</param>
+        public static void DisableThisFrame(Control control)
+        {
+#if FIVEM
+            API.DisableControlAction(0, (int)control, true);
+#else
+            Function.Call(Hash.DISABLE_CONTROL_ACTION, 0, (int)control, true);
+#endif
+        }
     }
 }
