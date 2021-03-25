@@ -156,16 +156,24 @@ namespace LemonUI.Menus
             Control.CursorY,
             Control.MoveUpDown,
             Control.MoveLeftRight,
-            // Movement
+            // Camera
+            Control.LookBehind,
+            Control.VehicleLookBehind,
+            // Player
             Control.Sprint,
             Control.Jump,
             Control.Enter,
+            Control.SpecialAbility,
+            Control.SpecialAbilityPC,
+            Control.SpecialAbilitySecondary,
+            Control.VehicleSpecialAbilityFranklin,
             // Driving
             Control.VehicleExit,
             Control.VehicleAccelerate,
             Control.VehicleBrake,
             Control.VehicleMoveLeftRight,
             Control.VehicleHandbrake,
+            Control.VehicleHorn,
             // Bikes
             Control.VehiclePushbikePedal,
             Control.VehiclePushbikeSprint,
@@ -182,9 +190,14 @@ namespace LemonUI.Menus
             Control.VehicleFlyPitchUpDown,
             Control.VehicleFlyPitchUpOnly,
             Control.VehicleFlyPitchDownOnly,
-
             Control.FlyLeftRight,
             Control.FlyUpDown,
+            // Rockstar Editor
+            Control.SaveReplayClip,
+            Control.ReplayStartStopRecording,
+            Control.ReplayStartStopRecordingSecondary,
+            Control.ReplayRecord,
+            Control.ReplaySave,
         };
         /// <summary>
         /// Controls required for the camera to work.
