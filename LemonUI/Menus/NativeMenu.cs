@@ -30,8 +30,14 @@ namespace LemonUI.Menus
     /// Represents the method that is called when a new item is selected in the Menu.
     /// </summary>
     /// <param name="sender">The source of the event.</param>
-    /// <param name="e">A <see cref="SelectedEventArgs"/> with the index informationn.</param>
+    /// <param name="e">A <see cref="SelectedEventArgs"/> with the index information.</param>
     public delegate void SelectedEventHandler(object sender, SelectedEventArgs e);
+    /// <summary>
+    /// Represents the method that is called when an item is activated on a menu.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">An <see cref="ItemActivatedArgs"/> with the item information.</param>
+    public delegate void ItemActivatedEventHandler(object sender, ItemActivatedArgs e);
 
     /// <summary>
     /// Represents the selection of an item in the screen.
@@ -56,6 +62,21 @@ namespace LemonUI.Menus
         {
             Index = index;
             OnScreen = screen;
+        }
+    }
+    /// <summary>
+    /// Represents the arguments of an item activation.
+    /// </summary>
+    public class ItemActivatedArgs
+    {
+        /// <summary>
+        /// The item that was just activated.
+        /// </summary>
+        public NativeItem Item { get; }
+
+        internal ItemActivatedArgs(NativeItem item)
+        {
+            Item = item;
         }
     }
 
@@ -686,6 +707,10 @@ namespace LemonUI.Menus
         /// Event triggered when the index has been changed.
         /// </summary>
         public event SelectedEventHandler SelectedIndexChanged;
+        /// <summary>
+        /// Event triggered when an item in the menu is activated.
+        /// </summary>
+        public event ItemActivatedEventHandler ItemActivated;
 
         #endregion
 
@@ -1039,6 +1064,7 @@ namespace LemonUI.Menus
                             {
                                 if (item.Enabled)
                                 {
+                                    ItemActivated?.Invoke(this, new ItemActivatedArgs(selectedItem));
                                     item.OnActivated(this);
                                     SoundActivated?.PlayFrontend();
                                     if (item is NativeCheckboxItem checkboxItem)
@@ -1108,6 +1134,7 @@ namespace LemonUI.Menus
             {
                 if (SelectedItem != null && SelectedItem.Enabled)
                 {
+                    ItemActivated?.Invoke(this, new ItemActivatedArgs(selectedItem));
                     SelectedItem.OnActivated(this);
                     SoundActivated?.PlayFrontend();
                     if (SelectedItem is NativeCheckboxItem check)
