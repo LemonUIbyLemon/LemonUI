@@ -618,6 +618,13 @@ namespace LemonUI.Menus
         /// </summary>
         public bool DisableControls { get; set; } = true;
         /// <summary>
+        /// The controls that are required for some menu operations.
+        /// </summary>
+        /// <remarks>
+        /// Add controls to this list when you want to detect them as pressed while the menu is open.
+        /// </remarks>
+        public List<Control> RequiredControls { get; } = new List<Control>();
+        /// <summary>
         /// The <see cref="Sound"/> played when the menu is opened.
         /// </summary>
         public Sound SoundOpened { get; set; } = DefaultActivatedSound;
@@ -902,6 +909,11 @@ namespace LemonUI.Menus
                     }
                     // If the player is usinng a controller or mouse usage is disabled and is a camera control
                     if ((Controls.IsUsingController || !UseMouse) && controlsCamera.Contains(control))
+                    {
+                        continue;
+                    }
+                    // If the control is required by the mod developer
+                    if (RequiredControls.Contains(control))
                     {
                         continue;
                     }
