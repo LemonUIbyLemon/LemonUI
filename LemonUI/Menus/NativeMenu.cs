@@ -241,6 +241,10 @@ namespace LemonUI.Menus
         #region Private Fields
 
         /// <summary>
+        /// A list of GTA V Controls.
+        /// </summary>
+        private static readonly Control[] controls = (Control[])Enum.GetValues(typeof(Control));
+        /// <summary>
         /// If the menu has just been opened.
         /// </summary>
         private bool justOpened = false;
@@ -881,18 +885,28 @@ namespace LemonUI.Menus
         /// </summary>
         private void ProcessControls()
         {
-            // If the user wants to disable the controls, do so and only enable those required
+            // If the user wants to disable the controls, do so but only the ones required
             if (DisableControls)
             {
-                Controls.DisableAll(2);
-                Controls.EnableThisFrame(controlsRequired);
-                if (Controls.IsUsingController)
+                foreach (Control control in controls)
                 {
-                    Controls.EnableThisFrame(controlsGamepad);
-                }
-                if (Controls.IsUsingController || !UseMouse)
-                {
-                    Controls.EnableThisFrame(controlsCamera);
+                    // If the control is required by the menu
+                    if (controlsRequired.Contains(control))
+                    {
+                        continue;
+                    }
+                    // If the player is using a controller and is required on gamepads
+                    if (Controls.IsUsingController && controlsGamepad.Contains(control))
+                    {
+                        continue;
+                    }
+                    // If the player is usinng a controller or mouse usage is disabled and is a camera control
+                    if ((Controls.IsUsingController || !UseMouse) && controlsCamera.Contains(control))
+                    {
+                        continue;
+                    }
+
+                    Controls.DisableThisFrame(control);
                 }
             }
 
