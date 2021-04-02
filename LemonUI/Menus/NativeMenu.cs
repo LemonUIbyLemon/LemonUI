@@ -434,12 +434,13 @@ namespace LemonUI.Menus
             get
             {
                 // If there are no items or is over the maximum, return null
-                if (Items.Count == 0 || index >= Items.Count)
+                int currentIndex = SelectedIndex;
+                if (Items.Count == 0 || currentIndex >= Items.Count || currentIndex == -1)
                 {
                     return null;
                 }
                 // Otherwise, return the correct item from the list
-                return Items[SelectedIndex];
+                return Items[currentIndex];
             }
             set
             {
