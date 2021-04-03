@@ -478,7 +478,12 @@ namespace LemonUI.Menus
                 // If the value is over or equal than the number of items, raise an exception
                 else if (value >= Items.Count)
                 {
-                    throw new InvalidOperationException($"The index is over {Items.Count - 1}");
+                    throw new InvalidOperationException($"The index is over {Items.Count - 1}.");
+                }
+                // If the value is under zero, raise an exception
+                else if (value < 0)
+                {
+                    throw new InvalidOperationException($"The index is under zero.");
                 }
 
                 // Calculate the bounds of the menu
