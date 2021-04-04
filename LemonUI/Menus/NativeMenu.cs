@@ -1515,7 +1515,7 @@ namespace LemonUI.Menus
             }
 
             // If we are on the first item, go back to the last one
-            if (SelectedIndex == 0)
+            if (SelectedIndex <= 0)
             {
                 SelectedIndex = Items.Count - 1;
             }
