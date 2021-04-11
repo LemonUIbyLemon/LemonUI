@@ -72,6 +72,7 @@ namespace LemonUI.Example
         /// </summary>
         private static readonly NativeCheckboxItem useMouse = new NativeCheckboxItem("Use Mouse", "If the mouse should be used for selecting different items.", menu.UseMouse);
         private static readonly NativeItem flip = new NativeItem("Flip", "Flips the Menu from the left to the Right.");
+        private static readonly NativeItem showHack = new NativeItem("Show Hack", "Shows the hacking minigame.");
         private static readonly NativeItem clear = new NativeItem("Clear", "Removes all of the items from this menu. A script restart will be needed to restore the items.", "Danger!")
         {
             RightBadge = new ScaledTexture("commonmenu", "mp_alerttriangle") // This is a Badge, shown on the left side of the item
@@ -90,6 +91,14 @@ namespace LemonUI.Example
         {
             Weapon = WeaponHash.APPistol
         };
+        private static readonly BruteForce hacking = new BruteForce()
+        {
+            Background = BruteForceBackground.DarkFade,
+            SuccessMessages = { "Funny that this thing works!" },
+            FailMessages = { "You fucked up!" },
+            CloseAfter = 5000,
+            Countdown = TimeSpan.FromSeconds(5)
+        };
 
         public Basics()
         {
@@ -100,6 +109,7 @@ namespace LemonUI.Example
             showBigMessage.Activated += ShowBigMessage_Activated;
             useMouse.CheckboxChanged += UseMouse_CheckboxChanged;
             flip.Activated += Flip_Activated;
+            showHack.Activated += ShowHack_Activated;
             clear.Activated += Clear_Activated;
             addRandom.Activated += AddRandom_Activated;
             removeRandom.Activated += RemoveRandom_Activated;
@@ -109,6 +119,7 @@ namespace LemonUI.Example
             menu.Add(showBigMessage);
             menu.Add(useMouse);
             menu.Add(flip);
+            menu.Add(showHack);
             menu.Add(clear);
             menu.AddSubMenu(submenu);
             submenu.Add(addRandom);
@@ -120,6 +131,7 @@ namespace LemonUI.Example
             pool.Add(collection);
             pool.Add(loadingScreen);
             pool.Add(bigMessage);
+            pool.Add(hacking);
 
             // Add the tick event
             Tick += Basics_Tick;
@@ -130,7 +142,7 @@ namespace LemonUI.Example
             // This is triggered when the menu is shown on the screen
             // We want to make sure that only the menu is visible, so hide the other items
             loadingScreen.Visible = false;
-            bigMessage.Visible = false;
+            hacking.Visible = false;
         }
 
         private void Menu_Closing(object sender, CancelEventArgs e)
@@ -172,6 +184,12 @@ namespace LemonUI.Example
             pool.ForEach<NativeMenu>(m => m.Alignment = menu.Alignment == Alignment.Left ? Alignment.Right : Alignment.Left);
         }
 
+        private void ShowHack_Activated(object sender, EventArgs e)
+        {
+            pool.HideAll();
+            hacking.Visible = true;
+        }
+
         private void Clear_Activated(object sender, EventArgs e)
         {
             // Here we call the Clear function to remove all of the items
@@ -192,7 +210,7 @@ namespace LemonUI.Example
 
 #if FIVEM
         private async System.Threading.Tasks.Task Basics_Tick()
-#else
+#elif (SHVDN2 || SHVDN3)
         private void Basics_Tick(object sender, EventArgs e)
 #endif
         {
@@ -202,7 +220,7 @@ namespace LemonUI.Example
             // If the user pressed Z/Down, toggle the activation of the menu
 #if SHVDN3
             if (Game.IsControlJustPressed(Control.MultiplayerInfo) && !menu.Visible && !submenu.Visible)
-#else
+#elif (FIVEM || SHVDN2)
             if (Game.IsControlJustPressed(0, Control.MultiplayerInfo) && !menu.Visible && !submenu.Visible)
 #endif
             {

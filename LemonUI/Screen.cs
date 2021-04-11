@@ -1,7 +1,11 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
-#else
+#elif RPH
+using Rage;
+using Rage.Native;
+using Control = Rage.GameControl;
+#elif (SHVDN2 || SHVDN3)
 using GTA;
 using GTA.Native;
 #endif
@@ -51,6 +55,8 @@ namespace LemonUI
             {
 #if FIVEM
                 return API.GetAspectRatio(false);
+#elif RPH
+                return NativeFunction.CallByHash<float>(0xF1307EF624A80D87, false);
 #elif SHVDN2
                 return Function.Call<float>(Hash._0xF1307EF624A80D87, false);
 #elif SHVDN3
@@ -116,6 +122,9 @@ namespace LemonUI
 #if FIVEM
             float cursorX = API.GetControlNormal(0, (int)Control.CursorX);
             float cursorY = API.GetControlNormal(0, (int)Control.CursorY);
+#elif RPH
+            float cursorX = NativeFunction.CallByName<float>("GET_CONTROL_NORMAL", 0, (int)Control.CursorX);
+            float cursorY = NativeFunction.CallByName<float>("GET_CONTROL_NORMAL", 0, (int)Control.CursorY);
 #elif SHVDN2 || SHVDN3
             float cursorX = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorX);
             float cursorY = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorY);
@@ -150,7 +159,9 @@ namespace LemonUI
             float realX = 0, realY = 0;
 #if FIVEM
             API.GetScriptGfxPosition(relativeX, relativeY, ref realX, ref realY);
-#else
+#elif RPH
+            NativeFunction.CallByHash<int>(0x6DD8F5AA635EB4B2, relativeX, relativeY, ref realX, ref realY);
+#elif (SHVDN2 || SHVDN3)
             OutputArgument argX = new OutputArgument();
             OutputArgument argY = new OutputArgument();
             Function.Call((Hash)0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY); // _GET_SCRIPT_GFX_POSITION

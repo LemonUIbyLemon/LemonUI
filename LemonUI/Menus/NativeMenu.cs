@@ -3,6 +3,9 @@ using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
+#elif RPH
+using System.ComponentModel;
+using Control = Rage.GameControl;
 #elif SHVDN2
 using GTA;
 using GTA.Native;

@@ -1,6 +1,8 @@
 #if FIVEM
 using CitizenFX.Core.Native;
-#else
+#elif RPH
+using Rage.Native;
+#elif (SHVDN2 || SHVDN3)
 using GTA.Native;
 #endif
 using System.Drawing;
@@ -38,8 +40,9 @@ namespace LemonUI.Elements
             }
 #if FIVEM
             API.DrawRect(relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
-#else
-
+#elif RPH
+            NativeFunction.CallByName<int>("DRAW_RECT", relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
+#elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.DRAW_RECT, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
 #endif
         }

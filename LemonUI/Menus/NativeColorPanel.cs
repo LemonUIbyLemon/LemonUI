@@ -2,14 +2,16 @@ using LemonUI.Elements;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-#if SHVDN2
+#if FIVEM
+using CitizenFX.Core;
+using CitizenFX.Core.UI;
+#elif RPH
+using Control = Rage.GameControl;
+#elif SHVDN2
 using GTA;
 #elif SHVDN3
 using GTA;
 using GTA.UI;
-#elif FIVEM
-using CitizenFX.Core;
-using CitizenFX.Core.UI;
 #endif
 
 namespace LemonUI.Menus

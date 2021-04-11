@@ -1,6 +1,9 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+#elif RPH
+using Rage;
+using Rage.Native;
 #elif SHVDN2
 using GTA;
 using GTA.Native;
@@ -45,7 +48,11 @@ namespace LemonUI
             API.PlaySoundFrontend(-1, File, Set, false);
             int id = API.GetSoundId();
             API.ReleaseSoundId(id);
-#else
+#elif RPH
+            NativeFunction.CallByName<int>("PLAY_SOUND_FRONTEND", -1, File, Set, false);
+            int id = NativeFunction.CallByName<int>("GET_SOUND_ID");
+            NativeFunction.CallByName<int>("RELEASE_SOUND_ID", id);
+#elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, File, Set, false);
             int id = Function.Call<int>(Hash.GET_SOUND_ID);
             Function.Call(Hash.RELEASE_SOUND_ID, id);

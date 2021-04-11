@@ -2,6 +2,8 @@
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
+#elif RPH
+using Rage.Native;
 #elif SHVDN2
 using GTA;
 using GTA.Native;
@@ -11,7 +13,6 @@ using GTA.UI;
 using GTA.Native;
 using Font = GTA.UI.Font;
 #endif
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -150,6 +151,10 @@ namespace LemonUI.Elements
                 API.BeginTextCommandWidth("CELL_EMAIL_BCON");
                 Add();
                 return API.EndTextCommandGetWidth(true) * 1f.ToXAbsolute();
+#elif RPH
+                NativeFunction.CallByHash<int>(0x54CE8AC98E120CAB, "CELL_EMAIL_BCON");
+                Add();
+                return NativeFunction.CallByHash<float>(0x85F061DA64ED2F67, true) * 1f.ToXAbsolute();
 #elif SHVDN2
                 Function.Call(Hash._SET_TEXT_ENTRY_FOR_WIDTH, "CELL_EMAIL_BCON");
                 Add();
@@ -171,6 +176,8 @@ namespace LemonUI.Elements
                 // Start the string measuring
 #if FIVEM
                 API.BeginTextCommandLineCount("CELL_EMAIL_BCON");
+#elif RPH
+                NativeFunction.CallByHash<int>(0xDB88A37483346780, "CELL_EMAIL_BCON");
 #elif SHVDN2
                 Function.Call(Hash._SET_TEXT_GXT_ENTRY, "CELL_EMAIL_BCON");
 #elif SHVDN3
@@ -181,6 +188,8 @@ namespace LemonUI.Elements
                 // And return the number of lines reported by the game
 #if FIVEM
                 return API.EndTextCommandGetLineCount(relativePosition.X, relativePosition.Y);
+#elif RPH
+                return NativeFunction.CallByHash<int>(0x9040DFB09BE75706, relativePosition.X, relativePosition.Y);
 #elif SHVDN2
                 return Function.Call<int>(Hash._0x9040DFB09BE75706, relativePosition.X, relativePosition.Y);
 #elif SHVDN3
@@ -198,6 +207,8 @@ namespace LemonUI.Elements
                 // Height will always be 1080
 #if FIVEM
                 return 1080 * API.GetTextScaleHeight(Scale, (int)Font);
+#elif RPH
+                return 1080 * NativeFunction.CallByHash<float>(0xDB88A37483346780, Scale, (int)Font);
 #elif SHVDN2
                 return 1080 * Function.Call<float>(Hash._0xDB88A37483346780, Scale, (int)Font);
 #elif SHVDN3
@@ -293,7 +304,43 @@ namespace LemonUI.Elements
             {
                 API.SetTextWrap(0f, relativePosition.X);
             }
-#else
+#elif RPH
+            foreach (string chunk in chunks)
+            {
+                NativeFunction.CallByName<int>("ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME", chunk);
+            }
+            NativeFunction.CallByName<int>("SET_TEXT_FONT", (int)Font);
+            NativeFunction.CallByName<int>("SET_TEXT_SCALE", 1f, Scale);
+            NativeFunction.CallByName<int>("SET_TEXT_COLOUR", Color.R, Color.G, Color.B, Color.A);
+            NativeFunction.CallByName<int>("SET_TEXT_JUSTIFICATION", (int)Alignment);
+            if (Shadow)
+            {
+                NativeFunction.CallByName<int>("SET_TEXT_DROP_SHADOW");
+            }
+            if (Outline)
+            {
+                NativeFunction.CallByName<int>("SET_TEXT_OUTLINE");
+            }
+            if (WordWrap > 0)
+            {
+                switch (Alignment)
+                {
+                    case Alignment.Center:
+                        NativeFunction.CallByName<int>("SET_TEXT_WRAP", relativePosition.X - (realWrap * 0.5f), relativePosition.X + (realWrap * 0.5f));
+                        break;
+                    case Alignment.Left:
+                        NativeFunction.CallByName<int>("SET_TEXT_WRAP", relativePosition.X, relativePosition.X + realWrap);
+                        break;
+                    case Alignment.Right:
+                        NativeFunction.CallByName<int>("SET_TEXT_WRAP", relativePosition.X - realWrap, relativePosition.X);
+                        break;
+                }
+            }
+            else if (Alignment == Alignment.Right)
+            {
+                NativeFunction.CallByName<int>("SET_TEXT_WRAP", 0f, relativePosition.X);
+            }
+#elif (SHVDN2 || SHVDN3)
             foreach (string chunk in chunks)
             {
                 Function.Call((Hash)0x6C188BE134E074AA, chunk); // _ADD_TEXT_COMPONENT_STRING on v2, ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME on v3
@@ -402,11 +449,19 @@ namespace LemonUI.Elements
         {
 #if FIVEM
             API.SetTextEntry("CELL_EMAIL_BCON");
-            Add();
-            API.DrawText(relativePosition.X, relativePosition.Y);
-#else
+#elif RPH
+            NativeFunction.CallByHash<int>(0x25FBB336DF1804CB, "CELL_EMAIL_BCON");
+#elif (SHVDN2 || SHVDN3)
             Function.Call((Hash)0x25FBB336DF1804CB, "CELL_EMAIL_BCON"); // _SET_TEXT_ENTRY on v2, BEGIN_TEXT_COMMAND_DISPLAY_TEXT on v3
+#endif
+
             Add();
+
+#if FIVEM
+            API.DrawText(relativePosition.X, relativePosition.Y);
+#elif RPH
+            NativeFunction.CallByHash<int>(0xCD015E5BB0D96A57, relativePosition.X, relativePosition.Y);
+#elif (SHVDN2 || SHVDN3)
             Function.Call((Hash)0xCD015E5BB0D96A57, relativePosition.X, relativePosition.Y); // _DRAW_TEXT on v2, END_TEXT_COMMAND_DISPLAY_TEXT on v3
 #endif
         }

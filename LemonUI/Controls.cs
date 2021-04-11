@@ -1,7 +1,10 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
-#else
+#elif RPH
+using Rage.Native;
+using Control = Rage.GameControl;
+#elif (SHVDN2 || SHVDN3)
 using GTA;
 using GTA.Native;
 #endif
@@ -23,6 +26,8 @@ namespace LemonUI
             {
 #if FIVEM
                 return !API.IsInputDisabled(2);
+#elif RPH
+                return NativeFunction.CallByHash<bool>(0xA571D46727E2B718, 2);
 #elif SHVDN2
                 return !Function.Call<bool>(Hash._GET_LAST_INPUT_METHOD, 2);
 #elif SHVDN3
@@ -40,7 +45,9 @@ namespace LemonUI
         {
 #if FIVEM
             return API.IsDisabledControlJustPressed(0, (int)control);
-#else
+#elif RPH
+            return NativeFunction.CallByName<bool>("IS_DISABLED_CONTROL_JUST_PRESSED", 0, (int)control);
+#elif (SHVDN2 || SHVDN3)
             return Function.Call<bool>(Hash.IS_DISABLED_CONTROL_JUST_PRESSED, 0, (int)control);
 #endif
         }
@@ -52,8 +59,10 @@ namespace LemonUI
         {
 #if FIVEM
             API.DisableAllControlActions(inputGroup);
-#else
-			Function.Call(Hash.DISABLE_ALL_CONTROL_ACTIONS, inputGroup);
+#elif RPH
+            NativeFunction.CallByName<int>("DISABLE_ALL_CONTROL_ACTIONS", inputGroup);
+#elif (SHVDN2 || SHVDN3)
+            Function.Call(Hash.DISABLE_ALL_CONTROL_ACTIONS, inputGroup);
 #endif
         }
 
@@ -65,7 +74,9 @@ namespace LemonUI
         {
 #if FIVEM
             API.EnableControlAction(0, (int)control, true);
-#else
+#elif RPH
+            NativeFunction.CallByName<int>("ENABLE_CONTROL_ACTION", 0, (int)control);
+#elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.ENABLE_CONTROL_ACTION, 0, (int)control);
 #endif
         }
@@ -90,7 +101,9 @@ namespace LemonUI
         {
 #if FIVEM
             API.DisableControlAction(0, (int)control, true);
-#else
+#elif RPH
+            NativeFunction.CallByName<int>("DISABLE_CONTROL_ACTION", 0, (int)control, true);
+#elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.DISABLE_CONTROL_ACTION, 0, (int)control, true);
 #endif
         }

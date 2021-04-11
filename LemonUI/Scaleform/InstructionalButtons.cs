@@ -1,7 +1,10 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
-#else
+#elif RPH
+using Rage.Native;
+using Control = Rage.GameControl;
+#elif (SHVDN2 || SHVDN3)
 using GTA;
 using GTA.Native;
 #endif
@@ -74,6 +77,8 @@ namespace LemonUI.Scaleform
             this.control = control;
 #if FIVEM
             raw = API.GetControlInstructionalButton(2, (int)control, 1);
+#elif RPH
+            raw = NativeFunction.CallByName<string>("GET_CONTROL_INSTRUCTIONAL_BUTTON", 2, (int)control, 1);
 #elif SHVDN2
             raw = Function.Call<string>(Hash._0x0499D7B09FC9B407, 2, (int)control, 1);
 #elif SHVDN3

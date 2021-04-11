@@ -1,6 +1,10 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+#elif RPH
+using Rage;
+using Rage.Native;
+using Control = Rage.GameControl;
 #elif SHVDN2
 using GTA;
 using GTA.Native;
@@ -213,6 +217,10 @@ namespace LemonUI.Scaleform
                 scaleform.CallFunction("SHOW_LIVES", value);
             }
         }
+        /// <summary>
+        /// If all of the rows should be restarted after the player fails one.
+        /// </summary>
+        public bool ResetOnRowFail { get; set; } = true;
 
         #endregion
 
@@ -326,7 +334,7 @@ namespace LemonUI.Scaleform
                         scaleform.CallFunction("SET_COUNTDOWN", 0, 0, 0);
                         string err = FailMessages.Count == 0 ? "" : FailMessages[random.Next(FailMessages.Count)];
                         scaleform.CallFunction("SET_ROULETTE_OUTCOME", false, err);
-                        hideTime = closeAfter == -1 ? -1 : Game.GameTime + CloseAfter;
+                        hideTime = closeAfter == -1 ? -1 : (int)Game.GameTime + CloseAfter;
                         inProgress = false;
                         HackFinished?.Invoke(this, new BruteForceFinishedEventArgs(BruteForceStatus.OutOfTime));
                         return;
@@ -356,6 +364,9 @@ namespace LemonUI.Scaleform
 #if FIVEM
                     API.BeginScaleformMovieMethod(scaleform.Handle, "SET_INPUT_EVENT_SELECT");
                     output = API.EndScaleformMovieMethodReturnValue();
+#elif RPH
+                    NativeFunction.CallByName<int>("BEGIN_SCALEFORM_MOVIE_METHOD", scaleform.Handle, "SET_INPUT_EVENT_SELECT");
+                    output = NativeFunction.CallByName<int>("END_SCALEFORM_MOVIE_METHOD_RETURN_VALUE");
 #elif SHVDN2
                     Function.Call(Hash._0xF6E48914C7A8694E, scaleform.Handle, "SET_INPUT_EVENT_SELECT");
                     output = Function.Call<int>(Hash._0xC50AA39A577AF886);
@@ -370,6 +381,8 @@ namespace LemonUI.Scaleform
                     // Get the readyness of this value
 #if FIVEM
                     bool ready = API.IsScaleformMovieMethodReturnValueReady(output);
+#elif RPH
+                    bool ready = NativeFunction.CallByName<bool>("IS_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_READY", output);
 #elif SHVDN2
                     bool ready = Function.Call<bool>(Hash._0x768FF8961BA904D6, output);
 #elif SHVDN3
@@ -381,6 +394,8 @@ namespace LemonUI.Scaleform
                     {
 #if FIVEM
                         int value = API.GetScaleformMovieMethodReturnValueInt(output);
+#elif RPH
+                        int value = NativeFunction.CallByName<int>("GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_INT", output);
 #elif SHVDN2
                         int value = Function.Call<int>(Hash._0x2DE7EFA66B906036, output);
 #elif SHVDN3
@@ -394,7 +409,7 @@ namespace LemonUI.Scaleform
                                 scaleform.CallFunction("SET_ROULETTE_OUTCOME", true, ok);
                                 soundSuccess.PlayFrontend();
                                 HackFinished?.Invoke(this, new BruteForceFinishedEventArgs(BruteForceStatus.Completed));
-                                hideTime = closeAfter == -1 ? -1 : Game.GameTime + CloseAfter;
+                                hideTime = closeAfter == -1 ? -1 : (int)Game.GameTime + CloseAfter;
                                 inProgress = false;
                                 break;
                             case 87:  // Row Failed (or lives failed)
@@ -405,7 +420,7 @@ namespace LemonUI.Scaleform
                                 {
                                     string err = FailMessages.Count == 0 ? "" : FailMessages[random.Next(FailMessages.Count)];
                                     scaleform.CallFunction("SET_ROULETTE_OUTCOME", false, err);
-                                    hideTime = closeAfter == -1 ? -1 : Game.GameTime + CloseAfter;
+                                    hideTime = closeAfter == -1 ? -1 : (int)Game.GameTime + CloseAfter;
                                     inProgress = false;
                                     HackFinished?.Invoke(this, new BruteForceFinishedEventArgs(BruteForceStatus.OutOfLives));
                                 }
