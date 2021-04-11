@@ -173,18 +173,18 @@ namespace LemonUI.Scaleform
         public override void Update()
         {
             // Clear all of the existing items
-            scaleform.CallFunction("CLEAR_ALL");
-            scaleform.CallFunction("TOGGLE_MOUSE_BUTTONS", 0);
-            scaleform.CallFunction("CREATE_CONTAINER");
+            CallFunction("CLEAR_ALL");
+            CallFunction("TOGGLE_MOUSE_BUTTONS", 0);
+            CallFunction("CREATE_CONTAINER");
 
             // And add them again
             for (int i = 0; i < buttons.Count; i++)
             {
                 InstructionalButton button = buttons[i];
-                scaleform.CallFunction("SET_DATA_SLOT", i, button.Raw, button.Description);
+                CallFunction("SET_DATA_SLOT", i, button.Raw, button.Description);
             }
 
-            scaleform.CallFunction("DRAW_INSTRUCTIONAL_BUTTONS", -1);
+            CallFunction("DRAW_INSTRUCTIONAL_BUTTONS", -1);
         }
 
         #endregion

@@ -134,7 +134,7 @@ namespace LemonUI.Scaleform
                     throw new ArgumentOutOfRangeException("The word needs to be exactly 8 characters long.", nameof(value));
                 }
                 word = value;
-                scaleform.CallFunction("SET_ROULETTE_WORD", value);
+                CallFunction("SET_ROULETTE_WORD", value);
             }
         }
         /// <summary>
@@ -146,7 +146,7 @@ namespace LemonUI.Scaleform
             set
             {
                 background = value;
-                scaleform.CallFunction("SET_BACKGROUND", (int)value);
+                CallFunction("SET_BACKGROUND", (int)value);
             }
         }
         /// <summary>
@@ -162,7 +162,7 @@ namespace LemonUI.Scaleform
                 {
                     livesCurrent = value;
                 }
-                scaleform.CallFunction("SET_LIVES", livesCurrent, value);
+                CallFunction("SET_LIVES", livesCurrent, value);
             }
         }
         /// <summary>
@@ -214,7 +214,7 @@ namespace LemonUI.Scaleform
             set
             {
                 showLives = value;
-                scaleform.CallFunction("SHOW_LIVES", value);
+                CallFunction("SHOW_LIVES", value);
             }
         }
         /// <summary>
@@ -278,7 +278,7 @@ namespace LemonUI.Scaleform
             {
                 throw new ArgumentOutOfRangeException("The index needs to be between 0 and 7.", nameof(index));
             }
-            scaleform.CallFunction("SET_COLUMN_SPEED", index, speed);
+            CallFunction("SET_COLUMN_SPEED", index, speed);
         }
         /// <summary>
         /// Runs the specified Hacking program.
@@ -286,7 +286,7 @@ namespace LemonUI.Scaleform
         /// <param name="program">The program to open.</param>
         public void RunProgram(int program)
         {
-            scaleform.CallFunction("RUN_PROGRAM", program);
+            CallFunction("RUN_PROGRAM", program);
         }
         /// <summary>
         /// Updates the information of the Hacking window.
@@ -331,9 +331,9 @@ namespace LemonUI.Scaleform
                     // If is lower or equal than zero, the player failed
                     if (span <= TimeSpan.Zero)
                     {
-                        scaleform.CallFunction("SET_COUNTDOWN", 0, 0, 0);
+                        CallFunction("SET_COUNTDOWN", 0, 0, 0);
                         string err = FailMessages.Count == 0 ? "" : FailMessages[random.Next(FailMessages.Count)];
-                        scaleform.CallFunction("SET_ROULETTE_OUTCOME", false, err);
+                        CallFunction("SET_ROULETTE_OUTCOME", false, err);
                         hideTime = closeAfter == -1 ? -1 : (int)Game.GameTime + CloseAfter;
                         inProgress = false;
                         HackFinished?.Invoke(this, new BruteForceFinishedEventArgs(BruteForceStatus.OutOfTime));
@@ -342,7 +342,7 @@ namespace LemonUI.Scaleform
                     // Otherwise, update the visible time
                     else
                     {
-                        scaleform.CallFunction("SET_COUNTDOWN", span.Minutes, span.Seconds, span.Milliseconds);
+                        CallFunction("SET_COUNTDOWN", span.Minutes, span.Seconds, span.Milliseconds);
                     }
                 }
 
@@ -350,29 +350,18 @@ namespace LemonUI.Scaleform
                 if (Controls.IsJustPressed(Control.MoveLeftOnly) || Controls.IsJustPressed(Control.FrontendLeft))
                 {
                     soundRowSwitch.PlayFrontend();
-                    scaleform.CallFunction("SET_INPUT_EVENT", 10);
+                    CallFunction("SET_INPUT_EVENT", 10);
                 }
                 // If the user pressed right, go to the right
                 else if (Controls.IsJustPressed(Control.MoveRightOnly) || Controls.IsJustPressed(Control.FrontendRight))
                 {
                     soundRowSwitch.PlayFrontend();
-                    scaleform.CallFunction("SET_INPUT_EVENT", 11);
+                    CallFunction("SET_INPUT_EVENT", 11);
                 }
                 // If the user pressed accept, send the selection event
                 else if (Controls.IsJustPressed(Control.FrontendAccept))
                 {
-#if FIVEM
-                    API.BeginScaleformMovieMethod(scaleform.Handle, "SET_INPUT_EVENT_SELECT");
-                    output = API.EndScaleformMovieMethodReturnValue();
-#elif RPH
-                    NativeFunction.CallByName<int>("BEGIN_SCALEFORM_MOVIE_METHOD", scaleform.Handle, "SET_INPUT_EVENT_SELECT");
-                    output = NativeFunction.CallByName<int>("END_SCALEFORM_MOVIE_METHOD_RETURN_VALUE");
-#elif SHVDN2
-                    Function.Call(Hash._0xF6E48914C7A8694E, scaleform.Handle, "SET_INPUT_EVENT_SELECT");
-                    output = Function.Call<int>(Hash._0xC50AA39A577AF886);
-#elif SHVDN3
-                    output = scaleform.CallFunctionReturn("SET_INPUT_EVENT_SELECT");
-#endif
+                    output = CallFunctionReturn("SET_INPUT_EVENT_SELECT");
                 }
 
                 // If there is some output to receive
@@ -406,7 +395,7 @@ namespace LemonUI.Scaleform
                         {
                             case 86:  // Hack Completed
                                 string ok = SuccessMessages.Count == 0 ? "" : SuccessMessages[random.Next(SuccessMessages.Count)];
-                                scaleform.CallFunction("SET_ROULETTE_OUTCOME", true, ok);
+                                CallFunction("SET_ROULETTE_OUTCOME", true, ok);
                                 soundSuccess.PlayFrontend();
                                 HackFinished?.Invoke(this, new BruteForceFinishedEventArgs(BruteForceStatus.Completed));
                                 hideTime = closeAfter == -1 ? -1 : (int)Game.GameTime + CloseAfter;
@@ -414,12 +403,12 @@ namespace LemonUI.Scaleform
                                 break;
                             case 87:  // Row Failed (or lives failed)
                                 livesCurrent--;
-                                scaleform.CallFunction("SET_LIVES", livesCurrent, livesTotal);
+                                CallFunction("SET_LIVES", livesCurrent, livesTotal);
                                 soundRowFailed.PlayFrontend();
                                 if (livesCurrent <= 0)
                                 {
                                     string err = FailMessages.Count == 0 ? "" : FailMessages[random.Next(FailMessages.Count)];
-                                    scaleform.CallFunction("SET_ROULETTE_OUTCOME", false, err);
+                                    CallFunction("SET_ROULETTE_OUTCOME", false, err);
                                     hideTime = closeAfter == -1 ? -1 : (int)Game.GameTime + CloseAfter;
                                     inProgress = false;
                                     HackFinished?.Invoke(this, new BruteForceFinishedEventArgs(BruteForceStatus.OutOfLives));

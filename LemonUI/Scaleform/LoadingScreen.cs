@@ -52,8 +52,8 @@ namespace LemonUI.Scaleform
         public LoadingScreen(string title, string subtitle, string description, string dictionary, string texture) : base("GTAV_ONLINE")
         {
             // Tell the Scaleform to use the online loading screen
-            scaleform.CallFunction("HIDE_ONLINE_LOGO");
-            scaleform.CallFunction("SETUP_BIGFEED", false);
+            CallFunction("HIDE_ONLINE_LOGO");
+            CallFunction("SETUP_BIGFEED", false);
             // Save the values
             Title = title;
             Subtitle = subtitle;
@@ -84,7 +84,7 @@ namespace LemonUI.Scaleform
         /// </summary>
         public override void Update()
         {
-            scaleform.CallFunction("SET_BIGFEED_INFO", "footerStr", Description, 0, Dictionary, Texture, Subtitle, "urlDeprecated", Title);
+            CallFunction("SET_BIGFEED_INFO", "footerStr", Description, 0, Dictionary, Texture, Subtitle, "urlDeprecated", Title);
         }
 
         #endregion
