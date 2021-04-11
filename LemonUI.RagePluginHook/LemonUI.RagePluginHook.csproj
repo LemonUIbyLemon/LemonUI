@@ -34,8 +34,4 @@
     <Compile Include="$(ProjectDir)/../LemonUI/**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="D:\Proyectos\Grand Theft Auto V\LemonUI\LemonUI.RagePluginHook\..\LemonUI\qta5sjnk.s0w~" />
-  </ItemGroup>
-
 </Project>
