@@ -271,16 +271,16 @@ namespace LemonUI.Scaleform
             switch (type)
             {
                 case MessageType.Customizable:
-                    scaleform.CallFunction(function, Title, Message, TextColor, BackgroundColor);
+                    CallFunction(function, Title, Message, TextColor, BackgroundColor);
                     break;
                 case MessageType.CopsAndCrooks:
-                    scaleform.CallFunction(function, Title, Message, Rank);
+                    CallFunction(function, Title, Message, Rank);
                     break;
                 case MessageType.Weapon:
-                    scaleform.CallFunction(function, Title, Message, (int)Weapon);
+                    CallFunction(function, Title, Message, (int)Weapon);
                     break;
                 default:
-                    scaleform.CallFunction(function, Title, Message);
+                    CallFunction(function, Title, Message);
                     break;
             }
         }

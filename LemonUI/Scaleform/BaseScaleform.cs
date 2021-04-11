@@ -1,3 +1,4 @@
+using System;
 #if FIVEM
 using CitizenFX.Core.Native;
 #else
@@ -16,6 +17,7 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The ID of the scaleform.
         /// </summary>
+        [Obsolete("Please use the Handle or Name properties and call the methods manually.")]
 #if FIVEM
         protected CitizenFX.Core.Scaleform scaleform = null;
 #else
@@ -26,6 +28,14 @@ namespace LemonUI.Scaleform
 
         #region Public Properties
 
+        /// <summary>
+        /// The ID or Handle of the Scaleform.
+        /// </summary>
+        public int Handle { get; private set; }
+        /// <summary>
+        /// The Name of the Scaleform.
+        /// </summary>
+        public string Name { get; }
         /// <summary>
         /// If the Scaleform should be visible or not.
         /// </summary>
@@ -41,17 +51,119 @@ namespace LemonUI.Scaleform
         /// <param name="sc">The Scalform object.</param>
         public BaseScaleform(string sc)
         {
+            Name = sc;
+#if FIVEM
+            Handle = API.RequestScaleformMovie(sc);
+#elif (SHVDN2 || SHVDN3)
+            Handle = Function.Call<int>(Hash.REQUEST_SCALEFORM_MOVIE, sc);
+#endif
+
+#pragma warning disable CS0618 // Type or member is obsolete
 #if FIVEM
             scaleform = new CitizenFX.Core.Scaleform(sc);
 #else
             scaleform = new GTA.Scaleform(sc);
 #endif
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+
+        #endregion
+
+        #region Private Functions
+
+        private void CallFunctionBase(string function, params object[] parameters)
+        {
+#if FIVEM
+            API.BeginScaleformMovieMethod(Handle, function);
+#elif (SHVDN2 || SHVDN3)
+            Function.Call((Hash)0xF6E48914C7A8694E, Handle, function);
+#endif
+
+            foreach (object obj in parameters)
+            {
+                if (obj is int objInt)
+                {
+#if FIVEM
+                    API.ScaleformMovieMethodAddParamInt(objInt);
+#elif (SHVDN2 || SHVDN3)
+                    Function.Call((Hash)0xC3D0841A0CC546A6, objInt);
+#endif
+                }
+                else if (obj is string objString)
+                {
+#if FIVEM
+                    API.BeginTextCommandScaleformString("STRING");
+                    API.AddTextComponentSubstringPlayerName(objString);
+                    API.EndTextCommandScaleformString();
+#elif (SHVDN2 || SHVDN3)
+                    Function.Call((Hash)0x80338406F3475E55, "STRING");
+                    Function.Call((Hash)0x6C188BE134E074AA, objString);
+                    Function.Call((Hash)0x362E2D3FE93A9959);
+#endif
+                }
+                else if (obj is float objFloat)
+                {
+#if FIVEM
+                    API.ScaleformMovieMethodAddParamFloat(objFloat);
+#elif (SHVDN2 || SHVDN3)
+                    Function.Call((Hash)0xD69736AAE04DB51A, objFloat);
+#endif
+                }
+                else if (obj is double objDouble)
+                {
+#if FIVEM
+                    API.ScaleformMovieMethodAddParamFloat((float)objDouble);
+#elif (SHVDN2 || SHVDN3)
+                    Function.Call((Hash)0xD69736AAE04DB51A, (float)objDouble);
+#endif
+                }
+                else if (obj is bool objBool)
+                {
+#if FIVEM
+                    API.ScaleformMovieMethodAddParamBool(objBool);
+#elif (SHVDN2 || SHVDN3)
+                    Function.Call((Hash)0xC58424BA936EB458, objBool);
+#endif
+                }
+                else
+                {
+                    throw new ArgumentException($"Unexpected argument type {obj.GetType().Name}.", nameof(parameters));
+                }
+            }
         }
 
         #endregion
 
         #region Public Functions
 
+        /// <summary>
+        /// Calls a Scaleform function.
+        /// </summary>
+        /// <param name="function">The name of the function to call.</param>
+        /// <param name="parameters">The parameters to pass.</param>
+        public void CallFunction(string function, params object[] parameters)
+        {
+            CallFunctionBase(function, parameters);
+#if FIVEM
+            API.EndScaleformMovieMethod();
+#elif (SHVDN2 || SHVDN3)
+            Function.Call((Hash)0xC6796A8FFA375E53);
+#endif
+        }
+        /// <summary>
+        /// Calls a Scaleform function with a return value.
+        /// </summary>
+        /// <param name="function">The name of the function to call.</param>
+        /// <param name="parameters">The parameters to pass.</param>
+        public int CallFunctionReturn(string function, params object[] parameters)
+        {
+            CallFunctionBase(function, parameters);
+#if FIVEM
+            return API.EndScaleformMovieMethodReturnValue();
+#elif (SHVDN2 || SHVDN3)
+            return Function.Call<int>((Hash)0xC50AA39A577AF886);
+#endif
+        }
         /// <summary>
         /// Updates the parameters of the Scaleform.
         /// </summary>
@@ -67,9 +179,9 @@ namespace LemonUI.Scaleform
             }
             Update();
 #if FIVEM
-            API.DrawScaleformMovieFullscreen(scaleform.Handle, 255, 255, 255, 255, 0);
+            API.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 0);
 #else
-            Function.Call(Hash.DRAW_SCALEFORM_MOVIE_FULLSCREEN, scaleform.Handle, 255, 255, 255, 255, 0);
+            Function.Call(Hash.DRAW_SCALEFORM_MOVIE_FULLSCREEN, Handle, 255, 255, 255, 255, 0);
 #endif
         }
         /// <summary>
@@ -85,7 +197,7 @@ namespace LemonUI.Scaleform
         /// </summary>
         public void Dispose()
         {
-            int id = scaleform.Handle;
+            int id = Handle;
 #if FIVEM
             API.SetScaleformMovieAsNoLongerNeeded(ref id);
 #else
