@@ -31,7 +31,7 @@ Copy all of the files from the **RPH** folder inside of the compressed file to t
 
 ### SHVDN 2 and SHVDN 3
 
-Copy all of the files from the **SHVDN2** and/or **SHVDN3** folders inside of the compressed file to your **scripts**.
+Copy all of the files from the **SHVDN2** and/or **SHVDN3** folders inside of the compressed file to your **scripts** directory.
 
 ## Usage
 
