@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <AssemblyName>$(AssemblyName)</AssemblyName>
+    <DefineConstants>RPH</DefineConstants>
+    <Version>1.0</Version>
+    <OutputPath>..\bin\$(Configuration)Demo\RPH\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RagePluginHook" Version="1.86.1">
+      <IncludeAssets>compile</IncludeAssets>
+    </PackageReference>
+    <ProjectReference Include="..\LemonUI.RagePluginHook\LemonUI.RagePluginHook.csproj" />
+    <Compile Include="../$(SolutionName).Example/**" />
+  </ItemGroup>
+
+</Project>

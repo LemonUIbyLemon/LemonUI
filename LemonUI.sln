@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LemonUI.Example.SHVDN3", "L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LemonUI.RagePluginHook", "LemonUI.RagePluginHook\LemonUI.RagePluginHook.csproj", "{486A05C4-8AE6-4DC1-B0B3-7B0D2E4792D5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LemonUI.Example.RagePluginHook", "LemonUI.Example.RagePluginHook\LemonUI.Example.RagePluginHook.csproj", "{22EEE918-44DF-4B24-A6AD-204051D2B97F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{486A05C4-8AE6-4DC1-B0B3-7B0D2E4792D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{486A05C4-8AE6-4DC1-B0B3-7B0D2E4792D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{486A05C4-8AE6-4DC1-B0B3-7B0D2E4792D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22EEE918-44DF-4B24-A6AD-204051D2B97F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22EEE918-44DF-4B24-A6AD-204051D2B97F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22EEE918-44DF-4B24-A6AD-204051D2B97F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22EEE918-44DF-4B24-A6AD-204051D2B97F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
