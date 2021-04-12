@@ -6,7 +6,7 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <AssemblyName>$(AssemblyName).net</AssemblyName>
     <DefineConstants>FIVEM</DefineConstants>
-    <Version>1.0</Version>
+    <Version>1.3</Version>
     <OutputPath>..\bin\$(Configuration)\FiveM\</OutputPath>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>..\bin\$(Configuration)\FiveM\$(AssemblyName).xml</DocumentationFile>
