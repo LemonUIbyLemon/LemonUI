@@ -177,7 +177,7 @@ namespace LemonUI.Elements
 #if FIVEM
                 API.BeginTextCommandLineCount("CELL_EMAIL_BCON");
 #elif RPH
-                NativeFunction.CallByHash<int>(0xDB88A37483346780, "CELL_EMAIL_BCON");
+                NativeFunction.CallByHash<int>(0x521FB041D93DD0E4, "CELL_EMAIL_BCON");
 #elif SHVDN2
                 Function.Call(Hash._SET_TEXT_GXT_ENTRY, "CELL_EMAIL_BCON");
 #elif SHVDN3
