@@ -201,6 +201,9 @@ namespace LemonUI
 #if FIVEM
             API.SetScriptGfxAlign((int)horizontal, (int)vertical);
             API.SetScriptGfxAlignParams(0, 0, 0, 0);
+#elif RPH
+            NativeFunction.CallByHash<int>(0xB8A850F20A067EB6, (int)horizontal, (int)vertical);
+            NativeFunction.CallByHash<int>(0xF5A2C681787E579D, 0, 0, 0, 0);
 #elif SHVDN2
             Function.Call(Hash._SET_SCREEN_DRAW_POSITION, (int)horizontal, (int)vertical);
             Function.Call(Hash._0xF5A2C681787E579D, 0, 0, 0, 0);
@@ -216,6 +219,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.ResetScriptGfxAlign();
+#elif RPH
+            NativeFunction.CallByHash<int>(0xE3A3DB414A373DAB);
 #elif SHVDN2
             Function.Call(Hash._0xE3A3DB414A373DAB);
 #elif SHVDN3
