@@ -1068,7 +1068,11 @@ namespace LemonUI.Menus
             if (UseMouse && !Controls.IsUsingController)
             {
                 // Enable the mouse cursor
+#if (FIVEM || SHVDN2 || SHVDN3)
                 Screen.ShowCursorThisFrame();
+#elif RPH
+                Rage.Native.NativeFunction.CallByHash<int>(0xAAE7CE1D63167423);
+#endif
 
                 // If the camera should be rotated when the cursor is on the left and right sections of the screen, do so
                 if (RotateCamera)
