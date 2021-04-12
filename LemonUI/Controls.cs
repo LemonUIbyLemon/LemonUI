@@ -27,7 +27,7 @@ namespace LemonUI
 #if FIVEM
                 return !API.IsInputDisabled(2);
 #elif RPH
-                return NativeFunction.CallByHash<bool>(0xA571D46727E2B718, 2);
+                return !NativeFunction.CallByHash<bool>(0xA571D46727E2B718, 2);
 #elif SHVDN2
                 return !Function.Call<bool>(Hash._GET_LAST_INPUT_METHOD, 2);
 #elif SHVDN3
