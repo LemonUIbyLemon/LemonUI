@@ -1,15 +1,21 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using CitizenFX.Core.UI;
 #elif RPH
 using Rage;
 using Rage.Native;
 using Control = Rage.GameControl;
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN2
 using GTA;
 using GTA.Native;
+#elif SHVDN3
+using GTA;
+using GTA.Native;
+using GTA.UI;
 #endif
 using LemonUI.Extensions;
+using System;
 using System.Drawing;
 
 namespace LemonUI
@@ -190,6 +196,33 @@ namespace LemonUI
 #elif SHVDN3
             Function.Call(Hash._SET_MOUSE_CURSOR_ACTIVE_THIS_FRAME);
 #endif
+        }
+        /// <summary>
+        /// Sets the alignment of game elements like <see cref="Elements.ScaledRectangle"/>, <see cref="Elements.ScaledText"/> and <see cref="Elements.ScaledTexture"/>.
+        /// </summary>
+        /// <param name="horizontal">The Horizontal alignment of the items.</param>
+        /// <param name="vertical">The vertical alignment of the items.</param>
+        public static void SetElementAlignment(Alignment horizontal, GFXAlignment vertical)
+        {
+            // If the enum value is not correct, raise an exception
+            if (!Enum.IsDefined(typeof(Alignment), horizontal))
+            {
+                throw new ArgumentException("Alignment is not one of the allowed values (Left, Right, Center).", nameof(horizontal));
+            }
+
+            // Otherwise, just call the correct function
+            switch (horizontal)
+            {
+                case Alignment.Left:
+                    SetElementAlignment(GFXAlignment.Left, vertical);
+                    break;
+                case Alignment.Right:
+                    SetElementAlignment(GFXAlignment.Right, vertical);
+                    break;
+                case Alignment.Center:
+                    SetElementAlignment(GFXAlignment.Right, vertical);
+                    break;
+            }
         }
         /// <summary>
         /// Sets the alignment of game elements like <see cref="Elements.ScaledRectangle"/>, <see cref="Elements.ScaledText"/> and <see cref="Elements.ScaledTexture"/>.
