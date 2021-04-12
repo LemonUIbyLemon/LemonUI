@@ -2,6 +2,11 @@
 using CitizenFX.Core;
 using CitizenFX.Core.UI;
 using Script = CitizenFX.Core.BaseScript;
+#elif RPH
+using Rage;
+using Rage.Attributes;
+using Control = Rage.GameControl;
+using CancelEventArgs = System.ComponentModel.CancelEventArgs;
 #elif SHVDN2
 using GTA;
 using GTA.Native;
@@ -18,12 +23,20 @@ using LemonUI.TimerBars;
 using System;
 using System.Drawing;
 
+#if RPH
+[assembly: Plugin("LemonUI Example", Description = "Example of the basics for RagePluginHook.", Author = "Lemon")]
+#endif
+
 namespace LemonUI.Example
 {
     /// <summary>
     /// An example script showing the basics of each item in LemonUI.
     /// </summary>
+#if (FIVEM || SHVDN2 || SHVDN3)
     public class Basics : Script
+#elif RPH
+    public static class Basics
+#endif
     {
         /// <summary>
         /// The Object Pool stores all of your LemonUI Elements so they can be processed every tick.
@@ -100,7 +113,11 @@ namespace LemonUI.Example
             Countdown = TimeSpan.FromSeconds(5)
         };
 
+#if (FIVEM || SHVDN2 || SHVDN3)
         public Basics()
+#elif RPH
+        public static void Main()
+#endif
         {
             // Add the events of the menu and the items
             menu.Shown += Menu_Shown;
@@ -133,11 +150,20 @@ namespace LemonUI.Example
             pool.Add(bigMessage);
             pool.Add(hacking);
 
-            // Add the tick event
+            // Add the tick event for FiveM, SHVDN2 and SHVDN3
+#if (FIVEM || SHVDN2 || SHVDN3)
             Tick += Basics_Tick;
+#elif RPH
+            // Or on RagePluginHook, keep it running
+            while (true)
+            {
+                Tick();
+                GameFiber.Yield();
+            }
+#endif
         }
 
-        private void Menu_Shown(object sender, EventArgs e)
+        private static void Menu_Shown(object sender, EventArgs e)
         {
             // This is triggered when the menu is shown on the screen
             // We want to make sure that only the menu is visible, so hide the other items
@@ -145,14 +171,14 @@ namespace LemonUI.Example
             hacking.Visible = false;
         }
 
-        private void Menu_Closing(object sender, CancelEventArgs e)
+        private static void Menu_Closing(object sender, CancelEventArgs e)
         {
             // The Cancel property says if we should cancel the closure of the menu
             // Here, we copy the activation value of the checkbox
             e.Cancel = keepOpen.Checked;
         }
 
-        private void ShowLoadingScreen_Activated(object sender, EventArgs e)
+        private static void ShowLoadingScreen_Activated(object sender, EventArgs e)
         {
             // Here we hide the other stuff and show the loading screen
             menu.Visible = false;
@@ -160,7 +186,7 @@ namespace LemonUI.Example
             loadingScreen.Visible = true;
         }
 
-        private void ShowBigMessage_Activated(object sender, EventArgs e)
+        private static void ShowBigMessage_Activated(object sender, EventArgs e)
         {
             // Here, we set the type of Big Message
             bigMessage.Type = showBigMessage.SelectedItem;
@@ -171,38 +197,38 @@ namespace LemonUI.Example
             loadingScreen.Visible = false;
         }
 
-        private void UseMouse_CheckboxChanged(object sender, EventArgs e)
+        private static void UseMouse_CheckboxChanged(object sender, EventArgs e)
         {
             // This will toggle mouse usage on all of the menus
             pool.ForEach<NativeMenu>(m => m.UseMouse = useMouse.Checked);
         }
 
-        private void Flip_Activated(object sender, EventArgs e)
+        private static void Flip_Activated(object sender, EventArgs e)
         {
             // This is simple C# one-liners
             // If the main menu the right, move all of them to the left and vice versa
             pool.ForEach<NativeMenu>(m => m.Alignment = menu.Alignment == Alignment.Left ? Alignment.Right : Alignment.Left);
         }
 
-        private void ShowHack_Activated(object sender, EventArgs e)
+        private static void ShowHack_Activated(object sender, EventArgs e)
         {
             pool.HideAll();
             hacking.Visible = true;
         }
 
-        private void Clear_Activated(object sender, EventArgs e)
+        private static void Clear_Activated(object sender, EventArgs e)
         {
             // Here we call the Clear function to remove all of the items
             menu.Clear();
         }
 
-        private void AddRandom_Activated(object sender, EventArgs e)
+        private static void AddRandom_Activated(object sender, EventArgs e)
         {
             // Here, we just create a new item and add it onto the submenu
             submenu.Add(new NativeItem("Random", "This is a random item that we added."));
         }
 
-        private void RemoveRandom_Activated(object sender, EventArgs e)
+        private static void RemoveRandom_Activated(object sender, EventArgs e)
         {
             // Here, we remove the random items with the exception of the add and remove items
             submenu.Remove(item => item != addRandom && item != removeRandom);
@@ -210,6 +236,8 @@ namespace LemonUI.Example
 
 #if FIVEM
         private async System.Threading.Tasks.Task Basics_Tick()
+#elif RPH
+        private static void Tick()
 #elif (SHVDN2 || SHVDN3)
         private void Basics_Tick(object sender, EventArgs e)
 #endif
@@ -220,7 +248,7 @@ namespace LemonUI.Example
             // If the user pressed Z/Down, toggle the activation of the menu
 #if SHVDN3
             if (Game.IsControlJustPressed(Control.MultiplayerInfo) && !menu.Visible && !submenu.Visible)
-#elif (FIVEM || SHVDN2)
+#elif (RPH || FIVEM || SHVDN2)
             if (Game.IsControlJustPressed(0, Control.MultiplayerInfo) && !menu.Visible && !submenu.Visible)
 #endif
             {
