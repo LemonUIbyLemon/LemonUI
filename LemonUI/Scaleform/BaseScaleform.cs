@@ -58,6 +58,8 @@ namespace LemonUI.Scaleform
             Name = sc;
 #if FIVEM
             Handle = API.RequestScaleformMovie(sc);
+#elif RPH
+            Handle = NativeFunction.CallByHash<int>(0x11FE353CF9733E6F, sc);
 #elif (SHVDN2 || SHVDN3)
             Handle = Function.Call<int>(Hash.REQUEST_SCALEFORM_MOVIE, sc);
 #endif
