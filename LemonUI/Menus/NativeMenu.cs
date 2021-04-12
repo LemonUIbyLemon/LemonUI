@@ -571,6 +571,10 @@ namespace LemonUI.Menus
             get => alignment;
             set
             {
+                if (alignment == value)
+                {
+                    return;
+                }
                 alignment = value;
                 Recalculate();
             }
