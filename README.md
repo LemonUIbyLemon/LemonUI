@@ -11,6 +11,7 @@ Special thanks to:
 * ikt for helping me to use SET_SCRIPT_GFX_ALIGN and SET_SCRIPT_GFX_ALIGN_PARAMS
 * Dot. for the snippet of code used for the item scrolling
 * deterministic_bubble for answering some questions about some missing C# classes in FiveM
+* PNWParksFan for helping me with some RPH question when I was doing the port
 
 ## Download
 
@@ -20,13 +21,17 @@ Special thanks to:
 
 ## Installation
 
-### SHVDN 2 and SHVDN 3
-
-Copy all of the files from the **SHVDN2** and/or **SHVDN3** folders inside of the compressed file to your **scripts**.
-
 ### FiveM
 
 No need to install. The resources using LemonUI will contain the required files.
+
+### RPH
+
+Copy all of the files from the **RPH** folder inside of the compressed file to the root of your GTA V installation.
+
+### SHVDN 2 and SHVDN 3
+
+Copy all of the files from the **SHVDN2** and/or **SHVDN3** folders inside of the compressed file to your **scripts**.
 
 ## Usage
 
