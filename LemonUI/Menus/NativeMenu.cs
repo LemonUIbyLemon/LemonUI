@@ -575,6 +575,12 @@ namespace LemonUI.Menus
                 {
                     return;
                 }
+
+                if (!Enum.IsDefined(typeof(Alignment), value) || value == Alignment.Center)
+                {
+                    throw new ArgumentException("The Menu can only be aligned to the Left and Right.", nameof(value));
+                }
+
                 alignment = value;
                 Recalculate();
             }
