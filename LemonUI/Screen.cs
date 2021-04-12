@@ -160,7 +160,13 @@ namespace LemonUI
 #if FIVEM
             API.GetScriptGfxPosition(relativeX, relativeY, ref realX, ref realY);
 #elif RPH
-            NativeFunction.CallByHash<int>(0x6DD8F5AA635EB4B2, relativeX, relativeY, ref realX, ref realY);
+            using (NativePointer argX = new NativePointer())
+            using (NativePointer argY = new NativePointer())
+            {
+                NativeFunction.CallByHash<int>(0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY);
+                realX = argX.GetValue<float>();
+                realY = argY.GetValue<float>();
+            }
 #elif (SHVDN2 || SHVDN3)
             OutputArgument argX = new OutputArgument();
             OutputArgument argY = new OutputArgument();
