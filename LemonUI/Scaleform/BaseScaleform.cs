@@ -16,10 +16,10 @@ namespace LemonUI.Scaleform
     {
         #region Private Fields
 
+#if (FIVEM || SHVDN2 || SHVDN3)
         /// <summary>
         /// The ID of the scaleform.
         /// </summary>
-#if (FIVEM || SHVDN2 || SHVDN3)
         [Obsolete("Please use the Handle or Name properties and call the methods manually.")]
 #endif
 #if FIVEM
