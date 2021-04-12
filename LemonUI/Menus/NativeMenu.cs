@@ -1018,11 +1018,19 @@ namespace LemonUI.Menus
                 {
                     if (Screen.IsCursorInArea(PointF.Empty, searchAreaSize))
                     {
+#if (FIVEM || SHVDN2 || SHVDN3)
                         GameplayCamera.RelativeHeading += 5;
+#elif RPH
+                        Camera.RenderingCamera.Heading += 5;
+#endif
                     }
                     else if (Screen.IsCursorInArea(searchAreaRight, searchAreaSize))
                     {
+#if (FIVEM || SHVDN2 || SHVDN3)
                         GameplayCamera.RelativeHeading -= 5;
+#elif RPH
+                        Camera.RenderingCamera.Heading -= 5;
+#endif
                     }
                 }
 
