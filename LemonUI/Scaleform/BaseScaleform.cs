@@ -19,7 +19,9 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The ID of the scaleform.
         /// </summary>
+#if (FIVEM || SHVDN2 || SHVDN3)
         [Obsolete("Please use the Handle or Name properties and call the methods manually.")]
+#endif
 #if FIVEM
         protected CitizenFX.Core.Scaleform scaleform = null;
 #elif (SHVDN2 || SHVDN3)
@@ -148,6 +150,8 @@ namespace LemonUI.Scaleform
             CallFunctionBase(function, parameters);
 #if FIVEM
             API.EndScaleformMovieMethod();
+#elif RPH
+            NativeFunction.CallByName<int>("END_SCALEFORM_MOVIE_METHOD");
 #elif (SHVDN2 || SHVDN3)
             Function.Call((Hash)0xC6796A8FFA375E53);
 #endif
@@ -162,6 +166,8 @@ namespace LemonUI.Scaleform
             CallFunctionBase(function, parameters);
 #if FIVEM
             return API.EndScaleformMovieMethodReturnValue();
+#elif RPH
+            return NativeFunction.CallByName<int>("END_SCALEFORM_MOVIE_METHOD_RETURN_VALUE");
 #elif (SHVDN2 || SHVDN3)
             return Function.Call<int>((Hash)0xC50AA39A577AF886);
 #endif
