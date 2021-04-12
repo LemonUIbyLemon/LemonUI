@@ -4,8 +4,10 @@ using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
 #elif RPH
+using Rage;
 using System.ComponentModel;
 using Control = Rage.GameControl;
+using Font = LemonUI.Elements.Font;
 #elif SHVDN2
 using GTA;
 using GTA.Native;
@@ -214,8 +216,13 @@ namespace LemonUI.Menus
             Control.VehicleFlyPitchUpDown,
             Control.VehicleFlyPitchUpOnly,
             Control.VehicleFlyPitchDownOnly,
-            Control.FlyLeftRight,
+#if RPH
+            Control.ScriptedFlyUpDown,
+            Control.ScriptedFlyLeftRight,
+#else
             Control.FlyUpDown,
+            Control.FlyLeftRight,
+#endif
             // Rockstar Editor
             Control.SaveReplayClip,
             Control.ReplayStartStopRecording,
@@ -644,7 +651,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The instructional buttons shown in the bottom right.
         /// </summary>
-        public InstructionalButtons Buttons { get; } = new InstructionalButtons(new InstructionalButton("Select", Control.PhoneSelect), new InstructionalButton("Back", Control.PhoneCancel))
+        public InstructionalButtons Buttons { get; } = new InstructionalButtons(new InstructionalButton("Select", (Control)176 /*PhoneSelect*/), new InstructionalButton("Back", (Control)177 /*PhoneCancel*/))
         {
             Visible = true
         };
@@ -976,13 +983,13 @@ namespace LemonUI.Menus
             }
 
             // Check if the controls necessary were pressed
-            bool backPressed = Controls.IsJustPressed(Control.PhoneCancel) || Controls.IsJustPressed(Control.FrontendPause);
-            bool upPressed = Controls.IsJustPressed(Control.PhoneUp) || Controls.IsJustPressed(Control.CursorScrollUp);
-            bool downPressed = Controls.IsJustPressed(Control.PhoneDown) || Controls.IsJustPressed(Control.CursorScrollDown);
-            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || Controls.IsJustPressed(Control.PhoneSelect);
+            bool backPressed = Controls.IsJustPressed((Control)177 /*PhoneCancel*/) || Controls.IsJustPressed(Control.FrontendPause);
+            bool upPressed = Controls.IsJustPressed((Control)172 /*PhoneUp*/) || Controls.IsJustPressed(Control.CursorScrollUp);
+            bool downPressed = Controls.IsJustPressed((Control)173 /*PhoneDown*/) || Controls.IsJustPressed(Control.CursorScrollDown);
+            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || Controls.IsJustPressed((Control)176 /*PhoneSelect*/);
             bool clickSelected = Controls.IsJustPressed(Control.CursorAccept);
-            bool leftPressed = Controls.IsJustPressed(Control.PhoneLeft);
-            bool rightPressed = Controls.IsJustPressed(Control.PhoneRight);
+            bool leftPressed = Controls.IsJustPressed((Control)174 /*PhoneLeft*/);
+            bool rightPressed = Controls.IsJustPressed((Control)175 /*PhoneRight*/);
 
             // If the player pressed the back button, go back or close the menu
             if (backPressed)
