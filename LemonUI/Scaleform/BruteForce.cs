@@ -367,31 +367,10 @@ namespace LemonUI.Scaleform
                 // If there is some output to receive
                 if (output != 0)
                 {
-                    // Get the readyness of this value
-#if FIVEM
-                    bool ready = API.IsScaleformMovieMethodReturnValueReady(output);
-#elif RPH
-                    bool ready = NativeFunction.CallByName<bool>("IS_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_READY", output);
-#elif SHVDN2
-                    bool ready = Function.Call<bool>(Hash._0x768FF8961BA904D6, output);
-#elif SHVDN3
-                    bool ready = Function.Call<bool>(Hash.IS_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_READY, output);
-#endif
-
-                    // if is ready, go ahead and check it
-                    if (ready)
+                    // If the value is ready, go ahead and check it
+                    if (IsValueReady(output))
                     {
-#if FIVEM
-                        int value = API.GetScaleformMovieMethodReturnValueInt(output);
-#elif RPH
-                        int value = NativeFunction.CallByName<int>("GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_INT", output);
-#elif SHVDN2
-                        int value = Function.Call<int>(Hash._0x2DE7EFA66B906036, output);
-#elif SHVDN3
-                        int value = Function.Call<int>(Hash.GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_INT, output);
-#endif
-
-                        switch (value)
+                        switch (GetValue<int>(output))
                         {
                             case 86:  // Hack Completed
                                 string ok = SuccessMessages.Count == 0 ? "" : SuccessMessages[random.Next(SuccessMessages.Count)];

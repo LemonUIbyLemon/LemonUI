@@ -143,6 +143,71 @@ namespace LemonUI.Scaleform
         #region Public Functions
 
         /// <summary>
+        /// Checks if the specified Scaleform Return Value is ready to be fetched.
+        /// </summary>
+        /// <param name="id">The Identifier of the Value.</param>
+        public bool IsValueReady(int id)
+        {
+#if FIVEM
+            return API.IsScaleformMovieMethodReturnValueReady(id);
+#elif RPH
+            return NativeFunction.CallByName<bool>("IS_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_READY", id);
+#elif SHVDN2
+            return Function.Call<bool>(Hash._0x768FF8961BA904D6, id);
+#elif SHVDN3
+            return Function.Call<bool>(Hash.IS_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_READY, id);
+#endif
+        }
+        /// <summary>
+        /// Gets a specific value.
+        /// </summary>
+        /// <typeparam name="T">The type of value.</typeparam>
+        /// <param name="id">The Identifier of the value.</param>
+        /// <returns>The value returned by the native.</returns>
+        public T GetValue<T>(int id)
+        {
+            if (typeof(T) == typeof(string))
+            {
+#if FIVEM
+                return (T)(object)API.GetScaleformMovieMethodReturnValueString(id);
+#elif RPH
+                return (T)NativeFunction.CallByName("GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_STRING", typeof(string), id);
+#elif SHVDN2
+                return (T)(object)Function.Call<string>(Hash._0xE1E258829A885245, id);
+#elif SHVDN3
+                return (T)(object)Function.Call<string>(Hash.GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_STRING, id);
+#endif
+            }
+            else if (typeof(T) == typeof(int))
+            {
+#if FIVEM
+                return (T)(object)API.GetScaleformMovieMethodReturnValueInt(id);
+#elif RPH
+                return (T)(object)NativeFunction.CallByName<int>("GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_INT", id);
+#elif SHVDN2
+                return (T)(object)Function.Call<int>(Hash._0x2DE7EFA66B906036, id);
+#elif SHVDN3
+                return (T)(object)Function.Call<int>(Hash.GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_INT, id);
+#endif
+            }
+            else if (typeof(T) == typeof(bool))
+            {
+#if FIVEM
+                return (T)(object)API.GetScaleformMovieMethodReturnValueBool(id);
+#elif RPH
+                return (T)(object)NativeFunction.CallByName<bool>("GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_BOOL", id);
+#elif SHVDN2
+                return (T)(object)Function.Call<bool>((Hash)0xD80A80346A45D761, id);
+#elif SHVDN3
+                return (T)(object)Function.Call<bool>(Hash._GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_BOOL, id);
+#endif
+            }
+            else
+            {
+                throw new InvalidOperationException($"Expected string, int or bool, got {typeof(T).Name}.");
+            }
+        }
+        /// <summary>
         /// Calls a Scaleform function.
         /// </summary>
         /// <param name="function">The name of the function to call.</param>
