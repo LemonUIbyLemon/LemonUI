@@ -191,6 +191,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.SetMouseCursorActiveThisFrame();
+#elif RPH
+            NativeFunction.CallByHash<int>(0xAAE7CE1D63167423);
 #elif SHVDN2
             Function.Call(Hash._SHOW_CURSOR_THIS_FRAME);
 #elif SHVDN3
