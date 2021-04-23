@@ -6,7 +6,7 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <AssemblyName>$(AssemblyName)</AssemblyName>
     <DefineConstants>RPH</DefineConstants>
-    <Version>1.3</Version>
+    <Version>1.4</Version>
     <OutputPath>..\bin\$(Configuration)\RPH\</OutputPath>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>..\bin\$(Configuration)\RPH\$(AssemblyName).xml</DocumentationFile>
