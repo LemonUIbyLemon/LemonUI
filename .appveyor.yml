@@ -2,7 +2,7 @@
 # For example: A project called NewProject needs a solution called NewProject.sln
 
 # The Version to use and the Build Image
-version: "1.3.0.{build}"
+version: "1.4.0.{build}"
 image: Visual Studio 2019
 
 # This triggers a webhook to #appveyor on Discord with SkyHook
