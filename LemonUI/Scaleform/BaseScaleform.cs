@@ -151,7 +151,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
             return API.IsScaleformMovieMethodReturnValueReady(id);
 #elif RPH
-            return NativeFunction.CallByName<bool>("IS_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_READY", id);
+            return NativeFunction.CallByHash<bool>(0x768FF8961BA904D6, id);
 #elif SHVDN2
             return Function.Call<bool>(Hash._0x768FF8961BA904D6, id);
 #elif SHVDN3
@@ -171,7 +171,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
                 return (T)(object)API.GetScaleformMovieMethodReturnValueString(id);
 #elif RPH
-                return (T)NativeFunction.CallByName("GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_STRING", typeof(string), id);
+                return (T)NativeFunction.CallByHash(0xE1E258829A885245, typeof(string), id);
 #elif SHVDN2
                 return (T)(object)Function.Call<string>(Hash._0xE1E258829A885245, id);
 #elif SHVDN3
@@ -183,7 +183,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
                 return (T)(object)API.GetScaleformMovieMethodReturnValueInt(id);
 #elif RPH
-                return (T)(object)NativeFunction.CallByName<int>("GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_INT", id);
+                return (T)(object)NativeFunction.CallByHash<int>(0x2DE7EFA66B906036, id);
 #elif SHVDN2
                 return (T)(object)Function.Call<int>(Hash._0x2DE7EFA66B906036, id);
 #elif SHVDN3
@@ -195,7 +195,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
                 return (T)(object)API.GetScaleformMovieMethodReturnValueBool(id);
 #elif RPH
-                return (T)(object)NativeFunction.CallByName<bool>("GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_BOOL", id);
+                return (T)(object)NativeFunction.CallByHash<bool>(0xD80A80346A45D761, id);
 #elif SHVDN2
                 return (T)(object)Function.Call<bool>((Hash)0xD80A80346A45D761, id);
 #elif SHVDN3
@@ -218,7 +218,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
             API.EndScaleformMovieMethod();
 #elif RPH
-            NativeFunction.CallByName<int>("END_SCALEFORM_MOVIE_METHOD");
+            NativeFunction.CallByHash<int>(0xC6796A8FFA375E53);
 #elif (SHVDN2 || SHVDN3)
             Function.Call((Hash)0xC6796A8FFA375E53);
 #endif
@@ -234,7 +234,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
             return API.EndScaleformMovieMethodReturnValue();
 #elif RPH
-            return NativeFunction.CallByName<int>("END_SCALEFORM_MOVIE_METHOD_RETURN_VALUE");
+            return NativeFunction.CallByHash<int>(0xC50AA39A577AF886);
 #elif (SHVDN2 || SHVDN3)
             return Function.Call<int>((Hash)0xC50AA39A577AF886);
 #endif
@@ -256,7 +256,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
             API.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 0);
 #elif RPH
-            NativeFunction.CallByName<int>("DRAW_SCALEFORM_MOVIE_FULLSCREEN", Handle, 255, 255, 255, 255, 0);
+            NativeFunction.CallByHash<int>(0x0DF606929C105BE1, Handle, 255, 255, 255, 255, 0);
 #elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.DRAW_SCALEFORM_MOVIE_FULLSCREEN, Handle, 255, 255, 255, 255, 0);
 #endif
@@ -278,7 +278,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
             API.SetScaleformMovieAsNoLongerNeeded(ref id);
 #elif RPH
-            NativeFunction.CallByName<int>("SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED", new NativeArgument(id));
+            NativeFunction.CallByHash<int>(0x1D132D614DD86811, new NativeArgument(id));
 #elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED, new OutputArgument(id));
 #endif

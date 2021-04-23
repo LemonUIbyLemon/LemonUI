@@ -46,7 +46,7 @@ namespace LemonUI
 #if FIVEM
             return API.IsDisabledControlJustPressed(0, (int)control);
 #elif RPH
-            return NativeFunction.CallByName<bool>("IS_DISABLED_CONTROL_JUST_PRESSED", 0, (int)control);
+            return NativeFunction.CallByHash<bool>(0x91AEF906BCA88877, 0, (int)control);
 #elif (SHVDN2 || SHVDN3)
             return Function.Call<bool>(Hash.IS_DISABLED_CONTROL_JUST_PRESSED, 0, (int)control);
 #endif
@@ -60,7 +60,7 @@ namespace LemonUI
 #if FIVEM
             API.DisableAllControlActions(inputGroup);
 #elif RPH
-            NativeFunction.CallByName<int>("DISABLE_ALL_CONTROL_ACTIONS", inputGroup);
+            NativeFunction.CallByHash<int>(0x5F4B6931816E599B, inputGroup);
 #elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.DISABLE_ALL_CONTROL_ACTIONS, inputGroup);
 #endif
@@ -75,7 +75,7 @@ namespace LemonUI
 #if FIVEM
             API.EnableControlAction(0, (int)control, true);
 #elif RPH
-            NativeFunction.CallByName<int>("ENABLE_CONTROL_ACTION", 0, (int)control);
+            NativeFunction.CallByHash<int>(0x351220255D64C155, 0, (int)control);
 #elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.ENABLE_CONTROL_ACTION, 0, (int)control);
 #endif
@@ -102,7 +102,7 @@ namespace LemonUI
 #if FIVEM
             API.DisableControlAction(0, (int)control, true);
 #elif RPH
-            NativeFunction.CallByName<int>("DISABLE_CONTROL_ACTION", 0, (int)control, true);
+            NativeFunction.CallByHash<int>(0xFE99B66D079CF6BC, 0, (int)control, true);
 #elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.DISABLE_CONTROL_ACTION, 0, (int)control, true);
 #endif

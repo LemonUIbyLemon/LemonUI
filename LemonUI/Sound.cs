@@ -49,9 +49,9 @@ namespace LemonUI
             int id = API.GetSoundId();
             API.ReleaseSoundId(id);
 #elif RPH
-            NativeFunction.CallByName<int>("PLAY_SOUND_FRONTEND", -1, File, Set, false);
-            int id = NativeFunction.CallByName<int>("GET_SOUND_ID");
-            NativeFunction.CallByName<int>("RELEASE_SOUND_ID", id);
+            NativeFunction.CallByHash<int>(0x67C540AA08E4A6F5, -1, File, Set, false);
+            int id = NativeFunction.CallByHash<int>(0x430386FE9BF80B45);
+            NativeFunction.CallByHash<int>(0x353FC880830B88FA, id);
 #elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, File, Set, false);
             int id = Function.Call<int>(Hash.GET_SOUND_ID);

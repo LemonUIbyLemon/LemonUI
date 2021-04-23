@@ -129,8 +129,8 @@ namespace LemonUI
             float cursorX = API.GetControlNormal(0, (int)Control.CursorX);
             float cursorY = API.GetControlNormal(0, (int)Control.CursorY);
 #elif RPH
-            float cursorX = NativeFunction.CallByName<float>("GET_CONTROL_NORMAL", 0, (int)Control.CursorX);
-            float cursorY = NativeFunction.CallByName<float>("GET_CONTROL_NORMAL", 0, (int)Control.CursorY);
+            float cursorX = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.CursorX);
+            float cursorY = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.CursorY);
 #elif SHVDN2 || SHVDN3
             float cursorX = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorX);
             float cursorY = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorY);

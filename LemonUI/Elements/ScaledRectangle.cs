@@ -41,7 +41,7 @@ namespace LemonUI.Elements
 #if FIVEM
             API.DrawRect(relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
 #elif RPH
-            NativeFunction.CallByName<int>("DRAW_RECT", relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
+            NativeFunction.CallByHash<int>(0x3A618A217E5154F0, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
 #elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.DRAW_RECT, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
 #endif

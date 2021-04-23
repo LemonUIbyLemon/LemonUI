@@ -97,7 +97,7 @@ namespace LemonUI
 #if FIVEM
         private float lastKnownSafezone = API.GetSafeZoneSize();
 #elif RPH
-        private float lastKnownSafezone = NativeFunction.CallByName<float>("GET_SAFE_ZONE_SIZE");
+        private float lastKnownSafezone = NativeFunction.CallByHash<float>(0xBAF107B6BB2C97F0);
 #elif (SHVDN2 || SHVDN3)
         private float lastKnownSafezone = Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
 #endif
@@ -183,7 +183,7 @@ namespace LemonUI
 #if FIVEM
             float safezone = API.GetSafeZoneSize();
 #elif RPH
-            float safezone = NativeFunction.CallByName<float>("GET_SAFE_ZONE_SIZE");
+            float safezone = NativeFunction.CallByHash<float>(0xBAF107B6BB2C97F0);
 #elif (SHVDN2 || SHVDN3)
             float safezone = Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
 #endif

@@ -66,9 +66,9 @@ namespace LemonUI.Elements
                 API.RequestStreamedTextureDict(Dictionary, true);
             }
 #elif RPH
-            if (!NativeFunction.CallByName<bool>("HAS_STREAMED_TEXTURE_DICT_LOADED", Dictionary))
+            if (!NativeFunction.CallByHash<bool>(0x0145F696AAAAD2E4, Dictionary))
             {
-                NativeFunction.CallByName<int>("REQUEST_STREAMED_TEXTURE_DICT", Dictionary, true);
+                NativeFunction.CallByHash<int>(0xDFA2EF8E04127DD5, Dictionary, true);
             }
 #elif (SHVDN2 || SHVDN3)
             if (!Function.Call<bool>(Hash.HAS_STREAMED_TEXTURE_DICT_LOADED, Dictionary))
@@ -95,7 +95,7 @@ namespace LemonUI.Elements
 #if FIVEM
             API.DrawSprite(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
 #elif RPH
-            NativeFunction.CallByName<int>("DRAW_SPRITE", Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
+            NativeFunction.CallByHash<int>(0xE7FFAE5EBF23D890, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
 #elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.DRAW_SPRITE, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
 #endif

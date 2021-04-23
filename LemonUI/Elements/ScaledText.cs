@@ -307,38 +307,38 @@ namespace LemonUI.Elements
 #elif RPH
             foreach (string chunk in chunks)
             {
-                NativeFunction.CallByName<int>("ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME", chunk);
+                NativeFunction.CallByHash<int>(0x6C188BE134E074AA, chunk);
             }
-            NativeFunction.CallByName<int>("SET_TEXT_FONT", (int)Font);
-            NativeFunction.CallByName<int>("SET_TEXT_SCALE", 1f, Scale);
-            NativeFunction.CallByName<int>("SET_TEXT_COLOUR", Color.R, Color.G, Color.B, Color.A);
-            NativeFunction.CallByName<int>("SET_TEXT_JUSTIFICATION", (int)Alignment);
+            NativeFunction.CallByHash<int>(0x66E0276CC5F6B9DA, (int)Font);
+            NativeFunction.CallByHash<int>(0x07C837F9A01C34C9, 1f, Scale);
+            NativeFunction.CallByHash<int>(0xBE6B23FFA53FB442, Color.R, Color.G, Color.B, Color.A);
+            NativeFunction.CallByHash<int>(0x4E096588B13FFECA, (int)Alignment);
             if (Shadow)
             {
-                NativeFunction.CallByName<int>("SET_TEXT_DROP_SHADOW");
+                NativeFunction.CallByHash<int>(0x1CA3E9EAC9D93E5E);
             }
             if (Outline)
             {
-                NativeFunction.CallByName<int>("SET_TEXT_OUTLINE");
+                NativeFunction.CallByHash<int>(0x2513DFB0FB8400FE);
             }
             if (WordWrap > 0)
             {
                 switch (Alignment)
                 {
                     case Alignment.Center:
-                        NativeFunction.CallByName<int>("SET_TEXT_WRAP", relativePosition.X - (realWrap * 0.5f), relativePosition.X + (realWrap * 0.5f));
+                        NativeFunction.CallByHash<int>(0x63145D9C883A1A70, relativePosition.X - (realWrap * 0.5f), relativePosition.X + (realWrap * 0.5f));
                         break;
                     case Alignment.Left:
-                        NativeFunction.CallByName<int>("SET_TEXT_WRAP", relativePosition.X, relativePosition.X + realWrap);
+                        NativeFunction.CallByHash<int>(0x63145D9C883A1A70, relativePosition.X, relativePosition.X + realWrap);
                         break;
                     case Alignment.Right:
-                        NativeFunction.CallByName<int>("SET_TEXT_WRAP", relativePosition.X - realWrap, relativePosition.X);
+                        NativeFunction.CallByHash<int>(0x63145D9C883A1A70, relativePosition.X - realWrap, relativePosition.X);
                         break;
                 }
             }
             else if (Alignment == Alignment.Right)
             {
-                NativeFunction.CallByName<int>("SET_TEXT_WRAP", 0f, relativePosition.X);
+                NativeFunction.CallByHash<int>(0x63145D9C883A1A70, 0f, relativePosition.X);
             }
 #elif (SHVDN2 || SHVDN3)
             foreach (string chunk in chunks)
