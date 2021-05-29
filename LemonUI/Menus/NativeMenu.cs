@@ -5,6 +5,7 @@ using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
 #elif RPH
 using Rage;
+using Rage.Native;
 using System.ComponentModel;
 using Control = Rage.GameControl;
 using Font = LemonUI.Elements.Font;
@@ -1026,8 +1027,15 @@ namespace LemonUI.Menus
                 }
             }
 
-            // If the controls are disabled or the menu has just been opened, return
-            if (!AcceptsInput || justOpened)
+            // If the controls are disabled, the menu has just been opened or the text input field is active, return
+#if FIVEM
+            bool isKeyboardActive = API.UpdateOnscreenKeyboard() == 0;
+#elif RPH
+            bool isKeyboardActive = NativeFunction.CallByHash<int>(0x0CF2B696BBF945AE) == 0;
+#elif SHVDN2 || SHVDN3
+            bool isKeyboardActive = Function.Call<int>(Hash.UPDATE_ONSCREEN_KEYBOARD) == 0;
+#endif
+            if (!AcceptsInput || justOpened || isKeyboardActive)
             {
                 return;
             }
@@ -1071,7 +1079,7 @@ namespace LemonUI.Menus
 #if (FIVEM || SHVDN2 || SHVDN3)
                 Screen.ShowCursorThisFrame();
 #elif RPH
-                Rage.Native.NativeFunction.CallByHash<int>(0xAAE7CE1D63167423);
+                NativeFunction.CallByHash<int>(0xAAE7CE1D63167423);
 #endif
 
                 // If the camera should be rotated when the cursor is on the left and right sections of the screen, do so
