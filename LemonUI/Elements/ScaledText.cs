@@ -101,7 +101,6 @@ namespace LemonUI.Elements
         /// The game font to use.
         /// </summary>
         public Font Font { get; set; } = Font.ChaletLondon;
-
         /// <summary>
         /// The scale of the text.
         /// </summary>
@@ -255,7 +254,6 @@ namespace LemonUI.Elements
             Scale = scale;
             Font = font;
         }
-
 
         #endregion
 
@@ -443,7 +441,6 @@ namespace LemonUI.Elements
         #endregion
 
         #region Public Functions
-
 
         /// <summary>
         /// Draws the text on the screen.

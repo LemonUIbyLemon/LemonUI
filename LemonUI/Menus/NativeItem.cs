@@ -214,8 +214,6 @@ namespace LemonUI.Menus
 
         #region Public Functions
 
-
-
         /// <summary>
         /// Recalculates the item positions and sizes with the specified values.
         /// </summary>

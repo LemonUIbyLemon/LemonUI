@@ -1437,10 +1437,8 @@ namespace LemonUI.Menus
         /// Set font for all element
         /// </summary>
         /// <param name="Font">Font to change.</param>
-
-        public void SetFontID(Font Font)
+        public void SetFontByID(Font Font)
         {
-
             visibleItems.ForEach(x => x.title.Font = Font);
             subtitleText.Font = Font;
             descriptionText.Font = Font;
