@@ -1432,20 +1432,17 @@ namespace LemonUI.Menus
             UpdateItemList();
             UpdateItems();
         }
-
         /// <summary>
-        /// Set font for all element
+        /// Set all element font to selected Font
         /// </summary>
-        /// <param name="Font">Font to change.</param>
-        public void SetFontByID(Font Font)
+        /// <param name="fontid">Font to change.</param>
+        public void SetFontByID(int fontid)
         {
-            visibleItems.ForEach(x => x.title.Font = Font);
-            subtitleText.Font = Font;
-            descriptionText.Font = Font;
-            countText.Font = Font;
+            visibleItems.ForEach(x => x.title.Font = (Font)fontid);
+            subtitleText.Font = (Font)fontid;
+            descriptionText.Font = (Font)fontid;
+            countText.Font = (Font)fontid;
         }
-
-
         /// <summary>
         /// Checks if an item is part of the menu.
         /// </summary>
