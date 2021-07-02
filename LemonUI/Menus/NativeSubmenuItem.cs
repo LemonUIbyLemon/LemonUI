@@ -37,7 +37,7 @@ namespace LemonUI.Menus
         private void NativeSubmenuItem_Activated(object sender, EventArgs e)
         {
             // Try to close the parent menu
-            Menu.Parent.Close();
+            Menu.Parent.Visible = false;
             // And show the menu only if the parent menu is closed
             if (!Menu.Parent.Visible)
             {

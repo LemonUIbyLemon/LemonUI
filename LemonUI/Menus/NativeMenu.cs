@@ -399,13 +399,41 @@ namespace LemonUI.Menus
                 {
                     return;
                 }
+
                 if (value)
                 {
-                    Open();
+                    CancelEventArgs args = new CancelEventArgs();
+                    Opening?.Invoke(this, args);
+                    if (args.Cancel)
+                    {
+                        return;
+                    }
+
+                    if (ResetCursorWhenOpened)
+                    {
+                        ResetCursor();
+                    }
+
+                    justOpened = true;
+                    visible = true;
+
+                    SoundOpened?.PlayFrontend();
+
+                    Shown?.Invoke(this, EventArgs.Empty);
+                    TriggerSelectedItem();
                 }
                 else
                 {
-                    Close();
+                    CancelEventArgs args = new CancelEventArgs();
+                    Closing?.Invoke(this, args);
+                    if (args.Cancel)
+                    {
+                        return;
+                    }
+
+                    visible = false;
+                    Closed?.Invoke(this, EventArgs.Empty);
+                    SoundClose?.PlayFrontend();
                 }
             }
         }
@@ -1178,7 +1206,7 @@ namespace LemonUI.Menus
                     // So close the menu if required (same behavior of the interaction menu)
                     if (CloseOnInvalidClick)
                     {
-                        Close();
+                        Visible = false;
                     }
                     return;
                 }
@@ -1550,7 +1578,7 @@ namespace LemonUI.Menus
         public void Back()
         {
             // Try to close the menu
-            Close();
+            Visible = false;
             // If this menu has been closed and there is a parent menu, open it
             if (!Visible && Parent != null)
             {
@@ -1560,48 +1588,13 @@ namespace LemonUI.Menus
         /// <summary>
         /// Opens the menu.
         /// </summary>
-        public void Open()
-        {
-            // Check if we need to cancel the menu opening and return if we do
-            CancelEventArgs args = new CancelEventArgs();
-            Opening?.Invoke(this, args);
-            if (args.Cancel)
-            {
-                return;
-            }    
-
-            // If the cursor needs to be reset, do it
-            if (ResetCursorWhenOpened)
-            {
-                ResetCursor();
-            }
-            // Mark the menu as visible
-            justOpened = true;
-            visible = true;
-            // Play the opened sound
-            SoundOpened?.PlayFrontend();
-            // And trigger the shown events for the menu and selected item
-            Shown?.Invoke(this, EventArgs.Empty);
-            TriggerSelectedItem();
-        }
+        [Obsolete("Set Visible to true instead.", true)]
+        public void Open() => Visible = true;
         /// <summary>
         /// Closes the menu.
         /// </summary>
-        public void Close()
-        {
-            // Check if we need to cancel the menu closure and return if we do
-            CancelEventArgs args = new CancelEventArgs();
-            Closing?.Invoke(this, args);
-            if (args.Cancel)
-            {
-                return;
-            }
-
-            // Otherwise, close the menu
-            visible = false;
-            Closed?.Invoke(this, EventArgs.Empty);
-            SoundClose?.PlayFrontend();
-        }
+        [Obsolete("Set Visible to false instead.", true)]
+        public void Close() => Visible = false;
         /// <summary>
         /// Moves to the previous item.
         /// Does nothing if the menu has no items.
