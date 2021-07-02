@@ -85,6 +85,7 @@ namespace LemonUI.Example
         /// </summary>
         private static readonly NativeCheckboxItem useMouse = new NativeCheckboxItem("Use Mouse", "If the mouse should be used for selecting different items.", menu.UseMouse);
         private static readonly NativeItem flip = new NativeItem("Flip", "Flips the Menu from the left to the Right.");
+        private static readonly NativeItem ChangeFont = new NativeItem("ChangeFont", "Change font to specific FontID, Font can be imported by RegisterFontId");
         private static readonly NativeItem showHack = new NativeItem("Show Hack", "Shows the hacking minigame.");
         private static readonly NativeItem clear = new NativeItem("Clear", "Removes all of the items from this menu. A script restart will be needed to restore the items.", "Danger!")
         {
@@ -232,6 +233,14 @@ namespace LemonUI.Example
         {
             // Here, we remove the random items with the exception of the add and remove items
             submenu.Remove(item => item != addRandom && item != removeRandom);
+        }
+        private static void ChangeTitleFont(object sender, EventArgs e)
+        {
+            Array values = Enum.GetValues(typeof(CitizenFX.Core.UI.Font));
+            Random random = new Random();
+            CitizenFX.Core.UI.Font randomFont = (CitizenFX.Core.UI.Font)values.GetValue(random.Next(values.Length));
+            //Here, we can use custom font that Registered by (RegisterFontFile "0x1B3A363") and use Int font id from (RegisterFontId "0xACF6D8EE")
+            menu.Title.SetFontByID((int)randomFont);
         }
 
 #if FIVEM

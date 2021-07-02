@@ -214,6 +214,36 @@ namespace LemonUI.Menus
 
         #region Public Functions
 
+
+        /// <summary>
+        /// Set all font by Font ID
+        /// </summary>
+        /// <param name="fontid">The position of the item.</param>
+        public virtual void SetFontID(int fontid)
+        {
+            SetTitleFontID(fontid);
+            SetAltTitleFontID(fontid);
+        }
+
+        /// <summary>
+        /// Set Title font by id
+        /// </summary>
+        /// <param name="fontid">The position of the item.</param>
+        public virtual void SetTitleFontID(int fontid)
+        {
+            title.SetFontByID(fontid);
+        }
+
+        /// <summary>
+        /// Set AtlTitle font by id
+        /// </summary>
+        /// <param name="fontid">The position of the item.</param>
+        public virtual void SetAltTitleFontID(int fontid)
+        {
+            altTitle.SetFontByID(fontid);
+        }
+
+
         /// <summary>
         /// Recalculates the item positions and sizes with the specified values.
         /// </summary>

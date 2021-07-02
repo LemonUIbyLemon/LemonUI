@@ -1432,6 +1432,21 @@ namespace LemonUI.Menus
             UpdateItemList();
             UpdateItems();
         }
+
+        /// <summary>
+        /// Removes all of the items from this menu.
+        /// </summary>
+        /// <param name="fontid">Font id to change.</param>
+
+        public void SetFontID(int fontid)
+        {
+            visibleItems.ForEach(x => x.SetFontID(fontid));
+            subtitleText.SetFontByID(fontid);
+            descriptionText.SetFontByID(fontid);
+            countText.SetFontByID(fontid);
+        }
+
+
         /// <summary>
         /// Checks if an item is part of the menu.
         /// </summary>
