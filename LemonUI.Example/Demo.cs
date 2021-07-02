@@ -2,6 +2,7 @@
 using CitizenFX.Core;
 using CitizenFX.Core.UI;
 using Script = CitizenFX.Core.BaseScript;
+using Font = CitizenFX.Core.UI.Font;
 #elif RPH
 using Rage;
 using Rage.Attributes;
@@ -11,10 +12,12 @@ using CancelEventArgs = System.ComponentModel.CancelEventArgs;
 using GTA;
 using GTA.Native;
 using CancelEventArgs = System.ComponentModel.CancelEventArgs;
+using Font = GTA.Font;
 #elif SHVDN3
 using GTA;
 using GTA.UI;
 using CancelEventArgs = System.ComponentModel.CancelEventArgs;
+using Font = GTA.UI.Font;
 #endif
 using LemonUI.Elements;
 using LemonUI.Menus;
@@ -236,11 +239,11 @@ namespace LemonUI.Example
         }
         private static void ChangeTitleFont(object sender, EventArgs e)
         {
-            Array values = Enum.GetValues(typeof(CitizenFX.Core.UI.Font));
+            Array values = Enum.GetValues(typeof(Font));
             Random random = new Random();
-            CitizenFX.Core.UI.Font randomFont = (CitizenFX.Core.UI.Font)values.GetValue(random.Next(values.Length));
+            Font randomFont = (Font)values.GetValue(random.Next(values.Length));
             //Here, we can use custom font that Registered by (RegisterFontFile "0x1B3A363") and use Int font id from (RegisterFontId "0xACF6D8EE")
-            menu.Title.SetFontByID((int)randomFont);
+            menu.Title.Font = randomFont;
         }
 
 #if FIVEM

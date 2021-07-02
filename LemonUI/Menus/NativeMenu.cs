@@ -1434,16 +1434,17 @@ namespace LemonUI.Menus
         }
 
         /// <summary>
-        /// Removes all of the items from this menu.
+        /// Set font for all element
         /// </summary>
-        /// <param name="fontid">Font id to change.</param>
+        /// <param name="Font">Font to change.</param>
 
-        public void SetFontID(int fontid)
+        public void SetFontID(Font Font)
         {
-            visibleItems.ForEach(x => x.SetFontID(fontid));
-            subtitleText.SetFontByID(fontid);
-            descriptionText.SetFontByID(fontid);
-            countText.SetFontByID(fontid);
+
+            visibleItems.ForEach(x => x.title.Font = Font);
+            subtitleText.Font = Font;
+            descriptionText.Font = Font;
+            countText.Font = Font;
         }
 
 
@@ -1583,7 +1584,7 @@ namespace LemonUI.Menus
             if (args.Cancel)
             {
                 return;
-            }    
+            }
 
             // If the cursor needs to be reset, do it
             if (ResetCursorWhenOpened)

@@ -64,10 +64,6 @@ namespace LemonUI.Elements
         /// The real word wrap value based on the position of the text.
         /// </summary>
         private float realWrap = 0f;
-        /// <summary>
-        /// The font id to use. (RegisterFontFile, RegisterFontId)
-        /// </summary>
-        private int FontID = (int)Font.ChaletLondon;
 
         #endregion
 
@@ -260,21 +256,6 @@ namespace LemonUI.Elements
             Font = font;
         }
 
-        /// <summary>
-        /// Creates a text with the specified options
-        /// </summary>
-        /// <param name="pos">The position where the text should be located.</param>
-        /// <param name="text">The text to show.</param>
-        /// <param name="scale">The scale of the text.</param>
-        /// <param name="fontid">The font to use. (ID)</param>
-        public ScaledText(PointF pos, string text, float scale, int fontid)
-        {
-            Position = pos;
-            Text = text;
-            Scale = scale;
-            FontID = fontid;
-        }
-
 
         #endregion
 
@@ -294,7 +275,7 @@ namespace LemonUI.Elements
             {
                 API.AddTextComponentString(chunk);
             }
-            API.SetTextFont(FontID);
+            API.SetTextFont((int)Font);
             API.SetTextScale(1f, Scale);
             API.SetTextColour(Color.R, Color.G, Color.B, Color.A);
             API.SetTextJustification((int)Alignment);
@@ -330,7 +311,7 @@ namespace LemonUI.Elements
             {
                 NativeFunction.CallByHash<int>(0x6C188BE134E074AA, chunk);
             }
-            NativeFunction.CallByHash<int>(0x66E0276CC5F6B9DA, FontID);
+            NativeFunction.CallByHash<int>(0x66E0276CC5F6B9DA, (int)Font);
             NativeFunction.CallByHash<int>(0x07C837F9A01C34C9, 1f, Scale);
             NativeFunction.CallByHash<int>(0xBE6B23FFA53FB442, Color.R, Color.G, Color.B, Color.A);
             NativeFunction.CallByHash<int>(0x4E096588B13FFECA, (int)Alignment);
@@ -366,7 +347,7 @@ namespace LemonUI.Elements
             {
                 Function.Call((Hash)0x6C188BE134E074AA, chunk); // _ADD_TEXT_COMPONENT_STRING on v2, ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME on v3
             }
-            Function.Call(Hash.SET_TEXT_FONT, FontID);
+            Function.Call(Hash.SET_TEXT_FONT, (int)Font);
             Function.Call(Hash.SET_TEXT_SCALE, 1f, Scale);
             Function.Call(Hash.SET_TEXT_COLOUR, Color.R, Color.G, Color.B, Color.A);
             Function.Call(Hash.SET_TEXT_JUSTIFICATION, (int)Alignment);
@@ -463,21 +444,6 @@ namespace LemonUI.Elements
 
         #region Public Functions
 
-        /// <summary>
-        /// Set Font to be used by ID
-        /// </summary>
-        public void SetFontByID(int fontid)
-        {
-            if ((System.Enum.IsDefined(typeof(CitizenFX.Core.UI.Font), fontid)))
-            {
-                Font = (CitizenFX.Core.UI.Font)fontid;
-                FontID = (int)Font;
-            }
-            else
-            {
-                FontID = fontid;
-            }
-        }
 
         /// <summary>
         /// Draws the text on the screen.
