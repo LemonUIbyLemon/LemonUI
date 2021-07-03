@@ -260,7 +260,7 @@ namespace LemonUI.Example
                 {
                     /// You can also use font id that already been registered
                     y.TitleFont = randomFont;
-                    y.AltTitleFont = (Font)FontID;
+                    y.AltTitleFont = randomFont;
                 });
 
             });
