@@ -15,7 +15,6 @@ namespace LemonUI.Menus
         public NativeMenu Menu { get; }
 
         #endregion
-
         #region Constructors
 
         /// <summary>
@@ -28,6 +27,16 @@ namespace LemonUI.Menus
             Menu = menu ?? throw new ArgumentNullException(nameof(menu));
             Menu.Parent = parent ?? throw new ArgumentNullException(nameof(parent));
             Activated += NativeSubmenuItem_Activated;
+        }
+        /// <summary>
+        /// Creates a new Item that opens a Submenu.
+        /// <param name="menu">The menu that this item will open.</param>
+        /// <param name="parent">The parent menu where this item will be located.</param>
+        /// <param name="endlabel">The alternative title of the item, shown on the right.</param>
+        /// </summary>
+        public NativeSubmenuItem(NativeMenu menu, NativeMenu parent, string endlabel) : this(menu, parent)
+        {
+            altTitle.Text = endlabel;   
         }
 
         #endregion
@@ -46,5 +55,6 @@ namespace LemonUI.Menus
         }
 
         #endregion
+
     }
 }
