@@ -447,10 +447,7 @@ namespace LemonUI.Menus
         public Font TitleMenuFont
         {
             get => Title.Font;
-            set
-            {
-                Title.Font = value;
-            }
+            set => Title.Font = value;
         }
         /// <summary>
         /// The font of subtitle text.
@@ -458,10 +455,7 @@ namespace LemonUI.Menus
         public Font SubtitleFont
         {
             get => subtitleText.Font;
-            set
-            {
-                subtitleText.Font = value;
-            }
+            set => subtitleText.Font = value;
         }
         /// <summary>
         /// The font of description text.
@@ -469,10 +463,7 @@ namespace LemonUI.Menus
         public Font DescriptionFont
         {
             get => descriptionText.Font;
-            set
-            {
-                descriptionText.Font = value;
-            }
+            set => descriptionText.Font = value;
         }
         /// <summary>
         /// The font of item count text.
@@ -480,10 +471,7 @@ namespace LemonUI.Menus
         public Font ItemCountFont
         {
             get => countText.Font;
-            set
-            {
-                countText.Font = value;
-            }
+            set => countText.Font = value;
         }
         /// <summary>
         /// The banner shown at the top of the menu.
