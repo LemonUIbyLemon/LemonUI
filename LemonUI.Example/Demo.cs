@@ -247,7 +247,6 @@ namespace LemonUI.Example
             Array values = Enum.GetValues(typeof(Font));
             Random random = new Random();
             Font randomFont = (Font)values.GetValue(random.Next(values.Length));
-            int FontID = (int)randomFont;
 
             pool.ForEach<NativeMenu>(x =>
             {
