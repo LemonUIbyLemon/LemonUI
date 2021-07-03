@@ -1599,30 +1599,6 @@ namespace LemonUI.Menus
         /// <summary>
         /// Opens the menu.
         /// </summary>
-        public void Open()
-        {
-            // Check if we need to cancel the menu opening and return if we do
-            CancelEventArgs args = new CancelEventArgs();
-            Opening?.Invoke(this, args);
-            if (args.Cancel)
-            {
-                return;
-            }
-
-            // If the cursor needs to be reset, do it
-            if (ResetCursorWhenOpened)
-            {
-                ResetCursor();
-            }
-            // Mark the menu as visible
-            justOpened = true;
-            visible = true;
-            // Play the opened sound
-            SoundOpened?.PlayFrontend();
-            // And trigger the shown events for the menu and selected item
-            Shown?.Invoke(this, EventArgs.Empty);
-            TriggerSelectedItem();
-        }
         [Obsolete("Set Visible to true instead.", true)]
         public void Open() => Visible = true;
         /// <summary>
