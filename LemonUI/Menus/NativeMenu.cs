@@ -1641,6 +1641,18 @@ namespace LemonUI.Menus
                 SelectedIndex += 1;
             }
         }
+        /// <summary>
+        /// Set all menu text elements with Font id.
+        /// (Items title, SubtitleText, DescriptionText, CountText)
+        /// <param name="fontid">Font id.</param>
+        /// </summary>
+        public void SetFontByID(int fontid)
+        {
+            visibleItems.ForEach(x => x.title.Font = (Font)fontid);
+            subtitleText.Font = (Font)fontid;
+            descriptionText.Font = (Font)fontid;
+            countText.Font = (Font)fontid;
+        }
 
         #endregion
     }
