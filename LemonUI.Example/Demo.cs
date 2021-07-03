@@ -90,7 +90,7 @@ namespace LemonUI.Example
         private static readonly NativeCheckboxItem useMouse = new NativeCheckboxItem("Use Mouse", "If the mouse should be used for selecting different items.", menu.UseMouse);
         private static readonly NativeItem flip = new NativeItem("Flip", "Flips the Menu from the left to the Right.");
         private static readonly NativeItem showHack = new NativeItem("Show Hack", "Shows the hacking minigame.");
-        private static readonly NativeItem randomFont = new NativeItem("RandomFont", "Random font to all text.");
+        private static readonly NativeItem randomFont = new NativeItem("Set a Random Font", "Sets a random font for all of the Elements in the menu.");
         private static readonly NativeItem clear = new NativeItem("Clear", "Removes all of the items from this menu. A script restart will be needed to restore the items.", "Danger!")
         {
             RightBadge = new ScaledTexture("commonmenu", "mp_alerttriangle") // This is a Badge, shown on the left side of the item
