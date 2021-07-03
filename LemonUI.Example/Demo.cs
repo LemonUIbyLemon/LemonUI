@@ -259,7 +259,7 @@ namespace LemonUI.Example
                 x.Items.ForEach(y =>
                 {
                     /// You can also use font id that already been registered
-                    y.TitleFont = (Font)FontID;
+                    y.TitleFont = randomFont;
                     y.AltTitleFont = (Font)FontID;
                 });
 
