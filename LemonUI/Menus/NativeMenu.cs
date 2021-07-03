@@ -442,6 +442,50 @@ namespace LemonUI.Menus
         /// </summary>
         public ScaledText Title { get; set; }
         /// <summary>
+        /// The font of title menu text.
+        /// </summary>
+        public Font TitleMenuFont
+        {
+            get => Title.Font;
+            set
+            {
+                Title.Font = value;
+            }
+        }
+        /// <summary>
+        /// The font of subtitle text.
+        /// </summary>
+        public Font SubtitleFont
+        {
+            get => subtitleText.Font;
+            set
+            {
+                subtitleText.Font = value;
+            }
+        }
+        /// <summary>
+        /// The font of description text.
+        /// </summary>
+        public Font DescriptionFont
+        {
+            get => descriptionText.Font;
+            set
+            {
+                descriptionText.Font = value;
+            }
+        }
+        /// <summary>
+        /// The font of item count text.
+        /// </summary>
+        public Font ItemCountFont
+        {
+            get => countText.Font;
+            set
+            {
+                countText.Font = value;
+            }
+        }
+        /// <summary>
         /// The banner shown at the top of the menu.
         /// </summary>
         public I2Dimensional Banner
