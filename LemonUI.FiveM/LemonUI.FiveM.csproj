@@ -35,4 +35,8 @@
     <Compile Include="$(ProjectDir)/../LemonUI/**" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y /d &quot;$(TargetPath)&quot; &quot;\\DESKTOP-SMOP6K5\GameServer\FiveM_XFramework\txData\CFXDefault_D8B063.base\resources\[XFW]\[core]\XFWCore&quot;" />
+  </Target>
+
 </Project>
