@@ -1087,7 +1087,7 @@ namespace LemonUI.Menus
             if (justOpenedControlChecks)
             {
                 if (Controls.IsPressed((Control)177 /*PhoneCancel*/) || Controls.IsPressed(Control.FrontendPause) ||
-                    Controls.IsPressed(Control.FrontendAccept)       || Controls.IsPressed((Control)176 /*PhoneSelect*/) ||
+                    Controls.IsPressed(Control.FrontendAccept) || Controls.IsPressed((Control)176 /*PhoneSelect*/) ||
                     Controls.IsPressed(Control.CursorAccept))
                 {
                     return;
@@ -1427,6 +1427,18 @@ namespace LemonUI.Menus
             // Create a new menu item, add it and return it
             NativeSubmenuItem item = new NativeSubmenuItem(menu, this);
             Add(item);
+            return item;
+        }
+        /// <summary>
+        /// Adds a specific menu as a submenu with an item.
+        /// </summary>
+        /// <param name="menu">The menu to add.</param>
+        /// <param name="endlabel">The menu to add.</param>
+        /// <returns>The item that points to the submenu.</returns>
+        public NativeSubmenuItem AddSubMenu(NativeMenu menu, String endlabel)
+        {
+            NativeSubmenuItem item = AddSubMenu(menu);
+            item.AltTitle = endlabel;
             return item;
         }
         /// <summary>
