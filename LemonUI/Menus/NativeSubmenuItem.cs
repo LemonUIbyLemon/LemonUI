@@ -15,6 +15,7 @@ namespace LemonUI.Menus
         public NativeMenu Menu { get; }
 
         #endregion
+
         #region Constructors
 
         /// <summary>
@@ -51,11 +52,10 @@ namespace LemonUI.Menus
             // And show the menu only if the parent menu is closed
             if (!Menu.Parent.Visible)
             {
-                Menu.Parent.openNextTick = Menu;
+                Menu.Visible = true;
             }
         }
 
         #endregion
-
     }
 }

@@ -53,6 +53,22 @@ namespace LemonUI
         }
 
         /// <summary>
+        /// Checks if a control is currently pressed.
+        /// </summary>
+        /// <param name="control">The control to check.</param>
+        /// <returns>true if the control is pressed, false otherwise.</returns>
+        public static bool IsPressed(Control control)
+        {
+#if FIVEM
+            return API.IsDisabledControlPressed(0, (int)control);
+#elif RPH
+            return NativeFunction.CallByHash<bool>(0xE2587F8CBBD87B1D, 0, (int)control);
+#elif (SHVDN2 || SHVDN3)
+            return Function.Call<bool>(Hash.IS_DISABLED_CONTROL_PRESSED, 0, (int)control);
+#endif
+        }
+
+        /// <summary>
         /// Disables all of the controls during the next frame.
         /// </summary>
         public static void DisableAll(int inputGroup = 0)
@@ -80,7 +96,6 @@ namespace LemonUI
             Function.Call(Hash.ENABLE_CONTROL_ACTION, 0, (int)control);
 #endif
         }
-
         /// <summary>
         /// Enables a specific set of controls during the next frame.
         /// </summary>
