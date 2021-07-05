@@ -1021,18 +1021,6 @@ namespace LemonUI.Menus
         /// </summary>
         private void ProcessControls()
         {
-            // If the menu is just opened, don't start processing controls until the player has stopped pressing the accept or cancel buttons
-            if (justOpenedControlChecks)
-            {
-                if (Controls.IsPressed((Control)177 /*PhoneCancel*/) || Controls.IsPressed(Control.FrontendPause) ||
-                    Controls.IsPressed(Control.FrontendAccept)       || Controls.IsPressed((Control)176 /*PhoneSelect*/) ||
-                    Controls.IsPressed(Control.CursorAccept))
-                {
-                    return;
-                }
-                justOpenedControlChecks = false;
-            }
-
             // If the user wants to disable the controls, do so but only the ones required
             if (DisableControls)
             {
@@ -1061,6 +1049,18 @@ namespace LemonUI.Menus
 
                     Controls.DisableThisFrame(control);
                 }
+            }
+
+            // If the menu is just opened, don't start processing controls until the player has stopped pressing the accept or cancel buttons
+            if (justOpenedControlChecks)
+            {
+                if (Controls.IsPressed((Control)177 /*PhoneCancel*/) || Controls.IsPressed(Control.FrontendPause) ||
+                    Controls.IsPressed(Control.FrontendAccept)       || Controls.IsPressed((Control)176 /*PhoneSelect*/) ||
+                    Controls.IsPressed(Control.CursorAccept))
+                {
+                    return;
+                }
+                justOpenedControlChecks = false;
             }
 
             // If the controls are disabled, the menu has just been opened or the text input field is active, return
