@@ -442,6 +442,38 @@ namespace LemonUI.Menus
         /// </summary>
         public ScaledText Title { get; set; }
         /// <summary>
+        /// The font of title menu text.
+        /// </summary>
+        public Font TitleMenuFont
+        {
+            get => Title.Font;
+            set => Title.Font = value;
+        }
+        /// <summary>
+        /// The font of subtitle text.
+        /// </summary>
+        public Font SubtitleFont
+        {
+            get => subtitleText.Font;
+            set => subtitleText.Font = value;
+        }
+        /// <summary>
+        /// The font of description text.
+        /// </summary>
+        public Font DescriptionFont
+        {
+            get => descriptionText.Font;
+            set => descriptionText.Font = value;
+        }
+        /// <summary>
+        /// The font of item count text.
+        /// </summary>
+        public Font ItemCountFont
+        {
+            get => countText.Font;
+            set => countText.Font = value;
+        }
+        /// <summary>
         /// The banner shown at the top of the menu.
         /// </summary>
         public I2Dimensional Banner
@@ -1375,8 +1407,9 @@ namespace LemonUI.Menus
         /// Adds a specific menu as a submenu with an item.
         /// </summary>
         /// <param name="menu">The menu to add.</param>
+        /// <param name="endlabel">The string will be displayed at the end of submenu.</param>
         /// <returns>The item that points to the submenu.</returns>
-        public NativeSubmenuItem AddSubMenu(NativeMenu menu)
+        public NativeSubmenuItem AddSubMenu(NativeMenu menu, string endlabel = ">>>")
         {
             // If the menu is null, raise an exception
             if (menu == null)
@@ -1385,7 +1418,7 @@ namespace LemonUI.Menus
             }
 
             // Create a new menu item, add it and return it
-            NativeSubmenuItem item = new NativeSubmenuItem(menu, this);
+            NativeSubmenuItem item = new NativeSubmenuItem(menu, this, endlabel);
             Add(item);
             return item;
         }

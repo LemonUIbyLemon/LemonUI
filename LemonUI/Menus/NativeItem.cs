@@ -1,3 +1,13 @@
+#if FIVEM
+using Font = CitizenFX.Core.UI.Font;
+#elif RPH
+using Font = LemonUI.Elements.Font;
+#elif SHVDN2
+using Font = GTA.Font;
+#elif SHVDN3
+using Font = GTA.UI.Font;
+#endif
+
 using LemonUI.Elements;
 using System;
 using System.Drawing;
@@ -89,6 +99,23 @@ namespace LemonUI.Menus
             get => altTitle.Text;
             set => altTitle.Text = value;
         }
+        /// <summary>
+        /// The font of title item.
+        /// </summary>
+        public Font TitleFont
+        {
+            get => title.Font;
+            set => title.Font = value;
+        }
+        /// <summary>
+        /// The font of alternative title item shown on the right.
+        /// </summary>
+        public Font AltTitleFont
+        {
+            get => altTitle.Font;
+            set => altTitle.Font = value;
+        }
+
         /// <summary>
         /// The description of the item.
         /// </summary>

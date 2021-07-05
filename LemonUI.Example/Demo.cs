@@ -2,19 +2,23 @@
 using CitizenFX.Core;
 using CitizenFX.Core.UI;
 using Script = CitizenFX.Core.BaseScript;
+using Font = CitizenFX.Core.UI.Font;
 #elif RPH
 using Rage;
 using Rage.Attributes;
 using Control = Rage.GameControl;
 using CancelEventArgs = System.ComponentModel.CancelEventArgs;
+using Font = LemonUI.Elements.Font;
 #elif SHVDN2
 using GTA;
 using GTA.Native;
 using CancelEventArgs = System.ComponentModel.CancelEventArgs;
+using Font = GTA.Font;
 #elif SHVDN3
 using GTA;
 using GTA.UI;
 using CancelEventArgs = System.ComponentModel.CancelEventArgs;
+using Font = GTA.UI.Font;
 #endif
 using LemonUI.Elements;
 using LemonUI.Menus;
@@ -86,6 +90,7 @@ namespace LemonUI.Example
         private static readonly NativeCheckboxItem useMouse = new NativeCheckboxItem("Use Mouse", "If the mouse should be used for selecting different items.", menu.UseMouse);
         private static readonly NativeItem flip = new NativeItem("Flip", "Flips the Menu from the left to the Right.");
         private static readonly NativeItem showHack = new NativeItem("Show Hack", "Shows the hacking minigame.");
+        private static readonly NativeItem randomFont = new NativeItem("Set a Random Font", "Sets a random font for all of the Elements in the menu.");
         private static readonly NativeItem clear = new NativeItem("Clear", "Removes all of the items from this menu. A script restart will be needed to restore the items.", "Danger!")
         {
             RightBadge = new ScaledTexture("commonmenu", "mp_alerttriangle") // This is a Badge, shown on the left side of the item
@@ -126,6 +131,7 @@ namespace LemonUI.Example
             showBigMessage.Activated += ShowBigMessage_Activated;
             useMouse.CheckboxChanged += UseMouse_CheckboxChanged;
             flip.Activated += Flip_Activated;
+            randomFont.Activated += RandomFont_Activated;
             showHack.Activated += ShowHack_Activated;
             clear.Activated += Clear_Activated;
             addRandom.Activated += AddRandom_Activated;
@@ -136,6 +142,7 @@ namespace LemonUI.Example
             menu.Add(showBigMessage);
             menu.Add(useMouse);
             menu.Add(flip);
+            menu.Add(randomFont);
             menu.Add(showHack);
             menu.Add(clear);
             menu.AddSubMenu(submenu);
@@ -232,6 +239,31 @@ namespace LemonUI.Example
         {
             // Here, we remove the random items with the exception of the add and remove items
             submenu.Remove(item => item != addRandom && item != removeRandom);
+        }
+
+        private static void RandomFont_Activated(object sender, EventArgs e)
+        {
+            // Here we can change global font;
+            Array values = Enum.GetValues(typeof(Font));
+            Random random = new Random();
+            Font randomFont = (Font)values.GetValue(random.Next(values.Length));
+
+            pool.ForEach<NativeMenu>(x =>
+            {
+                x.TitleMenuFont = randomFont;
+                x.SubtitleFont = randomFont;
+                x.DescriptionFont = randomFont;
+                x.ItemCountFont = randomFont;
+
+                // Title and AltTitle of list
+                x.Items.ForEach(y =>
+                {
+                    /// You can also use font id that already been registered
+                    y.TitleFont = randomFont;
+                    y.AltTitleFont = randomFont;
+                });
+
+            });
         }
 
 #if FIVEM
