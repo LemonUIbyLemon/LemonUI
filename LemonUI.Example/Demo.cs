@@ -243,26 +243,25 @@ namespace LemonUI.Example
 
         private static void RandomFont_Activated(object sender, EventArgs e)
         {
-            // Here we can change global font;
-            Array values = Enum.GetValues(typeof(Font));
+            // Here, we get a random item from the Font enum
+            Font[] values = (Font[])Enum.GetValues(typeof(Font));
             Random random = new Random();
-            Font randomFont = (Font)values.GetValue(random.Next(values.Length));
+            Font randomFont = values[random.Next(values.Length)];
 
-            pool.ForEach<NativeMenu>(x =>
+            // And then, we apply it to every menu
+            pool.ForEach<NativeMenu>(menu =>
             {
-                x.TitleMenuFont = randomFont;
-                x.SubtitleFont = randomFont;
-                x.DescriptionFont = randomFont;
-                x.ItemCountFont = randomFont;
+                menu.TitleMenuFont = randomFont;
+                menu.SubtitleFont = randomFont;
+                menu.DescriptionFont = randomFont;
+                menu.ItemCountFont = randomFont;
 
-                // Title and AltTitle of list
-                x.Items.ForEach(y =>
+                // Even the items!
+                foreach (NativeItem item in menu.Items)
                 {
-                    /// You can also use font id that already been registered
-                    y.TitleFont = randomFont;
-                    y.AltTitleFont = randomFont;
-                });
-
+                    item.TitleFont = randomFont;
+                    item.AltTitleFont = randomFont;
+                }
             });
         }
 
