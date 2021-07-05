@@ -1430,10 +1430,10 @@ namespace LemonUI.Menus
             return item;
         }
         /// <summary>
-        /// Adds a specific menu as a submenu with an item.
+        /// Adds a specific menu as a submenu with an item and endlabel string.
         /// </summary>
         /// <param name="menu">The menu to add.</param>
-        /// <param name="endlabel">The menu to add.</param>
+        /// <param name="endlabel">The alternative title of the item, shown on the right.</param>
         /// <returns>The item that points to the submenu.</returns>
         public NativeSubmenuItem AddSubMenu(NativeMenu menu, String endlabel)
         {
