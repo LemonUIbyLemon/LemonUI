@@ -1407,9 +1407,27 @@ namespace LemonUI.Menus
         /// Adds a specific menu as a submenu with an item.
         /// </summary>
         /// <param name="menu">The menu to add.</param>
+        /// <returns>The item that points to the submenu.</returns>
+        public NativeSubmenuItem AddSubMenu(NativeMenu menu)
+        {
+            // If the menu is null, raise an exception
+            if (menu == null)
+            {
+                throw new ArgumentNullException(nameof(menu));
+            }
+
+            // Create a new menu item, add it and return it
+            NativeSubmenuItem item = new NativeSubmenuItem(menu, this);
+            Add(item);
+            return item;
+        }
+        /// <summary>
+        /// Adds a specific menu as a submenu with an item.
+        /// </summary>
+        /// <param name="menu">The menu to add.</param>
         /// <param name="endlabel">The string will be displayed at the end of submenu.</param>
         /// <returns>The item that points to the submenu.</returns>
-        public NativeSubmenuItem AddSubMenu(NativeMenu menu, string endlabel = ">>>")
+        public NativeSubmenuItem AddSubMenu(NativeMenu menu, string endlabel)
         {
             // If the menu is null, raise an exception
             if (menu == null)
