@@ -15,6 +15,7 @@ namespace LemonUI.Menus
         public NativeMenu Menu { get; }
 
         #endregion
+
         #region Constructors
 
         /// <summary>
@@ -56,6 +57,5 @@ namespace LemonUI.Menus
         }
 
         #endregion
-
     }
 }
