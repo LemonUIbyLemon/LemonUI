@@ -290,9 +290,9 @@ namespace LemonUI.Menus
         /// </summary>
         private static readonly Control[] controls = (Control[])Enum.GetValues(typeof(Control));
         /// <summary>
-        /// If the menu has just been opened.
+        /// If the menu has just been opened and we should check the controls.
         /// </summary>
-        private bool justOpened = false;
+        private bool justOpenedControlChecks = false;
         /// <summary>
         /// The list of visible items on the screen.
         /// </summary>
@@ -378,10 +378,6 @@ namespace LemonUI.Menus
         /// The search area on the right side of the screen.
         /// </summary>
         private PointF searchAreaRight = PointF.Empty;
-        /// <summary>
-        /// A specific menu to open during the next tick.
-        /// </summary>
-        internal NativeMenu openNextTick = null;
 
         #endregion
 
@@ -414,7 +410,7 @@ namespace LemonUI.Menus
                         ResetCursor();
                     }
 
-                    justOpened = true;
+                    justOpenedControlChecks = true;
                     visible = true;
 
                     SoundOpened?.PlayFrontend();
@@ -1087,6 +1083,18 @@ namespace LemonUI.Menus
                 }
             }
 
+            // If the menu is just opened, don't start processing controls until the player has stopped pressing the accept or cancel buttons
+            if (justOpenedControlChecks)
+            {
+                if (Controls.IsPressed((Control)177 /*PhoneCancel*/) || Controls.IsPressed(Control.FrontendPause) ||
+                    Controls.IsPressed(Control.FrontendAccept)       || Controls.IsPressed((Control)176 /*PhoneSelect*/) ||
+                    Controls.IsPressed(Control.CursorAccept))
+                {
+                    return;
+                }
+                justOpenedControlChecks = false;
+            }
+
             // If the controls are disabled, the menu has just been opened or the text input field is active, return
 #if FIVEM
             bool isKeyboardActive = API.UpdateOnscreenKeyboard() == 0;
@@ -1095,7 +1103,7 @@ namespace LemonUI.Menus
 #elif SHVDN2 || SHVDN3
             bool isKeyboardActive = Function.Call<int>(Hash.UPDATE_ONSCREEN_KEYBOARD) == 0;
 #endif
-            if (!AcceptsInput || justOpened || isKeyboardActive)
+            if (!AcceptsInput || isKeyboardActive)
             {
                 return;
             }
@@ -1502,13 +1510,6 @@ namespace LemonUI.Menus
         /// </summary>
         public void Process()
         {
-            // If there is a submenu to open and this menu is closed, show it and return
-            if (openNextTick != null && !Visible)
-            {
-                openNextTick.Visible = true;
-                openNextTick = null;
-            }
-
             // If the menu is not visible, return
             if (!visible)
             {
@@ -1521,10 +1522,6 @@ namespace LemonUI.Menus
             ProcessControls();
             // And finish by drawing the instructional buttons
             Buttons.Draw();
-
-            // We just finished a processing run
-            // So the menu theoretically has not just been opened
-            justOpened = false;
         }
         /// <summary>
         /// Calculates the positions and sizes of the elements.
