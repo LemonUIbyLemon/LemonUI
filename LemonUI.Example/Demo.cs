@@ -251,7 +251,7 @@ namespace LemonUI.Example
             // And then, we apply it to every menu
             pool.ForEach<NativeMenu>(menu =>
             {
-                menu.TitleMenuFont = randomFont;
+                menu.TitleFont = randomFont;
                 menu.SubtitleFont = randomFont;
                 menu.DescriptionFont = randomFont;
                 menu.ItemCountFont = randomFont;

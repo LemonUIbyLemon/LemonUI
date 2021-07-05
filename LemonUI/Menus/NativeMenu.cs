@@ -440,7 +440,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The font of title menu text.
         /// </summary>
-        public Font TitleMenuFont
+        public Font TitleFont
         {
             get => Title.Font;
             set => Title.Font = value;
