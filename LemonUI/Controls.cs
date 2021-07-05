@@ -60,7 +60,7 @@ namespace LemonUI
         public static bool IsPressed(Control control)
         {
 #if FIVEM
-            return API.IsControlJustPressed(0, (int)control);
+            return API.IsDisabledControlPressed(0, (int)control);
 #elif RPH
             return NativeFunction.CallByHash<bool>(0xE2587F8CBBD87B1D, 0, (int)control);
 #elif (SHVDN2 || SHVDN3)
