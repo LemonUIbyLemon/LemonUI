@@ -27,7 +27,7 @@ No need to install. The resources using LemonUI will contain the required files.
 
 ### RPH
 
-Copy all of the files from the **RPH** folder inside of the compressed file to the root of your GTA V installation.
+Copy all of the files from the **RPH** folder inside of the compressed file to the root of your GTA V/Plugins folder.
 
 ### SHVDN 2 and SHVDN 3
 
