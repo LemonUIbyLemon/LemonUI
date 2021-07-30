@@ -97,7 +97,11 @@ namespace LemonUI.Menus
         public string AltTitle
         {
             get => altTitle.Text;
-            set => altTitle.Text = value;
+            set
+            {
+                altTitle.Text = value;
+                Recalculate();
+            }
         }
         /// <summary>
         /// The font of title item.
