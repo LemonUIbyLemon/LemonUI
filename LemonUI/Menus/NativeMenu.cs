@@ -378,6 +378,14 @@ namespace LemonUI.Menus
         /// The search area on the right side of the screen.
         /// </summary>
         private PointF searchAreaRight = PointF.Empty;
+        /// <summary>
+        /// The time sice the player has been pressing the Up button.
+        /// </summary>
+        private long upSince = -1;
+        /// <summary>
+        /// The time sice the player has been pressing the Down button.
+        /// </summary>
+        private long downSince = -1;
 
         #endregion
 
@@ -734,6 +742,13 @@ namespace LemonUI.Menus
         /// If the conflictive controls should be disabled while the menu is open.
         /// </summary>
         public bool DisableControls { get; set; } = true;
+        /// <summary>
+        /// The time between item changes when holding left, right, up or down.
+        /// </summary>
+        /// <remarks>
+        /// This property can be set to zero to completely disable it.
+        /// </remarks>
+        public int HeldTime { get; set; } = 166;
         /// <summary>
         /// The controls that are required for some menu operations.
         /// </summary>
@@ -1117,6 +1132,9 @@ namespace LemonUI.Menus
             bool leftPressed = Controls.IsJustPressed((Control)174 /*PhoneLeft*/);
             bool rightPressed = Controls.IsJustPressed((Control)175 /*PhoneRight*/);
 
+            bool upHeld = Controls.IsPressed((Control)172 /*PhoneUp*/) || Controls.IsPressed(Control.CursorScrollUp);
+            bool downHeld = Controls.IsPressed((Control)173 /*PhoneDown*/) || Controls.IsPressed(Control.CursorScrollDown);
+
             // If the player pressed the back button, go back or close the menu
             if (backPressed)
             {
@@ -1125,14 +1143,16 @@ namespace LemonUI.Menus
             }
 
             // If the player pressed up, go to the previous item
-            if (upPressed && !downPressed)
+            if ((upPressed && !downPressed) || (HeldTime > 0 && upSince != -1 && !upPressed && upHeld && upSince + HeldTime < Game.GameTime))
             {
+                upSince = Game.GameTime;
                 Previous();
                 return;
             }
             // If he pressed down, go to the next item
-            else if (downPressed && !upPressed)
+            if ((downPressed && !upPressed) || (HeldTime > 0 && downSince != -1 && !downPressed && downHeld && downSince + HeldTime < Game.GameTime))
             {
+                downSince = Game.GameTime;
                 Next();
                 return;
             }
