@@ -124,6 +124,11 @@ namespace LemonUI.Example
         public static void Main()
 #endif
         {
+            // A badge set is a badge that changes depending if the item is selected or not
+            BadgeSet set = new BadgeSet("commonmenu", "shop_garage_icon_a", "shop_garage_icon_b");
+            flip.RightBadgeSet = set;
+            flip.LeftBadgeSet = set;
+
             // Add the events of the menu and the items
             menu.Shown += Menu_Shown;
             menu.Closing += Menu_Closing;

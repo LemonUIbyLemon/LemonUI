@@ -58,6 +58,8 @@ namespace LemonUI.Menus
         /// If this item can be used or not.
         /// </summary>
         private bool enabled = true;
+        private BadgeSet badgeSetLeft = null;
+        private BadgeSet badgeSetRight = null;
 
         #endregion
 
@@ -137,6 +139,18 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
+        /// The Left badge set of the Item.
+        /// </summary>
+        public BadgeSet LeftBadgeSet
+        {
+            get => badgeSetLeft;
+            set
+            {
+                badgeSetLeft = value;
+                Recalculate();
+            }
+        }
+        /// <summary>
         /// The Right badge of the Item.
         /// </summary>
         public I2Dimensional RightBadge
@@ -145,6 +159,18 @@ namespace LemonUI.Menus
             set
             {
                 badgeRight = value;
+                Recalculate();
+            }
+        }
+        /// <summary>
+        /// The Right badge set of the Item.
+        /// </summary>
+        public BadgeSet RightBadgeSet
+        {
+            get => badgeSetRight;
+            set
+            {
+                badgeSetRight = value;
                 Recalculate();
             }
         }
@@ -257,6 +283,29 @@ namespace LemonUI.Menus
             lastPosition = pos;
             lastSize = size;
             lastSelected = selected;
+
+            // Make sure that the badge sets are ScaledTexture classes
+            // Then just apply the appropiate textures
+            if (badgeSetLeft != null)
+            {
+                if (!(badgeLeft is ScaledTexture))
+                {
+                    badgeLeft = new ScaledTexture("", "");
+                }
+                ScaledTexture left = (ScaledTexture)badgeLeft;
+                left.Dictionary = selected ? badgeSetLeft.HoveredDictionary : badgeSetLeft.NormalDictionary;
+                left.Texture = selected ? badgeSetLeft.HoveredTexture : badgeSetLeft.NormalTexture;
+            }
+            if (badgeSetRight != null)
+            {
+                if (!(badgeRight is ScaledTexture))
+                {
+                    badgeRight = new ScaledTexture("", "");
+                }
+                ScaledTexture right = (ScaledTexture)badgeRight;
+                right.Dictionary = selected ? badgeSetRight.HoveredDictionary : badgeSetRight.NormalDictionary;
+                right.Texture = selected ? badgeSetRight.HoveredTexture : badgeSetRight.NormalTexture;
+            }
 
             // If there is a left badge, set the size and position
             if (badgeLeft != null)
