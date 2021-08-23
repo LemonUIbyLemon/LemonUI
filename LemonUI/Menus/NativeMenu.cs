@@ -1266,6 +1266,10 @@ namespace LemonUI.Menus
                     // So close the menu if required (same behavior of the interaction menu)
                     if (CloseOnInvalidClick)
                     {
+                        if (selectedItem.Panel != null && selectedItem.Panel.Clickable && Screen.IsCursorInArea(selectedItem.Panel.Background.Position, SelectedItem.Panel.Background.Size))
+                        {
+                            return;
+                        }
                         Visible = false;
                     }
                     return;

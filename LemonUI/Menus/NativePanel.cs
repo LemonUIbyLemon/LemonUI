@@ -15,6 +15,10 @@ namespace LemonUI.Menus
         /// </summary>
         public virtual bool Visible { get; set; } = true;
         /// <summary>
+        /// If the item has controls that can be clicked.
+        /// </summary>
+        public virtual bool Clickable { get; } = false;
+        /// <summary>
         /// The Background of the panel itself.
         /// </summary>
         public ScaledTexture Background { get; } = new ScaledTexture("commonmenu", "gradient_bgd");

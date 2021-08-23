@@ -197,7 +197,9 @@ namespace LemonUI.Menus
         #endregion
 
         #region Public Properties
-        
+
+        /// <inheritdoc/>
+        public override bool Clickable => true;
         /// <summary>
         /// If the Opacity selector should be shown.
         /// </summary>
