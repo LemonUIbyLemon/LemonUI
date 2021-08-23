@@ -29,7 +29,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CitizenFX.Core.Client" Version="1.0.2514">
+    <PackageReference Include="CitizenFX.Core.Client" Version="1.0.4355">
       <IncludeAssets>compile</IncludeAssets>
     </PackageReference>
     <Compile Include="$(ProjectDir)/../LemonUI/**" />
