@@ -101,6 +101,24 @@ namespace LemonUI.Elements
 #endif
         }
         /// <summary>
+        /// Draws a specific part of the texture on the screen.
+        /// </summary>
+        public void DrawSpecific(PointF topLeft, PointF bottomRight)
+        {
+            if (Size == SizeF.Empty)
+            {
+                return;
+            }
+            Request();
+#if FIVEM
+            API.DrawSpriteUv(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A);
+#elif RPH
+            NativeFunction.CallByHash<int>(0x95812F9B26074726, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A);
+#elif (SHVDN2 || SHVDN3)
+            Function.Call((Hash)0x95812F9B26074726, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A);
+#endif
+        }
+        /// <summary>
         /// Recalculates the position based on the size.
         /// </summary>
         public override void Recalculate()
