@@ -116,7 +116,17 @@ namespace LemonUI.Menus
         /// </summary>
         public float X
         {
-            get => x;
+            get
+            {
+                switch (style)
+                {
+                    case GridStyle.Full:
+                    case GridStyle.Row:
+                        return x;
+                    default:
+                        return 0.5f;
+                }
+            }
             set
             {
                 if (value > 1 || value < 0)
@@ -134,7 +144,17 @@ namespace LemonUI.Menus
         /// </summary>
         public float Y
         {
-            get => y;
+            get
+            {
+                switch (style)
+                {
+                    case GridStyle.Full:
+                    case GridStyle.Column:
+                        return y;
+                    default:
+                        return 0.5f;
+                }
+            }
             set
             {
                 if (value > 1 || value < 0)
