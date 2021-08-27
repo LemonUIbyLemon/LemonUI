@@ -227,6 +227,9 @@ namespace LemonUI.Menus
         /// <inheritdoc/>
         public override void Process()
         {
+            float previousX = x;
+            float previousY = y;
+
             Background.Draw();
             switch (style)
             {
@@ -304,7 +307,10 @@ namespace LemonUI.Menus
                     y = 1;
                 }
 
-                UpdateDot();
+                if (previousX != x || previousY != y)
+                {
+                    UpdateDot();
+                }
             }
         }
 
