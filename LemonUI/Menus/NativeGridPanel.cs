@@ -303,8 +303,8 @@ namespace LemonUI.Menus
         /// <inheritdoc/>
         public override void Process()
         {
-            float previousX = x;
-            float previousY = y;
+            float previousX = X;
+            float previousY = Y;
 
             Background.Draw();
             switch (style)
