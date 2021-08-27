@@ -134,6 +134,11 @@ namespace LemonUI.Menus
                     throw new ArgumentOutOfRangeException(nameof(value));
                 }
 
+                if (style == GridStyle.Column)
+                {
+                    return;
+                }
+
                 PointF before = new PointF(X, Y);
                 x = value;
                 UpdateDot(before);
@@ -160,6 +165,11 @@ namespace LemonUI.Menus
                 if (value > 1 || value < 0)
                 {
                     throw new ArgumentOutOfRangeException(nameof(value));
+                }
+
+                if (style == GridStyle.Full)
+                {
+                    return;
                 }
 
                 PointF before = new PointF(X, Y);
