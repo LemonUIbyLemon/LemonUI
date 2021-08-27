@@ -70,6 +70,26 @@ namespace LemonUI
 #endif
             }
         }
+        /// <summary>
+        /// The location of the cursor on screen between 0 and 1.
+        /// </summary>
+        public static PointF CursorPositionRelative
+        {
+            get
+            {
+#if FIVEM
+                float cursorX = API.GetControlNormal(0, (int)Control.CursorX);
+                float cursorY = API.GetControlNormal(0, (int)Control.CursorY);
+#elif RPH
+                float cursorX = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.CursorX);
+                float cursorY = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.CursorY);
+#elif SHVDN2 || SHVDN3
+                float cursorX = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorX);
+                float cursorY = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorY);
+#endif
+                return new PointF(cursorX, cursorY);
+            }
+        }
 
         /// <summary>
         /// Converts a relative resolution into one scaled to 1080p.
@@ -124,25 +144,15 @@ namespace LemonUI
         /// <returns><see langword="true"/> if the cursor is in the specified bounds, <see langword="false"/> otherwise.</returns>
         public static bool IsCursorInArea(float x, float y, float width, float height)
         {
-            // Get the current location of the cursor
-#if FIVEM
-            float cursorX = API.GetControlNormal(0, (int)Control.CursorX);
-            float cursorY = API.GetControlNormal(0, (int)Control.CursorY);
-#elif RPH
-            float cursorX = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.CursorX);
-            float cursorY = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.CursorY);
-#elif SHVDN2 || SHVDN3
-            float cursorX = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorX);
-            float cursorY = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorY);
-#endif
-            // Convert the search area values to relative
+            PointF cursor = CursorPositionRelative;
+
             ToRelative(width, height, out float realWidth, out float realHeight);
-            // And get the correct on screen positions based on the GFX Alignment
+
             PointF realPos = GetRealPosition(x, y).ToRelative();
-            // Check if the values are in the correct positions
-            bool isX = cursorX >= realPos.X && cursorX <= realPos.X + realWidth;
-            bool isY = cursorY > realPos.Y && cursorY < realPos.Y + realHeight;
-            // And return the result of those checks
+
+            bool isX = cursor.X >= realPos.X && cursor.X <= realPos.X + realWidth;
+            bool isY = cursor.Y > realPos.Y && cursor.Y < realPos.Y + realHeight;
+
             return isX && isY;
         }
         /// <summary>
