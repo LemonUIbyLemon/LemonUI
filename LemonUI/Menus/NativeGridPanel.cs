@@ -217,6 +217,11 @@ namespace LemonUI.Menus
             get => style;
             set
             {
+                if (!Enum.IsDefined(typeof(GridStyle), value))
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "The Grid style is not valid! Expected Full, Row or Column.");
+                }
+
                 style = value;
                 Recalculate();
             }
