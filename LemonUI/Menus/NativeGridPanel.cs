@@ -289,28 +289,29 @@ namespace LemonUI.Menus
 
                 x += rX * frameTime;
                 y += rY * frameTime;
+            }
 
-                if (x < 0)
-                {
-                    x = 0;
-                }
-                else if (x > 1)
-                {
-                    x = 1;
-                }
-                if (y < 0)
-                {
-                    y = 0;
-                }
-                else if (y > 1)
-                {
-                    y = 1;
-                }
+            // Make sure that the values are not under zero or over one
+            if (x < 0)
+            {
+                x = 0;
+            }
+            else if (x > 1)
+            {
+                x = 1;
+            }
+            if (y < 0)
+            {
+                y = 0;
+            }
+            else if (y > 1)
+            {
+                y = 1;
+            }
 
-                if (previousX != x || previousY != y)
-                {
-                    UpdateDot();
-                }
+            if (previousX != x || previousY != y)
+            {
+                UpdateDot();
             }
         }
 
