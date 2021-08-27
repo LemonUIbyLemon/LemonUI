@@ -15,6 +15,7 @@ using GTA.Native;
 using GTA.UI;
 #endif
 using LemonUI.Elements;
+using LemonUI.Extensions;
 using System;
 using System.Drawing;
 
@@ -70,6 +71,8 @@ namespace LemonUI.Menus
         {
             Color = Color.FromArgb(255, 255, 255, 255)
         };
+        private PointF innerPosition = PointF.Empty;
+        private SizeF innerSize = SizeF.Empty;
         private GridStyle style = GridStyle.Full;
         private float x;
         private float y;
@@ -177,18 +180,12 @@ namespace LemonUI.Menus
         private void Recalculate() => Recalculate(position, width);
         private void UpdateDot()
         {
-            const int offsetX = 20;
-            const int offsetY = 20;
-
-            float gridWidth = grid.Size.Width - (offsetX * 2);
-            float gridHeight = grid.Size.Height - (offsetY * 2);
-
-            float posX = gridWidth * (style == GridStyle.Full || style == GridStyle.Row ? x : 0.5f);
-            float posY = gridHeight * (style == GridStyle.Full || style == GridStyle.Column ? y : 0.5f);
+            float posX = innerSize.Width * (style == GridStyle.Full || style == GridStyle.Row ? x : 0.5f);
+            float posY = innerSize.Height * (style == GridStyle.Full || style == GridStyle.Column ? y : 0.5f);
 
             dot.Size = new SizeF(45, 45);
-            dot.Position = new PointF(grid.Position.X - (dot.Size.Width * 0.5f) + posX + offsetX,
-                                      grid.Position.Y - (dot.Size.Height * 0.5f) + posY + offsetY);
+            dot.Position = new PointF(innerPosition.X + posX - (dot.Size.Width * 0.5f),
+                                      innerPosition.Y + posY - (dot.Size.Height * 0.5f));
         }
         /// <inheritdoc/>
         public override void Recalculate(PointF position, float width)
@@ -197,6 +194,8 @@ namespace LemonUI.Menus
             this.width = width;
 
             const float height = 270;
+            const int offsetX = 20;
+            const int offsetY = 20;
 
             base.Recalculate(position, width);
             Background.Size = new SizeF(width, height);
@@ -221,6 +220,9 @@ namespace LemonUI.Menus
             labelBottom.Position = new PointF(position.X + (width * 0.5f), position.Y + height - 34);
             labelLeft.Position = new PointF(position.X + (width * 0.5f) - 102, position.Y + (height * 0.5f) - (labelLeft.LineHeight * 0.5f));
             labelRight.Position = new PointF(position.X + (width * 0.5f) + 102, position.Y + (height * 0.5f) - (labelLeft.LineHeight * 0.5f));
+
+            innerPosition = new PointF(grid.Position.X + offsetX, grid.Position.Y + offsetY);
+            innerSize = new SizeF(grid.Size.Width - (offsetX * 2), grid.Size.Height - (offsetY * 2));
 
             UpdateDot();
         }
