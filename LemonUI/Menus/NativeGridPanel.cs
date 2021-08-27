@@ -41,7 +41,35 @@ namespace LemonUI.Menus
     }
 
     /// <summary>
-    /// Represents a grid where you can selec X and Y values.
+    /// Represents the method that is called when the value on a grid is changed.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">An <see cref="ItemActivatedArgs"/> with the item information.</param>
+    public delegate void GridValueChangedEventHandler(object sender, GridValueChangedArgs e);
+
+    /// <summary>
+    /// Represents the Previous and Current X and Y values when changing the position on a grid.
+    /// </summary>
+    public class GridValueChangedArgs
+    {
+        /// <summary>
+        /// The values present before they were changed.
+        /// </summary>
+        public PointF Before { get; }
+        /// <summary>
+        /// The values present after they were changed.
+        /// </summary>
+        public PointF After { get; }
+
+        internal GridValueChangedArgs(PointF before, PointF after)
+        {
+            Before = before;
+            After = after;
+        }
+    }
+
+    /// <summary>
+    /// Represents a grid where you can select X and Y values.
     /// </summary>
     public class NativeGridPanel : NativePanel
     {
@@ -96,8 +124,9 @@ namespace LemonUI.Menus
                     throw new ArgumentOutOfRangeException(nameof(value));
                 }
 
+                PointF before = new PointF(X, Y);
                 x = value;
-                UpdateDot();
+                UpdateDot(before);
             }
         }
         /// <summary>
@@ -113,8 +142,9 @@ namespace LemonUI.Menus
                     throw new ArgumentOutOfRangeException(nameof(value));
                 }
 
+                PointF before = new PointF(X, Y);
                 y = value;
-                UpdateDot();
+                UpdateDot(before);
             }
         }
         /// <summary>
@@ -164,6 +194,15 @@ namespace LemonUI.Menus
 
         #endregion
 
+        #region Events
+
+        /// <summary>
+        /// Event triggered when X and/or Y values are changed.
+        /// </summary>
+        public event GridValueChangedEventHandler ValuesChanged;
+
+        #endregion
+
         #region Constructor
 
         /// <summary>
@@ -178,7 +217,7 @@ namespace LemonUI.Menus
         #region Functions
 
         private void Recalculate() => Recalculate(position, width);
-        private void UpdateDot()
+        private void UpdateDot(PointF before, bool trigger = true)
         {
             float posX = innerSize.Width * (style == GridStyle.Full || style == GridStyle.Row ? x : 0.5f);
             float posY = innerSize.Height * (style == GridStyle.Full || style == GridStyle.Column ? y : 0.5f);
@@ -186,6 +225,11 @@ namespace LemonUI.Menus
             dot.Size = new SizeF(45, 45);
             dot.Position = new PointF(innerPosition.X + posX - (dot.Size.Width * 0.5f),
                                       innerPosition.Y + posY - (dot.Size.Height * 0.5f));
+
+            if (trigger)
+            {
+                ValuesChanged?.Invoke(this, new GridValueChangedArgs(before, new PointF(X, Y)));
+            }
         }
         /// <inheritdoc/>
         public override void Recalculate(PointF position, float width)
@@ -224,7 +268,7 @@ namespace LemonUI.Menus
             innerPosition = new PointF(grid.Position.X + offsetX, grid.Position.Y + offsetY);
             innerSize = new SizeF(grid.Size.Width - (offsetX * 2), grid.Size.Height - (offsetY * 2));
 
-            UpdateDot();
+            UpdateDot(PointF.Empty, false);
         }
         /// <inheritdoc/>
         public override void Process()
@@ -327,7 +371,7 @@ namespace LemonUI.Menus
 
             if (previousX != x || previousY != y)
             {
-                UpdateDot();
+                UpdateDot(new PointF(previousX, previousX));
             }
         }
 
