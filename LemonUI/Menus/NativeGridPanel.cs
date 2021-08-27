@@ -266,7 +266,21 @@ namespace LemonUI.Menus
 #endif
             if (usingKeyboard)
             {
+                if (Screen.IsCursorInArea(grid.Position, grid.Size) && Controls.IsPressed(Control.CursorAccept))
+                {
+                    PointF cursor = Screen.CursorPositionRelative;
+                    PointF pos = innerPosition.ToRelative();
 
+                    PointF start = new PointF(cursor.X - pos.X, cursor.Y - pos.Y);
+                    SizeF size = innerSize.ToRelative();
+
+                    x = start.X / size.Width;
+                    y = start.Y / size.Height;
+                }
+                else
+                {
+                    return;
+                }
             }
             else
             {
