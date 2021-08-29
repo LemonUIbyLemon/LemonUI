@@ -54,12 +54,10 @@ namespace LemonUI.Menus
 
         #region Private Fields
 
-        /// <summary>
-        /// If this item can be used or not.
-        /// </summary>
         private bool enabled = true;
         private BadgeSet badgeSetLeft = null;
         private BadgeSet badgeSetRight = null;
+        private ColorSet colors = new ColorSet();
 
         #endregion
 
@@ -79,6 +77,7 @@ namespace LemonUI.Menus
                 }
                 enabled = value;
                 EnabledChanged?.Invoke(this, EventArgs.Empty);
+                UpdateColors();
             }
         }
         /// <summary>
@@ -136,6 +135,7 @@ namespace LemonUI.Menus
             {
                 badgeLeft = value;
                 Recalculate();
+                UpdateColors();
             }
         }
         /// <summary>
@@ -148,6 +148,7 @@ namespace LemonUI.Menus
             {
                 badgeSetLeft = value;
                 Recalculate();
+                UpdateColors();
             }
         }
         /// <summary>
@@ -160,6 +161,7 @@ namespace LemonUI.Menus
             {
                 badgeRight = value;
                 Recalculate();
+                UpdateColors();
             }
         }
         /// <summary>
@@ -172,6 +174,19 @@ namespace LemonUI.Menus
             {
                 badgeSetRight = value;
                 Recalculate();
+                UpdateColors();
+            }
+        }
+        /// <summary>
+        /// The different colors that change dynamically when the item is used.
+        /// </summary>
+        public ColorSet Colors
+        {
+            get => colors;
+            set
+            {
+                colors = value;
+                UpdateColors();
             }
         }
         /// <summary>
@@ -223,26 +238,9 @@ namespace LemonUI.Menus
         /// <param name="altTitle">The alternative title of the item, shown on the right.</param>
         public NativeItem(string title, string description, string altTitle)
         {
-            this.title = new ScaledText(PointF.Empty, title, 0.345f)
-            {
-                Color = NativeMenu.colorWhiteSmoke
-            };
+            this.title = new ScaledText(PointF.Empty, title, 0.345f);
             Description = description;
-            this.altTitle = new ScaledText(PointF.Empty, altTitle, 0.345f)
-            {
-                Color = NativeMenu.colorWhiteSmoke
-            };
-            EnabledChanged += NativeItem_EnabledChanged;
-        }
-
-        #endregion
-
-        #region Local Events
-
-        private void NativeItem_EnabledChanged(object sender, EventArgs e)
-        {
-            title.Color = Enabled ? NativeMenu.colorWhite : NativeMenu.colorDisabled;
-            altTitle.Color = Enabled ? NativeMenu.colorWhite : NativeMenu.colorDisabled;
+            this.altTitle = new ScaledText(PointF.Empty, altTitle, 0.345f);
         }
 
         #endregion
@@ -319,23 +317,10 @@ namespace LemonUI.Menus
                 badgeRight.Size = new SizeF(45, 45);
             }
             // Just set the color and position of the title
-            if (!Enabled)
-            {
-                title.Color = NativeMenu.colorDisabled;
-                altTitle.Color = NativeMenu.colorDisabled;
-            }
-            else if (selected)
-            {
-                title.Color = NativeMenu.colorBlack;
-                altTitle.Color = NativeMenu.colorBlack;
-            }
-            else
-            {
-                title.Color = NativeMenu.colorWhiteSmoke;
-                altTitle.Color = NativeMenu.colorWhiteSmoke;
-            }
             title.Position = new PointF(pos.X + (badgeLeft == null ? 0 : 34) + 6, pos.Y + 3);
             altTitle.Position = new PointF(pos.X + size.Width - (badgeRight == null ? 0 : 34) - altTitle.Width - 6, pos.Y + 3);
+
+            UpdateColors();
         }
         /// <summary>
         /// Draws the item.
@@ -346,6 +331,51 @@ namespace LemonUI.Menus
             altTitle.Draw();
             badgeLeft?.Draw();
             badgeRight?.Draw();
+        }
+        /// <summary>
+        /// Updates the colors of the <see cref="Elements"/> from the <see cref="Colors"/> <see cref="ColorSet"/>.
+        /// </summary>
+        public virtual void UpdateColors()
+        {
+            if (!Enabled)
+            {
+                title.Color = Colors.TitleDisabled;
+                altTitle.Color = Colors.AltTitleDisabled;
+                if (badgeLeft != null)
+                {
+                    badgeLeft.Color = Colors.BadgeLeftDisabled;
+                }
+                if (badgeRight != null)
+                {
+                    badgeRight.Color = Colors.BadgeRightDisabled;
+                }
+            }
+            else if (lastSelected)
+            {
+                title.Color = Colors.TitleHovered;
+                altTitle.Color = Colors.AltTitleHovered;
+                if (badgeLeft != null)
+                {
+                    badgeLeft.Color = Colors.BadgeLeftHovered;
+                }
+                if (badgeRight != null)
+                {
+                    badgeRight.Color = Colors.BadgeRightHovered;
+                }
+            }
+            else
+            {
+                title.Color = Colors.TitleNormal;
+                altTitle.Color = Colors.AltTitleNormal;
+                if (badgeLeft != null)
+                {
+                    badgeLeft.Color = Colors.BadgeLeftNormal;
+                }
+                if (badgeRight != null)
+                {
+                    badgeRight.Color = Colors.BadgeRightNormal;
+                }
+            }
         }
 
         #endregion

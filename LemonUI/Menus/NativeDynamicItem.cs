@@ -11,11 +11,8 @@ namespace LemonUI.Menus
     {
         #region Fields
 
+        private readonly ScaledText text = new ScaledText(PointF.Empty, "", 0.35f);
         private T item = default;
-        private ScaledText text = new ScaledText(PointF.Empty, "", 0.35f)
-        {
-            Color = NativeMenu.colorWhiteSmoke
-        };
 
         #endregion
 
@@ -128,19 +125,6 @@ namespace LemonUI.Menus
 
             base.Recalculate(pos, size, selected);
 
-            if (!Enabled)
-            {
-                text.Color = NativeMenu.colorDisabled;
-            }
-            else if (selected)
-            {
-                text.Color = NativeMenu.colorBlack;
-            }
-            else
-            {
-                text.Color = NativeMenu.colorWhiteSmoke;
-            }
-
             float textWidth = RightArrow.Size.Width;
             text.Position = new PointF(pos.X + size.Width - textWidth - 1 - text.Width, pos.Y + 3);
             LeftArrow.Position = new PointF(text.Position.X - LeftArrow.Size.Width, pos.Y + 4);
@@ -154,6 +138,24 @@ namespace LemonUI.Menus
         {
             base.Draw(); // Arrows, Title and Left Badge
             text.Draw();
+        }
+        /// <inheritdoc/>
+        public override void UpdateColors()
+        {
+            base.UpdateColors();
+
+            if (!Enabled)
+            {
+                text.Color = Colors.TitleDisabled;
+            }
+            else if (lastSelected)
+            {
+                text.Color = Colors.TitleHovered;
+            }
+            else
+            {
+                text.Color = Colors.TitleNormal;
+            }
         }
 
         #endregion

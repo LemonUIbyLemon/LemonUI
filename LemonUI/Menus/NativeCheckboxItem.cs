@@ -120,9 +120,6 @@ namespace LemonUI.Menus
             {
                 check.Texture = Checked ? "shop_box_tickb" : "shop_box_blankb";
             }
-
-            // Then, set the color based on the item activation
-            check.Color = Enabled ? NativeMenu.colorWhite : NativeMenu.colorDisabled;
         }
 
         #endregion
@@ -152,6 +149,24 @@ namespace LemonUI.Menus
             title.Draw();
             badgeLeft?.Draw();
             check.Draw();
+        }
+        /// <inheritdoc/>
+        public override void UpdateColors()
+        {
+            base.UpdateColors();
+
+            if (!Enabled)
+            {
+                check.Color = Colors.BadgeRightDisabled;
+            }
+            else if (lastSelected)
+            {
+                check.Color = Colors.BadgeRightHovered;
+            }
+            else
+            {
+                check.Color = Colors.BadgeRightNormal;
+            }
         }
 
         #endregion

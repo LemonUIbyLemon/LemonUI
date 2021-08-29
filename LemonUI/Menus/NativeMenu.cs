@@ -137,31 +137,11 @@ namespace LemonUI.Menus
 
         #region Internal Fields
 
-        /// <summary>
-        /// A Pink-Purple used for debugging.
-        /// </summary>
-        internal static readonly Color colorDebug = Color.FromArgb(255, 255, 0, 255);
-        /// <summary>
-        /// The White color.
-        /// </summary>
-        internal static readonly Color colorWhite = Color.FromArgb(255, 255, 255, 255);
-        /// <summary>
-        /// The White Smoke color.
-        /// </summary>
         internal static readonly Color colorWhiteSmoke = Color.FromArgb(255, 245, 245, 245);
-        /// <summary>
-        /// The Black color.
-        /// </summary>
-        internal static readonly Color colorBlack = Color.FromArgb(255, 0, 0, 0);
-        /// <summary>
-        /// The color for disabled items.
-        /// </summary>
-        internal static readonly Color colorDisabled = Color.FromArgb(255, 163, 159, 148);
         /// <summary>
         /// The search area size for the cursor rotation.
         /// </summary>
         internal static readonly SizeF searchAreaSize = new SizeF(30, 1080);
-
         /// <summary>
         /// The controls required by the menu with both a gamepad and mouse + keyboard.
         /// </summary>
@@ -855,7 +835,6 @@ namespace LemonUI.Menus
             bannerImage = banner;
             Title = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
             {
-                Color = colorWhite,
                 Alignment = Alignment.Center
             };
             subtitleText.Text = subtitle.ToUpperInvariant();

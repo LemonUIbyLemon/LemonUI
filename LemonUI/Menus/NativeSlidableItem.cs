@@ -92,12 +92,10 @@ namespace LemonUI.Menus
         public override void Recalculate(PointF pos, SizeF size, bool selected)
         {
             base.Recalculate(pos, size, selected);
-            // Set the sizes of the arrows
+
             LeftArrow.Size = (selected && Enabled) || ArrowsAlwaysVisible ? new SizeF(30, 30) : SizeF.Empty;
-            LeftArrow.Color = selected ? NativeMenu.colorBlack : NativeMenu.colorWhiteSmoke;
             RightArrow.Size = (selected && Enabled) || ArrowsAlwaysVisible ? new SizeF(30, 30) : SizeF.Empty;
-            RightArrow.Color = selected ? NativeMenu.colorBlack : NativeMenu.colorWhiteSmoke;
-            // And set the positions of the right arrow
+
             RightArrow.Position = new PointF(pos.X + size.Width - RightArrow.Size.Width - 5, pos.Y + 4);
         }
         /// <summary>
@@ -117,6 +115,27 @@ namespace LemonUI.Menus
             badgeLeft?.Draw();
             LeftArrow.Draw();
             RightArrow.Draw();
+        }
+        /// <inheritdoc/>
+        public override void UpdateColors()
+        {
+            base.UpdateColors();
+
+            if (!Enabled)
+            {
+                LeftArrow.Color = Colors.TitleDisabled;
+                RightArrow.Color = Colors.TitleDisabled;
+            }
+            else if (lastSelected)
+            {
+                LeftArrow.Color = Colors.TitleHovered;
+                RightArrow.Color = Colors.TitleHovered;
+            }
+            else
+            {
+                LeftArrow.Color = Colors.TitleNormal;
+                RightArrow.Color = Colors.TitleNormal;
+            }
         }
 
         #endregion
