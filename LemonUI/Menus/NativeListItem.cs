@@ -215,6 +215,14 @@ namespace LemonUI.Menus
         {
             ItemChanged?.Invoke(this, new ItemChangedEventArgs<T>(items[index], index, direction));
         }
+        private void FixIndexIfRequired()
+        {
+            if (index >= items.Count)
+            {
+                index = items.Count - 1;
+                UpdateIndex();
+            }
+        }
         /// <summary>
         /// Updates the currently selected item based on the index.
         /// </summary>
@@ -230,6 +238,95 @@ namespace LemonUI.Menus
 
         #region Functions
 
+        /// <summary>
+        /// Adds a <typeparamref name="T" /> into this item.
+        /// </summary>
+        /// <param name="item">The <typeparamref name="T" /> to add.</param>
+        public void Add(T item)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
+            if (items.Contains(item))
+            {
+                throw new InvalidOperationException("Item is already part of this NativeListItem.");
+            }
+
+            items.Add(item);
+
+            if (items.Count == 1)
+            {
+                UpdateIndex();
+            }
+        }
+        /// <summary>
+        /// Adds a <typeparamref name="T" /> in a specific location.
+        /// </summary>
+        /// <param name="position">The position where the item should be added.</param>
+        /// <param name="item">The <typeparamref name="T" /> to add.</param>
+        public void Add(int position, T item)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
+            if (position < 0 || position > Items.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(position), "The position is out of the range of items.");
+            }
+
+            Items.Insert(position, item);
+
+            FixIndexIfRequired();
+        }
+        /// <summary>
+        /// Removes a specific <typeparamref name="T" />.
+        /// </summary>
+        /// <param name="item">The <typeparamref name="T" /> to remove.</param>
+        public void Remove(T item)
+        {
+            if (items.Remove(item))
+            {
+                FixIndexIfRequired();
+            }
+        }
+        /// <summary>
+        /// Removes a <typeparamref name="T" /> at a specific location.
+        /// </summary>
+        /// <param name="position">The position of the <typeparamref name="T" />.</param>
+        public void RemoveAt(int position)
+        {
+            if (position >= items.Count)
+            {
+                return;
+            }
+
+            items.RemoveAt(position);
+            FixIndexIfRequired();
+        }
+        /// <summary>
+        /// Removes all of the items that match the <paramref name="pred"/>.
+        /// </summary>
+        /// <param name="pred">The function to use as a check.</param>
+        public void Remove(Func<T, bool> pred)
+        {
+            if (items.RemoveAll(pred.Invoke) > 0)
+            {
+                FixIndexIfRequired();
+            }
+        }
+        /// <summary>
+        /// Removes all of the <typeparamref name="T" /> from this item.
+        /// </summary>
+        public void Clear()
+        {
+            items.Clear();
+
+            UpdateIndex();
+        }
         /// <summary>
         /// Recalculates the item positions and sizes with the specified values.
         /// </summary>
