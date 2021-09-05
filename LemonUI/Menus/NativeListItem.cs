@@ -85,20 +85,14 @@ namespace LemonUI.Menus
     /// </summary>
     public class NativeListItem<T> : NativeListItem
     {
-        #region Private Fields
+        #region Fields
 
-        /// <summary>
-        /// The index of the currently selected index.
-        /// </summary>
         private int index = 0;
-        /// <summary>
-        /// The objects used by this item.
-        /// </summary>
         private List<T> items = new List<T>();
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The index of the currently selected index.
@@ -205,17 +199,14 @@ namespace LemonUI.Menus
         /// <param name="objs">The objects that are available on the Item.</param>
         public NativeListItem(string title, string subtitle, params T[] objs) : base(title, subtitle)
         {
-            // Create the basic stuff
-            Items = new List<T>();
-            // And add the objects passed
-            Items.AddRange(objs);
-            // Finally, update the visible item
+            items = new List<T>();
+            items.AddRange(objs);
             UpdateIndex();
         }
 
         #endregion
 
-        #region Private Functions
+        #region Tools
 
         /// <summary>
         /// Triggers the <seealso cref="ItemChangedEventHandler{T}"/> event.
@@ -229,16 +220,15 @@ namespace LemonUI.Menus
         /// </summary>
         private void UpdateIndex()
         {
-            // Set the text based on the current item
             text.Text = SelectedIndex != -1 ? SelectedItem.ToString() : "";
-            // And set the correct position
+
             text.Position = new PointF(RightArrow.Position.X - text.Width + 3, text.Position.Y);
             LeftArrow.Position = new PointF(text.Position.X - LeftArrow.Size.Width, LeftArrow.Position.Y);
         }
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Recalculates the item positions and sizes with the specified values.
@@ -258,22 +248,20 @@ namespace LemonUI.Menus
         /// </summary>
         public override void GoLeft()
         {
-            // If there are no items, return
             if (Items.Count == 0)
             {
                 return;
             }
 
-            // If this is the first item, go back to the last one
             if (index == 0)
             {
                 index = Items.Count - 1;
             }
-            // Otherwise, return to the previous one
             else
             {
                 index--;
             }
+
             TriggerEvent(index, Direction.Left);
             UpdateIndex();
         }
@@ -282,22 +270,20 @@ namespace LemonUI.Menus
         /// </summary>
         public override void GoRight()
         {
-            // If there are no items, return
             if (Items.Count == 0)
             {
                 return;
             }
 
-            // If this is the last item, go back to the first one
             if (index == Items.Count - 1)
             {
                 index = 0;
             }
-            // Otherwise, continue to the next one
             else
             {
                 index++;
             }
+
             TriggerEvent(index, Direction.Right);
             UpdateIndex();
         }
