@@ -6,7 +6,7 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <AssemblyName>$(AssemblyName).net</AssemblyName>
     <DefineConstants>FIVEM</DefineConstants>
-    <Version>1.0</Version>
+    <Version>1.5.1</Version>
     <OutputPath>..\bin\$(Configuration)Demo\FiveM\</OutputPath>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
