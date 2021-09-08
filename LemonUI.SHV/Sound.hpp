@@ -1,8 +1,10 @@
 #pragma once
 #include <string>
 
-class Sound
+namespace LemonUI
 {
+	class Sound
+	{
 	private:
 		std::string set;
 		std::string file;
@@ -16,4 +18,5 @@ class Sound
 		void SetFile(std::string);
 
 		void PlayFrontend();
-};
+	};
+}
