@@ -26,5 +26,11 @@
     <ClInclude Include="Alignment.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IRecalculable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrawable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
