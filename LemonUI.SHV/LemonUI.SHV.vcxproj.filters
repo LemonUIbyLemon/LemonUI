@@ -23,5 +23,8 @@
     <ClInclude Include="Sound.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Alignment.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
