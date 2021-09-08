@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alignment.hpp" />
+    <ClInclude Include="Font.hpp" />
     <ClInclude Include="IDrawable.hpp" />
     <ClInclude Include="IRecalculable.hpp" />
     <ClInclude Include="Sound.hpp" />
