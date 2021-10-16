@@ -96,14 +96,6 @@ namespace LemonUI.Scaleform
             _celebBg?.Process();
             _celeb?.Process();
             _celebFg?.Process();
-
-#if FIVEM
-            API.HideHudAndRadarThisFrame();
-#elif RPH
-            NativeFunction.CallByHash<int>(0x719FF505F097FD20);
-#elif (SHVDN2 || SHVDN3)
-            Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME);
-#endif
         }
 
         /// <summary>
