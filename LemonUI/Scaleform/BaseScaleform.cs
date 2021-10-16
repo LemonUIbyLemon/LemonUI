@@ -44,6 +44,22 @@ namespace LemonUI.Scaleform
         /// If the Scaleform should be visible or not.
         /// </summary>
         public bool Visible { get; set; }
+        /// <summary>
+        /// If the Scaleform is loaded or not.
+        /// </summary>
+        public bool Loaded
+        {
+            get
+            {
+#if FIVEM
+                return API.HasScaleformMovieLoaded(Handle);
+#elif RPH
+                return NativeFunction.CallByHash<bool>(0x85F01B8D5B90570E, Handle);
+#elif (SHVDN2 || SHVDN3)
+                return Function.Call<bool>(Hash.HAS_SCALEFORM_MOVIE_LOADED, Handle);
+#endif
+            }
+        }
 
         #endregion
 
