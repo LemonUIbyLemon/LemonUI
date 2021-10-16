@@ -109,7 +109,7 @@ namespace LemonUI.Scaleform
         /// <param name="rawGamerName">Whether the gamerName is rawText (null = automatic).</param>
         public void AddWinner(bool hasWon, string gamerName = "CELEB_ROUND", string teamName = "", string crewName = "", int betAmount = 0, bool? rawGamerName = null)
         {
-            var winLose = hasWon ? "CELEB_WINNER" : "CELEB_LOSER";
+            string winLose = hasWon ? "CELEB_WINNER" : "CELEB_LOSER";
 
             AddWinner(winLose, gamerName, teamName, crewName, betAmount, rawGamerName);
         }
@@ -138,7 +138,7 @@ namespace LemonUI.Scaleform
         /// <param name="rawLabel">Whether the label is rawText (null = automatic).</param>
         public void AddPosition(int position, string label = "CELEB_YOU_FINISHED", bool? rawLabel = null)
         {
-            var positionStr = position < 1 ? "dnf" : position.ToString();
+            string positionStr = position < 1 ? "dnf" : position.ToString();
             if (!rawLabel.HasValue) rawLabel = IsRawText(label);
 
             _items.Add(celeb => celeb.CallFunction("ADD_POSITION_TO_WALL", celeb.WallId, positionStr, label, rawLabel.Value, false));
@@ -214,7 +214,7 @@ namespace LemonUI.Scaleform
         /// <param name="rawMissionReason">Whether the mission reason is rawText (null = automatic).</param>
         public void AddMissionResult(bool passed, string mission = "", string missionReason = "", bool? rawMission = null, bool? rawMissionReason = null)
         {
-            var passFail = passed ? "CELEB_PASSED" : "CELEB_FAILED";
+            string passFail = passed ? "CELEB_PASSED" : "CELEB_FAILED";
 
             AddMissionResult(mission, passFail, missionReason, rawMission, rawMissionReason, false);
         }
@@ -337,7 +337,7 @@ namespace LemonUI.Scaleform
         /// <param name="bet">The bet amount the player a gained/lost (0 = off).</param>
         public void AddChallengeWinner(string challenge, string winner, bool isMission, bool hasWon, string crew = "", int bet = 0)
         {
-            var winLose = hasWon ? "CELEB_WINNER" : "CELEB_LOSER";
+            string winLose = hasWon ? "CELEB_WINNER" : "CELEB_LOSER";
 
             AddChallengeWinner(challenge, winner, isMission, winLose, crew, bet, false);
         }

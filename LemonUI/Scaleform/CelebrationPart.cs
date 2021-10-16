@@ -106,7 +106,7 @@ namespace LemonUI.Scaleform
             CallFunction("CREATE_STAT_WALL", WallId, _layer.WallColour(), 3);
             CallFunction("SET_PAUSE_DURATION", Duration);
 
-            foreach (var value in _items)
+            foreach (Action<CelebrationPart> value in _items)
             {
                 value.Invoke(this);
             }
@@ -129,7 +129,7 @@ namespace LemonUI.Scaleform
             _durationValue = 0;
             _duration = -1;
 
-            var id = Handle;
+            int id = Handle;
 #if FIVEM
             API.SetScaleformMovieAsNoLongerNeeded(ref id);
 #elif RPH
