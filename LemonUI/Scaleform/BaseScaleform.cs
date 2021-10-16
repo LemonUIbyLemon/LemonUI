@@ -172,20 +172,6 @@ namespace LemonUI.Scaleform
         #region Public Functions
 
         /// <summary>
-        /// Check if the Scaleform has been loaded.
-        /// </summary>
-        public bool IsLoaded()
-        {
-#if FIVEM
-            return API.HasScaleformMovieLoaded(Handle);
-#elif RPH
-            return NativeFunction.CallByHash<bool>(0x85F01B8D5B90570E, Handle);
-#elif (SHVDN2 || SHVDN3)
-            return Function.Call<bool>(Hash.HAS_SCALEFORM_MOVIE_LOADED, Handle);
-#endif
-        }
-
-        /// <summary>
         /// Checks if the specified Scaleform Return Value is ready to be fetched.
         /// </summary>
         /// <param name="id">The Identifier of the Value.</param>
