@@ -13,8 +13,6 @@ namespace LemonUI.Scaleform
     /// <summary>
     /// Celebration screen that is shown at the end of a mission or job.
     /// </summary>
-    /// <a href="https://www.google.com/search?q=LemonUI.Scaleform.CelebrationPart">`CelebrationPart` on google.com</a>
-    /// <a href="https://vespura.com/fivem/scaleform/#MP_CELEBRATION">`MP_CELEBRATION` on vespura.com</a>
     public class CelebrationPart : BaseScaleform
     {
         private CelebrationLayer _layer;
@@ -30,13 +28,11 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The duration of each item on the wall.
         /// </summary>
-        /// <footer><a href="https://www.google.com/search?q=LemonUI.Scaleform.CelebrationPart.Duration">`CelebrationPart.Duration` on google.com</a></footer>
         public int Duration { get; set; }
 
         /// <summary>
         /// If the Scaleform should be visible or not.
         /// </summary>
-        /// <footer><a href="https://www.google.com/search?q=LemonUI.Scaleform.CelebrationPart.Visible">`CelebrationPart.Visible` on google.com</a></footer>
         public new bool Visible
         {
             get => base.Visible;
@@ -53,14 +49,12 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The Id of the wall.
         /// </summary>
-        /// <footer><a href="https://www.google.com/search?q=LemonUI.Scaleform.CelebrationPart.WallId">`CelebrationPart.WallId` on google.com</a></footer>
         public string WallId => "ending";
 
         /// <summary>
         /// Creates a standard part for the Celebration
         /// </summary>
         /// <param name="layer">The type of layer for this part.</param>
-        /// <footer><a href="https://www.google.com/search?q=LemonUI.Scaleform.CelebrationPart">`CelebrationPart` on google.com</a></footer>
         internal CelebrationPart(CelebrationLayer layer) : this(layer, new List<Action<CelebrationPart>>())
         {
         }
@@ -70,7 +64,6 @@ namespace LemonUI.Scaleform
         /// </summary>
         /// <param name="layer"></param>
         /// <param name="items"></param>
-        /// <footer><a href="https://www.google.com/search?q=LemonUI.Scaleform.CelebrationPart">`CelebrationPart` on google.com</a></footer>
         internal CelebrationPart(CelebrationLayer layer, IList<Action<CelebrationPart>> items) : base(layer.Scaleform())
         {
             _layer = layer;
@@ -80,7 +73,6 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// Load the Scaleform and start the show the wall when it's done loading.
         /// </summary>
-        /// <footer><a href="https://www.google.com/search?q=LemonUI.Scaleform.CelebrationPart.Update">`CelebrationPart.Update` on google.com</a></footer>
         public override void Update()
         {
             if (_duration == -1)
@@ -109,7 +101,6 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// Build the wall and make it show it on the Scaleform.
         /// </summary>
-        /// <footer><a href="https://www.google.com/search?q=LemonUI.Scaleform.CelebrationPart.Show">`CelebrationPart.Show` on google.com</a></footer>
         private void Show()
         {
             CallFunction("CREATE_STAT_WALL", WallId, _layer.WallColour(), 3);
@@ -130,7 +121,6 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// Cleanup the wall and reset the scaleform for the next use.
         /// </summary>
-        /// <footer><a href="https://www.google.com/search?q=LemonUI.Scaleform.CelebrationPart.Hide">`CelebrationPart.Hide` on google.com</a></footer>
         private void Hide()
         {
             CallFunction("CLEANUP", WallId);
