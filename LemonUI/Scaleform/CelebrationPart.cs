@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 #if FIVEM
+using CitizenFX.Core;
 using CitizenFX.Core.Native;
 #elif RPH
+using Rage;
 using Rage.Native;
 #elif (SHVDN2 || SHVDN3)
+using GTA;
 using GTA.Native;
 #endif
 
@@ -92,7 +95,7 @@ namespace LemonUI.Scaleform
                     _duration = GetValue<int>(_durationValue) + 700;
                 }
             }
-            else if (GetGameTimer() - _start > _duration)
+            else if (Game.GameTime - _start > _duration)
             {
                 Visible = false;
             }
@@ -115,7 +118,7 @@ namespace LemonUI.Scaleform
 
             _durationValue = CallFunctionReturn("GET_TOTAL_WALL_DURATION");
             CallFunction("SHOW_STAT_WALL", WallId);
-            _start = GetGameTimer();
+            _start = (int)Game.GameTime;
         }
 
         /// <summary>
@@ -136,20 +139,6 @@ namespace LemonUI.Scaleform
             NativeFunction.CallByHash<int>(0x1D132D614DD86811, new NativeArgument(id));
 #elif (SHVDN2 || SHVDN3)
             Function.Call(Hash.SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED, new OutputArgument(id));
-#endif
-        }
-
-        /// <summary>
-        /// Get the current game timer.
-        /// </summary>
-        private int GetGameTimer()
-        {
-#if FIVEM
-            return API.GetGameTimer();
-#elif RPH
-            return NativeFunction.CallByHash<int>(0x9CD27B0045628463);
-#elif (SHVDN2 || SHVDN3)
-            return Function.Call<int>(Hash.GET_GAME_TIMER);
 #endif
         }
     }
