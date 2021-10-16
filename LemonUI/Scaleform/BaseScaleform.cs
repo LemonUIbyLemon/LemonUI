@@ -163,10 +163,8 @@ namespace LemonUI.Scaleform
 #if FIVEM
             return API.HasScaleformMovieLoaded(Handle);
 #elif RPH
-            return NativeFunction.CallByHash<bool>(0x85F01B8D5B90570E, id);
-#elif SHVDN2
-            return Function.Call<bool>(Hash._0x85F01B8D5B90570E, id);
-#elif SHVDN3
+            return NativeFunction.CallByHash<bool>(0x85F01B8D5B90570E, Handle);
+#elif (SHVDN2 || SHVDN3)
             return Function.Call<bool>(Hash.HAS_SCALEFORM_MOVIE_LOADED, Handle);
 #endif
         }
