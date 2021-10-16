@@ -109,9 +109,7 @@ namespace LemonUI.Scaleform
         /// <param name="rawGamerName">Whether the gamerName is rawText (null = automatic).</param>
         public void AddWinner(bool hasWon, string gamerName = "CELEB_ROUND", string teamName = "", string crewName = "", int betAmount = 0, bool? rawGamerName = null)
         {
-            string winLose = hasWon ? "CELEB_WINNER" : "CELEB_LOSER";
-
-            AddWinner(winLose, gamerName, teamName, crewName, betAmount, rawGamerName);
+            AddWinner(hasWon ? "CELEB_WINNER" : "CELEB_LOSER", gamerName, teamName, crewName, betAmount, rawGamerName);
         }
 
         /// <summary>
@@ -138,10 +136,9 @@ namespace LemonUI.Scaleform
         /// <param name="rawLabel">Whether the label is rawText (null = automatic).</param>
         public void AddPosition(int position, string label = "CELEB_YOU_FINISHED", bool? rawLabel = null)
         {
-            string positionStr = position < 1 ? "dnf" : position.ToString();
             if (!rawLabel.HasValue) rawLabel = IsRawText(label);
 
-            _items.Add(celeb => celeb.CallFunction("ADD_POSITION_TO_WALL", celeb.WallId, positionStr, label, rawLabel.Value, false));
+            _items.Add(celeb => celeb.CallFunction("ADD_POSITION_TO_WALL", celeb.WallId, position < 1 ? "dnf" : position.ToString(), label, rawLabel.Value, false));
         }
 
         /// <summary>
@@ -214,9 +211,7 @@ namespace LemonUI.Scaleform
         /// <param name="rawMissionReason">Whether the mission reason is rawText (null = automatic).</param>
         public void AddMissionResult(bool passed, string mission = "", string missionReason = "", bool? rawMission = null, bool? rawMissionReason = null)
         {
-            string passFail = passed ? "CELEB_PASSED" : "CELEB_FAILED";
-
-            AddMissionResult(mission, passFail, missionReason, rawMission, rawMissionReason, false);
+            AddMissionResult(mission, passed ? "CELEB_PASSED" : "CELEB_FAILED", missionReason, rawMission, rawMissionReason, false);
         }
 
         /// <summary>
@@ -337,9 +332,7 @@ namespace LemonUI.Scaleform
         /// <param name="bet">The bet amount the player a gained/lost (0 = off).</param>
         public void AddChallengeWinner(string challenge, string winner, bool isMission, bool hasWon, string crew = "", int bet = 0)
         {
-            string winLose = hasWon ? "CELEB_WINNER" : "CELEB_LOSER";
-
-            AddChallengeWinner(challenge, winner, isMission, winLose, crew, bet, false);
+            AddChallengeWinner(challenge, winner, isMission, hasWon ? "CELEB_WINNER" : "CELEB_LOSER", crew, bet, false);
         }
 
         /// <summary>
