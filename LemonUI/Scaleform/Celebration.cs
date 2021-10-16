@@ -317,13 +317,6 @@ namespace LemonUI.Scaleform
             _items.Add(celeb => celeb.CallFunction("ADD_WAVE_REACHED_TO_WALL", celeb.WallId, value, title));
         }
 
-        // public void AddIntro(string jobName, string challenge, string challengeParts, string targetType, string targetValue, int delay, string targetValuePrefix, string mode = Mode.Mission, bool? rawMode = null) //TODO (Not working yet)
-        // {
-        //     if (!rawMode.HasValue) rawMode = IsRawText(mode);
-        //
-        //     _items.Add(celeb => celeb.CallFunction("ADD_INTRO_TO_WALL", celeb.WallId, mode, jobName, challenge, challengeParts, targetType, targetValue, delay, targetValuePrefix, true, "HUD_COLOUR_GREEN"));
-        // }
-
         /// <summary>
         /// Add a post unlock cash item to the wall.
         /// </summary>
