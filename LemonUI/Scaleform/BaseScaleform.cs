@@ -56,19 +56,32 @@ namespace LemonUI.Scaleform
         public BaseScaleform(string sc)
         {
             Name = sc;
+            
+            LoadScaleform();
+        }
+
+        #endregion
+
+        #region Protected Functions
+
+        /// <summary>
+        /// Load a given Scaleform
+        /// </summary>
+        protected void LoadScaleform()
+        {
 #if FIVEM
-            Handle = API.RequestScaleformMovie(sc);
+            Handle = API.RequestScaleformMovie(Name);
 #elif RPH
-            Handle = NativeFunction.CallByHash<int>(0x11FE353CF9733E6F, sc);
+            Handle = NativeFunction.CallByHash<int>(0x11FE353CF9733E6F, Name);
 #elif (SHVDN2 || SHVDN3)
-            Handle = Function.Call<int>(Hash.REQUEST_SCALEFORM_MOVIE, sc);
+            Handle = Function.Call<int>(Hash.REQUEST_SCALEFORM_MOVIE, Name);
 #endif
 
 #pragma warning disable CS0618 // Type or member is obsolete
 #if FIVEM
-            scaleform = new CitizenFX.Core.Scaleform(sc);
+            scaleform = new CitizenFX.Core.Scaleform(Name);
 #elif (SHVDN2 || SHVDN3)
-            scaleform = new GTA.Scaleform(sc);
+            scaleform = new GTA.Scaleform(Name);
 #endif
 #pragma warning restore CS0618 // Type or member is obsolete
         }
