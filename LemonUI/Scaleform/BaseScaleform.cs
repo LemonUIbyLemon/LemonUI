@@ -47,7 +47,7 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// If the Scaleform is loaded or not.
         /// </summary>
-        public bool Loaded
+        public bool IsLoaded
         {
             get
             {
