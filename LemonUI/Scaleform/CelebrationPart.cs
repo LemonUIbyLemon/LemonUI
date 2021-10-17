@@ -85,7 +85,7 @@ namespace LemonUI.Scaleform
                     LoadScaleform();
                     _isLoading = true;
                 }
-                else if (!_loaded && Loaded)
+                else if (!_loaded && IsLoaded)
                 {
                     _loaded = true;
                     Show();
