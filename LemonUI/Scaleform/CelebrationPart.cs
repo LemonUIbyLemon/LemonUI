@@ -26,7 +26,7 @@ namespace LemonUI.Scaleform
         private int _duration = -1;
         private int _start;
 
-        private readonly IList<Action<CelebrationPart>> _items;
+        private readonly List<Action<CelebrationPart>> _items;
 
         /// <summary>
         /// The duration of each item on the wall.
@@ -67,7 +67,7 @@ namespace LemonUI.Scaleform
         /// </summary>
         /// <param name="layer"></param>
         /// <param name="items"></param>
-        internal CelebrationPart(CelebrationLayer layer, IList<Action<CelebrationPart>> items) : base(layer.Scaleform())
+        internal CelebrationPart(CelebrationLayer layer, List<Action<CelebrationPart>> items) : base(layer.Scaleform())
         {
             _layer = layer;
             _items = items;

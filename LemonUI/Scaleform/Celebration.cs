@@ -21,7 +21,7 @@ namespace LemonUI.Scaleform
         private readonly CelebrationPart _celebBg;
         private readonly CelebrationPart _celebFg;
 
-        private readonly IList<Action<CelebrationPart>> _items;
+        private readonly List<Action<CelebrationPart>> _items;
 
         /// <summary>
         /// The duration of each item on the wall.
@@ -40,7 +40,7 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The list with all items.
         /// </summary>
-        public IList<Action<CelebrationPart>> Items => _items;
+        public List<Action<CelebrationPart>> Items => _items;
 
         /// <summary>
         /// If this processable item is visible on the screen.
