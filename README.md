@@ -23,15 +23,15 @@ Special thanks to:
 
 ### FiveM
 
-No need to install. The resources using LemonUI will contain the required files.
+You don't need to install any files when using FiveM. When you connect to a server, the resources that need it will automatically provide a copy of LemonUI.
 
 ### RPH
 
-Copy all of the files from the **RPH** folder inside of the compressed file to the root of your GTA V installation.
+Copy all of the files from the **RPH** folder inside of the compressed file to the root of your GTA V installation directory.
 
 ### SHVDN 2 and SHVDN 3
 
-Copy all of the files from the **SHVDN2** and/or **SHVDN3** folders inside of the compressed file to your **scripts** directory.
+Copy all of the files from the **SHVDN2** and **SHVDN3** folders inside of the compressed file to your **scripts** directory.
 
 ## Usage
 
