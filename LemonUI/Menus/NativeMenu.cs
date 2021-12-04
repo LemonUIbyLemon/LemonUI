@@ -1019,12 +1019,10 @@ namespace LemonUI.Menus
             // Set the position of the rectangle that marks the current item
             selectedRect.Position = new PointF(pos.X, pos.Y + ((index - firstItem) * itemHeight));
             // And then do the description background and text
-            descriptionText.Text = Items.Count == 0 || SelectedIndex == -1 ? NoItemsText : SelectedItem.Description;
             float description = pos.Y + ((Items.Count > maxItems ? maxItems : Items.Count) * itemHeight) + heightDiffDescImg;
-            int lineCount = descriptionText.LineCount;
-            descriptionRect.Size = new SizeF(width, (lineCount * (descriptionText.LineHeight + 5)) + (lineCount - 1) + 10);
             descriptionRect.Position = new PointF(pos.X, description);
             descriptionText.Position = new PointF(pos.X + posXDescTxt, description + heightDiffDescTxt);
+            UpdateDescription();
 
             // Save the size of the items
             SizeF size = new SizeF(width, itemHeight);
@@ -1041,6 +1039,15 @@ namespace LemonUI.Menus
 
             // Finally, recalculate the panel of the selected item
             RecalculatePanel();
+        }
+        /// <summary>
+        /// Updates the size and text of the description.
+        /// </summary>
+        private void UpdateDescription()
+        {
+            descriptionText.Text = Items.Count == 0 || SelectedIndex == -1 ? NoItemsText : SelectedItem.Description;
+            int lineCount = descriptionText.LineCount;
+            descriptionRect.Size = new SizeF(width, (lineCount * (descriptionText.LineHeight + 5)) + (lineCount - 1) + 10);
         }
         /// <summary>
         /// Processes the button presses.
@@ -1525,17 +1532,19 @@ namespace LemonUI.Menus
         /// </summary>
         public void Process()
         {
-            // If the menu is not visible, return
             if (!visible)
             {
                 return;
             }
 
-            // Otherwise, draw the elements
+            NativeItem selected = SelectedItem;
+            if (selected != null && descriptionText.Text != selected.Description)
+            {
+                UpdateDescription();
+            }
+
             Draw();
-            // And then work on the controls
             ProcessControls();
-            // And finish by drawing the instructional buttons
             Buttons.Draw();
         }
         /// <summary>
