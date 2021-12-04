@@ -20,12 +20,12 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The ID of the scaleform.
         /// </summary>
-        [Obsolete("Please use the Handle or Name properties and call the methods manually.")]
+        [Obsolete("Please use the Handle or Name properties and call the methods manually.", true)]
 #endif
 #if FIVEM
-        protected CitizenFX.Core.Scaleform scaleform = null;
+        protected CitizenFX.Core.Scaleform scaleform = new CitizenFX.Core.Scaleform("");
 #elif (SHVDN2 || SHVDN3)
-        protected GTA.Scaleform scaleform = null;
+        protected GTA.Scaleform scaleform = new GTA.Scaleform("");
 #endif
 
         #endregion
@@ -73,18 +73,6 @@ namespace LemonUI.Scaleform
         {
             Name = sc;
 
-            LoadScaleform();
-        }
-
-        #endregion
-
-        #region Protected Functions
-
-        /// <summary>
-        /// Load a given Scaleform
-        /// </summary>
-        protected void LoadScaleform()
-        {
 #if FIVEM
             Handle = API.RequestScaleformMovie(Name);
 #elif RPH
@@ -92,14 +80,6 @@ namespace LemonUI.Scaleform
 #elif (SHVDN2 || SHVDN3)
             Handle = Function.Call<int>(Hash.REQUEST_SCALEFORM_MOVIE, Name);
 #endif
-
-#pragma warning disable CS0618 // Type or member is obsolete
-#if FIVEM
-            scaleform = new CitizenFX.Core.Scaleform(Name);
-#elif (SHVDN2 || SHVDN3)
-            scaleform = new GTA.Scaleform(Name);
-#endif
-#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         #endregion
