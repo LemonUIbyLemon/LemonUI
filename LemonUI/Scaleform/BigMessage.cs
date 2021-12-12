@@ -65,16 +65,14 @@ namespace LemonUI.Scaleform
     {
         #region Constant Fields
 
-        private const WeaponHash unarmed = (WeaponHash)2725352035;
+        private const uint unarmed = 0xA2719263;
 
         #endregion
 
         #region Private Fields
 
-        /// <summary>
-        /// The type of message to show.
-        /// </summary>
         private MessageType type;
+        private uint weaponHash;
 
         #endregion
 
@@ -103,9 +101,21 @@ namespace LemonUI.Scaleform
         /// </summary>
         public string Rank { get; set; }
         /// <summary>
-        /// The hash of the Weapon.
+        /// The hash of the Weapon as an enum.
         /// </summary>
-        public WeaponHash Weapon { get; set; }
+        public WeaponHash Weapon
+        {
+            get => (WeaponHash)weaponHash;
+            set => weaponHash = (uint)value;
+        }
+        /// <summary>
+        /// The hash of the Weapon as it's native value.
+        /// </summary>
+        public uint WeaponHash
+        {
+            get => weaponHash;
+            set => weaponHash = value;
+        }
         /// <summary>
         /// The type of message to show.
         /// </summary>
@@ -222,12 +232,26 @@ namespace LemonUI.Scaleform
         /// <param name="colorText">The color of the text.</param>
         /// <param name="colorBackground">The color of the background.</param>
         /// <param name="type">The type of message.</param>
-        public BigMessage(string title, string message, string rank, WeaponHash weapon, int colorText, int colorBackground, MessageType type) : base("MP_BIG_MESSAGE_FREEMODE")
+        public BigMessage(string title, string message, string rank, WeaponHash weapon, int colorText, int colorBackground, MessageType type) : this(title, message, rank, (uint)weapon, colorText, colorBackground, type)
+        {
+        }
+
+        /// <summary>
+        /// Creates a message with all of the selected information.
+        /// </summary>
+        /// <param name="title">The title to use.</param>
+        /// <param name="message">The message to show.</param>
+        /// <param name="rank">The Rank on Cops and Crooks.</param>
+        /// <param name="weapon">The hash of the Weapon image.</param>
+        /// <param name="colorText">The color of the text.</param>
+        /// <param name="colorBackground">The color of the background.</param>
+        /// <param name="type">The type of message.</param>
+        public BigMessage(string title, string message, string rank, uint weapon, int colorText, int colorBackground, MessageType type) : base("MP_BIG_MESSAGE_FREEMODE")
         {
             Title = title;
             Message = message;
             Rank = rank;
-            Weapon = weapon;
+            WeaponHash = weapon;
             TextColor = colorText;
             BackgroundColor = colorBackground;
             Type = type;
@@ -285,7 +309,7 @@ namespace LemonUI.Scaleform
                     CallFunction(function, Title, Message, Rank);
                     break;
                 case MessageType.Weapon:
-                    CallFunction(function, Title, Message, (int)Weapon);
+                    CallFunction(function, Title, Message, weaponHash);
                     break;
                 default:
                     CallFunction(function, Title, Message);
