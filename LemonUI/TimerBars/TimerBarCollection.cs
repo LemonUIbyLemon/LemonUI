@@ -156,9 +156,9 @@ namespace LemonUI.TimerBars
             Invoker.Invoke(Natives.HideHudComponentThisFrame, HudComponent.StreetName);
             Invoker.Invoke(Natives.HideHudComponentThisFrame, HudComponent.VehicleName);
 #elif RPH
-            NativeFunction.CallByHash(0x6806C51AD12B83B8, 7);
-            NativeFunction.CallByHash(0x6806C51AD12B83B8, 9);
-            NativeFunction.CallByHash(0x6806C51AD12B83B8, 6);
+            NativeFunction.CallByHash<int>(0x6806C51AD12B83B8, 7);
+            NativeFunction.CallByHash<int>(0x6806C51AD12B83B8, 9);
+            NativeFunction.CallByHash<int>(0x6806C51AD12B83B8, 6);
 #elif SHVDN2
             UI.HideHudComponentThisFrame(HudComponent.AreaName);
             UI.HideHudComponentThisFrame(HudComponent.StreetName);
