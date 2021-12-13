@@ -302,7 +302,7 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// Draws the scaleform full screen.
         /// </summary>
-        public void DrawFullScreen()
+        public virtual void DrawFullScreen()
         {
             if (!Visible)
             {
@@ -322,11 +322,11 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// Draws the scaleform full screen.
         /// </summary>
-        public void Draw() => DrawFullScreen();
+        public virtual void Draw() => DrawFullScreen();
         /// <summary>
         /// Draws the scaleform full screen.
         /// </summary>
-        public void Process() => DrawFullScreen();
+        public virtual void Process() => DrawFullScreen();
         /// <summary>
         /// Marks the scaleform as no longer needed.
         /// </summary>
