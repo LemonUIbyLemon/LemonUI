@@ -2,6 +2,8 @@
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
+#elif RAGEMP
+using RAGE.Game;
 #elif RPH
 using Rage.Native;
 #elif SHVDN2
@@ -151,6 +153,10 @@ namespace LemonUI.Elements
                 API.BeginTextCommandWidth("CELL_EMAIL_BCON");
                 Add();
                 return API.EndTextCommandGetWidth(true) * 1f.ToXAbsolute();
+#elif RAGEMP
+                Invoker.Invoke(Natives.BeginTextCommandWidth, "CELL_EMAIL_BCON");
+                Add();
+                return Invoker.Invoke<float>(Natives.EndTextCommandGetWidth) * 1f.ToXAbsolute();
 #elif RPH
                 NativeFunction.CallByHash<int>(0x54CE8AC98E120CAB, "CELL_EMAIL_BCON");
                 Add();
@@ -173,9 +179,10 @@ namespace LemonUI.Elements
         {
             get
             {
-                // Start the string measuring
 #if FIVEM
                 API.BeginTextCommandLineCount("CELL_EMAIL_BCON");
+#elif RAGEMP
+                Invoker.Invoke(Natives.BeginTextCommandLineCount, "CELL_EMAIL_BCON");
 #elif RPH
                 NativeFunction.CallByHash<int>(0x521FB041D93DD0E4, "CELL_EMAIL_BCON");
 #elif SHVDN2
@@ -183,11 +190,11 @@ namespace LemonUI.Elements
 #elif SHVDN3
                 Function.Call(Hash._BEGIN_TEXT_COMMAND_LINE_COUNT, "CELL_EMAIL_BCON");
 #endif
-                // Add the information of this text
                 Add();
-                // And return the number of lines reported by the game
 #if FIVEM
                 return API.EndTextCommandGetLineCount(relativePosition.X, relativePosition.Y);
+#elif RAGEMP
+                return Invoker.Invoke<int>(Natives.EndTextCommandGetLineCount, relativePosition.X, relativePosition.Y);
 #elif RPH
                 return NativeFunction.CallByHash<int>(0x9040DFB09BE75706, relativePosition.X, relativePosition.Y);
 #elif SHVDN2
@@ -207,6 +214,8 @@ namespace LemonUI.Elements
                 // Height will always be 1080
 #if FIVEM
                 return 1080 * API.GetTextScaleHeight(Scale, (int)Font);
+#elif RAGEMP
+                return 1080 * Invoker.Invoke<float>(Natives.GetTextScaleHeight, Scale, (int)Font);
 #elif RPH
                 return 1080 * NativeFunction.CallByHash<float>(0xDB88A37483346780, Scale, (int)Font);
 #elif SHVDN2
@@ -303,6 +312,42 @@ namespace LemonUI.Elements
             else if (Alignment == Alignment.Right)
             {
                 API.SetTextWrap(0f, relativePosition.X);
+            }
+#elif RAGEMP
+            foreach (string chunk in chunks)
+            {
+                Invoker.Invoke(Natives.AddTextComponentSubstringPlayerName, chunk);
+            }
+            Invoker.Invoke(Natives.SetTextFont, (int)Font);
+            Invoker.Invoke(Natives.SetTextScale, 1f, Scale);
+            Invoker.Invoke(Natives.SetTextColour, Color.R, Color.G, Color.B, Color.A);
+            Invoker.Invoke(Natives.SetTextJustification, (int)Alignment);
+            if (Shadow)
+            {
+                Invoker.Invoke(Natives.SetTextDropShadow);
+            }
+            if (Outline)
+            {
+                Invoker.Invoke(Natives.SetTextOutline);
+            }
+            if (WordWrap > 0)
+            {
+                switch (Alignment)
+                {
+                    case Alignment.Center:
+                        Invoker.Invoke(Natives.SetTextWrap, relativePosition.X - (realWrap * 0.5f), relativePosition.X + (realWrap * 0.5f));
+                        break;
+                    case Alignment.Left:
+                        Invoker.Invoke(Natives.SetTextWrap, relativePosition.X, relativePosition.X + realWrap);
+                        break;
+                    case Alignment.Right:
+                        Invoker.Invoke(Natives.SetTextWrap, relativePosition.X - realWrap, relativePosition.X);
+                        break;
+                }
+            }
+            else if (Alignment == Alignment.Right)
+            {
+                Invoker.Invoke(0x63145D9C883A1A70, 0f, relativePosition.X);
             }
 #elif RPH
             foreach (string chunk in chunks)
@@ -449,6 +494,8 @@ namespace LemonUI.Elements
         {
 #if FIVEM
             API.SetTextEntry("CELL_EMAIL_BCON");
+#elif RAGEMP
+            Invoker.Invoke(Natives.BeginTextCommandDisplayText, "CELL_EMAIL_BCON");
 #elif RPH
             NativeFunction.CallByHash<int>(0x25FBB336DF1804CB, "CELL_EMAIL_BCON");
 #elif (SHVDN2 || SHVDN3)
@@ -459,6 +506,8 @@ namespace LemonUI.Elements
 
 #if FIVEM
             API.DrawText(relativePosition.X, relativePosition.Y);
+#elif RAGEMP
+            Invoker.Invoke(Natives.DrawDebugText, relativePosition.X, relativePosition.Y);
 #elif RPH
             NativeFunction.CallByHash<int>(0xCD015E5BB0D96A57, relativePosition.X, relativePosition.Y);
 #elif (SHVDN2 || SHVDN3)

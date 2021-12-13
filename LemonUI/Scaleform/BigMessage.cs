@@ -100,6 +100,7 @@ namespace LemonUI.Scaleform
         /// The Rank on Cops and Crooks.
         /// </summary>
         public string Rank { get; set; }
+#if !RAGEMP
         /// <summary>
         /// The hash of the Weapon as an enum.
         /// </summary>
@@ -108,6 +109,7 @@ namespace LemonUI.Scaleform
             get => (WeaponHash)weaponHash;
             set => weaponHash = (uint)value;
         }
+#endif
         /// <summary>
         /// The hash of the Weapon as it's native value.
         /// </summary>
@@ -143,7 +145,6 @@ namespace LemonUI.Scaleform
         public BigMessage(string title) : this(title, "", "", unarmed, 0, 0, MessageType.Customizable)
         {
         }
-
         /// <summary>
         /// Creates a custom message with the specified title.
         /// </summary>
@@ -152,7 +153,6 @@ namespace LemonUI.Scaleform
         public BigMessage(string title, MessageType type) : this(title, "", "", unarmed, 0, 0, type)
         {
         }
-
         /// <summary>
         /// Creates a standard customizable message with a title and message.
         /// </summary>
@@ -161,7 +161,6 @@ namespace LemonUI.Scaleform
         public BigMessage(string title, string message) : this(title, message, "", unarmed, 0, 0, MessageType.Customizable)
         {
         }
-
         /// <summary>
         /// Creates a Cops and Crooks message type.
         /// </summary>
@@ -171,7 +170,6 @@ namespace LemonUI.Scaleform
         public BigMessage(string title, string message, string rank) : this(title, message, rank, unarmed, 0, 0, MessageType.CopsAndCrooks)
         {
         }
-
         /// <summary>
         /// Creates a message with the specified type, title and message.
         /// </summary>
@@ -181,7 +179,6 @@ namespace LemonUI.Scaleform
         public BigMessage(string title, string message, MessageType type) : this(title, message, "", unarmed, 0, 0, type)
         {
         }
-
         /// <summary>
         /// Creates a standard customizable message with a title and a custom text color.
         /// </summary>
@@ -190,7 +187,6 @@ namespace LemonUI.Scaleform
         public BigMessage(string title, int colorText) : this(title, "", "", unarmed, colorText, 0, MessageType.Customizable)
         {
         }
-
         /// <summary>
         /// Creates a standard customizable message with a specific title and custom colors.
         /// </summary>
@@ -200,7 +196,7 @@ namespace LemonUI.Scaleform
         public BigMessage(string title, int colorText, int colorBackground) : this(title, "", "", unarmed, colorText, colorBackground, MessageType.Customizable)
         {
         }
-
+#if !RAGEMP
         /// <summary>
         /// Creates a Weapon Purchase message with a custom text and weapons.
         /// </summary>
@@ -210,7 +206,6 @@ namespace LemonUI.Scaleform
         public BigMessage(string title, string weapon, WeaponHash hash) : this(title, "", weapon, hash, 0, 0, MessageType.Weapon)
         {
         }
-
         /// <summary>
         /// Creates a Weapon Purchase message with a custom text and weapons.
         /// </summary>
@@ -221,7 +216,6 @@ namespace LemonUI.Scaleform
         public BigMessage(string title, string message, string weapon, WeaponHash hash) : this(title, message, weapon, hash, 0, 0, MessageType.Weapon)
         {
         }
-
         /// <summary>
         /// Creates a message with all of the selected information.
         /// </summary>
@@ -235,7 +229,7 @@ namespace LemonUI.Scaleform
         public BigMessage(string title, string message, string rank, WeaponHash weapon, int colorText, int colorBackground, MessageType type) : this(title, message, rank, (uint)weapon, colorText, colorBackground, type)
         {
         }
-
+#endif
         /// <summary>
         /// Creates a message with all of the selected information.
         /// </summary>

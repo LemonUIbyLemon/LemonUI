@@ -3,6 +3,9 @@ using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
+#elif RAGEMP
+using RAGE.Game;
+using System.ComponentModel;
 #elif RPH
 using Rage;
 using Rage.Native;
@@ -956,6 +959,8 @@ namespace LemonUI.Menus
             // And set the position of the cursor
 #if FIVEM
             API.SetCursorLocation(pos.X, pos.Y);
+#elif RAGEMP
+            Invoker.Invoke(Natives.SetCursorLocation, pos.X, pos.Y);
 #elif SHVDN2
             Function.Call(Hash._0xFC695459D4D0E219, pos.X, pos.Y);
 #elif SHVDN3
@@ -1099,6 +1104,8 @@ namespace LemonUI.Menus
             // If the controls are disabled, the menu has just been opened or the text input field is active, return
 #if FIVEM
             bool isKeyboardActive = API.UpdateOnscreenKeyboard() == 0;
+#elif RAGEMP
+            bool isKeyboardActive = Invoker.Invoke<int>(Natives.UpdateOnscreenKeyboard) == 0;
 #elif RPH
             bool isKeyboardActive = NativeFunction.CallByHash<int>(0x0CF2B696BBF945AE) == 0;
 #elif SHVDN2 || SHVDN3
@@ -1128,17 +1135,25 @@ namespace LemonUI.Menus
                 return;
             }
 
+#if RAGEMP
+            int time = Misc.GetGameTimer();
+#elif RPH
+            uint time = Game.GameTime;
+#else
+            int time = Game.GameTime;
+#endif
+
             // If the player pressed up, go to the previous item
-            if ((upPressed && !downPressed) || (HeldTime > 0 && upSince != -1 && !upPressed && upHeld && upSince + HeldTime < Game.GameTime))
+            if ((upPressed && !downPressed) || (HeldTime > 0 && upSince != -1 && !upPressed && upHeld && upSince + HeldTime < time))
             {
-                upSince = Game.GameTime;
+                upSince = time;
                 Previous();
                 return;
             }
             // If he pressed down, go to the next item
-            if ((downPressed && !upPressed) || (HeldTime > 0 && downSince != -1 && !downPressed && downHeld && downSince + HeldTime < Game.GameTime))
+            if ((downPressed && !upPressed) || (HeldTime > 0 && downSince != -1 && !downPressed && downHeld && downSince + HeldTime < time))
             {
-                downSince = Game.GameTime;
+                downSince = time;
                 Next();
                 return;
             }
@@ -1152,6 +1167,8 @@ namespace LemonUI.Menus
                 // Enable the mouse cursor
 #if (FIVEM || SHVDN2 || SHVDN3)
                 Screen.ShowCursorThisFrame();
+#elif RAGEMP
+                Invoker.Invoke(Natives.ShowCursorThisFrame);
 #elif RPH
                 NativeFunction.CallByHash<int>(0xAAE7CE1D63167423);
 #endif
@@ -1163,6 +1180,8 @@ namespace LemonUI.Menus
                     {
 #if (FIVEM || SHVDN2 || SHVDN3)
                         GameplayCamera.RelativeHeading += 5;
+#elif RAGEMP
+                        throw new NotImplementedException();
 #elif RPH
                         Camera.RenderingCamera.Heading += 5;
 #endif
@@ -1171,6 +1190,8 @@ namespace LemonUI.Menus
                     {
 #if (FIVEM || SHVDN2 || SHVDN3)
                         GameplayCamera.RelativeHeading -= 5;
+#elif RAGEMP
+                        throw new NotImplementedException();
 #elif RPH
                         Camera.RenderingCamera.Heading -= 5;
 #endif

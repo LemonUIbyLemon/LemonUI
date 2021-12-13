@@ -2,6 +2,8 @@
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
+#elif RAGEMP
+using RAGE.Game;
 #elif RPH
 using Rage;
 using Rage.Native;
@@ -61,6 +63,8 @@ namespace LemonUI
             {
 #if FIVEM
                 return API.GetAspectRatio(false);
+#elif RAGEMP
+                return Invoker.Invoke<float>(Natives.GetAspectRatio);
 #elif RPH
                 return NativeFunction.CallByHash<float>(0xF1307EF624A80D87, false);
 #elif SHVDN2
@@ -80,6 +84,9 @@ namespace LemonUI
 #if FIVEM
                 float cursorX = API.GetControlNormal(0, (int)Control.CursorX);
                 float cursorY = API.GetControlNormal(0, (int)Control.CursorY);
+#elif RAGEMP
+                float cursorX = Invoker.Invoke<float>(Natives.GetControlNormal, 0, (int)Control.CursorX);
+                float cursorY = Invoker.Invoke<float>(Natives.GetControlNormal, 0, (int)Control.CursorY);
 #elif RPH
                 float cursorX = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.CursorX);
                 float cursorY = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.CursorY);
@@ -175,6 +182,8 @@ namespace LemonUI
             float realX = 0, realY = 0;
 #if FIVEM
             API.GetScriptGfxPosition(relativeX, relativeY, ref realX, ref realY);
+#elif RAGEMP
+            throw new NotImplementedException();
 #elif RPH
             using (NativePointer argX = new NativePointer())
             using (NativePointer argY = new NativePointer())
@@ -201,6 +210,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.SetMouseCursorActiveThisFrame();
+#elif RAGEMP
+            Invoker.Invoke(0xAAE7CE1D63167423);
 #elif RPH
             NativeFunction.CallByHash<int>(0xAAE7CE1D63167423);
 #elif SHVDN2
@@ -246,6 +257,9 @@ namespace LemonUI
 #if FIVEM
             API.SetScriptGfxAlign((int)horizontal, (int)vertical);
             API.SetScriptGfxAlignParams(0, 0, 0, 0);
+#elif RAGEMP
+            Invoker.Invoke(0xB8A850F20A067EB6, (int)horizontal, (int)vertical);
+            Invoker.Invoke(0xF5A2C681787E579D, 0, 0, 0, 0);
 #elif RPH
             NativeFunction.CallByHash<int>(0xB8A850F20A067EB6, (int)horizontal, (int)vertical);
             NativeFunction.CallByHash<int>(0xF5A2C681787E579D, 0, 0, 0, 0);
@@ -264,6 +278,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.ResetScriptGfxAlign();
+#elif RAGEMP
+            Invoker.Invoke(0xE3A3DB414A373DAB);
 #elif RPH
             NativeFunction.CallByHash<int>(0xE3A3DB414A373DAB);
 #elif SHVDN2

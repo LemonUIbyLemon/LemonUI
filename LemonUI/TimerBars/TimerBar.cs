@@ -1,5 +1,7 @@
 #if FIVEM
 using CitizenFX.Core.UI;
+#elif RAGEMP
+using RAGE.Game;
 #elif SHVDN3
 using GTA.UI;
 #endif

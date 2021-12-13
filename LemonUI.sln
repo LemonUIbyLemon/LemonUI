@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30128.36
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LemonUI.SHVDN3", "LemonUI.SHVDN3\LemonUI.SHVDN3.csproj", "{1FBC569D-7CD5-4F5C-8EB1-4FE1B6FF2B01}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LemonUI.Example.RagePluginHook", "LemonUI.Example.RagePluginHook\LemonUI.Example.RagePluginHook.csproj", "{22EEE918-44DF-4B24-A6AD-204051D2B97F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LemonUI.SHV", "LemonUI.SHV\LemonUI.SHV.vcxproj", "{094037E8-3B14-45C0-B03C-A0C591B2F3AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LemonUI.RageMP", "LemonUI.RageMP\LemonUI.RageMP.csproj", "{C526B98E-3DA1-481A-A737-27C289D960EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{094037E8-3B14-45C0-B03C-A0C591B2F3AF}.Debug|Any CPU.Build.0 = Debug|x64
 		{094037E8-3B14-45C0-B03C-A0C591B2F3AF}.Release|Any CPU.ActiveCfg = Release|x64
 		{094037E8-3B14-45C0-B03C-A0C591B2F3AF}.Release|Any CPU.Build.0 = Release|x64
+		{C526B98E-3DA1-481A-A737-27C289D960EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C526B98E-3DA1-481A-A737-27C289D960EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C526B98E-3DA1-481A-A737-27C289D960EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C526B98E-3DA1-481A-A737-27C289D960EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
