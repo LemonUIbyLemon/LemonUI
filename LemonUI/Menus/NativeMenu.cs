@@ -961,6 +961,8 @@ namespace LemonUI.Menus
             API.SetCursorLocation(pos.X, pos.Y);
 #elif RAGEMP
             Invoker.Invoke(Natives.SetCursorLocation, pos.X, pos.Y);
+#elif RPH
+            NativeFunction.CallByHash<int>(0xFC695459D4D0E219, pos.X, pos.Y);
 #elif SHVDN2
             Function.Call(Hash._0xFC695459D4D0E219, pos.X, pos.Y);
 #elif SHVDN3

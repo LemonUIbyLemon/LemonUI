@@ -46,6 +46,8 @@ namespace LemonUI.Scaleform
                 raw = API.GetControlInstructionalButton(2, (int)value, 1);
 #elif RAGEMP
                 raw = Invoker.Invoke<string>(Natives.GetControlInstructionalButton, 2, (int)value, 1);
+#elif RPH
+                raw = (string)NativeFunction.CallByHash(0x0499D7B09FC9B407, typeof(string), 2, (int)control, 1);
 #elif SHVDN2
                 raw = Function.Call<string>(Hash._0x0499D7B09FC9B407, 2, (int)value, 1);
 #elif SHVDN3

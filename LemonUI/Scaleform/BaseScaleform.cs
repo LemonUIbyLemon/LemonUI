@@ -98,6 +98,8 @@ namespace LemonUI.Scaleform
             API.BeginScaleformMovieMethod(Handle, function);
 #elif RAGEMP
             Invoker.Invoke(0xF6E48914C7A8694E, Handle, function);
+#elif RPH
+            NativeFunction.CallByHash<int>(0xF6E48914C7A8694E, Handle, function);
 #elif (SHVDN2 || SHVDN3)
             Function.Call((Hash)0xF6E48914C7A8694E, Handle, function);
 #endif
@@ -110,6 +112,8 @@ namespace LemonUI.Scaleform
                     API.ScaleformMovieMethodAddParamInt(objInt);
 #elif RAGEMP
                     Invoker.Invoke(0xC3D0841A0CC546A6, objInt);
+#elif RPH
+                    NativeFunction.CallByHash<int>(0xC3D0841A0CC546A6, objInt);
 #elif (SHVDN2 || SHVDN3)
                     Function.Call((Hash)0xC3D0841A0CC546A6, objInt);
 #endif
@@ -124,6 +128,11 @@ namespace LemonUI.Scaleform
                     Invoker.Invoke(Natives.BeginTextCommandScaleformString, "STRING");
                     Invoker.Invoke(Natives.AddTextComponentSubstringPlayerName, objString);
                     Invoker.Invoke(Natives.EndTextCommandScaleformString);
+#elif RPH
+
+                    NativeFunction.CallByHash<int>(0x80338406F3475E55, "STRING");
+                    NativeFunction.CallByHash<int>(0x6C188BE134E074AA, objString);
+                    NativeFunction.CallByHash<int>(0x362E2D3FE93A9959);
 #elif (SHVDN2 || SHVDN3)
                     Function.Call((Hash)0x80338406F3475E55, "STRING");
                     Function.Call((Hash)0x6C188BE134E074AA, objString);
@@ -136,6 +145,8 @@ namespace LemonUI.Scaleform
                     API.ScaleformMovieMethodAddParamFloat(objFloat);
 #elif RAGEMP
                     Invoker.Invoke(0xD69736AAE04DB51A, objFloat);
+#elif RPH
+                    NativeFunction.CallByHash<int>(0xD69736AAE04DB51A, objFloat);
 #elif (SHVDN2 || SHVDN3)
                     Function.Call((Hash)0xD69736AAE04DB51A, objFloat);
 #endif
@@ -146,6 +157,8 @@ namespace LemonUI.Scaleform
                     API.ScaleformMovieMethodAddParamFloat((float)objDouble);
 #elif RAGEMP
                     Invoker.Invoke(0xD69736AAE04DB51A, (float)objDouble);
+#elif RPH
+                    NativeFunction.CallByHash<int>(0xD69736AAE04DB51A, (float)objDouble);
 #elif (SHVDN2 || SHVDN3)
                     Function.Call((Hash)0xD69736AAE04DB51A, (float)objDouble);
 #endif
@@ -156,6 +169,8 @@ namespace LemonUI.Scaleform
                     API.ScaleformMovieMethodAddParamBool(objBool);
 #elif RAGEMP
                     Invoker.Invoke(0xC58424BA936EB458, objBool);
+#elif RPH
+                    NativeFunction.CallByHash<int>(0xC58424BA936EB458, objBool);
 #elif (SHVDN2 || SHVDN3)
                     Function.Call((Hash)0xC58424BA936EB458, objBool);
 #endif
