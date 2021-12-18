@@ -4,7 +4,7 @@
 
 namespace LemonUI
 {
-	Sound::Sound(std::string set, std::string file)
+	Sound::Sound(const std::string& set, const std::string& file)
 	{
 		this->set = set;
 		this->file = file;
@@ -15,7 +15,7 @@ namespace LemonUI
 		return this->set;
 	}
 
-	void Sound::SetSet(std::string set)
+	void Sound::SetSet(const std::string& set)
 	{
 		this->set = set;
 	}
@@ -25,7 +25,7 @@ namespace LemonUI
 		return this->file;
 	}
 
-	void Sound::SetFile(std::string file)
+	void Sound::SetFile(const std::string& file)
 	{
 		this->file = file;
 	}

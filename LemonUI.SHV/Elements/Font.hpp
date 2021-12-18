@@ -27,5 +27,5 @@ namespace LemonUI::Elements
         /// Pricedown.
         /// </summary>
         Pricedown = 7
-    }
-};
+    };
+}

@@ -10,12 +10,12 @@ namespace LemonUI
 		std::string file;
 
 	public:
-		Sound(std::string set, std::string file);
+		Sound(const std::string& set, const std::string& file);
 
 		std::string GetSet();
-		void SetSet(std::string);
+		void SetSet(const std::string&);
 		std::string GetFile();
-		void SetFile(std::string);
+		void SetFile(const std::string&);
 
 		void PlayFrontend();
 	};
