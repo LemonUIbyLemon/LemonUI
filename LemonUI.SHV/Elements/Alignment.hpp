@@ -1,6 +1,6 @@
 #pragma once
 
-namespace LemonUI
+namespace LemonUI::Elements
 {
 	/// <summary>
 	/// The alignment of the element to draw.
