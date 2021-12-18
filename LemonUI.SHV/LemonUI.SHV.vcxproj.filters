@@ -18,6 +18,9 @@
     <ClCompile Include="Sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sound.hpp">
@@ -32,7 +35,7 @@
     <ClInclude Include="IDrawable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Font.hpp">
+    <ClInclude Include="Screen.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
