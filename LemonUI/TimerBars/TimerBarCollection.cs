@@ -1,5 +1,10 @@
 #if FIVEM
 using CitizenFX.Core.UI;
+#elif RAGEMP
+using RAGE.Game;
+#elif RPH
+using Rage;
+using Rage.Native;
 #elif SHVDN2
 using GTA;
 #elif SHVDN3
@@ -146,6 +151,14 @@ namespace LemonUI.TimerBars
             CitizenFX.Core.UI.Screen.Hud.HideComponentThisFrame(HudComponent.AreaName);
             CitizenFX.Core.UI.Screen.Hud.HideComponentThisFrame(HudComponent.StreetName);
             CitizenFX.Core.UI.Screen.Hud.HideComponentThisFrame(HudComponent.VehicleName);
+#elif RAGEMP
+            Invoker.Invoke(Natives.HideHudComponentThisFrame, HudComponent.AreaName);
+            Invoker.Invoke(Natives.HideHudComponentThisFrame, HudComponent.StreetName);
+            Invoker.Invoke(Natives.HideHudComponentThisFrame, HudComponent.VehicleName);
+#elif RPH
+            NativeFunction.CallByHash<int>(0x6806C51AD12B83B8, 7);
+            NativeFunction.CallByHash<int>(0x6806C51AD12B83B8, 9);
+            NativeFunction.CallByHash<int>(0x6806C51AD12B83B8, 6);
 #elif SHVDN2
             UI.HideHudComponentThisFrame(HudComponent.AreaName);
             UI.HideHudComponentThisFrame(HudComponent.StreetName);

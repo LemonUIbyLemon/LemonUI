@@ -1,6 +1,8 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+#elif RAGEMP
+using RAGE.Game;
 #elif RPH
 using Rage;
 using Rage.Native;
@@ -48,6 +50,10 @@ namespace LemonUI
             API.PlaySoundFrontend(-1, File, Set, false);
             int id = API.GetSoundId();
             API.ReleaseSoundId(id);
+#elif RAGEMP
+            Invoker.Invoke(Natives.PlaySoundFrontend, -1, File, Set, false);
+            int id = Invoker.Invoke<int>(Natives.GetSoundId);
+            Invoker.Invoke(Natives.ReleaseSoundId, id);
 #elif RPH
             NativeFunction.CallByHash<int>(0x67C540AA08E4A6F5, -1, File, Set, false);
             int id = NativeFunction.CallByHash<int>(0x430386FE9BF80B45);

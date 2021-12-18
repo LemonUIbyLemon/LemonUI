@@ -1,11 +1,13 @@
-using System;
 #if FIVEM
 using CitizenFX.Core.Native;
+#elif RAGEMP
+using RAGE.Game;
 #elif RPH
 using Rage.Native;
 #elif (SHVDN2 || SHVDN3)
 using GTA.Native;
 #endif
+using System;
 
 namespace LemonUI.Scaleform
 {
@@ -20,12 +22,12 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The ID of the scaleform.
         /// </summary>
-        [Obsolete("Please use the Handle or Name properties and call the methods manually.")]
+        [Obsolete("Please use the Handle or Name properties and call the methods manually.", true)]
 #endif
 #if FIVEM
-        protected CitizenFX.Core.Scaleform scaleform = null;
+        protected CitizenFX.Core.Scaleform scaleform = new CitizenFX.Core.Scaleform("");
 #elif (SHVDN2 || SHVDN3)
-        protected GTA.Scaleform scaleform = null;
+        protected GTA.Scaleform scaleform = new GTA.Scaleform("");
 #endif
 
         #endregion
@@ -53,6 +55,8 @@ namespace LemonUI.Scaleform
             {
 #if FIVEM
                 return API.HasScaleformMovieLoaded(Handle);
+#elif RAGEMP
+                return Invoker.Invoke<bool>(Natives.HasScaleformMovieLoaded, Handle);
 #elif RPH
                 return NativeFunction.CallByHash<bool>(0x85F01B8D5B90570E, Handle);
 #elif (SHVDN2 || SHVDN3)
@@ -73,33 +77,15 @@ namespace LemonUI.Scaleform
         {
             Name = sc;
 
-            LoadScaleform();
-        }
-
-        #endregion
-
-        #region Protected Functions
-
-        /// <summary>
-        /// Load a given Scaleform
-        /// </summary>
-        protected void LoadScaleform()
-        {
 #if FIVEM
             Handle = API.RequestScaleformMovie(Name);
+#elif RAGEMP
+            Handle = Invoker.Invoke<int>(Natives.RequestScaleformMovie, Name);
 #elif RPH
             Handle = NativeFunction.CallByHash<int>(0x11FE353CF9733E6F, Name);
 #elif (SHVDN2 || SHVDN3)
             Handle = Function.Call<int>(Hash.REQUEST_SCALEFORM_MOVIE, Name);
 #endif
-
-#pragma warning disable CS0618 // Type or member is obsolete
-#if FIVEM
-            scaleform = new CitizenFX.Core.Scaleform(Name);
-#elif (SHVDN2 || SHVDN3)
-            scaleform = new GTA.Scaleform(Name);
-#endif
-#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         #endregion
@@ -110,6 +96,10 @@ namespace LemonUI.Scaleform
         {
 #if FIVEM
             API.BeginScaleformMovieMethod(Handle, function);
+#elif RAGEMP
+            Invoker.Invoke(0xF6E48914C7A8694E, Handle, function);
+#elif RPH
+            NativeFunction.CallByHash<int>(0xF6E48914C7A8694E, Handle, function);
 #elif (SHVDN2 || SHVDN3)
             Function.Call((Hash)0xF6E48914C7A8694E, Handle, function);
 #endif
@@ -120,6 +110,10 @@ namespace LemonUI.Scaleform
                 {
 #if FIVEM
                     API.ScaleformMovieMethodAddParamInt(objInt);
+#elif RAGEMP
+                    Invoker.Invoke(0xC3D0841A0CC546A6, objInt);
+#elif RPH
+                    NativeFunction.CallByHash<int>(0xC3D0841A0CC546A6, objInt);
 #elif (SHVDN2 || SHVDN3)
                     Function.Call((Hash)0xC3D0841A0CC546A6, objInt);
 #endif
@@ -130,6 +124,15 @@ namespace LemonUI.Scaleform
                     API.BeginTextCommandScaleformString("STRING");
                     API.AddTextComponentSubstringPlayerName(objString);
                     API.EndTextCommandScaleformString();
+#elif RAGEMP
+                    Invoker.Invoke(Natives.BeginTextCommandScaleformString, "STRING");
+                    Invoker.Invoke(Natives.AddTextComponentSubstringPlayerName, objString);
+                    Invoker.Invoke(Natives.EndTextCommandScaleformString);
+#elif RPH
+
+                    NativeFunction.CallByHash<int>(0x80338406F3475E55, "STRING");
+                    NativeFunction.CallByHash<int>(0x6C188BE134E074AA, objString);
+                    NativeFunction.CallByHash<int>(0x362E2D3FE93A9959);
 #elif (SHVDN2 || SHVDN3)
                     Function.Call((Hash)0x80338406F3475E55, "STRING");
                     Function.Call((Hash)0x6C188BE134E074AA, objString);
@@ -140,6 +143,10 @@ namespace LemonUI.Scaleform
                 {
 #if FIVEM
                     API.ScaleformMovieMethodAddParamFloat(objFloat);
+#elif RAGEMP
+                    Invoker.Invoke(0xD69736AAE04DB51A, objFloat);
+#elif RPH
+                    NativeFunction.CallByHash<int>(0xD69736AAE04DB51A, objFloat);
 #elif (SHVDN2 || SHVDN3)
                     Function.Call((Hash)0xD69736AAE04DB51A, objFloat);
 #endif
@@ -148,6 +155,10 @@ namespace LemonUI.Scaleform
                 {
 #if FIVEM
                     API.ScaleformMovieMethodAddParamFloat((float)objDouble);
+#elif RAGEMP
+                    Invoker.Invoke(0xD69736AAE04DB51A, (float)objDouble);
+#elif RPH
+                    NativeFunction.CallByHash<int>(0xD69736AAE04DB51A, (float)objDouble);
 #elif (SHVDN2 || SHVDN3)
                     Function.Call((Hash)0xD69736AAE04DB51A, (float)objDouble);
 #endif
@@ -156,6 +167,10 @@ namespace LemonUI.Scaleform
                 {
 #if FIVEM
                     API.ScaleformMovieMethodAddParamBool(objBool);
+#elif RAGEMP
+                    Invoker.Invoke(0xC58424BA936EB458, objBool);
+#elif RPH
+                    NativeFunction.CallByHash<int>(0xC58424BA936EB458, objBool);
 #elif (SHVDN2 || SHVDN3)
                     Function.Call((Hash)0xC58424BA936EB458, objBool);
 #endif
@@ -179,6 +194,8 @@ namespace LemonUI.Scaleform
         {
 #if FIVEM
             return API.IsScaleformMovieMethodReturnValueReady(id);
+#elif RAGEMP
+            return Invoker.Invoke<bool>(Natives._0x768FF8961BA904D6, id);
 #elif RPH
             return NativeFunction.CallByHash<bool>(0x768FF8961BA904D6, id);
 #elif SHVDN2
@@ -199,6 +216,8 @@ namespace LemonUI.Scaleform
             {
 #if FIVEM
                 return (T)(object)API.GetScaleformMovieMethodReturnValueString(id);
+#elif RAGEMP
+                return Invoker.Invoke<T>(0xE1E258829A885245, id);
 #elif RPH
                 return (T)NativeFunction.CallByHash(0xE1E258829A885245, typeof(string), id);
 #elif SHVDN2
@@ -211,6 +230,8 @@ namespace LemonUI.Scaleform
             {
 #if FIVEM
                 return (T)(object)API.GetScaleformMovieMethodReturnValueInt(id);
+#elif RAGEMP
+                return Invoker.Invoke<T>(0x2DE7EFA66B906036, id);
 #elif RPH
                 return (T)(object)NativeFunction.CallByHash<int>(0x2DE7EFA66B906036, id);
 #elif SHVDN2
@@ -223,6 +244,8 @@ namespace LemonUI.Scaleform
             {
 #if FIVEM
                 return (T)(object)API.GetScaleformMovieMethodReturnValueBool(id);
+#elif RAGEMP
+                return Invoker.Invoke<T>(0xD80A80346A45D761, id);
 #elif RPH
                 return (T)(object)NativeFunction.CallByHash<bool>(0xD80A80346A45D761, id);
 #elif SHVDN2
@@ -246,6 +269,8 @@ namespace LemonUI.Scaleform
             CallFunctionBase(function, parameters);
 #if FIVEM
             API.EndScaleformMovieMethod();
+#elif RAGEMP
+            Invoker.Invoke(0xC6796A8FFA375E53);
 #elif RPH
             NativeFunction.CallByHash<int>(0xC6796A8FFA375E53);
 #elif (SHVDN2 || SHVDN3)
@@ -262,6 +287,8 @@ namespace LemonUI.Scaleform
             CallFunctionBase(function, parameters);
 #if FIVEM
             return API.EndScaleformMovieMethodReturnValue();
+#elif RAGEMP
+            return Invoker.Invoke<int>(0xC50AA39A577AF886);
 #elif RPH
             return NativeFunction.CallByHash<int>(0xC50AA39A577AF886);
 #elif (SHVDN2 || SHVDN3)
@@ -275,7 +302,7 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// Draws the scaleform full screen.
         /// </summary>
-        public void DrawFullScreen()
+        public virtual void DrawFullScreen()
         {
             if (!Visible)
             {
@@ -284,6 +311,8 @@ namespace LemonUI.Scaleform
             Update();
 #if FIVEM
             API.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 0);
+#elif RAGEMP
+            Invoker.Invoke(Natives.DrawScaleformMovieFullscreen, 255, 255, 255, 255, 0);
 #elif RPH
             NativeFunction.CallByHash<int>(0x0DF606929C105BE1, Handle, 255, 255, 255, 255, 0);
 #elif (SHVDN2 || SHVDN3)
@@ -293,11 +322,11 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// Draws the scaleform full screen.
         /// </summary>
-        public void Draw() => DrawFullScreen();
+        public virtual void Draw() => DrawFullScreen();
         /// <summary>
         /// Draws the scaleform full screen.
         /// </summary>
-        public void Process() => DrawFullScreen();
+        public virtual void Process() => DrawFullScreen();
         /// <summary>
         /// Marks the scaleform as no longer needed.
         /// </summary>
@@ -306,6 +335,8 @@ namespace LemonUI.Scaleform
             int id = Handle;
 #if FIVEM
             API.SetScaleformMovieAsNoLongerNeeded(ref id);
+#elif RAGEMP
+            Invoker.Invoke(Natives.SetScaleformMovieAsNoLongerNeeded, id);
 #elif RPH
             NativeFunction.CallByHash<int>(0x1D132D614DD86811, new NativeArgument(id));
 #elif (SHVDN2 || SHVDN3)

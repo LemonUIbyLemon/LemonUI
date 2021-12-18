@@ -1,6 +1,8 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+#elif RAGEMP
+using RAGE.Game;
 #elif RPH
 using Rage;
 using Rage.Native;
@@ -265,7 +267,15 @@ namespace LemonUI.Scaleform
             Word = word;
             ShowLives = showLives;
 
-            end = TimeSpan.FromMilliseconds(Game.GameTime) + countdown;
+#if RAGEMP
+            int time = Misc.GetGameTimer();
+#elif RPH
+            uint time = Game.GameTime;
+#else
+            int time = Game.GameTime;
+#endif
+
+            end = TimeSpan.FromMilliseconds(time) + countdown;
         }
         /// <summary>
         /// Sets the speed of one of the 8 columns.
@@ -293,11 +303,19 @@ namespace LemonUI.Scaleform
         /// </summary>
         public override void Update()
         {
+#if RAGEMP
+            int time = Misc.GetGameTimer();
+#elif RPH
+            uint time = Game.GameTime;
+#else
+            int time = Game.GameTime;
+#endif
+
             // If there is a time set to hide the Hack window
             if (hideTime != -1)
             {
                 // If that time has already passed, go ahead and hide the window
-                if (hideTime <= Game.GameTime)
+                if (hideTime <= time)
                 {
                     Visible = false;
                     hideTime = -1;
@@ -326,7 +344,7 @@ namespace LemonUI.Scaleform
                 if (countdown > TimeSpan.Zero)
                 {
                     // Calculate the time left
-                    TimeSpan span = countdown - (TimeSpan.FromMilliseconds(Game.GameTime) - end);
+                    TimeSpan span = countdown - (TimeSpan.FromMilliseconds(time) - end);
 
                     // If is lower or equal than zero, the player failed
                     if (span <= TimeSpan.Zero)
@@ -334,7 +352,7 @@ namespace LemonUI.Scaleform
                         CallFunction("SET_COUNTDOWN", 0, 0, 0);
                         string err = FailMessages.Count == 0 ? "" : FailMessages[random.Next(FailMessages.Count)];
                         CallFunction("SET_ROULETTE_OUTCOME", false, err);
-                        hideTime = closeAfter == -1 ? -1 : (int)Game.GameTime + CloseAfter;
+                        hideTime = closeAfter == -1 ? -1 : (int)time + CloseAfter;
                         inProgress = false;
                         HackFinished?.Invoke(this, new BruteForceFinishedEventArgs(BruteForceStatus.OutOfTime));
                         return;
@@ -377,7 +395,7 @@ namespace LemonUI.Scaleform
                                 CallFunction("SET_ROULETTE_OUTCOME", true, ok);
                                 soundSuccess.PlayFrontend();
                                 HackFinished?.Invoke(this, new BruteForceFinishedEventArgs(BruteForceStatus.Completed));
-                                hideTime = closeAfter == -1 ? -1 : (int)Game.GameTime + CloseAfter;
+                                hideTime = closeAfter == -1 ? -1 : (int)time + CloseAfter;
                                 inProgress = false;
                                 break;
                             case 87:  // Row Failed (or lives failed)
@@ -388,7 +406,7 @@ namespace LemonUI.Scaleform
                                 {
                                     string err = FailMessages.Count == 0 ? "" : FailMessages[random.Next(FailMessages.Count)];
                                     CallFunction("SET_ROULETTE_OUTCOME", false, err);
-                                    hideTime = closeAfter == -1 ? -1 : (int)Game.GameTime + CloseAfter;
+                                    hideTime = closeAfter == -1 ? -1 : (int)time + CloseAfter;
                                     inProgress = false;
                                     HackFinished?.Invoke(this, new BruteForceFinishedEventArgs(BruteForceStatus.OutOfLives));
                                 }

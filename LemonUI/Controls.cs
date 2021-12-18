@@ -1,6 +1,8 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+#elif RAGEMP
+using RAGE.Game;
 #elif RPH
 using Rage.Native;
 using Control = Rage.GameControl;
@@ -26,6 +28,8 @@ namespace LemonUI
             {
 #if FIVEM
                 return !API.IsInputDisabled(2);
+#elif RAGEMP
+                return !Invoker.Invoke<bool>(Natives.IsInputDisabled, 2);
 #elif RPH
                 return !NativeFunction.CallByHash<bool>(0xA571D46727E2B718, 2);
 #elif SHVDN2
@@ -45,6 +49,8 @@ namespace LemonUI
         {
 #if FIVEM
             return API.IsDisabledControlJustPressed(0, (int)control);
+#elif RAGEMP
+            return Invoker.Invoke<bool>(Natives.IsDisabledControlJustPressed, 0, (int)control);
 #elif RPH
             return NativeFunction.CallByHash<bool>(0x91AEF906BCA88877, 0, (int)control);
 #elif (SHVDN2 || SHVDN3)
@@ -61,6 +67,8 @@ namespace LemonUI
         {
 #if FIVEM
             return API.IsDisabledControlPressed(0, (int)control);
+#elif RAGEMP
+            return Invoker.Invoke<bool>(Natives.IsDisabledControlJustPressed, 0, (int)control);
 #elif RPH
             return NativeFunction.CallByHash<bool>(0xE2587F8CBBD87B1D, 0, (int)control);
 #elif (SHVDN2 || SHVDN3)
@@ -75,6 +83,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.DisableAllControlActions(inputGroup);
+#elif RAGEMP
+            Invoker.Invoke(Natives.DisableAllControlActions, inputGroup);
 #elif RPH
             NativeFunction.CallByHash<int>(0x5F4B6931816E599B, inputGroup);
 #elif (SHVDN2 || SHVDN3)
@@ -90,6 +100,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.EnableControlAction(0, (int)control, true);
+#elif RAGEMP
+            Invoker.Invoke(Natives.EnableControlAction, 0, (int)control, true);
 #elif RPH
             NativeFunction.CallByHash<int>(0x351220255D64C155, 0, (int)control);
 #elif (SHVDN2 || SHVDN3)
@@ -116,6 +128,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.DisableControlAction(0, (int)control, true);
+#elif RAGEMP
+            Invoker.Invoke(Natives.DisableControlAction, 0, (int)control, true);
 #elif RPH
             NativeFunction.CallByHash<int>(0xFE99B66D079CF6BC, 0, (int)control, true);
 #elif (SHVDN2 || SHVDN3)

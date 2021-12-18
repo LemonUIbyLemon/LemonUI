@@ -42,13 +42,28 @@ namespace LemonUI.Menus
 
         #endregion
 
+        #region Functions
+
+        /// <inheritdoc/>
+        public override void Draw()
+        {
+            // There is no Process(), so let's use draw to update the description
+            if (Description != Menu.Description)
+            {
+                Description = Menu.Description;
+            }
+
+            base.Draw();
+        }
+
+        #endregion
+
         #region Local Events
 
         private void NativeSubmenuItem_Activated(object sender, EventArgs e)
         {
-            // Try to close the parent menu
             Menu.Parent.Visible = false;
-            // And show the menu only if the parent menu is closed
+
             if (!Menu.Parent.Visible)
             {
                 Menu.Visible = true;

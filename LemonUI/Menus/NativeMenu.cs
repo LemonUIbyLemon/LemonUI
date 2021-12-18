@@ -3,6 +3,9 @@ using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
+#elif RAGEMP
+using RAGE.Game;
+using System.ComponentModel;
 #elif RPH
 using Rage;
 using Rage.Native;
@@ -956,6 +959,10 @@ namespace LemonUI.Menus
             // And set the position of the cursor
 #if FIVEM
             API.SetCursorLocation(pos.X, pos.Y);
+#elif RAGEMP
+            Invoker.Invoke(Natives.SetCursorLocation, pos.X, pos.Y);
+#elif RPH
+            NativeFunction.CallByHash<int>(0xFC695459D4D0E219, pos.X, pos.Y);
 #elif SHVDN2
             Function.Call(Hash._0xFC695459D4D0E219, pos.X, pos.Y);
 #elif SHVDN3
@@ -1019,12 +1026,10 @@ namespace LemonUI.Menus
             // Set the position of the rectangle that marks the current item
             selectedRect.Position = new PointF(pos.X, pos.Y + ((index - firstItem) * itemHeight));
             // And then do the description background and text
-            descriptionText.Text = Items.Count == 0 || SelectedIndex == -1 ? NoItemsText : SelectedItem.Description;
             float description = pos.Y + ((Items.Count > maxItems ? maxItems : Items.Count) * itemHeight) + heightDiffDescImg;
-            int lineCount = descriptionText.LineCount;
-            descriptionRect.Size = new SizeF(width, (lineCount * (descriptionText.LineHeight + 5)) + (lineCount - 1) + 10);
             descriptionRect.Position = new PointF(pos.X, description);
             descriptionText.Position = new PointF(pos.X + posXDescTxt, description + heightDiffDescTxt);
+            UpdateDescription();
 
             // Save the size of the items
             SizeF size = new SizeF(width, itemHeight);
@@ -1041,6 +1046,15 @@ namespace LemonUI.Menus
 
             // Finally, recalculate the panel of the selected item
             RecalculatePanel();
+        }
+        /// <summary>
+        /// Updates the size and text of the description.
+        /// </summary>
+        private void UpdateDescription()
+        {
+            descriptionText.Text = Items.Count == 0 || SelectedIndex == -1 ? NoItemsText : SelectedItem.Description;
+            int lineCount = descriptionText.LineCount;
+            descriptionRect.Size = new SizeF(width, (lineCount * (descriptionText.LineHeight + 5)) + (lineCount - 1) + 10);
         }
         /// <summary>
         /// Processes the button presses.
@@ -1092,6 +1106,8 @@ namespace LemonUI.Menus
             // If the controls are disabled, the menu has just been opened or the text input field is active, return
 #if FIVEM
             bool isKeyboardActive = API.UpdateOnscreenKeyboard() == 0;
+#elif RAGEMP
+            bool isKeyboardActive = Invoker.Invoke<int>(Natives.UpdateOnscreenKeyboard) == 0;
 #elif RPH
             bool isKeyboardActive = NativeFunction.CallByHash<int>(0x0CF2B696BBF945AE) == 0;
 #elif SHVDN2 || SHVDN3
@@ -1121,17 +1137,25 @@ namespace LemonUI.Menus
                 return;
             }
 
+#if RAGEMP
+            int time = Misc.GetGameTimer();
+#elif RPH
+            uint time = Game.GameTime;
+#else
+            int time = Game.GameTime;
+#endif
+
             // If the player pressed up, go to the previous item
-            if ((upPressed && !downPressed) || (HeldTime > 0 && upSince != -1 && !upPressed && upHeld && upSince + HeldTime < Game.GameTime))
+            if ((upPressed && !downPressed) || (HeldTime > 0 && upSince != -1 && !upPressed && upHeld && upSince + HeldTime < time))
             {
-                upSince = Game.GameTime;
+                upSince = time;
                 Previous();
                 return;
             }
             // If he pressed down, go to the next item
-            if ((downPressed && !upPressed) || (HeldTime > 0 && downSince != -1 && !downPressed && downHeld && downSince + HeldTime < Game.GameTime))
+            if ((downPressed && !upPressed) || (HeldTime > 0 && downSince != -1 && !downPressed && downHeld && downSince + HeldTime < time))
             {
-                downSince = Game.GameTime;
+                downSince = time;
                 Next();
                 return;
             }
@@ -1145,6 +1169,8 @@ namespace LemonUI.Menus
                 // Enable the mouse cursor
 #if (FIVEM || SHVDN2 || SHVDN3)
                 Screen.ShowCursorThisFrame();
+#elif RAGEMP
+                Invoker.Invoke(Natives.ShowCursorThisFrame);
 #elif RPH
                 NativeFunction.CallByHash<int>(0xAAE7CE1D63167423);
 #endif
@@ -1156,6 +1182,8 @@ namespace LemonUI.Menus
                     {
 #if (FIVEM || SHVDN2 || SHVDN3)
                         GameplayCamera.RelativeHeading += 5;
+#elif RAGEMP
+                        throw new NotImplementedException();
 #elif RPH
                         Camera.RenderingCamera.Heading += 5;
 #endif
@@ -1164,6 +1192,8 @@ namespace LemonUI.Menus
                     {
 #if (FIVEM || SHVDN2 || SHVDN3)
                         GameplayCamera.RelativeHeading -= 5;
+#elif RAGEMP
+                        throw new NotImplementedException();
 #elif RPH
                         Camera.RenderingCamera.Heading -= 5;
 #endif
@@ -1525,17 +1555,19 @@ namespace LemonUI.Menus
         /// </summary>
         public void Process()
         {
-            // If the menu is not visible, return
             if (!visible)
             {
                 return;
             }
 
-            // Otherwise, draw the elements
+            NativeItem selected = SelectedItem;
+            if (selected != null && descriptionText.Text != selected.Description)
+            {
+                UpdateDescription();
+            }
+
             Draw();
-            // And then work on the controls
             ProcessControls();
-            // And finish by drawing the instructional buttons
             Buttons.Draw();
         }
         /// <summary>

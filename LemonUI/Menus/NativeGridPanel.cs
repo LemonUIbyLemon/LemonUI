@@ -2,6 +2,8 @@
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
+#elif RAGEMP
+using RAGE.Game;
 #elif RPH
 using Rage;
 using Rage.Native;
@@ -336,6 +338,8 @@ namespace LemonUI.Menus
 
 #if FIVEM
             bool usingKeyboard = API.IsInputDisabled(2);
+#elif RAGEMP
+            bool usingKeyboard = Invoker.Invoke<bool>(0xA571D46727E2B718, 2);
 #elif RPH
             bool usingKeyboard = NativeFunction.CallByHash<bool>(0xA571D46727E2B718, 2);
 #elif SHVDN2
@@ -372,6 +376,10 @@ namespace LemonUI.Menus
                 float rX = Game.GetControlNormal(0, Control.ScriptRightAxisX);
                 float rY = Game.GetControlNormal(0, Control.ScriptRightAxisY);
                 float frameTime = Game.LastFrameTime;
+#elif RAGEMP
+                float rX = Invoker.Invoke<float>(0xEC3C9B8D5327B563, 0, (int)Control.ScriptRightAxisX);
+                float rY = Invoker.Invoke<float>(0xEC3C9B8D5327B563, 0, (int)Control.ScriptRightAxisY);
+                float frameTime = Invoker.Invoke<float>(Natives.GetFrameTime);
 #elif RPH
                 float rX = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.ScriptRightAxisX);
                 float rY = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.ScriptRightAxisY);

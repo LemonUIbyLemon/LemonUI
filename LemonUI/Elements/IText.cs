@@ -1,6 +1,8 @@
 #if FIVEM
 using Alignment = CitizenFX.Core.UI.Alignment;
 using Font = CitizenFX.Core.UI.Font;
+#elif RAGEMP
+using RAGE.Game;
 #elif SHVDN2
 using Font = GTA.Font;
 #elif SHVDN3

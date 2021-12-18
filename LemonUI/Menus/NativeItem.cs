@@ -1,5 +1,7 @@
 #if FIVEM
 using Font = CitizenFX.Core.UI.Font;
+#elif RAGEMP
+using Font = RAGE.Game.Font;
 #elif RPH
 using Font = LemonUI.Elements.Font;
 #elif SHVDN2
