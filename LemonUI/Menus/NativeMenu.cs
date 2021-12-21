@@ -1183,7 +1183,8 @@ namespace LemonUI.Menus
 #if (FIVEM || SHVDN2 || SHVDN3)
                         GameplayCamera.RelativeHeading += 5;
 #elif RAGEMP
-                        throw new NotImplementedException();
+                        float current = Invoker.Invoke<float>(0x743607648ADD4587);
+                        Invoker.Invoke(0xB4EC2312F4E5B1F1, current + 5);
 #elif RPH
                         Camera.RenderingCamera.Heading += 5;
 #endif
@@ -1193,7 +1194,8 @@ namespace LemonUI.Menus
 #if (FIVEM || SHVDN2 || SHVDN3)
                         GameplayCamera.RelativeHeading -= 5;
 #elif RAGEMP
-                        throw new NotImplementedException();
+                        float current = Invoker.Invoke<float>(0x743607648ADD4587);
+                        Invoker.Invoke(0xB4EC2312F4E5B1F1, current - 5);
 #elif RPH
                         Camera.RenderingCamera.Heading -= 5;
 #endif

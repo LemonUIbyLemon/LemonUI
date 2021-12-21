@@ -183,7 +183,11 @@ namespace LemonUI
 #if FIVEM
             API.GetScriptGfxPosition(relativeX, relativeY, ref realX, ref realY);
 #elif RAGEMP
-            throw new NotImplementedException();
+            FloatReference argX = new FloatReference();
+            FloatReference argY = new FloatReference();
+            Invoker.Invoke<int>(0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY);
+            realX = argX.Value;
+            realY = argY.Value;
 #elif RPH
             using (NativePointer argX = new NativePointer())
             using (NativePointer argY = new NativePointer())
