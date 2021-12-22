@@ -60,6 +60,7 @@ namespace LemonUI.Menus
         private BadgeSet badgeSetLeft = null;
         private BadgeSet badgeSetRight = null;
         private ColorSet colors = new ColorSet();
+        private ScaledRectangle background = new ScaledRectangle(PointF.Empty, SizeF.Empty);
 
         #endregion
 
@@ -122,7 +123,6 @@ namespace LemonUI.Menus
             get => altTitle.Font;
             set => altTitle.Font = value;
         }
-
         /// <summary>
         /// The description of the item.
         /// </summary>
@@ -195,6 +195,10 @@ namespace LemonUI.Menus
         /// The Panel asociated to this <see cref="NativeItem"/>.
         /// </summary>
         public NativePanel Panel { get; set; } = null;
+        /// <summary>
+        /// If a custom colored background should be used. 
+        /// </summary>
+        public bool UseCustomBackground { get; set; }
 
         #endregion
 
@@ -279,13 +283,13 @@ namespace LemonUI.Menus
         /// <param name="selected">If this item has been selected.</param>
         public virtual void Recalculate(PointF pos, SizeF size, bool selected)
         {
-            // Save the values for later use
             lastPosition = pos;
             lastSize = size;
             lastSelected = selected;
 
-            // Make sure that the badge sets are ScaledTexture classes
-            // Then just apply the appropiate textures
+            background.Position = pos;
+            background.Size = size;
+
             if (badgeSetLeft != null)
             {
                 if (!(badgeLeft is ScaledTexture))
@@ -307,7 +311,6 @@ namespace LemonUI.Menus
                 right.Texture = selected ? badgeSetRight.HoveredTexture : badgeSetRight.NormalTexture;
             }
 
-            // If there is a left badge, set the size and position
             if (badgeLeft != null)
             {
                 badgeLeft.Position = new PointF(pos.X + 2, pos.Y - 3);
@@ -318,7 +321,7 @@ namespace LemonUI.Menus
                 badgeRight.Position = new PointF(pos.X + size.Width - 47, pos.Y - 3);
                 badgeRight.Size = new SizeF(45, 45);
             }
-            // Just set the color and position of the title
+            
             title.Position = new PointF(pos.X + (badgeLeft == null ? 0 : 34) + 6, pos.Y + 3);
             altTitle.Position = new PointF(pos.X + size.Width - (badgeRight == null ? 0 : 34) - altTitle.Width - 6, pos.Y + 3);
 
@@ -329,6 +332,11 @@ namespace LemonUI.Menus
         /// </summary>
         public virtual void Draw()
         {
+            if (UseCustomBackground)
+            {
+                background.Draw();
+            }
+            
             title.Draw();
             altTitle.Draw();
             badgeLeft?.Draw();
@@ -341,6 +349,7 @@ namespace LemonUI.Menus
         {
             if (!Enabled)
             {
+                background.Color = Colors.BackgroundDisabled;
                 title.Color = Colors.TitleDisabled;
                 altTitle.Color = Colors.AltTitleDisabled;
                 if (badgeLeft != null)
@@ -354,6 +363,7 @@ namespace LemonUI.Menus
             }
             else if (lastSelected)
             {
+                background.Color = Colors.BackgroundHovered;
                 title.Color = Colors.TitleHovered;
                 altTitle.Color = Colors.AltTitleHovered;
                 if (badgeLeft != null)
@@ -367,6 +377,7 @@ namespace LemonUI.Menus
             }
             else
             {
+                background.Color = Colors.BackgroundNormal;
                 title.Color = Colors.TitleNormal;
                 altTitle.Color = Colors.AltTitleNormal;
                 if (badgeLeft != null)

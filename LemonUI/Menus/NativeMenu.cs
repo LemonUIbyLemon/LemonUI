@@ -1388,7 +1388,10 @@ namespace LemonUI.Menus
                 }
             }
             // Continue with the white selection rectangle
-            selectedRect?.Draw();
+            if (selected != null && !selected.UseCustomBackground)
+            {
+                selectedRect.Draw();   
+            }
             // And finish with the selected item on top (if any)
             if (selected != null)
             {
