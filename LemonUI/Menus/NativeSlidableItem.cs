@@ -123,18 +123,18 @@ namespace LemonUI.Menus
 
             if (!Enabled)
             {
-                LeftArrow.Color = Colors.TitleDisabled;
-                RightArrow.Color = Colors.TitleDisabled;
+                LeftArrow.Color = Colors.ArrowsDisabled;
+                RightArrow.Color = Colors.ArrowsDisabled;
             }
             else if (lastSelected)
             {
-                LeftArrow.Color = Colors.TitleHovered;
-                RightArrow.Color = Colors.TitleHovered;
+                LeftArrow.Color = Colors.ArrowsHovered;
+                RightArrow.Color = Colors.ArrowsHovered;
             }
             else
             {
-                LeftArrow.Color = Colors.TitleNormal;
-                RightArrow.Color = Colors.TitleNormal;
+                LeftArrow.Color = Colors.ArrowsNormal;
+                RightArrow.Color = Colors.ArrowsNormal;
             }
         }
 
