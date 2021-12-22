@@ -4,7 +4,7 @@ using CitizenFX.Core.Native;
 using RAGE.Game;
 #elif RPH
 using Rage.Native;
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
 using GTA.Native;
 #endif
 using System;
@@ -18,7 +18,7 @@ namespace LemonUI.Scaleform
     {
         #region Private Fields
 
-#if (FIVEM || SHVDN2 || SHVDN3)
+#if FIVEM || SHVDN3
         /// <summary>
         /// The ID of the scaleform.
         /// </summary>
@@ -26,7 +26,7 @@ namespace LemonUI.Scaleform
 #endif
 #if FIVEM
         protected CitizenFX.Core.Scaleform scaleform = new CitizenFX.Core.Scaleform("");
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
         protected GTA.Scaleform scaleform = new GTA.Scaleform("");
 #endif
 
@@ -59,7 +59,7 @@ namespace LemonUI.Scaleform
                 return Invoker.Invoke<bool>(Natives.HasScaleformMovieLoaded, Handle);
 #elif RPH
                 return NativeFunction.CallByHash<bool>(0x85F01B8D5B90570E, Handle);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
                 return Function.Call<bool>(Hash.HAS_SCALEFORM_MOVIE_LOADED, Handle);
 #endif
             }
@@ -83,7 +83,7 @@ namespace LemonUI.Scaleform
             Handle = Invoker.Invoke<int>(Natives.RequestScaleformMovie, Name);
 #elif RPH
             Handle = NativeFunction.CallByHash<int>(0x11FE353CF9733E6F, Name);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             Handle = Function.Call<int>(Hash.REQUEST_SCALEFORM_MOVIE, Name);
 #endif
         }
@@ -100,7 +100,7 @@ namespace LemonUI.Scaleform
             Invoker.Invoke(0xF6E48914C7A8694E, Handle, function);
 #elif RPH
             NativeFunction.CallByHash<int>(0xF6E48914C7A8694E, Handle, function);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             Function.Call((Hash)0xF6E48914C7A8694E, Handle, function);
 #endif
 
@@ -114,7 +114,7 @@ namespace LemonUI.Scaleform
                     Invoker.Invoke(0xC3D0841A0CC546A6, objInt);
 #elif RPH
                     NativeFunction.CallByHash<int>(0xC3D0841A0CC546A6, objInt);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
                     Function.Call((Hash)0xC3D0841A0CC546A6, objInt);
 #endif
                 }
@@ -133,7 +133,7 @@ namespace LemonUI.Scaleform
                     NativeFunction.CallByHash<int>(0x80338406F3475E55, "STRING");
                     NativeFunction.CallByHash<int>(0x6C188BE134E074AA, objString);
                     NativeFunction.CallByHash<int>(0x362E2D3FE93A9959);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
                     Function.Call((Hash)0x80338406F3475E55, "STRING");
                     Function.Call((Hash)0x6C188BE134E074AA, objString);
                     Function.Call((Hash)0x362E2D3FE93A9959);
@@ -147,7 +147,7 @@ namespace LemonUI.Scaleform
                     Invoker.Invoke(0xD69736AAE04DB51A, objFloat);
 #elif RPH
                     NativeFunction.CallByHash<int>(0xD69736AAE04DB51A, objFloat);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
                     Function.Call((Hash)0xD69736AAE04DB51A, objFloat);
 #endif
                 }
@@ -159,7 +159,7 @@ namespace LemonUI.Scaleform
                     Invoker.Invoke(0xD69736AAE04DB51A, (float)objDouble);
 #elif RPH
                     NativeFunction.CallByHash<int>(0xD69736AAE04DB51A, (float)objDouble);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
                     Function.Call((Hash)0xD69736AAE04DB51A, (float)objDouble);
 #endif
                 }
@@ -171,7 +171,7 @@ namespace LemonUI.Scaleform
                     Invoker.Invoke(0xC58424BA936EB458, objBool);
 #elif RPH
                     NativeFunction.CallByHash<int>(0xC58424BA936EB458, objBool);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
                     Function.Call((Hash)0xC58424BA936EB458, objBool);
 #endif
                 }
@@ -198,8 +198,6 @@ namespace LemonUI.Scaleform
             return Invoker.Invoke<bool>(Natives._0x768FF8961BA904D6, id);
 #elif RPH
             return NativeFunction.CallByHash<bool>(0x768FF8961BA904D6, id);
-#elif SHVDN2
-            return Function.Call<bool>(Hash._0x768FF8961BA904D6, id);
 #elif SHVDN3
             return Function.Call<bool>(Hash.IS_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_READY, id);
 #endif
@@ -220,8 +218,6 @@ namespace LemonUI.Scaleform
                 return Invoker.Invoke<T>(0xE1E258829A885245, id);
 #elif RPH
                 return (T)NativeFunction.CallByHash(0xE1E258829A885245, typeof(string), id);
-#elif SHVDN2
-                return (T)(object)Function.Call<string>(Hash._0xE1E258829A885245, id);
 #elif SHVDN3
                 return (T)(object)Function.Call<string>(Hash.GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_STRING, id);
 #endif
@@ -234,8 +230,6 @@ namespace LemonUI.Scaleform
                 return Invoker.Invoke<T>(0x2DE7EFA66B906036, id);
 #elif RPH
                 return (T)(object)NativeFunction.CallByHash<int>(0x2DE7EFA66B906036, id);
-#elif SHVDN2
-                return (T)(object)Function.Call<int>(Hash._0x2DE7EFA66B906036, id);
 #elif SHVDN3
                 return (T)(object)Function.Call<int>(Hash.GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_INT, id);
 #endif
@@ -248,8 +242,6 @@ namespace LemonUI.Scaleform
                 return Invoker.Invoke<T>(0xD80A80346A45D761, id);
 #elif RPH
                 return (T)(object)NativeFunction.CallByHash<bool>(0xD80A80346A45D761, id);
-#elif SHVDN2
-                return (T)(object)Function.Call<bool>((Hash)0xD80A80346A45D761, id);
 #elif SHVDN3
                 return (T)(object)Function.Call<bool>(Hash._GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_BOOL, id);
 #endif
@@ -273,7 +265,7 @@ namespace LemonUI.Scaleform
             Invoker.Invoke(0xC6796A8FFA375E53);
 #elif RPH
             NativeFunction.CallByHash<int>(0xC6796A8FFA375E53);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             Function.Call((Hash)0xC6796A8FFA375E53);
 #endif
         }
@@ -291,7 +283,7 @@ namespace LemonUI.Scaleform
             return Invoker.Invoke<int>(0xC50AA39A577AF886);
 #elif RPH
             return NativeFunction.CallByHash<int>(0xC50AA39A577AF886);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             return Function.Call<int>((Hash)0xC50AA39A577AF886);
 #endif
         }
@@ -315,7 +307,7 @@ namespace LemonUI.Scaleform
             Invoker.Invoke(Natives.DrawScaleformMovieFullscreen, 255, 255, 255, 255, 0);
 #elif RPH
             NativeFunction.CallByHash<int>(0x0DF606929C105BE1, Handle, 255, 255, 255, 255, 0);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             Function.Call(Hash.DRAW_SCALEFORM_MOVIE_FULLSCREEN, Handle, 255, 255, 255, 255, 0);
 #endif
         }
@@ -339,7 +331,7 @@ namespace LemonUI.Scaleform
             Invoker.Invoke(Natives.SetScaleformMovieAsNoLongerNeeded, id);
 #elif RPH
             NativeFunction.CallByHash<int>(0x1D132D614DD86811, new NativeArgument(id));
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             Function.Call(Hash.SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED, new OutputArgument(id));
 #endif
         }

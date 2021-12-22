@@ -5,8 +5,6 @@ using CitizenFX.Core.UI;
 using RAGE.Game;
 #elif RPH
 using Control = Rage.GameControl;
-#elif SHVDN2
-using GTA;
 #elif SHVDN3
 using GTA;
 using GTA.UI;

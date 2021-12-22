@@ -2,8 +2,6 @@
 using CitizenFX.Core;
 #elif RPH
 using Rage;
-#elif SHVDN2
-using GTA.Native;
 #elif SHVDN3
 using GTA;
 #endif

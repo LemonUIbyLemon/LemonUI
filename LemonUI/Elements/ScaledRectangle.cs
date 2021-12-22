@@ -4,7 +4,7 @@ using CitizenFX.Core.Native;
 using RAGE.Game;
 #elif RPH
 using Rage.Native;
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
 using GTA.Native;
 #endif
 using System.Drawing;
@@ -46,7 +46,7 @@ namespace LemonUI.Elements
             Invoker.Invoke(Natives.DrawRect, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
 #elif RPH
             NativeFunction.CallByHash<int>(0x3A618A217E5154F0, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             Function.Call(Hash.DRAW_RECT, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
 #endif
         }

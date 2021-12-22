@@ -8,9 +8,6 @@ using RAGE.Game;
 using Rage;
 using Rage.Native;
 using Control = Rage.GameControl;
-#elif SHVDN2
-using GTA;
-using GTA.Native;
 #elif SHVDN3
 using GTA;
 using GTA.Native;
@@ -67,8 +64,6 @@ namespace LemonUI
                 return Invoker.Invoke<float>(Natives.GetAspectRatio);
 #elif RPH
                 return NativeFunction.CallByHash<float>(0xF1307EF624A80D87, false);
-#elif SHVDN2
-                return Function.Call<float>(Hash._0xF1307EF624A80D87, false);
 #elif SHVDN3
                 return Function.Call<float>(Hash._GET_ASPECT_RATIO, false);
 #endif
@@ -90,7 +85,7 @@ namespace LemonUI
 #elif RPH
                 float cursorX = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.CursorX);
                 float cursorY = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.CursorY);
-#elif SHVDN2 || SHVDN3
+#elif SHVDN3
                 float cursorX = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorX);
                 float cursorY = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorY);
 #endif
@@ -196,7 +191,7 @@ namespace LemonUI
                 realX = argX.GetValue<float>();
                 realY = argY.GetValue<float>();
             }
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             OutputArgument argX = new OutputArgument();
             OutputArgument argY = new OutputArgument();
             Function.Call((Hash)0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY); // _GET_SCRIPT_GFX_POSITION
@@ -218,8 +213,6 @@ namespace LemonUI
             Invoker.Invoke(0xAAE7CE1D63167423);
 #elif RPH
             NativeFunction.CallByHash<int>(0xAAE7CE1D63167423);
-#elif SHVDN2
-            Function.Call(Hash._SHOW_CURSOR_THIS_FRAME);
 #elif SHVDN3
             Function.Call(Hash._SET_MOUSE_CURSOR_ACTIVE_THIS_FRAME);
 #endif
@@ -267,9 +260,6 @@ namespace LemonUI
 #elif RPH
             NativeFunction.CallByHash<int>(0xB8A850F20A067EB6, (int)horizontal, (int)vertical);
             NativeFunction.CallByHash<int>(0xF5A2C681787E579D, 0, 0, 0, 0);
-#elif SHVDN2
-            Function.Call(Hash._SET_SCREEN_DRAW_POSITION, (int)horizontal, (int)vertical);
-            Function.Call(Hash._0xF5A2C681787E579D, 0, 0, 0, 0);
 #elif SHVDN3
             Function.Call(Hash.SET_SCRIPT_GFX_ALIGN, (int)horizontal, (int)vertical);
             Function.Call(Hash.SET_SCRIPT_GFX_ALIGN_PARAMS, 0, 0, 0, 0);
@@ -286,8 +276,6 @@ namespace LemonUI
             Invoker.Invoke(0xE3A3DB414A373DAB);
 #elif RPH
             NativeFunction.CallByHash<int>(0xE3A3DB414A373DAB);
-#elif SHVDN2
-            Function.Call(Hash._0xE3A3DB414A373DAB);
 #elif SHVDN3
             Function.Call(Hash.RESET_SCRIPT_GFX_ALIGN);
 #endif

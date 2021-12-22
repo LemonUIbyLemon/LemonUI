@@ -6,9 +6,6 @@ using RAGE.Game;
 #elif RPH
 using Rage;
 using Rage.Native;
-#elif SHVDN2
-using GTA;
-using GTA.Native;
 #elif SHVDN3
 using GTA;
 using GTA.Native;
@@ -58,7 +55,7 @@ namespace LemonUI
             NativeFunction.CallByHash<int>(0x67C540AA08E4A6F5, -1, File, Set, false);
             int id = NativeFunction.CallByHash<int>(0x430386FE9BF80B45);
             NativeFunction.CallByHash<int>(0x353FC880830B88FA, id);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, File, Set, false);
             int id = Function.Call<int>(Hash.GET_SOUND_ID);
             Function.Call(Hash.RELEASE_SOUND_ID, id);

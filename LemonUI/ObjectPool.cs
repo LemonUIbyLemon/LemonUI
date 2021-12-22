@@ -8,9 +8,6 @@ using RAGE.NUI;
 #elif RPH
 using Rage;
 using Rage.Native;
-#elif SHVDN2
-using GTA;
-using GTA.Native;
 #elif SHVDN3
 using GTA.Native;
 using GTA.UI;
@@ -91,8 +88,6 @@ namespace LemonUI
         private SizeF lastKnownResolution = new SizeF(Game.ScreenResolution.Width, Game.ScreenResolution.Height);
 #elif RPH
         private SizeF lastKnownResolution = Game.Resolution;
-#elif SHVDN2
-        private SizeF lastKnownResolution = Game.ScreenResolution;
 #elif SHVDN3
         private SizeF lastKnownResolution = GTA.UI.Screen.Resolution;
 #endif
@@ -105,7 +100,7 @@ namespace LemonUI
         private float lastKnownSafezone = Invoker.Invoke<float>(Natives.GetSafeZoneSize);
 #elif RPH
         private float lastKnownSafezone = NativeFunction.CallByHash<float>(0xBAF107B6BB2C97F0);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
         private float lastKnownSafezone = Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
 #endif
         /// <summary>
@@ -168,8 +163,6 @@ namespace LemonUI
             SizeF resolution = new SizeF(raw.Width, raw.Height);
 #elif RPH
             SizeF resolution = Game.Resolution;
-#elif SHVDN2
-            SizeF resolution = Game.ScreenResolution;
 #elif SHVDN3
             SizeF resolution = GTA.UI.Screen.Resolution;
 #endif
@@ -196,7 +189,7 @@ namespace LemonUI
             float safezone = Invoker.Invoke<float>(Natives.GetSafeZoneSize);
 #elif RPH
             float safezone = NativeFunction.CallByHash<float>(0xBAF107B6BB2C97F0);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             float safezone = Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
 #endif
 

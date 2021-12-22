@@ -4,8 +4,6 @@ using Font = CitizenFX.Core.UI.Font;
 using Font = RAGE.Game.Font;
 #elif RPH
 using Font = LemonUI.Elements.Font;
-#elif SHVDN2
-using Font = GTA.Font;
 #elif SHVDN3
 using Font = GTA.UI.Font;
 #endif

@@ -6,7 +6,7 @@ using RAGE.Game;
 #elif RPH
 using Rage.Native;
 using Control = Rage.GameControl;
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
 using GTA;
 using GTA.Native;
 #endif
@@ -48,8 +48,6 @@ namespace LemonUI.Scaleform
                 raw = Invoker.Invoke<string>(Natives.GetControlInstructionalButton, 2, (int)value, 1);
 #elif RPH
                 raw = (string)NativeFunction.CallByHash(0x0499D7B09FC9B407, typeof(string), 2, (int)control, 1);
-#elif SHVDN2
-                raw = Function.Call<string>(Hash._0x0499D7B09FC9B407, 2, (int)value, 1);
 #elif SHVDN3
                 raw = Function.Call<string>(Hash.GET_CONTROL_INSTRUCTIONAL_BUTTON, 2, (int)value, 1);
 #endif
@@ -87,8 +85,6 @@ namespace LemonUI.Scaleform
             raw = Invoker.Invoke<string>(Natives.GetControlInstructionalButton, 2, (int)control, 1);
 #elif RPH
             raw = (string)NativeFunction.CallByHash(0x0499D7B09FC9B407, typeof(string), 2, (int)control, 1);
-#elif SHVDN2
-            raw = Function.Call<string>(Hash._0x0499D7B09FC9B407, 2, (int)control, 1);
 #elif SHVDN3
             raw = Function.Call<string>(Hash.GET_CONTROL_INSTRUCTIONAL_BUTTON, 2, (int)control, 1);
 #endif

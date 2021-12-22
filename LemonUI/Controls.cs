@@ -6,7 +6,7 @@ using RAGE.Game;
 #elif RPH
 using Rage.Native;
 using Control = Rage.GameControl;
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
 using GTA;
 using GTA.Native;
 #endif
@@ -32,8 +32,6 @@ namespace LemonUI
                 return !Invoker.Invoke<bool>(Natives.IsInputDisabled, 2);
 #elif RPH
                 return !NativeFunction.CallByHash<bool>(0xA571D46727E2B718, 2);
-#elif SHVDN2
-                return !Function.Call<bool>(Hash._GET_LAST_INPUT_METHOD, 2);
 #elif SHVDN3
                 return !Function.Call<bool>(Hash._IS_INPUT_DISABLED, 2);
 #endif
@@ -53,7 +51,7 @@ namespace LemonUI
             return Invoker.Invoke<bool>(Natives.IsDisabledControlJustPressed, 0, (int)control);
 #elif RPH
             return NativeFunction.CallByHash<bool>(0x91AEF906BCA88877, 0, (int)control);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             return Function.Call<bool>(Hash.IS_DISABLED_CONTROL_JUST_PRESSED, 0, (int)control);
 #endif
         }
@@ -71,7 +69,7 @@ namespace LemonUI
             return Invoker.Invoke<bool>(Natives.IsDisabledControlJustPressed, 0, (int)control);
 #elif RPH
             return NativeFunction.CallByHash<bool>(0xE2587F8CBBD87B1D, 0, (int)control);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             return Function.Call<bool>(Hash.IS_DISABLED_CONTROL_PRESSED, 0, (int)control);
 #endif
         }
@@ -87,7 +85,7 @@ namespace LemonUI
             Invoker.Invoke(Natives.DisableAllControlActions, inputGroup);
 #elif RPH
             NativeFunction.CallByHash<int>(0x5F4B6931816E599B, inputGroup);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             Function.Call(Hash.DISABLE_ALL_CONTROL_ACTIONS, inputGroup);
 #endif
         }
@@ -104,7 +102,7 @@ namespace LemonUI
             Invoker.Invoke(Natives.EnableControlAction, 0, (int)control, true);
 #elif RPH
             NativeFunction.CallByHash<int>(0x351220255D64C155, 0, (int)control);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             Function.Call(Hash.ENABLE_CONTROL_ACTION, 0, (int)control);
 #endif
         }
@@ -132,7 +130,7 @@ namespace LemonUI
             Invoker.Invoke(Natives.DisableControlAction, 0, (int)control, true);
 #elif RPH
             NativeFunction.CallByHash<int>(0xFE99B66D079CF6BC, 0, (int)control, true);
-#elif (SHVDN2 || SHVDN3)
+#elif SHVDN3
             Function.Call(Hash.DISABLE_CONTROL_ACTION, 0, (int)control, true);
 #endif
         }

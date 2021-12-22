@@ -7,9 +7,6 @@ using RAGE.Game;
 using Rage;
 using Rage.Native;
 using Control = Rage.GameControl;
-#elif SHVDN2
-using GTA;
-using GTA.Native;
 #elif SHVDN3
 using GTA;
 using GTA.Native;
