@@ -41,12 +41,14 @@ If you are a developer, check the [wiki](https://github.com/justalemon/LemonUI/w
 
 [appveyor-img]: https://img.shields.io/appveyor/build/justalemon/lemonui?label=appveyor
 [appveyor-url]: https://ci.appveyor.com/project/justalemon/lemonui
-[nuget-img-2]: https://img.shields.io/nuget/v/LemonUI.SHVDN2?label=nuget%20%28shvdn%202%29
+[nuget-img-2]: https://img.shields.io/nuget/v/LemonUI.SHVDN2?label=nuget%20%28shvdn%203%29
 [nuget-url-2]: https://www.nuget.org/packages/LemonUI.SHVDN2/
 [nuget-img-3]: https://img.shields.io/nuget/v/LemonUI.SHVDN3?label=nuget%20%28shvdn%203%29
 [nuget-url-3]: https://www.nuget.org/packages/LemonUI.SHVDN3/
 [nuget-img-f]: https://img.shields.io/nuget/v/LemonUI.FiveM?label=nuget%20%28fivem%29
 [nuget-url-f]: https://www.nuget.org/packages/LemonUI.FiveM/
+[nuget-img-m]: https://img.shields.io/nuget/v/LemonUI.RageMP?label=nuget%20%28ragemp%29
+[nuget-url-m]: https://www.nuget.org/packages/LemonUI.RageMP/
 [nuget-img-r]: https://img.shields.io/nuget/v/LemonUI.RagePluginHook?label=nuget%20%28rph%29
 [nuget-url-r]: https://www.nuget.org/packages/LemonUI.RagePluginHook/
 [patreon-img]: https://img.shields.io/badge/support-patreon-FF424D.svg
