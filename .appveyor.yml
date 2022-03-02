@@ -5,16 +5,6 @@
 version: "1.5.1.{build}"
 image: Visual Studio 2019
 
-# This triggers a webhook to #appveyor on Discord with SkyHook
-# https://github.com/Commit451/skyhook
-notifications:
-  - provider: Webhook
-    url:
-      secure: >
-        RQOjbD0a6023xZNVZ7zzk7PjRpoF448yAGSM8koDLhmkmzUM5yPCgmaad8aJqIs8
-        RUNIyviWWVKgyVoHDnXu54LGOTNVOCWgVLopKG8FA/Ofnc/R3wb8e0Y1VLME2TDc
-        4OyE8nUxd78/lJY7qiz0pR1OZDgDregNYwczlizdDJNHSumbS17VNKQygVqdwoqd
-
 # This patches the AssemblyInfo.cs for old csproj files
 assembly_info:
   patch: true
