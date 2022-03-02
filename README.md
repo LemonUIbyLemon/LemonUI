@@ -47,7 +47,7 @@ If you are a developer, check the [wiki](https://github.com/justalemon/LemonUI/w
 
 [appveyor-img]: https://img.shields.io/appveyor/build/justalemon/lemonui?label=appveyor
 [appveyor-url]: https://ci.appveyor.com/project/justalemon/lemonui
-[nuget-img-2]: https://img.shields.io/nuget/v/LemonUI.SHVDN2?label=nuget%20%28shvdn%203%29
+[nuget-img-2]: https://img.shields.io/nuget/v/LemonUI.SHVDN2?label=nuget%20%28shvdn%202%29
 [nuget-url-2]: https://www.nuget.org/packages/LemonUI.SHVDN2/
 [nuget-img-3]: https://img.shields.io/nuget/v/LemonUI.SHVDN3?label=nuget%20%28shvdn%203%29
 [nuget-url-3]: https://www.nuget.org/packages/LemonUI.SHVDN3/
