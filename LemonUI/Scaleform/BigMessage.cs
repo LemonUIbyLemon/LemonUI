@@ -301,7 +301,7 @@ namespace LemonUI.Scaleform
                     CallFunction(function, Title, Message, Rank);
                     break;
                 case MessageType.Weapon:
-                    CallFunction(function, Title, Message, weaponHash);
+                    CallFunction(function, Title, Message, (int)weaponHash);
                     break;
                 default:
                     CallFunction(function, Title, Message);
