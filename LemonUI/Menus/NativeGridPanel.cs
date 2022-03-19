@@ -166,7 +166,7 @@ namespace LemonUI.Menus
                     throw new ArgumentOutOfRangeException(nameof(value));
                 }
 
-                if (style == GridStyle.Full)
+                if (style == GridStyle.Row)
                 {
                     return;
                 }
