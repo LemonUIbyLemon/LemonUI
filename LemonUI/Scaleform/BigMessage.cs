@@ -1,5 +1,7 @@
 #if FIVEM
 using CitizenFX.Core;
+#elif RAGEMP
+using RAGE.Game;
 #elif RPH
 using Rage;
 #elif SHVDN3
@@ -71,6 +73,7 @@ namespace LemonUI.Scaleform
 
         private MessageType type;
         private uint weaponHash;
+        private uint hideAfter;
 
         #endregion
 
@@ -307,6 +310,47 @@ namespace LemonUI.Scaleform
                     CallFunction(function, Title, Message);
                     break;
             }
+        }
+        /// <summary>
+        /// Fades the big message out.
+        /// </summary>
+        /// <param name="time">The time it will take to do the fade.</param>
+        public void FadeOut(int time)
+        {
+            if (time < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(time), "Time can't be under zero.");
+            }
+        
+            CallFunction("SHARD_ANIM_OUT", 0, time);
+
+#if RAGEMP
+            uint currentTime = (uint)Misc.GetGameTimer();
+#elif RPH
+            uint currentTime = Game.GameTime;
+#else
+            uint currentTime = (uint)Game.GameTime;
+#endif
+            hideAfter = currentTime + (uint)time;
+        }
+        /// <inheritdoc/>
+        public override void DrawFullScreen()
+        {
+#if RAGEMP
+            uint time = (uint)Misc.GetGameTimer();
+#elif RPH
+            uint time = Game.GameTime;
+#else
+            uint time = (uint)Game.GameTime;
+#endif
+            
+            if (hideAfter > 0 && time > hideAfter)
+            {
+                Visible = false;
+                hideAfter = 0;
+            }
+            
+            base.DrawFullScreen();
         }
 
         #endregion
