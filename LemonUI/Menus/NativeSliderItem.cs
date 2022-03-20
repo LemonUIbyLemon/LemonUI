@@ -44,6 +44,14 @@ namespace LemonUI.Menus
         #region Public Properties
 
         /// <summary>
+        /// The color of the Slider.
+        /// </summary>
+        public Color SliderColor
+        {
+            get => slider.Color;
+            set => slider.Color = value;
+        }
+        /// <summary>
         /// The maximum value of the slider.
         /// </summary>
         public int Maximum
