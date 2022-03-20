@@ -1409,7 +1409,7 @@ namespace LemonUI.Menus
         /// </summary>
         /// <param name="position">The position of the item.</param>
         /// <param name="item">The item to add.</param>
-        public void Add(int position, NativeItem item)
+        public virtual void Add(int position, NativeItem item)
         {
             // If the item is already on the list, raise an exception
             if (Items.Contains(item))
