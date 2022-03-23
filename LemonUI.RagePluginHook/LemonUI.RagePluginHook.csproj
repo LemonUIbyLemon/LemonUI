@@ -10,6 +10,7 @@
     <OutputPath>..\bin\$(Configuration)\RPH\</OutputPath>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>..\bin\$(Configuration)\RPH\$(AssemblyName).xml</DocumentationFile>
+    <PackageIcon>logo.png</PackageIcon>
     <PlatformTarget>x64</PlatformTarget>
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -28,6 +29,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="$(ProjectDir)/../logo.png" Pack="true" Visible="false" PackagePath=""/>
     <PackageReference Include="RagePluginHook" Version="1.86.1">
       <IncludeAssets>compile</IncludeAssets>
     </PackageReference>

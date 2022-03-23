@@ -10,6 +10,7 @@
     <OutputPath>..\bin\$(Configuration)\FiveM\</OutputPath>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>..\bin\$(Configuration)\FiveM\$(AssemblyName).xml</DocumentationFile>
+    <PackageIcon>logo.png</PackageIcon>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
 
@@ -29,6 +30,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="$(ProjectDir)/../logo.png" Pack="true" Visible="false" PackagePath=""/>
     <PackageReference Include="CitizenFX.Core.Client" Version="1.0.4355">
       <IncludeAssets>compile</IncludeAssets>
     </PackageReference>

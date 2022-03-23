@@ -10,6 +10,7 @@
     <OutputPath>..\bin\$(Configuration)\RageMP\</OutputPath>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>..\bin\$(Configuration)\RageMP\$(AssemblyName).xml</DocumentationFile>
+    <PackageIcon>logo.png</PackageIcon>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>x64</PlatformTarget>
 
@@ -29,6 +30,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="$(ProjectDir)/../logo.png" Pack="true" Visible="false" PackagePath=""/>
     <PackageReference Include="RAGEMP-ragesharp" Version="1.1.3">
       <IncludeAssets>compile</IncludeAssets>
     </PackageReference>
