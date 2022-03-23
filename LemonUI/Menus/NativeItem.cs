@@ -197,6 +197,10 @@ namespace LemonUI.Menus
         /// If a custom colored background should be used. 
         /// </summary>
         public bool UseCustomBackground { get; set; }
+        /// <summary>
+        /// If this item is being hovered.
+        /// </summary>
+        public bool IsHovered => Screen.IsCursorInArea(background.Position, background.Size);
 
         #endregion
 
