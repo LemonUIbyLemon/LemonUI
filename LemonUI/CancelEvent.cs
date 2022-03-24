@@ -1,3 +1,5 @@
+// NO MERGE
+
 // Taken from the .NET Runtime Repository
 // https://github.com/dotnet/runtime
 // Copyright (c) .NET Foundation and Contributors
