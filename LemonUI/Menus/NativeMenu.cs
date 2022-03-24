@@ -335,6 +335,10 @@ namespace LemonUI.Menus
         /// The rectangle that shows the currently selected item.
         /// </summary>
         private readonly ScaledTexture selectedRect = new ScaledTexture("commonmenu", "gradient_nav");
+        private readonly ScaledTexture hoveredRect = new ScaledTexture("commonmenu", "gradient_nav")
+        {
+            Color = Color.FromArgb(20, 255, 255, 255)
+        };
         /// <summary>
         /// The rectangle with the description text.
         /// </summary>
@@ -1374,10 +1378,19 @@ namespace LemonUI.Menus
             // Then, draw all of the items with the exception of the one selected
             foreach (NativeItem item in visibleItems)
             {
-                if (item != selected)
+                if (item == selected)
                 {
-                    item.Draw();
+                    continue;
                 }
+
+                if (item.IsHovered)
+                {
+                    hoveredRect.Position = item.lastPosition;
+                    hoveredRect.Size = item.lastSize;
+                    hoveredRect.Draw();
+                }
+                
+                item.Draw();
             }
             // Continue with the white selection rectangle
             if (selected != null && !selected.UseCustomBackground)
