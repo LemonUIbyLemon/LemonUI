@@ -26,7 +26,7 @@
     <RepositoryUrl>https://github.com/justalemon/LemonUI.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageOutputPath>..\bin\$(Configuration)</PackageOutputPath>
+    <PackageOutputPath>..\bin\$(Configuration)\FOR DEVELOPERS</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
