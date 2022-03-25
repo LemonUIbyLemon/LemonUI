@@ -10,7 +10,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-HEADER = "// LemonUI for RageMP\n// Generated on {date}\n\n{statements}\n\n#define RAGEMP{code}\n"
+HEADER = "// LemonUI for RageMP\n// Generated on {date}{comment}\n\n{statements}\n\n#define RAGEMP{code}\n"
 LOGGER = logging.getLogger("merger")
 
 RE_SPECIFIC_USINGS = re.compile("#e?l?if RAGEMP\n([a-zA-Z0-9; . =\n]*)\n(?:#elif|#endif)")
@@ -38,18 +38,22 @@ def main():
 
     arguments = sys.argv
 
-    if len(arguments) != 3:
-        LOGGER.critical("Expected 2 arguments: [code source] [code output]")
+    LOGGER.info("Launch Arguments: " + " ".join(f"\"{x}\"" for x in arguments))
+
+    if len(arguments) > 4 or len(arguments) < 3:
+        LOGGER.critical("Expected 2 or 3 arguments: [code source] [code output] {comment}")
         sys.exit(1)
 
     code_path = Path(arguments[1])
     code_output = Path(arguments[2])
+    comment = f"\n// {arguments[3]}" if len(arguments) > 3 else ""
 
     strings = ""
     namespaces = []
 
-    for path in code_path.rglob("*.cs"):
+    LOGGER.info("Starting the processing of the files")
 
+    for path in code_path.rglob("*.cs"):
         with path.open(encoding="utf-8") as file:
             content = file.read()
 
@@ -87,7 +91,7 @@ def main():
 
     code_output.parent.mkdir(exist_ok=True)
     with open(code_output, mode="w", encoding="utf-8") as file:
-        text = HEADER.format(date=datetime.now(), statements=statements, code=strings)
+        text = HEADER.format(date=datetime.now(), statements=statements, code=strings, comment=comment)
         file.write(text)
 
     LOGGER.info(f"File exported as {code_output}")
