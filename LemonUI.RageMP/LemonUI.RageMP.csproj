@@ -37,4 +37,8 @@
     <Compile Include="$(ProjectDir)/../LemonUI/**" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="py -3 &quot;$(SolutionDir)ragemp.py&quot; &quot;$(SolutionDir)LemonUI&quot; &quot;$(OutDir)..\FOR DEVELOPERS\LemonUI.RageMP.cs&quot;" />
+  </Target>
+
 </Project>
