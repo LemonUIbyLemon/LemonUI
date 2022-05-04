@@ -8,17 +8,31 @@ namespace LemonUI
 	{
 	public:
 		Sound(const std::string& sound, const std::string& set);
+		virtual ~Sound();
 
-		std::string getSoundName() { return *this->_soundName.get(); }
-		void setSoundName(const std::string& sound) { this->_soundName = std::make_unique<std::string>(sound); }
+		std::string getSoundName() { return *this->m_name.get(); }
+		void setSoundName(const std::string& sound) { this->m_name = std::make_unique<std::string>(sound); }
 
-		std::string getSetName() { return *this->_setName.get(); }
-		void setSetName(const std::string& set) { this->_setName = std::make_unique<std::string>(set); }
+		std::string getRefName() { return *this->m_ref.get(); }
+		void setRefName(const std::string& set) { this->m_ref = std::make_unique<std::string>(set); }
 
-		void playFrontend() const;
+		bool requestRef(bool p1);
+
+		void play(bool p5);
+		void playFrontend(bool p3);
+
+		bool finished() const;
+
+		void release();
+		void stop() const;
 
 	private:
-		std::unique_ptr<std::string> _soundName = nullptr;
-		std::unique_ptr<std::string> _setName = nullptr;
+		std::unique_ptr<std::string> m_name = nullptr;
+		std::unique_ptr<std::string> m_ref = nullptr;
+
+		// Sound ID
+		int m_id = 0;
+
+		bool m_refLoaded = false;
 	};
 }

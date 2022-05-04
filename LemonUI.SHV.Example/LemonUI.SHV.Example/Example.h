@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 
+#include <LemonUI/Sound.h>
 #include <LemonUI/Text.h>
 #include <LemonUI/Helper.h>
 #include <LemonUI/Scaleform.h>
@@ -10,11 +11,12 @@
 class ExampleClass
 {
 private:
-    //LemonUI::Sound _sound{ "TUMBLER_PIN_FALL", "SAFE_CRACK_SOUNDSET" };
+    LemonUI::Sound m_sound{ "Shard_Disappear", "GTAO_FM_Events_Soundset" };
     LemonUI::Text m_text{ "LemonUI.SHV V1.0.0" };
     LemonUI::Scaleform m_playerList{ "mp_mm_card_freemode" };
 
     bool m_playerListFocus = false;
+    bool m_soundPlayed = false;
 
 public:
     void renderText()
@@ -69,10 +71,22 @@ public:
             LemonUI::vec2 res{ 0.28f, 0.6f };
             this->m_playerList.render(pos, res);
         }
+
+        //if (this->m_soundPlayed && this->m_sound.finished())
+        //{
+        //    this->m_sound.release();
+        //    this->m_soundPlayed = false;
+        //}
     }
     void focusPlayers()
     {
         this->m_playerListFocus = !this->m_playerListFocus;
+        
+        if (this->m_sound.requestRef(false))
+        {
+            this->m_sound.playFrontend(false);
+            this->m_soundPlayed = true;
+        }
     }
 };
 
