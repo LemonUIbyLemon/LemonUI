@@ -78,8 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <ExternalIncludePath>D:\Projekte\C#+\LemonUI\sdk\shv\inc;$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryPath>D:\Projekte\C#+\LemonUI\sdk\shv\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <ExternalIncludePath>D:\Projekte\C#+\LemonUI\sdk;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>D:\Projekte\C#+\LemonUI\sdk\shv;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -158,10 +158,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Sound.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

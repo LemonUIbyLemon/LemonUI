@@ -21,12 +21,18 @@
     <ClInclude Include="Sound.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sound.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
