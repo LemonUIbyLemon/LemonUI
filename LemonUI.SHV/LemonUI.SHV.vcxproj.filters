@@ -27,6 +27,9 @@
     <ClInclude Include="Text.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Scaleform.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sound.cpp">
@@ -39,6 +42,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Text.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Scaleform.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

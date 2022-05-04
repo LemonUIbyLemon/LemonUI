@@ -159,12 +159,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Helper.h" />
+    <ClInclude Include="Scaleform.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Sound.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="Scaleform.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="pch.cpp">
