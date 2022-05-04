@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Sound.h"
 
+#include "Helper.h"
+
 #include <shv/natives.h>
 
 namespace LemonUI
@@ -15,11 +17,11 @@ namespace LemonUI
 
 	void Sound::playFrontend() const
 	{
-		std::string soundName = *this->_soundName.get();
-		std::string setName = *this->_setName.get();
-		
-		AUDIO::PLAY_SOUND_FRONTEND(-1, const_cast<char*>(soundName.c_str()), const_cast<char*>(setName.c_str()), false);
-		int id = AUDIO::GET_SOUND_ID();
-		AUDIO::RELEASE_SOUND_ID(id);
+		showNotify("\"playFrontend()\" is not working yet!");
+
+		/* game crashes */
+		//AUDIO::PLAY_SOUND_FRONTEND(-1, const_cast<char*>((*this->_soundName.get()).c_str()), const_cast<char*>((*this->_setName.get()).c_str()), true);
+		//int id = AUDIO::GET_SOUND_ID();
+		//AUDIO::RELEASE_SOUND_ID(id);
 	}
 }
