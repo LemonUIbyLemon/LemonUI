@@ -10,30 +10,29 @@ namespace LemonUI
 	public:
 		Scaleform(const char* id);
 		Scaleform(const std::string& id);
-		Scaleform();
 		virtual ~Scaleform();
 
 		void request(const char* id);
 		void request(const std::string& id);
-		bool isValid();
-		bool isLoaded();
+		bool isValid() const;
+		bool isLoaded() const;
 
-		void startFunction(const char* name);
-		void startFunction(const std::string& name);
+		void callFunction(const char* name) const;
+		void callFunction(const std::string& name) const;
 
-		void callFunction(const char* name);
-		void callFunction(const std::string& name);
+		void startFunction(const char* name) const;
+		void startFunction(const std::string& name) const;
 
-		void pushParam(const char* param);
-		void pushParam(const std::string& param);
-		void pushParam(const int& param);
-		void pushParam(const float& param);
-		void pushParam(const bool& param);
+		void pushParam(const char* param) const;
+		void pushParam(const std::string& param) const;
+		void pushParam(const int& param) const;
+		void pushParam(const float& param) const;
+		void pushParam(const bool& param) const;
 
-		void finishFunction();
+		void finishFunction() const;
 
-		void renderFullScreen();
-		void render(const vec2& pos, const vec2& res);
+		void renderFullScreen() const;
+		void render(const vec2& pos, const vec2& res) const;
 
 	private:
 		int m_handle = 0;

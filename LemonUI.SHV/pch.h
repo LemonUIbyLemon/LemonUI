@@ -4,5 +4,3 @@
 
 #include <string>
 #include <memory>
-
-#define CHECK_FORMAT_TYPES(type) typeid(type) == typeid(T)

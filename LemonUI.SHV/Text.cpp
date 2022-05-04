@@ -7,28 +7,32 @@
 
 namespace LemonUI
 {
-	Text::Text() : _color(1.0f)
+	Text::Text(const std::string& text) : m_color(1.0f)
 	{
+		this->m_text = std::make_unique<std::string>(text);
 	}
-	Text::Text(const std::string& text) : _color(1.0f)
-	{
-		this->_text = std::make_unique<std::string>(text);
-	}
+	Text::Text() : m_color(1.0f)
+	{}
 
-	void Text::render(const vec2& pos)
+	void Text::render(const vec2& pos) const
 	{
-		UI::SET_TEXT_FONT(this->_font);
-		UI::SET_TEXT_SCALE(1.0f, this->_scale);
-		UI::SET_TEXT_COLOUR((int)(this->_color.r * 255.0f), (int)(this->_color.g * 255.0f), (int)(this->_color.b * 255.0f), (int)(this->_color.a * 255.0f));
-		if (this->_wrapping)
+		if (this->m_text == nullptr)
 		{
-			UI::SET_TEXT_WRAP(pos.x, pos.x + this->_wrapSize.x);
+			return;
+		}
+
+		UI::SET_TEXT_FONT(this->m_font);
+		UI::SET_TEXT_SCALE(1.0f, this->m_scale);
+		UI::SET_TEXT_COLOUR((int)(this->m_color.r * 255.0f), (int)(this->m_color.g * 255.0f), (int)(this->m_color.b * 255.0f), (int)(this->m_color.a * 255.0f));
+		if (this->m_wrapping)
+		{
+			UI::SET_TEXT_WRAP(pos.x, pos.x + this->m_wrapSize.x);
 		}
 		else
 		{
 			UI::SET_TEXT_WRAP(0.0, 1.0);
 		}
-		if (this->_align == TA_Center)
+		if (this->m_align == TA_Center)
 		{
 			UI::SET_TEXT_CENTRE(1);
 		}
@@ -37,7 +41,7 @@ namespace LemonUI
 			UI::SET_TEXT_CENTRE(0);
 			UI::SET_TEXT_RIGHT_JUSTIFY(1);
 		}
-		if (this->_dropShadow)
+		if (this->m_dropShadow)
 		{
 			UI::SET_TEXT_DROP_SHADOW();
 		}
@@ -45,14 +49,14 @@ namespace LemonUI
 		{
 			UI::SET_TEXT_DROPSHADOW(0, 0, 0, 0, 0);
 		}
-		if (this->_outline)
+		if (this->m_outline)
 		{
 			UI::SET_TEXT_OUTLINE();
 		}
 		
 		UI::SET_TEXT_EDGE(1, 0, 0, 0, 205);
 		UI::_SET_TEXT_ENTRY(const_cast<char*>("STRING"));
-		UI::_ADD_TEXT_COMPONENT_STRING(const_cast<char*>((*this->_text.get()).c_str()));
+		UI::_ADD_TEXT_COMPONENT_STRING(const_cast<char*>((*this->m_text.get()).c_str()));
 		UI::_DRAW_TEXT(pos.x, pos.y);
 	}
 }

@@ -13,8 +13,6 @@ namespace LemonUI
 	{
 		this->request(id);
 	}
-	Scaleform::Scaleform()
-	{}
 	Scaleform::~Scaleform()
 	{
 		if (this->isValid())
@@ -32,28 +30,40 @@ namespace LemonUI
 		this->request(id.c_str());
 	}
 
-	bool Scaleform::isValid()
+	bool Scaleform::isValid() const
 	{
 		return this->m_handle != 0;
 	}
-	bool Scaleform::isLoaded()
+	bool Scaleform::isLoaded() const
 	{
 		return this->isValid() ? GRAPHICS::HAS_SCALEFORM_MOVIE_LOADED(m_handle) : 0;
 	}
 
-	void Scaleform::startFunction(const char* name)
+	void Scaleform::callFunction(const char* name) const
+	{
+		if (this->isValid())
+		{
+			GRAPHICS::CALL_SCALEFORM_MOVIE_METHOD(this->m_handle, const_cast<char*>(name));
+		}
+	}
+	void Scaleform::callFunction(const std::string& name) const
+	{
+		this->callFunction(name.c_str());
+	}
+
+	void Scaleform::startFunction(const char* name) const
 	{
 		if (this->isValid())
 		{
 			GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION(this->m_handle, const_cast<char*>(name));
 		}
 	}
-	void Scaleform::startFunction(const std::string& name)
+	void Scaleform::startFunction(const std::string& name) const
 	{
 		this->startFunction(name.c_str());
 	}
 
-	void Scaleform::pushParam(const char* param)
+	void Scaleform::pushParam(const char* param) const
 	{
 		if (!this->isValid())
 		{
@@ -62,11 +72,11 @@ namespace LemonUI
 
 		GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_STRING(const_cast<char*>(param));
 	}
-	void Scaleform::pushParam(const std::string& param)
+	void Scaleform::pushParam(const std::string& param) const
 	{
 		this->pushParam(param.c_str());
 	}
-	void Scaleform::pushParam(const int& param)
+	void Scaleform::pushParam(const int& param) const
 	{
 		if (!this->isValid())
 		{
@@ -75,7 +85,7 @@ namespace LemonUI
 
 		GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_INT(param);
 	}
-	void Scaleform::pushParam(const float& param)
+	void Scaleform::pushParam(const float& param) const
 	{
 		if (!this->isValid())
 		{
@@ -84,7 +94,7 @@ namespace LemonUI
 
 		GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_FLOAT(param);
 	}
-	void Scaleform::pushParam(const bool& param)
+	void Scaleform::pushParam(const bool& param) const
 	{
 		if (!this->isValid())
 		{
@@ -94,7 +104,7 @@ namespace LemonUI
 		GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_BOOL(param);
 	}
 
-	void Scaleform::finishFunction()
+	void Scaleform::finishFunction() const
 	{
 		if (this->isValid())
 		{
@@ -102,26 +112,14 @@ namespace LemonUI
 		}
 	}
 
-	void Scaleform::callFunction(const char* name)
-	{
-		if (this->isValid())
-		{
-			GRAPHICS::CALL_SCALEFORM_MOVIE_METHOD(this->m_handle, const_cast<char*>(name));
-		}
-	}
-	void Scaleform::callFunction(const std::string& name)
-	{
-		this->callFunction(name.c_str());
-	}
-
-	void Scaleform::renderFullScreen()
+	void Scaleform::renderFullScreen() const
 	{
 		if (this->isValid())
 		{
 			GRAPHICS::DRAW_SCALEFORM_MOVIE_FULLSCREEN(this->m_handle, 255, 255, 255, 255, 0);
 		}
 	}
-	void Scaleform::render(const vec2& pos, const vec2& res)
+	void Scaleform::render(const vec2& pos, const vec2& res) const
 	{
 		if (this->isValid())
 		{

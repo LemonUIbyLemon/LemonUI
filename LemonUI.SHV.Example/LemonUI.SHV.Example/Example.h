@@ -19,7 +19,7 @@ private:
 public:
     void renderText()
     {
-        this->m_text.Render(LemonUI::vec2(0));
+        this->m_text.render(LemonUI::vec2(0));
     }
 
     void renderPlayersList()

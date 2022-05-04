@@ -12,8 +12,6 @@ namespace LemonUI
 		this->_soundName = std::make_unique<std::string>(sound);
 		this->_setName = std::make_unique<std::string>(set);
 	}
-	Sound::Sound()
-	{}
 
 	void Sound::playFrontend() const
 	{

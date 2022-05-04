@@ -8,7 +8,6 @@ namespace LemonUI
 	{
 	public:
 		Sound(const std::string& sound, const std::string& set);
-		Sound();
 
 		std::string getSoundName() { return *this->_soundName.get(); }
 		void setSoundName(const std::string& sound) { this->_soundName = std::make_unique<std::string>(sound); }

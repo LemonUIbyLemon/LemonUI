@@ -16,23 +16,25 @@ namespace LemonUI
 	class Text
 	{
 	public:
-		Text();
 		Text(const std::string& text);
+		Text();
 
-		void Render(const vec2& pos);
+		void setText(const std::string& text) { this->m_text = std::make_unique<std::string>(text); }
+
+		void render(const vec2& pos) const;
 
 	private:
-		std::unique_ptr<std::string> _text = nullptr;
+		std::unique_ptr<std::string> m_text = nullptr;
 
-		int _font = 0;
-		vec4 _color{ 1.0f };
-		float _scale = 1.0f;
-		TextAlignment _align = TA_Left;
+		int m_font = 0;
+		vec4 m_color{ 1.0f };
+		float m_scale = 1.0f;
+		TextAlignment m_align = TA_Left;
 
-		bool _dropShadow = false;
-		bool _outline = false;
+		bool m_dropShadow = false;
+		bool m_outline = false;
 
-		bool _wrapping = false;
-		vec2 _wrapSize{  };
+		bool m_wrapping = false;
+		vec2 m_wrapSize{  };
 	};
 }
