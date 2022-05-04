@@ -25,7 +25,7 @@ namespace LemonUI
 
 	void Scaleform::request(const char* id)
 	{
-		GRAPHICS::REQUEST_SCALEFORM_MOVIE(const_cast<char*>(id));
+		this->m_handle = GRAPHICS::REQUEST_SCALEFORM_MOVIE(const_cast<char*>(id));
 	}
 	void Scaleform::request(const std::string& id)
 	{
@@ -53,34 +53,45 @@ namespace LemonUI
 		this->startFunction(name.c_str());
 	}
 
-	template<typename T>
-	void Scaleform::pushParam(const T param)
+	void Scaleform::pushParam(const char* param)
 	{
 		if (!this->isValid())
 		{
 			return;
 		}
 
-		if (CHECK_FORMAT_TYPES(char*))
+		GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_STRING(const_cast<char*>(param));
+	}
+	void Scaleform::pushParam(const std::string& param)
+	{
+		this->pushParam(param.c_str());
+	}
+	void Scaleform::pushParam(const int& param)
+	{
+		if (!this->isValid())
 		{
-			GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_STRING(const_cast<char*>(param));
+			return;
 		}
-		else if (CHECK_FORMAT_TYPES(std::string&))
+
+		GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_INT(param);
+	}
+	void Scaleform::pushParam(const float& param)
+	{
+		if (!this->isValid())
 		{
-			GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_STRING(const_cast<char*>(param.c_str()));
+			return;
 		}
-		else if (CHECK_FORMAT_TYPES(int))
+
+		GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_FLOAT(param);
+	}
+	void Scaleform::pushParam(const bool& param)
+	{
+		if (!this->isValid())
 		{
-			GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_INT(param);
+			return;
 		}
-		else if (CHECK_FORMAT_TYPES(float))
-		{
-			GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_FLOAT(param);
-		}
-		else if (CHECK_FORMAT_TYPES(bool))
-		{
-			GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_BOOL(param);
-		}
+
+		GRAPHICS::_PUSH_SCALEFORM_MOVIE_FUNCTION_PARAMETER_BOOL(param);
 	}
 
 	void Scaleform::finishFunction()
@@ -103,11 +114,18 @@ namespace LemonUI
 		this->callFunction(name.c_str());
 	}
 
-	void Scaleform::render()
+	void Scaleform::renderFullScreen()
 	{
 		if (this->isValid())
 		{
 			GRAPHICS::DRAW_SCALEFORM_MOVIE_FULLSCREEN(this->m_handle, 255, 255, 255, 255, 0);
+		}
+	}
+	void Scaleform::render(const vec2& pos, const vec2& res)
+	{
+		if (this->isValid())
+		{
+			GRAPHICS::DRAW_SCALEFORM_MOVIE(this->m_handle, pos.x, pos.y, res.x, res.y, 255, 255, 255, 255, 0);
 		}
 	}
 }

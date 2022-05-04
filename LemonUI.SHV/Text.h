@@ -19,7 +19,7 @@ namespace LemonUI
 		Text();
 		Text(const std::string& text);
 
-		void Render(const vec2& pos);
+		void render(const vec2& pos);
 
 	private:
 		std::unique_ptr<std::string> _text = nullptr;

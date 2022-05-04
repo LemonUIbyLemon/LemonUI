@@ -15,7 +15,7 @@ namespace LemonUI
 		this->_text = std::make_unique<std::string>(text);
 	}
 
-	void Text::Render(const vec2& pos)
+	void Text::render(const vec2& pos)
 	{
 		UI::SET_TEXT_FONT(this->_font);
 		UI::SET_TEXT_SCALE(1.0f, this->_scale);

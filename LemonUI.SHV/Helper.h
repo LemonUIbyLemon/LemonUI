@@ -9,6 +9,11 @@ namespace LemonUI
 	{
 		float x, y;
 
+		vec2(float x, float y)
+		{
+			this->x = x;
+			this->y = y;
+		}
 		vec2(float value)
 		{
 			this->x = value;

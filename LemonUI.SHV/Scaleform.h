@@ -20,17 +20,20 @@ namespace LemonUI
 
 		void startFunction(const char* name);
 		void startFunction(const std::string& name);
-		void callFunction();
 
-		template<typename T>
-		void pushParam(const T param);
-
-		void finishFunction();
 		void callFunction(const char* name);
 		void callFunction(const std::string& name);
 
-		void render();
-		void render(const vec2& pos, const vec2& size);
+		void pushParam(const char* param);
+		void pushParam(const std::string& param);
+		void pushParam(const int& param);
+		void pushParam(const float& param);
+		void pushParam(const bool& param);
+
+		void finishFunction();
+
+		void renderFullScreen();
+		void render(const vec2& pos, const vec2& res);
 
 	private:
 		int m_handle = 0;
