@@ -163,6 +163,7 @@
     <ClInclude Include="Text.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Sound.h" />
+    <ClInclude Include="Vectors.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Helper.cpp" />

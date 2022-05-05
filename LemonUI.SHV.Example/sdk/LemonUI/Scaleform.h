@@ -1,5 +1,5 @@
 #pragma once
-#include "Helper.h"
+#include "Vectors.h"
 
 #include <string>
 
@@ -32,7 +32,7 @@ namespace LemonUI
 		void finishFunction() const;
 
 		void renderFullScreen() const;
-		void render(const vec2& pos, const vec2& res) const;
+		void render(const Vec2& pos, const Vec2& res) const;
 
 	private:
 		int m_handle = 0;

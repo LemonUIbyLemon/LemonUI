@@ -14,7 +14,14 @@ static void scriptKeyboardHandler(DWORD key, WORD repeats, BYTE scanCode, BOOL i
         if (key == VK_F3)
         {
             _pGame->focusPlayers();
-            return;
+        }
+        else if (key == VK_F4)
+        {
+            _pGame->deletePlayerList();
+        }
+        else if (key == VK_F5)
+        {
+            _pGame->deleteText();
         }
     }
 }

@@ -30,6 +30,9 @@
     <ClInclude Include="Scaleform.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Vectors.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sound.cpp">

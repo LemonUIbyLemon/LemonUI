@@ -3,13 +3,18 @@
 
 #include <shv/natives.h>
 
+/*
+* I (EntenKoeniq) tried several solutions to get sounds working for me but nothing works for me.
+* 
+* Lemon said the sounds work for him, maybe someone else can check
+* because i don't know what's wrong and i'll take the time to add other things.
+*/
 namespace LemonUI
 {
-	Sound::Sound(const std::string& sound, const std::string& ref)
-	{
-		this->m_name = std::make_unique<std::string>(sound);
-		this->m_ref = std::make_unique<std::string>(ref);
-	}
+	Sound::Sound(const char* name, const char* ref) : m_name{ const_cast<char*>(name) }, m_ref{ const_cast<char*>(ref) }
+	{}
+	Sound::Sound(const std::string& name, const std::string& ref) : m_name{ const_cast<char*>(name.c_str()) }, m_ref{ const_cast<char*>(ref.c_str()) }
+	{}
 	Sound::~Sound()
 	{
 		// To unload multiplayer sounds
@@ -29,6 +34,10 @@ namespace LemonUI
 		{
 			return true;
 		}
+		if (this->m_ref == nullptr)
+		{
+			return false;
+		}
 
 		// To load muiltiplayer sounds
 		if (AUDIO::_0x544810ED9DB6BBE6() == FALSE) // HAS_MULTIPLAYER_AUDIO_DATA_LOADED
@@ -36,7 +45,7 @@ namespace LemonUI
 			AUDIO::SET_AUDIO_FLAG(const_cast<char*>("LoadMPData"), TRUE);
 		}
 
-		this->m_refLoaded = AUDIO::REQUEST_SCRIPT_AUDIO_BANK(const_cast<char*>((*this->m_ref.get()).c_str()), p1);
+		this->m_refLoaded = AUDIO::REQUEST_SCRIPT_AUDIO_BANK(this->m_ref, p1);
 
 		return this->m_refLoaded;
 	}
@@ -48,7 +57,7 @@ namespace LemonUI
 			return;
 		}
 
-		AUDIO::PLAY_SOUND(-1, const_cast<char*>((*this->m_name.get()).c_str()), const_cast<char*>((*this->m_ref.get()).c_str()), 0, 0, p5);
+		AUDIO::PLAY_SOUND(-1, this->m_name, this->m_ref, 0, 0, p5);
 		this->m_id = AUDIO::GET_SOUND_ID();
 	}
 	void Sound::playFrontend(bool p3)
@@ -58,7 +67,7 @@ namespace LemonUI
 			return;
 		}
 		
-		AUDIO::PLAY_SOUND_FRONTEND(-1, const_cast<char*>((*this->m_name.get()).c_str()), const_cast<char*>((*this->m_ref.get()).c_str()), p3);
+		AUDIO::PLAY_SOUND_FRONTEND(-1, this->m_name, this->m_ref, p3);
 		this->m_id = AUDIO::GET_SOUND_ID();
 	}
 

@@ -3,20 +3,20 @@
 
 #include <shv/natives.h>
 
-#include <memory>
-
 namespace LemonUI
 {
-	Text::Text(const std::string& text) : m_color(1.0f)
+	Text::Text(const char* text)
 	{
-		this->m_text = std::make_unique<std::string>(text);
+		this->m_text = const_cast<char*>(text);
 	}
-	Text::Text() : m_color(1.0f)
-	{}
-
-	void Text::render(const vec2& pos) const
+	Text::Text(const std::string& text)
 	{
-		if (this->m_text == nullptr)
+		this->m_text = const_cast<char*>(text.c_str());
+	}
+
+	void Text::render(const Vec2& pos) const
+	{
+		if (this->m_text == NULL)
 		{
 			return;
 		}
@@ -56,7 +56,7 @@ namespace LemonUI
 		
 		UI::SET_TEXT_EDGE(1, 0, 0, 0, 205);
 		UI::_SET_TEXT_ENTRY(const_cast<char*>("STRING"));
-		UI::_ADD_TEXT_COMPONENT_STRING(const_cast<char*>((*this->m_text.get()).c_str()));
+		UI::_ADD_TEXT_COMPONENT_STRING(this->m_text);
 		UI::_DRAW_TEXT(pos.x, pos.y);
 	}
 }

@@ -1,20 +1,22 @@
 #pragma once
 #include <string>
-#include <memory>
 
 namespace LemonUI
 {
 	class Sound
 	{
 	public:
+		Sound(const char* sound, const char* set);
 		Sound(const std::string& sound, const std::string& set);
 		virtual ~Sound();
 
-		std::string getSoundName() { return *this->m_name.get(); }
-		void setSoundName(const std::string& sound) { this->m_name = std::make_unique<std::string>(sound); }
+		char*& getSoundName() { return *&this->m_name; }
+		void setSoundName(const char* name) { this->m_name = const_cast<char*>(name); }
+		void setSoundName(const std::string& name) { this->m_name = const_cast<char*>(name.c_str()); }
 
-		std::string getRefName() { return *this->m_ref.get(); }
-		void setRefName(const std::string& set) { this->m_ref = std::make_unique<std::string>(set); }
+		char*& getRefName() { return *&this->m_ref; }
+		void setRefName(const char* name) { this->m_ref = const_cast<char*>(name); }
+		void setRefName(const std::string& name) { this->m_ref = const_cast<char*>(name.c_str()); }
 
 		bool requestRef(bool p1);
 
@@ -27,8 +29,8 @@ namespace LemonUI
 		void stop() const;
 
 	private:
-		std::unique_ptr<std::string> m_name = nullptr;
-		std::unique_ptr<std::string> m_ref = nullptr;
+		char* m_name = nullptr;
+		char* m_ref = nullptr;
 
 		// Sound ID
 		int m_id = 0;

@@ -15,7 +15,7 @@ namespace LemonUI
 	}
 	Scaleform::~Scaleform()
 	{
-		if (this->isValid())
+		if (this->isValid() && this->isLoaded())
 		{
 			GRAPHICS::SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED(&this->m_handle);
 		}
@@ -119,7 +119,7 @@ namespace LemonUI
 			GRAPHICS::DRAW_SCALEFORM_MOVIE_FULLSCREEN(this->m_handle, 255, 255, 255, 255, 0);
 		}
 	}
-	void Scaleform::render(const vec2& pos, const vec2& res) const
+	void Scaleform::render(const Vec2& pos, const Vec2& res) const
 	{
 		if (this->isValid())
 		{
