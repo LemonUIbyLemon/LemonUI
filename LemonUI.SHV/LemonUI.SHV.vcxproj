@@ -158,11 +158,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Helper.h" />
-    <ClInclude Include="Scaleform.h" />
-    <ClInclude Include="Text.h" />
+    <ClInclude Include="Helper.h">
+      <DeploymentContent>false</DeploymentContent>
+    </ClInclude>
+    <ClInclude Include="Scaleform.h">
+      <DeploymentContent>false</DeploymentContent>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <DeploymentContent>false</DeploymentContent>
+    </ClInclude>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Sound.h" />
+    <ClInclude Include="Sound.h">
+      <DeploymentContent>false</DeploymentContent>
+    </ClInclude>
     <ClInclude Include="Vectors.h" />
   </ItemGroup>
   <ItemGroup>

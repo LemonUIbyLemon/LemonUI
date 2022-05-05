@@ -13,7 +13,7 @@ class ExampleClass
 {
 private:
     //LemonUI::Sound m_sound{ "Shard_Disappear", "GTAO_FM_Events_Soundset" };
-    LemonUI::Text* m_text = nullptr;
+    LemonUI::Text* m_text = new LemonUI::Text{ "LemonUI.SHV V1.0.0" };
     LemonUI::Scaleform* m_playerList = new LemonUI::Scaleform{ "mp_mm_card_freemode" };
 
     bool m_playerListFocus = false;
@@ -28,7 +28,7 @@ public:
         }
         this->m_text->render(LemonUI::Vec2(0));
     }
-    void deleteText()
+    void deleteCreateText()
     {
         if (this->m_text == nullptr)
         {
@@ -44,75 +44,52 @@ public:
 
     void renderPlayersList()
     {
-        if (this->m_playerList == nullptr)
+        if (!this->m_playerListFocus)
         {
             return;
         }
 
-        if (this->m_playerListFocus)
-        {
-            if (this->m_playerList->isValid())
-            {
-                if (!this->m_playerList->isLoaded())
-                {
-                    LemonUI::showNotify("NOT LOADED!");
-                }
-            }
-            else
-            {
-                LemonUI::showNotify("NOT VALID!");
-                return;
-            }
+        this->m_playerList->startFunction("SET_DATA_SLOT_EMPTY");
+        this->m_playerList->pushParam(0);
+        this->m_playerList->finishFunction();
 
-            this->m_playerList->startFunction("SET_DATA_SLOT_EMPTY");
-            this->m_playerList->pushParam(0);
-            this->m_playerList->finishFunction();
+        this->m_playerList->startFunction("SET_DATA_SLOT");
+        this->m_playerList->pushParam(0);
+        this->m_playerList->pushParam("16ms");
+        this->m_playerList->pushParam("EntenKoeniq");
+        this->m_playerList->pushParam(116);
+        this->m_playerList->pushParam(0);
+        this->m_playerList->pushParam(0);
+        this->m_playerList->pushParam("");
+        this->m_playerList->pushParam("");
+        this->m_playerList->pushParam(2);
+        this->m_playerList->pushParam("");
+        this->m_playerList->pushParam("");
+        this->m_playerList->pushParam(" ");
+        this->m_playerList->finishFunction();
 
-            this->m_playerList->startFunction("SET_DATA_SLOT");
-            this->m_playerList->pushParam(0);
-            this->m_playerList->pushParam("16ms");
-            this->m_playerList->pushParam("EntenKoeniq");
-            this->m_playerList->pushParam(116);
-            this->m_playerList->pushParam(0);
-            this->m_playerList->pushParam(0);
-            this->m_playerList->pushParam("");
-            this->m_playerList->pushParam("");
-            this->m_playerList->pushParam(2);
-            this->m_playerList->pushParam("");
-            this->m_playerList->pushParam("");
-            this->m_playerList->pushParam(" ");
-            this->m_playerList->finishFunction();
+        this->m_playerList->startFunction("SET_TITLE");
+        this->m_playerList->pushParam("Player list");
+        this->m_playerList->pushParam("1 players");
+        this->m_playerList->finishFunction();
 
-            this->m_playerList->startFunction("SET_TITLE");
-            this->m_playerList->pushParam("Player list");
-            this->m_playerList->pushParam("1 players");
-            this->m_playerList->finishFunction();
+        this->m_playerList->callFunction("DISPLAY_VIEW");
 
-            this->m_playerList->callFunction("DISPLAY_VIEW");
-
-            LemonUI::Vec2 pos{ 0.122f, 0.3f };
-            LemonUI::Vec2 res{ 0.28f, 0.6f };
-            this->m_playerList->render(pos, res);
-        }
-    }
-    void deletePlayerList()
-    {
-        if (this->m_playerList == nullptr)
-        {
-            this->m_playerList = new LemonUI::Scaleform{ "mp_mm_card_freemode" };
-        }
-        else
-        {
-            delete this->m_playerList;
-            this->m_playerList = nullptr;
-        }
+        LemonUI::Vec2 pos{ 0.122f, 0.3f };
+        LemonUI::Vec2 res{ 0.28f, 0.6f };
+        this->m_playerList->render2DScreenSpace(pos, res);
     }
     void focusPlayers()
     {
-        if (m_playerList == nullptr)
+        if (this->m_playerListFocus)
         {
-            return;
+            LemonUI::showNotify("~r~PlayerList");
         }
+        else
+        {
+            LemonUI::showNotify("~g~PlayerList");
+        }
+
         this->m_playerListFocus = !this->m_playerListFocus;
         
         //if (this->m_sound.requestRef(false))

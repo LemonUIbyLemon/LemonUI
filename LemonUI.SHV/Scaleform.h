@@ -8,12 +8,10 @@ namespace LemonUI
 	class Scaleform
 	{
 	public:
-		Scaleform(const char* id);
-		Scaleform(const std::string& id);
+		Scaleform(const char* name);
+		Scaleform(const std::string& name);
 		virtual ~Scaleform();
 
-		void request(const char* id);
-		void request(const std::string& id);
 		bool isValid() const;
 		bool isLoaded() const;
 
@@ -31,8 +29,8 @@ namespace LemonUI
 
 		void finishFunction() const;
 
-		void renderFullScreen() const;
-		void render(const Vec2& pos, const Vec2& res) const;
+		void render2DFullScreen() const;
+		void render2D(const Vec2& pos, const Vec2& res) const;
 
 	private:
 		int m_handle = 0;

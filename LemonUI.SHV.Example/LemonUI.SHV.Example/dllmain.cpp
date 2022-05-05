@@ -17,11 +17,7 @@ static void scriptKeyboardHandler(DWORD key, WORD repeats, BYTE scanCode, BOOL i
         }
         else if (key == VK_F4)
         {
-            _pGame->deletePlayerList();
-        }
-        else if (key == VK_F5)
-        {
-            _pGame->deleteText();
+            _pGame->deleteCreateText();
         }
     }
 }
@@ -35,6 +31,8 @@ static void scriptMainFunc()
     srand(GetTickCount());
 
     _pGame = new ExampleClass();
+
+    LemonUI::showNotify("F3 = Show/Hide players | F4 = Delete/Create text");
 
     while (true)
     {
