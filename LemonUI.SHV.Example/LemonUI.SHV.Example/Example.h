@@ -12,8 +12,7 @@
 class ExampleClass
 {
 private:
-    //LemonUI::Sound m_sound{ "Shard_Disappear", "GTAO_FM_Events_Soundset" };
-    LemonUI::Text* m_text = new LemonUI::Text{ "LemonUI.SHV V1.0.0" };
+    LemonUI::Text* m_text = nullptr;
     LemonUI::Scaleform* m_playerList = new LemonUI::Scaleform{ "mp_mm_card_freemode" };
 
     bool m_playerListFocus = false;
@@ -26,13 +25,15 @@ public:
         {
             return;
         }
-        this->m_text->render(LemonUI::Vec2(0));
+        LemonUI::Vec2 currentRes = LemonUI::getScreenResolution();
+        this->m_text->render({ currentRes.x / 2, currentRes.y - 60 });
     }
     void deleteCreateText()
     {
         if (this->m_text == nullptr)
         {
-            this->m_text = new LemonUI::Text{ "LemonUI.SHV V1.0.0" };
+            this->m_text = new LemonUI::Text{ "Created with LemonUI.SHV by EntenKoeniq" };
+            this->m_text->setScale(0.35f);
             this->m_text->setDropShadow(true);
         }
         else
@@ -44,7 +45,7 @@ public:
 
     void renderPlayersList()
     {
-        if (!this->m_playerListFocus)
+        if (this->m_playerList == nullptr || !this->m_playerListFocus)
         {
             return;
         }
@@ -75,10 +76,9 @@ public:
 
         this->m_playerList->callFunction("DISPLAY_VIEW");
 
-        LemonUI::Vec2 pos{ 0.122f, 0.3f };
-        LemonUI::Vec2 res{ 0.28f, 0.6f };
-        this->m_playerList->render2DScreenSpace(pos, res);
+        this->m_playerList->render2D({ 0.122f, 0.3f }, { 0.28f, 0.6f });
     }
+    
     void focusPlayers()
     {
         if (this->m_playerListFocus)
@@ -91,12 +91,6 @@ public:
         }
 
         this->m_playerListFocus = !this->m_playerListFocus;
-        
-        //if (this->m_sound.requestRef(false))
-        //{
-        //    this->m_sound.playFrontend(false);
-        //    this->m_soundPlayed = true;
-        //}
     }
 };
 

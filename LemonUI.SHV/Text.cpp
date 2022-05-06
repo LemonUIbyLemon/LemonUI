@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Text.h"
 
+#include "Helper.h"
+
 #include <shv/natives.h>
 
 namespace LemonUI
@@ -57,6 +59,9 @@ namespace LemonUI
 		UI::SET_TEXT_EDGE(1, 0, 0, 0, 205);
 		UI::_SET_TEXT_ENTRY(const_cast<char*>("STRING"));
 		UI::_ADD_TEXT_COMPONENT_STRING(this->m_text);
-		UI::_DRAW_TEXT(pos.x, pos.y);
+
+		Vec2 relativePos{};
+		toRelative(pos.x, pos.y, &relativePos.x, &relativePos.y);
+		UI::_DRAW_TEXT(relativePos.x, relativePos.y);
 	}
 }

@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Scaleform.h"
 
+#include "Helper.h"
+
 #include <shv/natives.h>
 
 namespace LemonUI
@@ -15,7 +17,7 @@ namespace LemonUI
 	}
 	Scaleform::~Scaleform()
 	{
-		if (this->m_handle != 0 && this->isLoaded())
+		if (this->isLoaded())
 		{
 			GRAPHICS::SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED(&this->m_handle);
 		}
@@ -27,7 +29,7 @@ namespace LemonUI
 	}
 	bool Scaleform::isLoaded() const
 	{
-		return GRAPHICS::HAS_SCALEFORM_MOVIE_LOADED(this->m_handle) == TRUE;
+		return GRAPHICS::HAS_SCALEFORM_MOVIE_LOADED(this->m_handle);
 	}
 
 	void Scaleform::callFunction(const char* name) const

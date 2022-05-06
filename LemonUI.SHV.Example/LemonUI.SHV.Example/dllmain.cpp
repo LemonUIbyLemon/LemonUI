@@ -35,9 +35,7 @@ static void scriptMainFunc()
     LemonUI::showNotify("F3 = Show/Hide players | F4 = Delete/Create text");
 
     while (true)
-    {
-        //AUDIO::PLAY_SOUND_FRONTEND(-1, const_cast<char*>("Beep_Green"), const_cast<char*>("DLC_HEIST_HACKING_SNAKE_SOUNDS"), (BOOL)true);
-        
+    {        
         _pGame->renderText();
         _pGame->renderPlayersList();
 

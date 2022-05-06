@@ -11,4 +11,24 @@ namespace LemonUI
 		UI::_ADD_TEXT_COMPONENT_STRING(const_cast<char*>(message.c_str()));
 		UI::_DRAW_NOTIFICATION(false, false);
 	}
+
+	Vec2 getScreenResolution()
+	{
+		int width, height;
+		GRAPHICS::_GET_SCREEN_ACTIVE_RESOLUTION(&width, &height);
+		return { static_cast<float>(width), static_cast<float>(height) };
+	}
+
+	float getAspectRatio()
+	{
+		return GRAPHICS::_GET_SCREEN_ASPECT_RATIO(0);
+	}
+
+	void toRelative(const float& absoluteX, const float& absoluteY, float* relativeX, float* relativeY)
+	{
+		Vec2 currentRes = getScreenResolution();
+		float width = currentRes.y * getAspectRatio();
+		*relativeX = absoluteX / width;
+		*relativeY = absoluteY / currentRes.y;
+	}
 }
