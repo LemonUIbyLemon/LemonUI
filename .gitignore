@@ -348,3 +348,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Ignore all files in the sdk folder but not sdk/shv
+**/sdk/*
+!**/sdk/shv
