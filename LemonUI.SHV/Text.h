@@ -26,6 +26,7 @@ namespace LemonUI
 	public:
 		Text(const char* text);
 		Text(const std::string& text);
+		Text() = default;
 
 		void setText(const char* text) { this->m_text = const_cast<char*>(text); }
 		void setText(const std::string& text) { this->m_text = const_cast<char*>(text.c_str()); }
@@ -43,7 +44,7 @@ namespace LemonUI
 		char* m_text = nullptr;
 
 		int m_font = 0;
-		Vec4 m_color = { 1.0, 1.0, 1.0, 1.0 };
+		Vec4 m_color = { 1.0f, 1.0f, 1.0f, 1.0f };
 		float m_scale = 1.0f;
 		TextAlignment m_align = TA_Center;
 
@@ -51,6 +52,6 @@ namespace LemonUI
 		bool m_outline = false;
 
 		bool m_wrapping = false;
-		Vec2 m_wrapSize = NULL;
+		Vec2 m_wrapSize{};
 	};
 }

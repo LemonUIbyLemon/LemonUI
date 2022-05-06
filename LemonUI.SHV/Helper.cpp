@@ -31,4 +31,15 @@ namespace LemonUI
 		*relativeX = absoluteX / width;
 		*relativeY = absoluteY / currentRes.y;
 	}
+
+	Vec2 getRectCenter(const Vec2& pos, const Vec2& size)
+	{
+		return { pos.x + size.x / 2.0f, pos.y + size.y / 2.0f };
+	}
+
+	Vec2 getScreenScale(const Vec2& vec)
+	{
+		Vec2 currentRes = getScreenResolution();
+		return { vec.x / currentRes.x, vec.y / currentRes.y };
+	}
 }

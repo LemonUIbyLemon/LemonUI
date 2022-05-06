@@ -31,6 +31,7 @@ static void scriptMainFunc()
     srand(GetTickCount());
 
     _pGame = new ExampleClass();
+    _pGame->initMenu();
 
     LemonUI::showNotify("F3 = Show/Hide players | F4 = Delete/Create text");
 
@@ -38,6 +39,7 @@ static void scriptMainFunc()
     {        
         _pGame->renderText();
         _pGame->renderPlayersList();
+        _pGame->renderMenu();
 
         WAIT(0);
     }

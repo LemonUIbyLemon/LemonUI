@@ -6,6 +6,7 @@
 #include <LemonUI/Sound.h>
 #include <LemonUI/Text.h>
 #include <LemonUI/Scaleform.h>
+#include <LemonUI/Menu.h>
 
 #include <shv/natives.h>
 
@@ -14,11 +15,26 @@ class ExampleClass
 private:
     LemonUI::Text* m_text = nullptr;
     LemonUI::Scaleform* m_playerList = new LemonUI::Scaleform{ "mp_mm_card_freemode" };
+    LemonUI::Menu m_menu;
 
     bool m_playerListFocus = false;
     bool m_soundPlayed = false;
 
 public:
+    void initMenu()
+    {
+        LemonUI::Vec2 currentRes = LemonUI::getScreenResolution();
+        this->m_menu.setOrigin({ currentRes.x / 2, currentRes.y / 2 });
+        m_menu.addItem("The first item");
+        m_menu.addItem("The second item");
+        m_menu.addItem("The last item");
+        m_menu.addItem("Go back");
+    }
+    void renderMenu()
+    {
+        m_menu.render();
+    }
+
     void renderText()
     {
         if (this->m_text == nullptr)

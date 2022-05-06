@@ -33,6 +33,18 @@
     <ClInclude Include="Vectors.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuItem.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GameControl.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sound.cpp">
@@ -48,6 +60,15 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Scaleform.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuItem.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

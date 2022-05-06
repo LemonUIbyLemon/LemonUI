@@ -10,11 +10,11 @@ namespace LemonUI
 		Sound(const std::string& sound, const std::string& set);
 		virtual ~Sound();
 
-		char*& getSoundName() { return *&this->m_name; }
+		const char*& getSoundName() const { return (const char*&)*&this->m_name; }
 		void setSoundName(const char* name) { this->m_name = const_cast<char*>(name); }
 		void setSoundName(const std::string& name) { this->m_name = const_cast<char*>(name.c_str()); }
 
-		char*& getRefName() { return *&this->m_ref; }
+		const char*& getRefName() const { return (const char*&)*&this->m_ref; }
 		void setRefName(const char* name) { this->m_ref = const_cast<char*>(name); }
 		void setRefName(const std::string& name) { this->m_ref = const_cast<char*>(name.c_str()); }
 
