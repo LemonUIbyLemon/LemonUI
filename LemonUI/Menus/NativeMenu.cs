@@ -1564,7 +1564,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// Draws the menu and handles the controls.
         /// </summary>
-        public void Process()
+        public virtual void Process()
         {
             if (!visible)
             {
@@ -1584,7 +1584,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// Calculates the positions and sizes of the elements.
         /// </summary>
-        public void Recalculate()
+        public virtual void Recalculate()
         {
             // Store the current values of X and Y
             PointF pos;
