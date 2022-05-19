@@ -70,14 +70,8 @@ namespace LemonUI.Menus
 
             for (int i = 0; i < 5; i++)
             {
-                backgrounds.Add(new ScaledRectangle(PointF.Empty, SizeF.Empty)
-                {
-                    Color = Color.FromArgb(255, 169, 169, 169)
-                });
-                foregrounds.Add(new ScaledRectangle(PointF.Empty, SizeF.Empty)
-                {
-                    Color = Color.FromArgb(255, 255, 255, 255)
-                });
+                backgrounds.Add(new ScaledRectangle(PointF.Empty, SizeF.Empty));
+                foregrounds.Add(new ScaledRectangle(PointF.Empty, SizeF.Empty));
             }
         }
 
@@ -85,6 +79,17 @@ namespace LemonUI.Menus
 
         #region Functions
 
+        internal void SetColor(Color background, Color foreground)
+        {
+            foreach (ScaledRectangle rectangle in backgrounds)
+            {
+                rectangle.Color = background;
+            }
+            foreach (ScaledRectangle rectangle in foregrounds)
+            {
+                rectangle.Color = foreground;
+            }
+        }
         /// <summary>
         /// Updates the values of the bars.
         /// </summary>
@@ -190,6 +195,45 @@ namespace LemonUI.Menus
         private readonly List<NativeStatsInfo> fields = new List<NativeStatsInfo>();
         private PointF lastPosition = PointF.Empty;
         private float lastWidth = 0;
+        private Color backgroundColor = Color.FromArgb(255, 169, 169, 169);
+        private Color foregroundColor = Color.FromArgb(255, 255, 255, 255);
+
+        #endregion
+        
+        #region Properties
+
+        /// <summary>
+        /// The color of the background of the bars.
+        /// </summary>
+        public Color BackgroundColor
+        {
+            get => backgroundColor;
+            set
+            {
+                backgroundColor = value;
+
+                foreach (NativeStatsInfo field in fields)
+                {
+                    field.SetColor(value, foregroundColor);
+                }
+            }
+        }
+        /// <summary>
+        /// The color of the foreground of the bars.
+        /// </summary>
+        public Color ForegroundColor
+        {
+            get => foregroundColor;
+            set
+            {
+                foregroundColor = value;
+
+                foreach (NativeStatsInfo field in fields)
+                {
+                    field.SetColor(backgroundColor, value);
+                }
+            }
+        }
 
         #endregion
 
@@ -201,7 +245,10 @@ namespace LemonUI.Menus
         /// <param name="stats">The Statistics to add.</param>
         public NativeStatsPanel(params NativeStatsInfo[] stats)
         {
-            fields.AddRange(stats);
+            foreach (NativeStatsInfo field in stats)
+            {
+                Add(field);
+            }
         }
 
         #endregion
@@ -219,6 +266,7 @@ namespace LemonUI.Menus
                 throw new InvalidOperationException("Stat is already part of the panel.");
             }
             fields.Add(field);
+            field.SetColor(backgroundColor, foregroundColor);
         }
         /// <summary>
         /// Removes a field from the 
