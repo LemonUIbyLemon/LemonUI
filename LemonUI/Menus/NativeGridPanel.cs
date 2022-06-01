@@ -21,53 +21,6 @@ using System.Drawing;
 namespace LemonUI.Menus
 {
     /// <summary>
-    /// The style of the Grid Panel.
-    /// </summary>
-    public enum GridStyle
-    {
-        /// <summary>
-        /// The full grid with X and Y values.
-        /// </summary>
-        Full = 0,
-        /// <summary>
-        /// A single row on the center with the X value only.
-        /// </summary>
-        Row = 1,
-        /// <summary>
-        /// A single column on the center with the Y value only.
-        /// </summary>
-        Column = 2,
-    }
-
-    /// <summary>
-    /// Represents the method that is called when the value on a grid is changed.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">An <see cref="ItemActivatedArgs"/> with the item information.</param>
-    public delegate void GridValueChangedEventHandler(object sender, GridValueChangedArgs e);
-
-    /// <summary>
-    /// Represents the Previous and Current X and Y values when changing the position on a grid.
-    /// </summary>
-    public class GridValueChangedArgs
-    {
-        /// <summary>
-        /// The values present before they were changed.
-        /// </summary>
-        public PointF Before { get; }
-        /// <summary>
-        /// The values present after they were changed.
-        /// </summary>
-        public PointF After { get; }
-
-        internal GridValueChangedArgs(PointF before, PointF after)
-        {
-            Before = before;
-            After = after;
-        }
-    }
-
-    /// <summary>
     /// Represents a grid where you can select X and Y values.
     /// </summary>
     public class NativeGridPanel : NativePanel

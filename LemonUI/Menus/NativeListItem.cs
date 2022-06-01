@@ -6,60 +6,6 @@ using System.Drawing;
 namespace LemonUI.Menus
 {
     /// <summary>
-    /// Represents the method that is called when the selected item is changed on a List Item.
-    /// </summary>
-    /// <typeparam name="T">The type of item that was changed.</typeparam>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">A <see cref="ItemChangedEventArgs{T}"/> with the information of the selected item.</param>
-    public delegate void ItemChangedEventHandler<T>(object sender, ItemChangedEventArgs<T> e);
-
-    /// <summary>
-    /// The movement direction of the item change.
-    /// </summary>
-    public enum Direction
-    {
-        /// <summary>
-        /// The Direction is Unknown.
-        /// </summary>
-        Unknown = 0,
-        /// <summary>
-        /// The item was moved to the Left.
-        /// </summary>
-        Left = 1,
-        /// <summary>
-        /// The item was moved to the Right.
-        /// </summary>
-        Right = 2,
-    }
-
-    /// <summary>
-    /// Represents the change of the selection of an item.
-    /// </summary>
-    /// <typeparam name="T">The type of object that got changed.</typeparam>
-    public class ItemChangedEventArgs<T>
-    {
-        /// <summary>
-        /// The new object.
-        /// </summary>
-        public T Object { get; set; }
-        /// <summary>
-        /// The index of the object.
-        /// </summary>
-        public int Index { get; }
-        /// <summary>
-        /// The direction of the Item Changed event.
-        /// </summary>
-        public Direction Direction { get; }
-
-        internal ItemChangedEventArgs(T obj, int index, Direction direction)
-        {
-            Object = obj;
-            Index = index;
-            Direction = direction;
-        }
-    }
-
-    /// <summary>
     /// Base class for list items.
     /// </summary>
     public abstract class NativeListItem : NativeSlidableItem
