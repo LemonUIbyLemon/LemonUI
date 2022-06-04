@@ -389,7 +389,7 @@ namespace LemonUI.Scaleform
                     {
                         switch (GetValue<int>(output))
                         {
-                            case 86:  // Hack Completed
+                            case 86: // Hack Completed
                                 string ok = SuccessMessages.Count == 0 ? string.Empty : SuccessMessages[random.Next(SuccessMessages.Count)];
                                 CallFunction("SET_ROULETTE_OUTCOME", true, ok);
                                 soundSuccess.PlayFrontend();
@@ -397,7 +397,7 @@ namespace LemonUI.Scaleform
                                 hideTime = closeAfter == -1 ? -1 : (int)time + CloseAfter;
                                 inProgress = false;
                                 break;
-                            case 87:  // Row Failed (or lives failed)
+                            case 87: // Row Failed (or lives failed)
                                 livesCurrent--;
                                 CallFunction("SET_LIVES", livesCurrent, livesTotal);
                                 soundRowFailed.PlayFrontend();
@@ -410,7 +410,7 @@ namespace LemonUI.Scaleform
                                     HackFinished?.Invoke(this, new BruteForceFinishedEventArgs(BruteForceStatus.OutOfLives));
                                 }
                                 break;
-                            case 92:  // Row Completed
+                            case 92: // Row Completed
                                 soundRowCompleted.PlayFrontend();
                                 break;
                         }

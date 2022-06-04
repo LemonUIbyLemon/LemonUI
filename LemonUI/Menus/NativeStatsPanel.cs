@@ -19,7 +19,7 @@ namespace LemonUI.Menus
         private Color foregroundColor = Color.FromArgb(255, 255, 255, 255);
 
         #endregion
-        
+
         #region Properties
 
         /// <summary>

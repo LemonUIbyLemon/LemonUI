@@ -1447,18 +1447,18 @@ namespace LemonUI.Menus
         public void Remove(Func<NativeItem, bool> pred)
         {
             List<NativeItem> items = new List<NativeItem>(Items);
-            
+
             foreach (NativeItem item in items)
             {
                 if (!pred(item))
                 {
                     continue;
                 }
-                
+
                 Items.Remove(item);
                 MenuModified?.Invoke(this, new MenuModifiedEventArgs(item, ItemOperation.Added));
             }
-            
+
             if (SelectedIndex >= Items.Count)
             {
                 SelectedIndex = Items.Count - 1;
@@ -1467,7 +1467,7 @@ namespace LemonUI.Menus
             {
                 UpdateItemList();
             }
-            
+
             UpdateItems();
         }
         /// <summary>
@@ -1486,7 +1486,7 @@ namespace LemonUI.Menus
 
             index = 0;
             firstItem = 0;
-            
+
             UpdateItemList();
             UpdateItems();
         }
