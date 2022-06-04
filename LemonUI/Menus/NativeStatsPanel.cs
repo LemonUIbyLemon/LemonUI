@@ -89,9 +89,9 @@ namespace LemonUI.Menus
             field.SetColor(backgroundColor, foregroundColor);
         }
         /// <summary>
-        /// Removes a field from the 
+        /// Removes a field from the panel.
         /// </summary>
-        /// <param name="field"></param>
+        /// <param name="field">The field to remove.</param>
         public void Remove(NativeStatsInfo field)
         {
             if (!fields.Contains(field))
