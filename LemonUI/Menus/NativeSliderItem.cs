@@ -119,7 +119,7 @@ namespace LemonUI.Menus
         /// Creates a <see cref="NativeSliderItem"/> with a maximum of 100.
         /// </summary>
         /// <param name="title">The title of the Item.</param>
-        public NativeSliderItem(string title) : this(title, "", 100, 0)
+        public NativeSliderItem(string title) : this(title, string.Empty, 100, 0)
         {
         }
         /// <summary>
@@ -136,7 +136,7 @@ namespace LemonUI.Menus
         /// <param name="title">The title of the Item.</param>
         /// <param name="max">The maximum value of the Slider.</param>
         /// <param name="value">The current value of the Slider.</param>
-        public NativeSliderItem(string title, int max, int value) : this(title, "", max, value)
+        public NativeSliderItem(string title, int max, int value) : this(title, string.Empty, max, value)
         {
         }
         /// <summary>

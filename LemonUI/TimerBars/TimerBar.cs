@@ -34,8 +34,8 @@ namespace LemonUI.TimerBars
 
         #region Private Fields
 
-        private string rawTitle = "";
-        private string rawInfo = "";
+        private string rawTitle = string.Empty;
+        private string rawInfo = string.Empty;
 
         #endregion
 
@@ -51,7 +51,7 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The title of the timer bar.
         /// </summary>
-        internal protected readonly ScaledText title = new ScaledText(PointF.Empty, "", 0.29f)
+        internal protected readonly ScaledText title = new ScaledText(PointF.Empty, string.Empty, 0.29f)
         {
             Alignment = Alignment.Right,
             WordWrap = 1000
@@ -59,7 +59,7 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The information of the Timer Bar.
         /// </summary>
-        internal protected readonly ScaledText info = new ScaledText(PointF.Empty, "", 0.5f)
+        internal protected readonly ScaledText info = new ScaledText(PointF.Empty, string.Empty, 0.5f)
         {
             Alignment = Alignment.Right,
             WordWrap = 1000

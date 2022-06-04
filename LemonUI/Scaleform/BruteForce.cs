@@ -97,10 +97,10 @@ namespace LemonUI.Scaleform
         #region Fields
 
         private static readonly Random random = new Random();
-        private static readonly Sound soundRowSwitch = new Sound("", "HACKING_MOVE_CURSOR");
-        private static readonly Sound soundRowCompleted = new Sound("", "HACKING_CLICK");
-        private static readonly Sound soundRowFailed = new Sound("", "HACKING_CLICK_BAD");
-        private static readonly Sound soundSuccess = new Sound("", "HACKING_SUCCESS");
+        private static readonly Sound soundRowSwitch = new Sound(string.Empty, "HACKING_MOVE_CURSOR");
+        private static readonly Sound soundRowCompleted = new Sound(string.Empty, "HACKING_CLICK");
+        private static readonly Sound soundRowFailed = new Sound(string.Empty, "HACKING_CLICK_BAD");
+        private static readonly Sound soundSuccess = new Sound(string.Empty, "HACKING_SUCCESS");
 
         private int hideTime = -1;
         private int output = 0;
@@ -347,7 +347,7 @@ namespace LemonUI.Scaleform
                     if (span <= TimeSpan.Zero)
                     {
                         CallFunction("SET_COUNTDOWN", 0, 0, 0);
-                        string err = FailMessages.Count == 0 ? "" : FailMessages[random.Next(FailMessages.Count)];
+                        string err = FailMessages.Count == 0 ? string.Empty : FailMessages[random.Next(FailMessages.Count)];
                         CallFunction("SET_ROULETTE_OUTCOME", false, err);
                         hideTime = closeAfter == -1 ? -1 : (int)time + CloseAfter;
                         inProgress = false;
@@ -388,7 +388,7 @@ namespace LemonUI.Scaleform
                         switch (GetValue<int>(output))
                         {
                             case 86:  // Hack Completed
-                                string ok = SuccessMessages.Count == 0 ? "" : SuccessMessages[random.Next(SuccessMessages.Count)];
+                                string ok = SuccessMessages.Count == 0 ? string.Empty : SuccessMessages[random.Next(SuccessMessages.Count)];
                                 CallFunction("SET_ROULETTE_OUTCOME", true, ok);
                                 soundSuccess.PlayFrontend();
                                 HackFinished?.Invoke(this, new BruteForceFinishedEventArgs(BruteForceStatus.Completed));
@@ -401,7 +401,7 @@ namespace LemonUI.Scaleform
                                 soundRowFailed.PlayFrontend();
                                 if (livesCurrent <= 0)
                                 {
-                                    string err = FailMessages.Count == 0 ? "" : FailMessages[random.Next(FailMessages.Count)];
+                                    string err = FailMessages.Count == 0 ? string.Empty : FailMessages[random.Next(FailMessages.Count)];
                                     CallFunction("SET_ROULETTE_OUTCOME", false, err);
                                     hideTime = closeAfter == -1 ? -1 : (int)time + CloseAfter;
                                     inProgress = false;

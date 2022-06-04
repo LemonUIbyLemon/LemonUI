@@ -47,7 +47,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The title of the Color Panel.
         /// </summary>
-        private ScaledText title = new ScaledText(PointF.Empty, "", 0.325f)
+        private ScaledText title = new ScaledText(PointF.Empty, string.Empty, 0.325f)
         {
             Alignment = Alignment.Center
         };
@@ -343,7 +343,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// Creates a color panel with no Items or Title.
         /// </summary>
-        public NativeColorPanel() : this("")
+        public NativeColorPanel() : this(string.Empty)
         {
         }
         /// <summary>
@@ -368,7 +368,7 @@ namespace LemonUI.Menus
         /// </summary>
         private void UpdateTitle()
         {
-            string newTitle = "";
+            string newTitle = string.Empty;
 
             // Add the title based on the correct style
             switch (titleStyle)
@@ -377,7 +377,7 @@ namespace LemonUI.Menus
                     newTitle = Title;
                     break;
                 case ColorTitleStyle.ColorName:
-                    newTitle = SelectedItem == null ? "" : SelectedItem.Name;
+                    newTitle = SelectedItem == null ? string.Empty : SelectedItem.Name;
                     break;
             }
 

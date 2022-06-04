@@ -205,7 +205,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The subtitle of the menu, without any changes.
         /// </summary>
-        private string subtitle = "";
+        private string subtitle = string.Empty;
         /// <summary>
         /// If the menu is visible or not.
         /// </summary>
@@ -244,14 +244,14 @@ namespace LemonUI.Menus
         /// <summary>
         /// The text of the subtitle.
         /// </summary>
-        private readonly ScaledText subtitleText = new ScaledText(PointF.Empty, "", 0.345f, Font.ChaletLondon)
+        private readonly ScaledText subtitleText = new ScaledText(PointF.Empty, string.Empty, 0.345f, Font.ChaletLondon)
         {
             Color = colorWhiteSmoke
         };
         /// <summary>
         /// The text that shows the current total and index of items.
         /// </summary>
-        private readonly ScaledText countText = new ScaledText(PointF.Empty, "", 0.345f, Font.ChaletLondon)
+        private readonly ScaledText countText = new ScaledText(PointF.Empty, string.Empty, 0.345f, Font.ChaletLondon)
         {
             Color = colorWhiteSmoke
         };
@@ -274,7 +274,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The text with the description text.
         /// </summary>
-        private readonly ScaledText descriptionText = new ScaledText(PointF.Empty, "", 0.351f);
+        private readonly ScaledText descriptionText = new ScaledText(PointF.Empty, string.Empty, 0.351f);
         /// <summary>
         /// The maximum allowed number of items in the menu at once.
         /// </summary>
@@ -574,7 +574,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The description used when this menu is used as a submenu.
         /// </summary>
-        public string Description { get; set; } = "";
+        public string Description { get; set; } = string.Empty;
         /// <summary>
         /// If the mouse should be used for navigating the menu.
         /// </summary>
@@ -731,7 +731,7 @@ namespace LemonUI.Menus
         /// Creates a new menu with the specified title.
         /// </summary>
         /// <param name="title">The title of the menu.</param>
-        public NativeMenu(string title) : this(title, "", "")
+        public NativeMenu(string title) : this(title, string.Empty, string.Empty)
         {
         }
 
@@ -740,7 +740,7 @@ namespace LemonUI.Menus
         /// </summary>
         /// <param name="title">The title of the menu.</param>
         /// <param name="subtitle">The subtitle of this menu.</param>
-        public NativeMenu(string title, string subtitle) : this(title, subtitle, "")
+        public NativeMenu(string title, string subtitle) : this(title, subtitle, string.Empty)
         {
         }
 

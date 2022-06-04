@@ -143,7 +143,7 @@ namespace LemonUI.Scaleform
         /// Creates a standard customizable message with just a title.
         /// </summary>
         /// <param name="title">The title to use.</param>
-        public BigMessage(string title) : this(title, "", "", unarmed, 0, 0, MessageType.Customizable)
+        public BigMessage(string title) : this(title, string.Empty, string.Empty, unarmed, 0, 0, MessageType.Customizable)
         {
         }
         /// <summary>
@@ -151,7 +151,7 @@ namespace LemonUI.Scaleform
         /// </summary>
         /// <param name="title">The title to use.</param>
         /// <param name="type">The type of message.</param>
-        public BigMessage(string title, MessageType type) : this(title, "", "", unarmed, 0, 0, type)
+        public BigMessage(string title, MessageType type) : this(title, string.Empty, string.Empty, unarmed, 0, 0, type)
         {
         }
         /// <summary>
@@ -159,7 +159,7 @@ namespace LemonUI.Scaleform
         /// </summary>
         /// <param name="title">The title to use.</param>
         /// <param name="message">The message to show.</param>
-        public BigMessage(string title, string message) : this(title, message, "", unarmed, 0, 0, MessageType.Customizable)
+        public BigMessage(string title, string message) : this(title, message, string.Empty, unarmed, 0, 0, MessageType.Customizable)
         {
         }
         /// <summary>
@@ -177,7 +177,7 @@ namespace LemonUI.Scaleform
         /// <param name="title">The title to use.</param>
         /// <param name="message">The message to show.</param>
         /// <param name="type">The type of message.</param>
-        public BigMessage(string title, string message, MessageType type) : this(title, message, "", unarmed, 0, 0, type)
+        public BigMessage(string title, string message, MessageType type) : this(title, message, string.Empty, unarmed, 0, 0, type)
         {
         }
         /// <summary>
@@ -185,7 +185,7 @@ namespace LemonUI.Scaleform
         /// </summary>
         /// <param name="title">The title to use.</param>
         /// <param name="colorText">The color of the text.</param>
-        public BigMessage(string title, int colorText) : this(title, "", "", unarmed, colorText, 0, MessageType.Customizable)
+        public BigMessage(string title, int colorText) : this(title, string.Empty, string.Empty, unarmed, colorText, 0, MessageType.Customizable)
         {
         }
         /// <summary>
@@ -194,7 +194,7 @@ namespace LemonUI.Scaleform
         /// <param name="title">The title to use.</param>
         /// <param name="colorText">The color of the text.</param>
         /// <param name="colorBackground">The color of the background.</param>
-        public BigMessage(string title, int colorText, int colorBackground) : this(title, "", "", unarmed, colorText, colorBackground, MessageType.Customizable)
+        public BigMessage(string title, int colorText, int colorBackground) : this(title, string.Empty, string.Empty, unarmed, colorText, colorBackground, MessageType.Customizable)
         {
         }
 #if !RAGEMP
@@ -204,7 +204,7 @@ namespace LemonUI.Scaleform
         /// <param name="title">The title to use.</param>
         /// <param name="weapon">The name of the Weapon.</param>
         /// <param name="hash">The hash of the Weapon image.</param>
-        public BigMessage(string title, string weapon, WeaponHash hash) : this(title, "", weapon, hash, 0, 0, MessageType.Weapon)
+        public BigMessage(string title, string weapon, WeaponHash hash) : this(title, string.Empty, weapon, hash, 0, 0, MessageType.Weapon)
         {
         }
         /// <summary>

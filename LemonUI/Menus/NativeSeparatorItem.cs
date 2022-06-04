@@ -10,7 +10,7 @@
         /// <summary>
         /// Creates a new Menu Separator.
         /// </summary>
-        public NativeSeparatorItem() : base("", "", "")
+        public NativeSeparatorItem() : base(string.Empty, string.Empty, string.Empty)
         {
         }
 

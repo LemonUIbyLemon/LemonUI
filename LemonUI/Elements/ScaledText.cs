@@ -45,7 +45,7 @@ namespace LemonUI.Elements
         /// <summary>
         /// The raw string of text.
         /// </summary>
-        private string text = "";
+        private string text = string.Empty;
         /// <summary>
         /// The raw string split into equally sized strings.
         /// </summary>
@@ -424,7 +424,7 @@ namespace LemonUI.Elements
 
             // Create a new list of chunks and a temporary string
             List<string> newChunks = new List<string>();
-            string temp = "";
+            string temp = string.Empty;
 
             // Iterate over the characters in the string
             foreach (char character in text)
@@ -443,7 +443,7 @@ namespace LemonUI.Elements
             }
 
             // If after finishing we still have a piece, save it
-            if (temp != "")
+            if (temp != string.Empty)
             {
                 newChunks.Add(temp);
             }

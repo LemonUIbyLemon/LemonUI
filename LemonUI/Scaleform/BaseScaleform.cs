@@ -25,9 +25,9 @@ namespace LemonUI.Scaleform
         [Obsolete("Please use the Handle or Name properties and call the methods manually.", true)]
 #endif
 #if FIVEM
-        protected CitizenFX.Core.Scaleform scaleform = new CitizenFX.Core.Scaleform("");
+        protected CitizenFX.Core.Scaleform scaleform = new CitizenFX.Core.Scaleform(string.Empty);
 #elif SHVDN3
-        protected GTA.Scaleform scaleform = new GTA.Scaleform("");
+        protected GTA.Scaleform scaleform = new GTA.Scaleform(string.Empty);
 #endif
 
         #endregion

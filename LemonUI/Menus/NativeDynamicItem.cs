@@ -11,7 +11,7 @@ namespace LemonUI.Menus
     {
         #region Fields
 
-        private readonly ScaledText text = new ScaledText(PointF.Empty, "", 0.35f);
+        private readonly ScaledText text = new ScaledText(PointF.Empty, string.Empty, 0.35f);
         private T item = default;
 
         #endregion
@@ -47,7 +47,7 @@ namespace LemonUI.Menus
         /// Creates a new Dynamic List Item.
         /// </summary>
         /// <param name="title">The Title of the item.</param>
-        public NativeDynamicItem(string title) : this(title, "", default)
+        public NativeDynamicItem(string title) : this(title, string.Empty, default)
         {
         }
         /// <summary>
@@ -55,7 +55,7 @@ namespace LemonUI.Menus
         /// </summary>
         /// <param name="title">The Title of the item.</param>
         /// <param name="item">The Item to set.</param>
-        public NativeDynamicItem(string title, T item) : this(title, "", item)
+        public NativeDynamicItem(string title, T item) : this(title, string.Empty, item)
         {
         }
         /// <summary>
@@ -88,7 +88,7 @@ namespace LemonUI.Menus
         {
             // This is the SAME as the normal NativeListItem
 
-            text.Text = !SelectedItem.Equals(default) ? SelectedItem.ToString() : "";
+            text.Text = !SelectedItem.Equals(default) ? SelectedItem.ToString() : string.Empty;
 
             text.Position = new PointF(RightArrow.Position.X - text.Width + 3, text.Position.Y);
             LeftArrow.Position = new PointF(text.Position.X - LeftArrow.Size.Width, LeftArrow.Position.Y);

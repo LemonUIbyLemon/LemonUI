@@ -38,7 +38,7 @@ namespace LemonUI.Scaleform
         /// <param name="title">The title of the screen.</param>
         /// <param name="subtitle">The subtitle of the screen.</param>
         /// <param name="description">The description of the screen.</param>
-        public LoadingScreen(string title, string subtitle, string description) : this(title, subtitle, description, "", "")
+        public LoadingScreen(string title, string subtitle, string description) : this(title, subtitle, description, string.Empty, string.Empty)
         {
         }
         /// <summary>

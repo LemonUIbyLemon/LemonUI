@@ -10,19 +10,19 @@ namespace LemonUI.Menus
         /// <summary>
         /// The texture dictionary where the normal texture is located.
         /// </summary>
-        public string NormalDictionary { get; set; } = "";
+        public string NormalDictionary { get; set; } = string.Empty;
         /// <summary>
         /// The texture to use when the item is not hovered.
         /// </summary>
-        public string NormalTexture { get; set; } = "";
+        public string NormalTexture { get; set; } = string.Empty;
         /// <summary>
         /// The texture dictionary where the normal texture is located.
         /// </summary>
-        public string HoveredDictionary { get; set; } = "";
+        public string HoveredDictionary { get; set; } = string.Empty;
         /// <summary>
         /// The texture to use when the item is hovered.
         /// </summary>
-        public string HoveredTexture { get; set; } = "";
+        public string HoveredTexture { get; set; } = string.Empty;
 
         #endregion
 

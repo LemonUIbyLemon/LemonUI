@@ -12,7 +12,7 @@ namespace LemonUI.Menus
     {
         #region Fields
 
-        private readonly ScaledText text = new ScaledText(PointF.Empty, "", 0.35f);
+        private readonly ScaledText text = new ScaledText(PointF.Empty, string.Empty, 0.35f);
         private float value = 100;
         private readonly List<ScaledRectangle> backgrounds = new List<ScaledRectangle>();
         private readonly List<ScaledRectangle> foregrounds = new List<ScaledRectangle>();

@@ -227,7 +227,7 @@ namespace LemonUI.Menus
         /// Creates a new <see cref="NativeItem"/>.
         /// </summary>
         /// <param name="title">The title of the item.</param>
-        public NativeItem(string title) : this(title, "", "")
+        public NativeItem(string title) : this(title, string.Empty, string.Empty)
         {
         }
         /// <summary>
@@ -235,7 +235,7 @@ namespace LemonUI.Menus
         /// </summary>
         /// <param name="title">The title of the item.</param>
         /// <param name="description">The description of the item.</param>
-        public NativeItem(string title, string description) : this(title, description, "")
+        public NativeItem(string title, string description) : this(title, description, string.Empty)
         {
         }
         /// <summary>
@@ -296,7 +296,7 @@ namespace LemonUI.Menus
             {
                 if (!(badgeLeft is ScaledTexture))
                 {
-                    badgeLeft = new ScaledTexture("", "");
+                    badgeLeft = new ScaledTexture(string.Empty, string.Empty);
                 }
                 ScaledTexture left = (ScaledTexture)badgeLeft;
                 left.Dictionary = selected ? badgeSetLeft.HoveredDictionary : badgeSetLeft.NormalDictionary;
@@ -306,7 +306,7 @@ namespace LemonUI.Menus
             {
                 if (!(badgeRight is ScaledTexture))
                 {
-                    badgeRight = new ScaledTexture("", "");
+                    badgeRight = new ScaledTexture(string.Empty, string.Empty);
                 }
                 ScaledTexture right = (ScaledTexture)badgeRight;
                 right.Dictionary = selected ? badgeSetRight.HoveredDictionary : badgeSetRight.NormalDictionary;

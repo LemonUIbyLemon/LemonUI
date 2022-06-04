@@ -84,7 +84,7 @@ namespace LemonUI.TimerBars
         /// Creates a new <see cref="TimerBarProgress"/> with the specified title.
         /// </summary>
         /// <param name="title">The title of the bar.</param>
-        public TimerBarProgress(string title) : base(title, "")
+        public TimerBarProgress(string title) : base(title, string.Empty)
         {
         }
 

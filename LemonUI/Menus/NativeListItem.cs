@@ -22,7 +22,7 @@ namespace LemonUI.Menus
         /// <param name="subtitle">The subtitle of the Item.</param>
         public NativeListItem(string title, string subtitle) : base(title, subtitle)
         {
-            text = new ScaledText(PointF.Empty, "", 0.35f);
+            text = new ScaledText(PointF.Empty, string.Empty, 0.35f);
         }
     }
 
@@ -134,7 +134,7 @@ namespace LemonUI.Menus
         /// </summary>
         /// <param name="title">The title of the Item.</param>
         /// <param name="objs">The objects that are available on the Item.</param>
-        public NativeListItem(string title, params T[] objs) : this(title, "", objs)
+        public NativeListItem(string title, params T[] objs) : this(title, string.Empty, objs)
         {
         }
         /// <summary>
@@ -174,7 +174,7 @@ namespace LemonUI.Menus
         /// </summary>
         private void UpdateIndex()
         {
-            text.Text = SelectedIndex != -1 ? SelectedItem.ToString() : "";
+            text.Text = SelectedIndex != -1 ? SelectedItem.ToString() : string.Empty;
 
             text.Position = new PointF(RightArrow.Position.X - text.Width + 3, text.Position.Y);
             LeftArrow.Position = new PointF(text.Position.X - LeftArrow.Size.Width, LeftArrow.Position.Y);
