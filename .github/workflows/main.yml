@@ -23,4 +23,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ github.event.repository.name }}.${{ matrix.configuration }}
-          path: ${{ env.GITHUB_WORKSPACE }}/bin/${{ matrix.configuration }}
+          path: bin/${{ matrix.configuration }}
