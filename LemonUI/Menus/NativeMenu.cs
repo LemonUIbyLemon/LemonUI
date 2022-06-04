@@ -1321,7 +1321,7 @@ namespace LemonUI.Menus
                     hoveredRect.Size = item.lastSize;
                     hoveredRect.Draw();
                 }
-                
+
                 item.Draw();
             }
             // Continue with the white selection rectangle
@@ -1370,7 +1370,7 @@ namespace LemonUI.Menus
             }
 
             Items.Insert(position, item);
-            
+
             if (Items.Count != 0 && SelectedIndex == -1)
             {
                 SelectedIndex = 0;
@@ -1379,9 +1379,9 @@ namespace LemonUI.Menus
             {
                 UpdateItemList();
             }
-            
+
             MenuModified?.Invoke(this, new MenuModifiedEventArgs(item, ItemOperation.Added));
-            
+
             UpdateItems();
         }
         /// <summary>
@@ -1426,7 +1426,7 @@ namespace LemonUI.Menus
             }
 
             Items.Remove(item);
-            
+
             if (SelectedIndex >= Items.Count)
             {
                 SelectedIndex = Items.Count - 1;
@@ -1435,9 +1435,9 @@ namespace LemonUI.Menus
             {
                 UpdateItemList();
             }
-            
+
             MenuModified?.Invoke(this, new MenuModifiedEventArgs(item, ItemOperation.Removed));
-            
+
             UpdateItems();
         }
         /// <summary>
@@ -1476,7 +1476,7 @@ namespace LemonUI.Menus
         public void Clear()
         {
             List<NativeItem> items = new List<NativeItem>(Items);
-            
+
             Items.Clear();
 
             foreach (NativeItem item in items)

@@ -323,7 +323,7 @@ namespace LemonUI.Menus
                 badgeRight.Position = new PointF(pos.X + size.Width - 47, pos.Y - 3);
                 badgeRight.Size = new SizeF(45, 45);
             }
-            
+
             title.Position = new PointF(pos.X + (badgeLeft == null ? 0 : 34) + 6, pos.Y + 3);
             altTitle.Position = new PointF(pos.X + size.Width - (badgeRight == null ? 0 : 34) - altTitle.Width - 6, pos.Y + 3);
 
@@ -338,7 +338,7 @@ namespace LemonUI.Menus
             {
                 background.Draw();
             }
-            
+
             title.Draw();
             altTitle.Draw();
             badgeLeft?.Draw();

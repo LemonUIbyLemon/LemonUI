@@ -29,9 +29,9 @@ namespace LemonUI.Scaleform
         public string Error { get; set; }
 
         #endregion
-        
+
         #region Constructors
-        
+
         /// <summary>
         /// Creates a new Pop-up instance.
         /// </summary>
