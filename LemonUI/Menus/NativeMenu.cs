@@ -718,6 +718,10 @@ namespace LemonUI.Menus
         /// Event triggered when an item in the menu is activated.
         /// </summary>
         public event ItemActivatedEventHandler ItemActivated;
+        /// <summary>
+        /// Event triggered when the contents of the menu are changed.
+        /// </summary>
+        public event MenuModifiedEventHandler MenuModified;
 
         #endregion
 
@@ -1352,25 +1356,21 @@ namespace LemonUI.Menus
         /// <param name="item">The item to add.</param>
         public virtual void Add(int position, NativeItem item)
         {
-            // If the item is already on the list, raise an exception
             if (Items.Contains(item))
             {
                 throw new InvalidOperationException("The item is already part of the menu.");
             }
-            // If the item position is under zero or over the maximum, raise an exception
             if (position < 0 || position > Items.Count)
             {
                 throw new ArgumentOutOfRangeException(nameof(position), "The index under Zero or is over the Item Count.");
             }
-            // Also raise an exception if is null
             if (item == null)
             {
                 throw new ArgumentNullException(nameof(item));
             }
 
-            // Otherwise, just add it
             Items.Insert(position, item);
-            // Set the correct index if this is the only item
+            
             if (Items.Count != 0 && SelectedIndex == -1)
             {
                 SelectedIndex = 0;
@@ -1379,7 +1379,9 @@ namespace LemonUI.Menus
             {
                 UpdateItemList();
             }
-            // And update the items
+            
+            MenuModified?.Invoke(this, new MenuModifiedEventArgs(item, ItemOperation.Added));
+            
             UpdateItems();
         }
         /// <summary>
@@ -1418,17 +1420,13 @@ namespace LemonUI.Menus
         /// <param name="item">The item to remove.</param>
         public void Remove(NativeItem item)
         {
-            // If the item is not in the menu, ignore it
             if (!Items.Contains(item))
             {
                 return;
             }
 
-            // Remove it if there
-            // If not, ignore it
             Items.Remove(item);
-            // If the index is higher or equal than the max number of items
-            // Set the max - 1
+            
             if (SelectedIndex >= Items.Count)
             {
                 SelectedIndex = Items.Count - 1;
@@ -1437,7 +1435,9 @@ namespace LemonUI.Menus
             {
                 UpdateItemList();
             }
-            // And update the items
+            
+            MenuModified?.Invoke(this, new MenuModifiedEventArgs(item, ItemOperation.Removed));
+            
             UpdateItems();
         }
         /// <summary>
@@ -1446,18 +1446,19 @@ namespace LemonUI.Menus
         /// <param name="pred">The function to use as a check.</param>
         public void Remove(Func<NativeItem, bool> pred)
         {
-            // Create a copy of the list with the existing items and iterate them in order
             List<NativeItem> items = new List<NativeItem>(Items);
+            
             foreach (NativeItem item in items)
             {
-                // If the predicate says that this item should be removed, do it
-                if (pred(item))
+                if (!pred(item))
                 {
-                    Items.Remove(item);
+                    continue;
                 }
+                
+                Items.Remove(item);
+                MenuModified?.Invoke(this, new MenuModifiedEventArgs(item, ItemOperation.Added));
             }
-            // Once we finish, make sure that the index is under the limit
-            // Set it to the max if it does
+            
             if (SelectedIndex >= Items.Count)
             {
                 SelectedIndex = Items.Count - 1;
@@ -1466,7 +1467,7 @@ namespace LemonUI.Menus
             {
                 UpdateItemList();
             }
-            // And update the items
+            
             UpdateItems();
         }
         /// <summary>
@@ -1474,12 +1475,18 @@ namespace LemonUI.Menus
         /// </summary>
         public void Clear()
         {
-            // Clear the existing items
+            List<NativeItem> items = new List<NativeItem>(Items);
+            
             Items.Clear();
-            // Set the indexes to zero
+
+            foreach (NativeItem item in items)
+            {
+                MenuModified?.Invoke(this, new MenuModifiedEventArgs(item, ItemOperation.Added));
+            }
+
             index = 0;
             firstItem = 0;
-            // And update the menu information
+            
             UpdateItemList();
             UpdateItems();
         }
