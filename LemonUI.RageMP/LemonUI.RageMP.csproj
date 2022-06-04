@@ -13,6 +13,7 @@
     <PackageIcon>logo.png</PackageIcon>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>x64</PlatformTarget>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
