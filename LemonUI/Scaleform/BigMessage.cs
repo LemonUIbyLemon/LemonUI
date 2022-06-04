@@ -321,7 +321,7 @@ namespace LemonUI.Scaleform
             {
                 throw new ArgumentOutOfRangeException(nameof(time), "Time can't be under zero.");
             }
-        
+
             CallFunction("SHARD_ANIM_OUT", 0, time);
 
 #if RAGEMP
@@ -343,13 +343,13 @@ namespace LemonUI.Scaleform
 #else
             uint time = (uint)Game.GameTime;
 #endif
-            
+
             if (hideAfter > 0 && time > hideAfter)
             {
                 Visible = false;
                 hideAfter = 0;
             }
-            
+
             base.DrawFullScreen();
         }
 

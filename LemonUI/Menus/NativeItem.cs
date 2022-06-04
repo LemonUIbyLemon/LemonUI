@@ -194,7 +194,7 @@ namespace LemonUI.Menus
         /// </summary>
         public NativePanel Panel { get; set; } = null;
         /// <summary>
-        /// If a custom colored background should be used. 
+        /// If a custom colored background should be used.
         /// </summary>
         public bool UseCustomBackground { get; set; }
         /// <summary>

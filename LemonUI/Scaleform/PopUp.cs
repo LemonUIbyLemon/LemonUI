@@ -38,9 +38,9 @@ namespace LemonUI.Scaleform
         public PopUp() : base("POPUP_WARNING")
         {
         }
-        
+
         #endregion
-        
+
         #region Functions
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace LemonUI.Scaleform
             // first parameter "msecs" is unused
             CallFunction("SHOW_POPUP_WARNING", 0, Title, Subtitle, Prompt, ShowBackground, 0, Error);
         }
-        
+
         #endregion
     }
 }

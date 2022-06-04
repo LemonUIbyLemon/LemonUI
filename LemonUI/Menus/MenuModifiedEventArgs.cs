@@ -17,7 +17,7 @@
         public ItemOperation Operation { get; }
 
         #endregion
-        
+
         #region Constructors
 
         /// <summary>
@@ -30,8 +30,7 @@
             Item = item;
             Operation = operation;
         }
-        
+
         #endregion
     }
 }
- 

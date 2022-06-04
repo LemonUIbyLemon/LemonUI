@@ -30,7 +30,7 @@ namespace LemonUI.Menus
         /// The color of the <see cref="NativeItem.Title"/> when the <see cref="NativeItem"/> is disabled.
         /// </summary>
         public Color TitleDisabled { get; set; } = colorDisabled;
-        
+
         /// <summary>
         /// The color of the <see cref="NativeItem.AltTitle"/> when the <see cref="NativeItem"/> is not hovered and enabled.
         /// </summary>
@@ -43,7 +43,7 @@ namespace LemonUI.Menus
         /// The color of the <see cref="NativeItem.AltTitle"/> when the <see cref="NativeItem"/> is disabled.
         /// </summary>
         public Color AltTitleDisabled { get; set; } = colorDisabled;
-        
+
         /// <summary>
         /// The color of the <see cref="NativeSlidableItem"/> arrows when the item is not hovered and enabled.
         /// </summary>
@@ -56,7 +56,7 @@ namespace LemonUI.Menus
         /// The color of the <see cref="NativeSlidableItem"/> arrows when the item is disabled.
         /// </summary>
         public Color ArrowsDisabled { get; set; } = colorDisabled;
-        
+
         /// <summary>
         /// The color of the <see cref="NativeItem.LeftBadge"/> when the <see cref="NativeItem"/> is not hovered and enabled.
         /// </summary>
@@ -69,7 +69,7 @@ namespace LemonUI.Menus
         /// The color of the <see cref="NativeItem.LeftBadge"/> when the <see cref="NativeItem"/> is disabled.
         /// </summary>
         public Color BadgeLeftDisabled { get; set; } = colorWhite;
-        
+
         /// <summary>
         /// The color of the <see cref="NativeItem.RightBadge"/> or <see cref="NativeCheckboxItem"/> checkbox when the <see cref="NativeItem"/> is not hovered and enabled.
         /// </summary>
@@ -82,7 +82,7 @@ namespace LemonUI.Menus
         /// The color of the <see cref="NativeItem.RightBadge"/> or <see cref="NativeCheckboxItem"/> checkbox when the <see cref="NativeItem"/> is disabled.
         /// </summary>
         public Color BadgeRightDisabled { get; set; } = colorWhite;
-        
+
         /// <summary>
         /// The normal color of the custom background if <see cref="NativeItem.UseCustomBackground"/> is set to <see langword="true"/>.
         /// </summary>
