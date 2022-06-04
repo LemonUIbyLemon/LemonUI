@@ -93,12 +93,11 @@ namespace LemonUI.Scaleform
         /// </summary>
         public int TextColor { get; set; }
         /// <summary>
-        /// The color of the background.
-        /// Only used on the Customizable message type.
+        /// The color of the background in the Customizable message type.
         /// </summary>
         public int BackgroundColor { get; set; }
         /// <summary>
-        /// The Rank on Cops and Crooks.
+        /// The Rank when the mode is set to Cops and Crooks.
         /// </summary>
         public string Rank { get; set; }
 #if !RAGEMP

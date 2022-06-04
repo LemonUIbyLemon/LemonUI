@@ -177,9 +177,11 @@ namespace LemonUI.Scaleform
         /// </summary>
         public List<string> FailMessages { get; } = new List<string>();
         /// <summary>
-        /// After how many miliseconds should the Hack close automatically.
-        /// Set to -1 to keep the Hack window open.
+        /// The time in milliseconds to wait before closing the Hack window automatically.
         /// </summary>
+        /// <remarks>
+        /// This can be set to -1 to keep the Hack window open.
+        /// </remarks>
         public int CloseAfter
         {
             get => closeAfter;

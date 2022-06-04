@@ -149,9 +149,12 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
-        /// The opacity value from 0 to 100.
+        /// The opacity value of the color.
         /// </summary>
-        /// <returns></returns>
+        /// <remarks>
+        /// The value needs to be set between 100 and 0.
+        /// It will return -1 if <see cref="ShowOpacity"/> is set to <see langword="false"/>.
+        /// </remarks>
         public int Opacity
         {
             get
@@ -177,8 +180,11 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
-        /// Returns the currently selected color with the opacity taken into account.
+        /// The currently selected color.
         /// </summary>
+        /// <remarks>
+        /// If <see cref="ShowOpacity"/> is set to <see langword="true"/>.
+        /// </remarks>
         public Color SelectedColor
         {
             get

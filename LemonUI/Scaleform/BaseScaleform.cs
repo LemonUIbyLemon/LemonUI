@@ -190,6 +190,7 @@ namespace LemonUI.Scaleform
         /// Checks if the specified Scaleform Return Value is ready to be fetched.
         /// </summary>
         /// <param name="id">The Identifier of the Value.</param>
+        /// <returns><see langword="true"/> if the value is ready, <see langword="false"/> otherwise.</returns>
         public bool IsValueReady(int id)
         {
 #if FIVEM
