@@ -13,7 +13,7 @@ using GTA.Native;
 using GTA.UI;
 #endif
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Drawing;
 
 namespace LemonUI
@@ -106,7 +106,7 @@ namespace LemonUI
         /// <summary>
         /// The list of processable objects.
         /// </summary>
-        private readonly List<IProcessable> objects = new List<IProcessable>();
+        private readonly ConcurrentDictionary<int, IProcessable> objects = new ConcurrentDictionary<int, IProcessable>();
 
         #endregion
 
@@ -120,7 +120,7 @@ namespace LemonUI
             get
             {
                 // Iterate over the objects
-                foreach (IProcessable obj in objects)
+                foreach (IProcessable obj in objects.Values)
                 {
                     // If is visible return true
                     if (obj.Visible)
@@ -221,12 +221,13 @@ namespace LemonUI
                 throw new ArgumentNullException(nameof(obj));
             }
 
+            int key = obj.GetHashCode();
             // Otherwise, add it to the general pool
-            if (objects.Contains(obj))
+            if (objects.ContainsKey(key))
             {
                 throw new InvalidOperationException("The object is already part of this pool.");
             }
-            objects.Add(obj);
+            objects.TryAdd(key, obj);
         }
         /// <summary>
         /// Removes the object from the pool.
@@ -234,7 +235,7 @@ namespace LemonUI
         /// <param name="obj">The object to remove.</param>
         public void Remove(IProcessable obj)
         {
-            objects.Remove(obj);
+            objects.TryRemove(obj.GetHashCode(), out _);
         }
         /// <summary>
         /// Performs the specified action on each element that matches T.
@@ -243,7 +244,7 @@ namespace LemonUI
         /// <param name="action">The action delegate to perform on each T.</param>
         public void ForEach<T>(Action<T> action)
         {
-            foreach (IProcessable obj in objects)
+            foreach (IProcessable obj in objects.Values)
             {
                 if (obj is T conv)
                 {
@@ -257,7 +258,7 @@ namespace LemonUI
         public void RefreshAll()
         {
             // Iterate over the objects and recalculate those possible
-            foreach (IProcessable obj in objects)
+            foreach (IProcessable obj in objects.Values)
             {
                 if (obj is IRecalculable recal)
                 {
@@ -270,7 +271,7 @@ namespace LemonUI
         /// </summary>
         public void HideAll()
         {
-            foreach (IProcessable obj in objects)
+            foreach (IProcessable obj in objects.Values)
             {
                 obj.Visible = false;
             }
@@ -285,7 +286,7 @@ namespace LemonUI
             DetectResolutionChanges();
             DetectSafezoneChanges();
             // And process the objects in the pool
-            foreach (IProcessable obj in objects)
+            foreach (IProcessable obj in objects.Values)
             {
                 obj.Process();
             }
