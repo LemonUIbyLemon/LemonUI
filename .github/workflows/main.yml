@@ -16,6 +16,11 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
       - name: Restore NuGet Packages
         run: nuget restore ${{ github.event.repository.name }}.sln
+      - name: Patch csproj version
+        uses: justalemon/VersionPatcher@ff473034af090907184812b731fc3bc1a272b308
+        with:
+          version: 1.7.0.${{ github.run_number }}
+          csproj-files: "**/**.csproj"
       - name: Compile
         working-directory: ${{ env.GITHUB_WORKSPACE }}
         run: msbuild -m -p:Configuration=${{ matrix.configuration }} ${{ github.event.repository.name }}.sln
