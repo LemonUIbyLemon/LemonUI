@@ -1,4 +1,4 @@
-# LemonUI<br>[![AppVeyor][appveyor-img]][appveyor-url] [![NuGet][nuget-img-2]][nuget-url-2] [![NuGet][nuget-img-3]][nuget-url-3] [![NuGet][nuget-img-f]][nuget-url-f] [![NuGet][nuget-img-r]][nuget-url-r] [![Patreon][patreon-img]][patreon-url] [![PayPal][paypal-img]][paypal-url] [![Discord][discord-img]][discord-url]
+# LemonUI<br>[![GitHub Actions][actions-img]][actions-url] [![NuGet][nuget-img-2]][nuget-url-2] [![NuGet][nuget-img-3]][nuget-url-3] [![NuGet][nuget-img-f]][nuget-url-f] [![NuGet][nuget-img-r]][nuget-url-r] [![Patreon][patreon-img]][patreon-url] [![PayPal][paypal-img]][paypal-url] [![Discord][discord-img]][discord-url]
 
 LemonUI is a framework for creating UI systems in Grand Theft Auto V that is compatible with FiveM, RageMP, RagePluginHook ScriptHookVDotNet 2 and ScriptHookVDotNet 3. It allows you to create UI Elements with a NativeUI-like style, or you can also create your own UI System from scratch via the resolution-independant classes for Text, Rectangles and Textures.
 
@@ -45,8 +45,8 @@ Once installed, the mods that require LemonUI will start working.
 
 If you are a developer, check the [wiki](https://github.com/justalemon/LemonUI/wiki) for information to implement LemonUI in your mod.
 
-[appveyor-img]: https://img.shields.io/appveyor/build/justalemon/lemonui?label=appveyor
-[appveyor-url]: https://ci.appveyor.com/project/justalemon/lemonui
+[actions-img]: https://img.shields.io/github/workflow/status/LemonUIbyLemon/LemonUI/Compile%20Mod?label=github%20actions
+[actions-url]: https://github.com/LemonUIbyLemon/LemonUI/actions
 [nuget-img-2]: https://img.shields.io/nuget/v/LemonUI.SHVDN2?label=nuget%20%28shvdn%202%29
 [nuget-url-2]: https://www.nuget.org/packages/LemonUI.SHVDN2/
 [nuget-img-3]: https://img.shields.io/nuget/v/LemonUI.SHVDN3?label=nuget%20%28shvdn%203%29
