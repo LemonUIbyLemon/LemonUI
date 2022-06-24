@@ -1315,7 +1315,7 @@ namespace LemonUI.Menus
                     continue;
                 }
 
-                if (item.IsHovered)
+                if (item.IsHovered && UseMouse)
                 {
                     hoveredRect.Position = item.lastPosition;
                     hoveredRect.Size = item.lastSize;
