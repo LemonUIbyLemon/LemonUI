@@ -87,6 +87,7 @@ namespace LemonUI.Menus
                 {
                     return default;
                 }
+                
                 return Items[SelectedIndex];
             }
             set
@@ -95,12 +96,15 @@ namespace LemonUI.Menus
                 {
                     throw new InvalidOperationException("There are no available items.");
                 }
-                int index = Items.IndexOf(SelectedItem);
-                if (index == -1)
+                
+                int newIndex = Items.IndexOf(value);
+                
+                if (newIndex == -1)
                 {
                     throw new InvalidOperationException("The object is not the list of Items.");
                 }
-                SelectedIndex = index;
+                
+                SelectedIndex = newIndex;
             }
         }
         /// <summary>
