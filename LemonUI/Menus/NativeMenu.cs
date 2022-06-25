@@ -295,10 +295,14 @@ namespace LemonUI.Menus
         /// The time sice the player has been pressing the Down button.
         /// </summary>
         private long downSince = -1;
+        private SubtitleBehavior subtitleBehavior = SubtitleBehavior.AlwaysShow;
 
         #endregion
 
-        #region Public Properties
+        #region Properties
+
+        private bool ShouldDrawSubtitleBackground => subtitleBehavior == SubtitleBehavior.AlwaysShow || (subtitleBehavior == SubtitleBehavior.ShowIfRequired && (ShouldDrawCount || !string.IsNullOrWhiteSpace(subtitle)));
+        private bool ShouldDrawCount => ItemCount == CountVisibility.Always || (ItemCount == CountVisibility.Auto && Items.Count > MaxItems);
 
         /// <summary>
         /// If the menu is visible on the screen.
@@ -666,6 +670,23 @@ namespace LemonUI.Menus
         /// </remarks>
         public List<Control> RequiredControls { get; } = new List<Control>();
         /// <summary>
+        /// The behavior of the black bar showing the subtitle.
+        /// </summary>
+        public SubtitleBehavior SubtitleBehavior
+        {
+            get => subtitleBehavior;
+            set
+            {
+                if (subtitleBehavior == value)
+                {
+                    return;
+                }
+
+                subtitleBehavior = value;
+                Recalculate();
+            }
+        }
+        /// <summary>
         /// The <see cref="Sound"/> played when the menu is opened.
         /// </summary>
         public Sound SoundOpened { get; set; } = DefaultActivatedSound;
@@ -940,7 +961,7 @@ namespace LemonUI.Menus
             {
                 pos.Y += bannerImage.Size.Height;
             }
-            if (!string.IsNullOrWhiteSpace(subtitleText.Text))
+            if (ShouldDrawSubtitleBackground || ShouldDrawCount)
             {
                 countText.Text = $"{SelectedIndex + 1} / {Items.Count}";
                 countText.Position = new PointF(pos.X + width - countText.Width - 6, pos.Y + 4.2f);
@@ -1282,11 +1303,11 @@ namespace LemonUI.Menus
                 Title?.Draw();
             }
             // And then the subtitle with text and item count
-            if (subtitleImage != null)
+            if (ShouldDrawSubtitleBackground)
             {
                 subtitleImage.Draw();
                 subtitleText?.Draw();
-                if (ItemCount == CountVisibility.Always || (ItemCount == CountVisibility.Auto && Items.Count > MaxItems))
+                if (ShouldDrawCount)
                 {
                     countText.Draw();
                 }
