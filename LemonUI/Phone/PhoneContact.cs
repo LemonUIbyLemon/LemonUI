@@ -8,6 +8,14 @@ namespace LemonUI.Phone
     /// </summary>
     public class PhoneContact
     {
+        #region Fields
+
+        private string name = string.Empty;
+        private string pictureDictionary = string.Empty;
+        private string pictureTexture = string.Empty;
+
+        #endregion
+
         #region Events
 
         /// <summary>
@@ -33,6 +41,62 @@ namespace LemonUI.Phone
         /// Event triggered when the picture or name of the contact changes.
         /// </summary>
         public event EventHandler Changed;
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// The name of the contact.
+        /// </summary>
+        public string Name
+        {
+            get => name;
+            set
+            {
+                if (name == value)
+                {
+                    return;
+                }
+
+                name = value;
+                Changed?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        /// <summary>
+        /// The dictionary where the contact picture is located.
+        /// </summary>
+        public string PictureDictionary
+        {
+            get => pictureDictionary;
+            set
+            {
+                if (pictureDictionary == value)
+                {
+                    return;
+                }
+
+                pictureDictionary = value;
+                Changed?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        /// <summary>
+        /// The texture inside of the dictionary used for the contact picture.
+        /// </summary>
+        public string PictureTexture
+        {
+            get => pictureTexture;
+            set
+            {
+                if (pictureTexture == value)
+                {
+                    return;
+                }
+
+                pictureTexture = value;
+                Changed?.Invoke(this, EventArgs.Empty);
+            }
+        }
 
         #endregion
     }
