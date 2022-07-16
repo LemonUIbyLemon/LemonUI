@@ -40,7 +40,7 @@ namespace LemonUI.Phone
         /// <summary>
         /// Event triggered when the picture or name of the contact changes.
         /// </summary>
-        public event EventHandler Changed;
+        public event PhoneContactChangedEventHandler Changed;
 
         #endregion
 
@@ -60,7 +60,7 @@ namespace LemonUI.Phone
                 }
 
                 name = value;
-                Changed?.Invoke(this, EventArgs.Empty);
+                OnChanged(PhoneInfoChanged.Name);
             }
         }
         /// <summary>
@@ -77,7 +77,7 @@ namespace LemonUI.Phone
                 }
 
                 pictureDictionary = value;
-                Changed?.Invoke(this, EventArgs.Empty);
+                OnChanged(PhoneInfoChanged.Picture);
             }
         }
         /// <summary>
@@ -94,9 +94,15 @@ namespace LemonUI.Phone
                 }
 
                 pictureTexture = value;
-                Changed?.Invoke(this, EventArgs.Empty);
+                OnChanged(PhoneInfoChanged.Picture);
             }
         }
+
+        #endregion
+
+        #region Functions
+
+        private void OnChanged(PhoneInfoChanged info) => Changed?.Invoke(this, new PhoneContactChangedEventArgs(this, info));
 
         #endregion
     }
