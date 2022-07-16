@@ -29,6 +29,10 @@ namespace LemonUI.Phone
         /// Event triggered when the call finishes naturally, without player input.
         /// </summary>
         public event EventHandler Finished;
+        /// <summary>
+        /// Event triggered when the picture or name of the contact changes.
+        /// </summary>
+        public event EventHandler Changed;
 
         #endregion
     }
