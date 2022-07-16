@@ -1,4 +1,5 @@
 #if SHVDN3
+using GTA;
 using System.Collections.Generic;
 
 namespace LemonUI.Phone
@@ -6,7 +7,7 @@ namespace LemonUI.Phone
     /// <summary>
     /// Class used to manage the phone.
     /// </summary>
-    public static class Phone
+    public class Phone : Script
     {
         #region Fields
 
