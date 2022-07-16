@@ -15,8 +15,20 @@ namespace LemonUI.Phone
 
         #endregion
 
+        #region Constructors
+
+        public Phone()
+        {
+            Tick += (sender, e) => Process();
+        }
+
+        #endregion
+
         #region Functions
 
+        private static void Process()
+        {
+        }
         /// <summary>
         /// Adds a new contact to the phone.
         /// </summary>
