@@ -14,6 +14,51 @@ namespace LemonUI.Scaleform
         /// The type of phone.
         /// </summary>
         public PhoneType Type { get; }
+        /// <summary>
+        /// The currently selected index.
+        /// </summary>
+        public int Index
+        {
+            get
+            {
+                int value = CallFunctionReturn("GET_CURRENT_SELECTION");
+
+                while (!IsValueReady(value))
+                {
+                    Script.Yield();
+                }
+
+                return GetValue<int>(value);
+            }
+        }
+        /// <summary>
+        /// The total amount of contacts.
+        /// </summary>
+        /// <remarks>
+        /// This will set the contact position to the first element.
+        /// </remarks>
+        public int Total
+        {
+            get
+            {
+                while (Index != 0)
+                {
+                    Controls.DisableThisFrame(Control.PhoneUp);
+                    Controls.DisableThisFrame(Control.PhoneDown);
+                    Controls.DisableThisFrame(Control.PhoneLeft);
+                    Controls.DisableThisFrame(Control.PhoneRight);
+                    Controls.DisableThisFrame(Control.PhoneSelect);
+                    Controls.DisableThisFrame(Control.PhoneCancel);
+                    Controls.DisableThisFrame(Control.PhoneOption);
+                    CallFunction("SET_INPUT_EVENT", 3);
+                }
+
+                CallFunction("SET_INPUT_EVENT", 1);
+                int last = Index;
+                CallFunction("SET_INPUT_EVENT", 3);
+                return last + 1;
+            }
+        }
 
         #endregion
         
