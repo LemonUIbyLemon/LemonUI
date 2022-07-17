@@ -1,4 +1,7 @@
-﻿namespace LemonUI.Scaleform
+﻿#if SHVDN3
+using GTA;
+
+namespace LemonUI.Scaleform
 {
     /// <summary>
     /// Class used to manage the phone scaleform.
@@ -58,3 +61,4 @@
         #endregion
     }
 }
+#endif
