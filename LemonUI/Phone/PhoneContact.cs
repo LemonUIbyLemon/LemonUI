@@ -41,7 +41,7 @@ namespace LemonUI.Phone
         /// <summary>
         /// The icon of the contact.
         /// </summary>
-        public string Icon { get; set; } = string.Empty;
+        public string Icon { get; set; } = "CHAR_DEFAULT";
 
         #endregion
 
