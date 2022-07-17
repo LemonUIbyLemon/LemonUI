@@ -38,16 +38,10 @@ namespace LemonUI.Phone
         /// The name of the contact.
         /// </summary>
         public string Name { get; set; }
-
         /// <summary>
-        /// The dictionary where the contact picture is located.
+        /// The icon of the contact.
         /// </summary>
-        public string PictureDictionary { get; set; }
-
-        /// <summary>
-        /// The texture inside of the dictionary used for the contact picture.
-        /// </summary>
-        public string PictureTexture { get; set; }
+        public string Icon { get; set; } = string.Empty;
 
         #endregion
 
