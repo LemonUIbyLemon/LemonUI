@@ -15,6 +15,7 @@ namespace LemonUI.Phone
         #region Fields
 
         private static readonly List<PhoneContact> contacts = new List<PhoneContact>();
+        private static int total = -1;
         private static Scaleform.Phone badger = new Scaleform.Phone(PhoneType.Badger);
         private static Scaleform.Phone facade = new Scaleform.Phone(PhoneType.Facade);
         private static Scaleform.Phone ifruit = new Scaleform.Phone(PhoneType.IFruit);
@@ -60,15 +61,29 @@ namespace LemonUI.Phone
         {
             Scaleform.Phone currentPhone = CurrentPhone;
 
-            if (AreContactsOpen && Game.IsControlJustPressed(Control.PhoneSelect))
+            if (AreContactsOpen)
             {
-                Function.Call(Hash.TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME, "appcontacts");
-            }
+                if (total == -1)
+                {
+                    total = currentPhone.Total;
+                }
 
-            for (int i = 0; i < contacts.Count; i++)
+                int index = currentPhone.Index;
+
+                if (Game.IsControlJustPressed(Control.PhoneSelect) && index >= total)
+                {
+                    Function.Call(Hash.TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME, "appcontacts");
+                }
+
+                for (int i = 0; i < contacts.Count; i++)
+                {
+                    PhoneContact contact = contacts[i];
+                    currentPhone.AddContactAt(total + i, contact.Name, contact.Icon);
+                }
+            }
+            else
             {
-                PhoneContact contact = contacts[i];
-                currentPhone.AddContactAt(40 + i, contact.Name, contact.Icon);
+                total = -1;
             }
         }
         /// <summary>
