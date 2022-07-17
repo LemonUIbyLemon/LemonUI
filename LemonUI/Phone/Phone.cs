@@ -7,7 +7,7 @@ namespace LemonUI.Phone
     /// <summary>
     /// Class used to manage the phone.
     /// </summary>
-    public class Phone : Script
+    public class PhoneManager : Script
     {
         #region Fields
 
@@ -17,7 +17,7 @@ namespace LemonUI.Phone
 
         #region Constructors
 
-        public Phone()
+        public PhoneManager()
         {
             Tick += (sender, e) => Process();
         }
