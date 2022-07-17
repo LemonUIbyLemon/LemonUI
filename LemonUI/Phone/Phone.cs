@@ -82,7 +82,6 @@ namespace LemonUI.Phone
                 return;
             }
 
-            contact.Changed += HandleChanges;
             contacts.Add(contact);
         }
         /// <summary>
@@ -90,16 +89,7 @@ namespace LemonUI.Phone
         /// </summary>
         /// <param name="contact">The contact to remove.</param>
         /// <returns><see langword="true"/> if the contact was removed, <see langword="false"/> otherwise.</returns>
-        public static bool Remove(PhoneContact contact)
-        {
-            if (!contacts.Contains(contact))
-            {
-                return false;
-            }
-
-            contact.Changed -= HandleChanges;
-            return contacts.Remove(contact);
-        }
+        public static bool Remove(PhoneContact contact) => contacts.Remove(contact);
 
         #endregion
     }
