@@ -1,5 +1,6 @@
 #if SHVDN3
 using GTA;
+using GTA.Native;
 using System.Collections.Generic;
 
 namespace LemonUI.Phone
@@ -12,6 +13,15 @@ namespace LemonUI.Phone
         #region Fields
 
         private static readonly List<PhoneContact> contacts = new List<PhoneContact>();
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// If the phone's contact are open on the screen.
+        /// </summary>
+        public static bool AreContactsOpen => Function.Call<bool>(Hash._GET_NUMBER_OF_REFERENCES_OF_SCRIPT_WITH_NAME_HASH, Game.GenerateHash("appcontacts"));
 
         #endregion
 
