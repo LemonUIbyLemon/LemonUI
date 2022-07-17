@@ -1,6 +1,7 @@
 #if SHVDN3
 using GTA;
 using GTA.Native;
+using System;
 using System.Collections.Generic;
 using LemonUI.Scaleform;
 
@@ -33,18 +34,27 @@ namespace LemonUI.Phone
 
         public PhoneManager()
         {
-            Tick += (sender, e) => Process();
+            Tick += Process;
         }
 
         #endregion
 
         #region Functions
 
-        private static void Process()
+        private static void Process(object sender, EventArgs e)
         {
-        }
-        private static void HandleChanges(object sender, PhoneContactChangedEventArgs e)
-        {
+            Scaleform.Phone currentPhone = CurrentPhone;
+
+            if (AreContactsOpen && Game.IsControlJustPressed(Control.PhoneSelect))
+            {
+                Function.Call(Hash.TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME, "appcontacts");
+            }
+
+            for (int i = 0; i < contacts.Count; i++)
+            {
+                PhoneContact contact = contacts[i];
+                currentPhone.AddContactAt(40 + i, contact.Name, contact.Icon);
+            }
         }
         /// <summary>
         /// Adds a new contact to the phone.
