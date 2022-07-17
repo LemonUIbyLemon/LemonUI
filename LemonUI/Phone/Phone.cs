@@ -2,6 +2,7 @@
 using GTA;
 using GTA.Native;
 using System.Collections.Generic;
+using LemonUI.Scaleform;
 
 namespace LemonUI.Phone
 {
@@ -13,6 +14,9 @@ namespace LemonUI.Phone
         #region Fields
 
         private static readonly List<PhoneContact> contacts = new List<PhoneContact>();
+        private static Scaleform.Phone badger = new Scaleform.Phone(PhoneType.Badger);
+        private static Scaleform.Phone facade = new Scaleform.Phone(PhoneType.Facade);
+        private static Scaleform.Phone ifruit = new Scaleform.Phone(PhoneType.IFruit);
 
         #endregion
 
