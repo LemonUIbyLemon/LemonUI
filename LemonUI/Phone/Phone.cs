@@ -23,6 +23,21 @@ namespace LemonUI.Phone
 
         #region Properties
 
+        private static Scaleform.Phone CurrentPhone
+        {
+            get
+            {
+                switch (Game.Player.Character.Model.NativeValue)
+                {
+                    case (uint)PedHash.Franklin:
+                        return badger;
+                    case (uint)PedHash.Trevor:
+                        return facade;
+                    default:
+                        return ifruit;
+                }
+            }
+        }
         /// <summary>
         /// If the phone's contact are open on the screen.
         /// </summary>
