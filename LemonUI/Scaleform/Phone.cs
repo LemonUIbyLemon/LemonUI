@@ -44,6 +44,16 @@
         public override void Update()
         {
         }
+        /// <summary>
+        /// Adds a contact at the specified location.
+        /// </summary>
+        /// <param name="position">The position to add the contact at.</param>
+        /// <param name="name">The name of the contact.</param>
+        /// <param name="icon">The icon to use.</param>
+        public void AddContactAt(int position, string name, string icon)
+        {
+            CallFunction("SET_DATA_SLOT", 2, position, 0, name, string.Empty, icon);
+        }
 
         #endregion
     }
