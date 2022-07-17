@@ -8,14 +8,6 @@ namespace LemonUI.Phone
     /// </summary>
     public class PhoneContact
     {
-        #region Fields
-
-        private string name = string.Empty;
-        private string pictureDictionary = string.Empty;
-        private string pictureTexture = string.Empty;
-
-        #endregion
-
         #region Events
 
         /// <summary>
@@ -37,10 +29,6 @@ namespace LemonUI.Phone
         /// Event triggered when the call finishes naturally, without player input.
         /// </summary>
         public event EventHandler Finished;
-        /// <summary>
-        /// Event triggered when the picture or name of the contact changes.
-        /// </summary>
-        public event PhoneContactChangedEventHandler Changed;
 
         #endregion
 
@@ -49,60 +37,30 @@ namespace LemonUI.Phone
         /// <summary>
         /// The name of the contact.
         /// </summary>
-        public string Name
-        {
-            get => name;
-            set
-            {
-                if (name == value)
-                {
-                    return;
-                }
+        public string Name { get; set; }
 
-                name = value;
-                OnChanged(PhoneInfoChanged.Name);
-            }
-        }
         /// <summary>
         /// The dictionary where the contact picture is located.
         /// </summary>
-        public string PictureDictionary
-        {
-            get => pictureDictionary;
-            set
-            {
-                if (pictureDictionary == value)
-                {
-                    return;
-                }
+        public string PictureDictionary { get; set; }
 
-                pictureDictionary = value;
-                OnChanged(PhoneInfoChanged.Picture);
-            }
-        }
         /// <summary>
         /// The texture inside of the dictionary used for the contact picture.
         /// </summary>
-        public string PictureTexture
-        {
-            get => pictureTexture;
-            set
-            {
-                if (pictureTexture == value)
-                {
-                    return;
-                }
-
-                pictureTexture = value;
-                OnChanged(PhoneInfoChanged.Picture);
-            }
-        }
+        public string PictureTexture { get; set; }
 
         #endregion
 
-        #region Functions
+        #region Constructors
 
-        private void OnChanged(PhoneInfoChanged info) => Changed?.Invoke(this, new PhoneContactChangedEventArgs(this, info));
+        /// <summary>
+        /// Creates a new contact.
+        /// </summary>
+        /// <param name="name">The name of the contact.</param>
+        public PhoneContact(string name)
+        {
+            Name = name;
+        }
 
         #endregion
     }
