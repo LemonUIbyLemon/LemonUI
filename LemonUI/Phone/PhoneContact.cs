@@ -126,12 +126,15 @@ namespace LemonUI.Phone
             {
                 case CallBehavior.Busy:
                     busySound.PlayFrontend(false);
+
                     while (!Game.IsControlPressed(Control.PhoneCancel))
                     {
                         phone.ShowCalling(Name, busy, Icon);
                         Script.Yield();
                     }
+
                     busySound.Stop();
+                    Game.Player.Character.Task.PutAwayMobilePhone();
                     break;
                 case CallBehavior.Available:
                     phone.ShowCalling(Name, connected, Icon);
