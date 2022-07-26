@@ -1,6 +1,7 @@
 ﻿#if SHVDN3
 using GTA;
 using System;
+using GTA.Native;
 
 namespace LemonUI.Phone
 {
@@ -62,6 +63,25 @@ namespace LemonUI.Phone
         public PhoneContact(string name)
         {
             Name = name;
+        }
+
+        #endregion
+
+        #region Tools
+
+        private static void RestoreContactsScript()
+        {
+            if (PhoneManager.AreContactsOpen)
+            {
+                return;
+            }
+
+            while (!Function.Call<bool>(Hash.HAS_SCRIPT_LOADED, "appContacts"))
+            {
+                Function.Call(Hash.REQUEST_SCRIPT, "appContacts");
+            }
+
+            Function.Call(Hash.START_NEW_SCRIPT, "appContacts", 4000);
         }
 
         #endregion
