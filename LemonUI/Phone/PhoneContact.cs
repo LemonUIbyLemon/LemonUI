@@ -88,7 +88,6 @@ namespace LemonUI.Phone
 
                 if (Game.IsControlJustPressed(Control.PhoneCancel))
                 {
-                    phone.ShowPage(2);
                     callingSound.Stop();
                     return;
                 }
