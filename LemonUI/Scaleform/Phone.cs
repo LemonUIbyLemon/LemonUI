@@ -93,6 +93,11 @@ namespace LemonUI.Scaleform
         {
         }
         /// <summary>
+        /// Shows a specific page on the phone.
+        /// </summary>
+        /// <param name="page">The page ID to show.</param>
+        public void ShowPage(int page) => CallFunction("DISPLAY_VIEW", page, 0);
+        /// <summary>
         /// Adds a contact at the specified location.
         /// </summary>
         /// <param name="position">The position to add the contact at.</param>
@@ -101,6 +106,17 @@ namespace LemonUI.Scaleform
         public void AddContactAt(int position, string name, string icon)
         {
             CallFunction("SET_DATA_SLOT", 2, position, 0, name, string.Empty, icon);
+        }
+        /// <summary>
+        /// Shows the calling screen.
+        /// </summary>
+        /// <param name="name">The name of the contact.</param>
+        /// <param name="dialingLabel">The label used to dial up.</param>
+        /// <param name="icon">The icon to use.</param>
+        public void ShowCalling(string name, string dialingLabel, string icon)
+        {
+            CallFunction("SET_DATA_SLOT", 4, 0, 3, name, icon, Game.GetLocalizedString(dialingLabel));
+            CallFunction("DISPLAY_VIEW", 4);
         }
 
         #endregion
