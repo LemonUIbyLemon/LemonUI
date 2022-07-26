@@ -18,6 +18,8 @@ namespace LemonUI
     /// </summary>
     public class Sound
     {
+        #region Properties
+
         /// <summary>
         /// The ID of the sound, if is being played.
         /// </summary>
@@ -31,6 +33,10 @@ namespace LemonUI
         /// </summary>
         public string File { get; set; }
 
+        #endregion
+
+        #region Constructors
+
         /// <summary>
         /// Creates a new <see cref="Sound"/> class with the specified Sound Set and File.
         /// </summary>
@@ -41,6 +47,10 @@ namespace LemonUI
             Set = set;
             File = file;
         }
+
+        #endregion
+        
+        #region Functions
 
         /// <summary>
         /// Plays the sound for the local <see cref="Player"/>.
@@ -113,5 +123,7 @@ namespace LemonUI
 #endif
             Id = -1;
         }
+
+        #endregion
     }
 }
