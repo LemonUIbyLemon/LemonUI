@@ -43,6 +43,10 @@ namespace LemonUI.Phone
         /// If the phone's contact are open on the screen.
         /// </summary>
         public static bool AreContactsOpen => Function.Call<bool>(Hash._GET_NUMBER_OF_REFERENCES_OF_SCRIPT_WITH_NAME_HASH, Game.GenerateHash("appcontacts"));
+        /// <summary>
+        /// The contact currently being called.
+        /// </summary>
+        public static PhoneContact Current { get; private set; }
 
         #endregion
 
@@ -51,6 +55,8 @@ namespace LemonUI.Phone
         public PhoneManager()
         {
             Tick += Process;
+            Add(new PhoneContact("One"));
+            Add(new PhoneContact("Two"));
         }
 
         #endregion
@@ -70,9 +76,12 @@ namespace LemonUI.Phone
 
                 int index = currentPhone.Index;
 
-                if (Game.IsControlJustPressed(Control.PhoneSelect) && index >= total)
+                if (Game.IsControlPressed(Control.PhoneSelect) && index >= total)
                 {
                     Function.Call(Hash.TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME, "appcontacts");
+                    Current = contacts[index - total];
+                    Current.Call(currentPhone);
+                    return;
                 }
 
                 for (int i = 0; i < contacts.Count; i++)
