@@ -18,6 +18,12 @@ namespace LemonUI
     /// </summary>
     public class Sound
     {
+        #region Properties
+
+        /// <summary>
+        /// The ID of the sound, if is being played.
+        /// </summary>
+        public int Id { get; private set; } = -1;
         /// <summary>
         /// The Set where the sound is located.
         /// </summary>
@@ -26,6 +32,10 @@ namespace LemonUI
         /// The name of the sound file.
         /// </summary>
         public string File { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// Creates a new <see cref="Sound"/> class with the specified Sound Set and File.
@@ -38,28 +48,82 @@ namespace LemonUI
             File = file;
         }
 
+        #endregion
+        
+        #region Functions
+
         /// <summary>
         /// Plays the sound for the local <see cref="Player"/>.
         /// </summary>
-        public void PlayFrontend()
+        public void PlayFrontend() => PlayFrontend(true);
+        /// <summary>
+        /// Plays the sound for the local <see cref="Player"/>.
+        /// </summary>
+        /// <param name="release">If the sound ID should be automatically released.</param>
+        public void PlayFrontend(bool release)
         {
 #if FIVEM
-            API.PlaySoundFrontend(-1, File, Set, false);
-            int id = API.GetSoundId();
-            API.ReleaseSoundId(id);
+            Id = API.GetSoundId();
+            API.PlaySoundFrontend(Id, File, Set, true);
 #elif RAGEMP
-            Invoker.Invoke(Natives.PlaySoundFrontend, -1, File, Set, false);
-            int id = Invoker.Invoke<int>(Natives.GetSoundId);
-            Invoker.Invoke(Natives.ReleaseSoundId, id);
+            Id = Invoker.Invoke<int>(Natives.GetSoundId);
+            Invoker.Invoke(Natives.PlaySoundFrontend, Id, File, Set, true);
 #elif RPH
-            NativeFunction.CallByHash<int>(0x67C540AA08E4A6F5, -1, File, Set, false);
-            int id = NativeFunction.CallByHash<int>(0x430386FE9BF80B45);
-            NativeFunction.CallByHash<int>(0x353FC880830B88FA, id);
+            Id = NativeFunction.CallByHash<int>(0x430386FE9BF80B45);
+            NativeFunction.CallByHash<int>(0x67C540AA08E4A6F5, Id, File, Set, true);
 #elif SHVDN3
-            Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, File, Set, false);
-            int id = Function.Call<int>(Hash.GET_SOUND_ID);
-            Function.Call(Hash.RELEASE_SOUND_ID, id);
+            Id = Function.Call<int>(Hash.GET_SOUND_ID);
+            Function.Call(Hash.PLAY_SOUND_FRONTEND, Id, File, Set, true);
 #endif
+
+            if (release)
+            {
+                Release();
+            }
         }
+        /// <summary>
+        /// Stops the audio from playing.
+        /// </summary>
+        public void Stop()
+        {
+            if (Id == -1)
+            {
+                return;
+            }
+
+#if FIVEM
+            API.StopSound(Id);
+#elif RAGEMP
+            Invoker.Invoke(Natives.StopSound, Id);
+#elif RPH
+            NativeFunction.CallByHash<int>(0xA3B0C41BA5CC0BB5, Id);
+#elif SHVDN3
+            Function.Call(Hash.STOP_SOUND, Id);
+#endif
+            Release();
+        }
+        /// <summary>
+        /// Releases the Sound ID.
+        /// </summary>
+        public void Release()
+        {
+            if (Id == -1)
+            {
+                return;
+            }
+
+#if FIVEM
+            API.ReleaseSoundId(Id);
+#elif RAGEMP
+            Invoker.Invoke(Natives.ReleaseSoundId, Id);
+#elif RPH
+            NativeFunction.CallByHash<int>(0x353FC880830B88FA, Id);
+#elif SHVDN3
+            Function.Call(Hash.RELEASE_SOUND_ID, Id);
+#endif
+            Id = -1;
+        }
+
+        #endregion
     }
 }
