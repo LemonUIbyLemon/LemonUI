@@ -69,19 +69,19 @@ namespace LemonUI.Phone
 
         #region Tools
 
-        private static void RestoreContactsScript()
+        private static void RestoreScript(string script, int stack)
         {
-            if (PhoneManager.AreContactsOpen)
+            if (Function.Call<bool>(Hash._GET_NUMBER_OF_REFERENCES_OF_SCRIPT_WITH_NAME_HASH, Game.GenerateHash("appcontacts") > 0))
             {
                 return;
             }
 
-            while (!Function.Call<bool>(Hash.HAS_SCRIPT_LOADED, "appContacts"))
+            while (!Function.Call<bool>(Hash.HAS_SCRIPT_LOADED, script))
             {
-                Function.Call(Hash.REQUEST_SCRIPT, "appContacts");
+                Function.Call(Hash.REQUEST_SCRIPT, script);
             }
 
-            Function.Call(Hash.START_NEW_SCRIPT, "appContacts", 4000);
+            Function.Call(Hash.START_NEW_SCRIPT, script, stack);
         }
 
         #endregion
@@ -136,7 +136,7 @@ namespace LemonUI.Phone
                     busySound.Stop();
                     Game.Player.Character.Task.PutAwayMobilePhone();
                     phone.ShowPage(2);
-                    RestoreContactsScript();
+                    RestoreScript("appContacts", 4000);
                     break;
                 case CallBehavior.Available:
                     phone.ShowCalling(Name, connected, Icon);
