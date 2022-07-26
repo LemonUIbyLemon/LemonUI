@@ -131,15 +131,24 @@ namespace LemonUI.Phone
                     }
 
                     busySound.Stop();
-                    Game.Player.Character.Task.PutAwayMobilePhone();
                     phone.ShowPage(2);
                     RestoreScript("appContacts", 4000);
                     break;
                 case CallBehavior.Available:
                     phone.ShowCalling(Name, connected, Icon);
+
                     Connected?.Invoke(phone, new ConnectedEventArgs(this));
+                    Finished?.Invoke(phone, EventArgs.Empty);
+
+                    hideSound.PlayFrontend(true);
+                    Function.Call(Hash.TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME, "cellphone_flashhand");
+                    Function.Call(Hash.TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME, "cellphone_controller");
+                    RestoreScript("cellphone_flashhand", 1424);
+                    RestoreScript("cellphone_controller", 1424);
                     break;
             }
+
+            Game.Player.Character.Task.PutAwayMobilePhone();
         }
 
         #endregion
