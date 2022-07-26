@@ -74,6 +74,10 @@ namespace LemonUI.Phone
             const string busy = "CELL_220";
             const string connected = "CELL_219";
 
+            phone.SetButtonIcon(1, 1);
+            phone.SetButtonIcon(2, 1);
+            phone.SetButtonIcon(3, 6);
+
             callingSound.PlayFrontend(false);
             phone.ShowCalling(Name, dialing, Icon);
 
