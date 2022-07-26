@@ -72,6 +72,27 @@ namespace LemonUI
             }
         }
         /// <summary>
+        /// Stops the audio from playing.
+        /// </summary>
+        public void Stop()
+        {
+            if (Id == -1)
+            {
+                return;
+            }
+
+#if FIVEM
+            API.StopSound(Id);
+#elif RAGEMP
+            Invoker.Invoke(Natives.StopSound, Id);
+#elif RPH
+            NativeFunction.CallByHash<int>(0xA3B0C41BA5CC0BB5, Id);
+#elif SHVDN3
+            Function.Call(Hash.STOP_SOUND, Id);
+#endif
+            Release();
+        }
+        /// <summary>
         /// Releases the Sound ID.
         /// </summary>
         public void Release()
