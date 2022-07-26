@@ -93,6 +93,12 @@ namespace LemonUI.Scaleform
         {
         }
         /// <summary>
+        /// Sets the icon of a button.
+        /// </summary>
+        /// <param name="button">The button to change.</param>
+        /// <param name="icon">The icon to set.</param>
+        public void SetButtonIcon(int button, int icon) => CallFunction("SET_SOFT_KEYS", button, true, icon);
+        /// <summary>
         /// Shows a specific page on the phone.
         /// </summary>
         /// <param name="page">The page ID to show.</param>
