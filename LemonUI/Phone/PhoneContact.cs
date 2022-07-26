@@ -135,6 +135,8 @@ namespace LemonUI.Phone
 
                     busySound.Stop();
                     Game.Player.Character.Task.PutAwayMobilePhone();
+                    phone.ShowPage(2);
+                    RestoreContactsScript();
                     break;
                 case CallBehavior.Available:
                     phone.ShowCalling(Name, connected, Icon);
