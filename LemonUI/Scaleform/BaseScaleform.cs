@@ -1,10 +1,13 @@
 #if FIVEM
+using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using System.Threading.Tasks;
 #elif RAGEMP
 using RAGE.Game;
 #elif RPH
 using Rage.Native;
 #elif SHVDN3
+using GTA;
 using GTA.Native;
 #endif
 using System;
@@ -270,6 +273,34 @@ namespace LemonUI.Scaleform
             Function.Call((Hash)0xC6796A8FFA375E53);
 #endif
         }
+#if FIVEM || SHVDN3
+        /// <summary>
+        /// Calls a scaleform function and gets it's return value as soon as is available. 
+        /// </summary>
+        /// <param name="function">The function to call.</param>
+        /// <param name="parameters">The parameters to call the function with.</param>
+        /// <typeparam name="T">The type of return parameter.</typeparam>
+        /// <returns>The value returned by the function.</returns>
+        #if FIVEM
+        public async Task<T> CallFunction<T>(string function, params object[] parameters)
+        #else
+        public T CallFunction<T>(string function, params object[] parameters)
+        #endif
+        {
+            int id = CallFunctionReturn(function, parameters);
+
+            while (!IsValueReady(id))
+            {
+                #if FIVEM
+                await BaseScript.Delay(0);
+                #elif SHVDN3
+                Script.Yield();
+                #endif
+            }
+
+            return GetValue<T>(id);
+        }
+#endif
         /// <summary>
         /// Calls a Scaleform function with a return value.
         /// </summary>
