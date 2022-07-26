@@ -32,10 +32,6 @@ namespace LemonUI.Phone
         /// </remarks>
         public event ConnectedEventHandler Connected;
         /// <summary>
-        /// Event triggered when the call is hung up by the player.
-        /// </summary>
-        public event EventHandler Cancelled;
-        /// <summary>
         /// Event triggered when the call finishes naturally, without player input.
         /// </summary>
         public event EventHandler Finished;
