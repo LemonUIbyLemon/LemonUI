@@ -29,7 +29,7 @@ namespace LemonUI.Phone
         /// <remarks>
         /// This event will trigger both, when the player calls the contact and when the contact calls the player.
         /// </remarks>
-        public event EventHandler Answered;
+        public event ConnectedEventHandler Connected;
         /// <summary>
         /// Event triggered when the call is hung up by the player.
         /// </summary>
@@ -140,7 +140,7 @@ namespace LemonUI.Phone
                     break;
                 case CallBehavior.Available:
                     phone.ShowCalling(Name, connected, Icon);
-                    Answered?.Invoke(phone, EventArgs.Empty);
+                    Connected?.Invoke(phone, new ConnectedEventArgs(this));
                     break;
             }
         }
