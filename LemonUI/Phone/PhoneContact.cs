@@ -101,6 +101,7 @@ namespace LemonUI.Phone
             callingSound.PlayFrontend(false);
             phone.ShowCalling(Name, dialing, Icon);
 
+            Game.Player.Character.Task.UseMobilePhone();
             CalledEventArgs called = new CalledEventArgs(this);
             Called?.Invoke(phone, called);
 
