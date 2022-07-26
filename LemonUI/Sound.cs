@@ -45,7 +45,12 @@ namespace LemonUI
         /// <summary>
         /// Plays the sound for the local <see cref="Player"/>.
         /// </summary>
-        public void PlayFrontend()
+        public void PlayFrontend() => PlayFrontend(true);
+        /// <summary>
+        /// Plays the sound for the local <see cref="Player"/>.
+        /// </summary>
+        /// <param name="release">If the sound ID should be automatically released.</param>
+        public void PlayFrontend(bool release)
         {
 #if FIVEM
             Id = API.GetSoundId();
@@ -60,7 +65,11 @@ namespace LemonUI
             Id = Function.Call<int>(Hash.GET_SOUND_ID);
             Function.Call(Hash.PLAY_SOUND_FRONTEND, Id, File, Set, true);
 #endif
-            Release();
+
+            if (release)
+            {
+                Release();
+            }
         }
         /// <summary>
         /// Releases the Sound ID.
