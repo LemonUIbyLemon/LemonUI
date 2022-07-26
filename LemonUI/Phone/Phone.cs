@@ -55,8 +55,6 @@ namespace LemonUI.Phone
         public PhoneManager()
         {
             Tick += Process;
-            Add(new PhoneContact("One"));
-            Add(new PhoneContact("Two"));
         }
 
         #endregion
