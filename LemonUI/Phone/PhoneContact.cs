@@ -14,6 +14,7 @@ namespace LemonUI.Phone
 
         private static readonly Sound busySound = new Sound("Phone_SoundSet_Default", "Remote_Engaged");
         private static readonly Sound callingSound = new Sound("Phone_SoundSet_Default", "Dial_and_Remote_Ring");
+        private static readonly Sound hideSound = new Sound("Phone_SoundSet_Michael", "Put_Away");
 
         #endregion
 
