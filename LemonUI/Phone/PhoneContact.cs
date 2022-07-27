@@ -14,7 +14,6 @@ namespace LemonUI.Phone
 
         private static readonly Sound busySound = new Sound("Phone_SoundSet_Default", "Remote_Engaged");
         private static readonly Sound callingSound = new Sound("Phone_SoundSet_Default", "Dial_and_Remote_Ring");
-        private static readonly Sound hideSound = new Sound("Phone_SoundSet_Michael", "Put_Away");
 
         #endregion
 
@@ -140,7 +139,6 @@ namespace LemonUI.Phone
                     Connected?.Invoke(phone, new ConnectedEventArgs(this));
                     Finished?.Invoke(phone, EventArgs.Empty);
 
-                    hideSound.PlayFrontend(true);
                     Function.Call(Hash.TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME, "cellphone_flashhand");
                     Function.Call(Hash.TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME, "cellphone_controller");
                     RestoreScript("cellphone_flashhand", 1424);
