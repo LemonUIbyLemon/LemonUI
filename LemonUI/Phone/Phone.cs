@@ -28,11 +28,13 @@ namespace LemonUI.Phone
         {
             get
             {
-                switch (Game.Player.Character.Model.NativeValue)
+                switch ((uint)Game.Player.Character.Model.Hash)
                 {
-                    case (uint)PedHash.Franklin:
+                    case 0x9B22DBAF: // Franklin
                         return badger;
-                    case (uint)PedHash.Trevor:
+                    case 0x0D7114C9: // Michael
+                        return ifruit;
+                    case 0x9B810FA2: // Trevor
                         return facade;
                     default:
                         return ifruit;
