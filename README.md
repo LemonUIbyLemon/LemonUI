@@ -1,4 +1,5 @@
 # LemonUI<br>[![GitHub Actions][actions-img]][actions-url] [![NuGet][nuget-img-2]][nuget-url-2] [![NuGet][nuget-img-3]][nuget-url-3] [![NuGet][nuget-img-f]][nuget-url-f] [![NuGet][nuget-img-r]][nuget-url-r] [![Patreon][patreon-img]][patreon-url] [![PayPal][paypal-img]][paypal-url] [![Discord][discord-img]][discord-url]
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FLemonUIbyLemon%2FLemonUI.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FLemonUIbyLemon%2FLemonUI?ref=badge_shield)
 
 LemonUI is a framework for creating UI systems in Grand Theft Auto V that is compatible with FiveM, RageMP, RagePluginHook ScriptHookVDotNet 2 and ScriptHookVDotNet 3. It allows you to create UI Elements with a NativeUI-like style, or you can also create your own UI System from scratch via the resolution-independant classes for Text, Rectangles and Textures.
 
@@ -63,3 +64,7 @@ If you are a developer, check the [wiki](https://github.com/justalemon/LemonUI/w
 [paypal-url]: https://paypal.me/justalemon
 [discord-img]: https://img.shields.io/badge/discord-join-7289DA.svg
 [discord-url]: https://discord.gg/Cf6sspj
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FLemonUIbyLemon%2FLemonUI.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FLemonUIbyLemon%2FLemonUI?ref=badge_large)
