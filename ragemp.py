@@ -10,7 +10,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-HEADER = "// LemonUI for RageMP\n// Generated on {date}{comment}\n\n{statements}\n\n#define RAGEMP{code}\n"
+HEADER = "// LemonUI for RageMP\n// Generated on {date}{comment}\n#define RAGEMP\n{statements}\n\n{code}\n"
 LOGGER = logging.getLogger("merger")
 
 RE_SPECIFIC_USINGS = re.compile("#e?l?if RAGEMP\n([a-zA-Z0-9; . =\n]*)\n(?:#elif|#endif)")

@@ -11,10 +11,15 @@ using Rage.Native;
 #elif SHVDN3
 using GTA.Native;
 using GTA.UI;
+#else
+
+using System.Collections.Concurrent;
+
 #endif
 using System;
-using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace LemonUI
 {
@@ -106,8 +111,11 @@ namespace LemonUI
         /// <summary>
         /// The list of processable objects.
         /// </summary>
+#if RAGEMP
+        private readonly List<IProcessable> objects = new List<IProcessable>();
+#else
         private readonly ConcurrentDictionary<int, IProcessable> objects = new ConcurrentDictionary<int, IProcessable>();
-
+#endif
         #endregion
 
         #region Public Properties
@@ -120,7 +128,11 @@ namespace LemonUI
             get
             {
                 // Iterate over the objects
+#if RAGEMP
+                foreach (IProcessable obj in objects)
+#else
                 foreach (IProcessable obj in objects.Values)
+#endif
                 {
                     // If is visible return true
                     if (obj.Visible)
@@ -221,13 +233,21 @@ namespace LemonUI
                 throw new ArgumentNullException(nameof(obj));
             }
 
+#if RAGEMP
+            if (objects.Contains(obj))
+#else
             int key = obj.GetHashCode();
             // Otherwise, add it to the general pool
-            if (objects.ContainsKey(key))
+            if (objects.ContainsKey(key))     
+#endif
             {
                 throw new InvalidOperationException("The object is already part of this pool.");
             }
+#if RAGEMP
+            objects.Add(obj);
+#else
             objects.TryAdd(key, obj);
+#endif
         }
         /// <summary>
         /// Removes the object from the pool.
@@ -235,7 +255,11 @@ namespace LemonUI
         /// <param name="obj">The object to remove.</param>
         public void Remove(IProcessable obj)
         {
+#if RAGEMP
+            objects.Remove(obj);
+#else
             objects.TryRemove(obj.GetHashCode(), out _);
+#endif
         }
         /// <summary>
         /// Performs the specified action on each element that matches T.
@@ -244,7 +268,11 @@ namespace LemonUI
         /// <param name="action">The action delegate to perform on each T.</param>
         public void ForEach<T>(Action<T> action)
         {
+#if RAGEMP
+            foreach (IProcessable obj in objects)
+#else
             foreach (IProcessable obj in objects.Values)
+#endif
             {
                 if (obj is T conv)
                 {
@@ -258,7 +286,11 @@ namespace LemonUI
         public void RefreshAll()
         {
             // Iterate over the objects and recalculate those possible
+#if RAGEMP
+            foreach (IProcessable obj in objects)
+#else
             foreach (IProcessable obj in objects.Values)
+#endif
             {
                 if (obj is IRecalculable recal)
                 {
@@ -271,7 +303,11 @@ namespace LemonUI
         /// </summary>
         public void HideAll()
         {
+#if RAGEMP
+            foreach (IProcessable obj in objects)
+#else
             foreach (IProcessable obj in objects.Values)
+#endif
             {
                 obj.Visible = false;
             }
@@ -286,12 +322,16 @@ namespace LemonUI
             DetectResolutionChanges();
             DetectSafezoneChanges();
             // And process the objects in the pool
+#if RAGEMP
+            foreach (IProcessable obj in objects)
+#else
             foreach (IProcessable obj in objects.Values)
+#endif
             {
                 obj.Process();
             }
         }
 
-        #endregion
+#endregion
     }
 }
