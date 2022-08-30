@@ -4,7 +4,7 @@
 // https://github.com/dotnet/runtime
 // Copyright (c) .NET Foundation and Contributors
 // Under the MIT License
-#if FIVEM
+#if FIVEM || RAGEMP
 using System;
 
 namespace LemonUI // Previously System.ComponentModel
