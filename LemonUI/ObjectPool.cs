@@ -2,18 +2,21 @@
 using CitizenFX.Core;
 using CitizenFX.Core.UI;
 using CitizenFX.Core.Native;
+using System.Collections.Concurrent;
 #elif RAGEMP
 using RAGE.Game;
 using RAGE.NUI;
 #elif RPH
 using Rage;
 using Rage.Native;
+using System.Collections.Concurrent;
 #elif SHVDN3
 using GTA.Native;
 using GTA.UI;
+using System.Collections.Concurrent;
 #endif
 using System;
-using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace LemonUI
@@ -106,7 +109,13 @@ namespace LemonUI
         /// <summary>
         /// The list of processable objects.
         /// </summary>
+        /// 
+
+#if !RAGEMP
         private readonly ConcurrentDictionary<int, IProcessable> objects = new ConcurrentDictionary<int, IProcessable>();
+#else
+        private List<IProcessable> objects = new List<IProcessable>();
+#endif
 
         #endregion
 
@@ -120,7 +129,11 @@ namespace LemonUI
             get
             {
                 // Iterate over the objects
+#if !RAGEMP
                 foreach (IProcessable obj in objects.Values)
+#else
+                foreach (IProcessable obj in objects)
+#endif
                 {
                     // If is visible return true
                     if (obj.Visible)
@@ -133,9 +146,9 @@ namespace LemonUI
             }
         }
 
-        #endregion
+#endregion
 
-        #region Events
+#region Events
 
         /// <summary>
         /// Event triggered when the game resolution is changed.
@@ -146,9 +159,9 @@ namespace LemonUI
         /// </summary>
         public event SafeZoneChangedEventHandler SafezoneChanged;
 
-        #endregion
+#endregion
 
-        #region Tools
+#region Tools
 
         /// <summary>
         /// Detects resolution changes by comparing the last known resolution and the current one.
@@ -205,9 +218,9 @@ namespace LemonUI
             }
         }
 
-        #endregion
+#endregion
 
-        #region Public Function
+#region Public Function
 
         /// <summary>
         /// Adds the object into the pool.
@@ -221,13 +234,21 @@ namespace LemonUI
                 throw new ArgumentNullException(nameof(obj));
             }
 
-            int key = obj.GetHashCode();
             // Otherwise, add it to the general pool
+#if !RAGEMP
+            int key = obj.GetHashCode();
             if (objects.ContainsKey(key))
             {
                 throw new InvalidOperationException("The object is already part of this pool.");
             }
             objects.TryAdd(key, obj);
+#else
+            if (objects.Contains(obj))
+            {
+                throw new InvalidOperationException("The object is already part of this pool.");
+            }
+            objects.Add(obj);
+#endif
         }
         /// <summary>
         /// Removes the object from the pool.
@@ -235,7 +256,11 @@ namespace LemonUI
         /// <param name="obj">The object to remove.</param>
         public void Remove(IProcessable obj)
         {
+#if !RAGEMP
             objects.TryRemove(obj.GetHashCode(), out _);
+#else
+            objects.Remove(obj);
+#endif
         }
         /// <summary>
         /// Performs the specified action on each element that matches T.
@@ -244,6 +269,7 @@ namespace LemonUI
         /// <param name="action">The action delegate to perform on each T.</param>
         public void ForEach<T>(Action<T> action)
         {
+#if !RAGEMP
             foreach (IProcessable obj in objects.Values)
             {
                 if (obj is T conv)
@@ -251,6 +277,15 @@ namespace LemonUI
                     action(conv);
                 }
             }
+#else
+            foreach (IProcessable obj in objects)
+            {
+                if (obj is T conv)
+                {
+                    action(conv);
+                }
+            }
+#endif
         }
         /// <summary>
         /// Refreshes all of the items.
@@ -258,6 +293,7 @@ namespace LemonUI
         public void RefreshAll()
         {
             // Iterate over the objects and recalculate those possible
+#if !RAGEMP
             foreach (IProcessable obj in objects.Values)
             {
                 if (obj is IRecalculable recal)
@@ -265,16 +301,32 @@ namespace LemonUI
                     recal.Recalculate();
                 }
             }
+#else
+            foreach (IProcessable obj in objects)
+            {
+                if (obj is IRecalculable recal)
+                {
+                    recal.Recalculate();
+                }
+            }
+#endif
         }
         /// <summary>
         /// Hides all of the objects.
         /// </summary>
         public void HideAll()
         {
+#if !RAGEMP
             foreach (IProcessable obj in objects.Values)
             {
                 obj.Visible = false;
             }
+#else
+            foreach (IProcessable obj in objects)
+            {
+                obj.Visible = false;
+            }
+#endif
         }
         /// <summary>
         /// Processes the objects and features in this pool.
@@ -286,12 +338,19 @@ namespace LemonUI
             DetectResolutionChanges();
             DetectSafezoneChanges();
             // And process the objects in the pool
+#if !RAGEMP
             foreach (IProcessable obj in objects.Values)
             {
                 obj.Process();
             }
+#else
+            foreach (IProcessable obj in objects)
+            {
+                obj.Process();
+            }
+#endif
         }
 
-        #endregion
+#endregion
     }
 }
