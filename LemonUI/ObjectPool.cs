@@ -10,11 +10,11 @@ using Rage;
 using Rage.Native;
 #elif SHVDN3
 using GTA.Native;
-using GTA.UI;
 #endif
 using System;
-using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace LemonUI
 {
@@ -106,7 +106,7 @@ namespace LemonUI
         /// <summary>
         /// The list of processable objects.
         /// </summary>
-        private readonly ConcurrentDictionary<int, IProcessable> objects = new ConcurrentDictionary<int, IProcessable>();
+        private readonly List<IProcessable> objects = new List<IProcessable>();
 
         #endregion
 
@@ -120,7 +120,7 @@ namespace LemonUI
             get
             {
                 // Iterate over the objects
-                foreach (IProcessable obj in objects.Values)
+                foreach (IProcessable obj in objects)
                 {
                     // If is visible return true
                     if (obj.Visible)
@@ -155,7 +155,6 @@ namespace LemonUI
         /// </summary>
         private void DetectResolutionChanges()
         {
-            // Get the current resolution
 #if FIVEM
             SizeF resolution = CitizenFX.Core.UI.Screen.Resolution;
 #elif RAGEMP
@@ -166,14 +165,11 @@ namespace LemonUI
 #elif SHVDN3
             SizeF resolution = GTA.UI.Screen.Resolution;
 #endif
-            // If the old res does not matches the current one
+
             if (lastKnownResolution != resolution)
             {
-                // Trigger the event
                 ResolutionChanged?.Invoke(this, new ResolutionChangedEventArgs(lastKnownResolution, resolution));
-                // Refresh everything
                 RefreshAll();
-                // And save the new resolution
                 lastKnownResolution = resolution;
             }
         }
@@ -193,14 +189,10 @@ namespace LemonUI
             float safezone = Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
 #endif
 
-            // If is not the same as the last one
             if (lastKnownSafezone != safezone)
             {
-                // Trigger the event
                 SafezoneChanged?.Invoke(this, new SafeZoneChangedEventArgs(lastKnownSafezone, safezone));
-                // Refresh everything
                 RefreshAll();
-                // And save the new safezone
                 lastKnownSafezone = safezone;
             }
         }
@@ -215,28 +207,22 @@ namespace LemonUI
         /// <param name="obj">The object to add.</param>
         public void Add(IProcessable obj)
         {
-            // Make sure that the object is not null
             if (obj == null)
             {
                 throw new ArgumentNullException(nameof(obj));
             }
 
-            int key = obj.GetHashCode();
-            // Otherwise, add it to the general pool
-            if (objects.ContainsKey(key))
+            if (objects.Contains(obj))
             {
                 throw new InvalidOperationException("The object is already part of this pool.");
             }
-            objects.TryAdd(key, obj);
+            objects.Add(obj);
         }
         /// <summary>
         /// Removes the object from the pool.
         /// </summary>
         /// <param name="obj">The object to remove.</param>
-        public void Remove(IProcessable obj)
-        {
-            objects.TryRemove(obj.GetHashCode(), out _);
-        }
+        public void Remove(IProcessable obj) => objects.Remove(obj);
         /// <summary>
         /// Performs the specified action on each element that matches T.
         /// </summary>
@@ -244,7 +230,7 @@ namespace LemonUI
         /// <param name="action">The action delegate to perform on each T.</param>
         public void ForEach<T>(Action<T> action)
         {
-            foreach (IProcessable obj in objects.Values)
+            foreach (IProcessable obj in new List<IProcessable>(objects))
             {
                 if (obj is T conv)
                 {
@@ -257,12 +243,11 @@ namespace LemonUI
         /// </summary>
         public void RefreshAll()
         {
-            // Iterate over the objects and recalculate those possible
-            foreach (IProcessable obj in objects.Values)
+            foreach (IProcessable obj in new List<IProcessable>(objects))
             {
-                if (obj is IRecalculable recal)
+                if (obj is IRecalculable recalculable)
                 {
-                    recal.Recalculate();
+                    recalculable.Recalculate();
                 }
             }
         }
@@ -271,7 +256,7 @@ namespace LemonUI
         /// </summary>
         public void HideAll()
         {
-            foreach (IProcessable obj in objects.Values)
+            foreach (IProcessable obj in new List<IProcessable>(objects))
             {
                 obj.Visible = false;
             }
@@ -282,11 +267,10 @@ namespace LemonUI
         /// </summary>
         public void Process()
         {
-            // See if there are resolution or safezone changes
             DetectResolutionChanges();
             DetectSafezoneChanges();
-            // And process the objects in the pool
-            foreach (IProcessable obj in objects.Values)
+
+            foreach (IProcessable obj in new List<IProcessable>(objects))
             {
                 obj.Process();
             }
