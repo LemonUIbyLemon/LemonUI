@@ -493,7 +493,7 @@ namespace LemonUI.Elements
 #if FIVEM
             API.DrawText(relativePosition.X, relativePosition.Y);
 #elif RAGEMP
-            Invoker.Invoke(Natives.DrawDebugText, relativePosition.X, relativePosition.Y);
+            Invoker.Invoke(Natives.EndTextCommandDisplayText, relativePosition.X, relativePosition.Y, 0);
 #elif RPH
             NativeFunction.CallByHash<int>(0xCD015E5BB0D96A57, relativePosition.X, relativePosition.Y);
 #elif SHVDN3
