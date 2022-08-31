@@ -12,8 +12,15 @@ namespace LemonUI.Phone
     {
         #region Fields
 
+        private const string dialing = "CELL_211";
+        private const string busy = "CELL_220";
+        private const string connected = "CELL_219";
         private static readonly Sound busySound = new Sound("Phone_SoundSet_Default", "Remote_Engaged");
         private static readonly Sound callingSound = new Sound("Phone_SoundSet_Default", "Dial_and_Remote_Ring");
+        private CalledEventArgs called;
+        private string label = dialing;
+        private CallStatus status = CallStatus.Inactive;
+        private int waitUntil = -1;
 
         #endregion
 
@@ -47,6 +54,10 @@ namespace LemonUI.Phone
         /// The icon of the contact.
         /// </summary>
         public string Icon { get; set; } = "CHAR_DEFAULT";
+        /// <summary>
+        /// If this phone contact is currently active.
+        /// </summary>
+        public bool IsActive => status != CallStatus.Inactive;
 
         #endregion
 
@@ -84,69 +95,99 @@ namespace LemonUI.Phone
 
         #region Functions
 
+        private static void Restart()
+        {
+            Function.Call(Hash.TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME, "cellphone_flashhand");
+            Function.Call(Hash.TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME, "cellphone_controller");
+            RestoreScript("cellphone_flashhand", 1424);
+            RestoreScript("cellphone_controller", 1424);
+        }
         internal void Call(Scaleform.Phone phone)
         {
-            const string dialing = "CELL_211";
-            const string busy = "CELL_220";
-            const string connected = "CELL_219";
-
+            status = CallStatus.Idle;
+            Process(phone);
+        }
+        internal void Process(Scaleform.Phone phone)
+        {
             phone.SetButtonIcon(1, 1);
             phone.SetButtonIcon(2, 1);
             phone.SetButtonIcon(3, 6);
 
-            callingSound.PlayFrontend(false);
-            phone.ShowCalling(Name, dialing, Icon);
+            phone.ShowCalling(Name, label, Icon);
 
-            Game.Player.Character.Task.UseMobilePhone();
-            CalledEventArgs called = new CalledEventArgs(this);
-            Called?.Invoke(phone, called);
-
-            int waitUntil = Game.GameTime + called.Wait;
-
-            while (waitUntil > Game.GameTime)
+            if (status == CallStatus.Idle)
             {
-                phone.ShowCalling(Name, dialing, Icon);
+                callingSound.PlayFrontend(false);
+
+                Game.Player.Character.Task.UseMobilePhone();
+                called = new CalledEventArgs(this);
+                Called?.Invoke(phone, called);
+
+                waitUntil = Game.GameTime + called.Wait;
+
+                status = CallStatus.Calling;
+            }
+
+            if (status == CallStatus.Calling)
+            {
+                if (waitUntil < Game.GameTime)
+                {
+                    callingSound.Stop();
+                    status = CallStatus.Called;
+                    waitUntil = -1;
+                }
 
                 if (Game.IsControlJustPressed(Control.PhoneCancel))
                 {
                     callingSound.Stop();
+                    status = CallStatus.Inactive;
+                    waitUntil = -1;
                     return;
                 }
-
-                Script.Yield();
             }
 
-            callingSound.Stop();
-
-            switch (called.Behavior)
+            if (status == CallStatus.Called)
             {
-                case CallBehavior.Busy:
-                    busySound.PlayFrontend(false);
+                switch (called.Behavior)
+                {
+                    case CallBehavior.Busy:
+                        busySound.PlayFrontend(false);
+                        status = CallStatus.Busy;
+                        label = busy;
+                        break;
+                    case CallBehavior.Available:
+                        Connected?.Invoke(phone, new ConnectedEventArgs(this));
+                        status = CallStatus.Connected;
+                        label = connected;
+                        break;
+                }
 
-                    while (!Game.IsControlPressed(Control.PhoneCancel))
-                    {
-                        phone.ShowCalling(Name, busy, Icon);
-                        Script.Yield();
-                    }
+                Game.Player.Character.Task.PutAwayMobilePhone();
+            }
 
+            if (status == CallStatus.Busy)
+            {
+                if (Game.IsControlPressed(Control.PhoneCancel))
+                {
                     busySound.Stop();
                     phone.ShowPage(2);
                     RestoreScript("appContacts", 4000);
-                    break;
-                case CallBehavior.Available:
-                    phone.ShowCalling(Name, connected, Icon);
-
-                    Connected?.Invoke(phone, new ConnectedEventArgs(this));
-                    Finished?.Invoke(phone, EventArgs.Empty);
-
-                    Function.Call(Hash.TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME, "cellphone_flashhand");
-                    Function.Call(Hash.TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME, "cellphone_controller");
-                    RestoreScript("cellphone_flashhand", 1424);
-                    RestoreScript("cellphone_controller", 1424);
-                    break;
+                    status = CallStatus.Inactive;
+                    return;
+                }
             }
 
-            Game.Player.Character.Task.PutAwayMobilePhone();
+            if (status == CallStatus.Connected)
+            {
+                if (Game.IsControlPressed(Control.PhoneCancel))
+                {
+                    status = CallStatus.Inactive;
+                    Restart();
+                }
+
+                status = CallStatus.Inactive;
+                Restart();
+            }
         }
 
         #endregion

@@ -67,6 +67,20 @@ namespace LemonUI.Phone
         {
             Scaleform.Phone currentPhone = CurrentPhone;
 
+            if (Current != null)
+            {
+                Current.Process(currentPhone);
+
+                if (!Current.IsActive)
+                {
+                    Current = null;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
             if (AreContactsOpen)
             {
                 if (total == -1)
