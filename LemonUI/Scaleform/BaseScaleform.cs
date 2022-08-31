@@ -128,7 +128,9 @@ namespace LemonUI.Scaleform
                     API.AddTextComponentSubstringPlayerName(objString);
                     API.EndTextCommandScaleformString();
 #elif RAGEMP
-                    RAGE.Game.Graphics.PushScaleformMovieFunctionParameterString(objString);
+                    Graphics.BeginTextCommandScaleformString("STRING");
+                    Ui.AddTextComponentSubstringPlayerName(objString);
+                    Graphics.EndTextCommandScaleformString();
 #elif RPH
 
                     NativeFunction.CallByHash<int>(0x80338406F3475E55, "STRING");
