@@ -59,7 +59,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
                 return API.HasScaleformMovieLoaded(Handle);
 #elif RAGEMP
-                return Invoker.Invoke<bool>(Natives.HasScaleformMovieLoaded, Handle);
+                return RAGE.Game.Graphics.HasScaleformMovieLoaded(Handle);
 #elif RPH
                 return NativeFunction.CallByHash<bool>(0x85F01B8D5B90570E, Handle);
 #elif SHVDN3
@@ -83,7 +83,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
             Handle = API.RequestScaleformMovie(Name);
 #elif RAGEMP
-            Handle = Invoker.Invoke<int>(Natives.RequestScaleformMovie, Name);
+            Handle = RAGE.Game.Graphics.RequestScaleformMovie(Name);
 #elif RPH
             Handle = NativeFunction.CallByHash<int>(0x11FE353CF9733E6F, Name);
 #elif SHVDN3
@@ -114,7 +114,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
                     API.ScaleformMovieMethodAddParamInt(objInt);
 #elif RAGEMP
-                    Invoker.Invoke(0xC3D0841A0CC546A6, objInt);
+                    RAGE.Game.Graphics.PushScaleformMovieFunctionParameterInt(objInt);
 #elif RPH
                     NativeFunction.CallByHash<int>(0xC3D0841A0CC546A6, objInt);
 #elif SHVDN3
@@ -128,9 +128,7 @@ namespace LemonUI.Scaleform
                     API.AddTextComponentSubstringPlayerName(objString);
                     API.EndTextCommandScaleformString();
 #elif RAGEMP
-                    Invoker.Invoke(Natives.BeginTextCommandScaleformString, "STRING");
-                    Invoker.Invoke(Natives.AddTextComponentSubstringPlayerName, objString);
-                    Invoker.Invoke(Natives.EndTextCommandScaleformString);
+                    RAGE.Game.Graphics.PushScaleformMovieFunctionParameterString(objString);
 #elif RPH
 
                     NativeFunction.CallByHash<int>(0x80338406F3475E55, "STRING");
@@ -147,7 +145,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
                     API.ScaleformMovieMethodAddParamFloat(objFloat);
 #elif RAGEMP
-                    Invoker.Invoke(0xD69736AAE04DB51A, objFloat);
+                    RAGE.Game.Graphics.PushScaleformMovieFunctionParameterFloat(objFloat);
 #elif RPH
                     NativeFunction.CallByHash<int>(0xD69736AAE04DB51A, objFloat);
 #elif SHVDN3
@@ -159,7 +157,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
                     API.ScaleformMovieMethodAddParamFloat((float)objDouble);
 #elif RAGEMP
-                    Invoker.Invoke(0xD69736AAE04DB51A, (float)objDouble);
+                    RAGE.Game.Graphics.PushScaleformMovieFunctionParameterFloat((float)objDouble);
 #elif RPH
                     NativeFunction.CallByHash<int>(0xD69736AAE04DB51A, (float)objDouble);
 #elif SHVDN3
@@ -171,7 +169,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
                     API.ScaleformMovieMethodAddParamBool(objBool);
 #elif RAGEMP
-                    Invoker.Invoke(0xC58424BA936EB458, objBool);
+                    Graphics.PushScaleformMovieFunctionParameterBool(objBool);
 #elif RPH
                     NativeFunction.CallByHash<int>(0xC58424BA936EB458, objBool);
 #elif SHVDN3
@@ -266,7 +264,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
             API.EndScaleformMovieMethod();
 #elif RAGEMP
-            Invoker.Invoke(0xC6796A8FFA375E53);
+            Graphics.PopScaleformMovieFunctionVoid();
 #elif RPH
             NativeFunction.CallByHash<int>(0xC6796A8FFA375E53);
 #elif SHVDN3
@@ -312,7 +310,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
             return API.EndScaleformMovieMethodReturnValue();
 #elif RAGEMP
-            return Invoker.Invoke<int>(0xC50AA39A577AF886);
+            return Graphics.PopScaleformMovieFunction();
 #elif RPH
             return NativeFunction.CallByHash<int>(0xC50AA39A577AF886);
 #elif SHVDN3
@@ -336,7 +334,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
             API.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 0);
 #elif RAGEMP
-            Invoker.Invoke(Natives.DrawScaleformMovieFullscreen, 255, 255, 255, 255, 0);
+            Graphics.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 0);
 #elif RPH
             NativeFunction.CallByHash<int>(0x0DF606929C105BE1, Handle, 255, 255, 255, 255, 0);
 #elif SHVDN3
@@ -360,7 +358,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
             API.SetScaleformMovieAsNoLongerNeeded(ref id);
 #elif RAGEMP
-            Invoker.Invoke(Natives.SetScaleformMovieAsNoLongerNeeded, id);
+            Graphics.SetScaleformMovieAsNoLongerNeeded(ref id);
 #elif RPH
             NativeFunction.CallByHash<int>(0x1D132D614DD86811, new NativeArgument(id));
 #elif SHVDN3
