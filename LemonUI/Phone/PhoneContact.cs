@@ -12,13 +12,13 @@ namespace LemonUI.Phone
     {
         #region Fields
 
-        private const string dialing = "CELL_211";
-        private const string busy = "CELL_220";
-        private const string connected = "CELL_219";
+        private const string dialingLabel = "CELL_211";
+        private const string busyLabel = "CELL_220";
+        private const string connectedLabel = "CELL_219";
         private static readonly Sound busySound = new Sound("Phone_SoundSet_Default", "Remote_Engaged");
         private static readonly Sound callingSound = new Sound("Phone_SoundSet_Default", "Dial_and_Remote_Ring");
         private CalledEventArgs called;
-        private string label = dialing;
+        private string label = dialingLabel;
         private CallStatus status = CallStatus.Inactive;
         private int waitUntil = -1;
 
@@ -122,9 +122,7 @@ namespace LemonUI.Phone
                 Game.Player.Character.Task.UseMobilePhone();
                 called = new CalledEventArgs(this);
                 Called?.Invoke(phone, called);
-
                 waitUntil = Game.GameTime + called.Wait;
-
                 status = CallStatus.Calling;
             }
 
@@ -153,12 +151,14 @@ namespace LemonUI.Phone
                     case CallBehavior.Busy:
                         busySound.PlayFrontend(false);
                         status = CallStatus.Busy;
-                        label = busy;
+                        label = busyLabel;
                         break;
                     case CallBehavior.Available:
-                        Connected?.Invoke(phone, new ConnectedEventArgs(this));
+                        ConnectedEventArgs connected = new ConnectedEventArgs(this);
+                        Connected?.Invoke(phone, connected);
+                        waitUntil = Game.GameTime + connected.DisconnectAfter;
                         status = CallStatus.Connected;
-                        label = connected;
+                        label = connectedLabel;
                         break;
                 }
 
@@ -177,15 +177,11 @@ namespace LemonUI.Phone
                 }
             }
 
-            if (status == CallStatus.Connected)
+            if (status == CallStatus.Connected &&
+                (waitUntil < Game.GameTime || Game.IsControlPressed(Control.PhoneCancel)))
             {
-                if (Game.IsControlPressed(Control.PhoneCancel))
-                {
-                    status = CallStatus.Inactive;
-                    Restart();
-                }
-
                 status = CallStatus.Inactive;
+                waitUntil = -1;
                 Restart();
             }
         }

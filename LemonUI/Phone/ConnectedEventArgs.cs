@@ -14,6 +14,10 @@ namespace LemonUI.Phone
         /// The contact that was called by the player.
         /// </summary>
         public PhoneContact Contact { get; }
+        /// <summary>
+        /// After how much time should the call be disconnected automatically.
+        /// </summary>
+        public int DisconnectAfter { get; set; }
 
         #endregion
 
