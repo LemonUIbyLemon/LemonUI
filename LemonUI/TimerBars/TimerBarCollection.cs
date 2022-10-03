@@ -19,7 +19,13 @@ namespace LemonUI.TimerBars
     /// </summary>
     public class TimerBarCollection : IContainer<TimerBar>
     {
-        #region Public Properties
+        #region Fields
+
+        private PointF offset = PointF.Empty;
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// If this collection of Timer Bars is visible to the user.
@@ -29,6 +35,18 @@ namespace LemonUI.TimerBars
         /// The <see cref="TimerBar"/>s that are part of this collection.
         /// </summary>
         public List<TimerBar> TimerBars { get; } = new List<TimerBar>();
+        /// <summary>
+        /// The offset from it's starting point on the bottom right.
+        /// </summary>
+        public PointF Offset
+        {
+            get => offset;
+            set
+            {
+                offset = value;
+                Recalculate();
+            }
+        }
 
         #endregion
 
@@ -121,6 +139,9 @@ namespace LemonUI.TimerBars
             Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
             PointF pos = Screen.GetRealPosition(PointF.Empty);
             Screen.ResetElementAlignment();
+
+            pos.X += offset.X;
+            pos.Y += offset.Y;
 
             int count = 0;
 
