@@ -92,10 +92,10 @@ namespace LemonUI.TimerBars
         /// <param name="func">The function to check the <see cref="TimerBar"/>.</param>
         public void Remove(Func<TimerBar, bool> func)
         {
-            // Iterate over the timer bars
-            foreach (TimerBar bar in new List<TimerBar>(TimerBars))
+            for (int i = 0; i < TimerBars.Count; i++)
             {
-                // If it matches the function, remove it
+                TimerBar bar = TimerBars[i];
+
                 if (func(bar))
                 {
                     TimerBars.Remove(bar);
@@ -118,18 +118,15 @@ namespace LemonUI.TimerBars
         /// </summary>
         public void Recalculate()
         {
-            // Get the position of 0,0 while staying safe zone aware
             Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
             PointF pos = Screen.GetRealPosition(PointF.Empty);
             Screen.ResetElementAlignment();
 
-            // Iterate over the existing timer bars and save the count
             int count = 0;
-            foreach (TimerBar timerBar in TimerBars)
+
+            for (int i = 0; i < TimerBars.Count; i++)
             {
-                // And send them to the timer bar
-                timerBar.Recalculate(new PointF(pos.X - TimerBar.backgroundWidth, pos.Y - (TimerBar.backgroundHeight * (TimerBars.Count - count)) - (TimerBar.separation * (TimerBars.Count - count - 1))));
-                // Finish by increasing the total count of items
+                TimerBars[i].Recalculate(new PointF(pos.X - TimerBar.backgroundWidth, pos.Y - (TimerBar.backgroundHeight * (TimerBars.Count - count)) - (TimerBar.separation * (TimerBars.Count - count - 1))));
                 count++;
             }
         }
@@ -162,10 +159,9 @@ namespace LemonUI.TimerBars
             Hud.HideComponentThisFrame(HudComponent.StreetName);
             Hud.HideComponentThisFrame(HudComponent.VehicleName);
 #endif
-            // Draw the existing timer bars
-            foreach (TimerBar timerBar in TimerBars)
+            for (int i = 0; i < TimerBars.Count; i++)
             {
-                timerBar.Draw();
+                TimerBars[i].Draw();
             }
         }
 

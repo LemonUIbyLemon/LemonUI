@@ -1295,14 +1295,12 @@ namespace LemonUI.Menus
         {
             NativeItem selected = SelectedItem;
 
-            // Let's start with the basics
-            // Draw the banner image and text
             if (bannerImage != null)
             {
                 bannerImage.Draw();
                 Title?.Draw();
             }
-            // And then the subtitle with text and item count
+
             if (ShouldDrawSubtitleBackground)
             {
                 subtitleImage.Draw();
@@ -1312,25 +1310,24 @@ namespace LemonUI.Menus
                     countText.Draw();
                 }
             }
-            // If there is some description text, draw the text and background
+
             if (!string.IsNullOrWhiteSpace(descriptionText.Text))
             {
                 descriptionRect.Draw();
                 descriptionText.Draw();
             }
 
-            // Time for the items!
-            // If there are none, return and do nothing
             if (Items.Count == 0)
             {
                 return;
             }
 
-            // Otherwise, start with the background
             backgroundImage?.Draw();
-            // Then, draw all of the items with the exception of the one selected
-            foreach (NativeItem item in visibleItems)
+
+            for (int i = 0; i < Items.Count; i++)
             {
+                NativeItem item = Items[i];
+
                 if (item == selected)
                 {
                     continue;
@@ -1467,10 +1464,10 @@ namespace LemonUI.Menus
         /// <param name="pred">The function to use as a check.</param>
         public void Remove(Func<NativeItem, bool> pred)
         {
-            List<NativeItem> items = new List<NativeItem>(Items);
-
-            foreach (NativeItem item in items)
+            for (int i = 0; i < Items.Count; i++)
             {
+                NativeItem item = Items[i];
+
                 if (!pred(item))
                 {
                     continue;

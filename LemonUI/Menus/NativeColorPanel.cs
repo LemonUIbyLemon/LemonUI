@@ -570,8 +570,10 @@ namespace LemonUI.Menus
         /// <param name="func"></param>
         public void Remove(Func<NativeColorData, bool> func)
         {
-            foreach (NativeColorData color in new List<NativeColorData>(Colors))
+            for (int i = 0; i < Colors.Count; i++)
             {
+                NativeColorData color = Colors[i];
+
                 if (func(color))
                 {
                     Colors.Remove(color);
