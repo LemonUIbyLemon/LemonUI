@@ -133,7 +133,13 @@ namespace LemonUI.Menus
             get => badgeLeft;
             set
             {
+                if (badgeLeft == value)
+                {
+                    return;
+                }
+
                 badgeLeft = value;
+
                 Recalculate();
                 UpdateColors();
             }
@@ -146,7 +152,13 @@ namespace LemonUI.Menus
             get => badgeSetLeft;
             set
             {
+                if (badgeSetLeft == value)
+                {
+                    return;
+                }
+
                 badgeSetLeft = value;
+
                 Recalculate();
                 UpdateColors();
             }
@@ -159,7 +171,13 @@ namespace LemonUI.Menus
             get => badgeRight;
             set
             {
+                if (badgeRight == value)
+                {
+                    return;
+                }
+
                 badgeRight = value;
+
                 Recalculate();
                 UpdateColors();
             }
@@ -172,7 +190,13 @@ namespace LemonUI.Menus
             get => badgeSetRight;
             set
             {
+                if (badgeSetRight == value)
+                {
+                    return;
+                }
+
                 badgeSetRight = value;
+
                 Recalculate();
                 UpdateColors();
             }
