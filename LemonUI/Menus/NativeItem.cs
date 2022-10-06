@@ -159,6 +159,11 @@ namespace LemonUI.Menus
 
                 badgeSetLeft = value;
 
+                if (badgeSetLeft == null)
+                {
+                    badgeLeft = null;
+                }
+
                 Recalculate();
                 UpdateColors();
             }
@@ -196,6 +201,11 @@ namespace LemonUI.Menus
                 }
 
                 badgeSetRight = value;
+
+                if (badgeSetRight == null)
+                {
+                    badgeRight = null;
+                }
 
                 Recalculate();
                 UpdateColors();
