@@ -13,7 +13,7 @@ using GTA.Native;
 using GTA.UI;
 #endif
 using System;
-using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace LemonUI
@@ -106,7 +106,7 @@ namespace LemonUI
         /// <summary>
         /// The list of processable objects.
         /// </summary>
-        private readonly ConcurrentDictionary<int, IProcessable> objects = new ConcurrentDictionary<int, IProcessable>();
+        private readonly List<IProcessable> objects = new List<IProcessable>();
 
         #endregion
 
@@ -119,16 +119,13 @@ namespace LemonUI
         {
             get
             {
-                // Iterate over the objects
-                foreach (IProcessable obj in objects.Values)
+                for (int i = 0; i < objects.Count; i++)
                 {
-                    // If is visible return true
-                    if (obj.Visible)
+                    if (objects[i].Visible)
                     {
                         return true;
                     }
                 }
-                // If none were visible return false
                 return false;
             }
         }
@@ -215,28 +212,23 @@ namespace LemonUI
         /// <param name="obj">The object to add.</param>
         public void Add(IProcessable obj)
         {
-            // Make sure that the object is not null
             if (obj == null)
             {
                 throw new ArgumentNullException(nameof(obj));
             }
 
-            int key = obj.GetHashCode();
-            // Otherwise, add it to the general pool
-            if (objects.ContainsKey(key))
+            if (objects.Contains(obj))
             {
                 throw new InvalidOperationException("The object is already part of this pool.");
             }
-            objects.TryAdd(key, obj);
+
+            objects.Add(obj);
         }
         /// <summary>
         /// Removes the object from the pool.
         /// </summary>
         /// <param name="obj">The object to remove.</param>
-        public void Remove(IProcessable obj)
-        {
-            objects.TryRemove(obj.GetHashCode(), out _);
-        }
+        public void Remove(IProcessable obj) => objects.Remove(obj);
         /// <summary>
         /// Performs the specified action on each element that matches T.
         /// </summary>
@@ -244,9 +236,9 @@ namespace LemonUI
         /// <param name="action">The action delegate to perform on each T.</param>
         public void ForEach<T>(Action<T> action)
         {
-            foreach (IProcessable obj in objects.Values)
+            for (int i = 0; i < objects.Count; i++)
             {
-                if (obj is T conv)
+                if (objects[i] is T conv)
                 {
                     action(conv);
                 }
@@ -257,10 +249,9 @@ namespace LemonUI
         /// </summary>
         public void RefreshAll()
         {
-            // Iterate over the objects and recalculate those possible
-            foreach (IProcessable obj in objects.Values)
+            for (int i = 0; i < objects.Count; i++)
             {
-                if (obj is IRecalculable recal)
+                if (objects[i] is IRecalculable recal)
                 {
                     recal.Recalculate();
                 }
@@ -271,9 +262,9 @@ namespace LemonUI
         /// </summary>
         public void HideAll()
         {
-            foreach (IProcessable obj in objects.Values)
+            for (int i = 0; i < objects.Count; i++)
             {
-                obj.Visible = false;
+                objects[i].Visible = false;
             }
         }
         /// <summary>
@@ -282,13 +273,12 @@ namespace LemonUI
         /// </summary>
         public void Process()
         {
-            // See if there are resolution or safezone changes
             DetectResolutionChanges();
             DetectSafezoneChanges();
-            // And process the objects in the pool
-            foreach (IProcessable obj in objects.Values)
+
+            for (int i = 0; i < objects.Count; i++)
             {
-                obj.Process();
+                objects[i].Process();
             }
         }
 

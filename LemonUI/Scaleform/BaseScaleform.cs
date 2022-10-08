@@ -336,7 +336,7 @@ namespace LemonUI.Scaleform
 #if FIVEM
             API.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 0);
 #elif RAGEMP
-            Invoker.Invoke(Natives.DrawScaleformMovieFullscreen, 255, 255, 255, 255, 0);
+            Invoker.Invoke(Natives.DrawScaleformMovieFullscreen, Handle, 255, 255, 255, 255, 0);
 #elif RPH
             NativeFunction.CallByHash<int>(0x0DF606929C105BE1, Handle, 255, 255, 255, 255, 0);
 #elif SHVDN3
