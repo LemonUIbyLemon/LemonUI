@@ -13,6 +13,7 @@ using GTA.Native;
 using GTA.UI;
 #endif
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -75,7 +76,7 @@ namespace LemonUI
     /// <summary>
     /// Manager for Menus and Items.
     /// </summary>
-    public class ObjectPool
+    public class ObjectPool : IEnumerable<IProcessable>
     {
         #region Private Fields
 
@@ -206,6 +207,10 @@ namespace LemonUI
 
         #region Public Function
 
+        /// <inheritdoc/>
+        public IEnumerator<IProcessable> GetEnumerator() => objects.GetEnumerator();
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         /// <summary>
         /// Adds the object into the pool.
         /// </summary>

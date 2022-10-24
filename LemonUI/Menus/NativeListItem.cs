@@ -1,5 +1,6 @@
 using LemonUI.Elements;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -29,7 +30,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// An item that allows you to scroll between a set of objects.
     /// </summary>
-    public class NativeListItem<T> : NativeListItem
+    public class NativeListItem<T> : NativeListItem, IEnumerable<T>
     {
         #region Fields
 
@@ -188,6 +189,10 @@ namespace LemonUI.Menus
 
         #region Functions
 
+        /// <inheritdoc/>
+        public IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         /// <summary>
         /// Adds a <typeparamref name="T" /> into this item.
         /// </summary>

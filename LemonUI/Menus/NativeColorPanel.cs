@@ -11,6 +11,7 @@ using GTA.UI;
 #endif
 using LemonUI.Elements;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -19,7 +20,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// A Panel that allows you to select a Color.
     /// </summary>
-    public class NativeColorPanel : NativePanel
+    public class NativeColorPanel : NativePanel, IEnumerable<NativeColorData>
     {
         #region Constants
 
@@ -487,6 +488,10 @@ namespace LemonUI.Menus
 
         #region Public Functions
 
+        /// <inheritdoc/>
+        public IEnumerator<NativeColorData> GetEnumerator() => Colors.GetEnumerator();
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         /// <summary>
         /// Moves to the Previous Color.
         /// </summary>

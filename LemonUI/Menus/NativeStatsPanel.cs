@@ -1,5 +1,6 @@
 using LemonUI.Elements;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -8,7 +9,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Represents a Statistics panel.
     /// </summary>
-    public class NativeStatsPanel : NativePanel, IContainer<NativeStatsInfo>
+    public class NativeStatsPanel : NativePanel, IContainer<NativeStatsInfo>, IEnumerable<NativeStatsInfo>
     {
         #region Fields
 
@@ -75,6 +76,10 @@ namespace LemonUI.Menus
 
         #region Functions
 
+        /// <inheritdoc/>
+        public IEnumerator<NativeStatsInfo> GetEnumerator() => fields.GetEnumerator();
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         /// <summary>
         /// Adds a stat to the player field.
         /// </summary>

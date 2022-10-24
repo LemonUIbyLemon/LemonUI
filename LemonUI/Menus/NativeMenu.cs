@@ -24,6 +24,7 @@ using LemonUI.Elements;
 using LemonUI.Extensions;
 using LemonUI.Scaleform;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -32,7 +33,7 @@ namespace LemonUI.Menus
     /// <summary>
     /// Menu that looks like the ones used by Rockstar.
     /// </summary>
-    public class NativeMenu : IContainer<NativeItem>
+    public class NativeMenu : IContainer<NativeItem>, IEnumerable<NativeItem>
     {
         #region Public Fields
 
@@ -1361,11 +1362,20 @@ namespace LemonUI.Menus
 
         #region Public Functions
 
+        /// <inheritdoc/>
+        public IEnumerator<NativeItem> GetEnumerator() => Items.GetEnumerator();
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         /// <summary>
         /// Adds an item at the end of the menu.
         /// </summary>
         /// <param name="item">The item to add.</param>
         public void Add(NativeItem item) => Add(Items.Count, item);
+        /// <summary>
+        /// Adds a specific menu as a submenu with an item.
+        /// </summary>
+        /// <param name="menu">The menu to add.</param>
+        public void Add(NativeMenu menu) => AddSubMenu(menu);
         /// <summary>
         /// Adds an item at the specified position.
         /// </summary>
