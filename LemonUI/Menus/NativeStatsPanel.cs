@@ -1,4 +1,3 @@
-using LemonUI.Elements;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -147,11 +146,15 @@ namespace LemonUI.Menus
         {
             base.Recalculate(position, width);
 
-            Background.Size = new SizeF(width, (fields.Count * 38) + 9);
+            const float differenceTop = 7;
+            const float perStatSeparation = 38;
+
+            Background.Size = new SizeF(width, differenceTop + (perStatSeparation * fields.Count));
 
             for (int i = 0; i < fields.Count; i++)
             {
-                fields[i].Recalculate(new PointF(position.X + 9, position.Y + 9 + (38 * i)), width);
+                PointF fieldPosition = new PointF(position.X, position.Y + differenceTop + (perStatSeparation * i));
+                fields[i].Recalculate(fieldPosition, width);
             }
         }
         /// <summary>

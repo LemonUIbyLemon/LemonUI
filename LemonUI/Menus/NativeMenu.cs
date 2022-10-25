@@ -853,19 +853,15 @@ namespace LemonUI.Menus
         /// </summary>
         private void RecalculatePanel()
         {
-            // If the selected item has a panel
-            if (SelectedItem?.Panel != null)
+            if (SelectedItem?.Panel == null)
             {
-                // Save the Y value of the description
-                float y = descriptionRect.Position.Y;
-                // If it has text, show it after the description instead of taking it's place
-                if (!string.IsNullOrWhiteSpace(descriptionText.Text))
-                {
-                    y += descriptionRect.Size.Height + 10;
-                }
-                // Finally, set the position of the panel
-                SelectedItem.Panel.Recalculate(new PointF(descriptionRect.Position.X, y), Width);
+                return;
             }
+
+            const int separation = 10;
+
+            PointF position = new PointF(descriptionRect.Position.X, descriptionRect.Position.Y + descriptionRect.Size.Height + separation);
+            SelectedItem.Panel.Recalculate(position, Width);
         }
         /// <summary>
         /// Resets the current position of the cursor.

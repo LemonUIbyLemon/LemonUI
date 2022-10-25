@@ -12,6 +12,8 @@ namespace LemonUI.Menus
     {
         #region Fields
 
+        private const float barWidth = 33;
+        private const float barHeight = 9;
         private readonly ScaledText text = new ScaledText(PointF.Empty, string.Empty, 0.35f);
         private float value = 100;
         private readonly List<ScaledRectangle> backgrounds = new List<ScaledRectangle>();
@@ -95,12 +97,12 @@ namespace LemonUI.Menus
         /// </summary>
         private void UpdateBars()
         {
-            SizeF @default = new SizeF(35, 9);
+            SizeF @default = new SizeF(barWidth, barHeight);
 
             // FIRST BAR
             if (value > 0 && value < 20)
             {
-                foregrounds[0].Size = new SizeF(@default.Width * (value / 20), @default.Height);
+                foregrounds[0].Size = new SizeF(barWidth * (value / 20), barHeight);
             }
             else
             {
@@ -110,7 +112,7 @@ namespace LemonUI.Menus
             // SECOND BAR
             if (value > 20 && value < 40)
             {
-                foregrounds[1].Size = new SizeF(@default.Width * ((value - 20) / 20), @default.Height);
+                foregrounds[1].Size = new SizeF(barWidth * ((value - 20) / 20), barHeight);
             }
             else
             {
@@ -120,7 +122,7 @@ namespace LemonUI.Menus
             // THIRD BAR
             if (value > 40 && value < 60)
             {
-                foregrounds[2].Size = new SizeF(@default.Width * ((value - 40) / 20), @default.Height);
+                foregrounds[2].Size = new SizeF(barWidth * ((value - 40) / 20), barHeight);
             }
             else
             {
@@ -130,7 +132,7 @@ namespace LemonUI.Menus
             // FOURTH BAR
             if (value > 60 && value < 80)
             {
-                foregrounds[3].Size = new SizeF(@default.Width * ((value - 60) / 20), @default.Height);
+                foregrounds[3].Size = new SizeF(barWidth * ((value - 60) / 20), barHeight);
             }
             else
             {
@@ -140,7 +142,7 @@ namespace LemonUI.Menus
             // FIFTH BAR
             if (value > 80 && value < 100)
             {
-                foregrounds[4].Size = new SizeF(@default.Width * ((value - 80) / 20), @default.Height);
+                foregrounds[4].Size = new SizeF(barWidth * ((value - 80) / 20), barHeight);
             }
             else
             {
@@ -154,13 +156,19 @@ namespace LemonUI.Menus
         /// <param name="width">The Width of the parent Stats Panel.</param>
         public void Recalculate(PointF position, float width)
         {
-            text.Position = new PointF(position.X, position.Y);
+            const float barOffsetTop = 11;
+            const float offsetLeft = 9;
+            const float separatorSize = 4;
+            const float rightMargin = 42;
+
+            text.Position = new PointF(position.X + offsetLeft, position.Y);
 
             for (int i = 0; i < 5; i++)
             {
-                PointF pos = new PointF(position.X + width - 234 + ((35 + 3) * i), position.Y + 10);
+                PointF pos = new PointF(position.X + width - rightMargin - (barWidth * (5 - i)) - (separatorSize * (5 - i)), position.Y + barOffsetTop);
+
                 backgrounds[i].Position = pos;
-                backgrounds[i].Size = new SizeF(35, 9);
+                backgrounds[i].Size = new SizeF(barWidth, barHeight);
                 foregrounds[i].Position = pos;
             }
 
