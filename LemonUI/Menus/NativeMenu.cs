@@ -1320,9 +1320,9 @@ namespace LemonUI.Menus
 
             backgroundImage?.Draw();
 
-            for (int i = 0; i < Items.Count; i++)
+            for (int i = 0; i < visibleItems.Count; i++)
             {
-                NativeItem item = Items[i];
+                NativeItem item = visibleItems[i];
 
                 if (item == selected)
                 {
