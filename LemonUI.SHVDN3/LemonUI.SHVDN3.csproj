@@ -1,39 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <AssemblyName>$(AssemblyName)</AssemblyName>
-    <DefineConstants>SHVDN3</DefineConstants>
-    <Version>1.5.1</Version>
-    <OutputPath>..\bin\$(Configuration)\SHVDN3\</OutputPath>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>..\bin\$(Configuration)\SHVDN3\$(AssemblyName).xml</DocumentationFile>
-    <PackageIcon>logo.png</PackageIcon>
-    <PlatformTarget>x64</PlatformTarget>
+    <PropertyGroup>
+        <ForFramework>SHVDN3</ForFramework>
+        <TargetFramework>net48</TargetFramework>
+        <DefineConstants>SHVDN3</DefineConstants>
+    </PropertyGroup>
 
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageId>LemonUI.SHVDN3</PackageId>
-    <Authors>Hannele "Lemon" Ruiz</Authors>
-    <Company>Hannele "Lemon" Ruiz</Company>
-    <Product>LemonUI</Product>
-    <Description>UI system for Grand Theft Auto V. This package is for ScriptHookVDotNet3.</Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/justalemon/LemonUI</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/justalemon/LemonUI.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageOutputPath>..\bin\$(Configuration)\FOR DEVELOPERS</PackageOutputPath>
-  </PropertyGroup>
+    <PropertyGroup>
+        <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="$(ProjectDir)/../logo.png" Pack="true" Visible="false" PackagePath=""/>
-    <PackageReference Include="ScriptHookVDotNet3" Version="3.0.2">
-      <IncludeAssets>compile</IncludeAssets>
-    </PackageReference>
-    <Compile Include="$(ProjectDir)/../LemonUI/**" />
-  </ItemGroup>
+    <Import Project="../root.props"/>
+
+    <PropertyGroup>
+        <Description>UI system for Grand Theft Auto V. This package is for ScriptHookVDotNet3.</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ScriptHookVDotNet3" Version="3.0.2">
+            <IncludeAssets>compile</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 
 </Project>
