@@ -1,31 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <ForFramework>RageMP</ForFramework>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <DefineConstants>RAGEMP</DefineConstants>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <ForFramework>RageMP</ForFramework>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-    <DefineConstants>RAGEMP</DefineConstants>
-  </PropertyGroup>
+    <PropertyGroup>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <PlatformTarget>x64</PlatformTarget>
+        <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <PlatformTarget>x64</PlatformTarget>
-    <CheckEolTargetFramework>false</CheckEolTargetFramework>
-  </PropertyGroup>
+    <Import Project="../root.props"/>
 
-  <Import Project="../root.props"/>
+    <PropertyGroup>
+        <Description>UI system for Grand Theft Auto V. This package is for RageMP.</Description>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <Description>UI system for Grand Theft Auto V. This package is for RageMP.</Description>
-  </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="RAGEMP-ragesharp" Version="1.1.3">
+            <IncludeAssets>compile</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="RAGEMP-ragesharp" Version="1.1.3">
-      <IncludeAssets>compile</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="python &quot;$(SolutionDir)ragemp.py&quot; &quot;$(SolutionDir)LemonUI&quot; &quot;$(OutDir)..\FOR DEVELOPERS\LemonUI.RageMP.cs&quot;" />
-  </Target>
-
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="python &quot;$(SolutionDir)ragemp.py&quot; &quot;$(SolutionDir)LemonUI&quot; &quot;$(OutDir)..\FOR DEVELOPERS\LemonUI.RageMP.cs&quot;"/>
+    </Target>
 </Project>

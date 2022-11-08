@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <ForFramework>RPH</ForFramework>
         <TargetFramework>net472</TargetFramework>
@@ -21,5 +20,4 @@
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>
-
 </Project>
