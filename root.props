@@ -37,6 +37,7 @@
 
     <ItemGroup>
         <Compile Include="$(SolutionDir)/LemonUI/**/*.cs"/>
+        <None Include="$(SolutionDir)/README.md" Pack="true" Visible="false" PackagePath=""/>
         <None Include="$(SolutionDir)/logo.png" Pack="true" Visible="false" PackagePath=""/>
     </ItemGroup>
 </Project>
