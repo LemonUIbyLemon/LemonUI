@@ -9,14 +9,14 @@
         <PlatformTarget>x64</PlatformTarget>
     </PropertyGroup>
 
-    <Import Project="../root.props"/>
+    <Import Project="../root.props" />
 
     <PropertyGroup>
         <Description>UI system for Grand Theft Auto V. This package is for ScriptHookVDotNet3.</Description>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ScriptHookVDotNet3" Version="3.0.2">
+        <PackageReference Include="ScriptHookVDotNet3" Version="3.5.1">
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>

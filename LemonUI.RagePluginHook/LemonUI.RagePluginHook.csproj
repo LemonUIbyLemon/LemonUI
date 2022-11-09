@@ -9,14 +9,14 @@
         <PlatformTarget>x64</PlatformTarget>
     </PropertyGroup>
 
-    <Import Project="../root.props"/>
+    <Import Project="../root.props" />
 
     <PropertyGroup>
         <Description>UI system for Grand Theft Auto V. This package is for RagePluginHook (RPH).</Description>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="RagePluginHook" Version="1.86.1">
+        <PackageReference Include="RagePluginHook" Version="1.98.0">
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>

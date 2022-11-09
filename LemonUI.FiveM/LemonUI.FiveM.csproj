@@ -10,14 +10,14 @@
         <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
 
-    <Import Project="../root.props"/>
+    <Import Project="../root.props" />
 
     <PropertyGroup>
         <Description>UI system for Grand Theft Auto V. This package is for FiveM Client.</Description>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CitizenFX.Core.Client" Version="1.0.4355">
+        <PackageReference Include="CitizenFX.Core.Client" Version="1.0.6008">
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>
