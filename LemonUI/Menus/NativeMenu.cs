@@ -1431,7 +1431,7 @@ namespace LemonUI.Menus
         /// <param name="menu">The menu to add.</param>
         /// <param name="endlabel">The alternative title of the item, shown on the right.</param>
         /// <returns>The item that points to the submenu.</returns>
-        public NativeSubmenuItem AddSubMenu(NativeMenu menu, String endlabel)
+        public NativeSubmenuItem AddSubMenu(NativeMenu menu, string endlabel)
         {
             NativeSubmenuItem item = AddSubMenu(menu);
             item.AltTitle = endlabel;
