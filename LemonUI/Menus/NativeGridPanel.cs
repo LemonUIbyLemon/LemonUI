@@ -286,16 +286,7 @@ namespace LemonUI.Menus
             }
             dot.Draw();
 
-#if FIVEM
-            bool usingKeyboard = API.IsInputDisabled(2);
-#elif RAGEMP
-            bool usingKeyboard = Invoker.Invoke<bool>(0xA571D46727E2B718, 2);
-#elif RPH
-            bool usingKeyboard = NativeFunction.CallByHash<bool>(0xA571D46727E2B718, 2);
-#elif SHVDN3
-            bool usingKeyboard = Function.Call<bool>(Hash._IS_INPUT_DISABLED, 2);
-#endif
-            if (usingKeyboard)
+            if (!Controls.IsUsingController)
             {
                 if (Screen.IsCursorInArea(grid.Position, grid.Size) && Controls.IsPressed(Control.CursorAccept))
                 {
