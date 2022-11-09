@@ -97,7 +97,9 @@ namespace LemonUI.TimerBars
                 UpdateObjectiveColors();
             }
         }
-
+        /// <summary>
+        /// The type of spacing between the objectives .
+        /// </summary>
         public ObjectiveSpacing Spacing
         {
             get => objectiveSpacing;
@@ -120,6 +122,7 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// Creates a new timer bar used to show objectives.
         /// </summary>
+        /// <param name="title">The title of the objective bar.</param>
         public TimerBarObjective(string title) : base(title, string.Empty)
         {
             UpdateObjectiveCount();
