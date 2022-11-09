@@ -1275,12 +1275,10 @@ namespace LemonUI.Menus
                     {
                         check.UpdateTexture(true);
                     }
-                    return;
                 }
                 else
                 {
                     SoundDisabled?.PlayFrontend();
-                    return;
                 }
             }
         }
