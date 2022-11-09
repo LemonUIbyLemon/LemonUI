@@ -14,3 +14,4 @@ dotnet_diagnostic.SA1413.severity = none  ;; Don't keep trailing comas
 dotnet_diagnostic.SA1512.severity = none  ;; Keep comments as comments, not code lol
 dotnet_diagnostic.SA1128.severity = none  ;; Ill come back to this later
 dotnet_diagnostic.SA1623.severity = none  ;; Too verbose to document self explanatory properties
+dotnet_diagnostic.SA1642.severity = none  ;; Too verbose to document self explanatory properties
