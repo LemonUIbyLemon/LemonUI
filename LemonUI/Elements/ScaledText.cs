@@ -207,7 +207,7 @@ namespace LemonUI.Elements
 #elif RPH
                 return 1080 * NativeFunction.CallByHash<float>(0xDB88A37483346780, Scale, (int)Font);
 #elif SHVDN3
-                return 1080 * Function.Call<float>(Hash._GET_TEXT_SCALE_HEIGHT, Scale, (int)Font);
+                return 1080 * Function.Call<float>(Hash.GET_RENDERED_CHARACTER_HEIGHT, Scale, (int)Font);
 #endif
             }
         }
