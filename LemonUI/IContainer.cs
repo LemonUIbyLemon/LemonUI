@@ -5,6 +5,7 @@ namespace LemonUI
     /// <summary>
     /// Represents a container that can hold other UI Elements.
     /// </summary>
+    /// <typeparam name="T">The type of Element that this container handles.</typeparam>
     public interface IContainer<T> : IRecalculable, IProcessable
     {
         /// <summary>

@@ -33,7 +33,7 @@ namespace LemonUI
 #elif RPH
                 return !NativeFunction.CallByHash<bool>(0xA571D46727E2B718, 2);
 #elif SHVDN3
-                return !Function.Call<bool>(Hash._IS_INPUT_DISABLED, 2);
+                return !Function.Call<bool>(Hash._IS_USING_KEYBOARD, 2);
 #endif
             }
         }

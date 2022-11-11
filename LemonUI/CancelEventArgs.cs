@@ -1,17 +1,13 @@
-// Taken from the .NET Runtime Repository
+﻿// Taken from the .NET Runtime Repository
 // https://github.com/dotnet/runtime
 // Copyright (c) .NET Foundation and Contributors
 // Under the MIT License
+
 #if FIVEM || RAGEMP
 using System;
 
 namespace LemonUI // Previously System.ComponentModel
 {
-    /// <summary>
-    /// Represents the method that will handle the event raised when canceling an event.
-    /// </summary>
-    public delegate void CancelEventHandler(object sender, CancelEventArgs e);
-
     /// <summary>
     /// EventArgs used to describe a cancel event.
     /// </summary>

@@ -11,24 +11,24 @@ namespace LemonUI.TimerBars
     public class TimerBarObjective : TimerBar
     {
         #region Fields
-        
+
         private const float width = 20;
         private const float height = 20;
 
         private static readonly Color colorWhite = Color.FromArgb(255, 255, 255);
         private static readonly Color colorCompleted = Color.FromArgb(101, 180, 212);
-        
+
         private readonly List<ScaledTexture> objectives = new List<ScaledTexture>();
 
         private PointF lastPosition = default;
-        
+
         private int count = 1;
         private int completed = 0;
         private Color colorSet = colorCompleted;
         private ObjectiveSpacing objectiveSpacing = ObjectiveSpacing.Equal;
-        
+
         #endregion
-    
+
         #region Properties
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace LemonUI.TimerBars
                 {
                     return;
                 }
-                
+
                 if (value <= 0)
                 {
                     throw new ArgumentOutOfRangeException(nameof(value), "The number of completed objectives can't be under zero.");
@@ -76,7 +76,7 @@ namespace LemonUI.TimerBars
                 }
 
                 completed = value;
-                
+
                 UpdateObjectiveColors();
             }
         }
@@ -97,7 +97,9 @@ namespace LemonUI.TimerBars
                 UpdateObjectiveColors();
             }
         }
-
+        /// <summary>
+        /// The type of spacing between the objectives .
+        /// </summary>
         public ObjectiveSpacing Spacing
         {
             get => objectiveSpacing;
@@ -112,21 +114,22 @@ namespace LemonUI.TimerBars
                 Recalculate(lastPosition);
             }
         }
-        
+
         #endregion
-        
+
         #region Constructors
 
         /// <summary>
         /// Creates a new timer bar used to show objectives.
         /// </summary>
+        /// <param name="title">The title of the objective bar.</param>
         public TimerBarObjective(string title) : base(title, string.Empty)
         {
             UpdateObjectiveCount();
         }
 
         #endregion
-        
+
         #region Tools
 
         private void UpdateObjectiveCount()
@@ -136,9 +139,9 @@ namespace LemonUI.TimerBars
             {
                 completed = count;
             }
-            
+
             objectives.Clear();
-            
+
             for (int i = 0; i < count; i++)
             {
                 objectives.Add(new ScaledTexture("timerbars", "circle_checkpoints"));
@@ -154,11 +157,11 @@ namespace LemonUI.TimerBars
                 texture.Color = i < completed ? colorSet : colorWhite;
             }
         }
-        
+
         #endregion
-        
+
         #region Functions
-        
+
         /// <summary>
         /// Draws the objective timer bar.
         /// </summary>
@@ -176,7 +179,7 @@ namespace LemonUI.TimerBars
         public override void Recalculate(PointF pos)
         {
             lastPosition = pos;
-            
+
             base.Recalculate(pos);
 
             const float safe = width + 5;

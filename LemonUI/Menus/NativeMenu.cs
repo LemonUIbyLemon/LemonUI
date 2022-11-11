@@ -853,19 +853,15 @@ namespace LemonUI.Menus
         /// </summary>
         private void RecalculatePanel()
         {
-            // If the selected item has a panel
-            if (SelectedItem?.Panel != null)
+            if (SelectedItem?.Panel == null)
             {
-                // Save the Y value of the description
-                float y = descriptionRect.Position.Y;
-                // If it has text, show it after the description instead of taking it's place
-                if (!string.IsNullOrWhiteSpace(descriptionText.Text))
-                {
-                    y += descriptionRect.Size.Height + 10;
-                }
-                // Finally, set the position of the panel
-                SelectedItem.Panel.Recalculate(new PointF(descriptionRect.Position.X, y), Width);
+                return;
             }
+
+            const int separation = 10;
+
+            PointF position = new PointF(descriptionRect.Position.X, descriptionRect.Position.Y + descriptionRect.Size.Height + separation);
+            SelectedItem.Panel.Recalculate(position, Width);
         }
         /// <summary>
         /// Resets the current position of the cursor.
@@ -1279,12 +1275,10 @@ namespace LemonUI.Menus
                     {
                         check.UpdateTexture(true);
                     }
-                    return;
                 }
                 else
                 {
                     SoundDisabled?.PlayFrontend();
-                    return;
                 }
             }
         }
@@ -1324,9 +1318,9 @@ namespace LemonUI.Menus
 
             backgroundImage?.Draw();
 
-            for (int i = 0; i < Items.Count; i++)
+            for (int i = 0; i < visibleItems.Count; i++)
             {
-                NativeItem item = Items[i];
+                NativeItem item = visibleItems[i];
 
                 if (item == selected)
                 {
@@ -1435,7 +1429,7 @@ namespace LemonUI.Menus
         /// <param name="menu">The menu to add.</param>
         /// <param name="endlabel">The alternative title of the item, shown on the right.</param>
         /// <returns>The item that points to the submenu.</returns>
-        public NativeSubmenuItem AddSubMenu(NativeMenu menu, String endlabel)
+        public NativeSubmenuItem AddSubMenu(NativeMenu menu, string endlabel)
         {
             NativeSubmenuItem item = AddSubMenu(menu);
             item.AltTitle = endlabel;

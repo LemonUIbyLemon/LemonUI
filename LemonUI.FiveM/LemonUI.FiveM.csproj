@@ -1,40 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <ForFramework>FiveM</ForFramework>
+        <TargetFramework>net452</TargetFramework>
+        <DefineConstants>FIVEM</DefineConstants>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net452</TargetFramework>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <AssemblyName>$(AssemblyName).net</AssemblyName>
-    <DefineConstants>FIVEM</DefineConstants>
-    <Version>1.5.1</Version>
-    <OutputPath>..\bin\$(Configuration)\FiveM\</OutputPath>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>..\bin\$(Configuration)\FiveM\$(AssemblyName).xml</DocumentationFile>
-    <PackageIcon>logo.png</PackageIcon>
-    <DebugType>embedded</DebugType>
-    <DebugSymbols>true</DebugSymbols>
+    <PropertyGroup>
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
 
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageId>LemonUI.FiveM</PackageId>
-    <Authors>Hannele "Lemon" Ruiz</Authors>
-    <Company>Hannele "Lemon" Ruiz</Company>
-    <Product>LemonUI</Product>
-    <Description>UI system for Grand Theft Auto V. This package is for FiveM Client.</Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/justalemon/LemonUI</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/justalemon/LemonUI.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageOutputPath>..\bin\$(Configuration)\FOR DEVELOPERS</PackageOutputPath>
-  </PropertyGroup>
+    <Import Project="../root.props" />
 
-  <ItemGroup>
-    <None Include="$(ProjectDir)/../logo.png" Pack="true" Visible="false" PackagePath=""/>
-    <PackageReference Include="CitizenFX.Core.Client" Version="1.0.4355">
-      <IncludeAssets>compile</IncludeAssets>
-    </PackageReference>
-    <Compile Include="$(ProjectDir)/../LemonUI/**" />
-  </ItemGroup>
+    <PropertyGroup>
+        <Description>UI system for Grand Theft Auto V. This package is for FiveM Client.</Description>
+    </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="CitizenFX.Core.Client" Version="1.0.6008">
+            <IncludeAssets>compile</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 </Project>

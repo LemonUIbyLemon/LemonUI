@@ -33,26 +33,6 @@ namespace LemonUI
     public delegate void SafeZoneChangedEventHandler(object sender, SafeZoneChangedEventArgs e);
 
     /// <summary>
-    /// Represents the information after a Resolution Change in the game.
-    /// </summary>
-    public class ResolutionChangedEventArgs
-    {
-        /// <summary>
-        /// The Game Resolution before it was changed.
-        /// </summary>
-        public SizeF Before { get; }
-        /// <summary>
-        /// The Game Resolution after it was changed.
-        /// </summary>
-        public SizeF After { get; }
-
-        internal ResolutionChangedEventArgs(SizeF before, SizeF after)
-        {
-            Before = before;
-            After = after;
-        }
-    }
-    /// <summary>
     /// Represents the information after a Safe Zone Change in the game.
     /// </summary>
     public class SafeZoneChangedEventArgs

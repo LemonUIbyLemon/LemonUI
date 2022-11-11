@@ -24,7 +24,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The title of the object.
         /// </summary>
-        protected internal ScaledText title = null;
+        protected internal ScaledText title;
         /// <summary>
         /// The last known Item Position.
         /// </summary>
@@ -36,27 +36,27 @@ namespace LemonUI.Menus
         /// <summary>
         /// The last known Item Selection.
         /// </summary>
-        protected internal bool lastSelected = false;
+        protected internal bool lastSelected;
         /// <summary>
         /// The left badge of the Item.
         /// </summary>
-        protected internal I2Dimensional badgeLeft = null;
+        protected internal I2Dimensional badgeLeft;
         /// <summary>
         /// The left badge of the Item.
         /// </summary>
-        protected internal I2Dimensional badgeRight = null;
+        protected internal I2Dimensional badgeRight;
         /// <summary>
         /// The alternate title of the menu.
         /// </summary>
-        protected internal ScaledText altTitle = null;
+        protected internal ScaledText altTitle;
 
         #endregion
 
         #region Private Fields
 
         private bool enabled = true;
-        private BadgeSet badgeSetLeft = null;
-        private BadgeSet badgeSetRight = null;
+        private BadgeSet badgeSetLeft;
+        private BadgeSet badgeSetRight;
         private ColorSet colors = new ColorSet();
         private ScaledRectangle background = new ScaledRectangle(PointF.Empty, SizeF.Empty);
 
@@ -224,7 +224,7 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
-        /// The Panel asociated to this <see cref="NativeItem"/>.
+        /// The Panel associated to this <see cref="NativeItem"/>.
         /// </summary>
         public NativePanel Panel { get; set; } = null;
         /// <summary>
@@ -292,10 +292,13 @@ namespace LemonUI.Menus
         /// <summary>
         /// Triggers the Selected event.
         /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">A <see cref="SelectedEventArgs"/> with the index information.</param>
         protected internal void OnSelected(object sender, SelectedEventArgs e) => Selected?.Invoke(sender, e);
         /// <summary>
         /// Triggers the Activated event.
         /// </summary>
+        /// <param name="sender">The source of the event.</param>
         protected internal void OnActivated(object sender) => Activated?.Invoke(sender, EventArgs.Empty);
 
         #endregion
