@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <ForFramework>SHVDNC</ForFramework>
+        <TargetFramework>net7.0</TargetFramework>
+        <DefineConstants>SHVDN3</DefineConstants>
+		<NoAotCompile>true</NoAotCompile>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+    </PropertyGroup>
+
+    <Import Project="../root.props" />
+
+    <PropertyGroup>
+        <Description>UI system for Grand Theft Auto V. This package is for ScriptHookVDotNetCore.</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+		<PackageReference Include="ScriptHookVDotNetCore" Version="1.1.0" >
+			<IncludeAssets>compile</IncludeAssets>
+		</PackageReference>
+    </ItemGroup>
+</Project>

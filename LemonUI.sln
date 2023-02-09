@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LemonUI.RagePluginHook", "L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LemonUI.RageMP", "LemonUI.RageMP\LemonUI.RageMP.csproj", "{C526B98E-3DA1-481A-A737-27C289D960EA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LemonUI.SHVDNC", "LemonUI.SHVDNC\LemonUI.SHVDNC.csproj", "{3B49A7F9-96FF-4448-96FF-DAAA68E9B0CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C526B98E-3DA1-481A-A737-27C289D960EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C526B98E-3DA1-481A-A737-27C289D960EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C526B98E-3DA1-481A-A737-27C289D960EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B49A7F9-96FF-4448-96FF-DAAA68E9B0CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B49A7F9-96FF-4448-96FF-DAAA68E9B0CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B49A7F9-96FF-4448-96FF-DAAA68E9B0CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B49A7F9-96FF-4448-96FF-DAAA68E9B0CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
