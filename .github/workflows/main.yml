@@ -18,7 +18,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v2.1.0
         with:
-          dotnet-version: "6.0.x"
+          dotnet-version: "7.0.x"
       - name: Restore NuGet Packages
         run: dotnet restore ${{ github.event.repository.name }}.sln
       - name: Patch csproj version
