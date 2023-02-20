@@ -45,7 +45,7 @@ Once installed, the mods that require LemonUI will start working.
 
 If you are a developer, check the [wiki](https://github.com/justalemon/LemonUI/wiki) for information to implement LemonUI in your mod.
 
-[actions-img]: https://img.shields.io/github/workflow/status/LemonUIbyLemon/LemonUI/Compile%20Mod?label=github%20actions
+[actions-img]: https://img.shields.io/github/actions/workflow/status/LemonUIbyLemon/LemonUI/main.yml?branch=master&label=actions
 [actions-url]: https://github.com/LemonUIbyLemon/LemonUI/actions
 [nuget-img-2]: https://img.shields.io/nuget/v/LemonUI.SHVDN2?label=nuget%20%28shvdn%202%29
 [nuget-url-2]: https://www.nuget.org/packages/LemonUI.SHVDN2/
