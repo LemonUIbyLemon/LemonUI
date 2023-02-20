@@ -30,8 +30,8 @@
         <Company>Hannele "Lemon" Ruiz</Company>
         <Product>LemonUI</Product>
         <Description>UI system for Grand Theft Auto V.</Description>
-        <PackageProjectUrl>https://github.com/justalemon/LemonUI</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/justalemon/LemonUI.git</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/LemonUIbyLemon/LemonUI</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/LemonUIbyLemon/LemonUI.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
