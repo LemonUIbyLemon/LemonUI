@@ -211,6 +211,10 @@ namespace LemonUI.Menus
         /// </summary>
         private bool visible = false;
         /// <summary>
+        /// If the menu has just been closed.
+        /// </summary>
+        private bool justClosed = false;
+        /// <summary>
         /// If this menu should be aware of the Safe Zone when doing calculations.
         /// </summary>
         private bool safeZoneAware = true;
@@ -345,6 +349,7 @@ namespace LemonUI.Menus
                     }
 
                     visible = false;
+                    justClosed = true;
                     Closed?.Invoke(this, EventArgs.Empty);
                     SoundClose?.PlayFrontend();
                 }
@@ -1537,6 +1542,30 @@ namespace LemonUI.Menus
         {
             if (!visible)
             {
+                if (!justClosed)
+                {
+                    return;
+                }
+
+#if FIVEM
+                API.SetInputExclusive(0, (int)Control.PhoneCancel);
+                API.SetInputExclusive(0, (int)Control.FrontendPause);
+#elif RAGEMP
+                Invoker.Invoke(Natives.SetInputExclusive, 0, (int)Control.PhoneCancel);
+                Invoker.Invoke(Natives.SetInputExclusive, 0, (int)Control.FrontendPause);
+#elif RPH
+                NativeFunction.CallByHash<int>(0x351220255D64C155, 0, (int)Control.CellphoneCancel);
+                NativeFunction.CallByHash<int>(0x351220255D64C155, 0, (int)Control.FrontendPause);
+#elif SHVDN3
+                Function.Call(Hash.SET_INPUT_EXCLUSIVE, 0, (int)Control.PhoneCancel);
+                Function.Call(Hash.SET_INPUT_EXCLUSIVE, 0, (int)Control.FrontendPause);
+#endif
+
+                if (!Controls.IsPressed((Control)177 /*PhoneCancel*/) && !Controls.IsPressed(Control.FrontendPause))
+                {
+                    justClosed = false;
+                }
+
                 return;
             }
 
@@ -1633,10 +1662,16 @@ namespace LemonUI.Menus
         /// </summary>
         public void Back()
         {
-            // Try to close the menu
             Visible = false;
-            // If this menu has been closed and there is a parent menu, open it
-            if (!Visible && Parent != null)
+
+            if (Visible)
+            {
+                return;
+            }
+
+            justClosed = true;
+
+            if (Parent != null)
             {
                 Parent.Visible = true;
             }
