@@ -26,7 +26,7 @@ jobs:
         with:
           version: 1.2.2.${{ github.run_number }}
           use-tag: true
-          csproj-files: "**/**.csproj"
+          csproj-files: "**/root.props"
       - name: Compile
         working-directory: ${{ env.GITHUB_WORKSPACE }}
         run: dotnet build ${{ github.event.repository.name }}.sln -c ${{ matrix.configuration }}
