@@ -288,13 +288,9 @@ namespace LemonUI.Menus
         /// </summary>
         private PointF searchAreaRight = PointF.Empty;
         /// <summary>
-        /// The time sice the player has been pressing the Up button.
+        /// The time since the player has been pressing the Up button.
         /// </summary>
-        private long upSince = -1;
-        /// <summary>
-        /// The time sice the player has been pressing the Down button.
-        /// </summary>
-        private long downSince = -1;
+        private long heldSince = -1;
         private SubtitleBehavior subtitleBehavior = SubtitleBehavior.AlwaysShow;
 
         #endregion
@@ -1072,6 +1068,8 @@ namespace LemonUI.Menus
             bool leftPressed = Controls.IsJustPressed((Control)174 /*PhoneLeft*/);
             bool rightPressed = Controls.IsJustPressed((Control)175 /*PhoneRight*/);
 
+            bool leftHeld = Controls.IsPressed((Control)174 /*PhoneLeft*/);
+            bool rightHeld = Controls.IsPressed((Control)175 /*PhoneRight*/);
             bool upHeld = Controls.IsPressed((Control)172 /*PhoneUp*/) || Controls.IsPressed(Control.CursorScrollUp);
             bool downHeld = Controls.IsPressed((Control)173 /*PhoneDown*/) || Controls.IsPressed(Control.CursorScrollDown);
 
@@ -1090,17 +1088,29 @@ namespace LemonUI.Menus
             int time = Game.GameTime;
 #endif
 
-            // If the player pressed up, go to the previous item
-            if ((upPressed && !downPressed) || (HeldTime > 0 && upSince != -1 && !upPressed && upHeld && upSince + HeldTime < time))
+            if (HeldTime > 0 && (upHeld || downHeld || leftHeld || rightHeld))
             {
-                upSince = time;
+                if (heldSince == -1)
+                {
+                    heldSince = time;
+                }
+            }
+            else
+            {
+                heldSince = -1;
+            }
+
+            // If the player pressed up, go to the previous item
+            if ((upPressed && !downPressed) || (upHeld && !downHeld && heldSince > 0 && heldSince + HeldTime < time))
+            {
+                heldSince = time;
                 Previous();
                 return;
             }
             // If he pressed down, go to the next item
-            if ((downPressed && !upPressed) || (HeldTime > 0 && downSince != -1 && !downPressed && downHeld && downSince + HeldTime < time))
+            if ((downPressed && !upPressed) || (downHeld && !upHeld && heldSince > 0 && heldSince + HeldTime < time))
             {
-                downSince = time;
+                heldSince = time;
                 Next();
                 return;
             }
@@ -1233,10 +1243,12 @@ namespace LemonUI.Menus
             }
 
             // If the player pressed the left or right button, trigger the event and sound
-            if (SelectedItem is NativeSlidableItem slidableItem)
+            if (SelectedItem is NativeSlidableItem slidableItem && !upHeld && !downHeld)
             {
-                if (leftPressed)
+                if ((leftPressed && !rightPressed) || (leftHeld && heldSince > 0 && heldSince + HeldTime < time))
                 {
+                    heldSince = time;
+
                     if (SelectedItem.Enabled)
                     {
                         slidableItem.GoLeft();
@@ -1248,8 +1260,10 @@ namespace LemonUI.Menus
                     }
                     return;
                 }
-                if (rightPressed)
+                if ((rightPressed && !leftPressed) || (rightHeld && heldSince > 0 && heldSince + HeldTime < time))
                 {
+                    heldSince = time;
+
                     if (SelectedItem.Enabled)
                     {
                         slidableItem.GoRight();
