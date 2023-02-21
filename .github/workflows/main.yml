@@ -22,7 +22,7 @@ jobs:
       - name: Restore NuGet Packages
         run: dotnet restore ${{ github.event.repository.name }}.sln
       - name: Patch csproj version
-        uses: justalemon/VersionPatcher@v0.4
+        uses: justalemon/VersionPatcher@v0.5.1
         with:
           version: 1.2.2.${{ github.run_number }}
           use-tag: true
