@@ -7,6 +7,8 @@ namespace LemonUI.Elements
     /// </summary>
     public interface I2Dimensional : IRecalculable, IDrawable
     {
+        #region Properties
+
         /// <summary>
         /// The Position of the drawable.
         /// </summary>
@@ -19,5 +21,7 @@ namespace LemonUI.Elements
         /// The Color of the drawable.
         /// </summary>
         Color Color { get; set; }
+
+        #endregion
     }
 }
