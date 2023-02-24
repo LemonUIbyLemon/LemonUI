@@ -19,7 +19,7 @@ namespace LemonUI.Menus
     /// </summary>
     public class NativeItem : IDrawable
     {
-        #region Protected Internal Fields
+        #region Fields
 
         /// <summary>
         /// The title of the object.
@@ -50,10 +50,6 @@ namespace LemonUI.Menus
         /// </summary>
         protected internal ScaledText altTitle;
 
-        #endregion
-
-        #region Private Fields
-
         private bool enabled = true;
         private BadgeSet badgeSetLeft;
         private BadgeSet badgeSetRight;
@@ -62,7 +58,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// If this item can be used or not.
@@ -287,7 +283,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Event Triggers
+        #region Tools
 
         /// <summary>
         /// Triggers the Selected event.
@@ -301,10 +297,6 @@ namespace LemonUI.Menus
         /// <param name="sender">The source of the event.</param>
         protected internal void OnActivated(object sender) => Activated?.Invoke(sender, EventArgs.Empty);
 
-        #endregion
-
-        #region Private Functions
-
         /// <summary>
         /// Recalculates the item with the last known values.
         /// </summary>
@@ -312,7 +304,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Recalculates the item positions and sizes with the specified values.
