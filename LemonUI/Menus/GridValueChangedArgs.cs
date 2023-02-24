@@ -7,6 +7,8 @@ namespace LemonUI.Menus
     /// </summary>
     public class GridValueChangedArgs
     {
+        #region Properties
+
         /// <summary>
         /// The values present before they were changed.
         /// </summary>
@@ -16,10 +18,16 @@ namespace LemonUI.Menus
         /// </summary>
         public PointF After { get; }
 
+        #endregion
+
+        #region Constructors
+
         internal GridValueChangedArgs(PointF before, PointF after)
         {
             Before = before;
             After = after;
         }
+
+        #endregion
     }
 }
