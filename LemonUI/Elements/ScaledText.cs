@@ -23,7 +23,7 @@ namespace LemonUI.Elements
     /// </summary>
     public class ScaledText : IText
     {
-        #region Consistent Values
+        #region Constants
 
         /// <summary>
         /// The size of every chunk of text.
@@ -32,7 +32,7 @@ namespace LemonUI.Elements
 
         #endregion
 
-        #region Private Fields
+        #region Fields
 
         /// <summary>
         /// The absolute 1080p based screen position.
@@ -65,7 +65,7 @@ namespace LemonUI.Elements
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The position of the text.
@@ -471,7 +471,7 @@ namespace LemonUI.Elements
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Draws the text on the screen.
