@@ -35,7 +35,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Private Fields
+        #region Fields
 
         /// <summary>
         /// The position reported after the last Recalculation.
@@ -122,10 +122,6 @@ namespace LemonUI.Menus
         /// </summary>
         private List<NativeColorData> visibleItems = new List<NativeColorData>();
 
-        #endregion
-
-        #region Public Fields
-
         /// <summary>
         /// The default sound used for the Color Navigation.
         /// </summary>
@@ -133,7 +129,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <inheritdoc/>
         public override bool Clickable => true;
@@ -368,7 +364,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Private Functions
+        #region Tools
 
         /// <summary>
         /// Updates the Text of the Title.
@@ -486,7 +482,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <inheritdoc/>
         public IEnumerator<NativeColorData> GetEnumerator() => Colors.GetEnumerator();
