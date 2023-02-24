@@ -93,13 +93,13 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Local Events
+        #region Event Functions
 
         private void NativeCheckboxItem_EnabledChanged(object sender, EventArgs e) => UpdateTexture(lastSelected);
 
         #endregion
 
-        #region Internal Functions
+        #region Tools
 
         /// <summary>
         /// Inverts the checkbox activation.
@@ -124,7 +124,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Recalculates the item positions and sizes with the specified values.
