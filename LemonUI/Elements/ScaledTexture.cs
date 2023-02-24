@@ -16,7 +16,7 @@ namespace LemonUI.Elements
     /// </summary>
     public class ScaledTexture : BaseElement
     {
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The dictionary where the texture is loaded.
@@ -55,7 +55,7 @@ namespace LemonUI.Elements
 
         #endregion
 
-        #region Private Functions
+        #region Tools
 
         /// <summary>
         /// Requests the texture dictionary for this class.
@@ -87,7 +87,7 @@ namespace LemonUI.Elements
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Draws the texture on the screen.
