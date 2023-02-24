@@ -29,7 +29,7 @@ namespace LemonUI.Elements
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Draws the rectangle on the screen.
