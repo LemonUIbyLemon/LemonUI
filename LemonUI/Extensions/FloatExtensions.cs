@@ -5,6 +5,8 @@ namespace LemonUI.Extensions
     /// </summary>
     public static class FloatExtensions
     {
+        #region Extensions
+
         /// <summary>
         /// Converts an absolute X or Width float to a relative one.
         /// </summary>
@@ -45,5 +47,7 @@ namespace LemonUI.Extensions
             Screen.ToAbsolute(0, fin, out _, out float fout);
             return fout;
         }
+
+        #endregion
     }
 }

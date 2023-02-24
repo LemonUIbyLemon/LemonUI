@@ -7,6 +7,8 @@ namespace LemonUI.Extensions
     /// </summary>
     public static class SizeExtensions
     {
+        #region Extensions
+
         /// <summary>
         /// Converts an absolute 1080-based size into a relative one.
         /// </summary>
@@ -27,5 +29,7 @@ namespace LemonUI.Extensions
             Screen.ToAbsolute(size.Width, size.Height, out float width, out float height);
             return new SizeF(width, height);
         }
+
+        #endregion
     }
 }
