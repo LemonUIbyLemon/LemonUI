@@ -14,7 +14,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The image shown on the checkbox.
         /// </summary>
-        internal protected ScaledTexture check = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", string.Empty);
+        protected internal ScaledTexture check = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", string.Empty);
         /// <summary>
         /// If this item is checked or not.
         /// </summary>
@@ -108,7 +108,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// Updates the texture of the sprite.
         /// </summary>
-        internal protected void UpdateTexture(bool selected)
+        protected internal void UpdateTexture(bool selected)
         {
             // If the item is not selected or is not enabled, use the white pictures
             if (!selected || !Enabled)
