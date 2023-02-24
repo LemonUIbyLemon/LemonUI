@@ -8,7 +8,7 @@ namespace LemonUI.Elements
     /// </summary>
     public abstract class BaseElement : I2Dimensional
     {
-        #region Private Fields
+        #region Fields
 
         /// <summary>
         /// The 1080 scaled position.
@@ -29,7 +29,7 @@ namespace LemonUI.Elements
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The Position of the drawable.
@@ -88,7 +88,7 @@ namespace LemonUI.Elements
 
         #endregion
 
-        #region Private Functions
+        #region Functions
 
         /// <summary>
         /// Recalculates the size and position of this item.
@@ -98,11 +98,6 @@ namespace LemonUI.Elements
             relativePosition = literalPosition.ToRelative();
             relativeSize = literalSize.ToRelative();
         }
-
-        #endregion
-
-        #region Public Functions
-
         /// <summary>
         /// Draws the item on the screen.
         /// </summary>
