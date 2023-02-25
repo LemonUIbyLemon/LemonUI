@@ -16,13 +16,13 @@ namespace LemonUI.Scaleform
     /// </summary>
     public class BigMessage : BaseScaleform
     {
-        #region Constant Fields
+        #region Constants
 
         private const uint unarmed = 0xA2719263;
 
         #endregion
 
-        #region Private Fields
+        #region Fields
 
         private MessageType type;
         private uint weaponHash;
@@ -30,7 +30,7 @@ namespace LemonUI.Scaleform
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The title of the message.
@@ -207,7 +207,7 @@ namespace LemonUI.Scaleform
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Updates the Message information in the Scaleform.
