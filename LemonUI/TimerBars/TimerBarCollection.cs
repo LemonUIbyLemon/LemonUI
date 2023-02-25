@@ -64,7 +64,7 @@ namespace LemonUI.TimerBars
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Adds a <see cref="TimerBar"/> onto this collection.
