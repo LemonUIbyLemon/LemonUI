@@ -53,7 +53,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v1.0.7
         with:
           path: "docs/_site"
-      - uses: actions/deploy-pages@v1.2.7
+      - uses: actions/deploy-pages@v1.2.4
   deploy:
     runs-on: ubuntu-22.04
     if: ${{ github.event_name == 'release' }}
