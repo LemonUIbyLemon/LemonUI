@@ -13,25 +13,19 @@ jobs:
         configuration: [Debug, Release]
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v2.1.0
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v2.1.0
         with:
           dotnet-version: "7.0.x"
-      - name: Restore NuGet Packages
-        run: dotnet restore ${{ github.event.repository.name }}.sln
-      - name: Patch csproj version
-        uses: justalemon/VersionPatcher@v0.5.1
+      - run: dotnet restore ${{ github.event.repository.name }}.sln
+      - uses: justalemon/VersionPatcher@v0.5.1
         with:
-          version: 1.2.2.${{ github.run_number }}
+          version: 1.9.3.${{ github.run_number }}
           use-tag: true
           csproj-files: "**/root.props"
-      - name: Compile
+      - run: dotnet build ${{ github.event.repository.name }}.sln -c ${{ matrix.configuration }}
         working-directory: ${{ env.GITHUB_WORKSPACE }}
-        run: dotnet build ${{ github.event.repository.name }}.sln -c ${{ matrix.configuration }}
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ github.event.repository.name }}.${{ matrix.configuration }}
           path: bin/${{ matrix.configuration }}
@@ -41,26 +35,19 @@ jobs:
     needs:
       - lint-and-compile
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v2.1.0
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v2.1.0
         with:
           dotnet-version: "7.0.x"
-      - name: Download the Artifact
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
           name: ${{ github.event.repository.name }}.Release
           path: bin/Release
-      - name: List Everything
-        run: ls -R
+      - run: ls -R
         working-directory: bin/Release
-      - name: Repackage Files
-        run: 7z a ${{ github.event.repository.name }}.zip ${{ github.workspace }}/bin/Release/*
-      - name: Deploy NuGet
-        run: dotnet nuget push "**/*.nupkg" -s 'https://api.nuget.org/v3/index.json' -k ${{secrets.NUGET}}
-      - name: Create Release
-        uses: ncipollo/release-action@v1.10.0
+      - run: 7z a ${{ github.event.repository.name }}.zip ${{ github.workspace }}/bin/Release/*
+      - run: dotnet nuget push "**/*.nupkg" -s 'https://api.nuget.org/v3/index.json' -k ${{secrets.NUGET}}
+      - uses: ncipollo/release-action@v1.10.0
         with:
           allowUpdates: true
           artifactErrorsFailBuild: true
