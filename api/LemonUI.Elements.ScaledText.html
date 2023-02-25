@@ -1,0 +1,628 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class ScaledText
+ </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class ScaledText
+ ">
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="LemonUI.Elements.ScaledText">
+
+
+  <h1 id="LemonUI_Elements_ScaledText" data-uid="LemonUI.Elements.ScaledText" class="text-break">Class ScaledText
+</h1>
+  <div class="markdown level0 summary"><p>A text string.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><span class="xref">ScaledText</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="LemonUI.Elements.IText.html">IText</a></div>
+    <div><a class="xref" href="LemonUI.IRecalculable.html">IRecalculable</a></div>
+    <div><a class="xref" href="LemonUI.IDrawable.html">IDrawable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object)</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.ReferenceEquals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.GetHashCode()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="LemonUI.html">LemonUI</a>.<a class="xref" href="LemonUI.Elements.html">Elements</a></h6>
+  <h6><strong>Assembly</strong>: LemonUI.FiveM.dll</h6>
+  <h5 id="LemonUI_Elements_ScaledText_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ScaledText : IText, IRecalculable, IDrawable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+
+
+  <a id="LemonUI_Elements_ScaledText__ctor_" data-uid="LemonUI.Elements.ScaledText.#ctor*"></a>
+  <h4 id="LemonUI_Elements_ScaledText__ctor_System_Drawing_PointF_System_String_System_Single_CitizenFX_Core_UI_Font_" data-uid="LemonUI.Elements.ScaledText.#ctor(System.Drawing.PointF,System.String,System.Single,CitizenFX.Core.UI.Font)">ScaledText(PointF, string, float, Font)</h4>
+  <div class="markdown level1 summary"><p>Creates a text with the specified options</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScaledText(PointF pos, string text, float scale, Font font)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Drawing.PointF</span></td>
+        <td><span class="parametername">pos</span></td>
+        <td><p>The position where the text should be located.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text to show.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">scale</span></td>
+        <td><p>The scale of the text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CitizenFX.Core.UI.Font</span></td>
+        <td><span class="parametername">font</span></td>
+        <td><p>The font to use.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText__ctor_" data-uid="LemonUI.Elements.ScaledText.#ctor*"></a>
+  <h4 id="LemonUI_Elements_ScaledText__ctor_System_Drawing_PointF_System_String_System_Single_" data-uid="LemonUI.Elements.ScaledText.#ctor(System.Drawing.PointF,System.String,System.Single)">ScaledText(PointF, string, float)</h4>
+  <div class="markdown level1 summary"><p>Creates a text with the specified options.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScaledText(PointF pos, string text, float scale)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Drawing.PointF</span></td>
+        <td><span class="parametername">pos</span></td>
+        <td><p>The position where the text should be located.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text to show.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">scale</span></td>
+        <td><p>The scale of the text.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText__ctor_" data-uid="LemonUI.Elements.ScaledText.#ctor*"></a>
+  <h4 id="LemonUI_Elements_ScaledText__ctor_System_Drawing_PointF_System_String_" data-uid="LemonUI.Elements.ScaledText.#ctor(System.Drawing.PointF,System.String)">ScaledText(PointF, string)</h4>
+  <div class="markdown level1 summary"><p>Creates a text with the specified options.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScaledText(PointF pos, string text)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Drawing.PointF</span></td>
+        <td><span class="parametername">pos</span></td>
+        <td><p>The position where the text should be located.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text to show.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+
+
+  <a id="LemonUI_Elements_ScaledText_Alignment_" data-uid="LemonUI.Elements.ScaledText.Alignment*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_Alignment" data-uid="LemonUI.Elements.ScaledText.Alignment">Alignment</h4>
+  <div class="markdown level1 summary"><p>The alignment of the text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Alignment Alignment { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CitizenFX.Core.UI.Alignment</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText_Color_" data-uid="LemonUI.Elements.ScaledText.Color*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_Color" data-uid="LemonUI.Elements.ScaledText.Color">Color</h4>
+  <div class="markdown level1 summary"><p>The color of the text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color Color { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Drawing.Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText_Font_" data-uid="LemonUI.Elements.ScaledText.Font*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_Font" data-uid="LemonUI.Elements.ScaledText.Font">Font</h4>
+  <div class="markdown level1 summary"><p>The game font to use.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Font Font { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CitizenFX.Core.UI.Font</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText_LineCount_" data-uid="LemonUI.Elements.ScaledText.LineCount*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_LineCount" data-uid="LemonUI.Elements.ScaledText.LineCount">LineCount</h4>
+  <div class="markdown level1 summary"><p>The number of lines used by this text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LineCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText_LineHeight_" data-uid="LemonUI.Elements.ScaledText.LineHeight*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_LineHeight" data-uid="LemonUI.Elements.ScaledText.LineHeight">LineHeight</h4>
+  <div class="markdown level1 summary"><p>The relative height of each line in the text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float LineHeight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText_Outline_" data-uid="LemonUI.Elements.ScaledText.Outline*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_Outline" data-uid="LemonUI.Elements.ScaledText.Outline">Outline</h4>
+  <div class="markdown level1 summary"><p>If the test should have an outline.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Outline { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText_Position_" data-uid="LemonUI.Elements.ScaledText.Position*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_Position" data-uid="LemonUI.Elements.ScaledText.Position">Position</h4>
+  <div class="markdown level1 summary"><p>The position of the text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PointF Position { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Drawing.PointF</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText_Scale_" data-uid="LemonUI.Elements.ScaledText.Scale*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_Scale" data-uid="LemonUI.Elements.ScaledText.Scale">Scale</h4>
+  <div class="markdown level1 summary"><p>The scale of the text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Scale { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText_Shadow_" data-uid="LemonUI.Elements.ScaledText.Shadow*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_Shadow" data-uid="LemonUI.Elements.ScaledText.Shadow">Shadow</h4>
+  <div class="markdown level1 summary"><p>If the text should have a drop down shadow.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Shadow { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText_Text_" data-uid="LemonUI.Elements.ScaledText.Text*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_Text" data-uid="LemonUI.Elements.ScaledText.Text">Text</h4>
+  <div class="markdown level1 summary"><p>The text to draw.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Text { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText_Width_" data-uid="LemonUI.Elements.ScaledText.Width*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_Width" data-uid="LemonUI.Elements.ScaledText.Width">Width</h4>
+  <div class="markdown level1 summary"><p>The width that the text takes from the screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Width { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Elements_ScaledText_WordWrap_" data-uid="LemonUI.Elements.ScaledText.WordWrap*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_WordWrap" data-uid="LemonUI.Elements.ScaledText.WordWrap">WordWrap</h4>
+  <div class="markdown level1 summary"><p>The distance from the start position where the text will be wrapped into new lines.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float WordWrap { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="LemonUI_Elements_ScaledText_Draw_" data-uid="LemonUI.Elements.ScaledText.Draw*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_Draw" data-uid="LemonUI.Elements.ScaledText.Draw">Draw()</h4>
+  <div class="markdown level1 summary"><p>Draws the text on the screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Draw()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Elements_ScaledText_Recalculate_" data-uid="LemonUI.Elements.ScaledText.Recalculate*"></a>
+  <h4 id="LemonUI_Elements_ScaledText_Recalculate" data-uid="LemonUI.Elements.ScaledText.Recalculate">Recalculate()</h4>
+  <div class="markdown level1 summary"><p>Recalculates the size, position and word wrap of this item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Recalculate()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="LemonUI.Elements.IText.html">IText</a>
+  </div>
+  <div>
+      <a class="xref" href="LemonUI.IRecalculable.html">IRecalculable</a>
+  </div>
+  <div>
+      <a class="xref" href="LemonUI.IDrawable.html">IDrawable</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

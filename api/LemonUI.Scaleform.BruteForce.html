@@ -1,0 +1,633 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class BruteForce
+ </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class BruteForce
+ ">
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="LemonUI.Scaleform.BruteForce">
+
+
+  <h1 id="LemonUI_Scaleform_BruteForce" data-uid="LemonUI.Scaleform.BruteForce" class="text-break">Class BruteForce
+</h1>
+  <div class="markdown level0 summary"><p>The BruteForce Hacking Minigame shown in multiple missions.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><a class="xref" href="LemonUI.Scaleform.BaseScaleform.html">BaseScaleform</a></div>
+    <div class="level2"><span class="xref">BruteForce</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="LemonUI.Scaleform.IScaleform.html">IScaleform</a></div>
+    <div><a class="xref" href="LemonUI.IDrawable.html">IDrawable</a></div>
+    <div><a class="xref" href="LemonUI.IProcessable.html">IProcessable</a></div>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_scaleform">BaseScaleform.scaleform</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_IsValueReady_System_Int32_">BaseScaleform.IsValueReady(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_GetValue__1_System_Int32_">BaseScaleform.GetValue&lt;T&gt;(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_CallFunction_System_String_System_Object___">BaseScaleform.CallFunction(string, params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_CallFunction__1_System_String_System_Object___">BaseScaleform.CallFunction&lt;T&gt;(string, params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_CallFunctionReturn_System_String_System_Object___">BaseScaleform.CallFunctionReturn(string, params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_DrawFullScreen">BaseScaleform.DrawFullScreen()</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Draw">BaseScaleform.Draw()</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Process">BaseScaleform.Process()</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Dispose">BaseScaleform.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Handle">BaseScaleform.Handle</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Name">BaseScaleform.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Visible">BaseScaleform.Visible</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_IsLoaded">BaseScaleform.IsLoaded</a>
+    </div>
+    <div>
+      <span class="xref">object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object)</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.ReferenceEquals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.GetHashCode()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="LemonUI.html">LemonUI</a>.<a class="xref" href="LemonUI.Scaleform.html">Scaleform</a></h6>
+  <h6><strong>Assembly</strong>: LemonUI.FiveM.dll</h6>
+  <h5 id="LemonUI_Scaleform_BruteForce_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BruteForce : BaseScaleform, IScaleform, IDrawable, IProcessable, IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+
+
+  <a id="LemonUI_Scaleform_BruteForce__ctor_" data-uid="LemonUI.Scaleform.BruteForce.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce__ctor" data-uid="LemonUI.Scaleform.BruteForce.#ctor">BruteForce()</h4>
+  <div class="markdown level1 summary"><p>Creates a new Hacking Scaleform.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BruteForce()</code></pre>
+  </div>
+  <h3 id="properties">Properties
+</h3>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_Background_" data-uid="LemonUI.Scaleform.BruteForce.Background*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_Background" data-uid="LemonUI.Scaleform.BruteForce.Background">Background</h4>
+  <div class="markdown level1 summary"><p>The background of the Hacking minigame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BruteForceBackground Background { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Scaleform.BruteForceBackground.html">BruteForceBackground</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_CanRetry_" data-uid="LemonUI.Scaleform.BruteForce.CanRetry*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_CanRetry" data-uid="LemonUI.Scaleform.BruteForce.CanRetry">CanRetry</h4>
+  <div class="markdown level1 summary"><p>If the player can retry the hack after failing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanRetry { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_CloseAfter_" data-uid="LemonUI.Scaleform.BruteForce.CloseAfter*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_CloseAfter" data-uid="LemonUI.Scaleform.BruteForce.CloseAfter">CloseAfter</h4>
+  <div class="markdown level1 summary"><p>The time in milliseconds to wait before closing the Hack window automatically.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CloseAfter { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LemonUI_Scaleform_BruteForce_CloseAfter_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This can be set to -1 to keep the Hack window open.</p>
+</div>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_Countdown_" data-uid="LemonUI.Scaleform.BruteForce.Countdown*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_Countdown" data-uid="LemonUI.Scaleform.BruteForce.Countdown">Countdown</h4>
+  <div class="markdown level1 summary"><p>The countdown of the Hack minigame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan Countdown { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.TimeSpan</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_CurrentLives_" data-uid="LemonUI.Scaleform.BruteForce.CurrentLives*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_CurrentLives" data-uid="LemonUI.Scaleform.BruteForce.CurrentLives">CurrentLives</h4>
+  <div class="markdown level1 summary"><p>The current number of lives that the player has.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CurrentLives { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_FailMessages_" data-uid="LemonUI.Scaleform.BruteForce.FailMessages*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_FailMessages" data-uid="LemonUI.Scaleform.BruteForce.FailMessages">FailMessages</h4>
+  <div class="markdown level1 summary"><p>The messages that will appear when the player fails.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; FailMessages { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_ResetOnRowFail_" data-uid="LemonUI.Scaleform.BruteForce.ResetOnRowFail*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_ResetOnRowFail" data-uid="LemonUI.Scaleform.BruteForce.ResetOnRowFail">ResetOnRowFail</h4>
+  <div class="markdown level1 summary"><p>If all of the rows should be restarted after the player fails one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ResetOnRowFail { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_ShowLives_" data-uid="LemonUI.Scaleform.BruteForce.ShowLives*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_ShowLives" data-uid="LemonUI.Scaleform.BruteForce.ShowLives">ShowLives</h4>
+  <div class="markdown level1 summary"><p>If the lives of the player should be shown on the top right.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ShowLives { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_SuccessMessages_" data-uid="LemonUI.Scaleform.BruteForce.SuccessMessages*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_SuccessMessages" data-uid="LemonUI.Scaleform.BruteForce.SuccessMessages">SuccessMessages</h4>
+  <div class="markdown level1 summary"><p>The messages that might appear on success.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; SuccessMessages { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_TotalLives_" data-uid="LemonUI.Scaleform.BruteForce.TotalLives*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_TotalLives" data-uid="LemonUI.Scaleform.BruteForce.TotalLives">TotalLives</h4>
+  <div class="markdown level1 summary"><p>The number of Lives of the minigame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TotalLives { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_Word_" data-uid="LemonUI.Scaleform.BruteForce.Word*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_Word" data-uid="LemonUI.Scaleform.BruteForce.Word">Word</h4>
+  <div class="markdown level1 summary"><p>The Word shown to select in the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Word { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_Reset_" data-uid="LemonUI.Scaleform.BruteForce.Reset*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_Reset" data-uid="LemonUI.Scaleform.BruteForce.Reset">Reset()</h4>
+  <div class="markdown level1 summary"><p>Resets the entire Hacking minigame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Reset()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_RunProgram_" data-uid="LemonUI.Scaleform.BruteForce.RunProgram*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_RunProgram_System_Int32_" data-uid="LemonUI.Scaleform.BruteForce.RunProgram(System.Int32)">RunProgram(int)</h4>
+  <div class="markdown level1 summary"><p>Runs the specified Hacking program.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RunProgram(int program)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">program</span></td>
+        <td><p>The program to open.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_SetColumnSpeed_" data-uid="LemonUI.Scaleform.BruteForce.SetColumnSpeed*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_SetColumnSpeed_System_Int32_System_Single_" data-uid="LemonUI.Scaleform.BruteForce.SetColumnSpeed(System.Int32,System.Single)">SetColumnSpeed(int, float)</h4>
+  <div class="markdown level1 summary"><p>Sets the speed of one of the 8 columns.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetColumnSpeed(int index, float speed)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of the column.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">speed</span></td>
+        <td><p>The speed of the column.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BruteForce_Update_" data-uid="LemonUI.Scaleform.BruteForce.Update*"></a>
+  <h4 id="LemonUI_Scaleform_BruteForce_Update" data-uid="LemonUI.Scaleform.BruteForce.Update">Update()</h4>
+  <div class="markdown level1 summary"><p>Updates the information of the Hacking window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Update()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Update">BaseScaleform.Update()</a></div>
+  <h3 id="events">Events
+</h3>
+
+
+  <h4 id="LemonUI_Scaleform_BruteForce_HackFinished" data-uid="LemonUI.Scaleform.BruteForce.HackFinished">HackFinished</h4>
+  <div class="markdown level1 summary"><p>Event triggered when the player finishes a hack.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event BruteForceFinishedEventHandler HackFinished</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Scaleform.BruteForceFinishedEventHandler.html">BruteForceFinishedEventHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="LemonUI.Scaleform.IScaleform.html">IScaleform</a>
+  </div>
+  <div>
+      <a class="xref" href="LemonUI.IDrawable.html">IDrawable</a>
+  </div>
+  <div>
+      <a class="xref" href="LemonUI.IProcessable.html">IProcessable</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

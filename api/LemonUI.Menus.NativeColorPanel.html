@@ -1,0 +1,791 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class NativeColorPanel
+ </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class NativeColorPanel
+ ">
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="LemonUI.Menus.NativeColorPanel">
+
+
+  <h1 id="LemonUI_Menus_NativeColorPanel" data-uid="LemonUI.Menus.NativeColorPanel" class="text-break">Class NativeColorPanel
+</h1>
+  <div class="markdown level0 summary"><p>A Panel that allows you to select a Color.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><a class="xref" href="LemonUI.Menus.NativePanel.html">NativePanel</a></div>
+    <div class="level2"><span class="xref">NativeColorPanel</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="LemonUI.Menus.NativeColorData.html">NativeColorData</a>&gt;</div>
+    <div><span class="xref">System.Collections.IEnumerable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativePanel.html#LemonUI_Menus_NativePanel_Visible">NativePanel.Visible</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativePanel.html#LemonUI_Menus_NativePanel_Background">NativePanel.Background</a>
+    </div>
+    <div>
+      <span class="xref">object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object)</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.ReferenceEquals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.GetHashCode()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="LemonUI.html">LemonUI</a>.<a class="xref" href="LemonUI.Menus.html">Menus</a></h6>
+  <h6><strong>Assembly</strong>: LemonUI.FiveM.dll</h6>
+  <h5 id="LemonUI_Menus_NativeColorPanel_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class NativeColorPanel : NativePanel, IEnumerable&lt;NativeColorData&gt;, IEnumerable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel__ctor_" data-uid="LemonUI.Menus.NativeColorPanel.#ctor*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel__ctor" data-uid="LemonUI.Menus.NativeColorPanel.#ctor">NativeColorPanel()</h4>
+  <div class="markdown level1 summary"><p>Creates a color panel with no Items or Title.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeColorPanel()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel__ctor_" data-uid="LemonUI.Menus.NativeColorPanel.#ctor*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel__ctor_System_String_LemonUI_Menus_NativeColorData___" data-uid="LemonUI.Menus.NativeColorPanel.#ctor(System.String,LemonUI.Menus.NativeColorData[])">NativeColorPanel(string, params NativeColorData[])</h4>
+  <div class="markdown level1 summary"><p>Creates a Panel with a specific Title and set of Colors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeColorPanel(string title, params NativeColorData[] colors)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title of the panel.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeColorData.html">NativeColorData</a>[]</td>
+        <td><span class="parametername">colors</span></td>
+        <td><p>The colors of the panel.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+</h3>
+
+
+  <h4 id="LemonUI_Menus_NativeColorPanel_DefaultSound" data-uid="LemonUI.Menus.NativeColorPanel.DefaultSound">DefaultSound</h4>
+  <div class="markdown level1 summary"><p>The default sound used for the Color Navigation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Sound DefaultSound</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Clickable_" data-uid="LemonUI.Menus.NativeColorPanel.Clickable*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Clickable" data-uid="LemonUI.Menus.NativeColorPanel.Clickable">Clickable</h4>
+  <div class="markdown level1 summary"><p>If the item has controls that can be clicked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Clickable { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="LemonUI.Menus.NativePanel.html#LemonUI_Menus_NativePanel_Clickable">NativePanel.Clickable</a></div>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Colors_" data-uid="LemonUI.Menus.NativeColorPanel.Colors*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Colors" data-uid="LemonUI.Menus.NativeColorPanel.Colors">Colors</h4>
+  <div class="markdown level1 summary"><p>The colors shown on this Panel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;NativeColorData&gt; Colors { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<a class="xref" href="LemonUI.Menus.NativeColorData.html">NativeColorData</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_MaxItems_" data-uid="LemonUI.Menus.NativeColorPanel.MaxItems*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_MaxItems" data-uid="LemonUI.Menus.NativeColorPanel.MaxItems">MaxItems</h4>
+  <div class="markdown level1 summary"><p>THe maximum number of items shown on the screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MaxItems { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Opacity_" data-uid="LemonUI.Menus.NativeColorPanel.Opacity*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Opacity" data-uid="LemonUI.Menus.NativeColorPanel.Opacity">Opacity</h4>
+  <div class="markdown level1 summary"><p>The opacity value of the color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Opacity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LemonUI_Menus_NativeColorPanel_Opacity_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The value needs to be set between 100 and 0.
+It will return -1 if <a class="xref" href="LemonUI.Menus.NativeColorPanel.html#LemonUI_Menus_NativeColorPanel_ShowOpacity">ShowOpacity</a> is set to <span class="xref">false</span>.</p>
+</div>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_SelectedColor_" data-uid="LemonUI.Menus.NativeColorPanel.SelectedColor*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_SelectedColor" data-uid="LemonUI.Menus.NativeColorPanel.SelectedColor">SelectedColor</h4>
+  <div class="markdown level1 summary"><p>The currently selected color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color SelectedColor { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Drawing.Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LemonUI_Menus_NativeColorPanel_SelectedColor_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If <a class="xref" href="LemonUI.Menus.NativeColorPanel.html#LemonUI_Menus_NativeColorPanel_ShowOpacity">ShowOpacity</a> is set to <span class="xref">true</span>.</p>
+</div>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_SelectedIndex_" data-uid="LemonUI.Menus.NativeColorPanel.SelectedIndex*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_SelectedIndex" data-uid="LemonUI.Menus.NativeColorPanel.SelectedIndex">SelectedIndex</h4>
+  <div class="markdown level1 summary"><p>The index of the currently selected Color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SelectedIndex { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_SelectedItem_" data-uid="LemonUI.Menus.NativeColorPanel.SelectedItem*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_SelectedItem" data-uid="LemonUI.Menus.NativeColorPanel.SelectedItem">SelectedItem</h4>
+  <div class="markdown level1 summary"><p>Returns the currently selected <a class="xref" href="LemonUI.Menus.NativeColorData.html">NativeColorData</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeColorData SelectedItem { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeColorData.html">NativeColorData</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_ShowCount_" data-uid="LemonUI.Menus.NativeColorPanel.ShowCount*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_ShowCount" data-uid="LemonUI.Menus.NativeColorPanel.ShowCount">ShowCount</h4>
+  <div class="markdown level1 summary"><p>If the count of items should be shown as part of the title.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ShowCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_ShowOpacity_" data-uid="LemonUI.Menus.NativeColorPanel.ShowOpacity*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_ShowOpacity" data-uid="LemonUI.Menus.NativeColorPanel.ShowOpacity">ShowOpacity</h4>
+  <div class="markdown level1 summary"><p>If the Opacity selector should be shown.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ShowOpacity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Sound_" data-uid="LemonUI.Menus.NativeColorPanel.Sound*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Sound" data-uid="LemonUI.Menus.NativeColorPanel.Sound">Sound</h4>
+  <div class="markdown level1 summary"><p>The sound played when the item is changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Sound Sound { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Title_" data-uid="LemonUI.Menus.NativeColorPanel.Title*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Title" data-uid="LemonUI.Menus.NativeColorPanel.Title">Title</h4>
+  <div class="markdown level1 summary"><p>The Title used for the Panel when <a class="xref" href="LemonUI.Menus.NativeColorPanel.html#LemonUI_Menus_NativeColorPanel_TitleStyle">TitleStyle</a> is set to <a class="xref" href="LemonUI.Menus.ColorTitleStyle.html#LemonUI_Menus_ColorTitleStyle_Simple">Simple</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Title { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_TitleStyle_" data-uid="LemonUI.Menus.NativeColorPanel.TitleStyle*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_TitleStyle" data-uid="LemonUI.Menus.NativeColorPanel.TitleStyle">TitleStyle</h4>
+  <div class="markdown level1 summary"><p>The style of the Panel Title.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColorTitleStyle TitleStyle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.ColorTitleStyle.html">ColorTitleStyle</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Add_" data-uid="LemonUI.Menus.NativeColorPanel.Add*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Add_LemonUI_Menus_NativeColorData_" data-uid="LemonUI.Menus.NativeColorPanel.Add(LemonUI.Menus.NativeColorData)">Add(NativeColorData)</h4>
+  <div class="markdown level1 summary"><p>Adds a color to the Panel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(NativeColorData color)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeColorData.html">NativeColorData</a></td>
+        <td><span class="parametername">color</span></td>
+        <td><p>The color to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Clear_" data-uid="LemonUI.Menus.NativeColorPanel.Clear*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Clear" data-uid="LemonUI.Menus.NativeColorPanel.Clear">Clear()</h4>
+  <div class="markdown level1 summary"><p>Removes all of the colors from the Panel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Contains_" data-uid="LemonUI.Menus.NativeColorPanel.Contains*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Contains_LemonUI_Menus_NativeColorData_" data-uid="LemonUI.Menus.NativeColorPanel.Contains(LemonUI.Menus.NativeColorData)">Contains(NativeColorData)</h4>
+  <div class="markdown level1 summary"><p>Checks if the Color Data is present on this Panel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Contains(NativeColorData color)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeColorData.html">NativeColorData</a></td>
+        <td><span class="parametername">color</span></td>
+        <td><p>The Color Data to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_GetEnumerator_" data-uid="LemonUI.Menus.NativeColorPanel.GetEnumerator*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_GetEnumerator" data-uid="LemonUI.Menus.NativeColorPanel.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;NativeColorData&gt; GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerator&lt;T&gt;</span>&lt;<a class="xref" href="LemonUI.Menus.NativeColorData.html">NativeColorData</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Next_" data-uid="LemonUI.Menus.NativeColorPanel.Next*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Next" data-uid="LemonUI.Menus.NativeColorPanel.Next">Next()</h4>
+  <div class="markdown level1 summary"><p>Moves to the Next Color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Next()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Previous_" data-uid="LemonUI.Menus.NativeColorPanel.Previous*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Previous" data-uid="LemonUI.Menus.NativeColorPanel.Previous">Previous()</h4>
+  <div class="markdown level1 summary"><p>Moves to the Previous Color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Previous()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Process_" data-uid="LemonUI.Menus.NativeColorPanel.Process*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Process" data-uid="LemonUI.Menus.NativeColorPanel.Process">Process()</h4>
+  <div class="markdown level1 summary"><p>Draws the Color Panel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Process()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="LemonUI.Menus.NativePanel.html#LemonUI_Menus_NativePanel_Process">NativePanel.Process()</a></div>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Recalculate_" data-uid="LemonUI.Menus.NativeColorPanel.Recalculate*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Recalculate_System_Drawing_PointF_System_Single_" data-uid="LemonUI.Menus.NativeColorPanel.Recalculate(System.Drawing.PointF,System.Single)">Recalculate(PointF, float)</h4>
+  <div class="markdown level1 summary"><p>Recalculates the position of the Color Panel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Recalculate(PointF position, float width)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Drawing.PointF</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position of the panel.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width of the menu.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="LemonUI.Menus.NativePanel.html#LemonUI_Menus_NativePanel_Recalculate_System_Drawing_PointF_System_Single_">NativePanel.Recalculate(PointF, float)</a></div>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Remove_" data-uid="LemonUI.Menus.NativeColorPanel.Remove*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Remove_LemonUI_Menus_NativeColorData_" data-uid="LemonUI.Menus.NativeColorPanel.Remove(LemonUI.Menus.NativeColorData)">Remove(NativeColorData)</h4>
+  <div class="markdown level1 summary"><p>Removes a color from the panel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(NativeColorData color)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeColorData.html">NativeColorData</a></td>
+        <td><span class="parametername">color</span></td>
+        <td><p>The color to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeColorPanel_Remove_" data-uid="LemonUI.Menus.NativeColorPanel.Remove*"></a>
+  <h4 id="LemonUI_Menus_NativeColorPanel_Remove_System_Func_LemonUI_Menus_NativeColorData_System_Boolean__" data-uid="LemonUI.Menus.NativeColorPanel.Remove(System.Func{LemonUI.Menus.NativeColorData,System.Boolean})">Remove(Func&lt;NativeColorData, bool&gt;)</h4>
+  <div class="markdown level1 summary"><p>Removes all of the</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(Func&lt;NativeColorData, bool&gt; func)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func&lt;T, TResult&gt;</span>&lt;<a class="xref" href="LemonUI.Menus.NativeColorData.html">NativeColorData</a>, <span class="xref">bool</span>&gt;</td>
+        <td><span class="parametername">func</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

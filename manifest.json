@@ -1,0 +1,970 @@
+{
+  "homepages": [],
+  "source_base_path": "/home/runner/work/LemonUI/LemonUI/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Alignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Alignment.html",
+          "hash": "Z4JpA/IZv4d0PQsSVrbWDKyEnZOFfc7oQYBroDin/Ho="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.CancelEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.CancelEventArgs.html",
+          "hash": "/ZLri+/7fjt/CccaJaD3Mt7tLBhe2qz3OEr4hKFCCc8="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.CancelEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.CancelEventHandler.html",
+          "hash": "JVZj9xaMqKWcNl6QBJNCtzJKC8RbNDrLo0/RMPeInYs="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Elements.BaseElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Elements.BaseElement.html",
+          "hash": "4PoBqizCVInKk4Cs1cctFqDyWtuoiel1QYg2KgU2Ui8="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Elements.Font.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Elements.Font.html",
+          "hash": "Sy48WXCae5JC6cTFDkpPJMM0RykKcedoxz8sHzzi/+I="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Elements.I2Dimensional.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Elements.I2Dimensional.html",
+          "hash": "FbAV8Ro4IK9A8KBHvnNuujrq/ZU2HP02lFgNWYo2Q0A="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Elements.IText.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Elements.IText.html",
+          "hash": "0BzAmqNE6uX5iLYsaeUiT/PCTjQn4KQq4oslocWVFdY="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Elements.ScaledRectangle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Elements.ScaledRectangle.html",
+          "hash": "2Wg+Xx9uPkvHO9aM6Ys1fbvFlyJpMWBsLV2S6LG6ZKY="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Elements.ScaledText.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Elements.ScaledText.html",
+          "hash": "8/lkBdVOv5ALHanrxnDiGP6c+D8+IB1a5ZPmoC5+DUc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Elements.ScaledTexture.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Elements.ScaledTexture.html",
+          "hash": "k8ztFqwJqFNf84Ff431KfK6kWqb/seywJRvRYT8P4pg="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Elements.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Elements.html",
+          "hash": "ZpQ2qC6GBf3rsoJwGu1z34k7tXj62Vbdm62p1AKW5cI="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Extensions.FloatExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Extensions.FloatExtensions.html",
+          "hash": "JBUkGIt3ZWLkbrb7k3s4FEfhYANEb6v1oXGT+4525VA="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Extensions.PointExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Extensions.PointExtensions.html",
+          "hash": "COavC5Sx4W+dCWkY94QDilUcuPAXhrPCJ03A3J+ecTs="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Extensions.SizeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Extensions.SizeExtensions.html",
+          "hash": "dWDNT3vCUxYEmwzgEKtOUgELeLlXHvUbIP8jNqTNbxc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Extensions.html",
+          "hash": "/mGwrYac/coIoqKTjhSVYbH6wBtc10k7Es4LHzNBF94="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.GFXAlignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.GFXAlignment.html",
+          "hash": "QgMYuQN94XkhCDo0T91xVHW7e6ZRHcHqHdSX4cxGihs="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.IContainer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.IContainer-1.html",
+          "hash": "KVsrLXl4sX3RpHKaZb1lzX2KVLuRr6DVTN79LWmPYp8="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.IDrawable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.IDrawable.html",
+          "hash": "6awuCzyvl5cIj244ClRkhTW2/17o/vUHiy8qSvRk+yY="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.IProcessable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.IProcessable.html",
+          "hash": "3USq67tAa2fCubzqroZbi75khFh4jmUQUCCeKsILFWw="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.IRecalculable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.IRecalculable.html",
+          "hash": "87hVrZkteHiC2bDbpE4BmdhCiWWcbkXOfczRLQv25f0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.BadgeSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.BadgeSet.html",
+          "hash": "31aCWC0LfQ56eQuULCw1uiWDAJkNqCn5ONIx0S/bNso="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.ColorSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.ColorSet.html",
+          "hash": "KP6Zbk7zRhW1UZuBs4XklryMKPgrcatKysPZTQZw4OE="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.ColorTitleStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.ColorTitleStyle.html",
+          "hash": "EvUARfzCJbo8V12RX6EeQVLJlmkX9f/ymDZSYu8TrG8="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.CountVisibility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.CountVisibility.html",
+          "hash": "3zRog8iTv3Lr5ZSBsuTqVu9nJp5u4v8xdkvbNlvaaFM="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.Direction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.Direction.html",
+          "hash": "PPj4xGufDmqh4v6R5/41UTORCJ+vY7k9T1XVxdzcWzQ="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.GridStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.GridStyle.html",
+          "hash": "01JxFSHM09VmBq4aYrLppkKvzg26P7ntGoQ8F2lWu5Y="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.GridValueChangedArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.GridValueChangedArgs.html",
+          "hash": "KMXV46HsW3s9K40z41S8kq3P5VmURN29GnQP7FGd5JU="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.GridValueChangedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.GridValueChangedEventHandler.html",
+          "hash": "4mtZ9Ct0wMslBfSW2w70vK3dg8vmzFrw+vpALLSDTR8="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.ItemActivatedArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.ItemActivatedArgs.html",
+          "hash": "Qu7w8Ky102Y40KCfg+ele/aGe00Wu3qX0hGuk8zR/qo="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.ItemActivatedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.ItemActivatedEventHandler.html",
+          "hash": "Bx0Xn+yj/4mSDb98zjNcmwhAGpFPNKWWLgmuLkoTSag="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.ItemChangedEventArgs-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.ItemChangedEventArgs-1.html",
+          "hash": "pck9iAltNTfQoo9uq+OruokBpsFJLTxTXf8uXzBMY0M="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.ItemChangedEventHandler-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.ItemChangedEventHandler-1.html",
+          "hash": "1BJX97fNSIvhFOWyr3mt2GDkP93q8C4CncveCkaIwL0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.ItemOperation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.ItemOperation.html",
+          "hash": "NBXCAqLmguG9DABjjsXTDs3TDM97YoOkgRt94EvSIJo="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.MenuModifiedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.MenuModifiedEventArgs.html",
+          "hash": "P+ZjfXrcD1sv4rVvry5mtuZxMon2X4x/hS0Rz8iHR88="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.MenuModifiedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.MenuModifiedEventHandler.html",
+          "hash": "8tncH4ptG0F0UV8Bbkgk0E38rInViXpKlxGN/nuqN54="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeCheckboxItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeCheckboxItem.html",
+          "hash": "3OdT5o+JwN/PlAY98mFQ28XDmumdunK6OdsIihLkKp8="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeColorData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeColorData.html",
+          "hash": "5l6uGuB93K0xKiQ7p4XMpriGsguOH+uKrYwzc1dGB2Q="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeColorPanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeColorPanel.html",
+          "hash": "EHF88U1tzCT4UPi6IklqGtQHnbFitHskhpJAiTV5+ls="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeDynamicItem-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeDynamicItem-1.html",
+          "hash": "iDmDdlnH3I+AsNsrw9vMoNr++hbPEMFCjFkjRO8CT0A="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeGridPanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeGridPanel.html",
+          "hash": "YVa92XjzyM4jfDkfVqQbtdrW0Vq5oOQlGdsurzdwcRU="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeItem.html",
+          "hash": "VwIiG+LVlmaje/BiN8dF7LBmvL9i/jUz5oSsB1xfPo4="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeListItem-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeListItem-1.html",
+          "hash": "ufvLvuVNCPHOuqT24jtYW3ZTFrWNBt5FNYs+W5ULtNM="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeListItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeListItem.html",
+          "hash": "IS4i/Sp8GZprzSg3ee8XObNQeOUbXwAn/UGF8XINa2s="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeMenu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeMenu.html",
+          "hash": "n48klrxDe1QrQE1cA/8Mf4FcjpRzXlR/Nj7Fu26tUDQ="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativePanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativePanel.html",
+          "hash": "oW1ZeCBIWCQR5Hg6DRnzJ5z3Imcj5xYy2dKp1KqG7wk="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeSeparatorItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeSeparatorItem.html",
+          "hash": "ZMyRpL6DaPjc59f3nfYems5ROplu+wpa2B65Bk5Y6dI="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeSlidableItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeSlidableItem.html",
+          "hash": "hodIrfm+RGfVYfrUFc4bp7O/PL6qKGKaCsC451G6aHE="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeSliderItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeSliderItem.html",
+          "hash": "xmXMeVcgoeomsEhMdRKq4J1cwJYEjjDLDb4iuDOv4G0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeStatsInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeStatsInfo.html",
+          "hash": "6hPyKPMk3zd4d+jbOTZjhUp9yW17N4B+lQnLp9SKV/U="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeStatsPanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeStatsPanel.html",
+          "hash": "hTI9DgEUzFGP6Md9DqLAMYjY1o59s3V0/akc/vCmzFM="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.NativeSubmenuItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.NativeSubmenuItem.html",
+          "hash": "9IEkcvAa17fiYqw2iiXORflJRNkGYG3K6v0Mm5yDbYw="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.SelectedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.SelectedEventArgs.html",
+          "hash": "c/z0Pa6MO6/6zd2KUtraGpdU+OCbDE9dRU2G2FAZVQc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.SelectedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.SelectedEventHandler.html",
+          "hash": "52hWtk4+GCxvTJJN91frnEC0v6y7zc3LlXpgjl4gVSc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.SubtitleBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.SubtitleBehavior.html",
+          "hash": "8pVqj2XnLXI0Itt5HEFTmMT06bsFWnOkiVbUHPKzpdE="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Menus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Menus.html",
+          "hash": "vlPZ0joKZG9wTYptm/ZGZRtyBtSWmopD/qsKose7tjo="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.ObjectPool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.ObjectPool.html",
+          "hash": "5N+9rWIBas6MylixaBla3Y90Qi20Ab6MurTZF3C+3vQ="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.ResolutionChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.ResolutionChangedEventArgs.html",
+          "hash": "kZrRR5vtTgQ1d5KzmN10HzrW/tqlAhlDllmsQ2Sa8WM="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.ResolutionChangedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.ResolutionChangedEventHandler.html",
+          "hash": "pNTydH5jB3111BFIBxhVSI6JfdFyq1NA3KBBSUPsW/0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.SafeZoneChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.SafeZoneChangedEventArgs.html",
+          "hash": "RucAJDxPxXcamA1k/z9cotAD3Rcmv7/eQl9E5I0JwPc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.SafeZoneChangedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.SafeZoneChangedEventHandler.html",
+          "hash": "hGq3UdDmWX86BFH714/DBejA5G2xKqv8DUZGeUX86Jc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.BaseScaleform.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.BaseScaleform.html",
+          "hash": "G4nwCPUCWTQ8ggEyAkGXg9+AaRZLNW9YOd6EYC3/A0s="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.BigMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.BigMessage.html",
+          "hash": "A6xE872l/ejAs3Yj9b/R1qZwrDGtlTWNl6Hh9UBT0Lk="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.BruteForce.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.BruteForce.html",
+          "hash": "h9f9XaKRpAsa5MlpIzGWWS9FUjGhMDvvCYEniauH6zE="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.BruteForceBackground.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.BruteForceBackground.html",
+          "hash": "gvyv2EaUpbJOg6U0bXzkun/4MFl3dW0Ep38Jo65sppY="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.BruteForceFinishedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.BruteForceFinishedEventArgs.html",
+          "hash": "7h8SDHEfxUuXxLYV+I0AFbc0wEmm+K44M6GjH3QTXkU="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.BruteForceFinishedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.BruteForceFinishedEventHandler.html",
+          "hash": "1//4aYHNiKEQP5bJe310Hk6xnUnKOrZkAXgqWbe3EHQ="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.BruteForceStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.BruteForceStatus.html",
+          "hash": "YGtARSNKTetCoLCoDacPZBGSmfuSxkauYqQ4axZbvdg="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.IScaleform.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.IScaleform.html",
+          "hash": "cjIG72q79bd4ipA1sjxUAylEDJmW5Ja2Y30M4nUaIJQ="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.InstructionalButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.InstructionalButton.html",
+          "hash": "LSW6W012Hqxo7bKd8II44QH741W2LhNNBnmP//nJGIg="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.InstructionalButtons.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.InstructionalButtons.html",
+          "hash": "ojbyg7jl78YPjhQhfFMjHc8TSCX/YeNratZH+dqokoI="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.LoadingScreen.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.LoadingScreen.html",
+          "hash": "rIaMWzglrxaNcYT7KcuTW+wwDvEUAkqGRa2i4NNAr7E="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.MessageType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.MessageType.html",
+          "hash": "jp1LFke/Ktw0mXpLdSGoUyPvm2YNXeg9sxw8ltQ2XH0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.PopUp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.PopUp.html",
+          "hash": "LZsk/+hboLvSprABDg82Wr1aONCET8usNU8n7PGLmck="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Scaleform.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Scaleform.html",
+          "hash": "W1iR1MM7VSPaVfhWd4k1ALi2x60bI4e1wG48Y4Rr6Rs="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Screen.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Screen.html",
+          "hash": "ZDiP2QmLnqcFp7KLI35qpRPzqbc9D3EbnVOjdc/dC1I="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.Sound.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.Sound.html",
+          "hash": "/rixZWd6y9V+1MPflgNsuX1uUFGxJht3KtJ979ISclo="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.TimerBars.ObjectiveSpacing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.TimerBars.ObjectiveSpacing.html",
+          "hash": "8OTzBOy1oEyhFxouMpC3OFLqOpETpdNMNB0INF6X+co="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.TimerBars.TimerBar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.TimerBars.TimerBar.html",
+          "hash": "yqfdSfyXhtLWNAgRbLY1qMuNEl1RZDp99lw9CvWXwMk="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.TimerBars.TimerBarCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.TimerBars.TimerBarCollection.html",
+          "hash": "3CfddnM9oe37R8sNdNLgxp7DERB22YuvQY8o0+xGNmE="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.TimerBars.TimerBarObjective.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.TimerBars.TimerBarObjective.html",
+          "hash": "bFVuIvOUiAvLW2qZRxCyEK+tIRJkdVHM688BmfmnHmk="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.TimerBars.TimerBarProgress.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.TimerBars.TimerBarProgress.html",
+          "hash": "9FB3B1KTCI5aP60NkM3n9GUv5BEda/uq86OeKz/eCnA="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.TimerBars.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.TimerBars.html",
+          "hash": "Z9OqSeP0x/HYbiMIyPvthbTlhUrpbzhOsyGX8cTMbX0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LemonUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LemonUI.html",
+          "hash": "LKSlmbw27/HfYBbl4L7G2lFL9ikUukvGYJcO/+BSIRQ="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "kdge07uRCUn/6b1OvcYxfZcKxMMF41cPP4SxuNkFwzo="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "dJR2Ey23OQOEcURM8LkDf2R+NxlK0xw3I7cM6tnsCRg="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "3etWuD5WPVsYfciLJbsWazsyt1V9n9WNLTOvr1Xp2yc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "WcoK1OqGDZ7lzUaDaupMT9QNmzyxholmhXDGpzTZwjU="
+        }
+      },
+      "version": ""
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

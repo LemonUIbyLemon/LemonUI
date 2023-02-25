@@ -1,0 +1,1985 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class NativeMenu
+ </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class NativeMenu
+ ">
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="LemonUI.Menus.NativeMenu">
+
+
+  <h1 id="LemonUI_Menus_NativeMenu" data-uid="LemonUI.Menus.NativeMenu" class="text-break">Class NativeMenu
+</h1>
+  <div class="markdown level0 summary"><p>Menu that looks like the ones used by Rockstar.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><span class="xref">NativeMenu</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="LemonUI.IContainer-1.html">IContainer</a>&lt;<a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a>&gt;</div>
+    <div><a class="xref" href="LemonUI.IRecalculable.html">IRecalculable</a></div>
+    <div><a class="xref" href="LemonUI.IProcessable.html">IProcessable</a></div>
+    <div><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a>&gt;</div>
+    <div><span class="xref">System.Collections.IEnumerable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object)</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.ReferenceEquals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.GetHashCode()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="LemonUI.html">LemonUI</a>.<a class="xref" href="LemonUI.Menus.html">Menus</a></h6>
+  <h6><strong>Assembly</strong>: LemonUI.FiveM.dll</h6>
+  <h5 id="LemonUI_Menus_NativeMenu_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class NativeMenu : IContainer&lt;NativeItem&gt;, IRecalculable, IProcessable, IEnumerable&lt;NativeItem&gt;, IEnumerable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+
+
+  <a id="LemonUI_Menus_NativeMenu__ctor_" data-uid="LemonUI.Menus.NativeMenu.#ctor*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu__ctor_System_String_System_String_System_String_LemonUI_Elements_I2Dimensional_" data-uid="LemonUI.Menus.NativeMenu.#ctor(System.String,System.String,System.String,LemonUI.Elements.I2Dimensional)">NativeMenu(string, string, string, I2Dimensional)</h4>
+  <div class="markdown level1 summary"><p>Creates a new menu with the specified title, subtitle, description and banner.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeMenu(string title, string subtitle, string description, I2Dimensional banner)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title of the menu.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">subtitle</span></td>
+        <td><p>The subtitle of this menu.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description used for submenus.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="LemonUI.Elements.I2Dimensional.html">I2Dimensional</a></td>
+        <td><span class="parametername">banner</span></td>
+        <td><p>The drawable to use as the banner.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu__ctor_" data-uid="LemonUI.Menus.NativeMenu.#ctor*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu__ctor_System_String_System_String_System_String_" data-uid="LemonUI.Menus.NativeMenu.#ctor(System.String,System.String,System.String)">NativeMenu(string, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates a new menu with the specified title, subtitle and description.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeMenu(string title, string subtitle, string description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title of the menu.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">subtitle</span></td>
+        <td><p>The subtitle of this menu.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description used for submenus.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu__ctor_" data-uid="LemonUI.Menus.NativeMenu.#ctor*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu__ctor_System_String_System_String_" data-uid="LemonUI.Menus.NativeMenu.#ctor(System.String,System.String)">NativeMenu(string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates a new menu with the specified title and subtitle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeMenu(string title, string subtitle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title of the menu.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">subtitle</span></td>
+        <td><p>The subtitle of this menu.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu__ctor_" data-uid="LemonUI.Menus.NativeMenu.#ctor*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu__ctor_System_String_" data-uid="LemonUI.Menus.NativeMenu.#ctor(System.String)">NativeMenu(string)</h4>
+  <div class="markdown level1 summary"><p>Creates a new menu with the specified title.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeMenu(string title)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title of the menu.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+</h3>
+
+
+  <h4 id="LemonUI_Menus_NativeMenu_DefaultActivatedSound" data-uid="LemonUI.Menus.NativeMenu.DefaultActivatedSound">DefaultActivatedSound</h4>
+  <div class="markdown level1 summary"><p>The default <a class="xref" href="LemonUI.Sound.html">Sound</a> played when the current <a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a> is changed or activated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Sound DefaultActivatedSound</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="LemonUI_Menus_NativeMenu_DefaultCloseSound" data-uid="LemonUI.Menus.NativeMenu.DefaultCloseSound">DefaultCloseSound</h4>
+  <div class="markdown level1 summary"><p>The default <a class="xref" href="LemonUI.Sound.html">Sound</a> played when the menu is closed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Sound DefaultCloseSound</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="LemonUI_Menus_NativeMenu_DefaultDisabledSound" data-uid="LemonUI.Menus.NativeMenu.DefaultDisabledSound">DefaultDisabledSound</h4>
+  <div class="markdown level1 summary"><p>The default <a class="xref" href="LemonUI.Sound.html">Sound</a> played when the user activates a <a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a> that is disabled.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Sound DefaultDisabledSound</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="LemonUI_Menus_NativeMenu_DefaultLeftRightSound" data-uid="LemonUI.Menus.NativeMenu.DefaultLeftRightSound">DefaultLeftRightSound</h4>
+  <div class="markdown level1 summary"><p>The default <a class="xref" href="LemonUI.Sound.html">Sound</a> played when the user navigates Left and Right on a <a class="xref" href="LemonUI.Menus.NativeSlidableItem.html">NativeSlidableItem</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Sound DefaultLeftRightSound</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="LemonUI_Menus_NativeMenu_DefaultUpDownSound" data-uid="LemonUI.Menus.NativeMenu.DefaultUpDownSound">DefaultUpDownSound</h4>
+  <div class="markdown level1 summary"><p>The default <a class="xref" href="LemonUI.Sound.html">Sound</a> played when the user navigates Up and Down.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Sound DefaultUpDownSound</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+
+
+  <a id="LemonUI_Menus_NativeMenu_AcceptsInput_" data-uid="LemonUI.Menus.NativeMenu.AcceptsInput*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_AcceptsInput" data-uid="LemonUI.Menus.NativeMenu.AcceptsInput">AcceptsInput</h4>
+  <div class="markdown level1 summary"><p>If the menu accepts user input for navigation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AcceptsInput { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Alignment_" data-uid="LemonUI.Menus.NativeMenu.Alignment*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Alignment" data-uid="LemonUI.Menus.NativeMenu.Alignment">Alignment</h4>
+  <div class="markdown level1 summary"><p>The alignment of the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Alignment Alignment { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CitizenFX.Core.UI.Alignment</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Banner_" data-uid="LemonUI.Menus.NativeMenu.Banner*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Banner" data-uid="LemonUI.Menus.NativeMenu.Banner">Banner</h4>
+  <div class="markdown level1 summary"><p>The banner shown at the top of the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public I2Dimensional Banner { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Elements.I2Dimensional.html">I2Dimensional</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Buttons_" data-uid="LemonUI.Menus.NativeMenu.Buttons*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Buttons" data-uid="LemonUI.Menus.NativeMenu.Buttons">Buttons</h4>
+  <div class="markdown level1 summary"><p>The instructional buttons shown in the bottom right.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InstructionalButtons Buttons { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Scaleform.InstructionalButtons.html">InstructionalButtons</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_CloseOnInvalidClick_" data-uid="LemonUI.Menus.NativeMenu.CloseOnInvalidClick*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_CloseOnInvalidClick" data-uid="LemonUI.Menus.NativeMenu.CloseOnInvalidClick">CloseOnInvalidClick</h4>
+  <div class="markdown level1 summary"><p>If the menu should be closed when the user clicks out of bounds (aka anywhere else other than the items).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CloseOnInvalidClick { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Description_" data-uid="LemonUI.Menus.NativeMenu.Description*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Description" data-uid="LemonUI.Menus.NativeMenu.Description">Description</h4>
+  <div class="markdown level1 summary"><p>The description used when this menu is used as a submenu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Description { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_DescriptionFont_" data-uid="LemonUI.Menus.NativeMenu.DescriptionFont*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_DescriptionFont" data-uid="LemonUI.Menus.NativeMenu.DescriptionFont">DescriptionFont</h4>
+  <div class="markdown level1 summary"><p>The font of description text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Font DescriptionFont { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CitizenFX.Core.UI.Font</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_DisableControls_" data-uid="LemonUI.Menus.NativeMenu.DisableControls*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_DisableControls" data-uid="LemonUI.Menus.NativeMenu.DisableControls">DisableControls</h4>
+  <div class="markdown level1 summary"><p>If the conflictive controls should be disabled while the menu is open.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DisableControls { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_HeldTime_" data-uid="LemonUI.Menus.NativeMenu.HeldTime*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_HeldTime" data-uid="LemonUI.Menus.NativeMenu.HeldTime">HeldTime</h4>
+  <div class="markdown level1 summary"><p>The time between item changes when holding left, right, up or down.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int HeldTime { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LemonUI_Menus_NativeMenu_HeldTime_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This property can be set to zero to completely disable it.</p>
+</div>
+
+
+  <a id="LemonUI_Menus_NativeMenu_ItemCount_" data-uid="LemonUI.Menus.NativeMenu.ItemCount*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_ItemCount" data-uid="LemonUI.Menus.NativeMenu.ItemCount">ItemCount</h4>
+  <div class="markdown level1 summary"><p>If the count of items should be shown on the right of the subtitle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CountVisibility ItemCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.CountVisibility.html">CountVisibility</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_ItemCountFont_" data-uid="LemonUI.Menus.NativeMenu.ItemCountFont*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_ItemCountFont" data-uid="LemonUI.Menus.NativeMenu.ItemCountFont">ItemCountFont</h4>
+  <div class="markdown level1 summary"><p>The font of item count text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Font ItemCountFont { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CitizenFX.Core.UI.Font</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Items_" data-uid="LemonUI.Menus.NativeMenu.Items*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Items" data-uid="LemonUI.Menus.NativeMenu.Items">Items</h4>
+  <div class="markdown level1 summary"><p>The items that this menu contain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;NativeItem&gt; Items { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_MaxItems_" data-uid="LemonUI.Menus.NativeMenu.MaxItems*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_MaxItems" data-uid="LemonUI.Menus.NativeMenu.MaxItems">MaxItems</h4>
+  <div class="markdown level1 summary"><p>The maximum allowed number of items in the menu at once.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MaxItems { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_NoItemsText_" data-uid="LemonUI.Menus.NativeMenu.NoItemsText*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_NoItemsText" data-uid="LemonUI.Menus.NativeMenu.NoItemsText">NoItemsText</h4>
+  <div class="markdown level1 summary"><p>Text shown when there are no items in the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NoItemsText { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Offset_" data-uid="LemonUI.Menus.NativeMenu.Offset*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Offset" data-uid="LemonUI.Menus.NativeMenu.Offset">Offset</h4>
+  <div class="markdown level1 summary"><p>The offset of the menu position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PointF Offset { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Drawing.PointF</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Parent_" data-uid="LemonUI.Menus.NativeMenu.Parent*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Parent" data-uid="LemonUI.Menus.NativeMenu.Parent">Parent</h4>
+  <div class="markdown level1 summary"><p>The parent menu of this menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeMenu Parent { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeMenu.html">NativeMenu</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_RequiredControls_" data-uid="LemonUI.Menus.NativeMenu.RequiredControls*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_RequiredControls" data-uid="LemonUI.Menus.NativeMenu.RequiredControls">RequiredControls</h4>
+  <div class="markdown level1 summary"><p>The controls that are required for some menu operations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Control&gt; RequiredControls { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<span class="xref">CitizenFX.Core.Control</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LemonUI_Menus_NativeMenu_RequiredControls_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Add controls to this list when you want to detect them as pressed while the menu is open.</p>
+</div>
+
+
+  <a id="LemonUI_Menus_NativeMenu_ResetCursorWhenOpened_" data-uid="LemonUI.Menus.NativeMenu.ResetCursorWhenOpened*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_ResetCursorWhenOpened" data-uid="LemonUI.Menus.NativeMenu.ResetCursorWhenOpened">ResetCursorWhenOpened</h4>
+  <div class="markdown level1 summary"><p>If the cursor should be reset when the menu is opened.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ResetCursorWhenOpened { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_RotateCamera_" data-uid="LemonUI.Menus.NativeMenu.RotateCamera*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_RotateCamera" data-uid="LemonUI.Menus.NativeMenu.RotateCamera">RotateCamera</h4>
+  <div class="markdown level1 summary"><p>If the camera should be rotated when the cursor is on the left and right corners of the screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RotateCamera { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_SafeZoneAware_" data-uid="LemonUI.Menus.NativeMenu.SafeZoneAware*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_SafeZoneAware" data-uid="LemonUI.Menus.NativeMenu.SafeZoneAware">SafeZoneAware</h4>
+  <div class="markdown level1 summary"><p>If this menu should be aware of the Safe Zone when doing calculations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SafeZoneAware { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_SelectedIndex_" data-uid="LemonUI.Menus.NativeMenu.SelectedIndex*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_SelectedIndex" data-uid="LemonUI.Menus.NativeMenu.SelectedIndex">SelectedIndex</h4>
+  <div class="markdown level1 summary"><p>The current index of the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SelectedIndex { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_SelectedItem_" data-uid="LemonUI.Menus.NativeMenu.SelectedItem*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_SelectedItem" data-uid="LemonUI.Menus.NativeMenu.SelectedItem">SelectedItem</h4>
+  <div class="markdown level1 summary"><p>Returns the currently selected item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeItem SelectedItem { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_SoundActivated_" data-uid="LemonUI.Menus.NativeMenu.SoundActivated*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_SoundActivated" data-uid="LemonUI.Menus.NativeMenu.SoundActivated">SoundActivated</h4>
+  <div class="markdown level1 summary"><p>The <a class="xref" href="LemonUI.Sound.html">Sound</a> played when a <a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a> is activated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Sound SoundActivated { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_SoundClose_" data-uid="LemonUI.Menus.NativeMenu.SoundClose*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_SoundClose" data-uid="LemonUI.Menus.NativeMenu.SoundClose">SoundClose</h4>
+  <div class="markdown level1 summary"><p>The <a class="xref" href="LemonUI.Sound.html">Sound</a> played when the menu is closed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Sound SoundClose { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_SoundDisabled_" data-uid="LemonUI.Menus.NativeMenu.SoundDisabled*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_SoundDisabled" data-uid="LemonUI.Menus.NativeMenu.SoundDisabled">SoundDisabled</h4>
+  <div class="markdown level1 summary"><p>The <a class="xref" href="LemonUI.Sound.html">Sound</a> played when the user activates a <a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a> that is disabled.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Sound SoundDisabled { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_SoundLeftRight_" data-uid="LemonUI.Menus.NativeMenu.SoundLeftRight*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_SoundLeftRight" data-uid="LemonUI.Menus.NativeMenu.SoundLeftRight">SoundLeftRight</h4>
+  <div class="markdown level1 summary"><p>The <a class="xref" href="LemonUI.Sound.html">Sound</a> played when the user navigates Left and Right on a <a class="xref" href="LemonUI.Menus.NativeSlidableItem.html">NativeSlidableItem</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Sound SoundLeftRight { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_SoundOpened_" data-uid="LemonUI.Menus.NativeMenu.SoundOpened*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_SoundOpened" data-uid="LemonUI.Menus.NativeMenu.SoundOpened">SoundOpened</h4>
+  <div class="markdown level1 summary"><p>The <a class="xref" href="LemonUI.Sound.html">Sound</a> played when the menu is opened.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Sound SoundOpened { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_SoundUpDown_" data-uid="LemonUI.Menus.NativeMenu.SoundUpDown*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_SoundUpDown" data-uid="LemonUI.Menus.NativeMenu.SoundUpDown">SoundUpDown</h4>
+  <div class="markdown level1 summary"><p>The <a class="xref" href="LemonUI.Sound.html">Sound</a> played when the user navigates Up or Down the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Sound SoundUpDown { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Sound.html">Sound</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Subtitle_" data-uid="LemonUI.Menus.NativeMenu.Subtitle*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Subtitle" data-uid="LemonUI.Menus.NativeMenu.Subtitle">Subtitle</h4>
+  <div class="markdown level1 summary"><p>The subtitle of the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Subtitle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_SubtitleBehavior_" data-uid="LemonUI.Menus.NativeMenu.SubtitleBehavior*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_SubtitleBehavior" data-uid="LemonUI.Menus.NativeMenu.SubtitleBehavior">SubtitleBehavior</h4>
+  <div class="markdown level1 summary"><p>The behavior of the black bar showing the subtitle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SubtitleBehavior SubtitleBehavior { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.SubtitleBehavior.html">SubtitleBehavior</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_SubtitleFont_" data-uid="LemonUI.Menus.NativeMenu.SubtitleFont*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_SubtitleFont" data-uid="LemonUI.Menus.NativeMenu.SubtitleFont">SubtitleFont</h4>
+  <div class="markdown level1 summary"><p>The font of subtitle text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Font SubtitleFont { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CitizenFX.Core.UI.Font</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Title_" data-uid="LemonUI.Menus.NativeMenu.Title*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Title" data-uid="LemonUI.Menus.NativeMenu.Title">Title</h4>
+  <div class="markdown level1 summary"><p>The title of the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScaledText Title { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Elements.ScaledText.html">ScaledText</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_TitleFont_" data-uid="LemonUI.Menus.NativeMenu.TitleFont*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_TitleFont" data-uid="LemonUI.Menus.NativeMenu.TitleFont">TitleFont</h4>
+  <div class="markdown level1 summary"><p>The font of title menu text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Font TitleFont { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CitizenFX.Core.UI.Font</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_UseMouse_" data-uid="LemonUI.Menus.NativeMenu.UseMouse*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_UseMouse" data-uid="LemonUI.Menus.NativeMenu.UseMouse">UseMouse</h4>
+  <div class="markdown level1 summary"><p>If the mouse should be used for navigating the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UseMouse { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Visible_" data-uid="LemonUI.Menus.NativeMenu.Visible*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Visible" data-uid="LemonUI.Menus.NativeMenu.Visible">Visible</h4>
+  <div class="markdown level1 summary"><p>If the menu is visible on the screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Visible { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Width_" data-uid="LemonUI.Menus.NativeMenu.Width*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Width" data-uid="LemonUI.Menus.NativeMenu.Width">Width</h4>
+  <div class="markdown level1 summary"><p>The width of the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Width { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Add_" data-uid="LemonUI.Menus.NativeMenu.Add*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Add_LemonUI_Menus_NativeItem_" data-uid="LemonUI.Menus.NativeMenu.Add(LemonUI.Menus.NativeItem)">Add(NativeItem)</h4>
+  <div class="markdown level1 summary"><p>Adds an item at the end of the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(NativeItem item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Add_" data-uid="LemonUI.Menus.NativeMenu.Add*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Add_LemonUI_Menus_NativeMenu_" data-uid="LemonUI.Menus.NativeMenu.Add(LemonUI.Menus.NativeMenu)">Add(NativeMenu)</h4>
+  <div class="markdown level1 summary"><p>Adds a specific menu as a submenu with an item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(NativeMenu menu)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeMenu.html">NativeMenu</a></td>
+        <td><span class="parametername">menu</span></td>
+        <td><p>The menu to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Add_" data-uid="LemonUI.Menus.NativeMenu.Add*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Add_System_Int32_LemonUI_Menus_NativeItem_" data-uid="LemonUI.Menus.NativeMenu.Add(System.Int32,LemonUI.Menus.NativeItem)">Add(int, NativeItem)</h4>
+  <div class="markdown level1 summary"><p>Adds an item at the specified position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Add(int position, NativeItem item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position of the item.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_AddSubMenu_" data-uid="LemonUI.Menus.NativeMenu.AddSubMenu*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_AddSubMenu_LemonUI_Menus_NativeMenu_System_String_" data-uid="LemonUI.Menus.NativeMenu.AddSubMenu(LemonUI.Menus.NativeMenu,System.String)">AddSubMenu(NativeMenu, string)</h4>
+  <div class="markdown level1 summary"><p>Adds a specific menu as a submenu with an item and endlabel string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeSubmenuItem AddSubMenu(NativeMenu menu, string endlabel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeMenu.html">NativeMenu</a></td>
+        <td><span class="parametername">menu</span></td>
+        <td><p>The menu to add.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">endlabel</span></td>
+        <td><p>The alternative title of the item, shown on the right.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeSubmenuItem.html">NativeSubmenuItem</a></td>
+        <td><p>The item that points to the submenu.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_AddSubMenu_" data-uid="LemonUI.Menus.NativeMenu.AddSubMenu*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_AddSubMenu_LemonUI_Menus_NativeMenu_" data-uid="LemonUI.Menus.NativeMenu.AddSubMenu(LemonUI.Menus.NativeMenu)">AddSubMenu(NativeMenu)</h4>
+  <div class="markdown level1 summary"><p>Adds a specific menu as a submenu with an item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeSubmenuItem AddSubMenu(NativeMenu menu)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeMenu.html">NativeMenu</a></td>
+        <td><span class="parametername">menu</span></td>
+        <td><p>The menu to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeSubmenuItem.html">NativeSubmenuItem</a></td>
+        <td><p>The item that points to the submenu.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Back_" data-uid="LemonUI.Menus.NativeMenu.Back*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Back" data-uid="LemonUI.Menus.NativeMenu.Back">Back()</h4>
+  <div class="markdown level1 summary"><p>Returns to the previous menu or closes the existing one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Back()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Clear_" data-uid="LemonUI.Menus.NativeMenu.Clear*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Clear" data-uid="LemonUI.Menus.NativeMenu.Clear">Clear()</h4>
+  <div class="markdown level1 summary"><p>Removes all of the items from this menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Close_" data-uid="LemonUI.Menus.NativeMenu.Close*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Close" data-uid="LemonUI.Menus.NativeMenu.Close">Close()</h4>
+  <div class="markdown level1 summary"><p>Closes the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Set Visible to false instead.&quot;, true)]
+public void Close()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Contains_" data-uid="LemonUI.Menus.NativeMenu.Contains*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Contains_LemonUI_Menus_NativeItem_" data-uid="LemonUI.Menus.NativeMenu.Contains(LemonUI.Menus.NativeItem)">Contains(NativeItem)</h4>
+  <div class="markdown level1 summary"><p>Checks if an item is part of the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(NativeItem item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_GetEnumerator_" data-uid="LemonUI.Menus.NativeMenu.GetEnumerator*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_GetEnumerator" data-uid="LemonUI.Menus.NativeMenu.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;NativeItem&gt; GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerator&lt;T&gt;</span>&lt;<a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Next_" data-uid="LemonUI.Menus.NativeMenu.Next*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Next" data-uid="LemonUI.Menus.NativeMenu.Next">Next()</h4>
+  <div class="markdown level1 summary"><p>Moves to the next item.
+Does nothing if the menu has no items.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Next()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Open_" data-uid="LemonUI.Menus.NativeMenu.Open*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Open" data-uid="LemonUI.Menus.NativeMenu.Open">Open()</h4>
+  <div class="markdown level1 summary"><p>Opens the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Set Visible to true instead.&quot;, true)]
+public void Open()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Previous_" data-uid="LemonUI.Menus.NativeMenu.Previous*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Previous" data-uid="LemonUI.Menus.NativeMenu.Previous">Previous()</h4>
+  <div class="markdown level1 summary"><p>Moves to the previous item.
+Does nothing if the menu has no items.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Previous()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Process_" data-uid="LemonUI.Menus.NativeMenu.Process*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Process" data-uid="LemonUI.Menus.NativeMenu.Process">Process()</h4>
+  <div class="markdown level1 summary"><p>Draws the menu and handles the controls.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Process()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Recalculate_" data-uid="LemonUI.Menus.NativeMenu.Recalculate*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Recalculate" data-uid="LemonUI.Menus.NativeMenu.Recalculate">Recalculate()</h4>
+  <div class="markdown level1 summary"><p>Calculates the positions and sizes of the elements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Recalculate()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Remove_" data-uid="LemonUI.Menus.NativeMenu.Remove*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Remove_LemonUI_Menus_NativeItem_" data-uid="LemonUI.Menus.NativeMenu.Remove(LemonUI.Menus.NativeItem)">Remove(NativeItem)</h4>
+  <div class="markdown level1 summary"><p>Removes an item from the menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(NativeItem item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeMenu_Remove_" data-uid="LemonUI.Menus.NativeMenu.Remove*"></a>
+  <h4 id="LemonUI_Menus_NativeMenu_Remove_System_Func_LemonUI_Menus_NativeItem_System_Boolean__" data-uid="LemonUI.Menus.NativeMenu.Remove(System.Func{LemonUI.Menus.NativeItem,System.Boolean})">Remove(Func&lt;NativeItem, bool&gt;)</h4>
+  <div class="markdown level1 summary"><p>Removes the items that match the predicate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(Func&lt;NativeItem, bool&gt; pred)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func&lt;T, TResult&gt;</span>&lt;<a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a>, <span class="xref">bool</span>&gt;</td>
+        <td><span class="parametername">pred</span></td>
+        <td><p>The function to use as a check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+</h3>
+
+
+  <h4 id="LemonUI_Menus_NativeMenu_Closed" data-uid="LemonUI.Menus.NativeMenu.Closed">Closed</h4>
+  <div class="markdown level1 summary"><p>Event triggered when the menu finishes closing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler Closed</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="LemonUI_Menus_NativeMenu_Closing" data-uid="LemonUI.Menus.NativeMenu.Closing">Closing</h4>
+  <div class="markdown level1 summary"><p>Event triggered when the menu starts closing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event CancelEventHandler Closing</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.CancelEventHandler.html">CancelEventHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="LemonUI_Menus_NativeMenu_ItemActivated" data-uid="LemonUI.Menus.NativeMenu.ItemActivated">ItemActivated</h4>
+  <div class="markdown level1 summary"><p>Event triggered when an item in the menu is activated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ItemActivatedEventHandler ItemActivated</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.ItemActivatedEventHandler.html">ItemActivatedEventHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="LemonUI_Menus_NativeMenu_MenuModified" data-uid="LemonUI.Menus.NativeMenu.MenuModified">MenuModified</h4>
+  <div class="markdown level1 summary"><p>Event triggered when the contents of the menu are changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event MenuModifiedEventHandler MenuModified</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.MenuModifiedEventHandler.html">MenuModifiedEventHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="LemonUI_Menus_NativeMenu_Opening" data-uid="LemonUI.Menus.NativeMenu.Opening">Opening</h4>
+  <div class="markdown level1 summary"><p>Event triggered when the menu is being opened.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event CancelEventHandler Opening</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.CancelEventHandler.html">CancelEventHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="LemonUI_Menus_NativeMenu_SelectedIndexChanged" data-uid="LemonUI.Menus.NativeMenu.SelectedIndexChanged">SelectedIndexChanged</h4>
+  <div class="markdown level1 summary"><p>Event triggered when the index has been changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event SelectedEventHandler SelectedIndexChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.SelectedEventHandler.html">SelectedEventHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="LemonUI_Menus_NativeMenu_Shown" data-uid="LemonUI.Menus.NativeMenu.Shown">Shown</h4>
+  <div class="markdown level1 summary"><p>Event triggered when the menu is opened and shown to the user.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler Shown</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="LemonUI.IContainer-1.html">IContainer&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="LemonUI.IRecalculable.html">IRecalculable</a>
+  </div>
+  <div>
+      <a class="xref" href="LemonUI.IProcessable.html">IProcessable</a>
+  </div>
+  <div>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

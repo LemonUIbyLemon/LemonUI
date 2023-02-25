@@ -1,0 +1,754 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class NativeListItem&lt;T&gt;
+ </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class NativeListItem&lt;T&gt;
+ ">
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="LemonUI.Menus.NativeListItem`1">
+
+
+  <h1 id="LemonUI_Menus_NativeListItem_1" data-uid="LemonUI.Menus.NativeListItem`1" class="text-break">Class NativeListItem&lt;T&gt;
+</h1>
+  <div class="markdown level0 summary"><p>An item that allows you to scroll between a set of objects.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><a class="xref" href="LemonUI.Menus.NativeItem.html">NativeItem</a></div>
+    <div class="level2"><a class="xref" href="LemonUI.Menus.NativeSlidableItem.html">NativeSlidableItem</a></div>
+    <div class="level3"><a class="xref" href="LemonUI.Menus.NativeListItem.html">NativeListItem</a></div>
+    <div class="level4"><span class="xref">NativeListItem&lt;T&gt;</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="LemonUI.IDrawable.html">IDrawable</a></div>
+    <div><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;T&gt;</div>
+    <div><span class="xref">System.Collections.IEnumerable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeListItem.html#LemonUI_Menus_NativeListItem_text">NativeListItem.text</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeSlidableItem.html#LemonUI_Menus_NativeSlidableItem_arrowLeft">NativeSlidableItem.arrowLeft</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeSlidableItem.html#LemonUI_Menus_NativeSlidableItem_arrowRight">NativeSlidableItem.arrowRight</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeSlidableItem.html#LemonUI_Menus_NativeSlidableItem_LeftArrow">NativeSlidableItem.LeftArrow</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeSlidableItem.html#LemonUI_Menus_NativeSlidableItem_RightArrow">NativeSlidableItem.RightArrow</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeSlidableItem.html#LemonUI_Menus_NativeSlidableItem_ArrowsAlwaysVisible">NativeSlidableItem.ArrowsAlwaysVisible</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_title">NativeItem.title</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_lastPosition">NativeItem.lastPosition</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_lastSize">NativeItem.lastSize</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_lastSelected">NativeItem.lastSelected</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_badgeLeft">NativeItem.badgeLeft</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_badgeRight">NativeItem.badgeRight</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_altTitle">NativeItem.altTitle</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_OnSelected_System_Object_LemonUI_Menus_SelectedEventArgs_">NativeItem.OnSelected(object, SelectedEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_OnActivated_System_Object_">NativeItem.OnActivated(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_Recalculate">NativeItem.Recalculate()</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_Enabled">NativeItem.Enabled</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_Tag">NativeItem.Tag</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_Title">NativeItem.Title</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_AltTitle">NativeItem.AltTitle</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_TitleFont">NativeItem.TitleFont</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_AltTitleFont">NativeItem.AltTitleFont</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_Description">NativeItem.Description</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_LeftBadge">NativeItem.LeftBadge</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_LeftBadgeSet">NativeItem.LeftBadgeSet</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_RightBadge">NativeItem.RightBadge</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_RightBadgeSet">NativeItem.RightBadgeSet</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_Colors">NativeItem.Colors</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_Panel">NativeItem.Panel</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_UseCustomBackground">NativeItem.UseCustomBackground</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_IsHovered">NativeItem.IsHovered</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_Selected">NativeItem.Selected</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_Activated">NativeItem.Activated</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_EnabledChanged">NativeItem.EnabledChanged</a>
+    </div>
+    <div>
+      <span class="xref">object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object)</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.ReferenceEquals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.GetHashCode()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="LemonUI.html">LemonUI</a>.<a class="xref" href="LemonUI.Menus.html">Menus</a></h6>
+  <h6><strong>Assembly</strong>: LemonUI.FiveM.dll</h6>
+  <h5 id="LemonUI_Menus_NativeListItem_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class NativeListItem&lt;T&gt; : NativeListItem, IDrawable, IEnumerable&lt;T&gt;, IEnumerable</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+</h3>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1__ctor_" data-uid="LemonUI.Menus.NativeListItem`1.#ctor*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1__ctor_System_String__0___" data-uid="LemonUI.Menus.NativeListItem`1.#ctor(System.String,`0[])">NativeListItem(string, params T[])</h4>
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="LemonUI.Menus.NativeListItem.html">NativeListItem</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeListItem(string title, params T[] objs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title of the Item.</p>
+</td>
+      </tr>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">objs</span></td>
+        <td><p>The objects that are available on the Item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1__ctor_" data-uid="LemonUI.Menus.NativeListItem`1.#ctor*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1__ctor_System_String_System_String__0___" data-uid="LemonUI.Menus.NativeListItem`1.#ctor(System.String,System.String,`0[])">NativeListItem(string, string, params T[])</h4>
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="LemonUI.Menus.NativeListItem.html">NativeListItem</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NativeListItem(string title, string subtitle, params T[] objs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title of the Item.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">subtitle</span></td>
+        <td><p>The subtitle of the Item.</p>
+</td>
+      </tr>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">objs</span></td>
+        <td><p>The objects that are available on the Item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_Items_" data-uid="LemonUI.Menus.NativeListItem`1.Items*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_Items" data-uid="LemonUI.Menus.NativeListItem`1.Items">Items</h4>
+  <div class="markdown level1 summary"><p>The objects used by this item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;T&gt; Items { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_SelectedIndex_" data-uid="LemonUI.Menus.NativeListItem`1.SelectedIndex*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_SelectedIndex" data-uid="LemonUI.Menus.NativeListItem`1.SelectedIndex">SelectedIndex</h4>
+  <div class="markdown level1 summary"><p>The index of the currently selected index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SelectedIndex { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_SelectedItem_" data-uid="LemonUI.Menus.NativeListItem`1.SelectedItem*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_SelectedItem" data-uid="LemonUI.Menus.NativeListItem`1.SelectedItem">SelectedItem</h4>
+  <div class="markdown level1 summary"><p>The currently selected item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T SelectedItem { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_Add_" data-uid="LemonUI.Menus.NativeListItem`1.Add*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_Add__0_" data-uid="LemonUI.Menus.NativeListItem`1.Add(`0)">Add(T)</h4>
+  <div class="markdown level1 summary"><p>Adds a <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> into this item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_Add_" data-uid="LemonUI.Menus.NativeListItem`1.Add*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_Add_System_Int32__0_" data-uid="LemonUI.Menus.NativeListItem`1.Add(System.Int32,`0)">Add(int, T)</h4>
+  <div class="markdown level1 summary"><p>Adds a <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> in a specific location.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(int position, T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position where the item should be added.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_Clear_" data-uid="LemonUI.Menus.NativeListItem`1.Clear*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_Clear" data-uid="LemonUI.Menus.NativeListItem`1.Clear">Clear()</h4>
+  <div class="markdown level1 summary"><p>Removes all of the <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> from this item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_Draw_" data-uid="LemonUI.Menus.NativeListItem`1.Draw*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_Draw" data-uid="LemonUI.Menus.NativeListItem`1.Draw">Draw()</h4>
+  <div class="markdown level1 summary"><p>Draws the List on the screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Draw()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="LemonUI.Menus.NativeSlidableItem.html#LemonUI_Menus_NativeSlidableItem_Draw">NativeSlidableItem.Draw()</a></div>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_GetEnumerator_" data-uid="LemonUI.Menus.NativeListItem`1.GetEnumerator*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_GetEnumerator" data-uid="LemonUI.Menus.NativeListItem`1.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;T&gt; GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerator&lt;T&gt;</span>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_GoLeft_" data-uid="LemonUI.Menus.NativeListItem`1.GoLeft*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_GoLeft" data-uid="LemonUI.Menus.NativeListItem`1.GoLeft">GoLeft()</h4>
+  <div class="markdown level1 summary"><p>Moves to the previous item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void GoLeft()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="LemonUI.Menus.NativeSlidableItem.html#LemonUI_Menus_NativeSlidableItem_GoLeft">NativeSlidableItem.GoLeft()</a></div>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_GoRight_" data-uid="LemonUI.Menus.NativeListItem`1.GoRight*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_GoRight" data-uid="LemonUI.Menus.NativeListItem`1.GoRight">GoRight()</h4>
+  <div class="markdown level1 summary"><p>Moves to the next item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void GoRight()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="LemonUI.Menus.NativeSlidableItem.html#LemonUI_Menus_NativeSlidableItem_GoRight">NativeSlidableItem.GoRight()</a></div>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_Recalculate_" data-uid="LemonUI.Menus.NativeListItem`1.Recalculate*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_Recalculate_System_Drawing_PointF_System_Drawing_SizeF_System_Boolean_" data-uid="LemonUI.Menus.NativeListItem`1.Recalculate(System.Drawing.PointF,System.Drawing.SizeF,System.Boolean)">Recalculate(PointF, SizeF, bool)</h4>
+  <div class="markdown level1 summary"><p>Recalculates the item positions and sizes with the specified values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Recalculate(PointF pos, SizeF size, bool selected)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Drawing.PointF</span></td>
+        <td><span class="parametername">pos</span></td>
+        <td><p>The position of the item.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Drawing.SizeF</span></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>The size of the item.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">selected</span></td>
+        <td><p>If this item has been selected.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="LemonUI.Menus.NativeSlidableItem.html#LemonUI_Menus_NativeSlidableItem_Recalculate_System_Drawing_PointF_System_Drawing_SizeF_System_Boolean_">NativeSlidableItem.Recalculate(PointF, SizeF, bool)</a></div>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_Remove_" data-uid="LemonUI.Menus.NativeListItem`1.Remove*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_Remove__0_" data-uid="LemonUI.Menus.NativeListItem`1.Remove(`0)">Remove(T)</h4>
+  <div class="markdown level1 summary"><p>Removes a specific <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_Remove_" data-uid="LemonUI.Menus.NativeListItem`1.Remove*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_Remove_System_Func__0_System_Boolean__" data-uid="LemonUI.Menus.NativeListItem`1.Remove(System.Func{`0,System.Boolean})">Remove(Func&lt;T, bool&gt;)</h4>
+  <div class="markdown level1 summary"><p>Removes all of the items that match the <code data-dev-comment-type="paramref" class="paramref">pred</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(Func&lt;T, bool&gt; pred)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func&lt;T, TResult&gt;</span>&lt;T, <span class="xref">bool</span>&gt;</td>
+        <td><span class="parametername">pred</span></td>
+        <td><p>The function to use as a check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_RemoveAt_" data-uid="LemonUI.Menus.NativeListItem`1.RemoveAt*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_RemoveAt_System_Int32_" data-uid="LemonUI.Menus.NativeListItem`1.RemoveAt(System.Int32)">RemoveAt(int)</h4>
+  <div class="markdown level1 summary"><p>Removes a <code data-dev-comment-type="typeparamref" class="typeparamref">T</code> at a specific location.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveAt(int position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position of the <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Menus_NativeListItem_1_UpdateColors_" data-uid="LemonUI.Menus.NativeListItem`1.UpdateColors*"></a>
+  <h4 id="LemonUI_Menus_NativeListItem_1_UpdateColors" data-uid="LemonUI.Menus.NativeListItem`1.UpdateColors">UpdateColors()</h4>
+  <div class="markdown level1 summary"><p>Updates the colors of the <a class="xref" href="LemonUI.Elements.html">LemonUI.Elements</a> from the <a class="xref" href="LemonUI.Menus.NativeItem.html#LemonUI_Menus_NativeItem_Colors">Colors</a> <a class="xref" href="LemonUI.Menus.ColorSet.html">ColorSet</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void UpdateColors()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="LemonUI.Menus.NativeSlidableItem.html#LemonUI_Menus_NativeSlidableItem_UpdateColors">NativeSlidableItem.UpdateColors()</a></div>
+  <h3 id="events">Events
+</h3>
+
+
+  <h4 id="LemonUI_Menus_NativeListItem_1_ItemChanged" data-uid="LemonUI.Menus.NativeListItem`1.ItemChanged">ItemChanged</h4>
+  <div class="markdown level1 summary"><p>Event triggered when the selected item is changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ItemChangedEventHandler&lt;T&gt; ItemChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Menus.ItemChangedEventHandler-1.html">ItemChangedEventHandler</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="LemonUI.IDrawable.html">IDrawable</a>
+  </div>
+  <div>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

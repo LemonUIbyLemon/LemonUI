@@ -1,0 +1,954 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class BigMessage
+ </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class BigMessage
+ ">
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="LemonUI.Scaleform.BigMessage">
+
+
+  <h1 id="LemonUI_Scaleform_BigMessage" data-uid="LemonUI.Scaleform.BigMessage" class="text-break">Class BigMessage
+</h1>
+  <div class="markdown level0 summary"><p>A customizable big message.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><a class="xref" href="LemonUI.Scaleform.BaseScaleform.html">BaseScaleform</a></div>
+    <div class="level2"><span class="xref">BigMessage</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="LemonUI.Scaleform.IScaleform.html">IScaleform</a></div>
+    <div><a class="xref" href="LemonUI.IDrawable.html">IDrawable</a></div>
+    <div><a class="xref" href="LemonUI.IProcessable.html">IProcessable</a></div>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_scaleform">BaseScaleform.scaleform</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_IsValueReady_System_Int32_">BaseScaleform.IsValueReady(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_GetValue__1_System_Int32_">BaseScaleform.GetValue&lt;T&gt;(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_CallFunction_System_String_System_Object___">BaseScaleform.CallFunction(string, params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_CallFunction__1_System_String_System_Object___">BaseScaleform.CallFunction&lt;T&gt;(string, params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_CallFunctionReturn_System_String_System_Object___">BaseScaleform.CallFunctionReturn(string, params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Draw">BaseScaleform.Draw()</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Process">BaseScaleform.Process()</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Dispose">BaseScaleform.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Handle">BaseScaleform.Handle</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Name">BaseScaleform.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Visible">BaseScaleform.Visible</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_IsLoaded">BaseScaleform.IsLoaded</a>
+    </div>
+    <div>
+      <span class="xref">object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object)</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.ReferenceEquals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.GetHashCode()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="LemonUI.html">LemonUI</a>.<a class="xref" href="LemonUI.Scaleform.html">Scaleform</a></h6>
+  <h6><strong>Assembly</strong>: LemonUI.FiveM.dll</h6>
+  <h5 id="LemonUI_Scaleform_BigMessage_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BigMessage : BaseScaleform, IScaleform, IDrawable, IProcessable, IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+
+
+  <a id="LemonUI_Scaleform_BigMessage__ctor_" data-uid="LemonUI.Scaleform.BigMessage.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage__ctor_System_String_LemonUI_Scaleform_MessageType_" data-uid="LemonUI.Scaleform.BigMessage.#ctor(System.String,LemonUI.Scaleform.MessageType)">BigMessage(string, MessageType)</h4>
+  <div class="markdown level1 summary"><p>Creates a custom message with the specified title.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigMessage(string title, MessageType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title to use.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="LemonUI.Scaleform.MessageType.html">MessageType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type of message.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage__ctor_" data-uid="LemonUI.Scaleform.BigMessage.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage__ctor_System_String_System_Int32_System_Int32_" data-uid="LemonUI.Scaleform.BigMessage.#ctor(System.String,System.Int32,System.Int32)">BigMessage(string, int, int)</h4>
+  <div class="markdown level1 summary"><p>Creates a standard customizable message with a specific title and custom colors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigMessage(string title, int colorText, int colorBackground)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title to use.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">colorText</span></td>
+        <td><p>The color of the text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">colorBackground</span></td>
+        <td><p>The color of the background.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage__ctor_" data-uid="LemonUI.Scaleform.BigMessage.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage__ctor_System_String_System_Int32_" data-uid="LemonUI.Scaleform.BigMessage.#ctor(System.String,System.Int32)">BigMessage(string, int)</h4>
+  <div class="markdown level1 summary"><p>Creates a standard customizable message with a title and a custom text color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigMessage(string title, int colorText)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title to use.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">colorText</span></td>
+        <td><p>The color of the text.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage__ctor_" data-uid="LemonUI.Scaleform.BigMessage.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage__ctor_System_String_System_String_CitizenFX_Core_WeaponHash_" data-uid="LemonUI.Scaleform.BigMessage.#ctor(System.String,System.String,CitizenFX.Core.WeaponHash)">BigMessage(string, string, WeaponHash)</h4>
+  <div class="markdown level1 summary"><p>Creates a Weapon Purchase message with a custom text and weapons.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigMessage(string title, string weapon, WeaponHash hash)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title to use.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">weapon</span></td>
+        <td><p>The name of the Weapon.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CitizenFX.Core.WeaponHash</span></td>
+        <td><span class="parametername">hash</span></td>
+        <td><p>The hash of the Weapon image.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage__ctor_" data-uid="LemonUI.Scaleform.BigMessage.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage__ctor_System_String_System_String_LemonUI_Scaleform_MessageType_" data-uid="LemonUI.Scaleform.BigMessage.#ctor(System.String,System.String,LemonUI.Scaleform.MessageType)">BigMessage(string, string, MessageType)</h4>
+  <div class="markdown level1 summary"><p>Creates a message with the specified type, title and message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigMessage(string title, string message, MessageType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title to use.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to show.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="LemonUI.Scaleform.MessageType.html">MessageType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type of message.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage__ctor_" data-uid="LemonUI.Scaleform.BigMessage.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage__ctor_System_String_System_String_System_String_CitizenFX_Core_WeaponHash_System_Int32_System_Int32_LemonUI_Scaleform_MessageType_" data-uid="LemonUI.Scaleform.BigMessage.#ctor(System.String,System.String,System.String,CitizenFX.Core.WeaponHash,System.Int32,System.Int32,LemonUI.Scaleform.MessageType)">BigMessage(string, string, string, WeaponHash, int, int, MessageType)</h4>
+  <div class="markdown level1 summary"><p>Creates a message with all of the selected information.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigMessage(string title, string message, string rank, WeaponHash weapon, int colorText, int colorBackground, MessageType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title to use.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to show.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">rank</span></td>
+        <td><p>The Rank on Cops and Crooks.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CitizenFX.Core.WeaponHash</span></td>
+        <td><span class="parametername">weapon</span></td>
+        <td><p>The hash of the Weapon image.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">colorText</span></td>
+        <td><p>The color of the text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">colorBackground</span></td>
+        <td><p>The color of the background.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="LemonUI.Scaleform.MessageType.html">MessageType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type of message.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage__ctor_" data-uid="LemonUI.Scaleform.BigMessage.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage__ctor_System_String_System_String_System_String_CitizenFX_Core_WeaponHash_" data-uid="LemonUI.Scaleform.BigMessage.#ctor(System.String,System.String,System.String,CitizenFX.Core.WeaponHash)">BigMessage(string, string, string, WeaponHash)</h4>
+  <div class="markdown level1 summary"><p>Creates a Weapon Purchase message with a custom text and weapons.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigMessage(string title, string message, string weapon, WeaponHash hash)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title to use.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to show.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">weapon</span></td>
+        <td><p>The name of the Weapon.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CitizenFX.Core.WeaponHash</span></td>
+        <td><span class="parametername">hash</span></td>
+        <td><p>The hash of the Weapon image.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage__ctor_" data-uid="LemonUI.Scaleform.BigMessage.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage__ctor_System_String_System_String_System_String_System_UInt32_System_Int32_System_Int32_LemonUI_Scaleform_MessageType_" data-uid="LemonUI.Scaleform.BigMessage.#ctor(System.String,System.String,System.String,System.UInt32,System.Int32,System.Int32,LemonUI.Scaleform.MessageType)">BigMessage(string, string, string, uint, int, int, MessageType)</h4>
+  <div class="markdown level1 summary"><p>Creates a message with all of the selected information.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigMessage(string title, string message, string rank, uint weapon, int colorText, int colorBackground, MessageType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title to use.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to show.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">rank</span></td>
+        <td><p>The Rank on Cops and Crooks.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">weapon</span></td>
+        <td><p>The hash of the Weapon image.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">colorText</span></td>
+        <td><p>The color of the text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">colorBackground</span></td>
+        <td><p>The color of the background.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="LemonUI.Scaleform.MessageType.html">MessageType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type of message.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage__ctor_" data-uid="LemonUI.Scaleform.BigMessage.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage__ctor_System_String_System_String_System_String_" data-uid="LemonUI.Scaleform.BigMessage.#ctor(System.String,System.String,System.String)">BigMessage(string, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates a Cops and Crooks message type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigMessage(string title, string message, string rank)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title to use.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to show.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">rank</span></td>
+        <td><p>Text to show in the Rank space.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage__ctor_" data-uid="LemonUI.Scaleform.BigMessage.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage__ctor_System_String_System_String_" data-uid="LemonUI.Scaleform.BigMessage.#ctor(System.String,System.String)">BigMessage(string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates a standard customizable message with a title and message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigMessage(string title, string message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title to use.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message to show.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage__ctor_" data-uid="LemonUI.Scaleform.BigMessage.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage__ctor_System_String_" data-uid="LemonUI.Scaleform.BigMessage.#ctor(System.String)">BigMessage(string)</h4>
+  <div class="markdown level1 summary"><p>Creates a standard customizable message with just a title.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigMessage(string title)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title to use.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+
+
+  <a id="LemonUI_Scaleform_BigMessage_BackgroundColor_" data-uid="LemonUI.Scaleform.BigMessage.BackgroundColor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage_BackgroundColor" data-uid="LemonUI.Scaleform.BigMessage.BackgroundColor">BackgroundColor</h4>
+  <div class="markdown level1 summary"><p>The color of the background in the Customizable message type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BackgroundColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage_Message_" data-uid="LemonUI.Scaleform.BigMessage.Message*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage_Message" data-uid="LemonUI.Scaleform.BigMessage.Message">Message</h4>
+  <div class="markdown level1 summary"><p>The subtitle or description of the message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Message { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage_Rank_" data-uid="LemonUI.Scaleform.BigMessage.Rank*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage_Rank" data-uid="LemonUI.Scaleform.BigMessage.Rank">Rank</h4>
+  <div class="markdown level1 summary"><p>The Rank when the mode is set to Cops and Crooks.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Rank { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage_TextColor_" data-uid="LemonUI.Scaleform.BigMessage.TextColor*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage_TextColor" data-uid="LemonUI.Scaleform.BigMessage.TextColor">TextColor</h4>
+  <div class="markdown level1 summary"><p>The color of the text.
+Only used on the Customizable message type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TextColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage_Title_" data-uid="LemonUI.Scaleform.BigMessage.Title*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage_Title" data-uid="LemonUI.Scaleform.BigMessage.Title">Title</h4>
+  <div class="markdown level1 summary"><p>The title of the message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Title { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage_Type_" data-uid="LemonUI.Scaleform.BigMessage.Type*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage_Type" data-uid="LemonUI.Scaleform.BigMessage.Type">Type</h4>
+  <div class="markdown level1 summary"><p>The type of message to show.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MessageType Type { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LemonUI.Scaleform.MessageType.html">MessageType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage_Weapon_" data-uid="LemonUI.Scaleform.BigMessage.Weapon*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage_Weapon" data-uid="LemonUI.Scaleform.BigMessage.Weapon">Weapon</h4>
+  <div class="markdown level1 summary"><p>The hash of the Weapon as an enum.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WeaponHash Weapon { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CitizenFX.Core.WeaponHash</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage_WeaponHash_" data-uid="LemonUI.Scaleform.BigMessage.WeaponHash*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage_WeaponHash" data-uid="LemonUI.Scaleform.BigMessage.WeaponHash">WeaponHash</h4>
+  <div class="markdown level1 summary"><p>The hash of the Weapon as it's native value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint WeaponHash { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="LemonUI_Scaleform_BigMessage_DrawFullScreen_" data-uid="LemonUI.Scaleform.BigMessage.DrawFullScreen*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage_DrawFullScreen" data-uid="LemonUI.Scaleform.BigMessage.DrawFullScreen">DrawFullScreen()</h4>
+  <div class="markdown level1 summary"><p>Draws the scaleform full screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void DrawFullScreen()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_DrawFullScreen">BaseScaleform.DrawFullScreen()</a></div>
+
+
+  <a id="LemonUI_Scaleform_BigMessage_FadeOut_" data-uid="LemonUI.Scaleform.BigMessage.FadeOut*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage_FadeOut_System_Int32_" data-uid="LemonUI.Scaleform.BigMessage.FadeOut(System.Int32)">FadeOut(int)</h4>
+  <div class="markdown level1 summary"><p>Fades the big message out.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FadeOut(int time)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>The time it will take to do the fade.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_BigMessage_Update_" data-uid="LemonUI.Scaleform.BigMessage.Update*"></a>
+  <h4 id="LemonUI_Scaleform_BigMessage_Update" data-uid="LemonUI.Scaleform.BigMessage.Update">Update()</h4>
+  <div class="markdown level1 summary"><p>Updates the Message information in the Scaleform.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Update()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Update">BaseScaleform.Update()</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="LemonUI.Scaleform.IScaleform.html">IScaleform</a>
+  </div>
+  <div>
+      <a class="xref" href="LemonUI.IDrawable.html">IDrawable</a>
+  </div>
+  <div>
+      <a class="xref" href="LemonUI.IProcessable.html">IProcessable</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

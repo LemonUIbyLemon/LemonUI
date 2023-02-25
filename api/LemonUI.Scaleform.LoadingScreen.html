@@ -1,0 +1,490 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class LoadingScreen
+ </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class LoadingScreen
+ ">
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="LemonUI.Scaleform.LoadingScreen">
+
+
+  <h1 id="LemonUI_Scaleform_LoadingScreen" data-uid="LemonUI.Scaleform.LoadingScreen" class="text-break">Class LoadingScreen
+</h1>
+  <div class="markdown level0 summary"><p>Loading screen like the transition between story mode and online.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><a class="xref" href="LemonUI.Scaleform.BaseScaleform.html">BaseScaleform</a></div>
+    <div class="level2"><span class="xref">LoadingScreen</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="LemonUI.Scaleform.IScaleform.html">IScaleform</a></div>
+    <div><a class="xref" href="LemonUI.IDrawable.html">IDrawable</a></div>
+    <div><a class="xref" href="LemonUI.IProcessable.html">IProcessable</a></div>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_scaleform">BaseScaleform.scaleform</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_IsValueReady_System_Int32_">BaseScaleform.IsValueReady(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_GetValue__1_System_Int32_">BaseScaleform.GetValue&lt;T&gt;(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_CallFunction_System_String_System_Object___">BaseScaleform.CallFunction(string, params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_CallFunction__1_System_String_System_Object___">BaseScaleform.CallFunction&lt;T&gt;(string, params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_CallFunctionReturn_System_String_System_Object___">BaseScaleform.CallFunctionReturn(string, params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_DrawFullScreen">BaseScaleform.DrawFullScreen()</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Draw">BaseScaleform.Draw()</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Process">BaseScaleform.Process()</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Dispose">BaseScaleform.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Handle">BaseScaleform.Handle</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Name">BaseScaleform.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Visible">BaseScaleform.Visible</a>
+    </div>
+    <div>
+      <a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_IsLoaded">BaseScaleform.IsLoaded</a>
+    </div>
+    <div>
+      <span class="xref">object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object)</span>
+    </div>
+    <div>
+      <span class="xref">object.Equals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.ReferenceEquals(object, object)</span>
+    </div>
+    <div>
+      <span class="xref">object.GetHashCode()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="LemonUI.html">LemonUI</a>.<a class="xref" href="LemonUI.Scaleform.html">Scaleform</a></h6>
+  <h6><strong>Assembly</strong>: LemonUI.FiveM.dll</h6>
+  <h5 id="LemonUI_Scaleform_LoadingScreen_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class LoadingScreen : BaseScaleform, IScaleform, IDrawable, IProcessable, IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+
+
+  <a id="LemonUI_Scaleform_LoadingScreen__ctor_" data-uid="LemonUI.Scaleform.LoadingScreen.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_LoadingScreen__ctor_System_String_System_String_System_String_System_String_System_String_" data-uid="LemonUI.Scaleform.LoadingScreen.#ctor(System.String,System.String,System.String,System.String,System.String)">LoadingScreen(string, string, string, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates a new GTA Online like loading screen with a custom texture.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LoadingScreen(string title, string subtitle, string description, string dictionary, string texture)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title of the screen.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">subtitle</span></td>
+        <td><p>The subtitle of the screen.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description of the screen.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">dictionary</span></td>
+        <td><p>The dictionary where the texture is located.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">texture</span></td>
+        <td><p>The texture to use on the right.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_LoadingScreen__ctor_" data-uid="LemonUI.Scaleform.LoadingScreen.#ctor*"></a>
+  <h4 id="LemonUI_Scaleform_LoadingScreen__ctor_System_String_System_String_System_String_" data-uid="LemonUI.Scaleform.LoadingScreen.#ctor(System.String,System.String,System.String)">LoadingScreen(string, string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates a new GTA Online like loading screen with no image.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LoadingScreen(string title, string subtitle, string description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">title</span></td>
+        <td><p>The title of the screen.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">subtitle</span></td>
+        <td><p>The subtitle of the screen.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description of the screen.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+
+
+  <a id="LemonUI_Scaleform_LoadingScreen_Description_" data-uid="LemonUI.Scaleform.LoadingScreen.Description*"></a>
+  <h4 id="LemonUI_Scaleform_LoadingScreen_Description" data-uid="LemonUI.Scaleform.LoadingScreen.Description">Description</h4>
+  <div class="markdown level1 summary"><p>The description of the loading screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Description { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_LoadingScreen_Dictionary_" data-uid="LemonUI.Scaleform.LoadingScreen.Dictionary*"></a>
+  <h4 id="LemonUI_Scaleform_LoadingScreen_Dictionary" data-uid="LemonUI.Scaleform.LoadingScreen.Dictionary">Dictionary</h4>
+  <div class="markdown level1 summary"><p>The Texture Dictionary (TXD) where the texture is loaded.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Dictionary { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_LoadingScreen_Subtitle_" data-uid="LemonUI.Scaleform.LoadingScreen.Subtitle*"></a>
+  <h4 id="LemonUI_Scaleform_LoadingScreen_Subtitle" data-uid="LemonUI.Scaleform.LoadingScreen.Subtitle">Subtitle</h4>
+  <div class="markdown level1 summary"><p>The subtitle of the loading screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Subtitle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_LoadingScreen_Texture_" data-uid="LemonUI.Scaleform.LoadingScreen.Texture*"></a>
+  <h4 id="LemonUI_Scaleform_LoadingScreen_Texture" data-uid="LemonUI.Scaleform.LoadingScreen.Texture">Texture</h4>
+  <div class="markdown level1 summary"><p>The texture in the dictionary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Texture { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_LoadingScreen_Title_" data-uid="LemonUI.Scaleform.LoadingScreen.Title*"></a>
+  <h4 id="LemonUI_Scaleform_LoadingScreen_Title" data-uid="LemonUI.Scaleform.LoadingScreen.Title">Title</h4>
+  <div class="markdown level1 summary"><p>The title of the loading screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Title { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="LemonUI_Scaleform_LoadingScreen_ChangeTexture_" data-uid="LemonUI.Scaleform.LoadingScreen.ChangeTexture*"></a>
+  <h4 id="LemonUI_Scaleform_LoadingScreen_ChangeTexture_System_String_System_String_" data-uid="LemonUI.Scaleform.LoadingScreen.ChangeTexture(System.String,System.String)">ChangeTexture(string, string)</h4>
+  <div class="markdown level1 summary"><p>Changes the texture shown on the loading screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ChangeTexture(string dictionary, string texture)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">dictionary</span></td>
+        <td><p>The Texture Dictionary or TXD.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">texture</span></td>
+        <td><p>The Texture name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="LemonUI_Scaleform_LoadingScreen_Update_" data-uid="LemonUI.Scaleform.LoadingScreen.Update*"></a>
+  <h4 id="LemonUI_Scaleform_LoadingScreen_Update" data-uid="LemonUI.Scaleform.LoadingScreen.Update">Update()</h4>
+  <div class="markdown level1 summary"><p>Updates the Title, Description and Image of the loading screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Update()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="LemonUI.Scaleform.BaseScaleform.html#LemonUI_Scaleform_BaseScaleform_Update">BaseScaleform.Update()</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="LemonUI.Scaleform.IScaleform.html">IScaleform</a>
+  </div>
+  <div>
+      <a class="xref" href="LemonUI.IDrawable.html">IDrawable</a>
+  </div>
+  <div>
+      <a class="xref" href="LemonUI.IProcessable.html">IProcessable</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
