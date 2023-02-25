@@ -5,6 +5,8 @@ namespace LemonUI
     /// </summary>
     public class SafeZoneChangedEventArgs
     {
+        #region Properties
+
         /// <summary>
         /// The raw Safezone size before the change.
         /// </summary>
@@ -14,10 +16,16 @@ namespace LemonUI
         /// </summary>
         public float After { get; }
 
+        #endregion
+
+        #region Constructors
+
         internal SafeZoneChangedEventArgs(float before, float after)
         {
             Before = before;
             After = after;
         }
+
+        #endregion
     }
 }
