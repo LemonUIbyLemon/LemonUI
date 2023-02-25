@@ -21,7 +21,7 @@ namespace LemonUI
     /// </summary>
     public class ObjectPool : IEnumerable<IProcessable>
     {
-        #region Private Fields
+        #region Fields
 
         /// <summary>
         /// The last known resolution by the object pool.
@@ -54,7 +54,7 @@ namespace LemonUI
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// Checks if there are objects visible on the screen.
@@ -148,7 +148,7 @@ namespace LemonUI
 
         #endregion
 
-        #region Public Function
+        #region Functions
 
         /// <inheritdoc/>
         public IEnumerator<IProcessable> GetEnumerator() => objects.GetEnumerator();
