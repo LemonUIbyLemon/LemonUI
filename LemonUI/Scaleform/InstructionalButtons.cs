@@ -21,7 +21,7 @@ namespace LemonUI.Scaleform
     /// </summary>
     public class InstructionalButtons : BaseScaleform
     {
-        #region Public Fields
+        #region Fields
 
         /// <summary>
         /// The buttons used in this Scaleform.
@@ -43,7 +43,7 @@ namespace LemonUI.Scaleform
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Adds an Instructional Button.
