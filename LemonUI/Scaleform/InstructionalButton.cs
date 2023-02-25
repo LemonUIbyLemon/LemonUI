@@ -18,14 +18,14 @@ namespace LemonUI.Scaleform
     /// </summary>
     public struct InstructionalButton
     {
-        #region Private Fields
+        #region Fields
 
         private Control control;
         private string raw;
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The description of this button.
@@ -66,7 +66,7 @@ namespace LemonUI.Scaleform
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
         /// <summary>
         /// Creates an instructional button for a Control.
