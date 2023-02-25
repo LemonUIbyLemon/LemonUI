@@ -35,7 +35,40 @@ namespace LemonUI.Menus
     /// </summary>
     public class NativeMenu : IContainer<NativeItem>, IEnumerable<NativeItem>
     {
-        #region Public Fields
+        #region Constants
+
+        /// <summary>
+        /// The height of the menu subtitle background.
+        /// </summary>
+        internal const float subtitleHeight = 38;
+        /// <summary>
+        /// The height of one of the items in the screen.
+        /// </summary>
+        internal const float itemHeight = 37.4f;
+        /// <summary>
+        /// The height difference between the description and the end of the items.
+        /// </summary>
+        internal const float heightDiffDescImg = 4;
+        /// <summary>
+        /// The height difference between the background and text of the description.
+        /// </summary>
+        internal const float heightDiffDescTxt = 3;
+        /// <summary>
+        /// The X position of the description text.
+        /// </summary>
+        internal const float posXDescTxt = 6;
+        /// <summary>
+        /// The offset to the X value of the item title.
+        /// </summary>
+        internal const float itemOffsetX = 6;
+        /// <summary>
+        /// The offset to the Y value of the item title.
+        /// </summary>
+        internal const float itemOffsetY = 3;
+
+        #endregion
+
+        #region Fields
 
         /// <summary>
         /// The default <see cref="Sound"/> played when the current <see cref="NativeItem"/> is changed or activated.
@@ -57,10 +90,6 @@ namespace LemonUI.Menus
         /// The default <see cref="Sound"/> played when the user activates a <see cref="NativeItem"/> that is disabled.
         /// </summary>
         public static readonly Sound DefaultDisabledSound = new Sound("HUD_FRONTEND_DEFAULT_SOUNDSET", "ERROR");
-
-        #endregion
-
-        #region Internal Fields
 
         internal static readonly Color colorWhiteSmoke = Color.FromArgb(255, 245, 245, 245);
         /// <summary>
@@ -152,43 +181,6 @@ namespace LemonUI.Menus
             Control.Aim,
             Control.Attack
         };
-
-        #endregion
-
-        #region Constant fields
-
-        /// <summary>
-        /// The height of the menu subtitle background.
-        /// </summary>
-        internal const float subtitleHeight = 38;
-        /// <summary>
-        /// The height of one of the items in the screen.
-        /// </summary>
-        internal const float itemHeight = 37.4f;
-        /// <summary>
-        /// The height difference between the description and the end of the items.
-        /// </summary>
-        internal const float heightDiffDescImg = 4;
-        /// <summary>
-        /// The height difference between the background and text of the description.
-        /// </summary>
-        internal const float heightDiffDescTxt = 3;
-        /// <summary>
-        /// The X position of the description text.
-        /// </summary>
-        internal const float posXDescTxt = 6;
-        /// <summary>
-        /// The offset to the X value of the item title.
-        /// </summary>
-        internal const float itemOffsetX = 6;
-        /// <summary>
-        /// The offset to the Y value of the item title.
-        /// </summary>
-        internal const float itemOffsetY = 3;
-
-        #endregion
-
-        #region Private Fields
 
         /// <summary>
         /// A list of GTA V Controls.
@@ -747,7 +739,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
         /// <summary>
         /// Creates a new menu with the specified title.
@@ -798,7 +790,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Private Functions
+        #region Tools
 
         /// <summary>
         /// Updates the list of visible items on the screen.
@@ -1373,7 +1365,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <inheritdoc/>
         public IEnumerator<NativeItem> GetEnumerator() => Items.GetEnumerator();
