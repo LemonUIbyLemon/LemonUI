@@ -13,7 +13,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The text of the current item.
         /// </summary>
-        internal protected ScaledText text = null;
+        protected internal ScaledText text = null;
 
         #endregion
 
