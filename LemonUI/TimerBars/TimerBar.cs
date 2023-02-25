@@ -33,14 +33,14 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The background of the timer bar.
         /// </summary>
-        internal protected readonly ScaledTexture background = new ScaledTexture("timerbars", "all_black_bg")
+        protected internal readonly ScaledTexture background = new ScaledTexture("timerbars", "all_black_bg")
         {
             Color = Color.FromArgb(160, 255, 255, 255)
         };
         /// <summary>
         /// The title of the timer bar.
         /// </summary>
-        internal protected readonly ScaledText title = new ScaledText(PointF.Empty, string.Empty, 0.29f)
+        protected internal readonly ScaledText title = new ScaledText(PointF.Empty, string.Empty, 0.29f)
         {
             Alignment = Alignment.Right,
             WordWrap = 1000
@@ -48,7 +48,7 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The information of the Timer Bar.
         /// </summary>
-        internal protected readonly ScaledText info = new ScaledText(PointF.Empty, string.Empty, 0.5f)
+        protected internal readonly ScaledText info = new ScaledText(PointF.Empty, string.Empty, 0.5f)
         {
             Alignment = Alignment.Right,
             WordWrap = 1000
