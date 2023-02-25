@@ -50,10 +50,10 @@ jobs:
         working-directory: bin/Release
       - run: dotnet tool update -g docfx
       - run: docfx docs/docfx.json
-      - uses: peaceiris/actions-gh-pages@v3
+      - uses: actions/upload-pages-artifact@v1.0.7
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/_site
+          path: "docs/_site"
+      - uses: actions/deploy-pages@v1.2.7
   deploy:
     runs-on: ubuntu-22.04
     if: ${{ github.event_name == 'release' }}
