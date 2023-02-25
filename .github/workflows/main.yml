@@ -36,7 +36,7 @@ jobs:
           path: bin/${{ matrix.configuration }}
   docs:
     runs-on: ubuntu-22.04
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     needs:
       - lint-and-compile
     steps:
