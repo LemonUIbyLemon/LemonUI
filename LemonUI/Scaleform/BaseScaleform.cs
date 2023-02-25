@@ -19,7 +19,7 @@ namespace LemonUI.Scaleform
     /// </summary>
     public abstract class BaseScaleform : IScaleform
     {
-        #region Private Fields
+        #region Fields
 
 #if FIVEM || SHVDN3
         /// <summary>
@@ -35,7 +35,7 @@ namespace LemonUI.Scaleform
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The ID or Handle of the Scaleform.
@@ -93,7 +93,7 @@ namespace LemonUI.Scaleform
 
         #endregion
 
-        #region Private Functions
+        #region Tools
 
         private void CallFunctionBase(string function, params object[] parameters)
         {
@@ -187,7 +187,7 @@ namespace LemonUI.Scaleform
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Checks if the specified Scaleform Return Value is ready to be fetched.
