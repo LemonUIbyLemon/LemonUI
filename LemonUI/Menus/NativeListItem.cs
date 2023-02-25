@@ -8,10 +8,16 @@ namespace LemonUI.Menus
     /// </summary>
     public abstract class NativeListItem : NativeSlidableItem
     {
+        #region Fields
+
         /// <summary>
         /// The text of the current item.
         /// </summary>
         internal protected ScaledText text = null;
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// Creates a new list item with a title and subtitle.
@@ -22,5 +28,7 @@ namespace LemonUI.Menus
         {
             text = new ScaledText(PointF.Empty, string.Empty, 0.35f);
         }
+
+        #endregion
     }
 }
