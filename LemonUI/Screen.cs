@@ -24,6 +24,8 @@ namespace LemonUI
     /// </summary>
     public static class Screen
     {
+        #region Properties
+
         /// <summary>
         /// The Aspect Ratio of the screen resolution.
         /// </summary>
@@ -65,6 +67,10 @@ namespace LemonUI
                 return new PointF(cursorX, cursorY);
             }
         }
+
+        #endregion
+
+        #region Functions
 
         /// <summary>
         /// Converts a relative resolution into one scaled to 1080p.
@@ -253,5 +259,7 @@ namespace LemonUI
             Function.Call(Hash.RESET_SCRIPT_GFX_ALIGN);
 #endif
         }
+
+        #endregion
     }
 }
