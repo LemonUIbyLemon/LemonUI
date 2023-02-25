@@ -9,7 +9,7 @@ namespace LemonUI.Menus
     /// </summary>
     public class NativeSliderItem : NativeSlidableItem
     {
-        #region Internal Fields
+        #region Fields
 
         /// <summary>
         /// The background of the slider.
@@ -26,10 +26,6 @@ namespace LemonUI.Menus
             Color = Color.FromArgb(255, 57, 116, 200)
         };
 
-        #endregion
-
-        #region Private Fields
-
         /// <summary>
         /// The maximum value of the slider.
         /// </summary>
@@ -41,7 +37,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The color of the Slider.
@@ -104,7 +100,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Event
+        #region Events
 
         /// <summary>
         /// Event triggered when the value of the menu changes.
@@ -154,7 +150,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Internal Functions
+        #region Tools
 
         /// <summary>
         /// Updates the position of the bar based on the value.
@@ -170,7 +166,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Recalculates the item positions and sizes with the specified values.
