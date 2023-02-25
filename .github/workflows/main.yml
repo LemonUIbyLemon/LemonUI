@@ -29,6 +29,21 @@ jobs:
         with:
           name: ${{ github.event.repository.name }}.${{ matrix.configuration }}
           path: bin/${{ matrix.configuration }}
+  docs:
+    runs-on: ubuntu-22.04
+    if: ${{ github.event_name == 'push' }}
+    needs:
+      - lint-and-compile
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v2.1.0
+        with:
+          dotnet-version: "7.0.x"
+      - run: dotnet tool update -g docfx
+      - run: docfx docs/docfx.json
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: docs/_site
   deploy:
     runs-on: ubuntu-22.04
     if: ${{ github.event_name == 'release' }}
