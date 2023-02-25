@@ -7,7 +7,7 @@ namespace LemonUI.Menus
     /// </summary>
     public class NativeSubmenuItem : NativeItem
     {
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The menu opened by this item.
@@ -42,6 +42,20 @@ namespace LemonUI.Menus
 
         #endregion
 
+        #region Event Functions
+
+        private void NativeSubmenuItem_Activated(object sender, EventArgs e)
+        {
+            Menu.Parent.Visible = false;
+
+            if (!Menu.Parent.Visible)
+            {
+                Menu.Visible = true;
+            }
+        }
+
+        #endregion
+
         #region Functions
 
         /// <inheritdoc/>
@@ -54,20 +68,6 @@ namespace LemonUI.Menus
             }
 
             base.Draw();
-        }
-
-        #endregion
-
-        #region Local Events
-
-        private void NativeSubmenuItem_Activated(object sender, EventArgs e)
-        {
-            Menu.Parent.Visible = false;
-
-            if (!Menu.Parent.Visible)
-            {
-                Menu.Visible = true;
-            }
         }
 
         #endregion
