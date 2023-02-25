@@ -19,6 +19,8 @@ namespace LemonUI
     /// </summary>
     internal static class Controls
     {
+        #region Properties
+
         /// <summary>
         /// Gets if the player used a controller for the last input.
         /// </summary>
@@ -38,6 +40,10 @@ namespace LemonUI
             }
         }
 
+        #endregion
+
+        #region Functions
+
         /// <summary>
         /// Checks if a control was pressed during the last frame.
         /// </summary>
@@ -55,7 +61,6 @@ namespace LemonUI
             return Function.Call<bool>(Hash.IS_DISABLED_CONTROL_JUST_PRESSED, 0, (int)control);
 #endif
         }
-
         /// <summary>
         /// Checks if a control is currently pressed.
         /// </summary>
@@ -73,7 +78,6 @@ namespace LemonUI
             return Function.Call<bool>(Hash.IS_DISABLED_CONTROL_PRESSED, 0, (int)control);
 #endif
         }
-
         /// <summary>
         /// Disables all of the controls during the next frame.
         /// </summary>
@@ -89,7 +93,6 @@ namespace LemonUI
             Function.Call(Hash.DISABLE_ALL_CONTROL_ACTIONS, inputGroup);
 #endif
         }
-
         /// <summary>
         /// Enables a control during the next frame.
         /// </summary>
@@ -117,7 +120,6 @@ namespace LemonUI
                 EnableThisFrame(control);
             }
         }
-
         /// <summary>
         /// Disables a control during the next frame.
         /// </summary>
@@ -134,5 +136,7 @@ namespace LemonUI
             Function.Call(Hash.DISABLE_CONTROL_ACTION, 0, (int)control, true);
 #endif
         }
+
+        #endregion
     }
 }
