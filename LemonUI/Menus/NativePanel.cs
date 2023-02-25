@@ -8,7 +8,7 @@ namespace LemonUI.Menus
     /// </summary>
     public abstract class NativePanel
     {
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// If this panel is visible to the user.
@@ -25,7 +25,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Recalculates the menu contents.
