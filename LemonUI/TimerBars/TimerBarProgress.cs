@@ -21,14 +21,14 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The background of the Progress Bar.
         /// </summary>
-        internal protected readonly ScaledRectangle barBackground = new ScaledRectangle(PointF.Empty, SizeF.Empty)
+        protected internal readonly ScaledRectangle barBackground = new ScaledRectangle(PointF.Empty, SizeF.Empty)
         {
             Color = Color.FromArgb(255, 139, 0, 0)
         };
         /// <summary>
         /// The foreground of the Progress Bar.
         /// </summary>
-        internal protected readonly ScaledRectangle barForeground = new ScaledRectangle(PointF.Empty, SizeF.Empty)
+        protected internal readonly ScaledRectangle barForeground = new ScaledRectangle(PointF.Empty, SizeF.Empty)
         {
             Color = Color.FromArgb(255, 255, 0, 0)
         };
