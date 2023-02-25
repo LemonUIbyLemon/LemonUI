@@ -1,6 +1,4 @@
 #if FIVEM
-using CitizenFX.Core;
-using CitizenFX.Core.UI;
 using CitizenFX.Core.Native;
 #elif RAGEMP
 using RAGE.Game;
@@ -10,7 +8,6 @@ using Rage;
 using Rage.Native;
 #elif SHVDN3
 using GTA.Native;
-using GTA.UI;
 #endif
 using System;
 using System.Collections;
