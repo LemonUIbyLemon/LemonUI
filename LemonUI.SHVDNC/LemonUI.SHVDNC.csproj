@@ -14,7 +14,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-		<PackageReference Include="ScriptHookVDotNetCore" Version="1.1.0" >
+		<PackageReference Include="ScriptHookVDotNetCore" Version="1.2.1" >
 			<IncludeAssets>compile</IncludeAssets>
 		</PackageReference>
     </ItemGroup>
