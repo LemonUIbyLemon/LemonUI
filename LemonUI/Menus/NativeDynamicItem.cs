@@ -27,6 +27,7 @@ namespace LemonUI.Menus
             set
             {
                 item = value;
+                UpdateItemName();
             }
         }
 
