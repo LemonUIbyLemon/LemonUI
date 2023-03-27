@@ -57,7 +57,7 @@ namespace LemonUI.Scaleform
             {
                 if (value.Length != 8)
                 {
-                    throw new ArgumentOutOfRangeException("The word needs to be exactly 8 characters long.", nameof(value));
+                    throw new ArgumentOutOfRangeException(nameof(value), "The word needs to be exactly 8 characters long.");
                 }
                 word = value;
                 CallFunction("SET_ROULETTE_WORD", value);
@@ -116,7 +116,7 @@ namespace LemonUI.Scaleform
             {
                 if (value < -1)
                 {
-                    throw new ArgumentOutOfRangeException("The Closure time can't be under -1.", nameof(value));
+                    throw new ArgumentOutOfRangeException(nameof(value), "The Closure time can't be under -1.");
                 }
                 closeAfter = value;
             }
@@ -212,7 +212,7 @@ namespace LemonUI.Scaleform
         {
             if (index >= 8 || index < 0)
             {
-                throw new ArgumentOutOfRangeException("The index needs to be between 0 and 7.", nameof(index));
+                throw new ArgumentOutOfRangeException(nameof(index), "The index needs to be between 0 and 7.");
             }
             CallFunction("SET_COLUMN_SPEED", index, speed);
         }
