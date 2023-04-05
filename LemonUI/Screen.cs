@@ -176,6 +176,8 @@ namespace LemonUI
             Function.Call((Hash)0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY); // _GET_SCRIPT_GFX_POSITION
             realX = argX.GetResult<float>();
             realY = argY.GetResult<float>();
+            argX.Dispose();
+            argY.Dispose();
 #endif
             // And return it converted to absolute
             ToAbsolute(realX, realY, out float absoluteX, out float absoluteY);

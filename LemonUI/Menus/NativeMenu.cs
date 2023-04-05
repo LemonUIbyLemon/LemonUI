@@ -99,7 +99,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The controls required by the menu with both a gamepad and mouse + keyboard.
         /// </summary>
-        internal static List<Control> controlsRequired = new List<Control>
+        internal static HashSet<Control> controlsRequired = new HashSet<Control>
         {
             // Menu Controls
             Control.FrontendAccept,
@@ -1002,6 +1002,8 @@ namespace LemonUI.Menus
             // If the user wants to disable the controls, do so but only the ones required
             if (DisableControls)
             {
+                bool isUsingController = Controls.IsUsingController;
+
                 foreach (Control control in controls)
                 {
                     // If the control is required by the menu
@@ -1010,12 +1012,12 @@ namespace LemonUI.Menus
                         continue;
                     }
                     // If the player is using a controller and is required on gamepads
-                    if (Controls.IsUsingController && controlsGamepad.Contains(control))
+                    if (isUsingController && controlsGamepad.Contains(control))
                     {
                         continue;
                     }
                     // If the player is usinng a controller or mouse usage is disabled and is a camera control
-                    if ((Controls.IsUsingController || !UseMouse) && controlsCamera.Contains(control))
+                    if ((isUsingController || !UseMouse) && controlsCamera.Contains(control))
                     {
                         continue;
                     }

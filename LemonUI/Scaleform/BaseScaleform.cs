@@ -364,7 +364,9 @@ namespace LemonUI.Scaleform
 #elif RPH
             NativeFunction.CallByHash<int>(0x1D132D614DD86811, new NativeArgument(id));
 #elif SHVDN3
-            Function.Call(Hash.SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED, new OutputArgument(id));
+            OutputArgument idPtr = new OutputArgument(id);
+            Function.Call(Hash.SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED, idPtr);
+            idPtr.Dispose();
 #endif
         }
 
