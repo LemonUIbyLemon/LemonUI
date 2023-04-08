@@ -224,9 +224,18 @@ namespace LemonUI.Menus
             this.position = position;
             this.width = width;
 
-            const float height = 270;
+            float height;
             const int offsetX = 20;
             const int offsetY = 20;
+
+            if (style == GridStyle.Row)
+            {
+                height = 60;
+            }
+            else
+            {
+                height = 270;
+            }
 
             base.Recalculate(position, width);
             Background.Size = new SizeF(width, height);
