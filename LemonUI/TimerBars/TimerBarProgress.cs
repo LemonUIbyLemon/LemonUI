@@ -1,5 +1,6 @@
 using LemonUI.Elements;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace LemonUI.TimerBars
@@ -32,8 +33,21 @@ namespace LemonUI.TimerBars
         {
             Color = Color.FromArgb(255, 255, 0, 0)
         };
+        /// <summary>
+        /// The divider lines of the Progress Bar.
+        /// </summary>
+        protected internal List<ScaledRectangle> barLines { get; } = new List<ScaledRectangle>()
+        {
+            new ScaledRectangle(PointF.Empty, SizeF.Empty),
+            new ScaledRectangle(PointF.Empty, SizeF.Empty),
+            new ScaledRectangle(PointF.Empty, SizeF.Empty),
+            new ScaledRectangle(PointF.Empty, SizeF.Empty)
+        };
+
+        private PointF lastPosition = default;
 
         private float progress = 100;
+        private bool dividerLines = false;
 
         #endregion
 
@@ -71,6 +85,18 @@ namespace LemonUI.TimerBars
             get => barBackground.Color;
             set => barBackground.Color = value;
         }
+        /// <summary>
+        /// Whether to draw dividing lines at the Progress bar.
+        /// </summary>
+        public bool Dividers
+        {
+            get => dividerLines;
+            set
+            {
+                dividerLines = value;
+                Recalculate(lastPosition);
+            }
+        }
 
         #endregion
 
@@ -94,6 +120,7 @@ namespace LemonUI.TimerBars
         /// <param name="pos">The Top Left position of the Timer Bar.</param>
         public override void Recalculate(PointF pos)
         {
+            lastPosition = pos;
             // Recalculate the base elements
             base.Recalculate(pos);
             // Calculate X and Y to position the progress bar respecting background's right edge padding and centered vertically
@@ -105,6 +132,22 @@ namespace LemonUI.TimerBars
             barBackground.Size = new SizeF(barWidth, barHeight);
             barForeground.Position = barPos;
             barForeground.Size = new SizeF(barWidth * (progress * 0.01f), barHeight);
+
+            if (dividerLines)
+            {
+                for (int i = 0; i < barLines.Count; i++)
+                {
+                    ScaledRectangle line = barLines[i];
+                    float partWidth = barWidth / 5;
+                    float halfLineWidth = line.Size.Width / 2;
+                    float lineWidth = 2.85f;
+                    float lineHeight = barHeight + 4;
+                    float heightDelta = lineHeight - barHeight;
+                    line.Size = new SizeF(lineWidth, lineHeight);
+                    line.Position = new PointF(barX + partWidth + (i * partWidth) - halfLineWidth, barY - (heightDelta / 2));
+                    line.Color = Color.Black;
+                }
+            }
         }
         /// <summary>
         /// Draws the TimerBar.
@@ -115,6 +158,14 @@ namespace LemonUI.TimerBars
             title.Draw();
             barBackground.Draw();
             barForeground.Draw();
+
+            if (dividerLines)
+            {
+                foreach (var bar in barLines)
+                {
+                    bar.Draw();
+                }
+            }
         }
 
         #endregion
