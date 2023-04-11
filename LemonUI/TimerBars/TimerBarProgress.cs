@@ -11,8 +11,8 @@ namespace LemonUI.TimerBars
     {
         #region Constants
 
-        private const float barWidth = 108;
-        private const float barHeight = 15;
+        private const float barWidth = 130;
+        private const float barHeight = 10;
 
         #endregion
 
@@ -96,8 +96,11 @@ namespace LemonUI.TimerBars
         {
             // Recalculate the base elements
             base.Recalculate(pos);
+            // Calculate X and Y to position the progress bar respecting background's right edge padding and centered vertically
+            float barX = pos.X + backgroundWidth - barWidth - paddingRightNonText;
+            float barY = pos.Y + ((backgroundHeight / 2) - (barHeight / 2));
             // And set the size and position of the progress bar
-            PointF barPos = new PointF(pos.X + 103, pos.Y + 12);
+            PointF barPos = new PointF(barX, barY);
             barBackground.Position = barPos;
             barBackground.Size = new SizeF(barWidth, barHeight);
             barForeground.Position = barPos;

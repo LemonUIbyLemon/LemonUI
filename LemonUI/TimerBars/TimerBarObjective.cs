@@ -12,10 +12,11 @@ namespace LemonUI.TimerBars
     {
         #region Fields
 
-        private const float width = 20;
-        private const float height = 20;
+        private const float width = 22.5f;
+        private const float height = 22.5f;
+        private new const float paddingRight = 10;
 
-        private static readonly Color colorWhite = Color.FromArgb(255, 255, 255);
+        private static readonly Color colorEmpty = Color.FromArgb(200, 200, 200);
         private static readonly Color colorCompleted = Color.FromArgb(101, 180, 212);
 
         private readonly List<ScaledTexture> objectives = new List<ScaledTexture>();
@@ -23,8 +24,10 @@ namespace LemonUI.TimerBars
         private PointF lastPosition = default;
 
         private int count = 1;
+        private int countMax = 20;
         private int completed = 0;
-        private Color colorSet = colorCompleted;
+        private Color colorEmptySet = colorEmpty;
+        private Color colorCompletedSet = colorCompleted;
         private ObjectiveSpacing objectiveSpacing = ObjectiveSpacing.Equal;
 
         #endregion
@@ -49,8 +52,14 @@ namespace LemonUI.TimerBars
                     throw new ArgumentOutOfRangeException(nameof(value), "The number of objectives can't be under or equal to zero.");
                 }
 
+                if (value > countMax)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "The number of objectives can't be over 20.");
+                }
+
                 count = value;
                 UpdateObjectiveCount();
+                Recalculate(lastPosition);
             }
         }
         /// <summary>
@@ -85,20 +94,37 @@ namespace LemonUI.TimerBars
         /// </summary>
         public Color CompletedColor
         {
-            get => colorSet;
+            get => colorCompletedSet;
             set
             {
-                if (colorSet == value)
+                if (colorCompletedSet == value)
                 {
                     return;
                 }
 
-                colorSet = value;
+                colorCompletedSet = value;
                 UpdateObjectiveColors();
             }
         }
         /// <summary>
-        /// The type of spacing between the objectives .
+        /// The color used for non-completed objectives.
+        /// </summary>
+        public Color EmptyColor
+        {
+            get => colorEmptySet;
+            set
+            {
+                if (colorEmptySet == value)
+                {
+                    return;
+                }
+
+                colorEmptySet = value;
+                UpdateObjectiveColors();
+            }
+        }
+        /// <summary>
+        /// The type of spacing between the objectives.
         /// </summary>
         public ObjectiveSpacing Spacing
         {
@@ -154,7 +180,7 @@ namespace LemonUI.TimerBars
             for (int i = 0; i < objectives.Count; i++)
             {
                 ScaledTexture texture = objectives[i];
-                texture.Color = i < completed ? colorSet : colorWhite;
+                texture.Color = i < completed ? colorCompletedSet : colorEmptySet;
             }
         }
 
@@ -183,38 +209,51 @@ namespace LemonUI.TimerBars
             base.Recalculate(pos);
 
             const float safe = width + 5;
+            const float spacing = width - 5;
             float startY = pos.Y + (backgroundHeight * 0.5f) - (height * 0.5f);
 
             switch (objectiveSpacing)
             {
                 case ObjectiveSpacing.Equal:
-                {
-                    const float half = backgroundWidth * 0.5f;
-                    float startX = pos.X + half;
-                    float spacingWidth = (half - safe) / (objectives.Count - 1);
-
-                    for (int i = 0; i < objectives.Count; i++)
                     {
-                        ScaledTexture texture = objectives[i];
-                        texture.Size = new SizeF(width, height);
-                        texture.Position = new PointF(startX + (spacingWidth * i), startY);
-                    }
+                        float half = backgroundWidth * 0.5f;
+                        float spacingWidth = (half - safe) / (objectives.Count - 1);
 
-                    break;
-                }
+                        if (objectives.Count > 8)
+                        {
+                            half = backgroundWidth * 0.33f;
+                            spacingWidth = (backgroundWidth - half - safe) / (objectives.Count - 1);
+                        }
+                        else if (objectives.Count <= 8)
+                        {
+                            half = backgroundWidth * 0.5f;
+                            spacingWidth = (half - safe) / (objectives.Count - 1);
+                        }
+
+                        float startX = pos.X + half;
+
+                        for (int i = 0; i < objectives.Count; i++)
+                        {
+                            ScaledTexture texture = objectives[i];
+                            texture.Size = new SizeF(width, height);
+                            texture.Position = new PointF(startX + (spacingWidth * i), startY);
+                        }
+
+                        break;
+                    }
                 case ObjectiveSpacing.Fixed:
-                {
-                    float startX = pos.X + backgroundWidth - safe - (width * (count - 1));
-
-                    for (int i = 0; i < objectives.Count; i++)
                     {
-                        ScaledTexture texture = objectives[i];
-                        texture.Size = new SizeF(width, height);
-                        texture.Position = new PointF(startX + (i * width), startY);
-                    }
+                        float startX = pos.X + backgroundWidth - (spacing * objectives.Count) - paddingRightNonText;
 
-                    break;
-                }
+                        for (int i = 0; i < objectives.Count; i++)
+                        {
+                            ScaledTexture texture = objectives[i];
+                            texture.Size = new SizeF(width, height);
+                            texture.Position = new PointF(startX + (i * spacing), startY);
+                        }
+
+                        break;
+                    }
             }
         }
 

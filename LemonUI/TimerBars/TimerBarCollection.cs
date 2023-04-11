@@ -22,6 +22,7 @@ namespace LemonUI.TimerBars
         #region Fields
 
         private PointF offset = PointF.Empty;
+        private float width = 250;
 
         #endregion
 
@@ -44,6 +45,28 @@ namespace LemonUI.TimerBars
             set
             {
                 offset = value;
+                Recalculate();
+            }
+        }
+        /// <summary>
+        /// Width of the <see cref="TimerBarCollection"/>.
+        /// </summary>
+        public float Width
+        {
+            get => width;
+            set
+            {
+                if (value > 500)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "Width of Timer Bar collection can't be larger than 500.");
+                }
+                if (value < 100)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "Width of Timer Bar collection can't be less than 100.");
+                }
+
+                width = value;
+                TimerBar.backgroundWidth = value;
                 Recalculate();
             }
         }

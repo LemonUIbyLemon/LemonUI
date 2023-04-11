@@ -6,6 +6,8 @@ using RAGE.Game;
 using GTA.UI;
 #endif
 using LemonUI.Elements;
+using LemonUI.Extensions;
+using System;
 using System.Drawing;
 
 namespace LemonUI.TimerBars
@@ -24,11 +26,23 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The width of the background.
         /// </summary>
-        internal const float backgroundWidth = 220;
+        internal static float backgroundWidth = 250;
         /// <summary>
         /// The height of the background.
         /// </summary>
         internal const float backgroundHeight = 37;
+        /// <summary>
+        /// The right edge padding for timer bar's info text.
+        /// </summary>
+        internal const float paddingRightText = 5;
+        /// <summary>
+        /// The right edge padding for timer bar's non-text info elements, such as <see cref="TimerBarObjective"/> or <see cref="TimerBarProgress"/>.
+        /// </summary>
+        internal const float paddingRightNonText = 10;
+        /// <summary>
+        /// The left edge padding for timer bar's title.
+        /// </summary>
+        internal const float paddingLeft = 90;
 
         /// <summary>
         /// The background of the timer bar.
@@ -123,10 +137,14 @@ namespace LemonUI.TimerBars
         /// <param name="pos">The Top Left position of the Timer Bar.</param>
         public virtual void Recalculate(PointF pos)
         {
+            float titleX = pos.X + paddingLeft;
+            float titleY = pos.Y + ((backgroundHeight / 2) - (title.LineHeight / 2));
+            float infoX = pos.X + backgroundWidth - paddingRightText;
+            float infoY = pos.Y - 3;
             background.Position = pos;
             background.Size = new SizeF(backgroundWidth, backgroundHeight);
-            title.Position = new PointF(pos.X + 91, pos.Y + 8);
-            info.Position = new PointF(pos.X + 218, pos.Y - 3);
+            title.Position = new PointF(titleX, titleY);
+            info.Position = new PointF(infoX, infoY);
         }
         /// <summary>
         /// Draws the timer bar information.
