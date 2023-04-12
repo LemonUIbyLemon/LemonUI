@@ -167,10 +167,24 @@ namespace LemonUI.TimerBars
             pos.Y += offset.Y;
 
             int count = 0;
+            float allBarsHeight = 0;
 
+            // Calculate total height of all Timer bars
             for (int i = 0; i < TimerBars.Count; i++)
             {
-                TimerBars[i].Recalculate(new PointF(pos.X - TimerBar.backgroundWidth, pos.Y - (TimerBar.backgroundHeight * (TimerBars.Count - count)) - (TimerBar.separation * (TimerBars.Count - count - 1))));
+                allBarsHeight += TimerBars[i].Height;
+            }
+
+            // Recalculate all Timer bars
+            for (int i = 0; i < TimerBars.Count; i++)
+            {
+                TimerBar bar = TimerBars[i];
+                float sepHeight = TimerBar.separation * (TimerBars.Count - count - 1);
+                float barX = pos.X - TimerBar.backgroundWidth;
+                float barY = pos.Y - allBarsHeight - sepHeight;
+                PointF point = new PointF(barX, barY);
+                TimerBars[i].Recalculate(point);
+                allBarsHeight -= bar.Height;
                 count++;
             }
         }

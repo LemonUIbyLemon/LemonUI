@@ -44,8 +44,6 @@ namespace LemonUI.TimerBars
             new ScaledRectangle(PointF.Empty, SizeF.Empty)
         };
 
-        private PointF lastPosition = default;
-
         private float progress = 100;
         private bool dividerLines = false;
 

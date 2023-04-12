@@ -30,7 +30,7 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The height of the background.
         /// </summary>
-        internal const float backgroundHeight = 37;
+        internal float backgroundHeight = 39;
         /// <summary>
         /// The right edge padding for timer bar's info text.
         /// </summary>
@@ -71,10 +71,34 @@ namespace LemonUI.TimerBars
         private string rawTitle = string.Empty;
         private string rawInfo = string.Empty;
 
+        internal PointF lastPosition = default;
+
         #endregion
 
         #region Properties
 
+        /// <summary>
+        /// The height of the Timer bar.
+        /// </summary>
+        public float Height
+        {
+            get => backgroundHeight;
+            set
+            {
+                if (value < 20)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "The height of a Timer Bar can't be less than 20.");
+                }
+
+                if (value > 100)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "The height of a Timer Bar can't be larger than 100.");
+                }
+
+                backgroundHeight = value;
+                Recalculate(lastPosition);
+            }
+        }
         /// <summary>
         /// The title of the bar, shown on the left.
         /// </summary>
@@ -138,9 +162,10 @@ namespace LemonUI.TimerBars
         public virtual void Recalculate(PointF pos)
         {
             float titleX = pos.X + paddingLeft;
-            float titleY = pos.Y + ((backgroundHeight / 2) - (title.LineHeight / 2));
+            // Subtracting 1 extra px because otherwise centering is 1px off
+            float titleY = pos.Y + ((backgroundHeight / 2) - (title.LineHeight / 1.5f)) - 1;
             float infoX = pos.X + backgroundWidth - paddingRightText;
-            float infoY = pos.Y - 3;
+            float infoY = pos.Y + ((backgroundHeight / 2) - (info.LineHeight / 1.5f));
             background.Position = pos;
             background.Size = new SizeF(backgroundWidth, backgroundHeight);
             title.Position = new PointF(titleX, titleY);

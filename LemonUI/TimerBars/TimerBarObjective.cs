@@ -21,8 +21,6 @@ namespace LemonUI.TimerBars
 
         private readonly List<ScaledTexture> objectives = new List<ScaledTexture>();
 
-        private PointF lastPosition = default;
-
         private int count = 1;
         private int countMax = 20;
         private int completed = 0;
