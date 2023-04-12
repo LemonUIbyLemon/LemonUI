@@ -45,7 +45,7 @@ namespace LemonUI.TimerBars
         };
 
         private float progress = 100;
-        private bool dividerLines = false;
+        private bool showDividerLines = false;
 
         #endregion
 
@@ -84,14 +84,14 @@ namespace LemonUI.TimerBars
             set => barBackground.Color = value;
         }
         /// <summary>
-        /// Whether to draw dividing lines at the Progress bar.
+        /// Enable or disable divider lines at the Progress bar.
         /// </summary>
-        public bool Dividers
+        public bool ShowDividerLines
         {
-            get => dividerLines;
+            get => showDividerLines;
             set
             {
-                dividerLines = value;
+                showDividerLines = value;
                 Recalculate(lastPosition);
             }
         }
@@ -131,7 +131,7 @@ namespace LemonUI.TimerBars
             barForeground.Position = barPos;
             barForeground.Size = new SizeF(barWidth * (progress * 0.01f), barHeight);
 
-            if (dividerLines)
+            if (showDividerLines)
             {
                 for (int i = 0; i < barLines.Count; i++)
                 {
@@ -162,7 +162,7 @@ namespace LemonUI.TimerBars
                 teamBadge.Draw();
             }
 
-            if (dividerLines)
+            if (showDividerLines)
             {
                 foreach (var bar in barLines)
                 {
