@@ -67,9 +67,18 @@ namespace LemonUI.TimerBars
             Alignment = Alignment.Right,
             WordWrap = 1000
         };
+        /// <summary>
+        /// The team badge of the Timer Bar.
+        /// </summary>
+        protected internal readonly ScaledRectangle teamBadge = new ScaledRectangle(PointF.Empty, new SizeF(4, 0))
+        {
+            Color = Color.White
+        };
 
         private string rawTitle = string.Empty;
         private string rawInfo = string.Empty;
+
+        internal bool showTeamBadge = false;
 
         internal PointF lastPosition = default;
 
@@ -135,6 +144,30 @@ namespace LemonUI.TimerBars
             get => info.Color;
             set => info.Color = value;
         }
+        /// <summary>
+        /// Enable or disable colored team badge that's shown on the right.
+        /// </summary>
+        public bool ShowTeamBadge
+        {
+            get => showTeamBadge;
+            set => showTeamBadge = value;
+        }
+        /// <summary>
+        /// Color of the team badge that's shown on the right.
+        /// </summary>
+        public Color TeamBadgeColor
+        {
+            get => teamBadge.Color;
+            set
+            {
+                if (value == teamBadge.Color)
+                {
+                    return;
+                }
+                teamBadge.Color = value;
+                Recalculate(lastPosition);
+            }
+        }
 
         #endregion
 
@@ -167,10 +200,14 @@ namespace LemonUI.TimerBars
             float titleY = pos.Y + ((backgroundHeight / 2) - (title.LineHeight / 1.5f)) - 1;
             float infoX = pos.X + backgroundWidth - paddingRightText;
             float infoY = pos.Y + ((backgroundHeight / 2) - (info.LineHeight / 1.5f));
+            float badgeX = pos.X + backgroundWidth - teamBadge.Size.Width;
+            float badgeY = pos.Y;
             background.Position = pos;
             background.Size = new SizeF(backgroundWidth, backgroundHeight);
             title.Position = new PointF(titleX, titleY);
             info.Position = new PointF(infoX, infoY);
+            teamBadge.Position = new PointF(badgeX, badgeY);
+            teamBadge.Size = new SizeF(teamBadge.Size.Width, backgroundHeight);
         }
         /// <summary>
         /// Draws the timer bar information.
@@ -180,6 +217,10 @@ namespace LemonUI.TimerBars
             background.Draw();
             title.Draw();
             info.Draw();
+            if (showTeamBadge)
+            {
+                teamBadge.Draw();
+            }
         }
 
         #endregion

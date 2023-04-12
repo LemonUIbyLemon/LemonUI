@@ -157,6 +157,11 @@ namespace LemonUI.TimerBars
             barBackground.Draw();
             barForeground.Draw();
 
+            if (showTeamBadge)
+            {
+                teamBadge.Draw();
+            }
+
             if (dividerLines)
             {
                 foreach (var bar in barLines)

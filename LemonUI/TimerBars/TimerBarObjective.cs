@@ -194,6 +194,11 @@ namespace LemonUI.TimerBars
             background.Draw();
             title.Draw();
 
+            if (showTeamBadge)
+            {
+                teamBadge.Draw();
+            }
+
             foreach (ScaledTexture texture in objectives)
             {
                 texture.Draw();
