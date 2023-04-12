@@ -161,6 +161,7 @@ namespace LemonUI.TimerBars
         /// <param name="pos">The Top Left position of the Timer Bar.</param>
         public virtual void Recalculate(PointF pos)
         {
+            lastPosition = pos;
             float titleX = pos.X + paddingLeft;
             // Subtracting 1 extra px because otherwise centering is 1px off
             float titleY = pos.Y + ((backgroundHeight / 2) - (title.LineHeight / 1.5f)) - 1;
