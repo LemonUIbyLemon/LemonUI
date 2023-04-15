@@ -220,20 +220,39 @@ namespace LemonUI.TimerBars
                 case ObjectiveSpacing.Equal:
                     {
                         float half = backgroundWidth * 0.5f;
+                        float backgroundMult = half;
+                        float startOffset = 0;
                         float spacingWidth = (half - safe) / (objectives.Count - 1);
 
-                        if (objectives.Count > 8)
+                        if (backgroundWidth < 270)
                         {
-                            half = backgroundWidth * 0.33f;
-                            spacingWidth = (backgroundWidth - half - safe) / (objectives.Count - 1);
+                            backgroundMult = backgroundWidth * 0.1f;
                         }
-                        else if (objectives.Count <= 8)
+                        else if (backgroundWidth >= 270)
                         {
-                            half = backgroundWidth * 0.5f;
-                            spacingWidth = (half - safe) / (objectives.Count - 1);
+                            backgroundMult = backgroundWidth * 0.4f;
                         }
 
-                        float startX = pos.X + half;
+                        spacingWidth = (backgroundWidth - backgroundMult - safe) / (objectives.Count - 1);
+
+                        if (objectives.Count > 10 && objectives.Count <= 15)
+                        {
+                            float addSpace = 2.5f * objectives.Count;
+                            startOffset = backgroundMult - addSpace;
+                            spacingWidth = (backgroundWidth - backgroundMult - safe + addSpace) / (objectives.Count - 1);
+                        }
+                        else if (objectives.Count > 15)
+                        {
+                            float addSpace = 3f * objectives.Count;
+                            startOffset = backgroundMult - addSpace;
+                            spacingWidth = (backgroundWidth - backgroundMult - safe + addSpace) / (objectives.Count - 1);
+                        }
+                        else
+                        {
+                            startOffset = backgroundMult;
+                        }
+
+                        float startX = pos.X + startOffset;
 
                         for (int i = 0; i < objectives.Count; i++)
                         {
