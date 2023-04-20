@@ -163,8 +163,8 @@ namespace LemonUI
             realX = argX.Value;
             realY = argY.Value;
 #elif RPH
-            using (NativePointer argX = new NativePointer())
-            using (NativePointer argY = new NativePointer())
+            using (NativePointer argX = new NativePointer(4))
+            using (NativePointer argY = new NativePointer(4))
             {
                 NativeFunction.CallByHash<int>(0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY);
                 realX = argX.GetValue<float>();
