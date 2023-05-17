@@ -39,9 +39,9 @@ namespace LemonUI.Menus
         #region Constants
 
         /// <summary>
-        /// The height of the menu subtitle background.
+        /// The height of the menu name background.
         /// </summary>
-        internal const float subtitleHeight = 38;
+        internal const float nameHeight = 38;
         /// <summary>
         /// The height of one of the items in the screen.
         /// </summary>
@@ -127,9 +127,9 @@ namespace LemonUI.Menus
         /// </summary>
         private List<NativeItem> visibleItems = new List<NativeItem>();
         /// <summary>
-        /// The subtitle of the menu, without any changes.
+        /// The name of the menu, without any changes.
         /// </summary>
-        private string subtitle = string.Empty;
+        private string name = string.Empty;
         /// <summary>
         /// If the menu is visible or not.
         /// </summary>
@@ -165,14 +165,14 @@ namespace LemonUI.Menus
         /// <summary>
         /// The background of the drawable text.
         /// </summary>
-        private readonly ScaledRectangle subtitleImage = new ScaledRectangle(PointF.Empty, SizeF.Empty)
+        private readonly ScaledRectangle nameImage = new ScaledRectangle(PointF.Empty, SizeF.Empty)
         {
             Color = Color.FromArgb(255, 0, 0, 0)
         };
         /// <summary>
-        /// The text of the subtitle.
+        /// The text of the name.
         /// </summary>
-        private readonly ScaledText subtitleText = new ScaledText(PointF.Empty, string.Empty, 0.345f, Font.ChaletLondon)
+        private readonly ScaledText nameText = new ScaledText(PointF.Empty, string.Empty, 0.345f, Font.ChaletLondon)
         {
             Color = colorWhiteSmoke
         };
@@ -219,13 +219,13 @@ namespace LemonUI.Menus
         /// The time since the player has been pressing the Up button.
         /// </summary>
         private long heldSince = -1;
-        private SubtitleBehavior subtitleBehavior = SubtitleBehavior.AlwaysShow;
+        private SubtitleBehavior nameBehavior = SubtitleBehavior.AlwaysShow;
 
         #endregion
 
         #region Properties
 
-        private bool ShouldDrawSubtitleBackground => subtitleBehavior == SubtitleBehavior.AlwaysShow || (subtitleBehavior == SubtitleBehavior.ShowIfRequired && (ShouldDrawCount || !string.IsNullOrWhiteSpace(subtitle)));
+        private bool ShouldDrawNameBackground => nameBehavior == SubtitleBehavior.AlwaysShow || (nameBehavior == SubtitleBehavior.ShowIfRequired && (ShouldDrawCount || !string.IsNullOrWhiteSpace(name)));
         private bool ShouldDrawCount => ItemCount == CountVisibility.Always || (ItemCount == CountVisibility.Auto && Items.Count > MaxItems);
 
         /// <summary>
@@ -303,12 +303,12 @@ namespace LemonUI.Menus
             set => BannerText.Font = value;
         }
         /// <summary>
-        /// The font of subtitle text.
+        /// The font of name text.
         /// </summary>
-        public Font SubtitleFont
+        public Font NameFont
         {
-            get => subtitleText.Font;
-            set => subtitleText.Font = value;
+            get => nameText.Font;
+            set => nameText.Font = value;
         }
         /// <summary>
         /// The font of description text.
@@ -507,15 +507,15 @@ namespace LemonUI.Menus
         /// </remarks>
         public string Name
         {
-            get => subtitle;
+            get => name;
             set
             {
-                subtitle = value;
-                subtitleText.Text = value.ToUpperInvariant();
+                name = value;
+                nameText.Text = value.ToUpperInvariant();
             }
         }
         /// <summary>
-        /// The subtitle of the menu.
+        /// The name of the menu.
         /// </summary>
         [Obsolete("Please use Name instead.", true)]
         public string Subtitle
@@ -581,7 +581,7 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
-        /// If the count of items should be shown on the right of the subtitle.
+        /// If the count of items should be shown on the right of the name.
         /// </summary>
         public CountVisibility ItemCount { get; set; }
         /// <summary>
@@ -618,19 +618,19 @@ namespace LemonUI.Menus
         /// </remarks>
         public List<Control> RequiredControls { get; } = new List<Control>();
         /// <summary>
-        /// The behavior of the black bar showing the subtitle.
+        /// The behavior of the black bar showing the name.
         /// </summary>
         public SubtitleBehavior SubtitleBehavior
         {
-            get => subtitleBehavior;
+            get => nameBehavior;
             set
             {
-                if (subtitleBehavior == value)
+                if (nameBehavior == value)
                 {
                     return;
                 }
 
-                subtitleBehavior = value;
+                nameBehavior = value;
                 Recalculate();
             }
         }
@@ -778,41 +778,41 @@ namespace LemonUI.Menus
         }
 
         /// <summary>
-        /// Creates a new menu with the specified title and subtitle.
+        /// Creates a new menu with the specified banner text and name.
         /// </summary>
-        /// <param name="title">The title of the menu.</param>
-        /// <param name="subtitle">The subtitle of this menu.</param>
-        public NativeMenu(string title, string subtitle) : this(title, subtitle, string.Empty)
+        /// <param name="bqnnerText">The title of the menu.</param>
+        /// <param name="name">The name of this menu.</param>
+        public NativeMenu(string bqnnerText, string name) : this(bqnnerText, name, string.Empty)
         {
         }
 
         /// <summary>
-        /// Creates a new menu with the specified title, subtitle and description.
+        /// Creates a new menu with the specified banner text, name and description.
         /// </summary>
-        /// <param name="title">The title of the menu.</param>
-        /// <param name="subtitle">The subtitle of this menu.</param>
+        /// <param name="bqnnerText">The title of the menu.</param>
+        /// <param name="name">The name of this menu.</param>
         /// <param name="description">The description used for submenus.</param>
-        public NativeMenu(string title, string subtitle, string description) : this(title, subtitle, description, new ScaledTexture(PointF.Empty, new SizeF(0, 108), "commonmenu", "interaction_bgd"))
+        public NativeMenu(string bqnnerText, string name, string description) : this(bqnnerText, name, description, new ScaledTexture(PointF.Empty, new SizeF(0, 108), "commonmenu", "interaction_bgd"))
         {
         }
 
         /// <summary>
-        /// Creates a new menu with the specified title, subtitle, description and banner.
+        /// Creates a new menu with the specified banner text, name, description and banner.
         /// </summary>
-        /// <param name="title">The title of the menu.</param>
-        /// <param name="subtitle">The subtitle of this menu.</param>
+        /// <param name="bqnnerText">The title of the menu.</param>
+        /// <param name="name">The name of this menu.</param>
         /// <param name="description">The description used for submenus.</param>
         /// <param name="banner">The drawable to use as the banner.</param>
-        public NativeMenu(string title, string subtitle, string description, I2Dimensional banner)
+        public NativeMenu(string bqnnerText, string name, string description, I2Dimensional banner)
         {
-            this.subtitle = subtitle;
+            this.name = name;
             Description = description;
             bannerImage = banner;
-            BannerText = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
+            BannerText = new ScaledText(PointF.Empty, bqnnerText, 1.02f, Font.HouseScript)
             {
                 Alignment = Alignment.Center
             };
-            subtitleText.Text = subtitle.ToUpperInvariant();
+            nameText.Text = name.ToUpperInvariant();
             Recalculate();
         }
 
@@ -973,16 +973,16 @@ namespace LemonUI.Menus
                 pos = new PointF(x, Offset.Y);
             }
 
-            // Add the heights of the banner and subtitle (if there are any)
+            // Add the heights of the banner and title (if there are any)
             if (bannerImage != null)
             {
                 pos.Y += bannerImage.Size.Height;
             }
-            if (ShouldDrawSubtitleBackground || ShouldDrawCount)
+            if (ShouldDrawNameBackground || ShouldDrawCount)
             {
                 countText.Text = $"{SelectedIndex + 1} / {Items.Count}";
                 countText.Position = new PointF(pos.X + width - countText.Width - 6, pos.Y + 4.2f);
-                pos.Y += subtitleImage.Size.Height;
+                pos.Y += nameImage.Size.Height;
             }
 
             // Set the position and size of the background image
@@ -1331,10 +1331,10 @@ namespace LemonUI.Menus
                 BannerText?.Draw();
             }
 
-            if (ShouldDrawSubtitleBackground)
+            if (ShouldDrawNameBackground)
             {
-                subtitleImage.Draw();
-                subtitleText?.Draw();
+                nameImage.Draw();
+                nameText?.Draw();
                 if (ShouldDrawCount)
                 {
                     countText.Draw();
@@ -1650,18 +1650,18 @@ namespace LemonUI.Menus
                 pos.Y += bannerImageBase.Size.Height;
             }
 
-            // Time for the subtitle background
+            // Time for the name background
             // Set the position and size of it
-            subtitleImage.literalPosition = new PointF(pos.X, pos.Y);
-            subtitleImage.literalSize = new SizeF(width, subtitleHeight);
-            subtitleImage.Recalculate();
+            nameImage.literalPosition = new PointF(pos.X, pos.Y);
+            nameImage.literalSize = new SizeF(width, nameHeight);
+            nameImage.Recalculate();
             // If there is a text, also set the position of it
-            if (subtitleText != null)
+            if (nameText != null)
             {
-                subtitleText.Position = new PointF(pos.X + 6, pos.Y + 4.2f);
+                nameText.Position = new PointF(pos.X + 6, pos.Y + 4.2f);
             }
-            // Finally, increase the size based on the subtitle height
-            // currentY += subtitleHeight;
+            // Finally, increase the size based on the name height
+            // currentY += nameHeight;
 
             // Set the size of the selection rectangle
             selectedRect.Size = new SizeF(width, itemHeight);
