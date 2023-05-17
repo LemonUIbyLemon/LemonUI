@@ -296,6 +296,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The font of title menu text.
         /// </summary>
+        [Obsolete("Please use BannerText.Font instead.", true)]
         public Font TitleFont
         {
             get => BannerText.Font;
