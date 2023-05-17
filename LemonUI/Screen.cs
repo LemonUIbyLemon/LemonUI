@@ -163,19 +163,21 @@ namespace LemonUI
             realX = argX.Value;
             realY = argY.Value;
 #elif RPH
-            using (NativePointer argX = new NativePointer())
-            using (NativePointer argY = new NativePointer())
+            using (NativePointer argX = new NativePointer(4))
+            using (NativePointer argY = new NativePointer(4))
             {
                 NativeFunction.CallByHash<int>(0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY);
                 realX = argX.GetValue<float>();
                 realY = argY.GetValue<float>();
             }
 #elif SHVDN3
-            OutputArgument argX = new OutputArgument();
-            OutputArgument argY = new OutputArgument();
-            Function.Call((Hash)0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY); // _GET_SCRIPT_GFX_POSITION
-            realX = argX.GetResult<float>();
-            realY = argY.GetResult<float>();
+            using (OutputArgument argX = new OutputArgument())
+            using (OutputArgument argY = new OutputArgument())
+            {
+                Function.Call((Hash)0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY); // _GET_SCRIPT_GFX_POSITION
+                realX = argX.GetResult<float>();
+                realY = argY.GetResult<float>();
+            }
 #endif
             // And return it converted to absolute
             ToAbsolute(realX, realY, out float absoluteX, out float absoluteY);

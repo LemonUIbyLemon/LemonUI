@@ -360,11 +360,19 @@ namespace LemonUI.Scaleform
 #if FIVEM
             API.SetScaleformMovieAsNoLongerNeeded(ref id);
 #elif RAGEMP
-            Invoker.Invoke(Natives.SetScaleformMovieAsNoLongerNeeded, id);
+            IntReference idPtr = new IntReference(id);
+            Invoker.Invoke(Natives.SetScaleformMovieAsNoLongerNeeded, idPtr);
 #elif RPH
-            NativeFunction.CallByHash<int>(0x1D132D614DD86811, new NativeArgument(id));
+            using (NativePointer idPtr = new NativePointer(4))
+            {
+                idPtr.SetValue(id);
+                NativeFunction.CallByHash<int>(0x6DD8F5AA635EB4B2, idPtr);
+            }
 #elif SHVDN3
-            Function.Call(Hash.SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED, new OutputArgument(id));
+            using (OutputArgument idPtr = new OutputArgument(id))
+            {
+                Function.Call(Hash.SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED, idPtr);
+            }
 #endif
         }
 

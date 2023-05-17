@@ -27,6 +27,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace LemonUI.Menus
 {
@@ -97,75 +98,6 @@ namespace LemonUI.Menus
         /// </summary>
         internal static readonly SizeF searchAreaSize = new SizeF(30, 1080);
         /// <summary>
-        /// The controls required by the menu with both a gamepad and mouse + keyboard.
-        /// </summary>
-        internal static List<Control> controlsRequired = new List<Control>
-        {
-            // Menu Controls
-            Control.FrontendAccept,
-            Control.FrontendAxisX,
-            Control.FrontendAxisY,
-            Control.FrontendDown,
-            Control.FrontendUp,
-            Control.FrontendLeft,
-            Control.FrontendRight,
-            Control.FrontendCancel,
-            Control.FrontendSelect,
-            Control.CursorScrollDown,
-            Control.CursorScrollUp,
-            Control.CursorX,
-            Control.CursorY,
-            Control.MoveUpDown,
-            Control.MoveLeftRight,
-            // Camera
-            Control.LookBehind,
-            Control.VehicleLookBehind,
-            // Player
-            Control.Sprint,
-            Control.Jump,
-            Control.Enter,
-            Control.SpecialAbility,
-            Control.SpecialAbilityPC,
-            Control.SpecialAbilitySecondary,
-            Control.VehicleSpecialAbilityFranklin,
-            // Driving
-            Control.VehicleExit,
-            Control.VehicleAccelerate,
-            Control.VehicleBrake,
-            Control.VehicleMoveLeftRight,
-            Control.VehicleHandbrake,
-            Control.VehicleHorn,
-            // Bikes
-            Control.VehiclePushbikePedal,
-            Control.VehiclePushbikeSprint,
-            Control.VehiclePushbikeFrontBrake,
-            Control.VehiclePushbikeRearBrake,
-            // Flying
-            Control.VehicleFlyThrottleUp,
-            Control.VehicleFlyThrottleDown,
-            Control.VehicleFlyYawLeft,
-            Control.VehicleFlyYawRight,
-            Control.VehicleFlyRollLeftRight,
-            Control.VehicleFlyRollLeftOnly,
-            Control.VehicleFlyRollRightOnly,
-            Control.VehicleFlyPitchUpDown,
-            Control.VehicleFlyPitchUpOnly,
-            Control.VehicleFlyPitchDownOnly,
-#if RPH
-            Control.ScriptedFlyUpDown,
-            Control.ScriptedFlyLeftRight,
-#else
-            Control.FlyUpDown,
-            Control.FlyLeftRight,
-#endif
-            // Rockstar Editor
-            Control.SaveReplayClip,
-            Control.ReplayStartStopRecording,
-            Control.ReplayStartStopRecordingSecondary,
-            Control.ReplayRecord,
-            Control.ReplaySave,
-        };
-        /// <summary>
         /// Controls required for the camera to work.
         /// </summary>
         internal static readonly List<Control> controlsCamera = new List<Control>
@@ -183,9 +115,9 @@ namespace LemonUI.Menus
         };
 
         /// <summary>
-        /// A list of GTA V Controls.
+        /// A list of GTA V Controls that are not required by the menu with both a gamepad and mouse + keyboard.
         /// </summary>
-        private static readonly Control[] controls = (Control[])Enum.GetValues(typeof(Control));
+        private static readonly Control[] controls;
         /// <summary>
         /// If the menu has just been opened and we should check the controls.
         /// </summary>
@@ -751,6 +683,79 @@ namespace LemonUI.Menus
 
         #region Constructors
 
+        static NativeMenu()
+        {
+            // The controls required by the menu with both a gamepad and mouse + keyboard
+            HashSet<Control> controlsRequired = new HashSet<Control>
+            {
+                // Menu Controls
+                Control.FrontendAccept,
+                Control.FrontendAxisX,
+                Control.FrontendAxisY,
+                Control.FrontendDown,
+                Control.FrontendUp,
+                Control.FrontendLeft,
+                Control.FrontendRight,
+                Control.FrontendCancel,
+                Control.FrontendSelect,
+                Control.CursorScrollDown,
+                Control.CursorScrollUp,
+                Control.CursorX,
+                Control.CursorY,
+                Control.MoveUpDown,
+                Control.MoveLeftRight,
+                // Camera
+                Control.LookBehind,
+                Control.VehicleLookBehind,
+                // Player
+                Control.Sprint,
+                Control.Jump,
+                Control.Enter,
+                Control.SpecialAbility,
+                Control.SpecialAbilityPC,
+                Control.SpecialAbilitySecondary,
+                Control.VehicleSpecialAbilityFranklin,
+                // Driving
+                Control.VehicleExit,
+                Control.VehicleAccelerate,
+                Control.VehicleBrake,
+                Control.VehicleMoveLeftRight,
+                Control.VehicleHandbrake,
+                Control.VehicleHorn,
+                // Bikes
+                Control.VehiclePushbikePedal,
+                Control.VehiclePushbikeSprint,
+                Control.VehiclePushbikeFrontBrake,
+                Control.VehiclePushbikeRearBrake,
+                // Flying
+                Control.VehicleFlyThrottleUp,
+                Control.VehicleFlyThrottleDown,
+                Control.VehicleFlyYawLeft,
+                Control.VehicleFlyYawRight,
+                Control.VehicleFlyRollLeftRight,
+                Control.VehicleFlyRollLeftOnly,
+                Control.VehicleFlyRollRightOnly,
+                Control.VehicleFlyPitchUpDown,
+                Control.VehicleFlyPitchUpOnly,
+                Control.VehicleFlyPitchDownOnly,
+#if RPH
+                Control.ScriptedFlyUpDown,
+                Control.ScriptedFlyLeftRight,
+#else
+                Control.FlyUpDown,
+                Control.FlyLeftRight,
+#endif
+                // Rockstar Editor
+                Control.SaveReplayClip,
+                Control.ReplayStartStopRecording,
+                Control.ReplayStartStopRecordingSecondary,
+                Control.ReplayRecord,
+                Control.ReplaySave,
+            };
+
+            controls = ((Control[])Enum.GetValues(typeof(Control))).Except(controlsRequired).ToArray();
+        }
+
         /// <summary>
         /// Creates a new menu with the specified title.
         /// </summary>
@@ -1012,20 +1017,17 @@ namespace LemonUI.Menus
             // If the user wants to disable the controls, do so but only the ones required
             if (DisableControls)
             {
+                bool isUsingController = Controls.IsUsingController;
+
                 foreach (Control control in controls)
                 {
-                    // If the control is required by the menu
-                    if (controlsRequired.Contains(control))
-                    {
-                        continue;
-                    }
                     // If the player is using a controller and is required on gamepads
-                    if (Controls.IsUsingController && controlsGamepad.Contains(control))
+                    if (isUsingController && controlsGamepad.Contains(control))
                     {
                         continue;
                     }
                     // If the player is usinng a controller or mouse usage is disabled and is a camera control
-                    if ((Controls.IsUsingController || !UseMouse) && controlsCamera.Contains(control))
+                    if ((isUsingController || !UseMouse) && controlsCamera.Contains(control))
                     {
                         continue;
                     }
