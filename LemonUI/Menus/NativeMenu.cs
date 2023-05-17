@@ -347,17 +347,27 @@ namespace LemonUI.Menus
                 }
             }
         }
+
+        /// <summary>
+        /// The text shown on top of the banner.
+        /// </summary>
+        public ScaledText BannerText { get; set; }
         /// <summary>
         /// The title of the menu.
         /// </summary>
-        public ScaledText Title { get; set; }
+        [Obsolete("Please use BannerText instead", true)]
+        public ScaledText Title
+        {
+            get => BannerText;
+            set => BannerText = value;
+        }
         /// <summary>
         /// The font of title menu text.
         /// </summary>
         public Font TitleFont
         {
-            get => Title.Font;
-            set => Title.Font = value;
+            get => BannerText.Font;
+            set => BannerText.Font = value;
         }
         /// <summary>
         /// The font of subtitle text.
@@ -780,7 +790,7 @@ namespace LemonUI.Menus
             this.subtitle = subtitle;
             Description = description;
             bannerImage = banner;
-            Title = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
+            BannerText = new ScaledText(PointF.Empty, title, 1.02f, Font.HouseScript)
             {
                 Alignment = Alignment.Center
             };
@@ -1303,7 +1313,7 @@ namespace LemonUI.Menus
             if (bannerImage != null)
             {
                 bannerImage.Draw();
-                Title?.Draw();
+                BannerText?.Draw();
             }
 
             if (ShouldDrawSubtitleBackground)
@@ -1617,9 +1627,9 @@ namespace LemonUI.Menus
                 bannerImageBase.literalSize = new SizeF(width, bannerImageBase.Size.Height);
                 bannerImageBase.Recalculate();
                 // If there is a text element, also set the position of it
-                if (Title != null)
+                if (BannerText != null)
                 {
-                    Title.Position = new PointF(pos.X + 209, pos.Y + 22);
+                    BannerText.Position = new PointF(pos.X + 209, pos.Y + 22);
                 }
                 // Finally, increase the current position of Y based on the banner height
                 pos.Y += bannerImageBase.Size.Height;
