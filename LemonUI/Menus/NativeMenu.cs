@@ -620,7 +620,16 @@ namespace LemonUI.Menus
         /// <summary>
         /// The behavior of the black bar showing the name.
         /// </summary>
+        [Obsolete("Please use NameBehavior instead.", true)]
         public SubtitleBehavior SubtitleBehavior
+        {
+            get => NameBehavior;
+            set => NameBehavior = value;
+        }
+        /// <summary>
+        /// The behavior of the black bar showing the name.
+        /// </summary>
+        public SubtitleBehavior NameBehavior
         {
             get => nameBehavior;
             set
