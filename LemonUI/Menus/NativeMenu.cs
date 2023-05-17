@@ -500,9 +500,12 @@ namespace LemonUI.Menus
             }
         }
         /// <summary>
-        /// The subtitle of the menu.
+        /// The name of this menu.
         /// </summary>
-        public string Subtitle
+        /// <remarks>
+        /// This is shown under the menu banner, and by the menu items when added as a submenu.
+        /// </remarks>
+        public string Name
         {
             get => subtitle;
             set
@@ -510,6 +513,15 @@ namespace LemonUI.Menus
                 subtitle = value;
                 subtitleText.Text = value.ToUpperInvariant();
             }
+        }
+        /// <summary>
+        /// The subtitle of the menu.
+        /// </summary>
+        [Obsolete("Please use Name instead.", true)]
+        public string Subtitle
+        {
+            get => Name;
+            set => Name = value;
         }
         /// <summary>
         /// The description used when this menu is used as a submenu.
