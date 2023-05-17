@@ -287,7 +287,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The title of the menu.
         /// </summary>
-        [Obsolete("Please use BannerText instead", true)]
+        [Obsolete("Please use BannerText instead.", true)]
         public ScaledText Title
         {
             get => BannerText;
