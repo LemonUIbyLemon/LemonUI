@@ -3,6 +3,9 @@ using CitizenFX.Core;
 using CitizenFX.Core.Native;
 #elif RAGEMP
 using RAGE.Game;
+#elif ALTV
+using AltV.Net.Client;
+using LemonUI.Elements;
 #elif RPH
 using Rage.Native;
 using Control = Rage.GameControl;
@@ -79,6 +82,8 @@ namespace LemonUI.Scaleform
             this.control = control;
 #if FIVEM
             raw = API.GetControlInstructionalButton(2, (int)control, 1);
+#elif ALTV
+            raw = Alt.Natives.GetControlInstructionalButtonsString(2, (int)control, true);
 #elif RAGEMP
             raw = Invoker.Invoke<string>(Natives.GetControlInstructionalButton, 2, (int)control, 1);
 #elif RPH

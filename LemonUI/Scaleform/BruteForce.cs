@@ -7,6 +7,9 @@ using RAGE.Game;
 using Rage;
 using Rage.Native;
 using Control = Rage.GameControl;
+#elif ALTV
+using AltV.Net.Client;
+using LemonUI.Elements;
 #elif SHVDN3
 using GTA;
 using GTA.Native;
@@ -195,6 +198,8 @@ namespace LemonUI.Scaleform
 
 #if RAGEMP
             int time = Misc.GetGameTimer();
+#elif ALTV
+            int time = Alt.Natives.GetGameTimer();
 #elif RPH
             uint time = Game.GameTime;
 #else
@@ -231,6 +236,8 @@ namespace LemonUI.Scaleform
         {
 #if RAGEMP
             int time = Misc.GetGameTimer();
+#elif ALTV
+            int time = Alt.Natives.GetGameTimer();
 #elif RPH
             uint time = Game.GameTime;
 #else

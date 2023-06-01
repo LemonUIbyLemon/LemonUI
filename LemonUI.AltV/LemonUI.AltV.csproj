@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <ForFramework>AltV</ForFramework>
+        <TargetFramework>net6.0</TargetFramework>
+        <DefineConstants>ALTV</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <Import Project="../root.props" />
+
+    <PropertyGroup>
+        <Description>UI system for Grand Theft Auto V. This package is for AltV Client.</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AltV.Net.Client.Async" Version="14.0.2">
+            <IncludeAssets>compile</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+</Project>
