@@ -40,12 +40,12 @@ namespace LemonUI
                 return API.GetAspectRatio(false);
 #elif RAGEMP
                 return Invoker.Invoke<float>(Natives.GetAspectRatio);
-#elif ALTV
-                return Alt.Natives.GetAspectRatio(false);
 #elif RPH
                 return NativeFunction.CallByHash<float>(0xF1307EF624A80D87, false);
 #elif SHVDN3
                 return Function.Call<float>(Hash._GET_ASPECT_RATIO, false);
+#elif ALTV
+                return Alt.Natives.GetAspectRatio(false);
 #endif
             }
         }

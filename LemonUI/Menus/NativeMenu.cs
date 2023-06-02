@@ -988,6 +988,8 @@ namespace LemonUI.Menus
             Invoker.Invoke(Natives.SetCursorLocation, pos.X, pos.Y);
 #elif RPH
             NativeFunction.CallByHash<int>(0xFC695459D4D0E219, pos.X, pos.Y);
+#elif ALTV
+            Alt.Natives.SetCursorPosition(pos.X, pos.Y);
 #elif SHVDN3
             Function.Call(Hash._SET_CURSOR_LOCATION, pos.X, pos.Y);
 #endif
