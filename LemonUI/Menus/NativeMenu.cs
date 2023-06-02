@@ -4,9 +4,10 @@ using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
 #elif ALTV
-using System.ComponentModel;
 using AltV.Net.Client;
 using Font = LemonUI.Elements.Font;
+using CancelEventArgs = System.ComponentModel.CancelEventArgs;
+using CancelEventHandler = System.ComponentModel.CancelEventHandler;
 #elif RAGEMP
 using RAGE.Game;
 using InstructionalButton = LemonUI.Scaleform.InstructionalButton;
