@@ -1167,7 +1167,7 @@ namespace LemonUI.Menus
 #if RAGEMP
             int time = Misc.GetGameTimer();
 #elif ALTV
-            int time = Alt.Natives.GetGameTimer();
+            int time = Alt.MsPerGameMinute;
 #elif RPH
             uint time = Game.GameTime;
 #else

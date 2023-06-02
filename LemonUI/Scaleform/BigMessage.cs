@@ -281,7 +281,7 @@ namespace LemonUI.Scaleform
 #if RAGEMP
             uint currentTime = (uint)Misc.GetGameTimer();
 #elif ALTV
-            uint currentTime = (uint)Alt.Natives.GetGameTimer();
+            uint currentTime = (uint)Alt.MsPerGameMinute;
 #elif RPH
             uint currentTime = Game.GameTime;
 #else
@@ -295,7 +295,7 @@ namespace LemonUI.Scaleform
 #if RAGEMP
             uint time = (uint)Misc.GetGameTimer();
 #elif ALTV
-            uint time = (uint)Alt.Natives.GetGameTimer();
+            uint time = (uint)Alt.MsPerGameMinute;
 #elif RPH
             uint time = Game.GameTime;
 #else
