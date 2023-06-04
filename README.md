@@ -31,7 +31,7 @@ You don't need to install any files when using FiveM. When you connect to a serv
 
 You don't need to install any files when using RageMP. When you connect to a server, the resources that need it will automatically provide a copy of LemonUI when compiling the code.
 
-### RPH
+### RagePluginHook
 
 Copy all of the files from the **RPH** folder inside of the compressed file to the root of your GTA V installation directory.
 
