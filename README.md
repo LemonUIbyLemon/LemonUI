@@ -41,6 +41,14 @@ Copy all of the files from the **RPH** folder inside of the compressed file to t
 
 Copy all of the files from the **SHVDN2** and/or **SHVDN2** folder(s) inside of the compressed file to your **scripts** directory.
 
+### Developers
+
+Add any of the NuGet packages linked above and start working in your IDE.
+
+If you are using RagePluginHook or ScriptHookVDotNet, you can disable the copy of the dll in your IDE so your users always have to use the latest version available.
+
+If you are using RageMP, you will need to download the latest release and copy **LemonUI.RageMP.cs** to you client solution.
+
 ## Usage
 
 Once installed, the mods that require LemonUI will start working.
