@@ -31,15 +31,11 @@ You don't need to install any files when using FiveM. When you connect to a serv
 
 Copy all of the files from the **RPH** folder inside of the compressed file to the root of your GTA V installation directory.
 
-### ScriptHookVDotNet 2
+### ScriptHookVDotNet 2 and ScriptHookVDotNet 3
 
 **PLEASE NOTE THAT THE LAST VERSION THAT SUPPORTED SHVDN2 WAS 1.5.2. [You can download it here]().**
 
-Copy all of the files from the **SHVDN2** folder inside of the compressed file to your **scripts** directory.
-
-### ScriptHookVDotNet 3
-
-Copy all of the files from the **SHVDN3** folder inside of the compressed file to your **scripts** directory.
+Copy all of the files from the **SHVDN2** and/or **SHVDN2** folder(s) inside of the compressed file to your **scripts** directory.
 
 ## Usage
 
