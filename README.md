@@ -21,6 +21,8 @@ Special thanks to:
 
 ## Installation
 
+> Warning: You don't need to install all of the files. You only need to install the ones for the framework you plan to use. For example, if you want to install SHVDN mods, you don't need to install the RPH version.
+
 ### FiveM
 
 You don't need to install any files when using FiveM. When you connect to a server, the resources that need it will automatically provide a copy of LemonUI.
