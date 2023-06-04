@@ -15,9 +15,9 @@ Special thanks to:
 
 ## Download
 
-* [GitHub](https://github.com/justalemon/LemonUI/releases)
 * [5mods](https://www.gta5-mods.com/scripts/lemonui)
-* [AppVeyor](https://ci.appveyor.com/project/justalemon/lemonui) (experimental)
+* [GitHub Releases](https://github.com/LemonUIbyLemon/LemonUI/releases)
+* [GitHub Actions](https://github.com/LemonUIbyLemon/LemonUI/actions) (experimental versions)
 
 ## Installation
 
