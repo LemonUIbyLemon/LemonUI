@@ -7,11 +7,12 @@ using Rage;
 using Rage.Native;
 #elif SHVDN3
 using GTA.UI;
+#elif ALTV
+using AltV.Net.Client;
 #endif
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using AltV.Net.Client;
 using LemonUI.Elements;
 
 namespace LemonUI.TimerBars
