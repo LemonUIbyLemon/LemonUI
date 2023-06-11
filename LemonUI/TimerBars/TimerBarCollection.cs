@@ -11,6 +11,8 @@ using GTA.UI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using AltV.Net.Client;
+using LemonUI.Elements;
 
 namespace LemonUI.TimerBars
 {
@@ -175,6 +177,10 @@ namespace LemonUI.TimerBars
             NativeFunction.CallByHash<int>(0x6806C51AD12B83B8, 7);
             NativeFunction.CallByHash<int>(0x6806C51AD12B83B8, 9);
             NativeFunction.CallByHash<int>(0x6806C51AD12B83B8, 6);
+#elif ALTV
+            Alt.Natives.HideHudComponentThisFrame(7);
+            Alt.Natives.HideHudComponentThisFrame(9);
+            Alt.Natives.HideHudComponentThisFrame(6);
 #elif SHVDN3
             Hud.HideComponentThisFrame(HudComponent.AreaName);
             Hud.HideComponentThisFrame(HudComponent.StreetName);

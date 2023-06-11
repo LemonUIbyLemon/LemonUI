@@ -9,6 +9,9 @@ using Rage.Native;
 #elif SHVDN3
 using GTA;
 using GTA.Native;
+#elif ALTV
+using AltV.Net.Client;
+using AltV.Net.Client.Elements.Entities;
 #endif
 
 namespace LemonUI
@@ -68,6 +71,9 @@ namespace LemonUI
 #elif RAGEMP
             Id = Invoker.Invoke<int>(Natives.GetSoundId);
             Invoker.Invoke(Natives.PlaySoundFrontend, Id, File, Set, true);
+#elif ALTV
+            Id = Alt.Natives.GetSoundId();
+            Alt.Natives.PlaySoundFrontend(Id, File, Set, true);
 #elif RPH
             Id = NativeFunction.CallByHash<int>(0x430386FE9BF80B45);
             NativeFunction.CallByHash<int>(0x67C540AA08E4A6F5, Id, File, Set, true);
@@ -97,6 +103,8 @@ namespace LemonUI
             Invoker.Invoke(Natives.StopSound, Id);
 #elif RPH
             NativeFunction.CallByHash<int>(0xA3B0C41BA5CC0BB5, Id);
+#elif ALTV
+            Alt.Natives.StopSound(Id);
 #elif SHVDN3
             Function.Call(Hash.STOP_SOUND, Id);
 #endif
@@ -118,6 +126,8 @@ namespace LemonUI
             Invoker.Invoke(Natives.ReleaseSoundId, Id);
 #elif RPH
             NativeFunction.CallByHash<int>(0x353FC880830B88FA, Id);
+#elif ALTV
+            Alt.Natives.ReleaseSoundId(Id);
 #elif SHVDN3
             Function.Call(Hash.RELEASE_SOUND_ID, Id);
 #endif
