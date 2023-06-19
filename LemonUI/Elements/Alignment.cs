@@ -1,4 +1,4 @@
-#if RPH
+#if RPH || ALTV
 namespace LemonUI
 {
     /// <summary>

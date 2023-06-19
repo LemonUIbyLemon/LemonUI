@@ -6,6 +6,8 @@ using RAGE.Game;
 using Rage.Native;
 #elif SHVDN3
 using GTA.Native;
+#elif ALTV
+using AltV.Net.Client;
 #endif
 using System.Drawing;
 
@@ -72,6 +74,11 @@ namespace LemonUI.Elements
             {
                 Invoker.Invoke(Natives.RequestStreamedTextureDict, Dictionary, true);
             }
+#elif ALTV
+            if (!Alt.Natives.HasStreamedTextureDictLoaded(Dictionary))
+            {
+                Alt.Natives.RequestStreamedTextureDict(Dictionary, true);
+            }
 #elif RPH
             if (!NativeFunction.CallByHash<bool>(0x0145F696AAAAD2E4, Dictionary))
             {
@@ -105,6 +112,8 @@ namespace LemonUI.Elements
             Invoker.Invoke(Natives.DrawSprite, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
 #elif RPH
             NativeFunction.CallByHash<int>(0xE7FFAE5EBF23D890, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
+#elif ALTV
+            Alt.Natives.DrawSprite(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A, false, 0);
 #elif SHVDN3
             Function.Call(Hash.DRAW_SPRITE, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
 #endif
@@ -125,6 +134,8 @@ namespace LemonUI.Elements
             Invoker.Invoke(0x95812F9B26074726, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A);
 #elif RPH
             NativeFunction.CallByHash<int>(0x95812F9B26074726, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A);
+#elif ALTV
+            Alt.Natives.DrawSpriteArxWithUv(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A, 0);
 #elif SHVDN3
             Function.Call((Hash)0x95812F9B26074726, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A);
 #endif

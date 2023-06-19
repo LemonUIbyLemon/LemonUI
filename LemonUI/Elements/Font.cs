@@ -1,6 +1,6 @@
 // NO MERGE
 
-#if RPH
+#if RPH || ALTV
 namespace LemonUI.Elements
 {
     /// <summary>

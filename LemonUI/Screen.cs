@@ -12,6 +12,9 @@ using Control = Rage.GameControl;
 using GTA;
 using GTA.Native;
 using GTA.UI;
+#elif ALTV
+using AltV.Net.Client;
+using LemonUI.Elements;
 #endif
 using LemonUI.Extensions;
 using System;
@@ -41,9 +44,27 @@ namespace LemonUI
                 return NativeFunction.CallByHash<float>(0xF1307EF624A80D87, false);
 #elif SHVDN3
                 return Function.Call<float>(Hash._GET_ASPECT_RATIO, false);
+#elif ALTV
+                return Alt.Natives.GetAspectRatio(false);
 #endif
             }
         }
+        
+#if ALTV
+        /// <summary>
+        /// Gets the actual Screen resolution the game is being rendered at
+        /// </summary>
+        public static Size Resolution
+        {
+            get
+            {
+                int height = 0, width = 0;
+                Alt.Natives.GetActualScreenResolution(ref width, ref height);
+                return new Size(width, height);
+            }
+        }
+#endif
+        
         /// <summary>
         /// The location of the cursor on screen between 0 and 1.
         /// </summary>
@@ -54,6 +75,9 @@ namespace LemonUI
 #if FIVEM
                 float cursorX = API.GetControlNormal(0, (int)Control.CursorX);
                 float cursorY = API.GetControlNormal(0, (int)Control.CursorY);
+#elif ALTV
+                float cursorX = Alt.Natives.GetControlNormal(0, (int)Control.CursorX);
+                float cursorY = Alt.Natives.GetControlNormal(0, (int)Control.CursorY);
 #elif RAGEMP
                 float cursorX = Invoker.Invoke<float>(Natives.GetControlNormal, 0, (int)Control.CursorX);
                 float cursorY = Invoker.Invoke<float>(Natives.GetControlNormal, 0, (int)Control.CursorY);
@@ -156,6 +180,8 @@ namespace LemonUI
             float realX = 0, realY = 0;
 #if FIVEM
             API.GetScriptGfxPosition(relativeX, relativeY, ref realX, ref realY);
+#elif ALTV
+            Alt.Natives.GetScriptGfxAlignPosition(relativeX, relativeY, ref realX, ref realY);
 #elif RAGEMP
             FloatReference argX = new FloatReference();
             FloatReference argY = new FloatReference();
@@ -190,6 +216,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.SetMouseCursorActiveThisFrame();
+#elif ALTV
+            Alt.Natives.SetMouseCursorThisFrame();
 #elif RAGEMP
             Invoker.Invoke(0xAAE7CE1D63167423);
 #elif RPH
@@ -235,6 +263,9 @@ namespace LemonUI
 #if FIVEM
             API.SetScriptGfxAlign((int)horizontal, (int)vertical);
             API.SetScriptGfxAlignParams(0, 0, 0, 0);
+#elif ALTV
+            Alt.Natives.SetScriptGfxAlign((int)horizontal, (int)vertical);
+            Alt.Natives.SetScriptGfxAlignParams(0, 0, 0, 0);
 #elif RAGEMP
             Invoker.Invoke(0xB8A850F20A067EB6, (int)horizontal, (int)vertical);
             Invoker.Invoke(0xF5A2C681787E579D, 0, 0, 0, 0);
@@ -253,6 +284,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.ResetScriptGfxAlign();
+#elif ALTV
+            Alt.Natives.ResetScriptGfxAlign();
 #elif RAGEMP
             Invoker.Invoke(0xE3A3DB414A373DAB);
 #elif RPH

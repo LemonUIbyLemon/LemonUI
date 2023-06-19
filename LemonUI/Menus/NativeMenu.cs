@@ -3,6 +3,11 @@ using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
+#elif ALTV
+using AltV.Net.Client;
+using Font = LemonUI.Elements.Font;
+using CancelEventArgs = System.ComponentModel.CancelEventArgs;
+using CancelEventHandler = System.ComponentModel.CancelEventHandler;
 #elif RAGEMP
 using RAGE.Game;
 using InstructionalButton = LemonUI.Scaleform.InstructionalButton;
@@ -102,8 +107,13 @@ namespace LemonUI.Menus
         /// </summary>
         internal static readonly List<Control> controlsCamera = new List<Control>
         {
+#if ALTV
+            Control.LookUd,
+            Control.LookLr,
+#else
             Control.LookUpDown,
             Control.LookLeftRight,
+#endif
         };
         /// <summary>
         /// The controls required in a gamepad.
@@ -724,11 +734,20 @@ namespace LemonUI.Menus
                 Control.CursorScrollUp,
                 Control.CursorX,
                 Control.CursorY,
+#if ALTV
+                Control.MoveUd,
+                Control.MoveLr,
+#else
                 Control.MoveUpDown,
                 Control.MoveLeftRight,
+#endif
                 // Camera
                 Control.LookBehind,
+#if ALTV
+                Control.VehLookBehind,
+#else
                 Control.VehicleLookBehind,
+#endif
                 // Player
                 Control.Sprint,
                 Control.Jump,
@@ -736,6 +755,32 @@ namespace LemonUI.Menus
                 Control.SpecialAbility,
                 Control.SpecialAbilityPC,
                 Control.SpecialAbilitySecondary,
+#if ALTV
+                Control.VehSpecialAbilityFranklin,
+                // Driving
+                Control.VehExit,
+                Control.VehAccelerate,
+                Control.VehBrake,
+                Control.VehMoveLr,
+                Control.VehHandbrake,
+                Control.VehHorn,
+                // Bikes
+                Control.VehPushbikePedal,
+                Control.VehPushbikeSprint,
+                Control.VehPushbikeFrontBrake,
+                Control.VehPushbikeRearBrake,
+                // Flying
+                Control.VehFlyThrottleUp,
+                Control.VehFlyThrottleDown,
+                Control.VehFlyYawLeft,
+                Control.VehFlyYawRight,
+                Control.VehFlyRollLR,
+                Control.VehFlyRollLeftOnly,
+                Control.VehFlyRollRightOnly,
+                Control.VehFlyPitchUD,
+                Control.VehFlyPitchUpOnly,
+                Control.VehFlyPitchDownOnly,
+#else
                 Control.VehicleSpecialAbilityFranklin,
                 // Driving
                 Control.VehicleExit,
@@ -760,9 +805,13 @@ namespace LemonUI.Menus
                 Control.VehicleFlyPitchUpDown,
                 Control.VehicleFlyPitchUpOnly,
                 Control.VehicleFlyPitchDownOnly,
+#endif
 #if RPH
                 Control.ScriptedFlyUpDown,
                 Control.ScriptedFlyLeftRight,
+#elif ALTV
+                Control.ScriptedFlyUd,
+                Control.ScriptedFlyLr,
 #else
                 Control.FlyUpDown,
                 Control.FlyLeftRight,
@@ -940,6 +989,8 @@ namespace LemonUI.Menus
             Invoker.Invoke(Natives.SetCursorLocation, pos.X, pos.Y);
 #elif RPH
             NativeFunction.CallByHash<int>(0xFC695459D4D0E219, pos.X, pos.Y);
+#elif ALTV
+            Alt.Natives.SetCursorPosition(pos.X, pos.Y);
 #elif SHVDN3
             Function.Call(Hash._SET_CURSOR_LOCATION, pos.X, pos.Y);
 #endif
@@ -1078,6 +1129,8 @@ namespace LemonUI.Menus
             // If the controls are disabled, the menu has just been opened or the text input field is active, return
 #if FIVEM
             bool isKeyboardActive = API.UpdateOnscreenKeyboard() == 0;
+#elif ALTV
+            bool isKeyboardActive = Alt.Natives.UpdateOnscreenKeyboard() == 0;
 #elif RAGEMP
             bool isKeyboardActive = Invoker.Invoke<int>(Natives.UpdateOnscreenKeyboard) == 0;
 #elif RPH
@@ -1113,6 +1166,8 @@ namespace LemonUI.Menus
 
 #if RAGEMP
             int time = Misc.GetGameTimer();
+#elif ALTV
+            int time = Alt.MsPerGameMinute;
 #elif RPH
             uint time = Game.GameTime;
 #else
@@ -1153,7 +1208,7 @@ namespace LemonUI.Menus
             if (UseMouse && !Controls.IsUsingController)
             {
                 // Enable the mouse cursor
-#if FIVEM || SHVDN3
+#if FIVEM || SHVDN3 || ALTV
                 Screen.ShowCursorThisFrame();
 #elif RAGEMP
                 Invoker.Invoke(Natives.ShowCursorThisFrame);
@@ -1168,6 +1223,9 @@ namespace LemonUI.Menus
                     {
 #if FIVEM || SHVDN3
                         GameplayCamera.RelativeHeading += 5;
+#elif ALTV
+                        float current = Alt.Natives.GetGameplayCamRelativeHeading();
+                        Alt.Natives.SetGameplayCamRelativeHeading(current + 5);
 #elif RAGEMP
                         float current = Invoker.Invoke<float>(0x743607648ADD4587);
                         Invoker.Invoke(0xB4EC2312F4E5B1F1, current + 5);
@@ -1179,6 +1237,9 @@ namespace LemonUI.Menus
                     {
 #if FIVEM || SHVDN3
                         GameplayCamera.RelativeHeading -= 5;
+#elif ALTV
+                        float current = Alt.Natives.GetGameplayCamRelativeHeading();
+                        Alt.Natives.SetGameplayCamRelativeHeading(current - 5);
 #elif RAGEMP
                         float current = Invoker.Invoke<float>(0x743607648ADD4587);
                         Invoker.Invoke(0xB4EC2312F4E5B1F1, current - 5);
@@ -1576,6 +1637,9 @@ namespace LemonUI.Menus
 #if FIVEM
                 API.SetInputExclusive(0, (int)Control.PhoneCancel);
                 API.SetInputExclusive(0, (int)Control.FrontendPause);
+#elif ALTV
+                Alt.Natives.SetInputExclusive(0, (int)Control.CellPhoneCancel);
+                Alt.Natives.SetInputExclusive(0, (int)Control.FrontendPause);
 #elif RAGEMP
                 Invoker.Invoke(Natives.SetInputExclusive, 0, (int)Control.PhoneCancel);
                 Invoker.Invoke(Natives.SetInputExclusive, 0, (int)Control.FrontendPause);

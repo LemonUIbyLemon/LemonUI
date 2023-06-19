@@ -6,6 +6,8 @@ using RAGE.Game;
 using Rage;
 #elif SHVDN3
 using GTA;
+#elif ALTV
+using AltV.Net.Client;
 #endif
 using System;
 
@@ -53,7 +55,7 @@ namespace LemonUI.Scaleform
         /// The Rank when the mode is set to Cops and Crooks.
         /// </summary>
         public string Rank { get; set; }
-#if !RAGEMP
+#if !RAGEMP && !ALTV
         /// <summary>
         /// The hash of the Weapon as an enum.
         /// </summary>
@@ -149,7 +151,7 @@ namespace LemonUI.Scaleform
         public BigMessage(string title, int colorText, int colorBackground) : this(title, string.Empty, string.Empty, unarmed, colorText, colorBackground, MessageType.Customizable)
         {
         }
-#if !RAGEMP
+#if !RAGEMP && !ALTV
         /// <summary>
         /// Creates a Weapon Purchase message with a custom text and weapons.
         /// </summary>
@@ -278,6 +280,8 @@ namespace LemonUI.Scaleform
 
 #if RAGEMP
             uint currentTime = (uint)Misc.GetGameTimer();
+#elif ALTV
+            uint currentTime = (uint)Alt.MsPerGameMinute;
 #elif RPH
             uint currentTime = Game.GameTime;
 #else
@@ -290,6 +294,8 @@ namespace LemonUI.Scaleform
         {
 #if RAGEMP
             uint time = (uint)Misc.GetGameTimer();
+#elif ALTV
+            uint time = (uint)Alt.MsPerGameMinute;
 #elif RPH
             uint time = Game.GameTime;
 #else

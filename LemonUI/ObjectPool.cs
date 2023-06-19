@@ -8,6 +8,8 @@ using Rage;
 using Rage.Native;
 #elif SHVDN3
 using GTA.Native;
+#elif ALTV
+using AltV.Net.Client;
 #endif
 using System;
 using System.Collections;
@@ -28,6 +30,8 @@ namespace LemonUI
         /// </summary>
 #if FIVEM
         private SizeF lastKnownResolution = CitizenFX.Core.UI.Screen.Resolution;
+#elif ALTV
+        private SizeF lastKnownResolution = Screen.Resolution;
 #elif RAGEMP
         private SizeF lastKnownResolution = new SizeF(Game.ScreenResolution.Width, Game.ScreenResolution.Height);
 #elif RPH
@@ -40,6 +44,8 @@ namespace LemonUI
         /// </summary>
 #if FIVEM
         private float lastKnownSafezone = API.GetSafeZoneSize();
+#elif ALTV
+        private float lastKnownSafezone = Alt.Natives.GetSafeZoneSize();
 #elif RAGEMP
         private float lastKnownSafezone = Invoker.Invoke<float>(Natives.GetSafeZoneSize);
 #elif RPH
@@ -47,6 +53,7 @@ namespace LemonUI
 #elif SHVDN3
         private float lastKnownSafezone = Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
 #endif
+        
         /// <summary>
         /// The list of processable objects.
         /// </summary>
@@ -99,6 +106,8 @@ namespace LemonUI
             // Get the current resolution
 #if FIVEM
             SizeF resolution = CitizenFX.Core.UI.Screen.Resolution;
+#elif ALTV
+            SizeF resolution = Screen.Resolution;
 #elif RAGEMP
             ScreenResolutionType raw = Game.ScreenResolution;
             SizeF resolution = new SizeF(raw.Width, raw.Height);
@@ -126,6 +135,8 @@ namespace LemonUI
             // Get the current Safezone size
 #if FIVEM
             float safezone = API.GetSafeZoneSize();
+#elif ALTV
+            float safezone = Alt.Natives.GetSafeZoneSize();
 #elif RAGEMP
             float safezone = Invoker.Invoke<float>(Natives.GetSafeZoneSize);
 #elif RPH
