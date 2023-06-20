@@ -945,7 +945,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// Resets the current position of the cursor.
         /// </summary>
-        private void ResetCursor()
+        public void ResetCursor()
         {
             const float extraX = 35;
             const float extraY = 325;
