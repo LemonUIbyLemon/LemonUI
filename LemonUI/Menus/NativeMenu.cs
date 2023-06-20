@@ -295,7 +295,7 @@ namespace LemonUI.Menus
         /// </summary>
         public ScaledText BannerText { get; set; }
         /// <summary>
-        /// The title of the menu.
+        /// The text shown on top of the banner.
         /// </summary>
         [Obsolete("Please use BannerText instead.", true)]
         public ScaledText Title
@@ -304,7 +304,7 @@ namespace LemonUI.Menus
             set => BannerText = value;
         }
         /// <summary>
-        /// The font of title menu text.
+        /// The font of the text shown on top of the banner.
         /// </summary>
         [Obsolete("Please use BannerText.Font instead.", true)]
         public Font TitleFont
