@@ -229,13 +229,13 @@ namespace LemonUI.Menus
         /// The time since the player has been pressing the Up button.
         /// </summary>
         private long heldSince = -1;
-        private SubtitleBehavior nameBehavior = SubtitleBehavior.AlwaysShow;
+        private HeaderBehavior nameBehavior = HeaderBehavior.AlwaysShow;
 
         #endregion
 
         #region Properties
 
-        private bool ShouldDrawNameBackground => nameBehavior == SubtitleBehavior.AlwaysShow || (nameBehavior == SubtitleBehavior.ShowIfRequired && (ShouldDrawCount || !string.IsNullOrWhiteSpace(name)));
+        private bool ShouldDrawNameBackground => nameBehavior == HeaderBehavior.AlwaysShow || (nameBehavior == HeaderBehavior.ShowIfRequired && (ShouldDrawCount || !string.IsNullOrWhiteSpace(name)));
         private bool ShouldDrawCount => ItemCount == CountVisibility.Always || (ItemCount == CountVisibility.Auto && Items.Count > MaxItems);
 
         /// <summary>
@@ -633,13 +633,13 @@ namespace LemonUI.Menus
         [Obsolete("Please use NameBehavior instead.", true)]
         public SubtitleBehavior SubtitleBehavior
         {
-            get => NameBehavior;
-            set => NameBehavior = value;
+            get => (SubtitleBehavior)HeaderBehavior;
+            set => HeaderBehavior = (HeaderBehavior)value;
         }
         /// <summary>
         /// The behavior of the black bar showing the name.
         /// </summary>
-        public SubtitleBehavior NameBehavior
+        public HeaderBehavior HeaderBehavior
         {
             get => nameBehavior;
             set
