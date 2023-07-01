@@ -275,7 +275,7 @@ namespace LemonUI.Scaleform
 #elif RPH
                 return (T)(object)NativeFunction.CallByHash<bool>(0xD80A80346A45D761, id);
 #elif SHVDN3
-                return (T)(object)Function.Call<bool>(Hash._GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_BOOL, id);
+                return (T)(object)Function.Call<bool>(Hash.GET_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_BOOL, id);
 #endif
             }
             else
