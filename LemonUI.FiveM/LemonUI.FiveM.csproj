@@ -1,24 +1,45 @@
 <Project Sdk="Microsoft.NET.Sdk">
+    
     <PropertyGroup>
-        <ForFramework>FiveM</ForFramework>
         <TargetFramework>net452</TargetFramework>
-        <DefineConstants>FIVEM</DefineConstants>
-    </PropertyGroup>
-
-    <PropertyGroup>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <AssemblyName>$(AssemblyName)</AssemblyName>
+        <DefineConstants>FIVEM,CLIENT</DefineConstants>
+        <Version>1.10.0</Version>
+        <OutputPath>$(SolutionDir)bin\$(Configuration)\FiveM\</OutputPath>
+        <PlatformTarget>AnyCPU</PlatformTarget>
         <DebugType>embedded</DebugType>
         <DebugSymbols>true</DebugSymbols>
-    </PropertyGroup>
+        <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+        <CheckEolTargetFramework>false</CheckEolTargetFramework>
 
-    <Import Project="../root.props" />
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
 
-    <PropertyGroup>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageIcon>logo.png</PackageIcon>
+        <PackageId>$(ProjectName)</PackageId>
+        <Authors>Hannele "Lemon" Ruiz</Authors>
+        <Company>Hannele "Lemon" Ruiz</Company>
+        <Product>LemonUI</Product>
         <Description>UI system for Grand Theft Auto V. This package is for FiveM Client.</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/justalemon/LemonUI</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/justalemon/LemonUI.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <PackageOutputPath>$(SolutionDir)bin\$(Configuration)\FOR DEVELOPERS</PackageOutputPath>
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="$(ProjectDir)../LemonUI/**/*.cs"/>
+        <None Include="$(ProjectDir)../README.md" Pack="true" Visible="false" PackagePath=""/>
+        <None Include="$(ProjectDir)../logo.png" Pack="true" Visible="false" PackagePath=""/>
         <PackageReference Include="CitizenFX.Core.Client" Version="1.0.6008">
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>
+    
 </Project>
