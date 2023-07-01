@@ -28,5 +28,19 @@ namespace LemonUI.Scaleform
         }
 
         #endregion
+
+        #region Functions
+
+        /// <summary>
+        /// Draws the celebration scaleform.
+        /// </summary>
+        public override void DrawFullScreen()
+        {
+            Background.DrawFullScreen();
+            Foreground.DrawFullScreen();
+            base.DrawFullScreen();
+        }
+
+        #endregion
     }
 }
