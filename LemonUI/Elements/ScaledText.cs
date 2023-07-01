@@ -164,9 +164,9 @@ namespace LemonUI.Elements
                 Add();
                 return NativeFunction.CallByHash<float>(0x85F061DA64ED2F67, true) * 1f.ToXAbsolute();
 #elif SHVDN3
-                Function.Call(Hash._BEGIN_TEXT_COMMAND_GET_WIDTH, "CELL_EMAIL_BCON");
+                Function.Call(Hash.BEGIN_TEXT_COMMAND_GET_SCREEN_WIDTH_OF_DISPLAY_TEXT, "CELL_EMAIL_BCON");
                 Add();
-                return Function.Call<float>(Hash._END_TEXT_COMMAND_GET_WIDTH, true) * 1f.ToXAbsolute();
+                return Function.Call<float>(Hash.END_TEXT_COMMAND_GET_SCREEN_WIDTH_OF_DISPLAY_TEXT, true) * 1f.ToXAbsolute();
 #endif
             }
         }
@@ -186,7 +186,7 @@ namespace LemonUI.Elements
 #elif RPH
                 NativeFunction.CallByHash<int>(0x521FB041D93DD0E4, "CELL_EMAIL_BCON");
 #elif SHVDN3
-                Function.Call(Hash._BEGIN_TEXT_COMMAND_LINE_COUNT, "CELL_EMAIL_BCON");
+                Function.Call(Hash.BEGIN_TEXT_COMMAND_GET_NUMBER_OF_LINES_FOR_STRING, "CELL_EMAIL_BCON");
 #endif
                 Add();
 #if FIVEM
@@ -198,7 +198,7 @@ namespace LemonUI.Elements
 #elif RPH
                 return NativeFunction.CallByHash<int>(0x9040DFB09BE75706, relativePosition.X, relativePosition.Y);
 #elif SHVDN3
-                return Function.Call<int>(Hash._END_TEXT_COMMAND_LINE_COUNT, relativePosition.X, relativePosition.Y);
+                return Function.Call<int>(Hash.END_TEXT_COMMAND_GET_NUMBER_OF_LINES_FOR_STRING, relativePosition.X, relativePosition.Y);
 #endif
             }
         }

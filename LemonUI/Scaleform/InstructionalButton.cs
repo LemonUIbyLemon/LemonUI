@@ -50,7 +50,7 @@ namespace LemonUI.Scaleform
 #elif RPH
                 raw = (string)NativeFunction.CallByHash(0x0499D7B09FC9B407, typeof(string), 2, (int)control, 1);
 #elif SHVDN3
-                raw = Function.Call<string>(Hash.GET_CONTROL_INSTRUCTIONAL_BUTTON, 2, (int)value, 1);
+                raw = Function.Call<string>(Hash.GET_CONTROL_INSTRUCTIONAL_BUTTONS_STRING, 2, (int)value, 1);
 #elif ALTV
                 raw = Alt.Natives.GetControlInstructionalButtonsString(2, (int)value, true);
 #endif
@@ -91,7 +91,7 @@ namespace LemonUI.Scaleform
 #elif RPH
             raw = (string)NativeFunction.CallByHash(0x0499D7B09FC9B407, typeof(string), 2, (int)control, 1);
 #elif SHVDN3
-            raw = Function.Call<string>(Hash.GET_CONTROL_INSTRUCTIONAL_BUTTON, 2, (int)control, 1);
+            raw = Function.Call<string>(Hash.GET_CONTROL_INSTRUCTIONAL_BUTTONS_STRING, 2, (int)control, 1);
 #endif
         }
 

@@ -992,7 +992,7 @@ namespace LemonUI.Menus
 #elif ALTV
             Alt.Natives.SetCursorPosition(pos.X, pos.Y);
 #elif SHVDN3
-            Function.Call(Hash._SET_CURSOR_LOCATION, pos.X, pos.Y);
+            Function.Call(Hash.SET_CURSOR_POSITION, pos.X, pos.Y);
 #endif
         }
         /// <summary>

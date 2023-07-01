@@ -43,7 +43,7 @@ namespace LemonUI
 #elif RPH
                 return NativeFunction.CallByHash<float>(0xF1307EF624A80D87, false);
 #elif SHVDN3
-                return Function.Call<float>(Hash._GET_ASPECT_RATIO, false);
+                return Function.Call<float>(Hash.GET_ASPECT_RATIO, false);
 #elif ALTV
                 return Alt.Natives.GetAspectRatio(false);
 #endif
@@ -223,7 +223,7 @@ namespace LemonUI
 #elif RPH
             NativeFunction.CallByHash<int>(0xAAE7CE1D63167423);
 #elif SHVDN3
-            Function.Call(Hash._SET_MOUSE_CURSOR_ACTIVE_THIS_FRAME);
+            Function.Call(Hash.SET_MOUSE_CURSOR_THIS_FRAME);
 #endif
         }
         /// <summary>
