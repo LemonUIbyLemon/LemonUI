@@ -23,7 +23,7 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// Initializes a new Celebration scaleform.
         /// </summary>
-        public Celebration() : base("MP_CELEBRATION_FG")
+        public Celebration() : base("MP_CELEBRATION")
         {
         }
 
