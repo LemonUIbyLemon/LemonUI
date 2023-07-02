@@ -33,6 +33,17 @@ namespace LemonUI.Scaleform
 
         #endregion
 
+        #region Tools
+
+        private void CallFunctionOnAll(string function, params object[] parameters)
+        {
+            Background.CallFunction(function, parameters);
+            Foreground.CallFunction(function, parameters);
+            CallFunction(function, parameters);
+        }
+
+        #endregion
+
         #region Functions
 
         /// <summary>
