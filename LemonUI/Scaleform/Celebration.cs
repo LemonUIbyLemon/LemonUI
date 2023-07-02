@@ -1,3 +1,7 @@
+#if SHVDN3
+using GTA.Native;
+#endif
+
 namespace LemonUI.Scaleform
 {
     /// <summary>
@@ -36,9 +40,10 @@ namespace LemonUI.Scaleform
         /// </summary>
         public override void DrawFullScreen()
         {
-            Background.DrawFullScreen();
-            Foreground.DrawFullScreen();
-            base.DrawFullScreen();
+            #if SHVDN3
+            Function.Call(Hash.DRAW_SCALEFORM_MOVIE_FULLSCREEN_MASKED, Background.Handle, Foreground.Handle, 255, 255, 255, 255);
+            Function.Call(Hash.DRAW_SCALEFORM_MOVIE_FULLSCREEN, Handle, 255, 255, 255, 255);
+            #endif
         }
 
         #endregion
