@@ -31,6 +31,10 @@ namespace LemonUI.Scaleform
         /// For how long the scalefom is show.
         /// </summary>
         public int Duration { get; set; } = 5;
+        /// <summary>
+        /// The style of the celebration.
+        /// </summary>
+        public CelebrationStyle Style { get; set; } = CelebrationStyle.Clean;
 
         #endregion
 
@@ -70,7 +74,7 @@ namespace LemonUI.Scaleform
 
             CallFunctionOnAll("SET_PAUSE_DURATION", Duration);
             CallFunctionOnAll("ADD_INTRO_TO_WALL", wallId, Title, Subtitle, "", "", "", 0, 0, 0, true, "HUD_COLOUR_WHITE");
-            CallFunctionOnAll("ADD_BACKGROUND_TO_WALL", wallId, 75, 0);
+            CallFunctionOnAll("ADD_BACKGROUND_TO_WALL", wallId, 75, (int)Style);
             CallFunctionOnAll("SHOW_STAT_WALL", wallId);
             Visible = true;
         }
