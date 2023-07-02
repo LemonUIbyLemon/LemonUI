@@ -19,6 +19,18 @@ namespace LemonUI.Scaleform
         /// The foreground of the scaleform.
         /// </summary>
         public CelebrationForeground Foreground { get; } = new CelebrationForeground();
+        /// <summary>
+        /// The title of the scaleform.
+        /// </summary>
+        public string Title { get; set; } = string.Empty;
+        /// <summary>
+        /// The subtitle of the scaleform.
+        /// </summary>
+        public string Subtitle { get; set; } = string.Empty;
+        /// <summary>
+        /// For how long the scalefom is show.
+        /// </summary>
+        public int Duration { get; set; } = 5;
 
         #endregion
 
