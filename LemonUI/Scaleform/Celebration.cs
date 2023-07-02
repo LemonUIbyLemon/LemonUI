@@ -66,7 +66,7 @@ namespace LemonUI.Scaleform
             const string wallId = "intro";
 
             CallFunctionOnAll("CLEANUP", wallId);
-            CallFunctionOnAll("CREATE_STAT_WALL", wallId, "HUD_COLOR_BLACK");
+            CallFunctionOnAll("CREATE_STAT_WALL", wallId, "HUD_COLOUR_BLACK");
 
             CallFunctionOnAll("SET_PAUSE_DURATION", Duration);
             CallFunctionOnAll("ADD_INTRO_TO_WALL", wallId, Title, Subtitle, "", "", "", 0, 0, 0, true, "HUD_COLOUR_WHITE");
