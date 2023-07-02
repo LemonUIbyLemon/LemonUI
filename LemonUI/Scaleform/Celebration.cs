@@ -59,6 +59,22 @@ namespace LemonUI.Scaleform
         #region Functions
 
         /// <summary>
+        /// Shows the celebration scaleform.
+        /// </summary>
+        public void Show()
+        {
+            const string wallId = "intro";
+
+            CallFunctionOnAll("CLEANUP", wallId);
+            CallFunctionOnAll("CREATE_STAT_WALL", wallId, "HUD_COLOR_BLACK");
+
+            CallFunctionOnAll("SET_PAUSE_DURATION", Duration);
+            CallFunctionOnAll("ADD_INTRO_TO_WALL", wallId, Title, Subtitle, "", "", "", 0, 0, 0, true, "HUD_COLOUR_WHITE");
+            CallFunctionOnAll("ADD_BACKGROUND_TO_WALL", wallId, 75, 0);
+            CallFunctionOnAll("SHOW_STAT_WALL", wallId);
+            Visible = true;
+        }
+        /// <summary>
         /// Draws the celebration scaleform.
         /// </summary>
         public override void DrawFullScreen()
