@@ -105,7 +105,7 @@ namespace LemonUI.Scaleform
 
             CallFunctionOnAll("SET_PAUSE_DURATION", Duration);
             // challengeTextLabel appears to be used as a bool and challengePartsText is appended
-            CallFunctionOnAll("ADD_INTRO_TO_WALL", wallId, Mode, Job, true, Challenge, string.Empty, Challenge, 0, 0, true, "HUD_COLOUR_WHITE");
+            CallFunctionOnAll("ADD_INTRO_TO_WALL", wallId, Mode, Job, true, Challenge, string.Empty, Challenge, 0, string.Empty, true, "HUD_COLOUR_WHITE");
             CallFunctionOnAll("ADD_BACKGROUND_TO_WALL", wallId, 75, (int)Style);
             CallFunctionOnAll("SHOW_STAT_WALL", wallId);
 
