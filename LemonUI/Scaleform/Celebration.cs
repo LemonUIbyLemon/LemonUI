@@ -101,7 +101,7 @@ namespace LemonUI.Scaleform
             const string wallId = "intro";
 
             CallFunctionOnAll("CLEANUP", wallId);
-            CallFunctionOnAll("CREATE_STAT_WALL", wallId, "HUD_COLOUR_BLACK");
+            CallFunctionOnAll("CREATE_STAT_WALL", wallId, "HUD_COLOUR_BLACK", 40);
 
             CallFunctionOnAll("SET_PAUSE_DURATION", Duration);
             // challengeTextLabel appears to be used as a bool and challengePartsText is appended
