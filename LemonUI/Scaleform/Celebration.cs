@@ -1,12 +1,15 @@
 #if ALTV
 using AltV.Net.Client;
 #elif FIVEM
+using CitizenFX.Core;
 using CitizenFX.Core.Native;
 #elif RAGEMP
 using RAGE.Game;
 #elif RPH
+using Rage;
 using Rage.Native;
 #elif SHVDN3
+using GTA;
 using GTA.Native;
 #endif
 using System;
@@ -18,6 +21,12 @@ namespace LemonUI.Scaleform
     /// </summary>
     public class Celebration : CelebrationCore
     {
+        #region Fields
+
+        private long showUntil = 0;
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -52,7 +61,7 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// For how long the scalefom is show.
         /// </summary>
-        public int Duration { get; set; } = 5;
+        public int Duration { get; set; } = 2;
         /// <summary>
         /// The style of the celebration.
         /// </summary>
@@ -66,6 +75,10 @@ namespace LemonUI.Scaleform
         /// Event triggered when the scaleform is shown on the screen.
         /// </summary>
         public event EventHandler Shown;
+        /// <summary>
+        /// Event triggered when the scaleform has finished fading out.
+        /// </summary>
+        public event EventHandler Finished;
 
         #endregion
 
@@ -111,6 +124,45 @@ namespace LemonUI.Scaleform
 
             Visible = true;
             Shown?.Invoke(this, EventArgs.Empty);
+
+            // Explanation for future me
+            // 333ms going in
+            // 333ms going out
+#if ALTV
+            int time = Alt.Natives.GetGameTimer();
+#elif RAGEMP
+            int time = Misc.GetGameTimer();
+#elif RPH
+            uint time = Game.GameTime;
+#elif FIVEM || SHVDN3
+            int time = Game.GameTime;
+#endif
+            showUntil = time + 333 + 333 + (Duration * 1000);
+        }
+        /// <inheritdoc/>
+        public override void Process()
+        {
+            if (Visible)
+            {
+                DrawFullScreen();
+
+#if ALTV
+                int time = Alt.Natives.GetGameTimer();
+#elif RAGEMP
+                int time = Misc.GetGameTimer();
+#elif RPH
+                uint time = Game.GameTime;
+#elif FIVEM || SHVDN3
+                int time = Game.GameTime;
+#endif
+
+                if (showUntil < time)
+                {
+                    showUntil = 0;
+                    Visible = false;
+                    Finished?.Invoke(this, EventArgs.Empty);
+                }
+            }
         }
         /// <summary>
         /// Draws the celebration scaleform.
