@@ -28,17 +28,26 @@ namespace LemonUI.Scaleform
         /// </summary>
         public CelebrationForeground Foreground { get; } = new CelebrationForeground();
         /// <summary>
-        /// The title of the scaleform.
+        /// The mode name shown.
         /// </summary>
-        public string Title { get; set; } = string.Empty;
+        /// <remarks>
+        /// This is used to show the current mode, like "HEIST", "RACE", "LAST TEAM STANDING", etc.
+        /// </remarks>
+        public string Mode { get; set; } = string.Empty;
         /// <summary>
-        /// The subtitle of the scaleform.
+        /// The job name shown.
         /// </summary>
-        public string Subtitle { get; set; } = string.Empty;
+        /// <remarks>
+        /// This is used to show the current job name like "The Prison Break" or "Premium Race - East Coast".
+        /// </remarks>
+        public string Job { get; set; } = string.Empty;
         /// <summary>
-        /// The details of the scaleform.
+        /// The challenge shown.
         /// </summary>
-        public string Details { get; set; } = string.Empty;
+        /// <remarks>
+        /// This is used to show messages like "ROUND 10" or "POTENTIAL CUT $1000000".
+        /// </remarks>
+        public string Challenge { get; set; } = string.Empty;
         /// <summary>
         /// For how long the scalefom is show.
         /// </summary>
@@ -86,7 +95,7 @@ namespace LemonUI.Scaleform
 
             CallFunctionOnAll("SET_PAUSE_DURATION", Duration);
             // challengeTextLabel appears to be used as a bool and challengePartsText is appended
-            CallFunctionOnAll("ADD_INTRO_TO_WALL", wallId, Title, Subtitle, true, Details, string.Empty, Details, 0, 0, true, "HUD_COLOUR_WHITE");
+            CallFunctionOnAll("ADD_INTRO_TO_WALL", wallId, Mode, Job, true, Challenge, string.Empty, Challenge, 0, 0, true, "HUD_COLOUR_WHITE");
             CallFunctionOnAll("ADD_BACKGROUND_TO_WALL", wallId, 75, (int)Style);
             CallFunctionOnAll("SHOW_STAT_WALL", wallId);
             Visible = true;
