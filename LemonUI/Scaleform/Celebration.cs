@@ -1,4 +1,12 @@
-#if SHVDN3
+#if ALTV
+using AltV.Net.Client;
+#elif FIVEM
+using CitizenFX.Core.Native;
+#elif RAGEMP
+using RAGE.Game;
+#elif RPH
+using Rage.Native;
+#elif SHVDN3
 using GTA.Native;
 #endif
 
@@ -88,7 +96,19 @@ namespace LemonUI.Scaleform
         /// </summary>
         public override void DrawFullScreen()
         {
-            #if SHVDN3
+            #if ALTV
+            Alt.Natives.DrawScaleformMovieFullscreenMasked(Background.Handle, Foreground.Handle, 255, 255, 255, 255);
+            Alt.Natives.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 255);
+            #elif FIVEM
+            API.DrawScaleformMovieFullscreenMasked(Background.Handle, Foreground.Handle, 255, 255, 255, 255);
+            API.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 255);
+            #elif RAGEMP
+            Invoker.Invoke(Natives.DrawScaleformMovieFullscreenMasked, Background.Handle, Foreground.Handle, 255, 255, 255, 255);
+            Invoker.Invoke(Natives.DrawScaleformMovieFullscreen, Handle, 255, 255, 255, 255);
+            #elif RPH
+            NativeFunction.CallByHash<int>(0xCF537FDE4FBD4CE5, Background.Handle, Foreground.Handle, 255, 255, 255, 255);
+            NativeFunction.CallByHash<int>(0x0DF606929C105BE1, Handle, 255, 255, 255, 255);
+            #elif SHVDN3
             Function.Call(Hash.DRAW_SCALEFORM_MOVIE_FULLSCREEN_MASKED, Background.Handle, Foreground.Handle, 255, 255, 255, 255);
             Function.Call(Hash.DRAW_SCALEFORM_MOVIE_FULLSCREEN, Handle, 255, 255, 255, 255);
             #endif
