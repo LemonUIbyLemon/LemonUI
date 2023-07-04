@@ -117,6 +117,11 @@ namespace LemonUI.Scaleform
         /// </summary>
         public override void DrawFullScreen()
         {
+            if (!Visible)
+            {
+                return;
+            }
+
             #if ALTV
             Alt.Natives.DrawScaleformMovieFullscreenMasked(Background.Handle, Foreground.Handle, 255, 255, 255, 255);
             Alt.Natives.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 255);
