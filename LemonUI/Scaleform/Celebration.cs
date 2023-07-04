@@ -9,6 +9,7 @@ using Rage.Native;
 #elif SHVDN3
 using GTA.Native;
 #endif
+using System;
 
 namespace LemonUI.Scaleform
 {
@@ -59,6 +60,15 @@ namespace LemonUI.Scaleform
 
         #endregion
 
+        #region Events
+
+        /// <summary>
+        /// Event triggered when the scaleform is shown on the screen.
+        /// </summary>
+        public event EventHandler Shown;
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -98,7 +108,9 @@ namespace LemonUI.Scaleform
             CallFunctionOnAll("ADD_INTRO_TO_WALL", wallId, Mode, Job, true, Challenge, string.Empty, Challenge, 0, 0, true, "HUD_COLOUR_WHITE");
             CallFunctionOnAll("ADD_BACKGROUND_TO_WALL", wallId, 75, (int)Style);
             CallFunctionOnAll("SHOW_STAT_WALL", wallId);
+
             Visible = true;
+            Shown?.Invoke(this, EventArgs.Empty);
         }
         /// <summary>
         /// Draws the celebration scaleform.
