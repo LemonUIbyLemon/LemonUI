@@ -28,6 +28,10 @@ namespace LemonUI.Scaleform
         /// </summary>
         public string Subtitle { get; set; } = string.Empty;
         /// <summary>
+        /// The details of the scaleform.
+        /// </summary>
+        public string Details { get; set; } = string.Empty;
+        /// <summary>
         /// For how long the scalefom is show.
         /// </summary>
         public int Duration { get; set; } = 5;
@@ -73,7 +77,8 @@ namespace LemonUI.Scaleform
             CallFunctionOnAll("CREATE_STAT_WALL", wallId, "HUD_COLOUR_BLACK");
 
             CallFunctionOnAll("SET_PAUSE_DURATION", Duration);
-            CallFunctionOnAll("ADD_INTRO_TO_WALL", wallId, Title, Subtitle, "", "", "", 0, 0, 0, true, "HUD_COLOUR_WHITE");
+            // challengeTextLabel appears to be used as a bool and challengePartsText is appended
+            CallFunctionOnAll("ADD_INTRO_TO_WALL", wallId, Title, Subtitle, true, Details, string.Empty, Details, 0, 0, true, "HUD_COLOUR_WHITE");
             CallFunctionOnAll("ADD_BACKGROUND_TO_WALL", wallId, 75, (int)Style);
             CallFunctionOnAll("SHOW_STAT_WALL", wallId);
             Visible = true;
