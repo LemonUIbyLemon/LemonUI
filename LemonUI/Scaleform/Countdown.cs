@@ -1,3 +1,5 @@
+using System;
+
 namespace LemonUI.Scaleform
 {
     /// <summary>
@@ -5,12 +7,30 @@ namespace LemonUI.Scaleform
     /// </summary>
     public class Countdown : BaseScaleform
     {
+        #region Fields
+
+        private int duration = 3;
+
+        #endregion
+
         #region Properties
 
         /// <summary>
         /// The duration of the countdown.
         /// </summary>
-        public int Duration { get; set; } = 3;
+        public int Duration
+        {
+            get => duration;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "The duration can't be equal or under zero.");
+                }
+
+                duration = value;
+            }
+        }
 
         #endregion
 
