@@ -118,6 +118,7 @@ namespace LemonUI.Scaleform
                     {
                         lastStepTime = 0;
                         Visible = false;
+                        return;
                     }
 
                     lastStepTime = currentTime;
