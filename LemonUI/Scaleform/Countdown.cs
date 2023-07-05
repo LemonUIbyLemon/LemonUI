@@ -5,6 +5,15 @@ namespace LemonUI.Scaleform
     /// </summary>
     public class Countdown : BaseScaleform
     {
+        #region Properties
+
+        /// <summary>
+        /// The duration of the countdown.
+        /// </summary>
+        public int Duration { get; set; } = 3;
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
