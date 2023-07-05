@@ -80,7 +80,7 @@ namespace LemonUI.Scaleform
             CallFunction("SET_MESSAGE", asString, 255, 255, 255, true);
             CallFunction("FADE_MP", asString, 255, 255, 255);
 
-            Sound.PlayFrontend();
+            Sound?.PlayFrontend();
         }
 
         #endregion
