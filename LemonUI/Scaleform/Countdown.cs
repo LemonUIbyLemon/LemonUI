@@ -45,6 +45,18 @@ namespace LemonUI.Scaleform
 
         #endregion
 
+        #region Tools
+
+        private void ShowStep(int step)
+        {
+            string asString = step == 0 ? "GO" : step.ToString();
+
+            CallFunction("SET_MESSAGE", asString, 255, 255, 255, true);
+            CallFunction("FADE_MP", asString, 255, 255, 255);
+        }
+
+        #endregion
+
         #region Functions
 
         /// <inheritdoc/>
