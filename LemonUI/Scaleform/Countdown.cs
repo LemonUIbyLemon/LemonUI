@@ -1,3 +1,14 @@
+#if ALTV
+using AltV.Net.Client;
+#elif FIVEM
+using CitizenFX.Core;
+#elif RAGEMP
+using RAGE.Game;
+#elif RPH
+using Rage;
+#elif SHVDN3
+using GTA;
+#endif
 using System;
 
 namespace LemonUI.Scaleform
@@ -10,6 +21,8 @@ namespace LemonUI.Scaleform
         #region Fields
 
         private int duration = 3;
+        private long lastStepTime = 0;
+        private int currentStep = 0;
 
         #endregion
 
@@ -59,6 +72,62 @@ namespace LemonUI.Scaleform
 
         #region Functions
 
+        /// <summary>
+        /// Starts the countdown.
+        /// </summary>
+        public void Start()
+        {
+            Visible = true;
+
+#if ALTV
+            lastStepTime = Alt.Natives.GetGameTimer();
+#elif RAGEMP
+            lastStepTime = Misc.GetGameTimer();
+#elif RPH
+            lastStepTime = Game.GameTime;
+#elif FIVEM || SHVDN3
+            lastStepTime = Game.GameTime;
+#endif
+
+            currentStep = duration;
+            ShowStep(currentStep);
+        }
+        /// <inheritdoc/>
+        public override void Process()
+        {
+            if (!Visible)
+            {
+                return;
+            }
+
+            if (lastStepTime > 0)
+            {
+#if ALTV
+                int currentTime = Alt.Natives.GetGameTimer();
+#elif RAGEMP
+                int currentTime = Misc.GetGameTimer();
+#elif RPH
+                uint currentTime = Game.GameTime;
+#elif FIVEM || SHVDN3
+                int currentTime = Game.GameTime;
+#endif
+
+                if (currentTime - lastStepTime >= 1000)
+                {
+                    if (currentStep == 0)
+                    {
+                        lastStepTime = 0;
+                        Visible = false;
+                    }
+
+                    lastStepTime = currentTime;
+                    currentStep--;
+                    ShowStep(currentStep);
+                }
+            }
+
+            DrawFullScreen();
+        }
         /// <inheritdoc/>
         public override void Update()
         {
