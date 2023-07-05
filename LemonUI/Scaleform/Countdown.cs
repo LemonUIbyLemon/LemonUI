@@ -60,6 +60,19 @@ namespace LemonUI.Scaleform
 
         #endregion
 
+        #region Events
+
+        /// <summary>
+        /// Event triggered when the countdown starts.
+        /// </summary>
+        public event EventHandler Started;
+        /// <summary>
+        /// Event triggered when the countdown has finished.
+        /// </summary>
+        public event EventHandler Finished;
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -106,6 +119,7 @@ namespace LemonUI.Scaleform
 
             currentStep = duration;
             ShowStep(currentStep);
+            Started?.Invoke(this, EventArgs.Empty);
         }
         /// <inheritdoc/>
         public override void Process()
@@ -139,6 +153,11 @@ namespace LemonUI.Scaleform
                     lastStepTime = currentTime;
                     currentStep--;
                     ShowStep(currentStep);
+
+                    if (currentStep == 0)
+                    {
+                        Finished?.Invoke(this, EventArgs.Empty);
+                    }
                 }
             }
 
