@@ -31,7 +31,7 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The default sound played when the countdown
         /// </summary>
-        public static Sound DefaultSound = new Sound("HUD_MINI_GAME_SOUNDSET", "CHECKPOINT_NORMAL");
+        public static Sound DefaultCountSound = new Sound("HUD_MINI_GAME_SOUNDSET", "CHECKPOINT_NORMAL");
 
         #endregion
 
@@ -40,7 +40,7 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The sound played when counting down.
         /// </summary>
-        public Sound Sound { get; set; } = DefaultSound;
+        public Sound CountSound { get; set; } = DefaultCountSound;
         /// <summary>
         /// The duration of the countdown.
         /// </summary>
@@ -93,7 +93,7 @@ namespace LemonUI.Scaleform
             CallFunction("SET_MESSAGE", asString, 255, 255, 255, true);
             CallFunction("FADE_MP", asString, 255, 255, 255);
 
-            Sound?.PlayFrontend();
+            CountSound?.PlayFrontend();
         }
 
         #endregion
