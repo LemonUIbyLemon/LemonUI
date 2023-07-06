@@ -56,6 +56,23 @@ jobs:
         with:
           path: "docs/_site"
       - uses: actions/deploy-pages@v1.2.4
+  github-package-registry:
+    runs-on: ubuntu-22.04
+    needs:
+      - lint-and-compile
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v2.1.0
+        with:
+          dotnet-version: "7.0.x"
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ github.event.repository.name }}.Release
+          path: bin/Release
+      - run: ls -R
+        working-directory: bin/Release
+      - run: 7z a ${{ github.event.repository.name }}.zip ${{ github.workspace }}/bin/Release/*
+      - run: dotnet nuget push "**/*.nupkg" -s 'https://nuget.pkg.github.com/${{ github.event.repository.owner.name }}/index.json' -k ${{ secrets.GITHUB_TOKEN }}
   deploy:
     runs-on: ubuntu-22.04
     if: ${{ github.event_name == 'release' }}
@@ -73,7 +90,7 @@ jobs:
       - run: ls -R
         working-directory: bin/Release
       - run: 7z a ${{ github.event.repository.name }}.zip ${{ github.workspace }}/bin/Release/*
-      - run: dotnet nuget push "**/*.nupkg" -s 'https://api.nuget.org/v3/index.json' -k ${{secrets.NUGET}}
+      - run: dotnet nuget push "**/*.nupkg" -s 'https://api.nuget.org/v3/index.json' -k ${{ secrets.NUGET }}
       - uses: ncipollo/release-action@v1.10.0
         with:
           allowUpdates: true
