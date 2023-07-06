@@ -59,6 +59,7 @@ jobs:
       - uses: actions/deploy-pages@v1.2.4
   github-package-registry:
     runs-on: ubuntu-22.04
+    if: ${{ github.ref == 'refs/heads/master' }}
     needs:
       - lint-and-compile
     steps:
