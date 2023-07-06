@@ -28,10 +28,17 @@ namespace LemonUI.Scaleform
 
         #region Defaults
 
+        // TODO: Add the Stunt Race sounds, Countdown_1 and Countdown_GO in DLC_AW_Frontend_Sounds
+        // TODO: See why Countdown_GO doesn't plays correctly
+
         /// <summary>
         /// The default sound played when the countdown
         /// </summary>
         public static Sound DefaultCountSound = new Sound("HUD_MINI_GAME_SOUNDSET", "CHECKPOINT_NORMAL");
+        /// <summary>
+        /// The default sound when th
+        /// </summary>
+        public static Sound DefaultGoSound = new Sound("HUD_MINI_GAME_SOUNDSET", "GO");
 
         #endregion
 
@@ -41,6 +48,10 @@ namespace LemonUI.Scaleform
         /// The sound played when counting down.
         /// </summary>
         public Sound CountSound { get; set; } = DefaultCountSound;
+        /// <summary>
+        /// The sound played when the countdown has finished.
+        /// </summary>
+        public Sound GoSound { get; set; } = DefaultGoSound;
         /// <summary>
         /// The duration of the countdown.
         /// </summary>
@@ -93,7 +104,14 @@ namespace LemonUI.Scaleform
             CallFunction("SET_MESSAGE", asString, 255, 255, 255, true);
             CallFunction("FADE_MP", asString, 255, 255, 255);
 
-            CountSound?.PlayFrontend();
+            if (step == 0)
+            {
+                GoSound?.PlayFrontend();
+            }
+            else
+            {
+                CountSound?.PlayFrontend();
+            }
         }
 
         #endregion
