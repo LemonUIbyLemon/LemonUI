@@ -24,6 +24,7 @@ namespace LemonUI.Scaleform
         #region Fields
 
         private long showUntil = 0;
+        private bool cancel = false;
 
         #endregion
 
@@ -111,6 +112,9 @@ namespace LemonUI.Scaleform
         /// </summary>
         public void Show()
         {
+            cancel = false;
+            Visible = true;
+
             const string wallId = "intro";
 
             CallFunctionOnAll("CLEANUP", wallId);
@@ -122,7 +126,6 @@ namespace LemonUI.Scaleform
             CallFunctionOnAll("ADD_BACKGROUND_TO_WALL", wallId, 75, (int)Style);
             CallFunctionOnAll("SHOW_STAT_WALL", wallId);
 
-            Visible = true;
             Shown?.Invoke(this, EventArgs.Empty);
 
             // Explanation for future me
@@ -139,29 +142,48 @@ namespace LemonUI.Scaleform
 #endif
             showUntil = time + 333 + 333 + (Duration * 1000);
         }
-        /// <inheritdoc/>
-        public override void Process()
+        /// <summary>
+        /// Cancels the current screen being shown.
+        /// </summary>
+        public void Cancel()
         {
             if (Visible)
             {
-                DrawFullScreen();
+                cancel = true;
+            }
+        }
+        /// <inheritdoc/>
+        public override void Process()
+        {
+            if (!Visible)
+            {
+                return;
+            }
+
+            if (cancel)
+            {
+                showUntil = -1;
+                Visible = false;
+                return;
+            }
+
+            DrawFullScreen();
 
 #if ALTV
-                int time = Alt.Natives.GetGameTimer();
+            int time = Alt.Natives.GetGameTimer();
 #elif RAGEMP
-                int time = Misc.GetGameTimer();
+            int time = Misc.GetGameTimer();
 #elif RPH
-                uint time = Game.GameTime;
+            uint time = Game.GameTime;
 #elif FIVEM || SHVDN3
-                int time = Game.GameTime;
+            int time = Game.GameTime;
 #endif
 
-                if (showUntil < time)
-                {
-                    showUntil = 0;
-                    Visible = false;
-                    Finished?.Invoke(this, EventArgs.Empty);
-                }
+            if (showUntil < time)
+            {
+                showUntil = 0;
+                Visible = false;
+                Finished?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
