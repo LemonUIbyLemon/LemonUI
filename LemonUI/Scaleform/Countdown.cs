@@ -22,7 +22,6 @@ namespace LemonUI.Scaleform
 
         private int duration = 3;
         private long lastStepTime = 0;
-        private int currentStep = 0;
 
         #endregion
 
@@ -68,6 +67,10 @@ namespace LemonUI.Scaleform
                 duration = value;
             }
         }
+        /// <summary>
+        /// The current count.
+        /// </summary>
+        public int Current { get; private set; }
 
         #endregion
 
@@ -135,8 +138,8 @@ namespace LemonUI.Scaleform
             lastStepTime = Game.GameTime;
 #endif
 
-            currentStep = duration;
-            ShowStep(currentStep);
+            Current = duration;
+            ShowStep(Current);
             Started?.Invoke(this, EventArgs.Empty);
         }
         /// <inheritdoc/>
@@ -161,7 +164,7 @@ namespace LemonUI.Scaleform
 
                 if (currentTime - lastStepTime >= 1000)
                 {
-                    if (currentStep == 0)
+                    if (Current == 0)
                     {
                         lastStepTime = 0;
                         Visible = false;
@@ -169,10 +172,10 @@ namespace LemonUI.Scaleform
                     }
 
                     lastStepTime = currentTime;
-                    currentStep--;
-                    ShowStep(currentStep);
+                    Current--;
+                    ShowStep(Current);
 
-                    if (currentStep == 0)
+                    if (Current == 0)
                     {
                         Finished?.Invoke(this, EventArgs.Empty);
                     }
