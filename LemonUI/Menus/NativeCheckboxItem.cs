@@ -30,9 +30,9 @@ namespace LemonUI.Menus
         public static readonly BadgeSet DefaultCheckedSet = new BadgeSet
         {
             NormalDictionary = "commonmenu",
-            NormalTexture = "shop_box_blank",
+            NormalTexture = "shop_box_tick",
             HoveredDictionary = "commonmenu",
-            HoveredTexture = "shop_box_blankb"
+            HoveredTexture = "shop_box_tickb"
         };
         /// <summary>
         /// The default checkbox textures when the checkbox is not checked.
@@ -40,9 +40,9 @@ namespace LemonUI.Menus
         public static readonly BadgeSet DefaultUncheckedSet = new BadgeSet
         {
             NormalDictionary = "commonmenu",
-            NormalTexture = "shop_box_tick",
+            NormalTexture = "shop_box_blank",
             HoveredDictionary = "commonmenu",
-            HoveredTexture = "shop_box_tickb"
+            HoveredTexture = "shop_box_blankb"
         };
 
         #endregion
