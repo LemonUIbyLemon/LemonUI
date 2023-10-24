@@ -6,70 +6,25 @@ using RAGE.Game;
 using Rage;
 #elif SHVDN3
 using GTA;
+#elif ALTV
+using AltV.Net.Client;
 #endif
 using System;
 
 namespace LemonUI.Scaleform
 {
     /// <summary>
-    /// The type for a big message.
-    /// </summary>
-    public enum MessageType
-    {
-        /// <summary>
-        /// A centered message with customizable text an d background colors.
-        /// Internally called SHOW_SHARD_CENTERED_MP_MESSAGE.
-        /// </summary>
-        Customizable = 0,
-        /// <summary>
-        /// Used when you rank up on GTA Online.
-        /// Internally called SHOW_SHARD_CREW_RANKUP_MP_MESSAGE.
-        /// </summary>
-        RankUp = 1,
-        /// <summary>
-        /// The Mission Passed screen on PS3 and Xbox 360.
-        /// Internally called SHOW_MISSION_PASSED_MESSAGE.
-        /// </summary>
-        MissionPassedOldGen = 2,
-        /// <summary>
-        /// The Message Type shown on the Wasted screen.
-        /// Internally called SHOW_SHARD_WASTED_MP_MESSAGE.
-        /// </summary>
-        Wasted = 3,
-        /// <summary>
-        /// Used on the GTA Online Freemode event announcements.
-        /// Internally called SHOW_PLANE_MESSAGE.
-        /// </summary>
-        Plane = 4,
-        /// <summary>
-        /// Development leftover from when GTA Online was Cops and Crooks.
-        /// Internally called SHOW_BIG_MP_MESSAGE.
-        /// </summary>
-        CopsAndCrooks = 5,
-        /// <summary>
-        /// Message shown when the player purchases a weapon.
-        /// Internally called SHOW_WEAPON_PURCHASED.
-        /// </summary>
-        Weapon = 6,
-        /// <summary>
-        /// Unknown where this one is used.
-        /// Internally called SHOW_CENTERED_MP_MESSAGE_LARGE.
-        /// </summary>
-        CenteredLarge = 7,
-    }
-
-    /// <summary>
     /// A customizable big message.
     /// </summary>
     public class BigMessage : BaseScaleform
     {
-        #region Constant Fields
+        #region Constants
 
         private const uint unarmed = 0xA2719263;
 
         #endregion
 
-        #region Private Fields
+        #region Fields
 
         private MessageType type;
         private uint weaponHash;
@@ -77,7 +32,7 @@ namespace LemonUI.Scaleform
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The title of the message.
@@ -100,7 +55,7 @@ namespace LemonUI.Scaleform
         /// The Rank when the mode is set to Cops and Crooks.
         /// </summary>
         public string Rank { get; set; }
-#if !RAGEMP
+#if !RAGEMP && !ALTV
         /// <summary>
         /// The hash of the Weapon as an enum.
         /// </summary>
@@ -196,7 +151,7 @@ namespace LemonUI.Scaleform
         public BigMessage(string title, int colorText, int colorBackground) : this(title, string.Empty, string.Empty, unarmed, colorText, colorBackground, MessageType.Customizable)
         {
         }
-#if !RAGEMP
+#if !RAGEMP && !ALTV
         /// <summary>
         /// Creates a Weapon Purchase message with a custom text and weapons.
         /// </summary>
@@ -254,7 +209,7 @@ namespace LemonUI.Scaleform
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Updates the Message information in the Scaleform.
@@ -325,6 +280,8 @@ namespace LemonUI.Scaleform
 
 #if RAGEMP
             uint currentTime = (uint)Misc.GetGameTimer();
+#elif ALTV
+            uint currentTime = (uint)Alt.MsPerGameMinute;
 #elif RPH
             uint currentTime = Game.GameTime;
 #else
@@ -337,6 +294,8 @@ namespace LemonUI.Scaleform
         {
 #if RAGEMP
             uint time = (uint)Misc.GetGameTimer();
+#elif ALTV
+            uint time = (uint)Alt.MsPerGameMinute;
 #elif RPH
             uint time = Game.GameTime;
 #else

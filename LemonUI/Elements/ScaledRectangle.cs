@@ -6,6 +6,8 @@ using RAGE.Game;
 using Rage.Native;
 #elif SHVDN3
 using GTA.Native;
+#elif ALTV
+using AltV.Net.Client;
 #endif
 using System.Drawing;
 
@@ -29,7 +31,7 @@ namespace LemonUI.Elements
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Draws the rectangle on the screen.
@@ -44,6 +46,9 @@ namespace LemonUI.Elements
             API.DrawRect(relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
 #elif RAGEMP
             Invoker.Invoke(Natives.DrawRect, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
+#elif ALTV
+            Alt.Natives.DrawRect(relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A,
+                false);
 #elif RPH
             NativeFunction.CallByHash<int>(0x3A618A217E5154F0, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Color.R, Color.G, Color.B, Color.A);
 #elif SHVDN3

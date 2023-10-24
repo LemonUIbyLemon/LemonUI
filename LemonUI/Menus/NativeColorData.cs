@@ -8,13 +8,13 @@ namespace LemonUI.Menus
     /// </summary>
     public class NativeColorData
     {
-        #region Internal Fields
+        #region Fields
 
         internal readonly ScaledRectangle rectangle = new ScaledRectangle(PointF.Empty, SizeF.Empty);
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The name of the color.
@@ -31,7 +31,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
         /// <summary>
         /// Creates a new Color Panel information.

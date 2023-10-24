@@ -5,7 +5,7 @@
     /// </summary>
     public class NativeSeparatorItem : NativeItem
     {
-        #region Constructor
+        #region Constructors
 
         /// <summary>
         /// Creates a new Menu Separator.
@@ -16,7 +16,7 @@
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Draws nothing.

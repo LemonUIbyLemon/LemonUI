@@ -5,7 +5,7 @@ namespace LemonUI.Scaleform
     /// </summary>
     public class LoadingScreen : BaseScaleform
     {
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The title of the loading screen.
@@ -66,7 +66,7 @@ namespace LemonUI.Scaleform
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Changes the texture shown on the loading screen.

@@ -15,7 +15,7 @@ namespace LemonUI.TimerBars
     /// </summary>
     public class TimerBar : IDrawable
     {
-        #region Constant Fields
+        #region Fields
 
         /// <summary>
         /// The separation between the different timer bars.
@@ -30,28 +30,17 @@ namespace LemonUI.TimerBars
         /// </summary>
         internal const float backgroundHeight = 37;
 
-        #endregion
-
-        #region Private Fields
-
-        private string rawTitle = string.Empty;
-        private string rawInfo = string.Empty;
-
-        #endregion
-
-        #region Internal Fields
-
         /// <summary>
         /// The background of the timer bar.
         /// </summary>
-        internal protected readonly ScaledTexture background = new ScaledTexture("timerbars", "all_black_bg")
+        protected internal readonly ScaledTexture background = new ScaledTexture("timerbars", "all_black_bg")
         {
             Color = Color.FromArgb(160, 255, 255, 255)
         };
         /// <summary>
         /// The title of the timer bar.
         /// </summary>
-        internal protected readonly ScaledText title = new ScaledText(PointF.Empty, string.Empty, 0.29f)
+        protected internal readonly ScaledText title = new ScaledText(PointF.Empty, string.Empty, 0.29f)
         {
             Alignment = Alignment.Right,
             WordWrap = 1000
@@ -59,15 +48,18 @@ namespace LemonUI.TimerBars
         /// <summary>
         /// The information of the Timer Bar.
         /// </summary>
-        internal protected readonly ScaledText info = new ScaledText(PointF.Empty, string.Empty, 0.5f)
+        protected internal readonly ScaledText info = new ScaledText(PointF.Empty, string.Empty, 0.5f)
         {
             Alignment = Alignment.Right,
             WordWrap = 1000
         };
 
+        private string rawTitle = string.Empty;
+        private string rawInfo = string.Empty;
+
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The title of the bar, shown on the left.
@@ -123,7 +115,7 @@ namespace LemonUI.TimerBars
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Recalculates the position of the timer bar elements based on the location of it on the screen.

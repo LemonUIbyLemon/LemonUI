@@ -7,6 +7,8 @@ namespace LemonUI.Extensions
     /// </summary>
     public static class PointExtensions
     {
+        #region Extensions
+
         /// <summary>
         /// Converts an absolute 1080-based position into a relative one.
         /// </summary>
@@ -27,5 +29,7 @@ namespace LemonUI.Extensions
             Screen.ToAbsolute(point.X, point.Y, out float x, out float y);
             return new PointF(x, y);
         }
+
+        #endregion
     }
 }

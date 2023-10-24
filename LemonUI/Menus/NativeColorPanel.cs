@@ -1,6 +1,8 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.UI;
+#elif ALTV
+using AltV.Net.Client;
 #elif RAGEMP
 using RAGE.Game;
 #elif RPH
@@ -22,12 +24,14 @@ namespace LemonUI.Menus
     /// </summary>
     public class NativeColorPanel : NativePanel, IEnumerable<NativeColorData>
     {
+
         #region Constants
 
         /// <summary>
         /// The space difference for the colors and opacity bar on the left.
         /// </summary>
         private const float leftDifference = 16;
+
         /// <summary>
         /// The space difference for the colors and opacity bar on the left.
         /// </summary>
@@ -35,16 +39,18 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Private Fields
+        #region Fields
 
         /// <summary>
         /// The position reported after the last Recalculation.
         /// </summary>
         private PointF lastPosition = PointF.Empty;
+
         /// <summary>
         /// The Width reported after the last Recalculation.
         /// </summary>
         private float lastWidth = 0;
+
         /// <summary>
         /// The title of the Color Panel.
         /// </summary>
@@ -52,10 +58,12 @@ namespace LemonUI.Menus
         {
             Alignment = Alignment.Center
         };
+
         /// <summary>
         /// The rectangle used for marking the item selection on the screen.
         /// </summary>
         private ScaledRectangle selectionRectangle = new ScaledRectangle(PointF.Empty, SizeF.Empty);
+
         /// <summary>
         /// The "Opacity" text when the opacity bar is enabled
         /// </summary>
@@ -63,14 +71,17 @@ namespace LemonUI.Menus
         {
             Alignment = Alignment.Center
         };
+
         /// <summary>
         /// The zero percent text when the opacity bar is enabled.
         /// </summary>
         private ScaledText percentMin = new ScaledText(PointF.Empty, "0%", 0.325f);
+
         /// <summary>
         /// The 100 percent text when the opacity bar is enabled.
         /// </summary>
         private ScaledText percentMax = new ScaledText(PointF.Empty, "100%", 0.325f);
+
         /// <summary>
         /// The top section of the opacity bar.
         /// </summary>
@@ -78,6 +89,7 @@ namespace LemonUI.Menus
         {
             Color = Color.FromArgb(255, 240, 240, 240)
         };
+
         /// <summary>
         /// The background of the opacity bar.
         /// </summary>
@@ -85,46 +97,51 @@ namespace LemonUI.Menus
         {
             Color = Color.FromArgb(150, 88, 88, 88)
         };
+
         /// <summary>
         /// If the opacity bar is available to the user.
         /// </summary>
         private bool showOpacity = false;
+
         /// <summary>
         /// The current value of the opacity slider.
         /// </summary>
         private int opacity = 0;
+
         /// <summary>
         /// The current index of the Colors.
         /// </summary>
         private int index = 0;
+
         /// <summary>
         /// The position of the first item.
         /// </summary>
         private int firstItem = 0;
+
         /// <summary>
         /// The maximum number of items shown at once.
         /// </summary>
         private int maxItems = 9;
+
         /// <summary>
         /// The generic title for this color.
         /// </summary>
         private string simpleTitle = "Color";
+
         /// <summary>
         /// The style of the title.
         /// </summary>
         private ColorTitleStyle titleStyle = ColorTitleStyle.Simple;
+
         /// <summary>
         /// If the number of colors should be shown.
         /// </summary>
         private bool showCount = true;
+
         /// <summary>
         /// The items that are currently visible on the screen.
         /// </summary>
         private List<NativeColorData> visibleItems = new List<NativeColorData>();
-
-        #endregion
-
-        #region Public Fields
 
         /// <summary>
         /// The default sound used for the Color Navigation.
@@ -133,10 +150,11 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <inheritdoc/>
         public override bool Clickable => true;
+
         /// <summary>
         /// If the Opacity selector should be shown.
         /// </summary>
@@ -149,6 +167,7 @@ namespace LemonUI.Menus
                 Recalculate();
             }
         }
+
         /// <summary>
         /// The opacity value of the color.
         /// </summary>
@@ -164,6 +183,7 @@ namespace LemonUI.Menus
                 {
                     return -1;
                 }
+
                 return opacity;
             }
             set
@@ -172,14 +192,17 @@ namespace LemonUI.Menus
                 {
                     return;
                 }
+
                 if (value > 100 || value < 0)
                 {
                     throw new IndexOutOfRangeException("The value needs to be over 0 and under 100.");
                 }
+
                 opacity = value;
                 UpdateOpacityBar();
             }
         }
+
         /// <summary>
         /// The currently selected color.
         /// </summary>
@@ -192,14 +215,17 @@ namespace LemonUI.Menus
             {
                 // If there is no selected color information, return
                 NativeColorData data = SelectedItem;
+
                 if (data == null)
                 {
                     return default;
                 }
+
                 // Otherwise, return the color
                 return Color.FromArgb(ShowOpacity ? (int)(255 * (Opacity * 0.01f)) : 255, data.Color.R, data.Color.G, data.Color.B);
             }
         }
+
         /// <summary>
         /// Returns the currently selected <see cref="NativeColorData"/>.
         /// </summary>
@@ -211,9 +237,11 @@ namespace LemonUI.Menus
                 {
                     return null;
                 }
+
                 return Colors[SelectedIndex];
             }
         }
+
         /// <summary>
         /// The index of the currently selected Color.
         /// </summary>
@@ -225,6 +253,7 @@ namespace LemonUI.Menus
                 {
                     return -1;
                 }
+
                 return index;
             }
             set
@@ -281,6 +310,7 @@ namespace LemonUI.Menus
                 Sound?.PlayFrontend();
             }
         }
+
         /// <summary>
         /// The Title used for the Panel when <see cref="TitleStyle"/> is set to <see cref="ColorTitleStyle.Simple"/>.
         /// </summary>
@@ -293,6 +323,7 @@ namespace LemonUI.Menus
                 UpdateTitle();
             }
         }
+
         /// <summary>
         /// The style of the Panel Title.
         /// </summary>
@@ -305,6 +336,7 @@ namespace LemonUI.Menus
                 UpdateTitle();
             }
         }
+
         /// <summary>
         /// If the count of items should be shown as part of the title.
         /// </summary>
@@ -317,6 +349,7 @@ namespace LemonUI.Menus
                 UpdateTitle();
             }
         }
+
         /// <summary>
         /// THe maximum number of items shown on the screen.
         /// </summary>
@@ -329,11 +362,13 @@ namespace LemonUI.Menus
                 {
                     return;
                 }
+
                 maxItems = value;
                 UpdateItems();
                 UpdateTitle();
             }
         }
+
         /// <summary>
         /// The colors shown on this Panel.
         /// </summary>
@@ -353,6 +388,7 @@ namespace LemonUI.Menus
         public NativeColorPanel() : this(string.Empty)
         {
         }
+
         /// <summary>
         /// Creates a Panel with a specific Title and set of Colors.
         /// </summary>
@@ -368,7 +404,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Private Functions
+        #region Tools
 
         /// <summary>
         /// Updates the Text of the Title.
@@ -382,9 +418,11 @@ namespace LemonUI.Menus
             {
                 case ColorTitleStyle.Simple:
                     newTitle = Title;
+
                     break;
                 case ColorTitleStyle.ColorName:
                     newTitle = SelectedItem == null ? string.Empty : SelectedItem.Name;
+
                     break;
             }
 
@@ -404,6 +442,7 @@ namespace LemonUI.Menus
             // And finally set the new title
             title.Text = newTitle;
         }
+
         /// <summary>
         /// Updates the position of the Items.
         /// </summary>
@@ -458,6 +497,7 @@ namespace LemonUI.Menus
             // Finally, update the text of the title
             UpdateTitle();
         }
+
         /// <summary>
         /// Updates the size of the opacity bar.
         /// </summary>
@@ -479,6 +519,7 @@ namespace LemonUI.Menus
             opacityForeground.Position = new PointF(x, y);
             opacityForeground.Size = new SizeF(width * (Opacity * 0.01f), height);
         }
+
         /// <summary>
         /// Recalculates the Color panel with the last known Position and Width.
         /// </summary>
@@ -486,12 +527,14 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <inheritdoc/>
         public IEnumerator<NativeColorData> GetEnumerator() => Colors.GetEnumerator();
+
         /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
         /// <summary>
         /// Moves to the Previous Color.
         /// </summary>
@@ -514,6 +557,7 @@ namespace LemonUI.Menus
                 SelectedIndex -= 1;
             }
         }
+
         /// <summary>
         /// Moves to the Next Color.
         /// </summary>
@@ -536,6 +580,7 @@ namespace LemonUI.Menus
                 SelectedIndex += 1;
             }
         }
+
         /// <summary>
         /// Adds a color to the Panel.
         /// </summary>
@@ -546,9 +591,11 @@ namespace LemonUI.Menus
             {
                 throw new ArgumentException("Color is already part of the Panel.", nameof(color));
             }
+
             Colors.Add(color);
             Recalculate();
         }
+
         /// <summary>
         /// Removes a color from the panel.
         /// </summary>
@@ -558,6 +605,7 @@ namespace LemonUI.Menus
             // Remove it if there
             // If not, ignore it
             Colors.Remove(color);
+
             // If the index is higher or equal than the max number of items
             // Set the max - 1
             if (SelectedIndex >= Colors.Count)
@@ -569,6 +617,7 @@ namespace LemonUI.Menus
                 UpdateItems();
             }
         }
+
         /// <summary>
         /// Removes all of the 
         /// </summary>
@@ -584,8 +633,10 @@ namespace LemonUI.Menus
                     Colors.Remove(color);
                 }
             }
+
             Recalculate();
         }
+
         /// <summary>
         /// Removes all of the colors from the Panel.
         /// </summary>
@@ -594,11 +645,13 @@ namespace LemonUI.Menus
             Colors.Clear();
             Recalculate();
         }
+
         /// <summary>
         /// Checks if the Color Data is present on this Panel.
         /// </summary>
         /// <param name="color">The Color Data to check.</param>
         public void Contains(NativeColorData color) => Colors.Contains(color);
+
         /// <summary>
         /// Recalculates the position of the Color Panel.
         /// </summary>
@@ -627,22 +680,35 @@ namespace LemonUI.Menus
             // Finally, update the list of items
             UpdateItems();
         }
+
         /// <summary>
         /// Draws the Color Panel.
         /// </summary>
         public override void Process()
         {
             // If the user pressed one of the keys, move to the left or right
-            if (Controls.IsJustPressed(Control.FrontendLt))
+#if ALTV
+            if (Controls.IsJustPressed(Control.FrontendLT))
+#else
+                if (Controls.IsJustPressed(Control.FrontendLt))
+#endif
             {
                 Previous();
             }
+#if ALTV
+            else if (Controls.IsJustPressed(Control.FrontendRT))
+#else
             else if (Controls.IsJustPressed(Control.FrontendRt))
+#endif
             {
                 Next();
             }
             // If the user pressed one of the bumpers with the Opacity bar enabled, increase or decrease it
+#if ALTV
+            else if (ShowOpacity && Controls.IsJustPressed(Control.FrontendLB))
+#else
             else if (ShowOpacity && Controls.IsJustPressed(Control.FrontendLb))
+#endif
             {
                 if (Opacity > 0)
                 {
@@ -650,7 +716,11 @@ namespace LemonUI.Menus
                     Sound?.PlayFrontend();
                 }
             }
+#if ALTV
+            else if (ShowOpacity && Controls.IsJustPressed(Control.FrontendRB))
+#else
             else if (ShowOpacity && Controls.IsJustPressed(Control.FrontendRb))
+#endif
             {
                 if (Opacity < 100)
                 {
@@ -662,14 +732,17 @@ namespace LemonUI.Menus
             // Draw the items
             base.Process();
             title.Draw();
+
             foreach (NativeColorData color in visibleItems)
             {
                 color.rectangle.Draw();
             }
+
             if (Colors.Count != 0)
             {
                 selectionRectangle.Draw();
             }
+
             if (ShowOpacity)
             {
                 opacityText.Draw();
@@ -681,5 +754,6 @@ namespace LemonUI.Menus
         }
 
         #endregion
+
     }
 }

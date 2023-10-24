@@ -5,6 +5,8 @@
     /// </summary>
     public class SelectedEventArgs
     {
+        #region Properties
+
         /// <summary>
         /// The index of the item in the full list of items.
         /// </summary>
@@ -13,6 +15,10 @@
         /// The index of the item in the screen.
         /// </summary>
         public int OnScreen { get; }
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// Creates a new <see cref="SelectedEventArgs"/>.
@@ -24,5 +30,7 @@
             Index = index;
             OnScreen = screen;
         }
+
+        #endregion
     }
 }

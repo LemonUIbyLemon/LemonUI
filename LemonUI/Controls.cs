@@ -1,6 +1,8 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+#elif ALTV
+using AltV.Net.Client;
 #elif RAGEMP
 using RAGE.Game;
 #elif RPH
@@ -11,6 +13,7 @@ using GTA;
 using GTA.Native;
 #endif
 using System.Collections.Generic;
+using LemonUI.Elements;
 
 namespace LemonUI
 {
@@ -19,6 +22,8 @@ namespace LemonUI
     /// </summary>
     internal static class Controls
     {
+        #region Properties
+
         /// <summary>
         /// Gets if the player used a controller for the last input.
         /// </summary>
@@ -28,15 +33,21 @@ namespace LemonUI
             {
 #if FIVEM
                 return !API.IsInputDisabled(2);
+#elif ALTV
+                return !Alt.Natives.IsUsingKeyboardAndMouse(2);
 #elif RAGEMP
                 return !Invoker.Invoke<bool>(Natives.IsInputDisabled, 2);
 #elif RPH
                 return !NativeFunction.CallByHash<bool>(0xA571D46727E2B718, 2);
 #elif SHVDN3
-                return !Function.Call<bool>(Hash._IS_USING_KEYBOARD, 2);
+                return !Function.Call<bool>(Hash.IS_USING_KEYBOARD_AND_MOUSE, 2);
 #endif
             }
         }
+
+        #endregion
+
+        #region Functions
 
         /// <summary>
         /// Checks if a control was pressed during the last frame.
@@ -47,15 +58,18 @@ namespace LemonUI
         {
 #if FIVEM
             return API.IsDisabledControlJustPressed(0, (int)control);
+#elif ALTV
+            return Alt.Natives.IsDisabledControlJustPressed(0, (int)control);
 #elif RAGEMP
             return Invoker.Invoke<bool>(Natives.IsDisabledControlJustPressed, 0, (int)control);
 #elif RPH
             return NativeFunction.CallByHash<bool>(0x91AEF906BCA88877, 0, (int)control);
 #elif SHVDN3
             return Function.Call<bool>(Hash.IS_DISABLED_CONTROL_JUST_PRESSED, 0, (int)control);
+#elif ALTV
+            return Alt.Natives.IsControlJustPressed((uint)control);
 #endif
         }
-
         /// <summary>
         /// Checks if a control is currently pressed.
         /// </summary>
@@ -65,6 +79,8 @@ namespace LemonUI
         {
 #if FIVEM
             return API.IsDisabledControlPressed(0, (int)control);
+#elif ALTV
+            return Alt.Natives.IsDisabledControlPressed(0, (int)control);
 #elif RAGEMP
             return Invoker.Invoke<bool>(Natives.IsDisabledControlJustPressed, 0, (int)control);
 #elif RPH
@@ -73,7 +89,6 @@ namespace LemonUI
             return Function.Call<bool>(Hash.IS_DISABLED_CONTROL_PRESSED, 0, (int)control);
 #endif
         }
-
         /// <summary>
         /// Disables all of the controls during the next frame.
         /// </summary>
@@ -81,6 +96,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.DisableAllControlActions(inputGroup);
+#elif ALTV
+            Alt.Natives.DisableAllControlActions(inputGroup);
 #elif RAGEMP
             Invoker.Invoke(Natives.DisableAllControlActions, inputGroup);
 #elif RPH
@@ -89,7 +106,6 @@ namespace LemonUI
             Function.Call(Hash.DISABLE_ALL_CONTROL_ACTIONS, inputGroup);
 #endif
         }
-
         /// <summary>
         /// Enables a control during the next frame.
         /// </summary>
@@ -98,6 +114,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.EnableControlAction(0, (int)control, true);
+#elif ALTV
+            Alt.Natives.EnableControlAction(0, (int)control, true);
 #elif RAGEMP
             Invoker.Invoke(Natives.EnableControlAction, 0, (int)control, true);
 #elif RPH
@@ -117,7 +135,6 @@ namespace LemonUI
                 EnableThisFrame(control);
             }
         }
-
         /// <summary>
         /// Disables a control during the next frame.
         /// </summary>
@@ -126,6 +143,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.DisableControlAction(0, (int)control, true);
+#elif ALTV
+            Alt.Natives.DisableControlAction(0, (int)control, true);
 #elif RAGEMP
             Invoker.Invoke(Natives.DisableControlAction, 0, (int)control, true);
 #elif RPH
@@ -134,5 +153,7 @@ namespace LemonUI
             Function.Call(Hash.DISABLE_CONTROL_ACTION, 0, (int)control, true);
 #endif
         }
+
+        #endregion
     }
 }

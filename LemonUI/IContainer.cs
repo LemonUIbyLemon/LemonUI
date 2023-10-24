@@ -8,6 +8,8 @@ namespace LemonUI
     /// <typeparam name="T">The type of Element that this container handles.</typeparam>
     public interface IContainer<T> : IRecalculable, IProcessable
     {
+        #region Functions
+
         /// <summary>
         /// Adds the specified item into the Container.
         /// </summary>
@@ -33,5 +35,7 @@ namespace LemonUI
         /// <param name="item">The item to check.</param>
         /// <returns><see langword="true"/> if the item is in this container, <see langword="false"/> otherwise.</returns>
         bool Contains(T item);
+
+        #endregion
     }
 }

@@ -1,8 +1,11 @@
-﻿namespace LemonUI.Menus
+﻿using System;
+
+namespace LemonUI.Menus
 {
     /// <summary>
     /// The behavior of the <see cref="NativeMenu"/>'s subtitle.
     /// </summary>
+    [Obsolete("Please use HeaderBehavior instead", true)]
     public enum SubtitleBehavior
     {
         /// <summary>

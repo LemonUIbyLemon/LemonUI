@@ -6,6 +6,8 @@
     /// <typeparam name="T">The type of object that got changed.</typeparam>
     public class ItemChangedEventArgs<T>
     {
+        #region Properties
+
         /// <summary>
         /// The new object.
         /// </summary>
@@ -19,11 +21,17 @@
         /// </summary>
         public Direction Direction { get; }
 
+        #endregion
+
+        #region Constructors
+
         internal ItemChangedEventArgs(T obj, int index, Direction direction)
         {
             Object = obj;
             Index = index;
             Direction = direction;
         }
+
+        #endregion
     }
 }

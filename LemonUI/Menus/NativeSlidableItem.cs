@@ -9,13 +9,7 @@ namespace LemonUI.Menus
     /// </summary>
     public abstract class NativeSlidableItem : NativeItem
     {
-        #region Private Fields
-
-        private bool alwaysVisible = false;
-
-        #endregion
-
-        #region Internal Fields
+        #region Fields
 
         /// <summary>
         /// The arrow pointing to the Left.
@@ -28,9 +22,11 @@ namespace LemonUI.Menus
         [Obsolete("arrowRight is Obsolete, use RightArrow instead.")]
         internal protected ScaledTexture arrowRight = null;
 
+        private bool alwaysVisible = false;
+
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The arrow pointing to the Left.
@@ -75,13 +71,13 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Local Events
+        #region Tools
 
         private void NativeSlidableItem_EnabledChanged(object sender, EventArgs e) => Recalculate();
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Recalculates the item positions and sizes with the specified values.

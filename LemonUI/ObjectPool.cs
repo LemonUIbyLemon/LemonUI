@@ -1,6 +1,4 @@
 #if FIVEM
-using CitizenFX.Core;
-using CitizenFX.Core.UI;
 using CitizenFX.Core.Native;
 #elif RAGEMP
 using RAGE.Game;
@@ -10,7 +8,8 @@ using Rage;
 using Rage.Native;
 #elif SHVDN3
 using GTA.Native;
-using GTA.UI;
+#elif ALTV
+using AltV.Net.Client;
 #endif
 using System;
 using System.Collections;
@@ -20,51 +19,19 @@ using System.Drawing;
 namespace LemonUI
 {
     /// <summary>
-    /// Represents the method that reports a Resolution change in the Game Settings.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">A <see cref="ResolutionChangedEventArgs"/> containing the Previous and Current resolution.</param>
-    public delegate void ResolutionChangedEventHandler(object sender, ResolutionChangedEventArgs e);
-    /// <summary>
-    /// Represents the method that reports a Safe Zone change in the Game Settings.
-    /// </summary>
-    /// <param name="sender">The source of the event event.</param>
-    /// <param name="e">A <see cref="ResolutionChangedEventArgs"/> containing the Previous and Current Safe Zone.</param>
-    public delegate void SafeZoneChangedEventHandler(object sender, SafeZoneChangedEventArgs e);
-
-    /// <summary>
-    /// Represents the information after a Safe Zone Change in the game.
-    /// </summary>
-    public class SafeZoneChangedEventArgs
-    {
-        /// <summary>
-        /// The raw Safezone size before the change.
-        /// </summary>
-        public float Before { get; }
-        /// <summary>
-        /// The Safezone size after the change.
-        /// </summary>
-        public float After { get; }
-
-        internal SafeZoneChangedEventArgs(float before, float after)
-        {
-            Before = before;
-            After = after;
-        }
-    }
-
-    /// <summary>
     /// Manager for Menus and Items.
     /// </summary>
     public class ObjectPool : IEnumerable<IProcessable>
     {
-        #region Private Fields
+        #region Fields
 
         /// <summary>
         /// The last known resolution by the object pool.
         /// </summary>
 #if FIVEM
         private SizeF lastKnownResolution = CitizenFX.Core.UI.Screen.Resolution;
+#elif ALTV
+        private SizeF lastKnownResolution = Screen.Resolution;
 #elif RAGEMP
         private SizeF lastKnownResolution = new SizeF(Game.ScreenResolution.Width, Game.ScreenResolution.Height);
 #elif RPH
@@ -77,6 +44,8 @@ namespace LemonUI
         /// </summary>
 #if FIVEM
         private float lastKnownSafezone = API.GetSafeZoneSize();
+#elif ALTV
+        private float lastKnownSafezone = Alt.Natives.GetSafeZoneSize();
 #elif RAGEMP
         private float lastKnownSafezone = Invoker.Invoke<float>(Natives.GetSafeZoneSize);
 #elif RPH
@@ -84,6 +53,7 @@ namespace LemonUI
 #elif SHVDN3
         private float lastKnownSafezone = Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
 #endif
+        
         /// <summary>
         /// The list of processable objects.
         /// </summary>
@@ -91,7 +61,7 @@ namespace LemonUI
 
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// Checks if there are objects visible on the screen.
@@ -136,6 +106,8 @@ namespace LemonUI
             // Get the current resolution
 #if FIVEM
             SizeF resolution = CitizenFX.Core.UI.Screen.Resolution;
+#elif ALTV
+            SizeF resolution = Screen.Resolution;
 #elif RAGEMP
             ScreenResolutionType raw = Game.ScreenResolution;
             SizeF resolution = new SizeF(raw.Width, raw.Height);
@@ -163,6 +135,8 @@ namespace LemonUI
             // Get the current Safezone size
 #if FIVEM
             float safezone = API.GetSafeZoneSize();
+#elif ALTV
+            float safezone = Alt.Natives.GetSafeZoneSize();
 #elif RAGEMP
             float safezone = Invoker.Invoke<float>(Natives.GetSafeZoneSize);
 #elif RPH
@@ -185,7 +159,7 @@ namespace LemonUI
 
         #endregion
 
-        #region Public Function
+        #region Functions
 
         /// <inheritdoc/>
         public IEnumerator<IProcessable> GetEnumerator() => objects.GetEnumerator();

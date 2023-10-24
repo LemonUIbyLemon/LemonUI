@@ -14,11 +14,36 @@ namespace LemonUI.Menus
         /// <summary>
         /// The image shown on the checkbox.
         /// </summary>
-        internal protected ScaledTexture check = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", string.Empty);
+        protected internal ScaledTexture check = new ScaledTexture(PointF.Empty, SizeF.Empty, "commonmenu", string.Empty);
         /// <summary>
         /// If this item is checked or not.
         /// </summary>
         private bool checked_ = false;
+
+        #endregion
+
+        #region Defaults
+
+        /// <summary>
+        /// The default checkbox textures when the checkbox is checked.
+        /// </summary>
+        public static readonly BadgeSet DefaultCheckedSet = new BadgeSet
+        {
+            NormalDictionary = "commonmenu",
+            NormalTexture = "shop_box_tick",
+            HoveredDictionary = "commonmenu",
+            HoveredTexture = "shop_box_tickb"
+        };
+        /// <summary>
+        /// The default checkbox textures when the checkbox is not checked.
+        /// </summary>
+        public static readonly BadgeSet DefaultUncheckedSet = new BadgeSet
+        {
+            NormalDictionary = "commonmenu",
+            NormalTexture = "shop_box_blank",
+            HoveredDictionary = "commonmenu",
+            HoveredTexture = "shop_box_blankb"
+        };
 
         #endregion
 
@@ -41,6 +66,14 @@ namespace LemonUI.Menus
                 CheckboxChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+        /// <summary>
+        /// The textures used when the checkbox is checked.
+        /// </summary>
+        public BadgeSet CheckedSet { get; set; } = DefaultCheckedSet;
+        /// <summary>
+        /// The textures used when the checkbox is unchecked.
+        /// </summary>
+        public BadgeSet UncheckedSet { get; set; } = DefaultUncheckedSet;
 
         #endregion
 
@@ -93,13 +126,13 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Local Events
+        #region Event Functions
 
         private void NativeCheckboxItem_EnabledChanged(object sender, EventArgs e) => UpdateTexture(lastSelected);
 
         #endregion
 
-        #region Internal Functions
+        #region Tools
 
         /// <summary>
         /// Inverts the checkbox activation.
@@ -108,23 +141,25 @@ namespace LemonUI.Menus
         /// <summary>
         /// Updates the texture of the sprite.
         /// </summary>
-        internal protected void UpdateTexture(bool selected)
+        protected internal void UpdateTexture(bool selected)
         {
+            bool showLight = !selected || !Enabled;
+
             // If the item is not selected or is not enabled, use the white pictures
-            if (!selected || !Enabled)
+            if (Checked)
             {
-                check.Texture = Checked ? "shop_box_tick" : "shop_box_blank";
+                check.Texture = showLight ? CheckedSet.NormalTexture : CheckedSet.HoveredTexture;
             }
             // Otherwise, use the black ones
             else
             {
-                check.Texture = Checked ? "shop_box_tickb" : "shop_box_blankb";
+                check.Texture = showLight ? UncheckedSet.NormalTexture : UncheckedSet.HoveredTexture;
             }
         }
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Recalculates the item positions and sizes with the specified values.

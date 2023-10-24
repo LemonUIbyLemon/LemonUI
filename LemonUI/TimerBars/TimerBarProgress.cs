@@ -9,39 +9,35 @@ namespace LemonUI.TimerBars
     /// </summary>
     public class TimerBarProgress : TimerBar
     {
-        #region Constant Fields
+        #region Constants
 
         private const float barWidth = 108;
         private const float barHeight = 15;
 
         #endregion
 
-        #region Private Fields
-
-        private float progress = 100;
-
-        #endregion
-
-        #region Internal Fields
+        #region Fields
 
         /// <summary>
         /// The background of the Progress Bar.
         /// </summary>
-        internal protected readonly ScaledRectangle barBackground = new ScaledRectangle(PointF.Empty, SizeF.Empty)
+        protected internal readonly ScaledRectangle barBackground = new ScaledRectangle(PointF.Empty, SizeF.Empty)
         {
             Color = Color.FromArgb(255, 139, 0, 0)
         };
         /// <summary>
         /// The foreground of the Progress Bar.
         /// </summary>
-        internal protected readonly ScaledRectangle barForeground = new ScaledRectangle(PointF.Empty, SizeF.Empty)
+        protected internal readonly ScaledRectangle barForeground = new ScaledRectangle(PointF.Empty, SizeF.Empty)
         {
             Color = Color.FromArgb(255, 255, 0, 0)
         };
 
+        private float progress = 100;
+
         #endregion
 
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// The progress of the bar.
@@ -90,7 +86,7 @@ namespace LemonUI.TimerBars
 
         #endregion
 
-        #region Public Functions
+        #region Functions
 
         /// <summary>
         /// Recalculates the position of the timer bar elements based on the location of it on the screen.

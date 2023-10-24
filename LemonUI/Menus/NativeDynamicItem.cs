@@ -27,6 +27,7 @@ namespace LemonUI.Menus
             set
             {
                 item = value;
+                UpdateItemName();
             }
         }
 
@@ -41,7 +42,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
         /// <summary>
         /// Creates a new Dynamic List Item.

@@ -7,9 +7,13 @@ namespace LemonUI.Scaleform
     /// </summary>
     public interface IScaleform : IDrawable, IProcessable, IDisposable
     {
+        #region Properties
+
         /// <summary>
         /// Draws the Scaleform in full screen.
         /// </summary>
         void DrawFullScreen();
+
+        #endregion
     }
 }

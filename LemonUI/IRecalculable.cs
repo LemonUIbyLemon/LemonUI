@@ -5,9 +5,13 @@ namespace LemonUI
     /// </summary>
     public interface IRecalculable
     {
+        #region Functions
+
         /// <summary>
         /// Recalculates the values.
         /// </summary>
         void Recalculate();
+
+        #endregion
     }
 }

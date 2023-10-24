@@ -13,10 +13,16 @@ namespace LemonUI // Previously System.ComponentModel
     /// </summary>
     public class CancelEventArgs : EventArgs
     {
+        #region Properties
+
         /// <summary>
         /// Gets or sets a value indicating whether we should cancel the operation or not
         /// </summary>
         public bool Cancel { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// Default constructor
@@ -24,12 +30,13 @@ namespace LemonUI // Previously System.ComponentModel
         public CancelEventArgs()
         {
         }
-
         /// <summary>
         /// Helper constructor
         /// </summary>
         /// <param name="cancel"></param>
         public CancelEventArgs(bool cancel) => Cancel = cancel;
+
+        #endregion
     }
 }
 #endif

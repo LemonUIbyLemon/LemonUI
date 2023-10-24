@@ -2,6 +2,8 @@
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
+#elif ALTV
+using AltV.Net.Client;
 #elif RAGEMP
 using RAGE.Game;
 #elif RPH
@@ -190,7 +192,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
         /// <summary>
         /// Creates a new <see cref="NativeGridPanel"/>.
@@ -306,8 +308,13 @@ namespace LemonUI.Menus
             }
             else
             {
+#if ALTV
+                Controls.DisableThisFrame(Control.LookUd);
+                Controls.DisableThisFrame(Control.LookLr);
+#else
                 Controls.DisableThisFrame(Control.LookUpDown);
                 Controls.DisableThisFrame(Control.LookLeftRight);
+#endif
                 Controls.EnableThisFrame(Control.ScriptRightAxisX);
                 Controls.EnableThisFrame(Control.ScriptRightAxisY);
 
@@ -315,6 +322,10 @@ namespace LemonUI.Menus
                 float rX = Game.GetControlNormal(0, Control.ScriptRightAxisX);
                 float rY = Game.GetControlNormal(0, Control.ScriptRightAxisY);
                 float frameTime = Game.LastFrameTime;
+#elif ALTV
+                float rX = Alt.Natives.GetControlNormal(0, (int)Control.ScriptRightAxisX);
+                float rY = Alt.Natives.GetControlNormal(0, (int)Control.ScriptRightAxisY);
+                float frameTime = Alt.Natives.GetFrameTime();
 #elif RAGEMP
                 float rX = Invoker.Invoke<float>(0xEC3C9B8D5327B563, 0, (int)Control.ScriptRightAxisX);
                 float rY = Invoker.Invoke<float>(0xEC3C9B8D5327B563, 0, (int)Control.ScriptRightAxisY);

@@ -15,37 +15,47 @@ Special thanks to:
 
 ## Download
 
-* [GitHub](https://github.com/justalemon/LemonUI/releases)
 * [5mods](https://www.gta5-mods.com/scripts/lemonui)
-* [AppVeyor](https://ci.appveyor.com/project/justalemon/lemonui) (experimental)
+* [GitHub Releases](https://github.com/LemonUIbyLemon/LemonUI/releases)
+* [GitHub Actions](https://github.com/LemonUIbyLemon/LemonUI/actions) (experimental versions)
 
 ## Installation
+
+> Warning: You don't need to install all of the files. You only need to install the ones for the framework you plan to use. For example, if you want to install SHVDN mods, you don't need to install the RPH version.
 
 ### FiveM
 
 You don't need to install any files when using FiveM. When you connect to a server, the resources that need it will automatically provide a copy of LemonUI.
 
-### RPH
+### RageMP
+
+You don't need to install any files when using RageMP. When you connect to a server, the resources that need it will automatically provide a copy of LemonUI when compiling the code.
+
+### RagePluginHook
 
 Copy all of the files from the **RPH** folder inside of the compressed file to the root of your GTA V installation directory.
 
-### ScriptHookVDotNet 2
+### ScriptHookVDotNet 2 and ScriptHookVDotNet 3
 
 **PLEASE NOTE THAT THE LAST VERSION THAT SUPPORTED SHVDN2 WAS 1.5.2. [You can download it here]().**
 
-Copy all of the files from the **SHVDN2** folder inside of the compressed file to your **scripts** directory.
+Copy all of the files from the **SHVDN2** and/or **SHVDN3** folder(s) inside of the compressed file to your **scripts** directory.
 
-### ScriptHookVDotNet 3
+### Developers
 
-Copy all of the files from the **SHVDN3** folder inside of the compressed file to your **scripts** directory.
+Add any of the NuGet packages linked above and start working in your IDE.
+
+If you are using RagePluginHook or ScriptHookVDotNet, you can disable the copy of the dll in your IDE so your users always have to use the latest version available.
+
+If you are using RageMP, you will need to download the latest release and copy **LemonUI.RageMP.cs** to you client solution.
 
 ## Usage
 
 Once installed, the mods that require LemonUI will start working.
 
-If you are a developer, check the [wiki](https://github.com/justalemon/LemonUI/wiki) for information to implement LemonUI in your mod.
+If you are a developer, check the [wiki](https://github.com/LemonUIbyLemon/LemonUI/wiki) for information to implement LemonUI in your mod.
 
-[actions-img]: https://img.shields.io/github/workflow/status/LemonUIbyLemon/LemonUI/Compile%20Mod?label=github%20actions
+[actions-img]: https://img.shields.io/github/actions/workflow/status/LemonUIbyLemon/LemonUI/main.yml?branch=master&label=actions
 [actions-url]: https://github.com/LemonUIbyLemon/LemonUI/actions
 [nuget-img-2]: https://img.shields.io/nuget/v/LemonUI.SHVDN2?label=nuget%20%28shvdn%202%29
 [nuget-url-2]: https://www.nuget.org/packages/LemonUI.SHVDN2/

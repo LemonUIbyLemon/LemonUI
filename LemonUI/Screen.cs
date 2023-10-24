@@ -12,6 +12,9 @@ using Control = Rage.GameControl;
 using GTA;
 using GTA.Native;
 using GTA.UI;
+#elif ALTV
+using AltV.Net.Client;
+using LemonUI.Elements;
 #endif
 using LemonUI.Extensions;
 using System;
@@ -20,37 +23,12 @@ using System.Drawing;
 namespace LemonUI
 {
     /// <summary>
-    /// Represents the internal alignment of screen elements.
-    /// </summary>
-    public enum GFXAlignment
-    {
-        /// <summary>
-        /// Vertical Alignment to the Bottom.
-        /// </summary>
-        Bottom = 66,
-        /// <summary>
-        /// Vertical Alignment to the Top.
-        /// </summary>
-        Top = 84,
-        /// <summary>
-        /// Centered Vertically or Horizontally.
-        /// </summary>
-        Center = 67,
-        /// <summary>
-        /// Horizontal Alignment to the Left.
-        /// </summary>
-        Left = 76,
-        /// <summary>
-        /// Horizontal Alignment to the Right.
-        /// </summary>
-        Right = 82,
-    }
-
-    /// <summary>
     /// Contains a set of tools to work with the screen information.
     /// </summary>
     public static class Screen
     {
+        #region Properties
+
         /// <summary>
         /// The Aspect Ratio of the screen resolution.
         /// </summary>
@@ -65,10 +43,28 @@ namespace LemonUI
 #elif RPH
                 return NativeFunction.CallByHash<float>(0xF1307EF624A80D87, false);
 #elif SHVDN3
-                return Function.Call<float>(Hash._GET_ASPECT_RATIO, false);
+                return Function.Call<float>(Hash.GET_ASPECT_RATIO, false);
+#elif ALTV
+                return Alt.Natives.GetAspectRatio(false);
 #endif
             }
         }
+        
+#if ALTV
+        /// <summary>
+        /// Gets the actual Screen resolution the game is being rendered at
+        /// </summary>
+        public static Size Resolution
+        {
+            get
+            {
+                int height = 0, width = 0;
+                Alt.Natives.GetActualScreenResolution(ref width, ref height);
+                return new Size(width, height);
+            }
+        }
+#endif
+        
         /// <summary>
         /// The location of the cursor on screen between 0 and 1.
         /// </summary>
@@ -79,6 +75,9 @@ namespace LemonUI
 #if FIVEM
                 float cursorX = API.GetControlNormal(0, (int)Control.CursorX);
                 float cursorY = API.GetControlNormal(0, (int)Control.CursorY);
+#elif ALTV
+                float cursorX = Alt.Natives.GetControlNormal(0, (int)Control.CursorX);
+                float cursorY = Alt.Natives.GetControlNormal(0, (int)Control.CursorY);
 #elif RAGEMP
                 float cursorX = Invoker.Invoke<float>(Natives.GetControlNormal, 0, (int)Control.CursorX);
                 float cursorY = Invoker.Invoke<float>(Natives.GetControlNormal, 0, (int)Control.CursorY);
@@ -92,6 +91,10 @@ namespace LemonUI
                 return new PointF(cursorX, cursorY);
             }
         }
+
+        #endregion
+
+        #region Functions
 
         /// <summary>
         /// Converts a relative resolution into one scaled to 1080p.
@@ -177,6 +180,8 @@ namespace LemonUI
             float realX = 0, realY = 0;
 #if FIVEM
             API.GetScriptGfxPosition(relativeX, relativeY, ref realX, ref realY);
+#elif ALTV
+            Alt.Natives.GetScriptGfxAlignPosition(relativeX, relativeY, ref realX, ref realY);
 #elif RAGEMP
             FloatReference argX = new FloatReference();
             FloatReference argY = new FloatReference();
@@ -184,19 +189,21 @@ namespace LemonUI
             realX = argX.Value;
             realY = argY.Value;
 #elif RPH
-            using (NativePointer argX = new NativePointer())
-            using (NativePointer argY = new NativePointer())
+            using (NativePointer argX = new NativePointer(4))
+            using (NativePointer argY = new NativePointer(4))
             {
                 NativeFunction.CallByHash<int>(0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY);
                 realX = argX.GetValue<float>();
                 realY = argY.GetValue<float>();
             }
 #elif SHVDN3
-            OutputArgument argX = new OutputArgument();
-            OutputArgument argY = new OutputArgument();
-            Function.Call((Hash)0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY); // _GET_SCRIPT_GFX_POSITION
-            realX = argX.GetResult<float>();
-            realY = argY.GetResult<float>();
+            using (OutputArgument argX = new OutputArgument())
+            using (OutputArgument argY = new OutputArgument())
+            {
+                Function.Call((Hash)0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY); // _GET_SCRIPT_GFX_POSITION
+                realX = argX.GetResult<float>();
+                realY = argY.GetResult<float>();
+            }
 #endif
             // And return it converted to absolute
             ToAbsolute(realX, realY, out float absoluteX, out float absoluteY);
@@ -209,12 +216,14 @@ namespace LemonUI
         {
 #if FIVEM
             API.SetMouseCursorActiveThisFrame();
+#elif ALTV
+            Alt.Natives.SetMouseCursorThisFrame();
 #elif RAGEMP
             Invoker.Invoke(0xAAE7CE1D63167423);
 #elif RPH
             NativeFunction.CallByHash<int>(0xAAE7CE1D63167423);
 #elif SHVDN3
-            Function.Call(Hash._SET_MOUSE_CURSOR_ACTIVE_THIS_FRAME);
+            Function.Call(Hash.SET_MOUSE_CURSOR_THIS_FRAME);
 #endif
         }
         /// <summary>
@@ -254,6 +263,9 @@ namespace LemonUI
 #if FIVEM
             API.SetScriptGfxAlign((int)horizontal, (int)vertical);
             API.SetScriptGfxAlignParams(0, 0, 0, 0);
+#elif ALTV
+            Alt.Natives.SetScriptGfxAlign((int)horizontal, (int)vertical);
+            Alt.Natives.SetScriptGfxAlignParams(0, 0, 0, 0);
 #elif RAGEMP
             Invoker.Invoke(0xB8A850F20A067EB6, (int)horizontal, (int)vertical);
             Invoker.Invoke(0xF5A2C681787E579D, 0, 0, 0, 0);
@@ -272,6 +284,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.ResetScriptGfxAlign();
+#elif ALTV
+            Alt.Natives.ResetScriptGfxAlign();
 #elif RAGEMP
             Invoker.Invoke(0xE3A3DB414A373DAB);
 #elif RPH
@@ -280,5 +294,7 @@ namespace LemonUI
             Function.Call(Hash.RESET_SCRIPT_GFX_ALIGN);
 #endif
         }
+
+        #endregion
     }
 }

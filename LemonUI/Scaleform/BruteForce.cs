@@ -7,6 +7,9 @@ using RAGE.Game;
 using Rage;
 using Rage.Native;
 using Control = Rage.GameControl;
+#elif ALTV
+using AltV.Net.Client;
+using LemonUI.Elements;
 #elif SHVDN3
 using GTA;
 using GTA.Native;
@@ -16,79 +19,6 @@ using System.Collections.Generic;
 
 namespace LemonUI.Scaleform
 {
-    /// <summary>
-    /// The Background of the BruteForce Hack Minigame.
-    /// </summary>
-    public enum BruteForceBackground
-    {
-        /// <summary>
-        /// A simple Black background.
-        /// </summary>
-        Black = 0,
-        /// <summary>
-        /// A simple Purple background.
-        /// </summary>
-        Purple = 1,
-        /// <summary>
-        /// A simple Gray background.
-        /// </summary>
-        Gray = 2,
-        /// <summary>
-        /// A simple Light Blue background.
-        /// </summary>
-        LightBlue = 3,
-        /// <summary>
-        /// A Light Blue Wallpaper.
-        /// </summary>
-        Wallpaper1 = 4,
-        /// <summary>
-        /// A Fade from Gray in the center to Black in the corners.
-        /// </summary>
-        DarkFade = 5,
-    }
-
-    /// <summary>
-    /// The status of the BruteForce Hack after finishing.
-    /// </summary>
-    public enum BruteForceStatus
-    {
-        /// <summary>
-        /// The user completed the hack successfully.
-        /// </summary>
-        Completed = 0,
-        /// <summary>
-        /// The user ran out of time.
-        /// </summary>
-        OutOfTime = 1,
-        /// <summary>
-        /// The player ran out of lives.
-        /// </summary>
-        OutOfLives = 2,
-    }
-
-    /// <summary>
-    /// Event information after an the BruteForce hack has finished.
-    /// </summary>
-    public class BruteForceFinishedEventArgs
-    {
-        /// <summary>
-        /// The final status of the Hack.
-        /// </summary>
-        public BruteForceStatus Status { get; }
-
-        internal BruteForceFinishedEventArgs(BruteForceStatus status)
-        {
-            Status = status;
-        }
-    }
-
-    /// <summary>
-    /// Represents the method that is called when the end user finishes the BruteForce hack.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">An <see cref="BruteForceFinishedEventArgs"/> with the hack status.</param>
-    public delegate void BruteForceFinishedEventHandler(object sender, BruteForceFinishedEventArgs e);
-
     /// <summary>
     /// The BruteForce Hacking Minigame shown in multiple missions.
     /// </summary>
@@ -130,7 +60,7 @@ namespace LemonUI.Scaleform
             {
                 if (value.Length != 8)
                 {
-                    throw new ArgumentOutOfRangeException("The word needs to be exactly 8 characters long.", nameof(value));
+                    throw new ArgumentOutOfRangeException(nameof(value), "The word needs to be exactly 8 characters long.");
                 }
                 word = value;
                 CallFunction("SET_ROULETTE_WORD", value);
@@ -189,7 +119,7 @@ namespace LemonUI.Scaleform
             {
                 if (value < -1)
                 {
-                    throw new ArgumentOutOfRangeException("The Closure time can't be under -1.", nameof(value));
+                    throw new ArgumentOutOfRangeException(nameof(value), "The Closure time can't be under -1.");
                 }
                 closeAfter = value;
             }
@@ -268,6 +198,8 @@ namespace LemonUI.Scaleform
 
 #if RAGEMP
             int time = Misc.GetGameTimer();
+#elif ALTV
+            int time = Alt.MsPerGameMinute;
 #elif RPH
             uint time = Game.GameTime;
 #else
@@ -285,7 +217,7 @@ namespace LemonUI.Scaleform
         {
             if (index >= 8 || index < 0)
             {
-                throw new ArgumentOutOfRangeException("The index needs to be between 0 and 7.", nameof(index));
+                throw new ArgumentOutOfRangeException(nameof(index), "The index needs to be between 0 and 7.");
             }
             CallFunction("SET_COLUMN_SPEED", index, speed);
         }
@@ -304,6 +236,8 @@ namespace LemonUI.Scaleform
         {
 #if RAGEMP
             int time = Misc.GetGameTimer();
+#elif ALTV
+            int time = Alt.MsPerGameMinute;
 #elif RPH
             uint time = Game.GameTime;
 #else

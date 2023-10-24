@@ -16,6 +16,8 @@ namespace LemonUI.Elements
     /// </summary>
     public interface IText : IRecalculable, IDrawable
     {
+        #region Properties
+
         /// <summary>
         /// The position of the text.
         /// </summary>
@@ -64,5 +66,7 @@ namespace LemonUI.Elements
         /// The height of each line of text.
         /// </summary>
         float LineHeight { get; }
+
+        #endregion
     }
 }

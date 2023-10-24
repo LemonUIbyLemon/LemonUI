@@ -26,7 +26,7 @@ namespace LemonUI.Menus
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
         /// <summary>
         /// Creates a new empty <see cref="BadgeSet"/>.
