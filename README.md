@@ -39,7 +39,7 @@ Copy all of the files from the **RPH** folder inside of the compressed file to t
 
 **PLEASE NOTE THAT THE LAST VERSION THAT SUPPORTED SHVDN2 WAS 1.5.2. [You can download it here]().**
 
-Copy all of the files from the **SHVDN2** and/or **SHVDN2** folder(s) inside of the compressed file to your **scripts** directory.
+Copy all of the files from the **SHVDN2** and/or **SHVDN3** folder(s) inside of the compressed file to your **scripts** directory.
 
 ### Developers
 
