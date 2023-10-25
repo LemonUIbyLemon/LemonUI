@@ -3,7 +3,7 @@ using Alignment = CitizenFX.Core.UI.Alignment;
 using Font = CitizenFX.Core.UI.Font;
 #elif RAGEMP
 using RAGE.Game;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
 using Alignment = GTA.UI.Alignment;
 using Font = GTA.UI.Font;
 #endif

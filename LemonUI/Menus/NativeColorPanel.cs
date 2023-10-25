@@ -7,7 +7,7 @@ using AltV.Net.Client;
 using RAGE.Game;
 #elif RPH
 using Control = Rage.GameControl;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
 using GTA;
 using GTA.UI;
 #endif
@@ -690,7 +690,7 @@ namespace LemonUI.Menus
 #if ALTV
             if (Controls.IsJustPressed(Control.FrontendLT))
 #else
-                if (Controls.IsJustPressed(Control.FrontendLt))
+            if (Controls.IsJustPressed(Control.FrontendLt))
 #endif
             {
                 Previous();

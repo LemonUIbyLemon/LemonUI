@@ -2,7 +2,7 @@
 using CitizenFX.Core.UI;
 #elif RAGEMP
 using RAGE.Game;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
 using GTA.UI;
 #endif
 using LemonUI.Elements;

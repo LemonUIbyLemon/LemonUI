@@ -4,7 +4,7 @@ using CitizenFX.Core.Native;
 using RAGE.Game;
 #elif RPH
 using Rage.Native;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
 using GTA.Native;
 #elif ALTV
 using AltV.Net.Client;
@@ -84,7 +84,7 @@ namespace LemonUI.Elements
             {
                 NativeFunction.CallByHash<int>(0xDFA2EF8E04127DD5, Dictionary, true);
             }
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
             if (!Function.Call<bool>(Hash.HAS_STREAMED_TEXTURE_DICT_LOADED, Dictionary))
             {
                 Function.Call(Hash.REQUEST_STREAMED_TEXTURE_DICT, Dictionary, true);
@@ -114,7 +114,7 @@ namespace LemonUI.Elements
             NativeFunction.CallByHash<int>(0xE7FFAE5EBF23D890, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
 #elif ALTV
             Alt.Natives.DrawSprite(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A, false, 0);
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
             Function.Call(Hash.DRAW_SPRITE, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
 #endif
         }
@@ -136,7 +136,7 @@ namespace LemonUI.Elements
             NativeFunction.CallByHash<int>(0x95812F9B26074726, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A);
 #elif ALTV
             Alt.Natives.DrawSpriteArxWithUv(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A, 0);
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
             Function.Call((Hash)0x95812F9B26074726, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A);
 #endif
         }

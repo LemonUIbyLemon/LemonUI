@@ -6,7 +6,7 @@ using RAGE.Game;
 #elif RPH
 using Rage.Native;
 using Control = Rage.GameControl;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
 using GTA;
 using GTA.Native;
 #endif

@@ -5,7 +5,7 @@ using RAGE.Game;
 #elif RPH
 using Rage;
 using Rage.Native;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
 using GTA.UI;
 #elif ALTV
 using AltV.Net.Client;
@@ -182,7 +182,7 @@ namespace LemonUI.TimerBars
             Alt.Natives.HideHudComponentThisFrame(7);
             Alt.Natives.HideHudComponentThisFrame(9);
             Alt.Natives.HideHudComponentThisFrame(6);
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
             Hud.HideComponentThisFrame(HudComponent.AreaName);
             Hud.HideComponentThisFrame(HudComponent.StreetName);
             Hud.HideComponentThisFrame(HudComponent.VehicleName);

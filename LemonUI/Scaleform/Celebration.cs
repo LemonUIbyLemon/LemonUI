@@ -8,7 +8,7 @@ using RAGE.Game;
 #elif RPH
 using Rage;
 using Rage.Native;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
 using GTA;
 using GTA.Native;
 #endif
@@ -137,7 +137,7 @@ namespace LemonUI.Scaleform
             int time = Misc.GetGameTimer();
 #elif RPH
             uint time = Game.GameTime;
-#elif FIVEM || SHVDN3
+#elif FIVEM || SHVDN3 || SHVDNC
             int time = Game.GameTime;
 #endif
             showUntil = time + 333 + 333 + (Duration * 1000);
@@ -175,7 +175,7 @@ namespace LemonUI.Scaleform
             int time = Misc.GetGameTimer();
 #elif RPH
             uint time = Game.GameTime;
-#elif FIVEM || SHVDN3
+#elif FIVEM || SHVDN3 || SHVDNC
             int time = Game.GameTime;
 #endif
 
