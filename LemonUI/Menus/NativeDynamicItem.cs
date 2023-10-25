@@ -89,7 +89,7 @@ namespace LemonUI.Menus
         {
             // This is the SAME as the normal NativeListItem
 
-            text.Text = !SelectedItem.Equals(default) ? SelectedItem.ToString() : string.Empty;
+            text.Text = SelectedItem == null ? string.Empty : SelectedItem.ToString();
 
             text.Position = new PointF(RightArrow.Position.X - text.Width + 3, text.Position.Y);
             LeftArrow.Position = new PointF(text.Position.X - LeftArrow.Size.Width, LeftArrow.Position.Y);
