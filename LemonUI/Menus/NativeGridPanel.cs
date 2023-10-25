@@ -10,7 +10,7 @@ using RAGE.Game;
 using Rage;
 using Rage.Native;
 using Control = Rage.GameControl;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
 using GTA;
 using GTA.Native;
 using GTA.UI;
@@ -334,7 +334,7 @@ namespace LemonUI.Menus
                 float rX = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.ScriptRightAxisX);
                 float rY = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.ScriptRightAxisY);
                 float frameTime = Game.FrameTime;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
                 float rX = Game.GetControlValueNormalized(Control.ScriptRightAxisX);
                 float rY = Game.GetControlValueNormalized(Control.ScriptRightAxisY);
                 float frameTime = Game.LastFrameTime;

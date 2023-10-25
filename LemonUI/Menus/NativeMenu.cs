@@ -17,7 +17,7 @@ using Rage.Native;
 using System.ComponentModel;
 using Control = Rage.GameControl;
 using Font = LemonUI.Elements.Font;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
 using GTA;
 using GTA.Native;
 using GTA.UI;
@@ -991,7 +991,7 @@ namespace LemonUI.Menus
             NativeFunction.CallByHash<int>(0xFC695459D4D0E219, pos.X, pos.Y);
 #elif ALTV
             Alt.Natives.SetCursorPosition(pos.X, pos.Y);
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
             Function.Call(Hash.SET_CURSOR_POSITION, pos.X, pos.Y);
 #endif
         }
@@ -1135,7 +1135,7 @@ namespace LemonUI.Menus
             bool isKeyboardActive = Invoker.Invoke<int>(Natives.UpdateOnscreenKeyboard) == 0;
 #elif RPH
             bool isKeyboardActive = NativeFunction.CallByHash<int>(0x0CF2B696BBF945AE) == 0;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
             bool isKeyboardActive = Function.Call<int>(Hash.UPDATE_ONSCREEN_KEYBOARD) == 0;
 #endif
             if (!AcceptsInput || isKeyboardActive)
@@ -1208,7 +1208,7 @@ namespace LemonUI.Menus
             if (UseMouse && !Controls.IsUsingController)
             {
                 // Enable the mouse cursor
-#if FIVEM || SHVDN3 || ALTV
+#if FIVEM || SHVDN3 || SHVDNC || ALTV
                 Screen.ShowCursorThisFrame();
 #elif RAGEMP
                 Invoker.Invoke(Natives.ShowCursorThisFrame);
@@ -1221,7 +1221,7 @@ namespace LemonUI.Menus
                 {
                     if (Screen.IsCursorInArea(PointF.Empty, searchAreaSize))
                     {
-#if FIVEM || SHVDN3
+#if FIVEM || SHVDN3 || SHVDNC
                         GameplayCamera.RelativeHeading += 5;
 #elif ALTV
                         float current = Alt.Natives.GetGameplayCamRelativeHeading();
@@ -1235,7 +1235,7 @@ namespace LemonUI.Menus
                     }
                     else if (Screen.IsCursorInArea(searchAreaRight, searchAreaSize))
                     {
-#if FIVEM || SHVDN3
+#if FIVEM || SHVDN3 || SHVDNC
                         GameplayCamera.RelativeHeading -= 5;
 #elif ALTV
                         float current = Alt.Natives.GetGameplayCamRelativeHeading();
@@ -1646,7 +1646,7 @@ namespace LemonUI.Menus
 #elif RPH
                 NativeFunction.CallByHash<int>(0x351220255D64C155, 0, (int)Control.CellphoneCancel);
                 NativeFunction.CallByHash<int>(0x351220255D64C155, 0, (int)Control.FrontendPause);
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
                 Function.Call(Hash.SET_INPUT_EXCLUSIVE, 0, (int)Control.PhoneCancel);
                 Function.Call(Hash.SET_INPUT_EXCLUSIVE, 0, (int)Control.FrontendPause);
 #endif

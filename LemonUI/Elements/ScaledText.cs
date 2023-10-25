@@ -8,9 +8,9 @@ using AltV.Net.Client;
 using RAGE.Game;
 #elif RPH
 using Rage.Native;
-#elif SHVDN3
-using GTA.UI;
+#elif SHVDN3 || SHVDNC
 using GTA.Native;
+using GTA.UI;
 using Font = GTA.UI.Font;
 #endif
 using System.Collections.Generic;
@@ -163,7 +163,7 @@ namespace LemonUI.Elements
                 NativeFunction.CallByHash<int>(0x54CE8AC98E120CAB, "CELL_EMAIL_BCON");
                 Add();
                 return NativeFunction.CallByHash<float>(0x85F061DA64ED2F67, true) * 1f.ToXAbsolute();
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
                 Function.Call(Hash.BEGIN_TEXT_COMMAND_GET_SCREEN_WIDTH_OF_DISPLAY_TEXT, "CELL_EMAIL_BCON");
                 Add();
                 return Function.Call<float>(Hash.END_TEXT_COMMAND_GET_SCREEN_WIDTH_OF_DISPLAY_TEXT, true) * 1f.ToXAbsolute();
@@ -185,7 +185,7 @@ namespace LemonUI.Elements
                 Invoker.Invoke(Natives.BeginTextCommandLineCount, "CELL_EMAIL_BCON");
 #elif RPH
                 NativeFunction.CallByHash<int>(0x521FB041D93DD0E4, "CELL_EMAIL_BCON");
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
                 Function.Call(Hash.BEGIN_TEXT_COMMAND_GET_NUMBER_OF_LINES_FOR_STRING, "CELL_EMAIL_BCON");
 #endif
                 Add();
@@ -197,7 +197,7 @@ namespace LemonUI.Elements
                 return Invoker.Invoke<int>(Natives.EndTextCommandGetLineCount, relativePosition.X, relativePosition.Y);
 #elif RPH
                 return NativeFunction.CallByHash<int>(0x9040DFB09BE75706, relativePosition.X, relativePosition.Y);
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
                 return Function.Call<int>(Hash.END_TEXT_COMMAND_GET_NUMBER_OF_LINES_FOR_STRING, relativePosition.X, relativePosition.Y);
 #endif
             }
@@ -218,7 +218,7 @@ namespace LemonUI.Elements
                 return 1080 * Invoker.Invoke<float>(Natives.GetTextScaleHeight, Scale, (int)Font);
 #elif RPH
                 return 1080 * NativeFunction.CallByHash<float>(0xDB88A37483346780, Scale, (int)Font);
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
                 return 1080 * Function.Call<float>(Hash.GET_RENDERED_CHARACTER_HEIGHT, Scale, (int)Font);
 #endif
             }
@@ -419,7 +419,7 @@ namespace LemonUI.Elements
             {
                 NativeFunction.CallByHash<int>(0x63145D9C883A1A70, 0f, relativePosition.X);
             }
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
             foreach (string chunk in chunks)
             {
                 Function.Call((Hash)0x6C188BE134E074AA, chunk); // _ADD_TEXT_COMPONENT_STRING on v2, ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME on v3
@@ -534,7 +534,7 @@ namespace LemonUI.Elements
             Invoker.Invoke(Natives.BeginTextCommandDisplayText, "CELL_EMAIL_BCON");
 #elif RPH
             NativeFunction.CallByHash<int>(0x25FBB336DF1804CB, "CELL_EMAIL_BCON");
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
             Function.Call((Hash)0x25FBB336DF1804CB, "CELL_EMAIL_BCON"); // _SET_TEXT_ENTRY on v2, BEGIN_TEXT_COMMAND_DISPLAY_TEXT on v3
 #endif
 
@@ -548,7 +548,7 @@ namespace LemonUI.Elements
             Invoker.Invoke(Natives.EndTextCommandDisplayText, relativePosition.X, relativePosition.Y);
 #elif RPH
             NativeFunction.CallByHash<int>(0xCD015E5BB0D96A57, relativePosition.X, relativePosition.Y);
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
             Function.Call((Hash)0xCD015E5BB0D96A57, relativePosition.X, relativePosition.Y); // _DRAW_TEXT on v2, END_TEXT_COMMAND_DISPLAY_TEXT on v3
 #endif
         }

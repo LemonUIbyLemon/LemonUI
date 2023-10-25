@@ -6,7 +6,7 @@ using CitizenFX.Core;
 using RAGE.Game;
 #elif RPH
 using Rage;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
 using GTA;
 #endif
 using System;
@@ -134,7 +134,7 @@ namespace LemonUI.Scaleform
             lastStepTime = Misc.GetGameTimer();
 #elif RPH
             lastStepTime = Game.GameTime;
-#elif FIVEM || SHVDN3
+#elif FIVEM || SHVDN3 || SHVDNC
             lastStepTime = Game.GameTime;
 #endif
 
@@ -158,7 +158,7 @@ namespace LemonUI.Scaleform
                 int currentTime = Misc.GetGameTimer();
 #elif RPH
                 uint currentTime = Game.GameTime;
-#elif FIVEM || SHVDN3
+#elif FIVEM || SHVDN3 || SHVDNC
                 int currentTime = Game.GameTime;
 #endif
 

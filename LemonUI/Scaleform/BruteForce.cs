@@ -10,7 +10,7 @@ using Control = Rage.GameControl;
 #elif ALTV
 using AltV.Net.Client;
 using LemonUI.Elements;
-#elif SHVDN3
+#elif SHVDN3 || SHVDNC
 using GTA;
 using GTA.Native;
 #endif

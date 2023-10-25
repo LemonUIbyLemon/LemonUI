@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <AssemblyName>$(AssemblyName)</AssemblyName>
+        <DefineConstants>SHVDNC,CLIENT</DefineConstants>
+        <Version>1.10.0</Version>
+        <OutputPath>$(SolutionDir)bin\$(Configuration)\SHVDN3\</OutputPath>
+        <PlatformTarget>x64</PlatformTarget>
+        <DebugType>full</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <CheckEolTargetFramework>false</CheckEolTargetFramework>
+        <NoAotCompile>true</NoAotCompile>
+        <GenerateDependencyFile>false</GenerateDependencyFile>
+
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
+
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageIcon>logo.png</PackageIcon>
+        <PackageId>$(ProjectName)</PackageId>
+        <Authors>Hannele "Lemon" Ruiz</Authors>
+        <Company>Hannele "Lemon" Ruiz</Company>
+        <Product>LemonUI</Product>
+        <Description>UI system for Grand Theft Auto V. This package is for ScriptHookVDotNetCore.</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/justalemon/LemonUI</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/justalemon/LemonUI.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <PackageOutputPath>$(SolutionDir)bin\$(Configuration)\FOR DEVELOPERS</PackageOutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="$(ProjectDir)../LemonUI/**/*.cs" />
+        <None Include="$(ProjectDir)../README.md" Pack="true" Visible="false" PackagePath="" />
+        <None Include="$(ProjectDir)../logo.png" Pack="true" Visible="false" PackagePath="" />
+        <PackageReference Include="ScriptHookVDotNetCore" Version="1.2.1">
+            <IncludeAssets>compile</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+</Project>
