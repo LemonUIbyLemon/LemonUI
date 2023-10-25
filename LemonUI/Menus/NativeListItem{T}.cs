@@ -157,7 +157,7 @@ namespace LemonUI.Menus
         /// </summary>
         private void UpdateIndex()
         {
-            text.Text = SelectedIndex != -1 ? SelectedItem.ToString() : string.Empty;
+            text.Text = SelectedItem == null ? string.Empty : SelectedItem.ToString();
 
             text.Position = new PointF(RightArrow.Position.X - text.Width + 3, text.Position.Y);
             LeftArrow.Position = new PointF(text.Position.X - LeftArrow.Size.Width, LeftArrow.Position.Y);
