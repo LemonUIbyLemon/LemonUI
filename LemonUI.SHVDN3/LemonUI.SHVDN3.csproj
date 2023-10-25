@@ -9,7 +9,7 @@
         <Version>1.10.0</Version>
         <OutputPath>$(SolutionDir)bin\$(Configuration)\SHVDN3\</OutputPath>
         <PlatformTarget>x64</PlatformTarget>
-        <DebugType>portable</DebugType>
+        <DebugType>full</DebugType>
         <DebugSymbols>true</DebugSymbols>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <CheckEolTargetFramework>false</CheckEolTargetFramework>
