@@ -41,19 +41,15 @@ Copy all of the files from the **RPH** folder inside of the compressed file to t
 
 Copy all of the files from the **SHVDN2** and/or **SHVDN3** folder(s) inside of the compressed file to your **scripts** directory.
 
-### Developers
-
-Add any of the NuGet packages linked above and start working in your IDE.
-
-If you are using RagePluginHook or ScriptHookVDotNet, you can disable the copy of the dll in your IDE so your users always have to use the latest version available.
-
-If you are using RageMP, you will need to download the latest release and copy **LemonUI.RageMP.cs** to you client solution.
-
 ## Usage
 
 Once installed, the mods that require LemonUI will start working.
 
-If you are a developer, check the [wiki](https://github.com/LemonUIbyLemon/LemonUI/wiki) for information to implement LemonUI in your mod.
+## Developers
+
+Check the [Quick Start guide](https://github.com/LemonUIbyLemon/LemonUI/wiki/Quick-Start) to learn how to use LemonUI in your project.
+
+If you would like to make changes to the code, clone the repo, restore the packages and open the solution in your favorite IDE.
 
 [actions-img]: https://img.shields.io/github/actions/workflow/status/LemonUIbyLemon/LemonUI/main.yml?branch=master&label=actions
 [actions-url]: https://github.com/LemonUIbyLemon/LemonUI/actions
