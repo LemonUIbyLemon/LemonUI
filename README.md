@@ -37,7 +37,7 @@ Copy all of the files from the **RPH** folder inside of the compressed file to t
 
 ### ScriptHookVDotNet 2 and ScriptHookVDotNet 3
 
-**PLEASE NOTE THAT THE LAST VERSION THAT SUPPORTED SHVDN2 WAS 1.5.2. [You can download it here]().**
+**PLEASE NOTE THAT THE LAST VERSION THAT SUPPORTED SHVDN2 WAS 1.5.2. [You can download it here](https://github.com/LemonUIbyLemon/LemonUI/releases/tag/v1.5.2).**
 
 Copy all of the files from the **SHVDN2** and/or **SHVDN3** folder(s) inside of the compressed file to your **scripts** directory.
 
