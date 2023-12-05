@@ -9,14 +9,6 @@ namespace LemonUI.TinyTween
     {
         #region Fields
         /// <summary>
-        /// Represents the value of Pi.
-        /// </summary>
-        public const float Pi = (float)Math.PI;
-        /// <summary>
-        /// Represents half of the value of Pi.
-        /// </summary>
-        public const float HalfPi = (float)Math.PI / 2;
-        /// <summary>
         /// Represents a linear scale function.
         /// </summary>
         public static readonly ScaleFunc Linear = LinearImpl;
