@@ -1282,8 +1282,13 @@ namespace LemonUI.Menus
                         }
 
                         // If the cursor is inside of the selection rectangle
-                        if (GameScreen.IsCursorInArea(item.title.Position.X - itemOffsetX, item.title.Position.Y - itemOffsetY, Width, itemHeight))
+                        if (item.IsHovered)
                         {
+                            if (item is NativeSeparatorItem)
+                            {
+                                return;
+                            }
+
                             // If the item is selected, activate it
                             if (item == selectedItem)
                             {
@@ -1426,7 +1431,7 @@ namespace LemonUI.Menus
                     continue;
                 }
 
-                if (item.IsHovered && UseMouse)
+                if (item.IsHovered && UseMouse && !(item is NativeSeparatorItem))
                 {
                     hoveredRect.Position = item.lastPosition;
                     hoveredRect.Size = item.lastSize;
@@ -1774,21 +1779,34 @@ namespace LemonUI.Menus
         /// </summary>
         public void Previous()
         {
-            // If there are no items, return
             if (Items.Count == 0)
             {
                 return;
             }
 
-            // If we are on the first item, go back to the last one
-            if (SelectedIndex <= 0)
+            int nextIndex = SelectedIndex;
+
+            while (true)
             {
-                SelectedIndex = Items.Count - 1;
-            }
-            // Otherwise, reduce it by one
-            else
-            {
-                SelectedIndex -= 1;
+                nextIndex -= 1;
+
+                if (nextIndex < 0)
+                {
+                    nextIndex = Items.Count - 1;
+                }
+
+                if (Items[nextIndex] is NativeSeparatorItem)
+                {
+                    continue;
+                }
+
+                if (nextIndex == SelectedIndex)
+                {
+                    return;
+                }
+
+                SelectedIndex = nextIndex;
+                return;
             }
         }
         /// <summary>
@@ -1797,21 +1815,34 @@ namespace LemonUI.Menus
         /// </summary>
         public void Next()
         {
-            // If there are no items, return
             if (Items.Count == 0)
             {
                 return;
             }
 
-            // If we are on the last item, go back to the first one
-            if (Items.Count - 1 == SelectedIndex)
+            int nextIndex = SelectedIndex;
+
+            while (true)
             {
-                SelectedIndex = 0;
-            }
-            // Otherwise, increase it by one
-            else
-            {
-                SelectedIndex += 1;
+                nextIndex += 1;
+
+                if (nextIndex >= Items.Count)
+                {
+                    nextIndex = 0;
+                }
+
+                if (Items[nextIndex] is NativeSeparatorItem)
+                {
+                    continue;
+                }
+
+                if (nextIndex == SelectedIndex)
+                {
+                    return;
+                }
+
+                SelectedIndex = nextIndex;
+                return;
             }
         }
 
