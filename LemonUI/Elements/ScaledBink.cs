@@ -108,6 +108,26 @@ namespace LemonUI.Elements
             Function.Call<int>(Hash.DRAW_BINK_MOVIE, id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
 #endif
         }
+        /// <summary>
+        /// Stops the playback of the Bink Video.
+        /// </summary>
+        /// <remarks>
+        /// If <see cref="Draw"/> is called after this function. playback will start again.
+        /// </remarks>
+        public void Stop()
+        {
+#if ALTV
+            Alt.Natives.StopBinkMovie(id);
+#elif FIVEM
+            API.StopBinkMovie(id);
+#elif RAGEMP
+            Invoker.Invoke<int>(0x63606A61DE68898A, id);
+#elif RPH
+            NativeFunction.CallByHash<int>(0x63606A61DE68898A, id);
+#elif SHVDN3 || SHVDNC
+            Function.Call<int>(Hash.STOP_BINK_MOVIE, id);
+#endif
+        }
         /// <inheritdoc/>
         public override void Recalculate()
         {
