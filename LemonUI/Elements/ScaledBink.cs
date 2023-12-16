@@ -67,6 +67,22 @@ namespace LemonUI.Elements
         /// </summary>
         public override void Draw()
         {
+#if ALTV
+            Alt.Natives.PlayBinkMovie(id);
+            Alt.Natives.DrawBinkMovie(id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
+#elif FIVEM
+            API.PlayBinkMovie(id);
+            API.DrawBinkMovie(id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
+#elif RAGEMP
+            Invoker.Invoke<int>(0xE178310643033958, id);
+            Invoker.Invoke<int>(0x7118E83EEB9F7238, id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
+#elif RPH
+            NativeFunction.CallByHash<int>(0xE178310643033958, id);
+            NativeFunction.CallByHash<int>(0x7118E83EEB9F7238, id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
+#elif SHVDN3 || SHVDNC
+            Function.Call<int>(Hash.PLAY_BINK_MOVIE, id);
+            Function.Call<int>(Hash.DRAW_BINK_MOVIE, id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
+#endif
         }
         /// <inheritdoc/>
         public override void Recalculate()
