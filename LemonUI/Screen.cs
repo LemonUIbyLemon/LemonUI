@@ -34,20 +34,11 @@ namespace LemonUI
         /// The Aspect Ratio of the screen resolution.
         /// </summary>
         public static float AspectRatio => GameScreen.AspectRatio;
-
 #if ALTV
         /// <summary>
-        /// Gets the actual Screen resolution the game is being rendered at
+        /// Gets the actual Screen resolution the game is being rendered at.
         /// </summary>
-        public static Size Resolution
-        {
-            get
-            {
-                int height = 0, width = 0;
-                Alt.Natives.GetActualScreenResolution(ref width, ref height);
-                return new Size(width, height);
-            }
-        }
+        public static Size Resolution => GameScreen.AbsoluteResolution.ToSize();
 #endif
         /// <summary>
         /// The location of the cursor on screen between 0 and 1.

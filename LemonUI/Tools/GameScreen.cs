@@ -4,6 +4,7 @@ using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 #elif RAGEMP
 using RAGE.Game;
+using RAGE.NUI;
 #elif RPH
 using Rage;
 using Rage.Native;
@@ -26,6 +27,29 @@ namespace LemonUI.Tools
     {
         #region Properties
 
+        /// <summary>
+        /// Gets the actual Screen resolution the game is being rendered at.
+        /// </summary>
+        public static SizeF AbsoluteResolution
+        {
+            get
+            {
+#if ALTV
+                int height = 0, width = 0;
+                Alt.Natives.GetActualScreenResolution(ref width, ref height);
+                return new SizeF(width, height);
+#elif FIVEM
+                return CitizenFX.Core.UI.Screen.Resolution;
+#elif RAGEMP
+                ScreenResolutionType raw = Game.ScreenResolution;
+                return new SizeF(raw.Width, raw.Height);
+#elif RPH
+                return Game.Resolution;
+#elif SHVDN3 || SHVDNC
+                return GTA.UI.Screen.Resolution;
+#endif
+            }
+        }
         /// <summary>
         /// The Aspect Ratio of the screen.
         /// </summary>

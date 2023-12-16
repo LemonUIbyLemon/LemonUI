@@ -15,6 +15,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using LemonUI.Tools;
 
 namespace LemonUI
 {
@@ -28,17 +29,7 @@ namespace LemonUI
         /// <summary>
         /// The last known resolution by the object pool.
         /// </summary>
-#if FIVEM
-        private SizeF lastKnownResolution = CitizenFX.Core.UI.Screen.Resolution;
-#elif ALTV
-        private SizeF lastKnownResolution = Screen.Resolution;
-#elif RAGEMP
-        private SizeF lastKnownResolution = new SizeF(Game.ScreenResolution.Width, Game.ScreenResolution.Height);
-#elif RPH
-        private SizeF lastKnownResolution = Game.Resolution;
-#elif SHVDN3 || SHVDNC
-        private SizeF lastKnownResolution = GTA.UI.Screen.Resolution;
-#endif
+        private SizeF lastKnownResolution = GameScreen.AbsoluteResolution;
         /// <summary>
         /// The last know Safezone size.
         /// </summary>
@@ -53,7 +44,6 @@ namespace LemonUI
 #elif SHVDN3 || SHVDNC
         private float lastKnownSafezone = Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
 #endif
-        
         /// <summary>
         /// The list of processable objects.
         /// </summary>
@@ -104,18 +94,7 @@ namespace LemonUI
         private void DetectResolutionChanges()
         {
             // Get the current resolution
-#if FIVEM
-            SizeF resolution = CitizenFX.Core.UI.Screen.Resolution;
-#elif ALTV
-            SizeF resolution = Screen.Resolution;
-#elif RAGEMP
-            ScreenResolutionType raw = Game.ScreenResolution;
-            SizeF resolution = new SizeF(raw.Width, raw.Height);
-#elif RPH
-            SizeF resolution = Game.Resolution;
-#elif SHVDN3 || SHVDNC
-            SizeF resolution = GTA.UI.Screen.Resolution;
-#endif
+            SizeF resolution = GameScreen.AbsoluteResolution;
             // If the old res does not matches the current one
             if (lastKnownResolution != resolution)
             {
