@@ -7,13 +7,13 @@ using RAGE.Game;
 using Rage;
 using Rage.Native;
 #elif SHVDN3 || SHVDNC
-using System;
 using GTA;
 using GTA.Native;
 #elif ALTV
 using AltV.Net.Client;
 using AltV.Net.Client.Elements.Entities;
 #endif
+using System;
 
 namespace LemonUI
 {
