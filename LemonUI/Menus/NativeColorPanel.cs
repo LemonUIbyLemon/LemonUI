@@ -24,7 +24,6 @@ namespace LemonUI.Menus
     /// </summary>
     public class NativeColorPanel : NativePanel, IEnumerable<NativeColorData>
     {
-
         #region Constants
 
         /// <summary>
@@ -310,7 +309,6 @@ namespace LemonUI.Menus
                 Sound?.PlayFrontend();
             }
         }
-
         /// <summary>
         /// The Title used for the Panel when <see cref="TitleStyle"/> is set to <see cref="ColorTitleStyle.Simple"/>.
         /// </summary>
@@ -319,11 +317,10 @@ namespace LemonUI.Menus
             get => simpleTitle;
             set
             {
-                simpleTitle = value;
+                simpleTitle = value ?? throw new ArgumentNullException(nameof(value));
                 UpdateTitle();
             }
         }
-
         /// <summary>
         /// The style of the Panel Title.
         /// </summary>
@@ -336,7 +333,6 @@ namespace LemonUI.Menus
                 UpdateTitle();
             }
         }
-
         /// <summary>
         /// If the count of items should be shown as part of the title.
         /// </summary>
@@ -349,7 +345,6 @@ namespace LemonUI.Menus
                 UpdateTitle();
             }
         }
-
         /// <summary>
         /// THe maximum number of items shown on the screen.
         /// </summary>
@@ -368,7 +363,6 @@ namespace LemonUI.Menus
                 UpdateTitle();
             }
         }
-
         /// <summary>
         /// The colors shown on this Panel.
         /// </summary>
@@ -388,7 +382,6 @@ namespace LemonUI.Menus
         public NativeColorPanel() : this(string.Empty)
         {
         }
-
         /// <summary>
         /// Creates a Panel with a specific Title and set of Colors.
         /// </summary>
@@ -396,9 +389,7 @@ namespace LemonUI.Menus
         /// <param name="colors">The colors of the panel.</param>
         public NativeColorPanel(string title, params NativeColorData[] colors)
         {
-            // Set the title of the Panel
-            Title = title;
-            // Add the colors that we got
+            Title = title ?? throw new ArgumentNullException(nameof(title));
             Colors.AddRange(colors);
         }
 
@@ -422,7 +413,6 @@ namespace LemonUI.Menus
                     break;
                 case ColorTitleStyle.ColorName:
                     newTitle = SelectedItem == null ? string.Empty : SelectedItem.Name;
-
                     break;
             }
 

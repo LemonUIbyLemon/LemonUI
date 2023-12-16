@@ -520,7 +520,7 @@ namespace LemonUI.Menus
             get => name;
             set
             {
-                name = value;
+                name = value ?? throw new ArgumentNullException(nameof(value));
                 nameText.Text = value.ToUpperInvariant();
             }
         }

@@ -136,7 +136,7 @@ namespace LemonUI.Menus
         public string LabelTop
         {
             get => labelTop.Text;
-            set => labelTop.Text = value;
+            set => labelTop.Text = value ?? throw new ArgumentNullException(nameof(value));
         }
         /// <summary>
         /// The text label shown on the bottom.
@@ -144,7 +144,7 @@ namespace LemonUI.Menus
         public string LabelBottom
         {
             get => labelBottom.Text;
-            set => labelBottom.Text = value;
+            set => labelBottom.Text = value ?? throw new ArgumentNullException(nameof(value));
         }
         /// <summary>
         /// The text label shown on the left.
@@ -152,7 +152,7 @@ namespace LemonUI.Menus
         public string LabelLeft
         {
             get => labelLeft.Text;
-            set => labelLeft.Text = value;
+            set => labelLeft.Text = value ?? throw new ArgumentNullException(nameof(value));
         }
         /// <summary>
         /// The text label shown on the right.
@@ -160,7 +160,7 @@ namespace LemonUI.Menus
         public string LabelRight
         {
             get => labelRight.Text;
-            set => labelRight.Text = value;
+            set => labelRight.Text = value ?? throw new ArgumentNullException(nameof(value));
         }
         /// <summary>
         /// The style of this grid.

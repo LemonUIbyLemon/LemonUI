@@ -7,6 +7,7 @@ using RAGE.Game;
 using Rage;
 using Rage.Native;
 #elif SHVDN3 || SHVDNC
+using System;
 using GTA;
 using GTA.Native;
 #elif ALTV
@@ -21,6 +22,13 @@ namespace LemonUI
     /// </summary>
     public class Sound
     {
+        #region Fields
+
+        private string set = string.Empty;
+        private string file = string.Empty;
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -30,11 +38,19 @@ namespace LemonUI
         /// <summary>
         /// The Set where the sound is located.
         /// </summary>
-        public string Set { get; set; }
+        public string Set
+        {
+            get => set;
+            set => set = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The name of the sound file.
         /// </summary>
-        public string File { get; set; }
+        public string File
+        {
+            get => file;
+            set => file = value ?? throw new ArgumentNullException(nameof(value));
+        }
 
         #endregion
 
@@ -47,8 +63,8 @@ namespace LemonUI
         /// <param name="file">The name of the sound file.</param>
         public Sound(string set, string file)
         {
-            Set = set;
-            File = file;
+            Set = set ?? throw new ArgumentNullException(nameof(set));
+            File = file ?? throw new ArgumentNullException(nameof(file));
         }
 
         #endregion

@@ -56,6 +56,7 @@ namespace LemonUI.Menus
         private BadgeSet badgeSetRight;
         private ColorSet colors = new ColorSet();
         private ScaledRectangle background = new ScaledRectangle(PointF.Empty, SizeF.Empty);
+        private string description = string.Empty;
 
         #endregion
 
@@ -88,7 +89,7 @@ namespace LemonUI.Menus
         public string Title
         {
             get => title.Text;
-            set => title.Text = value;
+            set => title.Text = value ?? throw new ArgumentNullException(nameof(value));
         }
         /// <summary>
         /// The alternative title of the item shown on the right.
@@ -98,7 +99,7 @@ namespace LemonUI.Menus
             get => altTitle.Text;
             set
             {
-                altTitle.Text = value;
+                altTitle.Text = value ?? throw new ArgumentNullException(nameof(value));
                 Recalculate();
             }
         }
@@ -121,7 +122,11 @@ namespace LemonUI.Menus
         /// <summary>
         /// The description of the item.
         /// </summary>
-        public string Description { get; set; }
+        public string Description
+        {
+            get => description;
+            set => description = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The Left badge of the Item.
         /// </summary>

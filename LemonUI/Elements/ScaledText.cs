@@ -13,6 +13,7 @@ using GTA.Native;
 using GTA.UI;
 using Font = GTA.UI.Font;
 #endif
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -89,7 +90,7 @@ namespace LemonUI.Elements
             get => text;
             set
             {
-                text = value;
+                text = value ?? throw new ArgumentNullException(nameof(value));
                 Slice();
             }
         }
@@ -236,7 +237,6 @@ namespace LemonUI.Elements
         public ScaledText(PointF pos, string text) : this(pos, text, 1f, Font.ChaletLondon)
         {
         }
-
         /// <summary>
         /// Creates a text with the specified options.
         /// </summary>
@@ -246,7 +246,6 @@ namespace LemonUI.Elements
         public ScaledText(PointF pos, string text, float scale) : this(pos, text, scale, Font.ChaletLondon)
         {
         }
-
         /// <summary>
         /// Creates a text with the specified options
         /// </summary>
@@ -257,7 +256,7 @@ namespace LemonUI.Elements
         public ScaledText(PointF pos, string text, float scale, Font font)
         {
             Position = pos;
-            Text = text;
+            Text = text ?? throw new ArgumentNullException(nameof(text));
             Scale = scale;
             Font = font;
         }
