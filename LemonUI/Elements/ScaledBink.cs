@@ -68,6 +68,13 @@ namespace LemonUI.Elements
         public override void Draw()
         {
         }
+        /// <inheritdoc/>
+        public override void Recalculate()
+        {
+            base.Recalculate();
+            relativePosition.X += relativeSize.Width * 0.5f;
+            relativePosition.Y += relativeSize.Height * 0.5f;
+        }
 
         #endregion
     }
