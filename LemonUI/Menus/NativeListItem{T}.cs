@@ -73,7 +73,7 @@ namespace LemonUI.Menus
             {
                 if (Items.Count == 0)
                 {
-                    throw new InvalidOperationException("There are no available items.");
+                    return;
                 }
 
                 int newIndex = Items.IndexOf(value);
