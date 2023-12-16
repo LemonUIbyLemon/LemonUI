@@ -1,5 +1,11 @@
-using System.Drawing;
+#if FIVEM
+using CitizenFX.Core.UI;
+#elif RAGEMP
+using RAGE.Game;
+#elif SHVDN3 || SHVDNC
 using GTA.UI;
+#endif
+using System.Drawing;
 
 namespace LemonUI.Menus
 {
