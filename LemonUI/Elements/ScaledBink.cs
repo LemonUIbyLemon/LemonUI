@@ -84,6 +84,15 @@ namespace LemonUI.Elements
 
         #endregion
 
+        #region Finalizer
+
+        /// <summary>
+        /// Finalizes an instance of the <see cref="ScaledBink"/> class.
+        /// </summary>
+        ~ScaledBink() => Dispose();
+
+        #endregion
+
         #region Functions
 
         /// <summary>
