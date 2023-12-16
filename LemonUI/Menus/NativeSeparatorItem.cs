@@ -1,11 +1,8 @@
-﻿using System;
-
-namespace LemonUI.Menus
+﻿namespace LemonUI.Menus
 {
     /// <summary>
     /// A Blank Separator Item for creating empty spaces between menu items.
     /// </summary>
-    [Obsolete("Use LemonUI.Menus.NativeSpacerItem instead.", true)]
     public class NativeSeparatorItem : NativeItem
     {
         #region Constructors
