@@ -26,13 +26,13 @@ using CancelEventHandler = System.ComponentModel.CancelEventHandler;
 using Font = GTA.UI.Font;
 #endif
 using LemonUI.Elements;
-using LemonUI.Extensions;
 using LemonUI.Scaleform;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using LemonUI.Tools;
 
 namespace LemonUI.Menus
 {
@@ -950,11 +950,10 @@ namespace LemonUI.Menus
             const float extraX = 35;
             const float extraY = 325;
 
-            // Get the correct desired position of the cursor as relative
             PointF pos = PointF.Empty;
             if (SafeZoneAware)
             {
-                Screen.SetElementAlignment(Alignment, GFXAlignment.Top);
+                SafeZone.SetAlignment(Alignment, GFXAlignment.Top);
                 float x = 0;
                 switch (Alignment)
                 {
@@ -965,8 +964,8 @@ namespace LemonUI.Menus
                         x = Offset.X - Width - extraX;
                         break;
                 }
-                pos = Screen.GetRealPosition(x, Offset.Y + extraY).ToRelative();
-                Screen.ResetElementAlignment();
+                pos = SafeZone.GetSafePosition(x, Offset.Y + extraY).ToRelative();
+                SafeZone.ResetAlignment();
             }
             else
             {
@@ -1004,7 +1003,7 @@ namespace LemonUI.Menus
             PointF pos;
             if (SafeZoneAware)
             {
-                Screen.SetElementAlignment(Alignment, GFXAlignment.Top);
+                SafeZone.SetAlignment(Alignment, GFXAlignment.Top);
                 float x = 0;
                 switch (Alignment)
                 {
@@ -1015,8 +1014,8 @@ namespace LemonUI.Menus
                         x = Offset.X - Width;
                         break;
                 }
-                pos = Screen.GetRealPosition(x, Offset.Y);
-                Screen.ResetElementAlignment();
+                pos = SafeZone.GetSafePosition(x, Offset.Y);
+                SafeZone.ResetAlignment();
             }
             else
             {
@@ -1208,18 +1207,12 @@ namespace LemonUI.Menus
             if (UseMouse && !Controls.IsUsingController)
             {
                 // Enable the mouse cursor
-#if FIVEM || SHVDN3 || SHVDNC || ALTV
-                Screen.ShowCursorThisFrame();
-#elif RAGEMP
-                Invoker.Invoke(Natives.ShowCursorThisFrame);
-#elif RPH
-                NativeFunction.CallByHash<int>(0xAAE7CE1D63167423);
-#endif
+                GameScreen.ShowCursorThisFrame();
 
                 // If the camera should be rotated when the cursor is on the left and right sections of the screen, do so
                 if (RotateCamera)
                 {
-                    if (Screen.IsCursorInArea(PointF.Empty, searchAreaSize))
+                    if (GameScreen.IsCursorInArea(PointF.Empty, searchAreaSize))
                     {
 #if FIVEM || SHVDN3 || SHVDNC
                         GameplayCamera.RelativeHeading += 5;
@@ -1233,7 +1226,7 @@ namespace LemonUI.Menus
                         Camera.RenderingCamera.Heading += 5;
 #endif
                     }
-                    else if (Screen.IsCursorInArea(searchAreaRight, searchAreaSize))
+                    else if (GameScreen.IsCursorInArea(searchAreaRight, searchAreaSize))
                     {
 #if FIVEM || SHVDN3 || SHVDNC
                         GameplayCamera.RelativeHeading -= 5;
@@ -1259,7 +1252,7 @@ namespace LemonUI.Menus
                         if (item == selectedItem && item is NativeSlidableItem slidable)
                         {
                             // If the right arrow was pressed, go to the right
-                            if (Screen.IsCursorInArea(slidable.RightArrow.Position, slidable.RightArrow.Size))
+                            if (GameScreen.IsCursorInArea(slidable.RightArrow.Position, slidable.RightArrow.Size))
                             {
                                 if (item.Enabled)
                                 {
@@ -1273,7 +1266,7 @@ namespace LemonUI.Menus
                                 return;
                             }
                             // If the user pressed the left arrow, go to the right
-                            else if (Screen.IsCursorInArea(slidable.LeftArrow.Position, slidable.LeftArrow.Size))
+                            else if (GameScreen.IsCursorInArea(slidable.LeftArrow.Position, slidable.LeftArrow.Size))
                             {
                                 if (item.Enabled)
                                 {
@@ -1289,7 +1282,7 @@ namespace LemonUI.Menus
                         }
 
                         // If the cursor is inside of the selection rectangle
-                        if (Screen.IsCursorInArea(item.title.Position.X - itemOffsetX, item.title.Position.Y - itemOffsetY, Width, itemHeight))
+                        if (GameScreen.IsCursorInArea(item.title.Position.X - itemOffsetX, item.title.Position.Y - itemOffsetY, Width, itemHeight))
                         {
                             // If the item is selected, activate it
                             if (item == selectedItem)
@@ -1688,9 +1681,8 @@ namespace LemonUI.Menus
                         x = Offset.X - Width;
                         break;
                 }
-                Screen.SetElementAlignment(Alignment, GFXAlignment.Top);
-                pos = Screen.GetRealPosition(x, Offset.Y);
-                Screen.ResetElementAlignment();
+
+                pos = SafeZone.GetPositionAt(new PointF(x, Offset.Y), Alignment, GFXAlignment.Top);
             }
             else
             {

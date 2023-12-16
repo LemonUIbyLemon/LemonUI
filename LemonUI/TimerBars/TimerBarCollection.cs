@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using LemonUI.Elements;
+using LemonUI.Tools;
 
 namespace LemonUI.TimerBars
 {
@@ -139,9 +140,7 @@ namespace LemonUI.TimerBars
         /// </summary>
         public void Recalculate()
         {
-            Screen.SetElementAlignment(GFXAlignment.Right, GFXAlignment.Bottom);
-            PointF pos = Screen.GetRealPosition(PointF.Empty);
-            Screen.ResetElementAlignment();
+            PointF pos = SafeZone.BottomRight;
 
             pos.X += offset.X;
             pos.Y += offset.Y;
