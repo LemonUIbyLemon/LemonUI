@@ -60,13 +60,13 @@ namespace LemonUI.Tools
         /// </summary>
         /// <param name="size">The scaled SizeF.</param>
         /// <returns>A new SizeF with relative values.</returns>
-        public static SizeF ToRelative(this SizeF size) => new SizeF(size.Width.ToXScaled(), size.Height.ToYScaled());
+        public static SizeF ToRelative(this SizeF size) => new SizeF(size.Width.ToXRelative(), size.Height.ToYRelative());
         /// <summary>
         /// Converts a relative 0-1 position into a scaled one.
         /// </summary>
         /// <param name="size">The relative SizeF.</param>
         /// <returns>A new SizeF with scaled values.</returns>
-        public static SizeF ToScaled(this SizeF size) => new SizeF(size.Width.ToXRelative(), size.Height.ToYRelative());
+        public static SizeF ToScaled(this SizeF size) => new SizeF(size.Width.ToXScaled(), size.Height.ToYScaled());
 
         #endregion
     }
