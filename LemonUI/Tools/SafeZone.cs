@@ -24,6 +24,29 @@ namespace LemonUI.Tools
         #region Properties
 
         /// <summary>
+        /// The size of the safe zone.
+        /// </summary>
+        /// <remarks>
+        /// This property should not be used to manually calculate the safe zone. Use <see cref="GetPositionAt(System.Drawing.PointF,LemonUI.GFXAlignment,LemonUI.GFXAlignment)"/> to get the safe zone size.
+        /// </remarks>
+        public static float Size
+        {
+            get
+            {
+#if ALTV
+                return Alt.Natives.GetSafeZoneSize();
+#elif FIVEM
+                return API.GetSafeZoneSize();
+#elif RAGEMP
+                return Invoker.Invoke<float>(Natives.GetSafeZoneSize);
+#elif RPH
+                return NativeFunction.CallByHash<float>(0xBAF107B6BB2C97F0);
+#elif SHVDN3 || SHVDNC
+                return Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
+#endif
+            }
+        }
+        /// <summary>
         /// The top left corner after the safe zone.
         /// </summary>
         public static PointF TopLeft => GetPositionAt(PointF.Empty, GFXAlignment.Left, GFXAlignment.Top);

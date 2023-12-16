@@ -33,17 +33,7 @@ namespace LemonUI
         /// <summary>
         /// The last know Safezone size.
         /// </summary>
-#if FIVEM
-        private float lastKnownSafezone = API.GetSafeZoneSize();
-#elif ALTV
-        private float lastKnownSafezone = Alt.Natives.GetSafeZoneSize();
-#elif RAGEMP
-        private float lastKnownSafezone = Invoker.Invoke<float>(Natives.GetSafeZoneSize);
-#elif RPH
-        private float lastKnownSafezone = NativeFunction.CallByHash<float>(0xBAF107B6BB2C97F0);
-#elif SHVDN3 || SHVDNC
-        private float lastKnownSafezone = Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
-#endif
+        private float lastKnownSafezone = SafeZone.Size;
         /// <summary>
         /// The list of processable objects.
         /// </summary>
@@ -112,18 +102,7 @@ namespace LemonUI
         private void DetectSafezoneChanges()
         {
             // Get the current Safezone size
-#if FIVEM
-            float safezone = API.GetSafeZoneSize();
-#elif ALTV
-            float safezone = Alt.Natives.GetSafeZoneSize();
-#elif RAGEMP
-            float safezone = Invoker.Invoke<float>(Natives.GetSafeZoneSize);
-#elif RPH
-            float safezone = NativeFunction.CallByHash<float>(0xBAF107B6BB2C97F0);
-#elif SHVDN3 || SHVDNC
-            float safezone = Function.Call<float>(Hash.GET_SAFE_ZONE_SIZE);
-#endif
-
+            float safezone = SafeZone.Size;
             // If is not the same as the last one
             if (lastKnownSafezone != safezone)
             {
