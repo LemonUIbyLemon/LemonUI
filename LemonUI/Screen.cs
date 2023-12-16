@@ -16,15 +16,16 @@ using GTA.UI;
 using AltV.Net.Client;
 using LemonUI.Elements;
 #endif
-using LemonUI.Extensions;
 using System;
 using System.Drawing;
+using LemonUI.Tools;
 
 namespace LemonUI
 {
     /// <summary>
     /// Contains a set of tools to work with the screen information.
     /// </summary>
+    [Obsolete("Use the LemonUI.Tools and LemonUI.Math namespaces.")]
     public static class Screen
     {
         #region Properties
@@ -32,24 +33,8 @@ namespace LemonUI
         /// <summary>
         /// The Aspect Ratio of the screen resolution.
         /// </summary>
-        public static float AspectRatio
-        {
-            get
-            {
-#if FIVEM
-                return API.GetAspectRatio(false);
-#elif RAGEMP
-                return Invoker.Invoke<float>(Natives.GetAspectRatio);
-#elif RPH
-                return NativeFunction.CallByHash<float>(0xF1307EF624A80D87, false);
-#elif SHVDN3 || SHVDNC
-                return Function.Call<float>(Hash.GET_ASPECT_RATIO, false);
-#elif ALTV
-                return Alt.Natives.GetAspectRatio(false);
-#endif
-            }
-        }
-        
+        public static float AspectRatio => GameScreen.AspectRatio;
+
 #if ALTV
         /// <summary>
         /// Gets the actual Screen resolution the game is being rendered at
@@ -64,33 +49,10 @@ namespace LemonUI
             }
         }
 #endif
-        
         /// <summary>
         /// The location of the cursor on screen between 0 and 1.
         /// </summary>
-        public static PointF CursorPositionRelative
-        {
-            get
-            {
-#if FIVEM
-                float cursorX = API.GetControlNormal(0, (int)Control.CursorX);
-                float cursorY = API.GetControlNormal(0, (int)Control.CursorY);
-#elif ALTV
-                float cursorX = Alt.Natives.GetControlNormal(0, (int)Control.CursorX);
-                float cursorY = Alt.Natives.GetControlNormal(0, (int)Control.CursorY);
-#elif RAGEMP
-                float cursorX = Invoker.Invoke<float>(Natives.GetControlNormal, 0, (int)Control.CursorX);
-                float cursorY = Invoker.Invoke<float>(Natives.GetControlNormal, 0, (int)Control.CursorY);
-#elif RPH
-                float cursorX = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.CursorX);
-                float cursorY = NativeFunction.CallByHash<float>(0xEC3C9B8D5327B563, 0, (int)Control.CursorY);
-#elif SHVDN3 || SHVDNC
-                float cursorX = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorX);
-                float cursorY = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorY);
-#endif
-                return new PointF(cursorX, cursorY);
-            }
-        }
+        public static PointF CursorPositionRelative => GameScreen.Cursor.ToRelative();
 
         #endregion
 
@@ -105,11 +67,8 @@ namespace LemonUI
         /// <param name="absoluteY">The value of Y scaled to 1080p.</param>
         public static void ToAbsolute(float relativeX, float relativeY, out float absoluteX, out float absoluteY)
         {
-            // Get the real width based on the aspect ratio
-            float width = 1080f * AspectRatio;
-            // And save the correct values
-            absoluteX = width * relativeX;
-            absoluteY = 1080f * relativeY;
+            absoluteX = relativeX.ToXAbsolute();
+            absoluteY = relativeY.ToYAbsolute();
         }
         /// <summary>
         /// Converts a 1080p-based resolution into relative values.
@@ -120,11 +79,8 @@ namespace LemonUI
         /// <param name="relativeY">The value of Y converted to relative.</param>
         public static void ToRelative(float absoluteX, float absoluteY, out float relativeX, out float relativeY)
         {
-            // Get the real width based on the aspect ratio
-            float width = 1080f * AspectRatio;
-            // And save the correct values
-            relativeX = absoluteX / width;
-            relativeY = absoluteY / 1080f;
+            relativeX = absoluteX.ToXRelative();
+            relativeY = absoluteY.ToYRelative();
         }
         /// <summary>
         /// Checks if the cursor is inside of the specified area.
@@ -149,16 +105,9 @@ namespace LemonUI
         /// <returns><see langword="true"/> if the cursor is in the specified bounds, <see langword="false"/> otherwise.</returns>
         public static bool IsCursorInArea(float x, float y, float width, float height)
         {
-            PointF cursor = CursorPositionRelative;
-
-            ToRelative(width, height, out float realWidth, out float realHeight);
-
+            // intentionally kept this way to avoid breaking backwards compatibility
             PointF realPos = GetRealPosition(x, y).ToRelative();
-
-            bool isX = cursor.X >= realPos.X && cursor.X <= realPos.X + realWidth;
-            bool isY = cursor.Y > realPos.Y && cursor.Y < realPos.Y + realHeight;
-
-            return isX && isY;
+            return GameScreen.IsCursorInArea(realPos.X, realPos.Y, width, height);
         }
         /// <summary>
         /// Converts the specified position into one that is aware of <see cref="SetElementAlignment(GFXAlignment, GFXAlignment)"/>.
@@ -172,128 +121,27 @@ namespace LemonUI
         /// <param name="x">The 1080p based X position.</param>
         /// <param name="y">The 1080p based Y position.</param>
         /// <returns>A new 1080p based position that is aware of the the Alignment.</returns>
-        public static PointF GetRealPosition(float x, float y)
-        {
-            // Convert the resolution to relative
-            ToRelative(x, y, out float relativeX, out float relativeY);
-            // Request the real location of the position
-            float realX = 0, realY = 0;
-#if FIVEM
-            API.GetScriptGfxPosition(relativeX, relativeY, ref realX, ref realY);
-#elif ALTV
-            Alt.Natives.GetScriptGfxAlignPosition(relativeX, relativeY, ref realX, ref realY);
-#elif RAGEMP
-            FloatReference argX = new FloatReference();
-            FloatReference argY = new FloatReference();
-            Invoker.Invoke<int>(0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY);
-            realX = argX.Value;
-            realY = argY.Value;
-#elif RPH
-            using (NativePointer argX = new NativePointer(4))
-            using (NativePointer argY = new NativePointer(4))
-            {
-                NativeFunction.CallByHash<int>(0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY);
-                realX = argX.GetValue<float>();
-                realY = argY.GetValue<float>();
-            }
-#elif SHVDN3 || SHVDNC
-            using (OutputArgument argX = new OutputArgument())
-            using (OutputArgument argY = new OutputArgument())
-            {
-                Function.Call((Hash)0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY); // _GET_SCRIPT_GFX_POSITION
-                realX = argX.GetResult<float>();
-                realY = argY.GetResult<float>();
-            }
-#endif
-            // And return it converted to absolute
-            ToAbsolute(realX, realY, out float absoluteX, out float absoluteY);
-            return new PointF(absoluteX, absoluteY);
-        }
+        public static PointF GetRealPosition(float x, float y) => SafeZone.GetSafePosition(x, y);
         /// <summary>
         /// Shows the cursor during the current game frame.
         /// </summary>
-        public static void ShowCursorThisFrame()
-        {
-#if FIVEM
-            API.SetMouseCursorActiveThisFrame();
-#elif ALTV
-            Alt.Natives.SetMouseCursorThisFrame();
-#elif RAGEMP
-            Invoker.Invoke(0xAAE7CE1D63167423);
-#elif RPH
-            NativeFunction.CallByHash<int>(0xAAE7CE1D63167423);
-#elif SHVDN3 || SHVDNC
-            Function.Call(Hash.SET_MOUSE_CURSOR_THIS_FRAME);
-#endif
-        }
+        public static void ShowCursorThisFrame() => GameScreen.ShowCursorThisFrame();
         /// <summary>
         /// Sets the alignment of game elements like <see cref="Elements.ScaledRectangle"/>, <see cref="Elements.ScaledText"/> and <see cref="Elements.ScaledTexture"/>.
         /// </summary>
         /// <param name="horizontal">The Horizontal alignment of the items.</param>
         /// <param name="vertical">The vertical alignment of the items.</param>
-        public static void SetElementAlignment(Alignment horizontal, GFXAlignment vertical)
-        {
-            // If the enum value is not correct, raise an exception
-            if (!Enum.IsDefined(typeof(Alignment), horizontal))
-            {
-                throw new ArgumentException("Alignment is not one of the allowed values (Left, Right, Center).", nameof(horizontal));
-            }
-
-            // Otherwise, just call the correct function
-            switch (horizontal)
-            {
-                case Alignment.Left:
-                    SetElementAlignment(GFXAlignment.Left, vertical);
-                    break;
-                case Alignment.Right:
-                    SetElementAlignment(GFXAlignment.Right, vertical);
-                    break;
-                case Alignment.Center:
-                    SetElementAlignment(GFXAlignment.Right, vertical);
-                    break;
-            }
-        }
+        public static void SetElementAlignment(Alignment horizontal, GFXAlignment vertical) => SafeZone.SetAlignment(horizontal, vertical);
         /// <summary>
         /// Sets the alignment of game elements like <see cref="Elements.ScaledRectangle"/>, <see cref="Elements.ScaledText"/> and <see cref="Elements.ScaledTexture"/>.
         /// </summary>
         /// <param name="horizontal">The Horizontal alignment of the items.</param>
         /// <param name="vertical">The vertical alignment of the items.</param>
-        public static void SetElementAlignment(GFXAlignment horizontal, GFXAlignment vertical)
-        {
-#if FIVEM
-            API.SetScriptGfxAlign((int)horizontal, (int)vertical);
-            API.SetScriptGfxAlignParams(0, 0, 0, 0);
-#elif ALTV
-            Alt.Natives.SetScriptGfxAlign((int)horizontal, (int)vertical);
-            Alt.Natives.SetScriptGfxAlignParams(0, 0, 0, 0);
-#elif RAGEMP
-            Invoker.Invoke(0xB8A850F20A067EB6, (int)horizontal, (int)vertical);
-            Invoker.Invoke(0xF5A2C681787E579D, 0, 0, 0, 0);
-#elif RPH
-            NativeFunction.CallByHash<int>(0xB8A850F20A067EB6, (int)horizontal, (int)vertical);
-            NativeFunction.CallByHash<int>(0xF5A2C681787E579D, 0, 0, 0, 0);
-#elif SHVDN3 || SHVDNC
-            Function.Call(Hash.SET_SCRIPT_GFX_ALIGN, (int)horizontal, (int)vertical);
-            Function.Call(Hash.SET_SCRIPT_GFX_ALIGN_PARAMS, 0, 0, 0, 0);
-#endif
-        }
+        public static void SetElementAlignment(GFXAlignment horizontal, GFXAlignment vertical) => SafeZone.SetAlignment(horizontal, vertical);
         /// <summary>
         /// Resets the alignment of the game elements.
         /// </summary>
-        public static void ResetElementAlignment()
-        {
-#if FIVEM
-            API.ResetScriptGfxAlign();
-#elif ALTV
-            Alt.Natives.ResetScriptGfxAlign();
-#elif RAGEMP
-            Invoker.Invoke(0xE3A3DB414A373DAB);
-#elif RPH
-            NativeFunction.CallByHash<int>(0xE3A3DB414A373DAB);
-#elif SHVDN3 || SHVDNC
-            Function.Call(Hash.RESET_SCRIPT_GFX_ALIGN);
-#endif
-        }
+        public static void ResetElementAlignment() => SafeZone.ResetAlignment();
 
         #endregion
     }
