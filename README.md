@@ -1,4 +1,4 @@
-# LemonUI<br>[![GitHub Actions][actions-img]][actions-url] [![NuGet][nuget-img-2]][nuget-url-2] [![NuGet][nuget-img-3]][nuget-url-3] [![NuGet][nuget-img-f]][nuget-url-f] [![NuGet][nuget-img-r]][nuget-url-r] [![Patreon][patreon-img]][patreon-url] [![PayPal][paypal-img]][paypal-url] [![Discord][discord-img]][discord-url]
+# LemonUI<br>[![GitHub Actions][actions-img]][actions-url] [![NuGet][nuget-img-3]][nuget-url-3] [![NuGet][nuget-img-f]][nuget-url-f] [![NuGet][nuget-img-r]][nuget-url-r] [![NuGet][nuget-img-a]][nuget-url-a] [![Patreon][patreon-img]][patreon-url] [![PayPal][paypal-img]][paypal-url] [![Discord][discord-img]][discord-url]
 
 LemonUI is a framework for creating UI systems in Grand Theft Auto V that is compatible with FiveM, RageMP, RagePluginHook ScriptHookVDotNet 2 and ScriptHookVDotNet 3. It allows you to create UI Elements with a NativeUI-like style, or you can also create your own UI System from scratch via the resolution-independant classes for Text, Rectangles and Textures.
 
@@ -37,29 +37,23 @@ Copy all of the files from the **RPH** folder inside of the compressed file to t
 
 ### ScriptHookVDotNet 2 and ScriptHookVDotNet 3
 
-**PLEASE NOTE THAT THE LAST VERSION THAT SUPPORTED SHVDN2 WAS 1.5.2. [You can download it here]().**
+**PLEASE NOTE THAT THE LAST VERSION THAT SUPPORTED SHVDN2 WAS 1.5.2. [You can download it here](https://github.com/LemonUIbyLemon/LemonUI/releases/tag/v1.5.2).**
 
 Copy all of the files from the **SHVDN2** and/or **SHVDN3** folder(s) inside of the compressed file to your **scripts** directory.
-
-### Developers
-
-Add any of the NuGet packages linked above and start working in your IDE.
-
-If you are using RagePluginHook or ScriptHookVDotNet, you can disable the copy of the dll in your IDE so your users always have to use the latest version available.
-
-If you are using RageMP, you will need to download the latest release and copy **LemonUI.RageMP.cs** to you client solution.
 
 ## Usage
 
 Once installed, the mods that require LemonUI will start working.
 
-If you are a developer, check the [wiki](https://github.com/LemonUIbyLemon/LemonUI/wiki) for information to implement LemonUI in your mod.
+## Developers
+
+Check the [Quick Start guide](https://github.com/LemonUIbyLemon/LemonUI/wiki/Quick-Start) to learn how to use LemonUI in your project.
+
+If you would like to make changes to the code, clone the repo, restore the packages and open the solution in your favorite IDE.
 
 [actions-img]: https://img.shields.io/github/actions/workflow/status/LemonUIbyLemon/LemonUI/main.yml?branch=master&label=actions
 [actions-url]: https://github.com/LemonUIbyLemon/LemonUI/actions
-[nuget-img-2]: https://img.shields.io/nuget/v/LemonUI.SHVDN2?label=nuget%20%28shvdn%202%29
-[nuget-url-2]: https://www.nuget.org/packages/LemonUI.SHVDN2/
-[nuget-img-3]: https://img.shields.io/nuget/v/LemonUI.SHVDN3?label=nuget%20%28shvdn%203%29
+[nuget-img-3]: https://img.shields.io/nuget/v/LemonUI.SHVDN3?label=nuget%20%28shvdn3%29
 [nuget-url-3]: https://www.nuget.org/packages/LemonUI.SHVDN3/
 [nuget-img-f]: https://img.shields.io/nuget/v/LemonUI.FiveM?label=nuget%20%28fivem%29
 [nuget-url-f]: https://www.nuget.org/packages/LemonUI.FiveM/
@@ -67,6 +61,8 @@ If you are a developer, check the [wiki](https://github.com/LemonUIbyLemon/Lemon
 [nuget-url-m]: https://www.nuget.org/packages/LemonUI.RageMP/
 [nuget-img-r]: https://img.shields.io/nuget/v/LemonUI.RagePluginHook?label=nuget%20%28rph%29
 [nuget-url-r]: https://www.nuget.org/packages/LemonUI.RagePluginHook/
+[nuget-img-a]: https://img.shields.io/nuget/v/LemonUI.AltV?label=nuget%20%28altv%29
+[nuget-url-a]: https://www.nuget.org/packages/LemonUI.AltV/
 [patreon-img]: https://img.shields.io/badge/support-patreon-FF424D.svg
 [patreon-url]: https://www.patreon.com/lemonchan
 [paypal-img]: https://img.shields.io/badge/support-paypal-0079C1.svg
