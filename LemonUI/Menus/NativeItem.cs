@@ -393,7 +393,7 @@ namespace LemonUI.Menus
                     badgeRight.Color = Colors.BadgeRightDisabled;
                 }
             }
-            else if (lastSelected)
+            else if (lastSelected && !(this is NativeSpacerItem))
             {
                 background.Color = Colors.BackgroundHovered;
                 title.Color = Colors.TitleHovered;

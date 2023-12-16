@@ -1284,6 +1284,11 @@ namespace LemonUI.Menus
                         // If the cursor is inside of the selection rectangle
                         if (GameScreen.IsCursorInArea(item.title.Position.X - itemOffsetX, item.title.Position.Y - itemOffsetY, Width, itemHeight))
                         {
+                            if (item is NativeSpacerItem)
+                            {
+                                return;
+                            }
+
                             // If the item is selected, activate it
                             if (item == selectedItem)
                             {
@@ -1426,7 +1431,7 @@ namespace LemonUI.Menus
                     continue;
                 }
 
-                if (item.IsHovered && UseMouse)
+                if (item.IsHovered && UseMouse && !(item is NativeSpacerItem))
                 {
                     hoveredRect.Position = item.lastPosition;
                     hoveredRect.Size = item.lastSize;
