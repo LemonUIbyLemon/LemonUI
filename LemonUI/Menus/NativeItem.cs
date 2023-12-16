@@ -11,6 +11,7 @@ using Font = GTA.UI.Font;
 using LemonUI.Elements;
 using System;
 using System.Drawing;
+using LemonUI.Tools;
 
 namespace LemonUI.Menus
 {
@@ -230,7 +231,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// If this item is being hovered.
         /// </summary>
-        public bool IsHovered => Screen.IsCursorInArea(background.Position, background.Size);
+        public bool IsHovered => GameScreen.IsCursorInArea(background.Position, background.Size);
 
         #endregion
 
