@@ -17,7 +17,7 @@ namespace LemonUI.Elements
     /// <summary>
     /// A Bink Video file.
     /// </summary>
-    public class ScaledBink : BaseElement
+    public class ScaledBink : BaseElement, IDisposable
     {
         #region Fields
 
@@ -91,6 +91,11 @@ namespace LemonUI.Elements
         /// </summary>
         public override void Draw()
         {
+            if (id == -1)
+            {
+                return;
+            }
+
 #if ALTV
             Alt.Natives.PlayBinkMovie(id);
             Alt.Natives.DrawBinkMovie(id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
@@ -116,6 +121,11 @@ namespace LemonUI.Elements
         /// </remarks>
         public void Stop()
         {
+            if (id == -1)
+            {
+                return;
+            }
+
 #if ALTV
             Alt.Natives.StopBinkMovie(id);
 #elif FIVEM
@@ -127,6 +137,30 @@ namespace LemonUI.Elements
 #elif SHVDN3 || SHVDNC
             Function.Call<int>(Hash.STOP_BINK_MOVIE, id);
 #endif
+        }
+        /// <summary>
+        /// Disposes the Bink Video ID.
+        /// </summary>
+        public void Dispose()
+        {
+            if (id == -1)
+            {
+                return;
+            }
+
+#if ALTV
+            Alt.Natives.ReleaseBinkMovie(id);
+#elif FIVEM
+            API.ReleaseBinkMovie(id);
+#elif RAGEMP
+            Invoker.Invoke<int>(0x04D950EEFA4EED8C, id);
+#elif RPH
+            NativeFunction.CallByHash<int>(0x04D950EEFA4EED8C, id);
+#elif SHVDN3 || SHVDNC
+            Function.Call<int>(Hash.RELEASE_BINK_MOVIE, id);
+#endif
+
+            id = -1;
         }
         /// <inheritdoc/>
         public override void Recalculate()
