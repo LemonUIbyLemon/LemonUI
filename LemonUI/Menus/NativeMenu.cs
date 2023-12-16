@@ -1282,7 +1282,7 @@ namespace LemonUI.Menus
                         }
 
                         // If the cursor is inside of the selection rectangle
-                        if (GameScreen.IsCursorInArea(item.title.Position.X - itemOffsetX, item.title.Position.Y - itemOffsetY, Width, itemHeight))
+                        if (item.IsHovered)
                         {
                             if (item is NativeSpacerItem)
                             {
