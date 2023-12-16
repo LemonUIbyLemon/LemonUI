@@ -37,9 +37,9 @@ namespace LemonUI.Elements
         #region Fields
 
         /// <summary>
-        /// The absolute 1080p based screen position.
+        /// The scaled 1080p based screen position.
         /// </summary>
-        private PointF absolutePosition = PointF.Empty;
+        private PointF scaledPosition = PointF.Empty;
         /// <summary>
         /// The relative 0-1 relative position.
         /// </summary>
@@ -74,10 +74,10 @@ namespace LemonUI.Elements
         /// </summary>
         public PointF Position
         {
-            get => absolutePosition;
+            get => scaledPosition;
             set
             {
-                absolutePosition = value;
+                scaledPosition = value;
                 relativePosition = value.ToRelative();
             }
         }
@@ -150,23 +150,23 @@ namespace LemonUI.Elements
 #if FIVEM
                 API.BeginTextCommandWidth("CELL_EMAIL_BCON");
                 Add();
-                return API.EndTextCommandGetWidth(true) * 1f.ToXAbsolute();
+                return API.EndTextCommandGetWidth(true) * 1f.ToXScaled();
 #elif ALTV
                 Alt.Natives.BeginTextCommandGetScreenWidthOfDisplayText("CELL_EMAIL_BCON");
                 Add();
-                return Alt.Natives.EndTextCommandGetScreenWidthOfDisplayText(true) * 1f.ToXAbsolute();
+                return Alt.Natives.EndTextCommandGetScreenWidthOfDisplayText(true) * 1f.ToXScaled();
 #elif RAGEMP
                 Invoker.Invoke(Natives.BeginTextCommandWidth, "CELL_EMAIL_BCON");
                 Add();
-                return Invoker.Invoke<float>(Natives.EndTextCommandGetWidth) * 1f.ToXAbsolute();
+                return Invoker.Invoke<float>(Natives.EndTextCommandGetWidth) * 1f.ToXScaled();
 #elif RPH
                 NativeFunction.CallByHash<int>(0x54CE8AC98E120CAB, "CELL_EMAIL_BCON");
                 Add();
-                return NativeFunction.CallByHash<float>(0x85F061DA64ED2F67, true) * 1f.ToXAbsolute();
+                return NativeFunction.CallByHash<float>(0x85F061DA64ED2F67, true) * 1f.ToXScaled();
 #elif SHVDN3 || SHVDNC
                 Function.Call(Hash.BEGIN_TEXT_COMMAND_GET_SCREEN_WIDTH_OF_DISPLAY_TEXT, "CELL_EMAIL_BCON");
                 Add();
-                return Function.Call<float>(Hash.END_TEXT_COMMAND_GET_SCREEN_WIDTH_OF_DISPLAY_TEXT, true) * 1f.ToXAbsolute();
+                return Function.Call<float>(Hash.END_TEXT_COMMAND_GET_SCREEN_WIDTH_OF_DISPLAY_TEXT, true) * 1f.ToXScaled();
 #endif
             }
         }
@@ -505,7 +505,7 @@ namespace LemonUI.Elements
         public void Recalculate()
         {
             // Do the normal Size and Position recalculation
-            relativePosition = absolutePosition.ToRelative();
+            relativePosition = scaledPosition.ToRelative();
             // And recalculate the word wrap if necessary
             if (internalWrap <= 0)
             {

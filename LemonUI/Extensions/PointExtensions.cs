@@ -10,16 +10,16 @@ namespace LemonUI.Extensions
     public static class PointExtensions
     {
         /// <summary>
-        /// Converts an absolute 1080-based position into a relative one.
+        /// Converts a scaled 1080-based position into a relative one.
         /// </summary>
-        /// <param name="point">The absolute PointF.</param>
+        /// <param name="point">The scaled PointF.</param>
         /// <returns>A new PointF with relative values.</returns>
         public static PointF ToRelative(this PointF point) => Tools.Extensions.ToRelative(point);
         /// <summary>
-        /// Converts a normalized 0-1 position into an absolute one.
+        /// Converts a normalized 0-1 position into a scaled one.
         /// </summary>
         /// <param name="point">The relative PointF.</param>
-        /// <returns>A new PointF with absolute values.</returns>
-        public static PointF ToAbsolute(this PointF point) => Tools.Extensions.ToAbsolute(point);
+        /// <returns>A new PointF with scaled values.</returns>
+        public static PointF ToAbsolute(this PointF point) => Tools.Extensions.ToScaled(point);
     }
 }

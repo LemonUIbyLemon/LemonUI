@@ -109,7 +109,7 @@ namespace LemonUI.Tools
             }
 #endif
 
-            return new PointF(realX.ToXAbsolute(), realY.ToYAbsolute());
+            return new PointF(realX.ToXScaled(), realY.ToYScaled());
         }
         /// <summary>
         /// Sets the alignment for the safe zone.
@@ -164,7 +164,7 @@ namespace LemonUI.Tools
         /// <param name="position">The position to get.</param>
         /// <param name="horizontal">The horizontal alignment.</param>
         /// <param name="vertical">The vertical alignment.</param>
-        /// <returns>The absolute safe zone alignment.</returns>
+        /// <returns>The  safe zone alignment.</returns>
         public static PointF GetPositionAt(PointF position, Alignment horizontal, GFXAlignment vertical) => GetPositionAt(position, AlignmentToGFXAlignment(horizontal), vertical);
         /// <summary>
         /// Gets the specified position with the specified safe zone alignment.
@@ -172,7 +172,7 @@ namespace LemonUI.Tools
         /// <param name="position">The position to get.</param>
         /// <param name="horizontal">The horizontal alignment.</param>
         /// <param name="vertical">The vertical alignment.</param>
-        /// <returns>The absolute safe zone alignment.</returns>
+        /// <returns>The scaled safe zone alignment.</returns>
         public static PointF GetPositionAt(PointF position, GFXAlignment horizontal, GFXAlignment vertical)
         {
             SetAlignment(horizontal, vertical);

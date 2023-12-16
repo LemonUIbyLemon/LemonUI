@@ -976,7 +976,7 @@ namespace LemonUI.Menus
                         x = Offset.X + Width + extraX;
                         break;
                     case Alignment.Right:
-                        x = 1f.ToXAbsolute() - Offset.X - Width - extraX;
+                        x = 1f.ToXScaled() - Offset.X - Width - extraX;
                         break;
                 }
                 pos = new PointF(x, Offset.Y + extraY).ToRelative();
@@ -1026,7 +1026,7 @@ namespace LemonUI.Menus
                         x = Offset.X;
                         break;
                     case Alignment.Right:
-                        x = 1f.ToXAbsolute() - Width - Offset.X;
+                        x = 1f.ToXScaled() - Width - Offset.X;
                         break;
                 }
                 pos = new PointF(x, Offset.Y);
@@ -1693,7 +1693,7 @@ namespace LemonUI.Menus
                         x = Offset.X;
                         break;
                     case Alignment.Right:
-                        x = 1f.ToXAbsolute() - Width - Offset.X;
+                        x = 1f.ToXScaled() - Width - Offset.X;
                         break;
                 }
                 pos = new PointF(x, Offset.Y);
@@ -1734,7 +1734,7 @@ namespace LemonUI.Menus
             descriptionText.WordWrap = width - posXDescTxt;
 
             // Set the right size of the rotation
-            searchAreaRight = new PointF(1f.ToXAbsolute() - 30, 0);
+            searchAreaRight = new PointF(1f.ToXScaled() - 30, 0);
 
             // Then, continue with an item update
             UpdateItems();

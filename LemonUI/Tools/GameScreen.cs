@@ -69,7 +69,7 @@ namespace LemonUI.Tools
                 float cursorX = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorX);
                 float cursorY = Function.Call<float>(Hash.GET_CONTROL_NORMAL, 0, (int)Control.CursorY);
 #endif
-                return new PointF(cursorX.ToXAbsolute(), cursorY.ToYAbsolute());
+                return new PointF(cursorX.ToXScaled(), cursorY.ToYScaled());
             }
         }
 
@@ -78,19 +78,19 @@ namespace LemonUI.Tools
         #region Functions
 
         /// <summary>
-        /// Checks if the cursor is inside of the absolute area.
+        /// Checks if the cursor is inside of the scaled area.
         /// </summary>
-        /// <param name="pos">The absolute position.</param>
-        /// <param name="size">The absolute size of the area.</param>
+        /// <param name="pos">The scaled position.</param>
+        /// <param name="size">The scaled size of the area.</param>
         /// <returns><see langword="true"/> if the cursor is in the specified bounds, <see langword="false"/> otherwise.</returns>
         public static bool IsCursorInArea(PointF pos, SizeF size) => IsCursorInArea(pos.X, pos.Y, size.Width, size.Height);
         /// <summary>
-        /// Checks if the cursor is inside of the absolute area.
+        /// Checks if the cursor is inside of the scaled area.
         /// </summary>
-        /// <param name="x">The absolute X position.</param>
-        /// <param name="y">The absolute Y position.</param>
-        /// <param name="width">The absolute width of the area.</param>
-        /// <param name="height">The absolute height of the area.</param>
+        /// <param name="x">The scaled X position.</param>
+        /// <param name="y">The scaled Y position.</param>
+        /// <param name="width">The scaled width of the area.</param>
+        /// <param name="height">The scaled height of the area.</param>
         /// <returns><see langword="true"/> if the cursor is in the specified bounds, <see langword="false"/> otherwise.</returns>
         public static bool IsCursorInArea(float x, float y, float width, float height)
         {

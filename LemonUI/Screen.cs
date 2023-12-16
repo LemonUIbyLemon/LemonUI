@@ -67,8 +67,8 @@ namespace LemonUI
         /// <param name="absoluteY">The value of Y scaled to 1080p.</param>
         public static void ToAbsolute(float relativeX, float relativeY, out float absoluteX, out float absoluteY)
         {
-            absoluteX = relativeX.ToXAbsolute();
-            absoluteY = relativeY.ToYAbsolute();
+            absoluteX = relativeX.ToXScaled();
+            absoluteY = relativeY.ToYScaled();
         }
         /// <summary>
         /// Converts a 1080p-based resolution into relative values.
