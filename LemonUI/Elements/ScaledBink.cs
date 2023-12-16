@@ -39,6 +39,14 @@ namespace LemonUI.Elements
         /// Creates a new Bink Video playback.
         /// </summary>
         /// <param name="name">The name of the bik file.</param>
+        /// <param name="size">The size of the video window.</param>
+        public ScaledBink(string name, SizeF size) : this(name, PointF.Empty, size)
+        {
+        }
+        /// <summary>
+        /// Creates a new Bink Video playback.
+        /// </summary>
+        /// <param name="name">The name of the bik file.</param>
         /// <param name="pos">The position of the video window.</param>
         /// <param name="size">The size of the video window.</param>
         public ScaledBink(string name, PointF pos, SizeF size) : base(pos, size)
