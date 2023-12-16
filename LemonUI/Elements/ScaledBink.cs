@@ -26,6 +26,34 @@ namespace LemonUI.Elements
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// The name of the Bink Video file.
+        /// </summary>
+        public string Name
+        {
+            get => name;
+            set
+            {
+                name = value ?? throw new ArgumentNullException(nameof(value));
+
+#if ALTV
+                id = Alt.Natives.SetBinkMovie(name);
+#elif FIVEM
+                id = API.SetBinkMovie(name);
+#elif RAGEMP
+                id = Invoker.Invoke<int>(0xfc36643f7a64338f, name);
+#elif RPH
+                id = NativeFunction.CallByHash<int>(0xfc36643f7a64338f, name);
+#elif SHVDN3 || SHVDNC
+                id = Function.Call<int>(Hash.SET_BINK_MOVIE, name);
+#endif
+            }
+        }
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -51,19 +79,7 @@ namespace LemonUI.Elements
         /// <param name="size">The size of the video window.</param>
         public ScaledBink(string name, PointF pos, SizeF size) : base(pos, size)
         {
-            this.name = name ?? throw new ArgumentNullException(nameof(name));
-
-#if ALTV
-            id = Alt.Natives.SetBinkMovie(name);
-#elif FIVEM
-            id = API.SetBinkMovie(name);
-#elif RAGEMP
-            id = Invoker.Invoke<int>(0xfc36643f7a64338f, name);
-#elif RPH
-            id = NativeFunction.CallByHash<int>(0xfc36643f7a64338f, name);
-#elif SHVDN3 || SHVDNC
-            id = Function.Call<int>(Hash.SET_BINK_MOVIE, name);
-#endif
+            Name = name ?? throw new ArgumentNullException(nameof(name));
         }
 
         #endregion
