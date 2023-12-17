@@ -22,12 +22,15 @@ namespace LemonUI.Elements
         #region Fields
 
         private string name = string.Empty;
-        private int id = 0;
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        /// The ID of the Bink Video Instance.
+        /// </summary>
+        public int Id { get; private set; } = -1;
         /// <summary>
         /// The name of the Bink Video file.
         /// </summary>
@@ -39,15 +42,15 @@ namespace LemonUI.Elements
                 name = value ?? throw new ArgumentNullException(nameof(value));
 
 #if ALTV
-                id = Alt.Natives.SetBinkMovie(name);
+                Id = Alt.Natives.SetBinkMovie(name);
 #elif FIVEM
-                id = API.SetBinkMovie(name);
+                Id = API.SetBinkMovie(name);
 #elif RAGEMP
-                id = Invoker.Invoke<int>(0xfc36643f7a64338f, name);
+                Id = Invoker.Invoke<int>(0xfc36643f7a64338f, name);
 #elif RPH
-                id = NativeFunction.CallByHash<int>(0xfc36643f7a64338f, name);
+                Id = NativeFunction.CallByHash<int>(0xfc36643f7a64338f, name);
 #elif SHVDN3 || SHVDNC
-                id = Function.Call<int>(Hash.SET_BINK_MOVIE, name);
+                Id = Function.Call<int>(Hash.SET_BINK_MOVIE, name);
 #endif
             }
         }
@@ -100,26 +103,26 @@ namespace LemonUI.Elements
         /// </summary>
         public override void Draw()
         {
-            if (id == -1)
+            if (Id == -1)
             {
                 return;
             }
 
 #if ALTV
-            Alt.Natives.PlayBinkMovie(id);
-            Alt.Natives.DrawBinkMovie(id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
+            Alt.Natives.PlayBinkMovie(Id);
+            Alt.Natives.DrawBinkMovie(Id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
 #elif FIVEM
-            API.PlayBinkMovie(id);
-            API.DrawBinkMovie(id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
+            API.PlayBinkMovie(Id);
+            API.DrawBinkMovie(Id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
 #elif RAGEMP
-            Invoker.Invoke<int>(0xE178310643033958, id);
-            Invoker.Invoke<int>(0x7118E83EEB9F7238, id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
+            Invoker.Invoke<int>(0xE178310643033958, Id);
+            Invoker.Invoke<int>(0x7118E83EEB9F7238, Id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
 #elif RPH
-            NativeFunction.CallByHash<int>(0xE178310643033958, id);
-            NativeFunction.CallByHash<int>(0x7118E83EEB9F7238, id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
+            NativeFunction.CallByHash<int>(0xE178310643033958, Id);
+            NativeFunction.CallByHash<int>(0x7118E83EEB9F7238, Id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
 #elif SHVDN3 || SHVDNC
-            Function.Call<int>(Hash.PLAY_BINK_MOVIE, id);
-            Function.Call<int>(Hash.DRAW_BINK_MOVIE, id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
+            Function.Call<int>(Hash.PLAY_BINK_MOVIE, Id);
+            Function.Call<int>(Hash.DRAW_BINK_MOVIE, Id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
 #endif
         }
         /// <summary>
@@ -130,21 +133,21 @@ namespace LemonUI.Elements
         /// </remarks>
         public void Stop()
         {
-            if (id == -1)
+            if (Id == -1)
             {
                 return;
             }
 
 #if ALTV
-            Alt.Natives.StopBinkMovie(id);
+            Alt.Natives.StopBinkMovie(Id);
 #elif FIVEM
-            API.StopBinkMovie(id);
+            API.StopBinkMovie(Id);
 #elif RAGEMP
-            Invoker.Invoke<int>(0x63606A61DE68898A, id);
+            Invoker.Invoke<int>(0x63606A61DE68898A, Id);
 #elif RPH
-            NativeFunction.CallByHash<int>(0x63606A61DE68898A, id);
+            NativeFunction.CallByHash<int>(0x63606A61DE68898A, Id);
 #elif SHVDN3 || SHVDNC
-            Function.Call<int>(Hash.STOP_BINK_MOVIE, id);
+            Function.Call<int>(Hash.STOP_BINK_MOVIE, Id);
 #endif
         }
         /// <summary>
@@ -152,24 +155,24 @@ namespace LemonUI.Elements
         /// </summary>
         public void Dispose()
         {
-            if (id == -1)
+            if (Id == -1)
             {
                 return;
             }
 
 #if ALTV
-            Alt.Natives.ReleaseBinkMovie(id);
+            Alt.Natives.ReleaseBinkMovie(Id);
 #elif FIVEM
-            API.ReleaseBinkMovie(id);
+            API.ReleaseBinkMovie(Id);
 #elif RAGEMP
-            Invoker.Invoke<int>(0x04D950EEFA4EED8C, id);
+            Invoker.Invoke<int>(0x04D950EEFA4EED8C, Id);
 #elif RPH
-            NativeFunction.CallByHash<int>(0x04D950EEFA4EED8C, id);
+            NativeFunction.CallByHash<int>(0x04D950EEFA4EED8C, Id);
 #elif SHVDN3 || SHVDNC
-            Function.Call<int>(Hash.RELEASE_BINK_MOVIE, id);
+            Function.Call<int>(Hash.RELEASE_BINK_MOVIE, Id);
 #endif
 
-            id = -1;
+            Id = -1;
         }
         /// <inheritdoc/>
         public override void Recalculate()
