@@ -117,7 +117,11 @@ namespace LemonUI.Scaleform
 
             foreach (object obj in parameters)
             {
-                if (obj is int objInt)
+                if (obj == null)
+                {
+                    throw new ArgumentNullException(nameof(parameters), "Unexpected null function argument in parameters.");
+                }
+                else if (obj is int objInt)
                 {
 #if FIVEM
                     API.ScaleformMovieMethodAddParamInt(objInt);
