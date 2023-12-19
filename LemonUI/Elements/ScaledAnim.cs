@@ -11,6 +11,8 @@ namespace LemonUI.Elements
         #region Fields
 
         private readonly ScaledTexture texture = new ScaledTexture(string.Empty, string.Empty);
+        private float frameRate;
+        private int frameTime;
 
         #endregion
 
@@ -23,6 +25,18 @@ namespace LemonUI.Elements
         {
             get => texture.Dictionary;
             set => texture.Dictionary = value ?? throw new ArgumentNullException(nameof(value));
+        }
+        /// <summary>
+        /// The total number of frames per second.
+        /// </summary>
+        public float FrameRate
+        {
+            get => frameRate;
+            set
+            {
+                frameRate = value;
+                frameTime = (int)((1.0f / value) * 1000);
+            }
         }
 
         #endregion
