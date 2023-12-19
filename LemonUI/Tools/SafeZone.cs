@@ -123,12 +123,9 @@ namespace LemonUI.Tools
                 realY = argY.GetValue<float>();
             }
 #elif SHVDN3 || SHVDNC
-            using (OutputArgument argX = new OutputArgument())
-            using (OutputArgument argY = new OutputArgument())
+            unsafe
             {
-                Function.Call((Hash)0x6DD8F5AA635EB4B2, relativeX, relativeY, argX, argY); // _GET_SCRIPT_GFX_POSITION
-                realX = argX.GetResult<float>();
-                realY = argY.GetResult<float>();
+                Function.Call(Hash.GET_SCRIPT_GFX_ALIGN_POSITION, relativeX, relativeY, &realX, &realY);
             }
 #endif
 

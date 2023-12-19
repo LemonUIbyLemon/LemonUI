@@ -419,9 +419,9 @@ namespace LemonUI.Scaleform
                 NativeFunction.CallByHash<int>(0x6DD8F5AA635EB4B2, idPtr);
             }
 #elif SHVDN3 || SHVDNC
-            using (OutputArgument idPtr = new OutputArgument(id))
+            unsafe
             {
-                Function.Call(Hash.SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED, idPtr);
+                Function.Call(Hash.SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED, &id);
             }
 #endif
         }
