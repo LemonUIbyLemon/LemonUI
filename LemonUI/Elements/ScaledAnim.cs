@@ -10,7 +10,7 @@ namespace LemonUI.Elements
     {
         #region Fields
 
-        private ScaledTexture texture = new ScaledTexture(string.Empty, string.Empty);
+        private readonly ScaledTexture texture = new ScaledTexture(string.Empty, string.Empty);
 
         #endregion
 
