@@ -111,6 +111,22 @@ namespace LemonUI.Elements
         /// Creates a new dictionary based animation.
         /// </summary>
         /// <param name="dict">The texture dictionary (YTD) to use.</param>
+        public ScaledAnim(string dict) : this(dict, PointF.Empty, SizeF.Empty)
+        {
+        }
+        /// <summary>
+        /// Creates a new dictionary based animation.
+        /// </summary>
+        /// <param name="dict">The texture dictionary (YTD) to use.</param>
+        /// <param name="size">The size of the animation.</param>
+        public ScaledAnim(string dict, SizeF size) : this(dict, PointF.Empty, size)
+        {
+            texture.Dictionary = dict ?? throw new ArgumentNullException(nameof(dict));
+        }
+        /// <summary>
+        /// Creates a new dictionary based animation.
+        /// </summary>
+        /// <param name="dict">The texture dictionary (YTD) to use.</param>
         /// <param name="pos">The position of the animation.</param>
         /// <param name="size">The size of the animation.</param>
         public ScaledAnim(string dict, PointF pos, SizeF size) : base(pos, size)
