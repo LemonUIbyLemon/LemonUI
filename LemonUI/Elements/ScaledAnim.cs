@@ -7,6 +7,12 @@ namespace LemonUI.Elements
     /// </summary>
     public class ScaledAnim : BaseElement
     {
+        #region Fields
+
+        private ScaledTexture texture = new ScaledTexture(string.Empty, string.Empty);
+
+        #endregion
+
         #region Properties
 
         /// <summary>
