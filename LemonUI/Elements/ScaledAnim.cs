@@ -5,7 +5,7 @@ using CitizenFX.Core;
 #elif RAGEMP
 using RAGE.Game;
 #elif RPH
-using Rage.Native;
+using Rage;
 #elif SHVDN3 || SHVDNC
 using GTA;
 #endif
@@ -22,7 +22,7 @@ namespace LemonUI.Elements
         #region Fields
 
         private float frameRate;
-        private int start = 0;
+        private long start = 0;
         private int duration;
 
         #endregion
@@ -107,16 +107,14 @@ namespace LemonUI.Elements
             }
 
 #if ALTV
-            int time = Alt.Natives.GetGameTimer();
+            long time = Alt.Natives.GetGameTimer();
 #elif RAGEMP
-            int time = Misc.GetGameTimer();
-#elif RPH
-            int time = NativeFunction.CallByHash<int>(0x9CD27B0045628463);
-#elif FIVEM || SHVDN3 || SHVDNC
-            int time = Game.GameTime;
+            long time = Misc.GetGameTimer();
+#elif FIVEM || RPH || SHVDN3 || SHVDNC
+            long time = Game.GameTime;
 #endif
 
-            int end = start + Duration;
+            long end = start + Duration;
 
             if (start == 0 || end <= time)
             {

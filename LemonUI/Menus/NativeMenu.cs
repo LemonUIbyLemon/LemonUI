@@ -1163,14 +1163,12 @@ namespace LemonUI.Menus
                 return;
             }
 
-#if RAGEMP
-            int time = Misc.GetGameTimer();
-#elif ALTV
-            int time = Alt.Natives.GetGameTimer();
-#elif RPH
-            uint time = Game.GameTime;
-#else
-            int time = Game.GameTime;
+#if ALTV
+            long time = Alt.Natives.GetGameTimer();
+#elif RAGEMP
+            long time = Misc.GetGameTimer();
+#elif FIVEM || RPH || SHVDN3 || SHVDNC
+            long time = Game.GameTime;
 #endif
 
             if (HeldTime > 0 && (upHeld || downHeld || leftHeld || rightHeld))

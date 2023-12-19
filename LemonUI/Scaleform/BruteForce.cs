@@ -196,14 +196,12 @@ namespace LemonUI.Scaleform
             Word = word;
             ShowLives = showLives;
 
-#if RAGEMP
-            int time = Misc.GetGameTimer();
-#elif ALTV
-            int time = Alt.Natives.GetGameTimer();
-#elif RPH
-            uint time = Game.GameTime;
-#else
-            int time = Game.GameTime;
+#if ALTV
+            long time = Alt.Natives.GetGameTimer();
+#elif RAGEMP
+            long time = Misc.GetGameTimer();
+#elif FIVEM || RPH || SHVDN3 || SHVDNC
+            long time = Game.GameTime;
 #endif
 
             end = TimeSpan.FromMilliseconds(time) + countdown;
@@ -234,14 +232,12 @@ namespace LemonUI.Scaleform
         /// </summary>
         public override void Update()
         {
-#if RAGEMP
-            int time = Misc.GetGameTimer();
-#elif ALTV
-            int time = Alt.Natives.GetGameTimer();
-#elif RPH
-            uint time = Game.GameTime;
-#else
-            int time = Game.GameTime;
+#if ALTV
+            long time = Alt.Natives.GetGameTimer();
+#elif RAGEMP
+            long time = Misc.GetGameTimer();
+#elif FIVEM || RPH || SHVDN3 || SHVDNC
+            long time = Game.GameTime;
 #endif
 
             // If there is a time set to hide the Hack window

@@ -28,7 +28,7 @@ namespace LemonUI.Scaleform
 
         private MessageType type;
         private uint weaponHash;
-        private uint hideAfter;
+        private long hideAfter;
 
         #endregion
 
@@ -278,28 +278,24 @@ namespace LemonUI.Scaleform
 
             CallFunction("SHARD_ANIM_OUT", 0, time);
 
-#if RAGEMP
-            uint currentTime = (uint)Misc.GetGameTimer();
-#elif ALTV
-            uint currentTime = (uint)Alt.Natives.GetGameTimer();
-#elif RPH
-            uint currentTime = Game.GameTime;
-#else
-            uint currentTime = (uint)Game.GameTime;
+#if ALTV
+            long currentTime = Alt.Natives.GetGameTimer();
+#elif RAGEMP
+            long currentTime = Misc.GetGameTimer();
+#elif FIVEM || RPH || SHVDN3 || SHVDNC
+            long currentTime = Game.GameTime;
 #endif
-            hideAfter = currentTime + (uint)time;
+            hideAfter = currentTime + time;
         }
         /// <inheritdoc/>
         public override void DrawFullScreen()
         {
-#if RAGEMP
-            uint time = (uint)Misc.GetGameTimer();
-#elif ALTV
-            uint time = (uint)Alt.Natives.GetGameTimer();
-#elif RPH
-            uint time = Game.GameTime;
-#else
-            uint time = (uint)Game.GameTime;
+#if ALTV
+            long time = Alt.Natives.GetGameTimer();
+#elif RAGEMP
+            long time = Misc.GetGameTimer();
+#elif FIVEM || RPH || SHVDN3 || SHVDNC
+            long time = Game.GameTime;
 #endif
 
             if (hideAfter > 0 && time > hideAfter)

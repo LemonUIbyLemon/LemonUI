@@ -132,9 +132,7 @@ namespace LemonUI.Scaleform
             lastStepTime = Alt.Natives.GetGameTimer();
 #elif RAGEMP
             lastStepTime = Misc.GetGameTimer();
-#elif RPH
-            lastStepTime = Game.GameTime;
-#elif FIVEM || SHVDN3 || SHVDNC
+#elif FIVEM || RPH || SHVDN3 || SHVDNC
             lastStepTime = Game.GameTime;
 #endif
 
@@ -153,13 +151,11 @@ namespace LemonUI.Scaleform
             if (lastStepTime > 0)
             {
 #if ALTV
-                int currentTime = Alt.Natives.GetGameTimer();
+                long currentTime = Alt.Natives.GetGameTimer();
 #elif RAGEMP
-                int currentTime = Misc.GetGameTimer();
-#elif RPH
-                uint currentTime = Game.GameTime;
-#elif FIVEM || SHVDN3 || SHVDNC
-                int currentTime = Game.GameTime;
+                long currentTime = Misc.GetGameTimer();
+#elif FIVEM || RPH || SHVDN3 || SHVDNC
+                long currentTime = Game.GameTime;
 #endif
 
                 if (currentTime - lastStepTime >= 1000)

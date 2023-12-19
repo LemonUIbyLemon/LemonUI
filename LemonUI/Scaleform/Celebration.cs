@@ -132,13 +132,11 @@ namespace LemonUI.Scaleform
             // 333ms going in
             // 333ms going out
 #if ALTV
-            int time = Alt.Natives.GetGameTimer();
+            long time = Alt.Natives.GetGameTimer();
 #elif RAGEMP
-            int time = Misc.GetGameTimer();
-#elif RPH
-            uint time = Game.GameTime;
-#elif FIVEM || SHVDN3 || SHVDNC
-            int time = Game.GameTime;
+            long time = Misc.GetGameTimer();
+#elif FIVEM || RPH || SHVDN3 || SHVDNC
+            long time = Game.GameTime;
 #endif
             showUntil = time + 333 + 333 + (Duration * 1000);
         }
@@ -170,13 +168,11 @@ namespace LemonUI.Scaleform
             DrawFullScreen();
 
 #if ALTV
-            int time = Alt.Natives.GetGameTimer();
+            long time = Alt.Natives.GetGameTimer();
 #elif RAGEMP
-            int time = Misc.GetGameTimer();
-#elif RPH
-            uint time = Game.GameTime;
-#elif FIVEM || SHVDN3 || SHVDNC
-            int time = Game.GameTime;
+            long time = Misc.GetGameTimer();
+#elif FIVEM || RPH || SHVDN3 || SHVDNC
+            long time = Game.GameTime;
 #endif
 
             if (showUntil < time)
