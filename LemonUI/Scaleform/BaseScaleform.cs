@@ -82,7 +82,7 @@ namespace LemonUI.Scaleform
         /// <param name="sc">The Scalform object.</param>
         public BaseScaleform(string sc)
         {
-            Name = sc;
+            Name = sc ?? throw new ArgumentNullException(nameof(sc));
 
 #if FIVEM
             Handle = API.RequestScaleformMovie(Name);
@@ -103,6 +103,16 @@ namespace LemonUI.Scaleform
 
         private void CallFunctionBase(string function, params object[] parameters)
         {
+            if (function == null)
+            {
+                throw new ArgumentNullException(nameof(function), "The function name is null.");
+            }
+
+            if (string.IsNullOrWhiteSpace(function))
+            {
+                throw new ArgumentOutOfRangeException(nameof(function), "The function name is empty or white space.");
+            }
+
 #if FIVEM
             API.BeginScaleformMovieMethod(Handle, function);
 #elif ALTV
