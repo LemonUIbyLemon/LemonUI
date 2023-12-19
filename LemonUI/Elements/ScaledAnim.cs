@@ -23,6 +23,7 @@ namespace LemonUI.Elements
 
         private readonly ScaledTexture texture = new ScaledTexture(string.Empty, string.Empty);
         private float frameRate;
+        private int start = 0;
         private int duration;
 
         #endregion
@@ -86,6 +87,32 @@ namespace LemonUI.Elements
         /// </summary>
         public override void Draw()
         {
+            if (Duration <= 0)
+            {
+                return;
+            }
+
+#if ALTV
+            int time = Alt.Natives.GetGameTimer();
+#elif RAGEMP
+            int time = Misc.GetGameTimer();
+#elif RPH
+            int time = NativeFunction.CallByHash<int>(0x9CD27B0045628463);
+#elif FIVEM || SHVDN3 || SHVDNC
+            int time = Game.GameTime;
+#endif
+
+            int end = start + Duration;
+
+            if (start == 0 || end <= time)
+            {
+                start = time;
+            }
+
+            float progress = (time - (float)start) / Duration;
+            int totalFrames = (int)((duration / 1000.0f) * frameRate);
+            int currentFrame = (int)(totalFrames * progress);
+            texture.Texture = currentFrame.ToString();
         }
 
         #endregion
