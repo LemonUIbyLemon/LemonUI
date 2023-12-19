@@ -34,12 +34,9 @@ namespace LemonUI.Elements
         /// <summary>
         /// The Position of the drawable.
         /// </summary>
-        public PointF Position
+        public virtual PointF Position
         {
-            get
-            {
-                return literalPosition;
-            }
+            get => literalPosition;
             set
             {
                 literalPosition = value;
@@ -49,12 +46,9 @@ namespace LemonUI.Elements
         /// <summary>
         /// The Size of the drawable.
         /// </summary>
-        public SizeF Size
+        public virtual SizeF Size
         {
-            get
-            {
-                return literalSize;
-            }
+            get => literalSize;
             set
             {
                 literalSize = value;
@@ -64,11 +58,11 @@ namespace LemonUI.Elements
         /// <summary>
         /// The Color of the drawable.
         /// </summary>
-        public Color Color { get; set; } = Color.FromArgb(255, 255, 255, 255);
+        public virtual Color Color { get; set; } = Color.FromArgb(255, 255, 255, 255);
         /// <summary>
         /// The rotation of the drawable.
         /// </summary>
-        public float Heading { get; set; } = 0;
+        public virtual float Heading { get; set; } = 0;
 
         #endregion
 
