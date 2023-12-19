@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using LemonUI.Elements;
 
 namespace LemonUI.Menus
@@ -10,6 +11,7 @@ namespace LemonUI.Menus
     {
         #region Fields
 
+        private string name = string.Empty;
         internal readonly ScaledRectangle rectangle = new ScaledRectangle(PointF.Empty, SizeF.Empty);
 
         #endregion
@@ -19,7 +21,11 @@ namespace LemonUI.Menus
         /// <summary>
         /// The name of the color.
         /// </summary>
-        public string Name { get; set; }
+        public string Name
+        {
+            get => name;
+            set => name = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The RGBA values of the color.
         /// </summary>
@@ -40,7 +46,7 @@ namespace LemonUI.Menus
         /// <param name="color">The RGBA values of the color.</param>
         public NativeColorData(string name, Color color)
         {
-            Name = name;
+            this.name = name ?? throw new ArgumentNullException(nameof(name));
             rectangle.Color = color;
         }
 

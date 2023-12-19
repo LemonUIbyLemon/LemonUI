@@ -9,6 +9,7 @@ using GTA.Native;
 #elif ALTV
 using AltV.Net.Client;
 #endif
+using System;
 using System.Drawing;
 
 namespace LemonUI.Elements
@@ -18,16 +19,32 @@ namespace LemonUI.Elements
     /// </summary>
     public class ScaledTexture : BaseElement
     {
+        #region Fields
+
+        private string dictionary;
+        private string texture;
+
+        #endregion
+
         #region Properties
 
         /// <summary>
         /// The dictionary where the texture is loaded.
         /// </summary>
-        public string Dictionary { get; set; }
+        public string Dictionary
+        {
+            get => dictionary;
+            set => dictionary = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
         /// <summary>
         /// The texture to draw from the dictionary.
         /// </summary>
-        public string Texture { get; set; }
+        public string Texture
+        {
+            get => texture;
+            set => texture = value ?? throw new ArgumentNullException(nameof(value));
+        }
 
         #endregion
 
@@ -50,8 +67,8 @@ namespace LemonUI.Elements
         /// <param name="texture">The texture to draw.</param>
         public ScaledTexture(PointF pos, SizeF size, string dictionary, string texture) : base(pos, size)
         {
-            Dictionary = dictionary;
-            Texture = texture;
+            Dictionary = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
+            Texture = texture ?? throw new ArgumentNullException(nameof(texture));
             Request();
         }
 

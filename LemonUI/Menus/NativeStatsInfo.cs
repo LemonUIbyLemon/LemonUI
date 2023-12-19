@@ -29,7 +29,7 @@ namespace LemonUI.Menus
         public string Name
         {
             get => text.Text;
-            set => text.Text = value;
+            set => text.Text = value ?? throw new ArgumentNullException(nameof(value));
         }
         /// <summary>
         /// The value of the Stats bar.
@@ -67,7 +67,7 @@ namespace LemonUI.Menus
         /// <param name="value"></param>
         public NativeStatsInfo(string name, int value)
         {
-            Name = name;
+            Name = name ?? throw new ArgumentNullException(nameof(name));
             this.value = value;
 
             for (int i = 0; i < 5; i++)

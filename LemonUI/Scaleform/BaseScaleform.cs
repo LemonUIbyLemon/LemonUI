@@ -82,7 +82,7 @@ namespace LemonUI.Scaleform
         /// <param name="sc">The Scalform object.</param>
         public BaseScaleform(string sc)
         {
-            Name = sc;
+            Name = sc ?? throw new ArgumentNullException(nameof(sc));
 
 #if FIVEM
             Handle = API.RequestScaleformMovie(Name);
@@ -103,6 +103,16 @@ namespace LemonUI.Scaleform
 
         private void CallFunctionBase(string function, params object[] parameters)
         {
+            if (function == null)
+            {
+                throw new ArgumentNullException(nameof(function), "The function name is null.");
+            }
+
+            if (string.IsNullOrWhiteSpace(function))
+            {
+                throw new ArgumentOutOfRangeException(nameof(function), "The function name is empty or white space.");
+            }
+
 #if FIVEM
             API.BeginScaleformMovieMethod(Handle, function);
 #elif ALTV
@@ -117,7 +127,11 @@ namespace LemonUI.Scaleform
 
             foreach (object obj in parameters)
             {
-                if (obj is int objInt)
+                if (obj == null)
+                {
+                    throw new ArgumentNullException(nameof(parameters), "Unexpected null function argument in parameters.");
+                }
+                else if (obj is int objInt)
                 {
 #if FIVEM
                     API.ScaleformMovieMethodAddParamInt(objInt);
@@ -405,9 +419,9 @@ namespace LemonUI.Scaleform
                 NativeFunction.CallByHash<int>(0x6DD8F5AA635EB4B2, idPtr);
             }
 #elif SHVDN3 || SHVDNC
-            using (OutputArgument idPtr = new OutputArgument(id))
+            unsafe
             {
-                Function.Call(Hash.SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED, idPtr);
+                Function.Call(Hash.SET_SCALEFORM_MOVIE_AS_NO_LONGER_NEEDED, &id);
             }
 #endif
         }

@@ -12,13 +12,12 @@ using Rage.Native;
 using Control = Rage.GameControl;
 #elif SHVDN3 || SHVDNC
 using GTA;
-using GTA.Native;
 using GTA.UI;
 #endif
 using LemonUI.Elements;
-using LemonUI.Extensions;
 using System;
 using System.Drawing;
+using LemonUI.Tools;
 
 namespace LemonUI.Menus
 {
@@ -137,7 +136,7 @@ namespace LemonUI.Menus
         public string LabelTop
         {
             get => labelTop.Text;
-            set => labelTop.Text = value;
+            set => labelTop.Text = value ?? throw new ArgumentNullException(nameof(value));
         }
         /// <summary>
         /// The text label shown on the bottom.
@@ -145,7 +144,7 @@ namespace LemonUI.Menus
         public string LabelBottom
         {
             get => labelBottom.Text;
-            set => labelBottom.Text = value;
+            set => labelBottom.Text = value ?? throw new ArgumentNullException(nameof(value));
         }
         /// <summary>
         /// The text label shown on the left.
@@ -153,7 +152,7 @@ namespace LemonUI.Menus
         public string LabelLeft
         {
             get => labelLeft.Text;
-            set => labelLeft.Text = value;
+            set => labelLeft.Text = value ?? throw new ArgumentNullException(nameof(value));
         }
         /// <summary>
         /// The text label shown on the right.
@@ -161,7 +160,7 @@ namespace LemonUI.Menus
         public string LabelRight
         {
             get => labelRight.Text;
-            set => labelRight.Text = value;
+            set => labelRight.Text = value ?? throw new ArgumentNullException(nameof(value));
         }
         /// <summary>
         /// The style of this grid.
@@ -290,16 +289,16 @@ namespace LemonUI.Menus
 
             if (!Controls.IsUsingController)
             {
-                if (Screen.IsCursorInArea(grid.Position, grid.Size) && Controls.IsPressed(Control.CursorAccept))
+                if (GameScreen.IsCursorInArea(grid.Position, grid.Size) && Controls.IsPressed(Control.CursorAccept))
                 {
-                    PointF cursor = Screen.CursorPositionRelative;
-                    PointF pos = innerPosition.ToRelative();
+                    PointF cursor = GameScreen.Cursor;
+                    PointF pos = innerPosition;
 
                     PointF start = new PointF(cursor.X - pos.X, cursor.Y - pos.Y);
-                    SizeF size = innerSize.ToRelative();
+                    SizeF size = innerSize;
 
-                    x = start.X / size.Width;
-                    y = start.Y / size.Height;
+                    x = (start.X / size.Width).ToXRelative();
+                    y = (start.Y / size.Height).ToYRelative();
                 }
                 else
                 {

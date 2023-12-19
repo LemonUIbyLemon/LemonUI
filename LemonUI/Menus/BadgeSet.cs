@@ -1,3 +1,5 @@
+using System;
+
 namespace LemonUI.Menus
 {
     /// <summary>
@@ -5,24 +7,49 @@ namespace LemonUI.Menus
     /// </summary>
     public class BadgeSet
     {
+        #region Fields
+
+        private string normalDict = string.Empty;
+        private string normalTexture = string.Empty;
+        private string hoveredDict = string.Empty;
+        private string hoveredTexture = string.Empty;
+
+        #endregion
+
         #region Properties
 
         /// <summary>
         /// The texture dictionary where the normal texture is located.
         /// </summary>
-        public string NormalDictionary { get; set; } = string.Empty;
+        public string NormalDictionary
+        {
+            get => normalDict;
+            set => normalDict = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The texture to use when the item is not hovered.
         /// </summary>
-        public string NormalTexture { get; set; } = string.Empty;
+        public string NormalTexture
+        {
+            get => normalTexture;
+            set => normalTexture = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The texture dictionary where the normal texture is located.
         /// </summary>
-        public string HoveredDictionary { get; set; } = string.Empty;
+        public string HoveredDictionary
+        {
+            get => hoveredDict;
+            set => hoveredDict = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The texture to use when the item is hovered.
         /// </summary>
-        public string HoveredTexture { get; set; } = string.Empty;
+        public string HoveredTexture
+        {
+            get => hoveredTexture;
+            set => hoveredTexture = value ?? throw new ArgumentNullException(nameof(value));
+        }
 
         #endregion
 
@@ -42,10 +69,10 @@ namespace LemonUI.Menus
         /// <param name="hovered">The hovered texture name.</param>
         public BadgeSet(string dict, string normal, string hovered)
         {
-            NormalDictionary = dict;
-            NormalTexture = normal;
-            HoveredDictionary = dict;
-            HoveredTexture = hovered;
+            normalDict = dict ?? throw new ArgumentNullException(nameof(dict));
+            normalTexture = normal ?? throw new ArgumentNullException(nameof(normal));
+            hoveredDict = dict;
+            hoveredTexture = hovered ?? throw new ArgumentNullException(nameof(hovered));
         }
         /// <summary>
         /// Creates a new <see cref="BadgeSet"/> where both textures are in different dictionaries.
@@ -56,10 +83,10 @@ namespace LemonUI.Menus
         /// <param name="hoveredTexture">The hovered texture name.</param>
         public BadgeSet(string normalDict, string normalTexture, string hoveredDict, string hoveredTexture)
         {
-            NormalDictionary = normalDict;
-            NormalTexture = normalTexture;
-            HoveredDictionary = hoveredDict;
-            HoveredTexture = hoveredTexture;
+            this.normalDict = normalDict ?? throw new ArgumentNullException(nameof(normalDict));
+            this.normalTexture = normalTexture ?? throw new ArgumentNullException(nameof(normalTexture));
+            this.hoveredDict = hoveredDict ?? throw new ArgumentNullException(nameof(hoveredDict));
+            this.hoveredTexture = hoveredTexture ?? throw new ArgumentNullException(nameof(hoveredTexture));
         }
 
         #endregion

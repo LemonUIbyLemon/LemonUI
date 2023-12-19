@@ -11,6 +11,7 @@ using Font = GTA.UI.Font;
 using LemonUI.Elements;
 using System;
 using System.Drawing;
+using LemonUI.Tools;
 
 namespace LemonUI.Menus
 {
@@ -55,6 +56,7 @@ namespace LemonUI.Menus
         private BadgeSet badgeSetRight;
         private ColorSet colors = new ColorSet();
         private ScaledRectangle background = new ScaledRectangle(PointF.Empty, SizeF.Empty);
+        private string description = string.Empty;
 
         #endregion
 
@@ -87,7 +89,7 @@ namespace LemonUI.Menus
         public string Title
         {
             get => title.Text;
-            set => title.Text = value;
+            set => title.Text = value ?? throw new ArgumentNullException(nameof(value));
         }
         /// <summary>
         /// The alternative title of the item shown on the right.
@@ -97,7 +99,7 @@ namespace LemonUI.Menus
             get => altTitle.Text;
             set
             {
-                altTitle.Text = value;
+                altTitle.Text = value ?? throw new ArgumentNullException(nameof(value));
                 Recalculate();
             }
         }
@@ -120,7 +122,11 @@ namespace LemonUI.Menus
         /// <summary>
         /// The description of the item.
         /// </summary>
-        public string Description { get; set; }
+        public string Description
+        {
+            get => description;
+            set => description = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The Left badge of the Item.
         /// </summary>
@@ -230,7 +236,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// If this item is being hovered.
         /// </summary>
-        public bool IsHovered => Screen.IsCursorInArea(background.Position, background.Size);
+        public bool IsHovered => GameScreen.IsCursorInArea(background.Position, background.Size);
 
         #endregion
 
@@ -392,7 +398,7 @@ namespace LemonUI.Menus
                     badgeRight.Color = Colors.BadgeRightDisabled;
                 }
             }
-            else if (lastSelected)
+            else if (lastSelected && !(this is NativeSeparatorItem))
             {
                 background.Color = Colors.BackgroundHovered;
                 title.Color = Colors.TitleHovered;
