@@ -113,6 +113,8 @@ namespace LemonUI.Elements
             int totalFrames = (int)((duration / 1000.0f) * frameRate);
             int currentFrame = (int)(totalFrames * progress);
             texture.Texture = currentFrame.ToString();
+
+            texture.Draw();
         }
 
         #endregion
