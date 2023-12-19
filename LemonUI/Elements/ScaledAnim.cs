@@ -78,7 +78,7 @@ namespace LemonUI.Elements
             get => frameRate;
             set
             {
-                if (frameRate <= 0)
+                if (value <= 0)
                 {
                     throw new ArgumentOutOfRangeException(nameof(value), "The Frame Rate can't be equal or lower to zero.");
                 }
