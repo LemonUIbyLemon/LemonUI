@@ -17,11 +17,10 @@ namespace LemonUI.Elements
     /// <summary>
     /// A scaled animation using YTD files with all of the frames.
     /// </summary>
-    public class ScaledAnim : BaseElement
+    public class ScaledAnim : ScaledTexture
     {
         #region Fields
 
-        private readonly ScaledTexture texture = new ScaledTexture(string.Empty, string.Empty);
         private float frameRate;
         private int start = 0;
         private int duration;
@@ -30,46 +29,6 @@ namespace LemonUI.Elements
 
         #region Properties
 
-        /// <summary>
-        /// The position of this animation.
-        /// </summary>
-        public override PointF Position
-        {
-            get => texture.Position;
-            set => texture.Position = value;
-        }
-        /// <summary>
-        /// The size of this animation.
-        /// </summary>
-        public override SizeF Size
-        {
-            get => texture.Size;
-            set => texture.Size = value;
-        }
-        /// <summary>
-        /// The color of this animation.
-        /// </summary>
-        public override Color Color
-        {
-            get => texture.Color;
-            set => texture.Color = value;
-        }
-        /// <summary>
-        /// The rotation of this animation.
-        /// </summary>
-        public override float Heading
-        {
-            get => texture.Heading;
-            set => texture.Heading = value;
-        }
-        /// <summary>
-        /// The dictionary that contains the textures.
-        /// </summary>
-        public string Dictionary
-        {
-            get => texture.Dictionary;
-            set => texture.Dictionary = value ?? throw new ArgumentNullException(nameof(value));
-        }
         /// <summary>
         /// The total number of frames per second.
         /// </summary>
@@ -121,7 +80,6 @@ namespace LemonUI.Elements
         /// <param name="size">The size of the animation.</param>
         public ScaledAnim(string dict, SizeF size) : this(dict, PointF.Empty, size)
         {
-            texture.Dictionary = dict ?? throw new ArgumentNullException(nameof(dict));
         }
         /// <summary>
         /// Creates a new dictionary based animation.
@@ -129,9 +87,9 @@ namespace LemonUI.Elements
         /// <param name="dict">The texture dictionary (YTD) to use.</param>
         /// <param name="pos">The position of the animation.</param>
         /// <param name="size">The size of the animation.</param>
-        public ScaledAnim(string dict, PointF pos, SizeF size) : base(pos, size)
+        public ScaledAnim(string dict, PointF pos, SizeF size) : base(pos, size, dict, string.Empty)
         {
-            texture.Dictionary = dict ?? throw new ArgumentNullException(nameof(dict));
+            Dictionary = dict ?? throw new ArgumentNullException(nameof(dict));
         }
 
         #endregion
@@ -168,9 +126,9 @@ namespace LemonUI.Elements
             float progress = (time - (float)start) / Duration;
             int totalFrames = (int)((duration / 1000.0f) * frameRate);
             int currentFrame = (int)(totalFrames * progress);
-            texture.Texture = currentFrame.ToString();
+            Texture = currentFrame.ToString();
 
-            texture.Draw();
+            base.Draw();
         }
 
         #endregion
