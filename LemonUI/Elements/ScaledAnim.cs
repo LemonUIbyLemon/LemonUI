@@ -1,3 +1,14 @@
+#if ALTV
+using AltV.Net.Client;
+#elif FIVEM
+using CitizenFX.Core;
+#elif RAGEMP
+using RAGE.Game;
+#elif RPH
+using Rage.Native;
+#elif SHVDN3 || SHVDNC
+using GTA;
+#endif
 using System;
 using System.Drawing;
 
@@ -12,7 +23,6 @@ namespace LemonUI.Elements
 
         private readonly ScaledTexture texture = new ScaledTexture(string.Empty, string.Empty);
         private float frameRate;
-        private int frameTime;
 
         #endregion
 
@@ -32,11 +42,7 @@ namespace LemonUI.Elements
         public float FrameRate
         {
             get => frameRate;
-            set
-            {
-                frameRate = value;
-                frameTime = (int)((1.0f / value) * 1000);
-            }
+            set => frameRate = value;
         }
 
         #endregion
