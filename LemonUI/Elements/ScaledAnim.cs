@@ -19,7 +19,7 @@ namespace LemonUI.Elements
         /// <summary>
         /// The dictionary that contains the textures.
         /// </summary>
-        public string Dict
+        public string Dictionary
         {
             get => texture.Dictionary;
             set => texture.Dictionary = value ?? throw new ArgumentNullException(nameof(value));
