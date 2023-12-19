@@ -13,6 +13,7 @@ using Control = Rage.GameControl;
 using GTA;
 using GTA.Native;
 #endif
+using System;
 
 namespace LemonUI.Scaleform
 {
@@ -25,6 +26,7 @@ namespace LemonUI.Scaleform
 
         private Control control;
         private string raw;
+        private string description;
 
         #endregion
 
@@ -33,7 +35,11 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The description of this button.
         /// </summary>
-        public string Description { get; set; }
+        public string Description
+        {
+            get => description;
+            set => description = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The Control used by this button.
         /// </summary>
@@ -64,7 +70,7 @@ namespace LemonUI.Scaleform
             get => raw;
             set
             {
-                raw = value;
+                raw = value ?? throw new ArgumentNullException(nameof(value));
                 control = (Control)(-1);
             }
         }
@@ -80,7 +86,7 @@ namespace LemonUI.Scaleform
         /// <param name="control">The control to use.</param>
         public InstructionalButton(string description, Control control)
         {
-            Description = description;
+            this.description = description ?? throw new ArgumentNullException(nameof(description));
             this.control = control;
 #if FIVEM
             raw = API.GetControlInstructionalButton(2, (int)control, 1);
@@ -94,7 +100,6 @@ namespace LemonUI.Scaleform
             raw = Function.Call<string>(Hash.GET_CONTROL_INSTRUCTIONAL_BUTTONS_STRING, 2, (int)control, 1);
 #endif
         }
-
         /// <summary>
         /// Creates an instructional button for a raw control.
         /// </summary>
@@ -102,9 +107,9 @@ namespace LemonUI.Scaleform
         /// <param name="raw">The raw value of the control.</param>
         public InstructionalButton(string description, string raw)
         {
-            Description = description;
+            this.description = description ?? throw new ArgumentNullException(nameof(description));
             control = (Control)(-1);
-            this.raw = raw;
+            this.raw = raw ?? throw new ArgumentNullException(nameof(raw));
         }
 
         #endregion

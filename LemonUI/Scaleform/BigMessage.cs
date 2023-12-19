@@ -29,6 +29,9 @@ namespace LemonUI.Scaleform
         private MessageType type;
         private uint weaponHash;
         private long hideAfter;
+        private string title;
+        private string message;
+        private string rank;
 
         #endregion
 
@@ -37,11 +40,19 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The title of the message.
         /// </summary>
-        public string Title { get; set; }
+        public string Title
+        {
+            get => title;
+            set => title = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The subtitle or description of the message.
         /// </summary>
-        public string Message { get; set; }
+        public string Message
+        {
+            get => message;
+            set => message = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The color of the text.
         /// Only used on the Customizable message type.
@@ -54,7 +65,11 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// The Rank when the mode is set to Cops and Crooks.
         /// </summary>
-        public string Rank { get; set; }
+        public string Rank
+        {
+            get => rank;
+            set => rank = value ?? throw new ArgumentNullException(nameof(value));
+        }
 #if !RAGEMP && !ALTV
         /// <summary>
         /// The hash of the Weapon as an enum.

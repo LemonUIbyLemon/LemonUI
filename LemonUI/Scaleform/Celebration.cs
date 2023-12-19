@@ -25,6 +25,9 @@ namespace LemonUI.Scaleform
 
         private long showUntil = 0;
         private bool cancel = false;
+        private string mode = string.Empty;
+        private string job = string.Empty;
+        private string challenge = string.Empty;
 
         #endregion
 
@@ -38,27 +41,42 @@ namespace LemonUI.Scaleform
         /// The foreground of the scaleform.
         /// </summary>
         public CelebrationForeground Foreground { get; } = new CelebrationForeground();
+
         /// <summary>
         /// The mode name shown.
         /// </summary>
         /// <remarks>
         /// This is used to show the current mode, like "HEIST", "RACE", "LAST TEAM STANDING", etc.
         /// </remarks>
-        public string Mode { get; set; } = string.Empty;
+        public string Mode
+        {
+            get => mode;
+            set => mode = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
         /// <summary>
         /// The job name shown.
         /// </summary>
         /// <remarks>
         /// This is used to show the current job name like "The Prison Break" or "Premium Race - East Coast".
         /// </remarks>
-        public string Job { get; set; } = string.Empty;
+        public string Job
+        {
+            get => job;
+            set => job = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
         /// <summary>
         /// The challenge shown.
         /// </summary>
         /// <remarks>
         /// This is used to show messages like "ROUND 10" or "POTENTIAL CUT $1000000".
         /// </remarks>
-        public string Challenge { get; set; } = string.Empty;
+        public string Challenge
+        {
+            get => challenge;
+            set => challenge = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// For how long the scalefom is show.
         /// </summary>

@@ -5,6 +5,7 @@ using RAGE.Game;
 #elif SHVDN3 || SHVDNC
 using GTA.UI;
 #endif
+using System;
 using LemonUI.Elements;
 using System.Drawing;
 
@@ -69,7 +70,7 @@ namespace LemonUI.TimerBars
             get => rawTitle;
             set
             {
-                rawTitle = value;
+                rawTitle = value ?? throw new ArgumentNullException(nameof(value));
                 title.Text = value.ToUpperInvariant();
             }
         }
@@ -81,7 +82,7 @@ namespace LemonUI.TimerBars
             get => rawInfo;
             set
             {
-                rawInfo = value;
+                rawInfo = value ?? throw new ArgumentNullException(nameof(value));
                 info.Text = value.ToUpperInvariant();
             }
         }

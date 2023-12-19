@@ -58,6 +58,10 @@ namespace LemonUI.Scaleform
             get => word;
             set
             {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
                 if (value.Length != 8)
                 {
                     throw new ArgumentOutOfRangeException(nameof(value), "The word needs to be exactly 8 characters long.");

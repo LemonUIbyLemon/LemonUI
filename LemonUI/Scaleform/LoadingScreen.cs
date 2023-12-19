@@ -1,3 +1,5 @@
+using System;
+
 namespace LemonUI.Scaleform
 {
     /// <summary>
@@ -5,20 +7,36 @@ namespace LemonUI.Scaleform
     /// </summary>
     public class LoadingScreen : BaseScaleform
     {
+        private string title;
+        private string subtitle;
+        private string description;
+
         #region Properties
 
         /// <summary>
         /// The title of the loading screen.
         /// </summary>
-        public string Title { get; set; }
+        public string Title
+        {
+            get => title;
+            set => title = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The subtitle of the loading screen.
         /// </summary>
-        public string Subtitle { get; set; }
+        public string Subtitle
+        {
+            get => subtitle;
+            set => subtitle = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The description of the loading screen.
         /// </summary>
-        public string Description { get; set; }
+        public string Description
+        {
+            get => description;
+            set => description = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// The Texture Dictionary (TXD) where the texture is loaded.
         /// </summary>

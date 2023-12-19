@@ -230,6 +230,8 @@ namespace LemonUI.Menus
         /// </summary>
         private long heldSince = -1;
         private HeaderBehavior nameBehavior = HeaderBehavior.AlwaysShow;
+        private string description = string.Empty;
+        private string noItemsText = "There are no items available";
 
         #endregion
 
@@ -531,12 +533,16 @@ namespace LemonUI.Menus
         public string Subtitle
         {
             get => Name;
-            set => Name = value;
+            set => Name = value ?? throw new ArgumentNullException(nameof(value));
         }
         /// <summary>
         /// The description used when this menu is used as a submenu.
         /// </summary>
-        public string Description { get; set; } = string.Empty;
+        public string Description
+        {
+            get => description;
+            set => description = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// If the mouse should be used for navigating the menu.
         /// </summary>
@@ -553,10 +559,15 @@ namespace LemonUI.Menus
         /// The items that this menu contain.
         /// </summary>
         public List<NativeItem> Items { get; } = new List<NativeItem>();
+
         /// <summary>
         /// Text shown when there are no items in the menu.
         /// </summary>
-        public string NoItemsText { get; set; } = "There are no items available";
+        public string NoItemsText
+        {
+            get => noItemsText;
+            set => noItemsText = value ?? throw new ArgumentNullException(nameof(value));
+        }
         /// <summary>
         /// If the cursor should be reset when the menu is opened.
         /// </summary>
