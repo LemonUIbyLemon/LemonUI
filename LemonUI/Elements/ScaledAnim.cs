@@ -125,7 +125,19 @@ namespace LemonUI.Elements
 
             float progress = (time - (float)start) / Duration;
             int totalFrames = (int)((duration / 1000.0f) * frameRate);
-            int currentFrame = (int)(totalFrames * progress);
+            int currentFrame = (int)(totalFrames * progress) + 1;
+
+            if (progress < 0)
+            {
+                currentFrame = 1;
+                start = time;
+            }
+            else if (currentFrame >= totalFrames)
+            {
+                currentFrame = totalFrames;
+                start = time;
+            }
+
             Texture = currentFrame.ToString();
 
             base.Draw();
