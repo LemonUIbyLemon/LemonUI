@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 
 namespace LemonUI.Elements
@@ -18,7 +19,11 @@ namespace LemonUI.Elements
         /// <summary>
         /// The dictionary that contains the textures.
         /// </summary>
-        public string Dict { get; set; }
+        public string Dict
+        {
+            get => texture.Dictionary;
+            set => texture.Dictionary = value ?? throw new ArgumentNullException(nameof(value));
+        }
 
         #endregion
 
@@ -32,7 +37,7 @@ namespace LemonUI.Elements
         /// <param name="size">The size of the animation.</param>
         public ScaledAnim(string dict, PointF pos, SizeF size) : base(pos, size)
         {
-            Dict = dict;
+            texture.Dictionary = dict ?? throw new ArgumentNullException(nameof(dict));
         }
 
         #endregion
