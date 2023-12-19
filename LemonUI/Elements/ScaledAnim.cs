@@ -76,7 +76,15 @@ namespace LemonUI.Elements
         public float FrameRate
         {
             get => frameRate;
-            set => frameRate = value;
+            set
+            {
+                if (frameRate <= 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "The Frame Rate can't be equal or lower to zero.");
+                }
+
+                frameRate = value;
+            }
         }
         /// <summary>
         /// The duration of the animation in milliseconds.
