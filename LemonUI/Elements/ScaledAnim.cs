@@ -23,6 +23,7 @@ namespace LemonUI.Elements
 
         private readonly ScaledTexture texture = new ScaledTexture(string.Empty, string.Empty);
         private float frameRate;
+        private int duration;
 
         #endregion
 
@@ -43,6 +44,22 @@ namespace LemonUI.Elements
         {
             get => frameRate;
             set => frameRate = value;
+        }
+        /// <summary>
+        /// The duration of the animation in milliseconds.
+        /// </summary>
+        public int Duration
+        {
+            get => duration;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "The duration can't be under zero.");
+                }
+
+                duration = value;
+            }
         }
 
         #endregion
