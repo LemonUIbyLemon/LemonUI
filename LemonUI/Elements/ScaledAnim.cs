@@ -31,6 +31,38 @@ namespace LemonUI.Elements
         #region Properties
 
         /// <summary>
+        /// The position of this animation.
+        /// </summary>
+        public override PointF Position
+        {
+            get => texture.Position;
+            set => texture.Position = value;
+        }
+        /// <summary>
+        /// The size of this animation.
+        /// </summary>
+        public override SizeF Size
+        {
+            get => texture.Size;
+            set => texture.Size = value;
+        }
+        /// <summary>
+        /// The color of this animation.
+        /// </summary>
+        public override Color Color
+        {
+            get => texture.Color;
+            set => texture.Color = value;
+        }
+        /// <summary>
+        /// The rotation of this animation.
+        /// </summary>
+        public override float Heading
+        {
+            get => texture.Heading;
+            set => texture.Heading = value;
+        }
+        /// <summary>
         /// The dictionary that contains the textures.
         /// </summary>
         public string Dictionary
