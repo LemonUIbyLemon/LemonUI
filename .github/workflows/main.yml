@@ -53,10 +53,10 @@ jobs:
         working-directory: bin/Release
       - run: dotnet tool update -g docfx
       - run: docfx docs/docfx.json
-      - uses: actions/upload-pages-artifact@v1.0.7
+      - uses: actions/upload-pages-artifact@v2.0.0
         with:
           path: "docs/_site"
-      - uses: actions/deploy-pages@v1.2.4
+      - uses: actions/deploy-pages@v3.0.1
   github-package-registry:
     runs-on: ubuntu-22.04
     if: ${{ github.ref == 'refs/heads/master' }}
