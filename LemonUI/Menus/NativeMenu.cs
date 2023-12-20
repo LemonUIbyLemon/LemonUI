@@ -291,7 +291,6 @@ namespace LemonUI.Menus
                 }
             }
         }
-
         /// <summary>
         /// The text shown on top of the banner.
         /// </summary>
@@ -313,6 +312,15 @@ namespace LemonUI.Menus
         {
             get => BannerText.Font;
             set => BannerText.Font = value;
+        }
+        /// <summary>
+        /// The font of name text.
+        /// </summary>
+        [Obsolete("Please use NameFont instead.", true)]
+        public Font SubtitleFont
+        {
+            get => nameText.Font;
+            set => nameText.Font = value;
         }
         /// <summary>
         /// The font of name text.
