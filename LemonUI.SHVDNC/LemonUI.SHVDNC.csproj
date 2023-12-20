@@ -7,7 +7,7 @@
         <AssemblyName>$(AssemblyName)</AssemblyName>
         <DefineConstants>SHVDNC,CLIENT</DefineConstants>
         <Version>1.10.0</Version>
-        <OutputPath>$(SolutionDir)bin\$(Configuration)\SHVDN3\</OutputPath>
+        <OutputPath>$(SolutionDir)bin\$(Configuration)\SHVDNC\</OutputPath>
         <PlatformTarget>x64</PlatformTarget>
         <DebugType>full</DebugType>
         <DebugSymbols>true</DebugSymbols>
