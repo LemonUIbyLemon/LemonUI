@@ -61,7 +61,6 @@ namespace LemonUI.Menus
         /// <inheritdoc/>
         public override void Draw()
         {
-            // There is no Process(), so let's use draw to update the description
             if (Description != Menu.Description)
             {
                 Description = Menu.Description;

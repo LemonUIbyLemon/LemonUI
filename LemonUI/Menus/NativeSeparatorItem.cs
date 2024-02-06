@@ -45,6 +45,11 @@ namespace LemonUI.Menus
         /// <inheritdoc/>
         public override void Draw()
         {
+            if (UseCustomBackground)
+            {
+                background.Draw();
+            }
+
             title.Draw();
         }
 

@@ -55,7 +55,7 @@ namespace LemonUI.Menus
         private BadgeSet badgeSetLeft;
         private BadgeSet badgeSetRight;
         private ColorSet colors = new ColorSet();
-        private ScaledRectangle background = new ScaledRectangle(PointF.Empty, SizeF.Empty);
+        internal ScaledRectangle background = new ScaledRectangle(PointF.Empty, SizeF.Empty);
         private string description = string.Empty;
 
         #endregion

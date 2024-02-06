@@ -181,6 +181,11 @@ namespace LemonUI.Menus
         /// </summary>
         public override void Draw()
         {
+            if (UseCustomBackground)
+            {
+                background.Draw();
+            }
+
             title.Draw();
             badgeLeft?.Draw();
             check.Draw();
