@@ -26,7 +26,7 @@ namespace LemonUI.Menus
         {
             get
             {
-                if (Items.Count == 0)
+                if (items.Count == 0)
                 {
                     return -1;
                 }
@@ -34,7 +34,7 @@ namespace LemonUI.Menus
             }
             set
             {
-                if (Items.Count == 0)
+                if (items.Count == 0)
                 {
                     throw new InvalidOperationException("There are no available items.");
                 }
@@ -62,12 +62,7 @@ namespace LemonUI.Menus
         {
             get
             {
-                if (Items.Count == 0)
-                {
-                    return default;
-                }
-
-                return Items[SelectedIndex];
+                return Items.Count == 0 ? default : Items[index];
             }
             set
             {
@@ -86,6 +81,7 @@ namespace LemonUI.Menus
                 SelectedIndex = newIndex;
             }
         }
+
         /// <summary>
         /// The objects used by this item.
         /// </summary>
@@ -146,7 +142,12 @@ namespace LemonUI.Menus
         }
         private void FixIndexIfRequired()
         {
-            if (index >= items.Count)
+            if (items.Count == 0)
+            {
+                index = 0;
+                UpdateIndex();
+            }
+            else if (index >= items.Count)
             {
                 index = items.Count - 1;
                 UpdateIndex();
@@ -175,25 +176,7 @@ namespace LemonUI.Menus
         /// Adds a <typeparamref name="T" /> into this item.
         /// </summary>
         /// <param name="item">The <typeparamref name="T" /> to add.</param>
-        public void Add(T item)
-        {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
-
-            if (items.Contains(item))
-            {
-                throw new InvalidOperationException("Item is already part of this NativeListItem.");
-            }
-
-            items.Add(item);
-
-            if (items.Count == 1)
-            {
-                UpdateIndex();
-            }
-        }
+        public void Add(T item) => Add(items.Count, item);
         /// <summary>
         /// Adds a <typeparamref name="T" /> in a specific location.
         /// </summary>
@@ -211,9 +194,14 @@ namespace LemonUI.Menus
                 throw new ArgumentOutOfRangeException(nameof(position), "The position is out of the range of items.");
             }
 
-            Items.Insert(position, item);
+            items.Insert(position, item);
 
             FixIndexIfRequired();
+
+            if (items.Count == 1)
+            {
+                UpdateIndex();
+            }
         }
         /// <summary>
         /// Removes a specific <typeparamref name="T" />.
@@ -239,6 +227,7 @@ namespace LemonUI.Menus
 
             items.RemoveAt(position);
             FixIndexIfRequired();
+            UpdateIndex();
         }
         /// <summary>
         /// Removes all of the items that match the <paramref name="pred"/>.
