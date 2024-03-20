@@ -148,6 +148,16 @@ namespace LemonUI.Elements
             UpdateTexture();
             base.Draw();
         }
+        /// <summary>
+        /// Draws the animation while only drawing a specific part of the element.
+        /// </summary>
+        /// <param name="topLeft">The top left corner of the area to draw.</param>
+        /// <param name="bottomRight">The bottom right corner of the area to draw.</param>
+        public override void DrawSpecific(PointF topLeft, PointF bottomRight)
+        {
+            UpdateTexture();
+            base.DrawSpecific(topLeft, bottomRight);
+        }
 
         #endregion
     }

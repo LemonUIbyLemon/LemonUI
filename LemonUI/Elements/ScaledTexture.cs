@@ -138,7 +138,9 @@ namespace LemonUI.Elements
         /// <summary>
         /// Draws a specific part of the texture on the screen.
         /// </summary>
-        public void DrawSpecific(PointF topLeft, PointF bottomRight)
+        /// <param name="topLeft">The top left corner of the area to draw.</param>
+        /// <param name="bottomRight">The bottom right corner of the area to draw.</param>
+        public virtual void DrawSpecific(PointF topLeft, PointF bottomRight)
         {
             if (Size == SizeF.Empty)
             {
