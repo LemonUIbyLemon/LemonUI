@@ -94,12 +94,9 @@ namespace LemonUI.Elements
 
         #endregion
 
-        #region Functions
+        #region Tools
 
-        /// <summary>
-        /// Draws the animation.
-        /// </summary>
-        public override void Draw()
+        private void UpdateTexture()
         {
             if (Duration <= 0)
             {
@@ -137,7 +134,18 @@ namespace LemonUI.Elements
             }
 
             Texture = currentFrame.ToString();
+        }
 
+        #endregion
+
+        #region Functions
+
+        /// <summary>
+        /// Draws the animation.
+        /// </summary>
+        public override void Draw()
+        {
+            UpdateTexture();
             base.Draw();
         }
 
