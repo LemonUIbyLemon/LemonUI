@@ -857,35 +857,35 @@ namespace LemonUI.Menus
         /// <summary>
         /// Creates a new menu with the specified banner text and name.
         /// </summary>
-        /// <param name="bqnnerText">The title of the menu.</param>
+        /// <param name="bannerText">The title of the menu.</param>
         /// <param name="name">The name of this menu.</param>
-        public NativeMenu(string bqnnerText, string name) : this(bqnnerText, name, string.Empty)
+        public NativeMenu(string bannerText, string name) : this(bannerText, name, string.Empty)
         {
         }
 
         /// <summary>
         /// Creates a new menu with the specified banner text, name and description.
         /// </summary>
-        /// <param name="bqnnerText">The title of the menu.</param>
+        /// <param name="bannerText">The title of the menu.</param>
         /// <param name="name">The name of this menu.</param>
         /// <param name="description">The description used for submenus.</param>
-        public NativeMenu(string bqnnerText, string name, string description) : this(bqnnerText, name, description, new ScaledTexture(PointF.Empty, new SizeF(0, 108), "commonmenu", "interaction_bgd"))
+        public NativeMenu(string bannerText, string name, string description) : this(bannerText, name, description, new ScaledTexture(PointF.Empty, new SizeF(0, 108), "commonmenu", "interaction_bgd"))
         {
         }
 
         /// <summary>
         /// Creates a new menu with the specified banner text, name, description and banner.
         /// </summary>
-        /// <param name="bqnnerText">The title of the menu.</param>
+        /// <param name="bannerText">The title of the menu.</param>
         /// <param name="name">The name of this menu.</param>
         /// <param name="description">The description used for submenus.</param>
         /// <param name="banner">The drawable to use as the banner.</param>
-        public NativeMenu(string bqnnerText, string name, string description, I2Dimensional banner)
+        public NativeMenu(string bannerText, string name, string description, I2Dimensional banner)
         {
             this.name = name;
             Description = description;
             bannerImage = banner;
-            BannerText = new ScaledText(PointF.Empty, bqnnerText, 1.02f, Font.HouseScript)
+            BannerText = new ScaledText(PointF.Empty, bannerText, 1.02f, Font.HouseScript)
             {
                 Alignment = Alignment.Center
             };
