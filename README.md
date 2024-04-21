@@ -1,6 +1,6 @@
 # LemonUI<br>[![GitHub Actions][actions-img]][actions-url] [![NuGet][nuget-img-3]][nuget-url-3] [![NuGet][nuget-img-f]][nuget-url-f] [![NuGet][nuget-img-r]][nuget-url-r] [![NuGet][nuget-img-as]][nuget-url-as] [![NuGet][nuget-img-aa]][nuget-url-aa] [![NuGet][nuget-img-c]][nuget-url-c] [![Patreon][patreon-img]][patreon-url] [![PayPal][paypal-img]][paypal-url] [![Discord][discord-img]][discord-url]
 
-LemonUI is a framework for creating UI systems in Grand Theft Auto V that is compatible with FiveM, RageMP, RagePluginHook ScriptHookVDotNet 2 and ScriptHookVDotNet 3. It allows you to create UI Elements with a NativeUI-like style, or you can also create your own UI System from scratch via the resolution-independant classes for Text, Rectangles and Textures.
+LemonUI is a framework for creating UI systems in Grand Theft Auto V that is compatible with FiveM, RageMP, RagePluginHook ScriptHookVDotNet 2, and ScriptHookVDotNet 3. It allows you to create UI Elements with a NativeUI-like style, or you can also create your UI System from scratch via the resolution-independent classes for Text, Rectangles, and Textures.
 
 It was created as a replacement for NativeUI due to being too convoluted to develop and maintain. LemonUI retains most (if not all) of the UI Elements available in NativeUI.
 
@@ -11,7 +11,7 @@ Special thanks to:
 * ikt for helping me to use SET_SCRIPT_GFX_ALIGN and SET_SCRIPT_GFX_ALIGN_PARAMS
 * Dot. for the snippet of code used for the item scrolling
 * deterministic_bubble for answering some questions about some missing C# classes in FiveM
-* PNWParksFan for helping me with some RPH question when I was doing the port
+* PNWParksFan for helping me with some RPH questions when I was doing the port
 
 ## Download
 
@@ -49,7 +49,7 @@ Once installed, the mods that require LemonUI will start working.
 
 Check the [Quick Start guide](https://github.com/LemonUIbyLemon/LemonUI/wiki/Quick-Start) to learn how to use LemonUI in your project.
 
-If you would like to make changes to the code, clone the repo, restore the packages and open the solution in your favorite IDE.
+If you would like to make changes to the code, clone the repo, restore the packages, and open the solution in your favorite IDE.
 
 [actions-img]: https://img.shields.io/github/actions/workflow/status/LemonUIbyLemon/LemonUI/main.yml?branch=master&label=actions
 [actions-url]: https://github.com/LemonUIbyLemon/LemonUI/actions
