@@ -1801,10 +1801,16 @@ namespace LemonUI.Menus
                 return;
             }
 
-            int nextIndex = SelectedIndex;
+            int initialIndex = SelectedIndex;
+            int nextIndex = initialIndex;
 
             while (true)
             {
+                if (nextIndex == initialIndex)
+                {
+                    return;
+                }
+
                 nextIndex -= 1;
 
                 if (nextIndex < 0)
@@ -1837,10 +1843,16 @@ namespace LemonUI.Menus
                 return;
             }
 
-            int nextIndex = SelectedIndex;
+            int initialIndex = SelectedIndex;
+            int nextIndex = initialIndex;
 
             while (true)
             {
+                if (nextIndex == initialIndex)
+                {
+                    return;
+                }
+
                 nextIndex += 1;
 
                 if (nextIndex >= Items.Count)
