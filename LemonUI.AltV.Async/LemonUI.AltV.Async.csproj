@@ -4,18 +4,19 @@
         <TargetFramework>net6.0</TargetFramework>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-        <AssemblyName>$(AssemblyName)</AssemblyName>
+        <AssemblyName>LemonUI.AltV.Async</AssemblyName>
+        <RootNamespace>LemonUI</RootNamespace>
         <DefineConstants>ALTV,CLIENT</DefineConstants>
         <Version>1.10.0</Version>
         <OutputPath>$(SolutionDir)bin\$(Configuration)\AltV\</OutputPath>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
         <PlatformTarget>AnyCPU</PlatformTarget>
         <DebugType>embedded</DebugType>
         <DebugSymbols>true</DebugSymbols>
         <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
         <CheckEolTargetFramework>false</CheckEolTargetFramework>
-
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
 
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>

@@ -4,18 +4,19 @@
         <TargetFramework>netcoreapp2.2</TargetFramework>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-        <AssemblyName>$(AssemblyName)</AssemblyName>
+        <AssemblyName>LemonUI.RageMP</AssemblyName>
+        <RootNamespace>LemonUI</RootNamespace>
         <DefineConstants>RAGEMP,CLIENT</DefineConstants>
         <Version>1.10.0</Version>
         <OutputPath>$(SolutionDir)bin\$(Configuration)\RageMP\</OutputPath>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
         <PlatformTarget>x64</PlatformTarget>
         <DebugType>portable</DebugType>
         <DebugSymbols>true</DebugSymbols>
         <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
         <CheckEolTargetFramework>false</CheckEolTargetFramework>
-
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
 
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>

@@ -4,19 +4,20 @@
         <TargetFramework>net472</TargetFramework>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-        <AssemblyName>$(AssemblyName)</AssemblyName>
+        <AssemblyName>LemonUI.RagePluginHook</AssemblyName>
+        <RootNamespace>LemonUI</RootNamespace>
         <DefineConstants>RPH,CLIENT</DefineConstants>
         <Version>1.10.0</Version>
         <OutputPath>$(SolutionDir)bin\$(Configuration)\RPH\</OutputPath>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
         <PlatformTarget>x64</PlatformTarget>
         <DebugType>portable</DebugType>
         <DebugSymbols>true</DebugSymbols>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
         <CheckEolTargetFramework>false</CheckEolTargetFramework>
 
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
-        
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageIcon>logo.png</PackageIcon>

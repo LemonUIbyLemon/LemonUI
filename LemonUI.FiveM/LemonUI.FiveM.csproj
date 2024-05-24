@@ -4,18 +4,19 @@
         <TargetFramework>net452</TargetFramework>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-        <AssemblyName>$(AssemblyName)</AssemblyName>
+        <AssemblyName>LemonUI.FiveM</AssemblyName>
+        <RootNamespace>LemonUI</RootNamespace>
         <DefineConstants>FIVEM,CLIENT</DefineConstants>
         <Version>1.10.0</Version>
         <OutputPath>$(SolutionDir)bin\$(Configuration)\FiveM\</OutputPath>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
         <PlatformTarget>AnyCPU</PlatformTarget>
         <DebugType>embedded</DebugType>
         <DebugSymbols>true</DebugSymbols>
         <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
         <CheckEolTargetFramework>false</CheckEolTargetFramework>
-
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
 
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>

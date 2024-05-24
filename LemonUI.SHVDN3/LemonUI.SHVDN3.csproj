@@ -4,18 +4,19 @@
         <TargetFramework>net48</TargetFramework>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-        <AssemblyName>$(AssemblyName)</AssemblyName>
+        <AssemblyName>LemonUI.SHVDN3</AssemblyName>
+        <RootNamespace>LemonUI</RootNamespace>
         <DefineConstants>SHVDN3,CLIENT</DefineConstants>
         <Version>1.10.0</Version>
         <OutputPath>$(SolutionDir)bin\$(Configuration)\SHVDN3\</OutputPath>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
         <PlatformTarget>x64</PlatformTarget>
         <DebugType>full</DebugType>
         <DebugSymbols>true</DebugSymbols>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
         <CheckEolTargetFramework>false</CheckEolTargetFramework>
-
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
 
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
