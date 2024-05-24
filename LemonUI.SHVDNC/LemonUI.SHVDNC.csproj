@@ -24,6 +24,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageIcon>logo.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageId>$(ProjectName)</PackageId>
         <Authors>Hannele "Lemon" Ruiz</Authors>
         <Company>Hannele "Lemon" Ruiz</Company>
@@ -39,8 +40,8 @@
 
     <ItemGroup>
         <Compile Include="$(ProjectDir)../LemonUI/**/*.cs" />
-        <None Include="$(ProjectDir)../README.md" Pack="true" Visible="false" PackagePath="" />
-        <None Include="$(ProjectDir)../logo.png" Pack="true" Visible="false" PackagePath="" />
+        <None Include="$(ProjectDir)../README.md" Pack="true" Visible="false" PackagePath="\" />
+        <None Include="$(ProjectDir)../logo.png" Pack="true" Visible="false" PackagePath="\" />
         <PackageReference Include="ScriptHookVDotNetCore" Version="1.2.1">
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
