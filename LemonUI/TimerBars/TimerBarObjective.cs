@@ -44,9 +44,9 @@ namespace LemonUI.TimerBars
                     return;
                 }
 
-                if (value <= 0)
+                if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value), "The number of objectives can't be under or equal to zero.");
+                    throw new ArgumentOutOfRangeException(nameof(value), "The number of objectives can't be under zero.");
                 }
 
                 count = value;
