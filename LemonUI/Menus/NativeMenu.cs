@@ -1802,34 +1802,29 @@ namespace LemonUI.Menus
             }
 
             int initialIndex = SelectedIndex;
-            int nextIndex = initialIndex;
+            int nextIndex = SelectedIndex;
+
+            nextIndex -= 1;
 
             while (true)
             {
-                if (nextIndex == initialIndex)
-                {
-                    return;
-                }
-
-                nextIndex -= 1;
-
                 if (nextIndex < 0)
                 {
                     nextIndex = Items.Count - 1;
                 }
 
-                if (Items[nextIndex] is NativeSeparatorItem)
-                {
-                    continue;
-                }
-
-                if (nextIndex == SelectedIndex)
+                if (nextIndex == initialIndex)
                 {
                     return;
                 }
 
-                SelectedIndex = nextIndex;
-                return;
+                if (Items[nextIndex] is not NativeSeparatorItem)
+                {
+                    SelectedIndex = nextIndex;
+                    return;
+                }
+
+                nextIndex -= 1;
             }
         }
         /// <summary>
@@ -1844,34 +1839,29 @@ namespace LemonUI.Menus
             }
 
             int initialIndex = SelectedIndex;
-            int nextIndex = initialIndex;
+            int nextIndex = SelectedIndex;
+
+            nextIndex += 1;
 
             while (true)
             {
-                if (nextIndex == initialIndex)
-                {
-                    return;
-                }
-
-                nextIndex += 1;
-
                 if (nextIndex >= Items.Count)
                 {
                     nextIndex = 0;
                 }
 
-                if (Items[nextIndex] is NativeSeparatorItem)
-                {
-                    continue;
-                }
-
-                if (nextIndex == SelectedIndex)
+                if (nextIndex == initialIndex)
                 {
                     return;
                 }
 
-                SelectedIndex = nextIndex;
-                return;
+                if (Items[nextIndex] is not NativeSeparatorItem)
+                {
+                    SelectedIndex = nextIndex;
+                    return;
+                }
+
+                nextIndex += 1;
             }
         }
 
