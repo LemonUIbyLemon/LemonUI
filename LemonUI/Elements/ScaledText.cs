@@ -107,9 +107,31 @@ namespace LemonUI.Elements
         /// </summary>
         public float Scale { get; set; } = 1f;
         /// <summary>
+        /// The shadow style used for this element.
+        /// </summary>
+        public Shadow ShadowStyle { get; set; }
+        /// <summary>
         /// If the text should have a drop down shadow.
         /// </summary>
-        public bool Shadow { get; set; } = false;
+        [Obsolete("Please use ShadowStyle with UseClassic set to true", true)]
+        public bool Shadow
+        {
+            get => ShadowStyle != null;
+            set
+            {
+                if (value)
+                {
+                    ShadowStyle = new Shadow
+                    {
+                        UseClassic = true
+                    };
+                }
+                else
+                {
+                    ShadowStyle = null;
+                }
+            }
+        }
         /// <summary>
         /// If the test should have an outline.
         /// </summary>
@@ -283,9 +305,16 @@ namespace LemonUI.Elements
             API.SetTextScale(1f, Scale);
             API.SetTextColour(Color.R, Color.G, Color.B, Color.A);
             API.SetTextJustification((int)Alignment);
-            if (Shadow)
+            if (ShadowStyle != null)
             {
-                API.SetTextDropShadow();
+                if (ShadowStyle.UseClassic)
+                {
+                    API.SetTextDropShadow();
+                }
+                else
+                {
+                    API.SetTextDropshadow(ShadowStyle.Distance, ShadowStyle.Color.R, ShadowStyle.Color.G, ShadowStyle.Color.B, ShadowStyle.Color.A);
+                }
             }
             if (Outline)
             {
@@ -319,9 +348,16 @@ namespace LemonUI.Elements
             Alt.Natives.SetTextScale(1f, Scale);
             Alt.Natives.SetTextColour(Color.R, Color.G, Color.B, Color.A);
             Alt.Natives.SetTextJustification((int)Alignment);
-            if (Shadow)
+            if (ShadowStyle != null)
             {
-                Alt.Natives.SetTextDropShadow();
+                if (ShadowStyle.UseClassic)
+                {
+                    Alt.Natives.SetTextDropShadow();
+                }
+                else
+                {
+                    Alt.Natives.SetTextDropshadow(ShadowStyle.Distance, ShadowStyle.Color.R, ShadowStyle.Color.G, ShadowStyle.Color.B, ShadowStyle.Color.A);
+                }
             }
             if (Outline)
             {
@@ -355,9 +391,16 @@ namespace LemonUI.Elements
             Invoker.Invoke(Natives.SetTextScale, 1f, Scale);
             Invoker.Invoke(Natives.SetTextColour, Color.R, Color.G, Color.B, Color.A);
             Invoker.Invoke(Natives.SetTextJustification, (int)Alignment);
-            if (Shadow)
+            if (ShadowStyle != null)
             {
-                Invoker.Invoke(Natives.SetTextDropShadow);
+                if (ShadowStyle.UseClassic)
+                {
+                    Invoker.Invoke(Natives.SetTextDropShadow);
+                }
+                else
+                {
+                    Invoker.Invoke(Natives.SetTextDropshadow, ShadowStyle.Distance, ShadowStyle.Color.R, ShadowStyle.Color.G, ShadowStyle.Color.B, ShadowStyle.Color.A);
+                }
             }
             if (Outline)
             {
@@ -391,9 +434,16 @@ namespace LemonUI.Elements
             NativeFunction.CallByHash<int>(0x07C837F9A01C34C9, 1f, Scale);
             NativeFunction.CallByHash<int>(0xBE6B23FFA53FB442, Color.R, Color.G, Color.B, Color.A);
             NativeFunction.CallByHash<int>(0x4E096588B13FFECA, (int)Alignment);
-            if (Shadow)
+            if (ShadowStyle != null)
             {
-                NativeFunction.CallByHash<int>(0x1CA3E9EAC9D93E5E);
+                if (ShadowStyle.UseClassic)
+                {
+                    NativeFunction.CallByHash<int>(0x1CA3E9EAC9D93E5E);
+                }
+                else
+                {
+                    NativeFunction.CallByHash<int>(0x465C84BC39F1C351, ShadowStyle.Distance, ShadowStyle.Color.R, ShadowStyle.Color.G, ShadowStyle.Color.B, ShadowStyle.Color.A);
+                }
             }
             if (Outline)
             {
@@ -427,9 +477,16 @@ namespace LemonUI.Elements
             Function.Call(Hash.SET_TEXT_SCALE, 1f, Scale);
             Function.Call(Hash.SET_TEXT_COLOUR, Color.R, Color.G, Color.B, Color.A);
             Function.Call(Hash.SET_TEXT_JUSTIFICATION, (int)Alignment);
-            if (Shadow)
+            if (ShadowStyle != null)
             {
-                Function.Call(Hash.SET_TEXT_DROP_SHADOW);
+                if (ShadowStyle.UseClassic)
+                {
+                    Function.Call(Hash.SET_TEXT_DROP_SHADOW);
+                }
+                else
+                {
+                    Function.Call(Hash.SET_TEXT_DROPSHADOW, ShadowStyle.Distance, ShadowStyle.Color.R, ShadowStyle.Color.G, ShadowStyle.Color.B, ShadowStyle.Color.A);
+                }
             }
             if (Outline)
             {
