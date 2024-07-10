@@ -1339,7 +1339,7 @@ namespace LemonUI.Menus
                     // So close the menu if required (same behavior of the interaction menu)
                     if (CloseOnInvalidClick)
                     {
-                        if (selectedItem.Panel != null && selectedItem.Panel.Clickable && selectedItem.IsHovered)
+                        if (selectedItem is { IsHovered: true } || selectedItem?.Panel is { Clickable: true })
                         {
                             return;
                         }
