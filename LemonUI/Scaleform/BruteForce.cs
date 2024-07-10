@@ -34,7 +34,6 @@ namespace LemonUI.Scaleform
 
         private int hideTime = -1;
         private int output = 0;
-        private bool firstRun = true;
         private bool inProgress = false;
 
         private BruteForceBackground background = BruteForceBackground.Black;
@@ -45,11 +44,26 @@ namespace LemonUI.Scaleform
         private TimeSpan end = TimeSpan.Zero;
         private TimeSpan countdown = TimeSpan.Zero;
         private bool showLives = true;
+        private bool visible;
 
         #endregion
 
         #region Properties
 
+        /// <inheritdoc />
+        public override bool Visible
+        {
+            get => visible;
+            set
+            {
+                visible = value;
+
+                if (visible)
+                {
+                    Reset();
+                }
+            }
+        }
         /// <summary>
         /// The Word shown to select in the menu.
         /// </summary>
@@ -175,7 +189,7 @@ namespace LemonUI.Scaleform
         /// </summary>
         public BruteForce() : base("HACKING_PC")
         {
-            Visible = false;
+            visible = false;
             for (int i = 0; i < 8; i++)
             {
                 SetColumnSpeed(i, 100);
@@ -197,6 +211,8 @@ namespace LemonUI.Scaleform
             RunProgram(4);
             RunProgram(83);
             TotalLives = livesTotal;
+            livesCurrent = livesTotal;
+            CallFunction("SET_LIVES", livesCurrent, livesTotal);
             Word = word;
             ShowLives = showLives;
 
@@ -256,18 +272,12 @@ namespace LemonUI.Scaleform
                 }
             }
 
-            // If this is the first run and is not in progress, reset it
-            if (firstRun && !inProgress)
-            {
-                firstRun = false;
-                Reset();
-            }
-
             // If the hack minigame is not in progress but the player can retry and he pressed enter, reset it
             if (!inProgress && CanRetry && Controls.IsJustPressed(Control.FrontendAccept))
             {
                 Reset();
                 hideTime = -1;
+                return;
             }
 
             // If the Hack minigame is in progress
