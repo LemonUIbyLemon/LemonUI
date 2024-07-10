@@ -50,7 +50,7 @@ namespace LemonUI.Scaleform
         /// <summary>
         /// If the Scaleform should be visible or not.
         /// </summary>
-        public bool Visible { get; set; }
+        public virtual bool Visible { get; set; }
         /// <summary>
         /// If the Scaleform is loaded or not.
         /// </summary>
