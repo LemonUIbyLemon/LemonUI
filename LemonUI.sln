@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LemonUI.AltV", "LemonUI.Alt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LemonUI.AltV.Async", "LemonUI.AltV.Async\LemonUI.AltV.Async.csproj", "{F2761304-2B83-451F-B7BD-F7F752233A01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LemonUI.FiveM.V2", "LemonUI.FiveM.V2\LemonUI.FiveM.V2.csproj", "{D2040C87-3A02-4EA3-AAA3-68FB6F5754D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{F2761304-2B83-451F-B7BD-F7F752233A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2761304-2B83-451F-B7BD-F7F752233A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2761304-2B83-451F-B7BD-F7F752233A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2040C87-3A02-4EA3-AAA3-68FB6F5754D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2040C87-3A02-4EA3-AAA3-68FB6F5754D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2040C87-3A02-4EA3-AAA3-68FB6F5754D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2040C87-3A02-4EA3-AAA3-68FB6F5754D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

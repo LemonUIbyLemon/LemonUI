@@ -1,4 +1,6 @@
-#if ALTV
+#if FIVEMV2
+using Game = CitizenFX.FiveM.Game;
+#elif ALTV
 using AltV.Net.Client;
 #elif FIVEM
 using CitizenFX.Core;
@@ -107,7 +109,7 @@ namespace LemonUI.Elements
             long time = Alt.Natives.GetGameTimer();
 #elif RAGEMP
             long time = Misc.GetGameTimer();
-#elif FIVEM || RPH || SHVDN3 || SHVDNC
+#elif FIVEM || RPH || SHVDN3 || SHVDNC || FIVEMV2
             long time = Game.GameTime;
 #endif
 

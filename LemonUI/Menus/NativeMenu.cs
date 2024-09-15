@@ -1,4 +1,9 @@
-#if FIVEM
+#if FIVEMV2
+using CitizenFX.FiveM;
+using CitizenFX.FiveM.GUI;
+using CitizenFX.FiveM.Native;
+using Font = CitizenFX.FiveM.GUI.Font;
+#elif FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
@@ -1001,7 +1006,9 @@ namespace LemonUI.Menus
                 pos = new PointF(x, Offset.Y + extraY).ToRelative();
             }
             // And set the position of the cursor
-#if FIVEM
+#if FIVEMV2
+            Natives.SetCursorLocation(pos.X, pos.Y);
+#elif FIVEM
             API.SetCursorLocation(pos.X, pos.Y);
 #elif RAGEMP
             Invoker.Invoke(Natives.SetCursorLocation, pos.X, pos.Y);
@@ -1145,7 +1152,9 @@ namespace LemonUI.Menus
             }
 
             // If the controls are disabled, the menu has just been opened or the text input field is active, return
-#if FIVEM
+#if FIVEMV2
+            bool isKeyboardActive = Natives.UpdateOnscreenKeyboard() == 0;
+#elif FIVEM
             bool isKeyboardActive = API.UpdateOnscreenKeyboard() == 0;
 #elif ALTV
             bool isKeyboardActive = Alt.Natives.UpdateOnscreenKeyboard() == 0;
@@ -1186,7 +1195,7 @@ namespace LemonUI.Menus
             long time = Alt.Natives.GetGameTimer();
 #elif RAGEMP
             long time = Misc.GetGameTimer();
-#elif FIVEM || RPH || SHVDN3 || SHVDNC
+#elif FIVEM || RPH || SHVDN3 || SHVDNC || FIVEMV2
             long time = Game.GameTime;
 #endif
 
@@ -1231,7 +1240,7 @@ namespace LemonUI.Menus
                 {
                     if (GameScreen.IsCursorInArea(PointF.Empty, searchAreaSize))
                     {
-#if FIVEM || SHVDN3 || SHVDNC
+#if FIVEM || SHVDN3 || SHVDNC  || FIVEMV2
                         GameplayCamera.RelativeHeading += 5;
 #elif ALTV
                         float current = Alt.Natives.GetGameplayCamRelativeHeading();
@@ -1245,7 +1254,7 @@ namespace LemonUI.Menus
                     }
                     else if (GameScreen.IsCursorInArea(searchAreaRight, searchAreaSize))
                     {
-#if FIVEM || SHVDN3 || SHVDNC
+#if FIVEM || SHVDN3 || SHVDNC || FIVEMV2
                         GameplayCamera.RelativeHeading -= 5;
 #elif ALTV
                         float current = Alt.Natives.GetGameplayCamRelativeHeading();

@@ -1,4 +1,7 @@
-#if ALTV
+#if FIVEMV2
+using CitizenFX.FiveM.GUI;
+using CitizenFX.FiveM.Native;
+#elif ALTV
 using AltV.Net.Client;
 #elif RAGEMP
 using RAGE.Game;
@@ -33,7 +36,9 @@ namespace LemonUI.Tools
         {
             get
             {
-#if ALTV
+#if FIVEMV2
+                return Natives.GetSafeZoneSize();
+#elif ALTV
                 return Alt.Natives.GetSafeZoneSize();
 #elif FIVEM
                 return API.GetSafeZoneSize();
@@ -104,7 +109,9 @@ namespace LemonUI.Tools
             float relativeY = y.ToYRelative();
 
             float realX = 0, realY = 0;
-#if FIVEM
+#if FIVEMV2
+            Natives.GetScriptGfxPosition(relativeX, relativeY, ref realX, ref realY);
+#elif FIVEM
             API.GetScriptGfxPosition(relativeX, relativeY, ref realX, ref realY);
 #elif ALTV
             Alt.Natives.GetScriptGfxAlignPosition(relativeX, relativeY, ref realX, ref realY);
@@ -144,7 +151,10 @@ namespace LemonUI.Tools
         /// <param name="vertical">The vertical alignment of the items.</param>
         public static void SetAlignment(GFXAlignment horizontal, GFXAlignment vertical)
         {
-#if FIVEM
+#if FIVEMV2
+            Natives.SetScriptGfxAlign((int)horizontal, (int)vertical);
+            Natives.SetScriptGfxAlignParams(0, 0, 0, 0);
+#elif FIVEM
             API.SetScriptGfxAlign((int)horizontal, (int)vertical);
             API.SetScriptGfxAlignParams(0, 0, 0, 0);
 #elif ALTV
@@ -166,7 +176,9 @@ namespace LemonUI.Tools
         /// </summary>
         public static void ResetAlignment()
         {
-#if FIVEM
+#if FIVEMV2
+            Natives.ResetScriptGfxAlign();
+#elif FIVEM
             API.ResetScriptGfxAlign();
 #elif ALTV
             Alt.Natives.ResetScriptGfxAlign();
