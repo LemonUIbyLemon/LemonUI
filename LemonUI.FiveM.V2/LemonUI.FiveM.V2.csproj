@@ -43,13 +43,13 @@
 
     <ItemGroup>
       <Reference Include="CitizenFX.Core">
-        <HintPath>..\..\..\..\AppData\Local\FiveM\FiveM.app\citizen\clr2\lib\mono\4.5\v2\CitizenFX.Core.dll</HintPath>
+        <HintPath>lib\CitizenFX.Core.dll</HintPath>
       </Reference>
       <Reference Include="CitizenFX.FiveM">
-        <HintPath>..\..\..\..\AppData\Local\FiveM\FiveM.app\citizen\clr2\lib\mono\4.5\v2\CitizenFX.FiveM.dll</HintPath>
+        <HintPath>lib\CitizenFX.FiveM.dll</HintPath>
       </Reference>
       <Reference Include="CitizenFX.FiveM.Native">
-        <HintPath>..\..\..\..\AppData\Local\FiveM\FiveM.app\citizen\clr2\lib\mono\4.5\v2\Native\CitizenFX.FiveM.Native.dll</HintPath>
+        <HintPath>lib\CitizenFX.FiveM.Native.dll</HintPath>
       </Reference>
     </ItemGroup>
     
