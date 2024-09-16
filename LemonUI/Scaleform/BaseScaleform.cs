@@ -91,7 +91,9 @@ namespace LemonUI.Scaleform
         {
             Name = sc ?? throw new ArgumentNullException(nameof(sc));
 
-#if FIVEM
+#if FIVEMV2
+            Handle = Natives.RequestScaleformMovie(Name);
+#elif FIVEM
             Handle = API.RequestScaleformMovie(Name);
 #elif ALTV
             Handle = Alt.Natives.RequestScaleformMovie(Name);
@@ -334,7 +336,7 @@ namespace LemonUI.Scaleform
             Function.Call((Hash)0xC6796A8FFA375E53);
 #endif
         }
-#if FIVEM || SHVDN3 || SHVDNC
+#if FIVEM || SHVDN3 || SHVDNC || FIVEMV2
         /// <summary>
         /// Calls a scaleform function and gets it's return value as soon as is available. 
         /// </summary>
