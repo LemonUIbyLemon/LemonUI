@@ -121,8 +121,9 @@ namespace LemonUI.Scaleform
             {
                 throw new ArgumentOutOfRangeException(nameof(function), "The function name is empty or white space.");
             }
-
-#if FIVEM
+#if FIVEMV2
+            Natives.BeginScaleformMovieMethod(Handle, function);
+#elif FIVEM
             API.BeginScaleformMovieMethod(Handle, function);
 #elif ALTV
             Alt.Natives.BeginScaleformMovieMethod(Handle, function);
@@ -142,7 +143,9 @@ namespace LemonUI.Scaleform
                 }
                 else if (obj is int objInt)
                 {
-#if FIVEM
+#if FIVEMV2
+                    Natives.ScaleformMovieMethodAddParamInt(objInt);
+#elif FIVEM
                     API.ScaleformMovieMethodAddParamInt(objInt);
 #elif ALTV
                     Alt.Natives.ScaleformMovieMethodAddParamInt(objInt);
@@ -156,7 +159,11 @@ namespace LemonUI.Scaleform
                 }
                 else if (obj is string objString)
                 {
-#if FIVEM
+#if FIVEMV2
+                    Natives.BeginTextCommandScaleformString("STRING");
+                    Natives.AddTextComponentSubstringPlayerName(objString);
+                    Natives.EndTextCommandScaleformString();
+#elif FIVEM
                     API.BeginTextCommandScaleformString("STRING");
                     API.AddTextComponentSubstringPlayerName(objString);
                     API.EndTextCommandScaleformString();
@@ -181,7 +188,9 @@ namespace LemonUI.Scaleform
                 }
                 else if (obj is float objFloat)
                 {
-#if FIVEM
+#if FIVEMV2
+                    Natives.ScaleformMovieMethodAddParamFloat(objFloat);
+#elif FIVEM
                     API.ScaleformMovieMethodAddParamFloat(objFloat);
 #elif ALTV
                     Alt.Natives.ScaleformMovieMethodAddParamFloat(objFloat);
@@ -195,7 +204,9 @@ namespace LemonUI.Scaleform
                 }
                 else if (obj is double objDouble)
                 {
-#if FIVEM
+#if FIVEMV2
+                    Natives.ScaleformMovieMethodAddParamFloat((float)objDouble);
+#elif FIVEM
                     API.ScaleformMovieMethodAddParamFloat((float)objDouble);
 #elif ALTV
                     Alt.Natives.ScaleformMovieMethodAddParamFloat((float)objDouble);
@@ -209,7 +220,9 @@ namespace LemonUI.Scaleform
                 }
                 else if (obj is bool objBool)
                 {
-#if FIVEM
+#if FIVEMV2
+                    Natives.ScaleformMovieMethodAddParamBool(objBool);
+#elif FIVEM
                     API.ScaleformMovieMethodAddParamBool(objBool);
 #elif ALTV
                     Alt.Natives.ScaleformMovieMethodAddParamBool(objBool);
