@@ -1657,8 +1657,10 @@ namespace LemonUI.Menus
                 {
                     return;
                 }
-
-#if FIVEM
+#if FIVEMV2
+                Natives.SetInputExclusive(0, (int)Control.PhoneCancel);
+                Natives.SetInputExclusive(0, (int)Control.FrontendPause);
+#elif FIVEM
                 API.SetInputExclusive(0, (int)Control.PhoneCancel);
                 API.SetInputExclusive(0, (int)Control.FrontendPause);
 #elif ALTV
