@@ -1,4 +1,8 @@
-#if FIVEM
+#if FIVEMV2
+using CitizenFX.FiveM;
+using CitizenFX.FiveM.GUI;
+using CitizenFX.FiveM.Native;
+#elif FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.UI;
 #elif ALTV

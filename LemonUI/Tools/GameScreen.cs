@@ -1,4 +1,7 @@
-#if FIVEM
+#if FIVEMV2
+using CitizenFX.FiveM;
+using CitizenFX.FiveM.Native;
+#elif FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
@@ -34,7 +37,9 @@ namespace LemonUI.Tools
         {
             get
             {
-#if ALTV
+#if FIVEMV2
+                return new SizeF(CitizenFX.FiveM.GUI.Screen.Resolution.Width, CitizenFX.FiveM.GUI.Screen.Resolution.Height);
+#elif ALTV
                 int height = 0, width = 0;
                 Alt.Natives.GetActualScreenResolution(ref width, ref height);
                 return new SizeF(width, height);
@@ -57,7 +62,9 @@ namespace LemonUI.Tools
         {
             get
             {
-#if FIVEM
+#if FIVEMV2
+                return Natives.GetAspectRatio(false);
+#elif FIVEM
                 return API.GetAspectRatio(false);
 #elif RAGEMP
                 return Invoker.Invoke<float>(Natives.GetAspectRatio);
@@ -77,7 +84,10 @@ namespace LemonUI.Tools
         {
             get
             {
-#if FIVEM
+#if FIVEMV2
+                float cursorX = Natives.GetControlNormal(0, (int)Control.CursorX);
+                float cursorY = Natives.GetControlNormal(0, (int)Control.CursorY);
+#elif FIVEM
                 float cursorX = API.GetControlNormal(0, (int)Control.CursorX);
                 float cursorY = API.GetControlNormal(0, (int)Control.CursorY);
 #elif ALTV
@@ -129,7 +139,9 @@ namespace LemonUI.Tools
         /// </summary>
         public static void ShowCursorThisFrame()
         {
-#if FIVEM
+#if FIVEMV2
+            Natives.SetMouseCursorActiveThisFrame();
+#elif FIVEM
             API.SetMouseCursorActiveThisFrame();
 #elif ALTV
             Alt.Natives.SetMouseCursorThisFrame();

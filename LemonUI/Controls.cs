@@ -1,4 +1,7 @@
-#if FIVEM
+#if FIVEMV2
+using CitizenFX.FiveM;
+using CitizenFX.FiveM.Native;
+#elif FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 #elif ALTV
@@ -31,8 +34,10 @@ namespace LemonUI
         {
             get
             {
-#if FIVEM
-                return !API.IsInputDisabled(2);
+#if FIVEMV2
+                return !Natives.IsInputDisabled(2);
+#elif FIVEM
+                 return !API.IsInputDisabled(2);
 #elif ALTV
                 return !Alt.Natives.IsUsingKeyboardAndMouse(2);
 #elif RAGEMP
@@ -56,7 +61,9 @@ namespace LemonUI
         /// <returns>true if the control was pressed, false otherwise.</returns>
         public static bool IsJustPressed(Control control)
         {
-#if FIVEM
+#if FIVEMV2
+            return Natives.IsDisabledControlJustPressed(0, (int)control);
+#elif FIVEM
             return API.IsDisabledControlJustPressed(0, (int)control);
 #elif ALTV
             return Alt.Natives.IsDisabledControlJustPressed(0, (int)control);
@@ -77,7 +84,9 @@ namespace LemonUI
         /// <returns>true if the control is pressed, false otherwise.</returns>
         public static bool IsPressed(Control control)
         {
-#if FIVEM
+#if FIVEMV2
+            return Natives.IsDisabledControlPressed(0, (int)control);
+#elif FIVEM
             return API.IsDisabledControlPressed(0, (int)control);
 #elif ALTV
             return Alt.Natives.IsDisabledControlPressed(0, (int)control);
@@ -94,7 +103,9 @@ namespace LemonUI
         /// </summary>
         public static void DisableAll(int inputGroup = 0)
         {
-#if FIVEM
+#if FIVEMV2
+            Natives.DisableAllControlActions(inputGroup);
+#elif FIVEM
             API.DisableAllControlActions(inputGroup);
 #elif ALTV
             Alt.Natives.DisableAllControlActions(inputGroup);
@@ -112,7 +123,9 @@ namespace LemonUI
         /// <param name="control">The control to enable.</param>
         public static void EnableThisFrame(Control control)
         {
-#if FIVEM
+#if FIVEMV2
+            Natives.EnableControlAction(0, (int)control, true);
+#elif FIVEM
             API.EnableControlAction(0, (int)control, true);
 #elif ALTV
             Alt.Natives.EnableControlAction(0, (int)control, true);
@@ -141,7 +154,9 @@ namespace LemonUI
         /// <param name="control">The control to disable.</param>
         public static void DisableThisFrame(Control control)
         {
-#if FIVEM
+#if FIVEMV2
+            Natives.DisableControlAction(0, (int)control, true);
+#elif FIVEM
             API.DisableControlAction(0, (int)control, true);
 #elif ALTV
             Alt.Natives.DisableControlAction(0, (int)control, true);

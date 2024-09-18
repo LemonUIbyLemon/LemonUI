@@ -1,4 +1,7 @@
-#if ALTV
+#if FIVEMV2
+using CitizenFX.FiveM;
+using CitizenFX.FiveM.Native;
+#elif ALTV
 using AltV.Net.Client;
 #elif FIVEM
 using CitizenFX.Core;
@@ -153,7 +156,7 @@ namespace LemonUI.Scaleform
             long time = Alt.Natives.GetGameTimer();
 #elif RAGEMP
             long time = Misc.GetGameTimer();
-#elif FIVEM || RPH || SHVDN3 || SHVDNC
+#elif FIVEM || RPH || SHVDN3 || SHVDNC || FIVEMV2
             long time = Game.GameTime;
 #endif
             showUntil = time + 333 + 333 + (Duration * 1000);
@@ -189,7 +192,7 @@ namespace LemonUI.Scaleform
             long time = Alt.Natives.GetGameTimer();
 #elif RAGEMP
             long time = Misc.GetGameTimer();
-#elif FIVEM || RPH || SHVDN3 || SHVDNC
+#elif FIVEM || RPH || SHVDN3 || SHVDNC || FIVEMV2
             long time = Game.GameTime;
 #endif
 
@@ -209,8 +212,10 @@ namespace LemonUI.Scaleform
             {
                 return;
             }
-
-            #if ALTV
+            #if FIVEMV2
+            Natives.DrawScaleformMovieFullscreenMasked(Background.Handle, Foreground.Handle, 255, 255, 255, 255);
+            Natives.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 255);
+            #elif ALTV
             Alt.Natives.DrawScaleformMovieFullscreenMasked(Background.Handle, Foreground.Handle, 255, 255, 255, 255);
             Alt.Natives.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 255);
             #elif FIVEM

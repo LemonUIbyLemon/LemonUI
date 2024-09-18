@@ -1,4 +1,6 @@
-﻿#if FIVEM
+﻿#if FIVEMV2
+using CitizenFX.FiveM.Native;
+#elif FIVEM
 using CitizenFX.Core.Native;
 #elif RAGEMP
 using RAGE.Game;
@@ -81,7 +83,12 @@ namespace LemonUI.Elements
         /// </summary>
         private void Request()
         {
-#if FIVEM
+#if FIVEMV2
+            if (!Natives.HasStreamedTextureDictLoaded(Dictionary))
+            {
+                Natives.RequestStreamedTextureDict(Dictionary, true);
+            }
+#elif FIVEM
             if (!API.HasStreamedTextureDictLoaded(Dictionary))
             {
                 API.RequestStreamedTextureDict(Dictionary, true);
@@ -123,7 +130,9 @@ namespace LemonUI.Elements
                 return;
             }
             Request();
-#if FIVEM
+#if FIVEMV2
+            Natives.DrawSprite(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
+#elif FIVEM
             API.DrawSprite(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
 #elif RAGEMP
             Invoker.Invoke(Natives.DrawSprite, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
@@ -147,7 +156,9 @@ namespace LemonUI.Elements
                 return;
             }
             Request();
-#if FIVEM
+#if FIVEMV2
+            Natives.DrawSpriteUv(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A);
+#elif FIVEM
             API.DrawSpriteUv(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A);
 #elif RAGEMP
             Invoker.Invoke(0x95812F9B26074726, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, topLeft.X, topLeft.Y, bottomRight.X, bottomRight.Y, Heading, Color.R, Color.G, Color.B, Color.A);

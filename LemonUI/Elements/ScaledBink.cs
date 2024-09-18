@@ -1,4 +1,6 @@
-#if ALTV
+#if FIVEMV2
+using CitizenFX.FiveM.Native;
+#elif ALTV
 using AltV.Net.Client;
 #elif FIVEM
 using CitizenFX.Core.Native;
@@ -40,8 +42,9 @@ namespace LemonUI.Elements
             set
             {
                 name = value ?? throw new ArgumentNullException(nameof(value));
-
-#if ALTV
+#if FIVEMV2
+                Id = Natives.SetBinkMovie(name);
+#elif ALTV
                 Id = Alt.Natives.SetBinkMovie(name);
 #elif FIVEM
                 Id = API.SetBinkMovie(name);
@@ -107,8 +110,10 @@ namespace LemonUI.Elements
             {
                 return;
             }
-
-#if ALTV
+#if FIVEMV2
+            Natives.PlayBinkMovie(Id);
+            Natives.DrawBinkMovie(Id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
+#elif ALTV
             Alt.Natives.PlayBinkMovie(Id);
             Alt.Natives.DrawBinkMovie(Id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
 #elif FIVEM
@@ -137,8 +142,9 @@ namespace LemonUI.Elements
             {
                 return;
             }
-
-#if ALTV
+#if FIVEMV2
+            Natives.StopBinkMovie(Id);
+#elif ALTV
             Alt.Natives.StopBinkMovie(Id);
 #elif FIVEM
             API.StopBinkMovie(Id);
@@ -159,8 +165,9 @@ namespace LemonUI.Elements
             {
                 return;
             }
-
-#if ALTV
+#if FIVEMV2
+            Natives.ReleaseBinkMovie(Id);
+#elif ALTV
             Alt.Natives.ReleaseBinkMovie(Id);
 #elif FIVEM
             API.ReleaseBinkMovie(Id);

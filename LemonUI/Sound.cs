@@ -1,4 +1,7 @@
-#if FIVEM
+#if FIVEMV2
+using CitizenFX.FiveM;
+using CitizenFX.FiveM.Native;
+#elif FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 #elif RAGEMP
@@ -81,7 +84,10 @@ namespace LemonUI
         /// <param name="release">If the sound ID should be automatically released.</param>
         public void PlayFrontend(bool release)
         {
-#if FIVEM
+#if FIVEMV2
+            Id = Natives.GetSoundId();
+            Natives.PlaySoundFrontend(Id, File, Set, true);
+#elif FIVEM
             Id = API.GetSoundId();
             API.PlaySoundFrontend(Id, File, Set, true);
 #elif RAGEMP
@@ -112,8 +118,9 @@ namespace LemonUI
             {
                 return;
             }
-
-#if FIVEM
+#if FIVEMV2
+            Natives.StopSound(Id);
+#elif FIVEM
             API.StopSound(Id);
 #elif RAGEMP
             Invoker.Invoke(Natives.StopSound, Id);
@@ -136,7 +143,9 @@ namespace LemonUI
                 return;
             }
 
-#if FIVEM
+#if FIVEMV2
+            Natives.ReleaseSoundId(Id);
+#elif FIVEM
             API.ReleaseSoundId(Id);
 #elif RAGEMP
             Invoker.Invoke(Natives.ReleaseSoundId, Id);
