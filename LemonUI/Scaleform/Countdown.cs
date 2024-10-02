@@ -10,6 +10,7 @@ using Rage;
 using GTA;
 #endif
 using System;
+using System.Drawing;
 
 namespace LemonUI.Scaleform
 {
@@ -71,6 +72,14 @@ namespace LemonUI.Scaleform
         /// The current count.
         /// </summary>
         public int Current { get; private set; }
+        /// <summary>
+        /// The color used for the numbers.
+        /// </summary>
+        public Color ColorNumbers { get; set; } = Color.FromArgb(255, 255, 255);
+        /// <summary>
+        /// The color used for the GO at the end.
+        /// </summary>
+        public Color ColorGo { get; set; } = Color.FromArgb(255, 255, 255);
 
         #endregion
 
@@ -103,9 +112,10 @@ namespace LemonUI.Scaleform
         private void ShowStep(int step)
         {
             string asString = step == 0 ? "GO" : step.ToString();
+            Color color = step == 0 ? ColorGo : ColorNumbers;
 
-            CallFunction("SET_MESSAGE", asString, 255, 255, 255, true);
-            CallFunction("FADE_MP", asString, 255, 255, 255);
+            CallFunction("SET_MESSAGE", asString, (int)color.R, (int)color.G, (int)color.B, true);
+            CallFunction("FADE_MP", asString, (int)color.R, (int)color.G, (int)color.B);
 
             if (step == 0)
             {
