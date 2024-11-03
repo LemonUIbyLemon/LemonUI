@@ -24,7 +24,7 @@ jobs:
         with:
           dotnet-version: "7.0.x"
       - run: dotnet restore ${{ github.event.repository.name }}.sln
-      - uses: justalemon/VersionPatcher@v0.7.1
+      - uses: justalemon/VersionPatcher@v0.7.2
         with:
           version: 1.10.0.${{ github.run_number }}
           use-tag: true
