@@ -19,7 +19,7 @@ jobs:
         configuration: [Debug, Release]
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.-2
       - uses: actions/setup-dotnet@v2.1.0
         with:
           dotnet-version: "7.0.x"
@@ -41,7 +41,7 @@ jobs:
     needs:
       - lint-and-compile
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.2
       - uses: actions/setup-dotnet@v2.1.0
         with:
           dotnet-version: "7.0.x"
