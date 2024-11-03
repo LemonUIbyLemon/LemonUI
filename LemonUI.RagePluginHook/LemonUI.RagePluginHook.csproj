@@ -39,7 +39,7 @@
         <Compile Include="$(ProjectDir)../LemonUI/**/*.cs" />
         <None Include="$(ProjectDir)../README.md" Pack="true" Visible="false" PackagePath="\" />
         <None Include="$(ProjectDir)../logo.png" Pack="true" Visible="false" PackagePath="\" />
-        <PackageReference Include="RagePluginHook" Version="1.98.0">
+        <PackageReference Include="RagePluginHook" Version="1.109.1">
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>
