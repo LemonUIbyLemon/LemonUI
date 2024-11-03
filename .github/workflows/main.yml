@@ -93,7 +93,7 @@ jobs:
         working-directory: bin/Release
       - run: 7z a ${{ github.event.repository.name }}.zip ${{ github.workspace }}/bin/Release/*
       - run: dotnet nuget push "**/*.nupkg" -s 'https://api.nuget.org/v3/index.json' -k ${{ secrets.NUGET }}
-      - uses: ncipollo/release-action@v1.10.0
+      - uses: ncipollo/release-action@v1.14.0
         with:
           allowUpdates: true
           artifactErrorsFailBuild: true
