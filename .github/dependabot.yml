@@ -1,0 +1,19 @@
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: 
+      interval: daily
+    labels:
+      - "priority: p3 low"
+      - "type: dependencies"
+      - "status: acknowledged"
+  - package-ecosystem: nuget
+    directory: /
+    schedule: 
+      interval: daily
+    labels:
+      - "priority: p3 low"
+      - "type: dependencies"
+      - "status: acknowledged"
