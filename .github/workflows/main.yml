@@ -56,7 +56,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: "docs/_site"
-      - uses: actions/deploy-pages@v3.0.1
+      - uses: actions/deploy-pages@v4.0.5
   github-package-registry:
     runs-on: ubuntu-22.04
     if: ${{ github.ref == 'refs/heads/master' }}
