@@ -39,7 +39,7 @@
         <Compile Include="$(ProjectDir)../LemonUI/**/*.cs" />
         <None Include="$(ProjectDir)../README.md" Pack="true" Visible="false" PackagePath="\" />
         <None Include="$(ProjectDir)../logo.png" Pack="true" Visible="false" PackagePath="\" />
-        <PackageReference Include="CitizenFX.Core.Client" Version="1.0.6370">
+        <PackageReference Include="CitizenFX.Core.Client" Version="1.0.10230">
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>
