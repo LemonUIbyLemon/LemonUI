@@ -39,7 +39,7 @@
         <Compile Include="$(ProjectDir)../LemonUI/**/*.cs" />
         <None Include="$(ProjectDir)../README.md" Pack="true" Visible="false" PackagePath="\" />
         <None Include="$(ProjectDir)../logo.png" Pack="true" Visible="false" PackagePath="\" />
-        <PackageReference Include="AltV.Net.Client" Version="15.0.105-dev">
+        <PackageReference Include="AltV.Net.Client" Version="16.3.4">
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>
