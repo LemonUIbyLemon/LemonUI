@@ -1,4 +1,7 @@
-#if FIVEM
+#if FIVEMV2
+using CitizenFX.FiveM;
+using CitizenFX.FiveM.Native;
+#elif FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 #elif RAGEMP
@@ -49,7 +52,9 @@ namespace LemonUI.Scaleform
             set
             {
                 control = value;
-#if FIVEM
+#if FIVEMV2
+                raw = Natives.GetControlInstructionalButton(2, (int)value, true);
+#elif FIVEM
                 raw = API.GetControlInstructionalButton(2, (int)value, 1);
 #elif RAGEMP
                 raw = Invoker.Invoke<string>(Natives.GetControlInstructionalButton, 2, (int)value, 1);
@@ -88,7 +93,9 @@ namespace LemonUI.Scaleform
         {
             this.description = description ?? throw new ArgumentNullException(nameof(description));
             this.control = control;
-#if FIVEM
+#if FIVEMV2
+            raw = Natives.GetControlInstructionalButton(2, (int)control, true);
+#elif FIVEM
             raw = API.GetControlInstructionalButton(2, (int)control, 1);
 #elif ALTV
             raw = Alt.Natives.GetControlInstructionalButtonsString(2, (int)control, true);

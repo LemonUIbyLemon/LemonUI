@@ -1,4 +1,7 @@
-#if FIVEM
+#if FIVEMV2
+using Alignment = CitizenFX.FiveM.GUI.Alignment;
+using Font = CitizenFX.FiveM.GUI.Font;
+#elif FIVEM
 using Alignment = CitizenFX.Core.UI.Alignment;
 using Font = CitizenFX.Core.UI.Font;
 #elif RAGEMP

@@ -1,4 +1,7 @@
-#if FIVEM
+#if FIVEMV2
+using CitizenFX.FiveM.GUI;
+using CitizenFX.FiveM.Native;
+#elif FIVEM
 using CitizenFX.Core.UI;
 #elif RAGEMP
 using RAGE.Game;
@@ -165,7 +168,11 @@ namespace LemonUI.TimerBars
             }
 
             // Hide the texts in the bottom right corner of the screen
-#if FIVEM
+#if FIVEMV2
+            CitizenFX.FiveM.GUI.Screen.Hud.HideComponentThisFrame(HudComponent.AreaName);
+            CitizenFX.FiveM.GUI.Screen.Hud.HideComponentThisFrame(HudComponent.StreetName);
+            CitizenFX.FiveM.GUI.Screen.Hud.HideComponentThisFrame(HudComponent.VehicleName);
+#elif FIVEM
             CitizenFX.Core.UI.Screen.Hud.HideComponentThisFrame(HudComponent.AreaName);
             CitizenFX.Core.UI.Screen.Hud.HideComponentThisFrame(HudComponent.StreetName);
             CitizenFX.Core.UI.Screen.Hud.HideComponentThisFrame(HudComponent.VehicleName);

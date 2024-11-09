@@ -1,4 +1,6 @@
-#if FIVEM
+#if FIVEMV2
+using CitizenFX.FiveM.Native;
+#elif FIVEM
 using CitizenFX.Core.Native;
 #elif RAGEMP
 using RAGE.Game;

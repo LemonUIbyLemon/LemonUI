@@ -1,4 +1,8 @@
-#if FIVEM
+#if FIVEMV2
+using CitizenFX.FiveM;
+using CitizenFX.FiveM.GUI;
+using CitizenFX.FiveM.Native;
+#elif FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
@@ -317,7 +321,11 @@ namespace LemonUI.Menus
                 Controls.EnableThisFrame(Control.ScriptRightAxisX);
                 Controls.EnableThisFrame(Control.ScriptRightAxisY);
 
-#if FIVEM
+#if FIVEMV2
+                float rX = Natives.GetControlNormal(0, (int)Control.ScriptRightAxisX);
+                float rY = Natives.GetControlNormal(0, (int)Control.ScriptRightAxisY);
+                float frameTime = Natives.GetFrameTime();
+#elif FIVEM
                 float rX = Game.GetControlNormal(0, Control.ScriptRightAxisX);
                 float rY = Game.GetControlNormal(0, Control.ScriptRightAxisY);
                 float frameTime = Game.LastFrameTime;

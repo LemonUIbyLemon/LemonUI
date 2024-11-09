@@ -1,4 +1,8 @@
-#if FIVEM
+#if FIVEMV2
+using CitizenFX.FiveM.GUI;
+using CitizenFX.FiveM.Native;
+using Font = CitizenFX.FiveM.GUI.Font;
+#elif FIVEM
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
@@ -148,7 +152,11 @@ namespace LemonUI.Elements
         {
             get
             {
-#if FIVEM
+#if FIVEMV2
+                Natives.BeginTextCommandWidth("CELL_EMAIL_BCON");
+                Add();
+                return Natives.EndTextCommandGetWidth(true) * 1f.ToXScaled();
+#elif FIVEM
                 API.BeginTextCommandWidth("CELL_EMAIL_BCON");
                 Add();
                 return API.EndTextCommandGetWidth(true) * 1f.ToXScaled();
@@ -178,7 +186,9 @@ namespace LemonUI.Elements
         {
             get
             {
-#if FIVEM
+#if FIVEMV2
+                Natives.BeginTextCommandLineCount("CELL_EMAIL_BCON");
+#elif FIVEM
                 API.BeginTextCommandLineCount("CELL_EMAIL_BCON");
 #elif ALTV
                 Alt.Natives.BeginTextCommandGetNumberOfLinesForString("CELL_EMAIL_BCON");
@@ -190,7 +200,9 @@ namespace LemonUI.Elements
                 Function.Call(Hash.BEGIN_TEXT_COMMAND_GET_NUMBER_OF_LINES_FOR_STRING, "CELL_EMAIL_BCON");
 #endif
                 Add();
-#if FIVEM
+#if FIVEMV2
+                return Natives.EndTextCommandGetLineCount(relativePosition.X, relativePosition.Y);
+#elif FIVEM
                 return API.EndTextCommandGetLineCount(relativePosition.X, relativePosition.Y);
 #elif ALTV
                 return Alt.Natives.EndTextCommandGetNumberOfLinesForString(relativePosition.X, relativePosition.Y);
@@ -211,7 +223,9 @@ namespace LemonUI.Elements
             get
             {
                 // Height will always be 1080
-#if FIVEM
+#if FIVEMV2
+                return 1080 * Natives.GetTextScaleHeight(Scale, (int)Font);
+#elif FIVEM
                 return 1080 * API.GetTextScaleHeight(Scale, (int)Font);
 #elif ALTV
                 return 1080 * Alt.Natives.GetRenderedCharacterHeight(Scale, (int)Font);
@@ -274,7 +288,43 @@ namespace LemonUI.Elements
             {
                 return;
             }
-#if FIVEM
+#if FIVEMV2
+            foreach (string chunk in chunks)
+            {
+                Natives.AddTextComponentString(chunk);
+            }
+            Natives.SetTextFont((int)Font);
+            Natives.SetTextScale(1f, Scale);
+            Natives.SetTextColour(Color.R, Color.G, Color.B, Color.A);
+            Natives.SetTextJustification((int)Alignment);
+            if (Shadow)
+            {
+                Natives.SetTextDropShadow();
+            }
+            if (Outline)
+            {
+                Natives.SetTextOutline();
+            }
+            if (WordWrap > 0)
+            {
+                switch (Alignment)
+                {
+                    case Alignment.Center:
+                        Natives.SetTextWrap(relativePosition.X - (realWrap * 0.5f), relativePosition.X + (realWrap * 0.5f));
+                        break;
+                    case Alignment.Left:
+                        Natives.SetTextWrap(relativePosition.X, relativePosition.X + realWrap);
+                        break;
+                    case Alignment.Right:
+                        Natives.SetTextWrap(relativePosition.X - realWrap, relativePosition.X);
+                        break;
+                }
+            }
+            else if (Alignment == Alignment.Right)
+            {
+                Natives.SetTextWrap(0f, relativePosition.X);
+            }
+#elif FIVEM
             foreach (string chunk in chunks)
             {
                 API.AddTextComponentString(chunk);
@@ -525,7 +575,9 @@ namespace LemonUI.Elements
         /// </summary>
         public void Draw()
         {
-#if FIVEM
+#if FIVEMV2
+            Natives.SetTextEntry("CELL_EMAIL_BCON");
+#elif FIVEM
             API.SetTextEntry("CELL_EMAIL_BCON");
 #elif ALTV
             Alt.Natives.BeginTextCommandDisplayText("CELL_EMAIL_BCON");
@@ -538,8 +590,9 @@ namespace LemonUI.Elements
 #endif
 
             Add();
-
-#if FIVEM
+#if FIVEMV2
+            Natives.DrawText(relativePosition.X, relativePosition.Y);
+#elif FIVEM
             API.DrawText(relativePosition.X, relativePosition.Y);
 #elif ALTV
             Alt.Natives.EndTextCommandDisplayText(relativePosition.X, relativePosition.Y, 0);

@@ -3,7 +3,7 @@
 // Copyright (c) .NET Foundation and Contributors
 // Under the MIT License
 
-#if FIVEM || RAGEMP
+#if FIVEM || RAGEMP || FIVEMV2
 using System;
 
 namespace LemonUI // Previously System.ComponentModel

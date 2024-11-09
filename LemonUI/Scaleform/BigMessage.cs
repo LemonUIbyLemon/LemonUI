@@ -1,4 +1,6 @@
-#if FIVEM
+#if FIVEMV2
+using CitizenFX.FiveM;
+#elif FIVEM
 using CitizenFX.Core;
 #elif RAGEMP
 using RAGE.Game;
@@ -297,7 +299,7 @@ namespace LemonUI.Scaleform
             long currentTime = Alt.Natives.GetGameTimer();
 #elif RAGEMP
             long currentTime = Misc.GetGameTimer();
-#elif FIVEM || RPH || SHVDN3 || SHVDNC
+#elif FIVEM || RPH || SHVDN3 || SHVDNC || FIVEMV2
             long currentTime = Game.GameTime;
 #endif
             hideAfter = currentTime + time;
@@ -309,7 +311,7 @@ namespace LemonUI.Scaleform
             long time = Alt.Natives.GetGameTimer();
 #elif RAGEMP
             long time = Misc.GetGameTimer();
-#elif FIVEM || RPH || SHVDN3 || SHVDNC
+#elif FIVEM || RPH || SHVDN3 || SHVDNC || FIVEMV2
             long time = Game.GameTime;
 #endif
 
