@@ -1162,18 +1162,18 @@ namespace LemonUI.Menus
             }
 
             // Check if the controls necessary were pressed
-            bool backPressed = Controls.IsJustPressed((Control)177 /*PhoneCancel*/) || Controls.IsJustPressed(Control.FrontendPause);
-            bool upPressed = Controls.IsJustPressed((Control)172 /*PhoneUp*/) || Controls.IsJustPressed(Control.CursorScrollUp);
-            bool downPressed = Controls.IsJustPressed((Control)173 /*PhoneDown*/) || Controls.IsJustPressed(Control.CursorScrollDown);
-            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || Controls.IsJustPressed((Control)176 /*PhoneSelect*/);
-            bool clickSelected = Controls.IsJustPressed(Control.CursorAccept);
-            bool leftPressed = Controls.IsJustPressed((Control)174 /*PhoneLeft*/);
-            bool rightPressed = Controls.IsJustPressed((Control)175 /*PhoneRight*/);
+            bool backPressed = Controls.IsJustPressed(Control.FrontendCancel /*PhoneCancel*/) || Controls.IsJustPressed(Control.CursorCancel) && UseMouse;
+            bool upPressed = Controls.IsJustPressed(Control.FrontendUp /*PhoneUp*/) || Controls.IsJustPressed(Control.CursorScrollUp) && UseMouse;
+            bool downPressed = Controls.IsJustPressed(Control.FrontendDown /*PhoneDown*/) || Controls.IsJustPressed(Control.CursorScrollDown) && UseMouse;
+            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || Controls.IsJustPressed((Control)176 /*PhoneSelect*/) && UseMouse;
+            bool clickSelected = Controls.IsJustPressed(Control.CursorAccept) && UseMouse;
+            bool leftPressed = Controls.IsJustPressed(Control.FrontendLeft /*PhoneLeft*/);
+            bool rightPressed = Controls.IsJustPressed(Control.FrontendRight /*PhoneRight*/);
 
-            bool leftHeld = Controls.IsPressed((Control)174 /*PhoneLeft*/);
-            bool rightHeld = Controls.IsPressed((Control)175 /*PhoneRight*/);
-            bool upHeld = Controls.IsPressed((Control)172 /*PhoneUp*/) || Controls.IsPressed(Control.CursorScrollUp);
-            bool downHeld = Controls.IsPressed((Control)173 /*PhoneDown*/) || Controls.IsPressed(Control.CursorScrollDown);
+            bool leftHeld = Controls.IsPressed(Control.FrontendLeft /*PhoneLeft*/);
+            bool rightHeld = Controls.IsPressed(Control.FrontendRight /*PhoneRight*/);
+            bool upHeld = Controls.IsPressed(Control.FrontendUp /*PhoneUp*/) || Controls.IsPressed(Control.CursorScrollUp) && UseMouse;
+            bool downHeld = Controls.IsPressed(Control.FrontendDown /*PhoneDown*/) || Controls.IsPressed(Control.CursorScrollDown) && UseMouse;
 
             // If the player pressed the back button, go back or close the menu
             if (backPressed)
