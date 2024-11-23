@@ -101,6 +101,34 @@ namespace LemonUI.Scaleform
 
         #region Tools
 
+        private static void AddInteger(int number)
+        {
+#if FIVEM
+            API.ScaleformMovieMethodAddParamInt(number);
+#elif ALT
+            Alt.Natives.ScaleformMovieMethodAddParamInt(number);
+#elif RAGEMP
+            Invoker.Invoke(0xC3D0841A0CC546A6, number);
+#elif RPH
+            NativeFunction.CallByHash<int>(0xC3D0841A0CC546A6, number);
+#elif SHVDN3 || SHVDNC
+            Function.Call((Hash)0xC3D0841A0CC546A6, number);
+#endif
+        }
+        private static void AddFloat(float number)
+        {
+#if FIVEM
+            API.ScaleformMovieMethodAddParamFloat(number);
+#elif ALTV
+            Alt.Natives.ScaleformMovieMethodAddParamFloat(number);
+#elif RAGEMP
+            Invoker.Invoke(0xD69736AAE04DB51A, number);
+#elif RPH
+            NativeFunction.CallByHash<int>(0xD69736AAE04DB51A, number);
+#elif SHVDN3 || SHVDNC
+            Function.Call((Hash)0xD69736AAE04DB51A, number);
+#endif
+        }
         private void CallFunctionBase(string function, params object[] parameters)
         {
             if (function == null)
@@ -131,19 +159,30 @@ namespace LemonUI.Scaleform
                 {
                     throw new ArgumentNullException(nameof(parameters), "Unexpected null function argument in parameters.");
                 }
-                else if (obj is int objInt)
+
+                // Short and Byte can be converted to integer
+                // Double can be converted to float (while loosing precision)
+                // I'm not sure about long when it comes to the RAGE Engine
+
+                if (obj is int objInt)
                 {
-#if FIVEM
-                    API.ScaleformMovieMethodAddParamInt(objInt);
-#elif ALTV
-                    Alt.Natives.ScaleformMovieMethodAddParamInt(objInt);
-#elif RAGEMP
-                    Invoker.Invoke(0xC3D0841A0CC546A6, objInt);
-#elif RPH
-                    NativeFunction.CallByHash<int>(0xC3D0841A0CC546A6, objInt);
-#elif SHVDN3 || SHVDNC
-                    Function.Call((Hash)0xC3D0841A0CC546A6, objInt);
-#endif
+                    AddInteger(objInt);
+                }
+                else if (obj is short objShort)
+                {
+                    AddInteger(objShort);
+                }
+                else if (obj is byte objByte)
+                {
+                    AddInteger(objByte);
+                }
+                else if (obj is float objFloat)
+                {
+                    AddFloat(objFloat);
+                }
+                else if (obj is double objDouble)
+                {
+                    AddFloat((float)objDouble);
                 }
                 else if (obj is string objString)
                 {
@@ -160,7 +199,6 @@ namespace LemonUI.Scaleform
                     Invoker.Invoke(Natives.AddTextComponentSubstringPlayerName, objString);
                     Invoker.Invoke(Natives.EndTextCommandScaleformString);
 #elif RPH
-
                     NativeFunction.CallByHash<int>(0x80338406F3475E55, "STRING");
                     NativeFunction.CallByHash<int>(0x6C188BE134E074AA, objString);
                     NativeFunction.CallByHash<int>(0x362E2D3FE93A9959);
@@ -168,34 +206,6 @@ namespace LemonUI.Scaleform
                     Function.Call((Hash)0x80338406F3475E55, "STRING");
                     Function.Call((Hash)0x6C188BE134E074AA, objString);
                     Function.Call((Hash)0x362E2D3FE93A9959);
-#endif
-                }
-                else if (obj is float objFloat)
-                {
-#if FIVEM
-                    API.ScaleformMovieMethodAddParamFloat(objFloat);
-#elif ALTV
-                    Alt.Natives.ScaleformMovieMethodAddParamFloat(objFloat);
-#elif RAGEMP
-                    Invoker.Invoke(0xD69736AAE04DB51A, objFloat);
-#elif RPH
-                    NativeFunction.CallByHash<int>(0xD69736AAE04DB51A, objFloat);
-#elif SHVDN3 || SHVDNC
-                    Function.Call((Hash)0xD69736AAE04DB51A, objFloat);
-#endif
-                }
-                else if (obj is double objDouble)
-                {
-#if FIVEM
-                    API.ScaleformMovieMethodAddParamFloat((float)objDouble);
-#elif ALTV
-                    Alt.Natives.ScaleformMovieMethodAddParamFloat((float)objDouble);
-#elif RAGEMP
-                    Invoker.Invoke(0xD69736AAE04DB51A, (float)objDouble);
-#elif RPH
-                    NativeFunction.CallByHash<int>(0xD69736AAE04DB51A, (float)objDouble);
-#elif SHVDN3 || SHVDNC
-                    Function.Call((Hash)0xD69736AAE04DB51A, (float)objDouble);
 #endif
                 }
                 else if (obj is bool objBool)
