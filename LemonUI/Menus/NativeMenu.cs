@@ -216,7 +216,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The maximum allowed number of items in the menu at once.
         /// </summary>
-        private int maxItems = 10;
+        private int maxItems = 20;
         /// <summary>
         /// The first item in the menu.
         /// </summary>
@@ -638,7 +638,7 @@ namespace LemonUI.Menus
         /// <remarks>
         /// This property can be set to zero to completely disable it.
         /// </remarks>
-        public int HeldTime { get; set; } = 166;
+        public int HeldTime { get; set; } = 0;
         /// <summary>
         /// The controls that are required for some menu operations.
         /// </summary>
