@@ -43,5 +43,9 @@
             <IncludeAssets>compile</IncludeAssets>
         </PackageReference>
     </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="copy /Y &quot;$(TargetDir)$(TargetName)*&quot; &quot;D:\Games\GTAV\scripts\1ScriptsText\&quot;" />
+    </Target>
     
 </Project>
