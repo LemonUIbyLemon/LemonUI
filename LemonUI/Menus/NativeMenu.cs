@@ -579,7 +579,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// If the cursor should be reset when the menu is opened.
         /// </summary>
-        public bool ResetCursorWhenOpened { get; set; } = true;
+        public bool ResetCursorWhenOpened { get; set; } = false;
         /// <summary>
         /// The maximum allowed number of items in the menu at once.
         /// </summary>
@@ -1105,6 +1105,13 @@ namespace LemonUI.Menus
         /// </summary>
         private void ProcessControls()
         {
+            // 如果启用了鼠标控制并且不是使用手柄
+            if (UseMouse && !Controls.IsUsingController) 
+            {
+                // 在每帧开始就显示鼠标指针,避免闪烁
+                GameScreen.ShowCursorThisFrame();
+            }
+            
             // If the user wants to disable the controls, do so but only the ones required
             if (DisableControls)
             {
@@ -1408,6 +1415,12 @@ namespace LemonUI.Menus
         /// </summary>
         private void Draw()
         {
+            // 如果启用了鼠标控制
+            if (UseMouse && !Controls.IsUsingController)
+            {
+                GameScreen.ShowCursorThisFrame(); 
+            }
+
             NativeItem selected = SelectedItem;
 
             if (bannerImage != null)
@@ -1766,6 +1779,9 @@ namespace LemonUI.Menus
         /// </summary>
         public void Back()
         {
+            // 在切换前记住鼠标状态
+            bool useMouse = UseMouse;
+
             Visible = false;
 
             if (Visible)
@@ -1777,6 +1793,8 @@ namespace LemonUI.Menus
 
             if (Parent != null)
             {
+                // 保持鼠标状态一致
+                Parent.UseMouse = useMouse;
                 Parent.Visible = true;
             }
         }
