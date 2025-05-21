@@ -3,7 +3,7 @@ theme:
   name: material
   palette:
     scheme: slate
-    primary: indigo
+    primary: black
     accent: blue
   features:
     - navigation.instant
