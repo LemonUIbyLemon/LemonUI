@@ -554,7 +554,16 @@ namespace LemonUI.Menus
         /// <summary>
         /// If the mouse should be used for navigating the menu.
         /// </summary>
-        public bool UseMouse { get; set; } = true;
+        [Obsolete("This parameter is ambiguous, please use the MouseBehavior property instead instead.", true)]
+        public bool UseMouse
+        {
+            get => MouseBehavior == MenuMouseBehavior.Movement;
+            set => MouseBehavior = value ? MenuMouseBehavior.Movement : MenuMouseBehavior.Disabled;
+        }
+        /// <summary>
+        /// The behavior of the mouse when the menu is open.
+        /// </summary>
+        public MenuMouseBehavior MouseBehavior { get; set; } = MenuMouseBehavior.Movement;
         /// <summary>
         /// If the menu should be closed when the user clicks out of bounds (aka anywhere else other than the items).
         /// </summary>
@@ -1120,8 +1129,8 @@ namespace LemonUI.Menus
                     {
                         continue;
                     }
-                    // If the player is usinng a controller or mouse usage is disabled and is a camera control
-                    if ((isUsingController || !UseMouse) && controlsCamera.Contains(control))
+                    // If the player is using a controller or mouse usage is disabled and is a camera control
+                    if ((isUsingController || MouseBehavior == MenuMouseBehavior.Disabled) && controlsCamera.Contains(control))
                     {
                         continue;
                     }
@@ -1165,21 +1174,28 @@ namespace LemonUI.Menus
             }
 
             // Check if the controls necessary were pressed
-            bool backPressed = Controls.IsJustPressed((Control)177 /*PhoneCancel*/) || Controls.IsJustPressed(Control.FrontendPause);
-            bool upPressed = Controls.IsJustPressed((Control)172 /*PhoneUp*/) || Controls.IsJustPressed(Control.CursorScrollUp);
-            bool downPressed = Controls.IsJustPressed((Control)173 /*PhoneDown*/) || Controls.IsJustPressed(Control.CursorScrollDown);
-            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || Controls.IsJustPressed((Control)176 /*PhoneSelect*/);
-            bool clickSelected = Controls.IsJustPressed(Control.CursorAccept);
+            bool leftClick = Controls.IsJustPressed(Control.CursorAccept);
+            bool rightClick = Controls.IsJustPressed(Control.CursorCancel);
+            bool acceptPressed = Controls.IsJustPressed(Control.FrontendAccept) || (leftClick && MouseBehavior == MenuMouseBehavior.Scrolling);
+            bool cancelPressed = Controls.IsJustPressed((Control)177 /*PhoneCancel*/) || Controls.IsJustPressed(Control.FrontendPause);
+
+            if (MouseBehavior == MenuMouseBehavior.Disabled && rightClick && cancelPressed)
+            {
+                cancelPressed = false;
+            }
+
+            bool upPressed = Controls.IsJustPressed((Control)172 /*PhoneUp*/) || (Controls.IsJustPressed(Control.CursorScrollUp) && MouseBehavior == MenuMouseBehavior.Scrolling);
+            bool downPressed = Controls.IsJustPressed((Control)173 /*PhoneDown*/) || (Controls.IsJustPressed(Control.CursorScrollDown) && MouseBehavior == MenuMouseBehavior.Scrolling);
             bool leftPressed = Controls.IsJustPressed((Control)174 /*PhoneLeft*/);
             bool rightPressed = Controls.IsJustPressed((Control)175 /*PhoneRight*/);
 
+            bool upHeld = Controls.IsPressed((Control)172 /*PhoneUp*/) || (Controls.IsPressed(Control.CursorScrollUp) && MouseBehavior == MenuMouseBehavior.Scrolling);
+            bool downHeld = Controls.IsPressed((Control)173 /*PhoneDown*/) || (Controls.IsPressed(Control.CursorScrollDown) && MouseBehavior == MenuMouseBehavior.Scrolling);
             bool leftHeld = Controls.IsPressed((Control)174 /*PhoneLeft*/);
             bool rightHeld = Controls.IsPressed((Control)175 /*PhoneRight*/);
-            bool upHeld = Controls.IsPressed((Control)172 /*PhoneUp*/) || Controls.IsPressed(Control.CursorScrollUp);
-            bool downHeld = Controls.IsPressed((Control)173 /*PhoneDown*/) || Controls.IsPressed(Control.CursorScrollDown);
 
             // If the player pressed the back button, go back or close the menu
-            if (backPressed)
+            if (cancelPressed)
             {
                 Back();
                 return;
@@ -1224,7 +1240,7 @@ namespace LemonUI.Menus
             NativeItem selectedItem = SelectedItem;
 
             // If the mouse controls are enabled and the user is not using a controller
-            if (UseMouse && !Controls.IsUsingController)
+            if (MouseBehavior == MenuMouseBehavior.Movement && !Controls.IsUsingController)
             {
                 // Enable the mouse cursor
                 GameScreen.ShowCursorThisFrame();
@@ -1263,7 +1279,7 @@ namespace LemonUI.Menus
                 }
 
                 // If the player pressed the click button
-                if (clickSelected)
+                if (leftClick && MouseBehavior == MenuMouseBehavior.Movement)
                 {
                     // Iterate over the items on the screen
                     foreach (NativeItem item in visibleItems)
@@ -1388,7 +1404,7 @@ namespace LemonUI.Menus
             }
 
             // If the player selected an item, activate it
-            if (selectPressed)
+            if (acceptPressed)
             {
                 if (SelectedItem != null && SelectedItem.Enabled)
                 {
@@ -1451,7 +1467,7 @@ namespace LemonUI.Menus
                     continue;
                 }
 
-                if (item.IsHovered && UseMouse && !(item is NativeSeparatorItem))
+                if (item.IsHovered && MouseBehavior == MenuMouseBehavior.Movement && !(item is NativeSeparatorItem))
                 {
                     hoveredRect.Position = item.lastPosition;
                     hoveredRect.Size = item.lastSize;
