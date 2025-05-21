@@ -1255,9 +1255,6 @@ namespace LemonUI.Menus
             // If the mouse controls are enabled and the user is not using a controller
             if (MouseBehavior == MenuMouseBehavior.Movement && !Controls.IsUsingController)
             {
-                // Enable the mouse cursor
-                GameScreen.ShowCursorThisFrame();
-
                 // If the camera should be rotated when the cursor is on the left and right sections of the screen, do so
                 if (RotateCamera)
                 {
@@ -1710,6 +1707,11 @@ namespace LemonUI.Menus
             if (selected != null && descriptionText.Text != selected.Description)
             {
                 UpdateDescription();
+            }
+
+            if (MouseBehavior == MenuMouseBehavior.Movement)
+            {
+                GameScreen.ShowCursorThisFrame();
             }
 
             Draw();
