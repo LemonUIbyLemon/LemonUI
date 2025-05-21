@@ -232,6 +232,7 @@ namespace LemonUI.Menus
         private HeaderBehavior nameBehavior = HeaderBehavior.AlwaysShow;
         private string description = string.Empty;
         private string noItemsText = "There are no items available";
+        private bool keepNameCasing;
 
         #endregion
 
@@ -531,7 +532,19 @@ namespace LemonUI.Menus
             set
             {
                 name = value ?? throw new ArgumentNullException(nameof(value));
-                nameText.Text = value.ToUpperInvariant();
+                nameText.Text = KeepNameCasing ? value : value.ToUpperInvariant();
+            }
+        }
+        /// <summary>
+        /// Whether the name of the menu should keep its casing or not.
+        /// </summary>
+        public bool KeepNameCasing
+        {
+            get => keepNameCasing;
+            set
+            {
+                keepNameCasing = value;
+                nameText.Text = KeepNameCasing ? name : name.ToUpperInvariant();
             }
         }
         /// <summary>
