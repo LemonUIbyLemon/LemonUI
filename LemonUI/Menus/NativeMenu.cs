@@ -1130,7 +1130,7 @@ namespace LemonUI.Menus
                         continue;
                     }
                     // If the player is using a controller or mouse usage is disabled and is a camera control
-                    if ((isUsingController || MouseBehavior != MenuMouseBehavior.Movement) && controlsCamera.Contains(control))
+                    if ((isUsingController || MouseBehavior == MenuMouseBehavior.None) && controlsCamera.Contains(control))
                     {
                         continue;
                     }
@@ -1174,21 +1174,28 @@ namespace LemonUI.Menus
             }
 
             // Check if the controls necessary were pressed
-            bool backPressed = Controls.IsJustPressed((Control)177 /*PhoneCancel*/) || Controls.IsJustPressed(Control.FrontendPause);
-            bool upPressed = Controls.IsJustPressed((Control)172 /*PhoneUp*/) || Controls.IsJustPressed(Control.CursorScrollUp);
-            bool downPressed = Controls.IsJustPressed((Control)173 /*PhoneDown*/) || Controls.IsJustPressed(Control.CursorScrollDown);
-            bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || Controls.IsJustPressed((Control)176 /*PhoneSelect*/);
-            bool clickSelected = Controls.IsJustPressed(Control.CursorAccept);
-            bool leftPressed = Controls.IsJustPressed((Control)174 /*PhoneLeft*/) && MouseBehavior == MenuMouseBehavior.Movement;
+            bool leftClick = Controls.IsJustPressed(Control.CursorAccept);
+            bool rightClick = Controls.IsJustPressed(Control.CursorCancel);
+            bool acceptPressed = Controls.IsJustPressed(Control.FrontendAccept) || (leftClick && MouseBehavior == MenuMouseBehavior.Wheel);
+            bool cancelPressed = Controls.IsJustPressed((Control)177 /*PhoneCancel*/) || Controls.IsJustPressed(Control.FrontendPause);
+
+            if (MouseBehavior == MenuMouseBehavior.None && rightClick && cancelPressed)
+            {
+                cancelPressed = false;
+            }
+
+            bool upPressed = Controls.IsJustPressed((Control)172 /*PhoneUp*/) || (Controls.IsJustPressed(Control.CursorScrollUp) && MouseBehavior == MenuMouseBehavior.Wheel);
+            bool downPressed = Controls.IsJustPressed((Control)173 /*PhoneDown*/) || (Controls.IsJustPressed(Control.CursorScrollDown) && MouseBehavior == MenuMouseBehavior.Wheel);
+            bool leftPressed = Controls.IsJustPressed((Control)174 /*PhoneLeft*/);
             bool rightPressed = Controls.IsJustPressed((Control)175 /*PhoneRight*/);
 
+            bool upHeld = Controls.IsPressed((Control)172 /*PhoneUp*/) || (Controls.IsPressed(Control.CursorScrollUp) && MouseBehavior == MenuMouseBehavior.Wheel);
+            bool downHeld = Controls.IsPressed((Control)173 /*PhoneDown*/) || (Controls.IsPressed(Control.CursorScrollDown) && MouseBehavior == MenuMouseBehavior.Wheel);
             bool leftHeld = Controls.IsPressed((Control)174 /*PhoneLeft*/);
             bool rightHeld = Controls.IsPressed((Control)175 /*PhoneRight*/);
-            bool upHeld = Controls.IsPressed((Control)172 /*PhoneUp*/) || Controls.IsPressed(Control.CursorScrollUp);
-            bool downHeld = Controls.IsPressed((Control)173 /*PhoneDown*/) || Controls.IsPressed(Control.CursorScrollDown);
 
             // If the player pressed the back button, go back or close the menu
-            if (backPressed)
+            if (cancelPressed)
             {
                 Back();
                 return;
@@ -1272,7 +1279,7 @@ namespace LemonUI.Menus
                 }
 
                 // If the player pressed the click button
-                if (clickSelected)
+                if (leftClick && MouseBehavior == MenuMouseBehavior.Movement)
                 {
                     // Iterate over the items on the screen
                     foreach (NativeItem item in visibleItems)
@@ -1397,7 +1404,7 @@ namespace LemonUI.Menus
             }
 
             // If the player selected an item, activate it
-            if (selectPressed)
+            if (acceptPressed)
             {
                 if (SelectedItem != null && SelectedItem.Enabled)
                 {
