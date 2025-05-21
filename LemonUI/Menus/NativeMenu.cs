@@ -554,7 +554,16 @@ namespace LemonUI.Menus
         /// <summary>
         /// If the mouse should be used for navigating the menu.
         /// </summary>
-        public bool UseMouse { get; set; } = true;
+        [Obsolete("This parameter is ambiguous, please use the MouseBehavior property instead instead.", true)]
+        public bool UseMouse
+        {
+            get => MouseBehavior == MenuMouseBehavior.Movement;
+            set => MouseBehavior = value ? MenuMouseBehavior.Movement : MenuMouseBehavior.None;
+        }
+        /// <summary>
+        /// The behavior of the mouse when the menu is open.
+        /// </summary>
+        public MenuMouseBehavior MouseBehavior { get; set; } = MenuMouseBehavior.Movement;
         /// <summary>
         /// If the menu should be closed when the user clicks out of bounds (aka anywhere else other than the items).
         /// </summary>
@@ -1117,8 +1126,8 @@ namespace LemonUI.Menus
                     {
                         continue;
                     }
-                    // If the player is usinng a controller or mouse usage is disabled and is a camera control
-                    if ((isUsingController || !UseMouse) && controlsCamera.Contains(control))
+                    // If the player is using a controller or mouse usage is disabled and is a camera control
+                    if ((isUsingController || MouseBehavior != MenuMouseBehavior.Movement) && controlsCamera.Contains(control))
                     {
                         continue;
                     }
@@ -1167,7 +1176,7 @@ namespace LemonUI.Menus
             bool downPressed = Controls.IsJustPressed((Control)173 /*PhoneDown*/) || Controls.IsJustPressed(Control.CursorScrollDown);
             bool selectPressed = Controls.IsJustPressed(Control.FrontendAccept) || Controls.IsJustPressed((Control)176 /*PhoneSelect*/);
             bool clickSelected = Controls.IsJustPressed(Control.CursorAccept);
-            bool leftPressed = Controls.IsJustPressed((Control)174 /*PhoneLeft*/);
+            bool leftPressed = Controls.IsJustPressed((Control)174 /*PhoneLeft*/) && MouseBehavior == MenuMouseBehavior.Movement;
             bool rightPressed = Controls.IsJustPressed((Control)175 /*PhoneRight*/);
 
             bool leftHeld = Controls.IsPressed((Control)174 /*PhoneLeft*/);
@@ -1221,7 +1230,7 @@ namespace LemonUI.Menus
             NativeItem selectedItem = SelectedItem;
 
             // If the mouse controls are enabled and the user is not using a controller
-            if (UseMouse && !Controls.IsUsingController)
+            if (MouseBehavior == MenuMouseBehavior.Movement && !Controls.IsUsingController)
             {
                 // Enable the mouse cursor
                 GameScreen.ShowCursorThisFrame();
@@ -1448,7 +1457,7 @@ namespace LemonUI.Menus
                     continue;
                 }
 
-                if (item.IsHovered && UseMouse && !(item is NativeSeparatorItem))
+                if (item.IsHovered && MouseBehavior == MenuMouseBehavior.Movement && !(item is NativeSeparatorItem))
                 {
                     hoveredRect.Position = item.lastPosition;
                     hoveredRect.Size = item.lastSize;
