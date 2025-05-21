@@ -48,6 +48,8 @@ jobs:
       - uses: actions/setup-python@v5.6.0
         with:
           python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
       - uses: actions/download-artifact@v4.1.8
         with:
           name: ${{ github.event.repository.name }}.Release
