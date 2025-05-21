@@ -32,6 +32,8 @@ namespace LemonUI.Scaleform
         private string title;
         private string message;
         private string rank;
+        private int textColor;
+        private int backgroundColor;
 
         #endregion
 
@@ -43,7 +45,11 @@ namespace LemonUI.Scaleform
         public string Title
         {
             get => title;
-            set => title = value ?? throw new ArgumentNullException(nameof(value));
+            set
+            {
+                title = value ?? throw new ArgumentNullException(nameof(value));
+                UpdateInternal();
+            }
         }
         /// <summary>
         /// The subtitle or description of the message.
@@ -51,24 +57,48 @@ namespace LemonUI.Scaleform
         public string Message
         {
             get => message;
-            set => message = value ?? throw new ArgumentNullException(nameof(value));
+            set
+            {
+                message = value ?? throw new ArgumentNullException(nameof(value));
+                UpdateInternal();
+            }
         }
         /// <summary>
         /// The color of the text.
         /// Only used on the Customizable message type.
         /// </summary>
-        public int TextColor { get; set; }
+        public int TextColor
+        {
+            get => textColor;
+            set
+            {
+                textColor = value;
+                UpdateInternal();
+            }
+        }
         /// <summary>
         /// The color of the background in the Customizable message type.
         /// </summary>
-        public int BackgroundColor { get; set; }
+        public int BackgroundColor
+        {
+            get => backgroundColor;
+            set
+            {
+                backgroundColor = value;
+                UpdateInternal();
+            }
+        }
         /// <summary>
         /// The Rank when the mode is set to Cops and Crooks.
         /// </summary>
         public string Rank
         {
             get => rank;
-            set => rank = value ?? throw new ArgumentNullException(nameof(value));
+            set
+            {
+                rank = value ?? throw new ArgumentNullException(nameof(value));
+                UpdateInternal();
+            }
         }
 #if !RAGEMP && !ALTV
         /// <summary>
@@ -212,24 +242,21 @@ namespace LemonUI.Scaleform
         /// <param name="type">The type of message.</param>
         public BigMessage(string title, string message, string rank, uint weapon, int colorText, int colorBackground, MessageType type) : base("MP_BIG_MESSAGE_FREEMODE")
         {
-            Title = title;
-            Message = message;
-            Rank = rank;
-            WeaponHash = weapon;
-            TextColor = colorText;
-            BackgroundColor = colorBackground;
+            this.title = title;
+            this.message = message;
+            this.rank = rank;
+            this.weaponHash = weapon;
+            this.textColor = colorText;
+            this.backgroundColor = colorBackground;
             Type = type;
-            Update();
+            UpdateInternal();
         }
 
         #endregion
 
-        #region Functions
+        #region Tools
 
-        /// <summary>
-        /// Updates the Message information in the Scaleform.
-        /// </summary>
-        public override void Update()
+        private void UpdateInternal()
         {
             // Select the correct function to call
             string function;
@@ -279,6 +306,17 @@ namespace LemonUI.Scaleform
                     CallFunction(function, Title, Message);
                     break;
             }
+        }
+
+        #endregion
+
+        #region Functions
+
+        /// <summary>
+        /// Does nothing.
+        /// </summary>
+        public override void Update()
+        {
         }
         /// <summary>
         /// Fades the big message out.
