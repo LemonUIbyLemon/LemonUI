@@ -588,13 +588,16 @@ namespace LemonUI.Menus
             get => maxItems;
             set
             {
-                // If the number is under one, raise an exception
+                if (value == maxItems)
+                {
+                    return;
+                }
                 if (value < 1)
                 {
                     throw new InvalidOperationException("The maximum numbers on the screen can't be under 1.");
                 }
-                // Otherwise, save it
                 maxItems = value;
+                UpdateItemList();
             }
         }
         /// <summary>
