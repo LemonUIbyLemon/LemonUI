@@ -8,7 +8,7 @@ namespace LemonUI.Menus
         /// <summary>
         /// The mouse will not be usable in the menu.
         /// </summary>
-        None,
+        Disabled,
         /// <summary>
         /// The menu can be used to click the items and navigate to them.
         /// </summary>
@@ -16,6 +16,6 @@ namespace LemonUI.Menus
         /// <summary>
         /// The wheel can be used to navigate in the menu, click can be used to confirm and right click to return/exit.
         /// </summary>
-        Wheel
+        Scrolling
     }
 }

@@ -558,7 +558,7 @@ namespace LemonUI.Menus
         public bool UseMouse
         {
             get => MouseBehavior == MenuMouseBehavior.Movement;
-            set => MouseBehavior = value ? MenuMouseBehavior.Movement : MenuMouseBehavior.None;
+            set => MouseBehavior = value ? MenuMouseBehavior.Movement : MenuMouseBehavior.Disabled;
         }
         /// <summary>
         /// The behavior of the mouse when the menu is open.
@@ -1130,7 +1130,7 @@ namespace LemonUI.Menus
                         continue;
                     }
                     // If the player is using a controller or mouse usage is disabled and is a camera control
-                    if ((isUsingController || MouseBehavior == MenuMouseBehavior.None) && controlsCamera.Contains(control))
+                    if ((isUsingController || MouseBehavior == MenuMouseBehavior.Disabled) && controlsCamera.Contains(control))
                     {
                         continue;
                     }
@@ -1176,21 +1176,21 @@ namespace LemonUI.Menus
             // Check if the controls necessary were pressed
             bool leftClick = Controls.IsJustPressed(Control.CursorAccept);
             bool rightClick = Controls.IsJustPressed(Control.CursorCancel);
-            bool acceptPressed = Controls.IsJustPressed(Control.FrontendAccept) || (leftClick && MouseBehavior == MenuMouseBehavior.Wheel);
+            bool acceptPressed = Controls.IsJustPressed(Control.FrontendAccept) || (leftClick && MouseBehavior == MenuMouseBehavior.Scrolling);
             bool cancelPressed = Controls.IsJustPressed((Control)177 /*PhoneCancel*/) || Controls.IsJustPressed(Control.FrontendPause);
 
-            if (MouseBehavior == MenuMouseBehavior.None && rightClick && cancelPressed)
+            if (MouseBehavior == MenuMouseBehavior.Disabled && rightClick && cancelPressed)
             {
                 cancelPressed = false;
             }
 
-            bool upPressed = Controls.IsJustPressed((Control)172 /*PhoneUp*/) || (Controls.IsJustPressed(Control.CursorScrollUp) && MouseBehavior == MenuMouseBehavior.Wheel);
-            bool downPressed = Controls.IsJustPressed((Control)173 /*PhoneDown*/) || (Controls.IsJustPressed(Control.CursorScrollDown) && MouseBehavior == MenuMouseBehavior.Wheel);
+            bool upPressed = Controls.IsJustPressed((Control)172 /*PhoneUp*/) || (Controls.IsJustPressed(Control.CursorScrollUp) && MouseBehavior == MenuMouseBehavior.Scrolling);
+            bool downPressed = Controls.IsJustPressed((Control)173 /*PhoneDown*/) || (Controls.IsJustPressed(Control.CursorScrollDown) && MouseBehavior == MenuMouseBehavior.Scrolling);
             bool leftPressed = Controls.IsJustPressed((Control)174 /*PhoneLeft*/);
             bool rightPressed = Controls.IsJustPressed((Control)175 /*PhoneRight*/);
 
-            bool upHeld = Controls.IsPressed((Control)172 /*PhoneUp*/) || (Controls.IsPressed(Control.CursorScrollUp) && MouseBehavior == MenuMouseBehavior.Wheel);
-            bool downHeld = Controls.IsPressed((Control)173 /*PhoneDown*/) || (Controls.IsPressed(Control.CursorScrollDown) && MouseBehavior == MenuMouseBehavior.Wheel);
+            bool upHeld = Controls.IsPressed((Control)172 /*PhoneUp*/) || (Controls.IsPressed(Control.CursorScrollUp) && MouseBehavior == MenuMouseBehavior.Scrolling);
+            bool downHeld = Controls.IsPressed((Control)173 /*PhoneDown*/) || (Controls.IsPressed(Control.CursorScrollDown) && MouseBehavior == MenuMouseBehavior.Scrolling);
             bool leftHeld = Controls.IsPressed((Control)174 /*PhoneLeft*/);
             bool rightHeld = Controls.IsPressed((Control)175 /*PhoneRight*/);
 
