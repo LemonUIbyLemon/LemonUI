@@ -1,6 +1,2 @@
-/**/DROP/
-/**/TEMP/
-/**/packages/
-/**/bin/
-/**/obj/
-_site
+docs/api/*.md
+site/

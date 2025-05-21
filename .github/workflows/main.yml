@@ -45,18 +45,23 @@ jobs:
       - uses: actions/setup-dotnet@v4.1.0
         with:
           dotnet-version: "7.0.x"
+      - uses: actions/setup-python@v5.6.0
+        with:
+          python-version: "3.12"
       - uses: actions/download-artifact@v4.1.8
         with:
           name: ${{ github.event.repository.name }}.Release
           path: bin/Release
       - run: ls -R
         working-directory: bin/Release
-      - run: dotnet tool update -g docfx
-      - run: docfx docs/docfx.json
+      - run: dotnet tool install -g Nefarius.Tools.XMLDoc2Markdown
+      - run: xmldoc2md bin/debug/SHVDN3/LemonUI.SHVDN3.dll docs/docs/api --excludeinternal
+      - run: mkdocs build
+        working-directory: docs
       - uses: actions/upload-pages-artifact@v3.0.1
         with:
-          path: "docs/_site"
-      - uses: actions/deploy-pages@v4.0.5
+          path: docs/site
+      # - uses: actions/deploy-pages@v4.0.5
   github-package-registry:
     runs-on: ubuntu-22.04
     if: ${{ github.ref == 'refs/heads/master' }}

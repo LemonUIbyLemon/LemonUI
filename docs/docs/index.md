@@ -1,4 +1,4 @@
-# Welcome to the **LemonUI Documentation**!
+# Welcome!
 
 Right now we only have the API Documentation on the top.
 

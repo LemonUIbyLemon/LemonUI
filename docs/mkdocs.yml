@@ -1,0 +1,11 @@
+site_name: LemonUI
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: indigo
+    accent: blue
+  features:
+    - navigation.instant
+plugins:
+  - search
