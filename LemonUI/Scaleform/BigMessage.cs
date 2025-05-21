@@ -329,7 +329,7 @@ namespace LemonUI.Scaleform
                 throw new ArgumentOutOfRangeException(nameof(time), "Time can't be under zero.");
             }
 
-            CallFunction("SHARD_ANIM_OUT", 0, time);
+            CallFunction("SHARD_ANIM_OUT", 0, time / 1000.0f, 0);
 
 #if ALTV
             long currentTime = Alt.Natives.GetGameTimer();
