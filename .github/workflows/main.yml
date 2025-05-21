@@ -55,7 +55,7 @@ jobs:
       - run: ls -R
         working-directory: bin/Release
       - run: dotnet tool install -g Nefarius.Tools.XMLDoc2Markdown
-      - run: xmldoc2md bin/debug/SHVDN3/LemonUI.SHVDN3.dll docs/docs/api --excludeinternal
+      - run: xmldoc2md bin/Release/SHVDN3/LemonUI.SHVDN3.dll docs/docs/api --excludeinternal
       - run: mkdocs build
         working-directory: docs
       - uses: actions/upload-pages-artifact@v3.0.1
