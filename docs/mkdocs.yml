@@ -1,6 +1,8 @@
 site_name: LemonUI
 theme:
   name: material
+  logo: img/logo.png
+  favicon: img/logo.png
   palette:
     scheme: slate
     primary: black
