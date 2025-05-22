@@ -50,7 +50,7 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - uses: actions/download-artifact@v4.1.8
+      - uses: actions/download-artifact@v4.3.0
         with:
           name: ${{ github.event.repository.name }}.Release
           path: bin/Release
@@ -74,7 +74,7 @@ jobs:
       - uses: actions/setup-dotnet@v4.3.1
         with:
           dotnet-version: "7.0.x"
-      - uses: actions/download-artifact@v4.1.8
+      - uses: actions/download-artifact@v4.3.0
         with:
           name: ${{ github.event.repository.name }}.Release
           path: bin/Release
@@ -92,7 +92,7 @@ jobs:
       - uses: actions/setup-dotnet@v4.3.1
         with:
           dotnet-version: "7.0.x"
-      - uses: actions/download-artifact@v4.1.8
+      - uses: actions/download-artifact@v4.3.0
         with:
           name: ${{ github.event.repository.name }}.Release
           path: bin/Release
