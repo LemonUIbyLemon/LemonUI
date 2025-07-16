@@ -36,6 +36,8 @@
     </PropertyGroup>
     
     <ItemGroup>
+    
+      <PackageReference Include="Microsoft.NETCore.App" Version="2.2.8" />
         <Compile Include="$(ProjectDir)../LemonUI/**/*.cs" />
         <None Include="$(ProjectDir)../README.md" Pack="true" Visible="false" PackagePath="\" />
         <None Include="$(ProjectDir)../logo.png" Pack="true" Visible="false" PackagePath="\" />
