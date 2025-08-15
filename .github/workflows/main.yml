@@ -60,7 +60,7 @@ jobs:
       - run: xmldoc2md bin/Release/SHVDN3/LemonUI.SHVDN3.dll docs/docs/api --excludeinternal
       - run: mkdocs build
         working-directory: docs
-      - uses: actions/upload-pages-artifact@v3.0.1
+      - uses: actions/upload-pages-artifact@v4.0.0
         with:
           path: docs/site
       # - uses: actions/deploy-pages@v4.0.5
