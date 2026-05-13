@@ -67,7 +67,24 @@ namespace LemonUI.Scaleform
         /// </summary>
         public string Raw
         {
-            get => raw;
+            get
+            {
+                if ((int)control == -1)
+                {
+                    return raw;
+                }
+#if FIVEM
+                return API.GetControlInstructionalButton(2, (int)control, 1);
+#elif RAGEMP
+                return Invoker.Invoke<string>(Natives.GetControlInstructionalButton, 2, (int)control, 1);
+#elif RPH
+                return (string)NativeFunction.CallByHash(0x0499D7B09FC9B407, typeof(string), 2, (int)control, 1);
+#elif SHVDN3 || SHVDNC
+                return Function.Call<string>(Hash.GET_CONTROL_INSTRUCTIONAL_BUTTONS_STRING, 2, (int)control, 1);
+#elif ALTV
+                return Alt.Natives.GetControlInstructionalButtonsString(2, (int)control, true);
+#endif
+            }
             set
             {
                 raw = value ?? throw new ArgumentNullException(nameof(value));
