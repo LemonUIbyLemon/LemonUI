@@ -103,6 +103,16 @@ namespace LemonUI.Menus
         /// Event triggered when the selected item is changed.
         /// </summary>
         public event ItemChangedEventHandler<T> ItemChanged;
+        
+        /// <summary>
+        /// Event triggered when an item is added to the list.
+        /// </summary>
+        public event ItemModifiedEventHandler<T> ItemAdded;
+        
+        /// <summary>
+        /// Event triggered when an item is removed from the list.
+        /// </summary>
+        public event ItemModifiedEventHandler<T> ItemRemoved;
 
         #endregion
 
@@ -202,18 +212,30 @@ namespace LemonUI.Menus
             {
                 UpdateIndex();
             }
+            
+            // Trigger the ItemAdded event
+            ItemAdded?.Invoke(this, new ItemModifiedEventArgs<T>(item, position));
         }
+        
         /// <summary>
         /// Removes a specific <typeparamref name="T" />.
         /// </summary>
         /// <param name="item">The <typeparamref name="T" /> to remove.</param>
         public void Remove(T item)
         {
-            if (items.Remove(item))
+            int position = items.IndexOf(item);
+            if (position >= 0)
             {
-                FixIndexIfRequired();
+                T removedItem = items[position];
+                if (items.Remove(item))
+                {
+                    FixIndexIfRequired();
+                    // Trigger the ItemRemoved event
+                    ItemRemoved?.Invoke(this, new ItemModifiedEventArgs<T>(removedItem, position));
+                }
             }
         }
+        
         /// <summary>
         /// Removes a <typeparamref name="T" /> at a specific location.
         /// </summary>
@@ -224,11 +246,16 @@ namespace LemonUI.Menus
             {
                 return;
             }
-
+            
+            T removedItem = items[position];
             items.RemoveAt(position);
             FixIndexIfRequired();
             UpdateIndex();
+            
+            // Trigger the ItemRemoved event
+            ItemRemoved?.Invoke(this, new ItemModifiedEventArgs<T>(removedItem, position));
         }
+        
         /// <summary>
         /// Removes all of the items that match the <paramref name="pred"/>.
         /// </summary>
