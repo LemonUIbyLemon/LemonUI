@@ -1,4 +1,4 @@
-#if RPH || ALTV
+#if RPH || ALTV || FIVEM_G9
 namespace LemonUI
 {
     /// <summary>

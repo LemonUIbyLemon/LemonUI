@@ -5,6 +5,8 @@ using RAGE.Game;
 #elif FIVEM
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
 #elif RPH
 using Rage.Native;
 #elif SHVDN3 || SHVDNC
@@ -37,6 +39,8 @@ namespace LemonUI.Tools
                 return Alt.Natives.GetSafeZoneSize();
 #elif FIVEM
                 return API.GetSafeZoneSize();
+#elif FIVEM_G9
+                return Native.GetSafeZoneSize();
 #elif RAGEMP
                 return Invoker.Invoke<float>(Natives.GetSafeZoneSize);
 #elif RPH
@@ -106,6 +110,8 @@ namespace LemonUI.Tools
             float realX = 0, realY = 0;
 #if FIVEM
             API.GetScriptGfxPosition(relativeX, relativeY, ref realX, ref realY);
+#elif FIVEM_G9
+            Native.GetScriptGfxPosition(relativeX, relativeY, out realX, out realY);
 #elif ALTV
             Alt.Natives.GetScriptGfxAlignPosition(relativeX, relativeY, ref realX, ref realY);
 #elif RAGEMP
@@ -147,6 +153,9 @@ namespace LemonUI.Tools
 #if FIVEM
             API.SetScriptGfxAlign((int)horizontal, (int)vertical);
             API.SetScriptGfxAlignParams(0, 0, 0, 0);
+#elif FIVEM_G9
+            Native.SetScriptGfxAlign((int)horizontal, (int)vertical);
+            Native.SetScriptGfxAlignParams(0, 0, 0, 0);
 #elif ALTV
             Alt.Natives.SetScriptGfxAlign((int)horizontal, (int)vertical);
             Alt.Natives.SetScriptGfxAlignParams(0, 0, 0, 0);
@@ -168,6 +177,8 @@ namespace LemonUI.Tools
         {
 #if FIVEM
             API.ResetScriptGfxAlign();
+#elif FIVEM_G9
+            Native.ResetScriptGfxAlign();
 #elif ALTV
             Alt.Natives.ResetScriptGfxAlign();
 #elif RAGEMP

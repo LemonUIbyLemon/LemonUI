@@ -1,6 +1,8 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
 #elif ALTV
 using AltV.Net.Client;
 #elif RAGEMP
@@ -13,7 +15,6 @@ using GTA;
 using GTA.Native;
 #endif
 using System.Collections.Generic;
-using LemonUI.Elements;
 
 namespace LemonUI
 {
@@ -33,6 +34,8 @@ namespace LemonUI
             {
 #if FIVEM
                 return !API.IsInputDisabled(2);
+#elif FIVEM_G9
+                return !Native.IsUsingKeyboardAndMouse(2);
 #elif ALTV
                 return !Alt.Natives.IsUsingKeyboardAndMouse(2);
 #elif RAGEMP
@@ -58,6 +61,8 @@ namespace LemonUI
         {
 #if FIVEM
             return API.IsDisabledControlJustPressed(0, (int)control);
+#elif FIVEM_G9
+            return Native.IsControlJustPressed(0, (int)control);
 #elif ALTV
             return Alt.Natives.IsDisabledControlJustPressed(0, (int)control);
 #elif RAGEMP
@@ -79,6 +84,8 @@ namespace LemonUI
         {
 #if FIVEM
             return API.IsDisabledControlPressed(0, (int)control);
+#elif FIVEM_G9
+            return Native.IsDisabledControlPressed(0, (int)control);
 #elif ALTV
             return Alt.Natives.IsDisabledControlPressed(0, (int)control);
 #elif RAGEMP
@@ -96,6 +103,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.DisableAllControlActions(inputGroup);
+#elif FIVEM_G9
+            Native.DisableAllControlActions(inputGroup);
 #elif ALTV
             Alt.Natives.DisableAllControlActions(inputGroup);
 #elif RAGEMP
@@ -114,6 +123,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.EnableControlAction(0, (int)control, true);
+#elif FIVEM_G9
+            Native.EnableControlAction(0, (int)control, true);
 #elif ALTV
             Alt.Natives.EnableControlAction(0, (int)control, true);
 #elif RAGEMP
@@ -143,6 +154,8 @@ namespace LemonUI
         {
 #if FIVEM
             API.DisableControlAction(0, (int)control, true);
+#elif FIVEM_G9
+            Native.DisableControlAction(0, (int)control, true);
 #elif ALTV
             Alt.Natives.DisableControlAction(0, (int)control, true);
 #elif RAGEMP
