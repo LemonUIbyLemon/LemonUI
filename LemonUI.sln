@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32106.194
+# Visual Studio Version 18
+VisualStudioVersion = 18.10.12217.157 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LemonUI.SHVDN3", "LemonUI.SHVDN3\LemonUI.SHVDN3.csproj", "{1FBC569D-7CD5-4F5C-8EB1-4FE1B6FF2B01}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LemonUI.AltV", "LemonUI.AltV\LemonUI.AltV.csproj", "{23811603-B595-4AB2-ADC7-25F0C6920193}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LemonUI.AltV.Async", "LemonUI.AltV.Async\LemonUI.AltV.Async.csproj", "{F2761304-2B83-451F-B7BD-F7F752233A01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LemonUI.FiveMEnhanced", "LemonUI.FiveMEnhanced\LemonUI.FiveMEnhanced.csproj", "{4C1221DE-D455-7C03-A596-43E0024C981F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{F2761304-2B83-451F-B7BD-F7F752233A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2761304-2B83-451F-B7BD-F7F752233A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2761304-2B83-451F-B7BD-F7F752233A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C1221DE-D455-7C03-A596-43E0024C981F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C1221DE-D455-7C03-A596-43E0024C981F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C1221DE-D455-7C03-A596-43E0024C981F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C1221DE-D455-7C03-A596-43E0024C981F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
