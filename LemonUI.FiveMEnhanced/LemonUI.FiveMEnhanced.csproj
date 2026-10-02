@@ -8,7 +8,7 @@
 		<RootNamespace>LemonUI</RootNamespace>
 		<DefineConstants>FIVEM_G9,CLIENT</DefineConstants>
 		<Version>1.10.0</Version>
-		<OutputPath>$(SolutionDir)bin\$(Configuration)\FiveM\</OutputPath>
+		<OutputPath>$(SolutionDir)bin\$(Configuration)\FiveM_Enhanced\</OutputPath>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
 		<PlatformTarget>AnyCPU</PlatformTarget>
