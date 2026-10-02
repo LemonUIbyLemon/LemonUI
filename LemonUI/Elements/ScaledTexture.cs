@@ -1,5 +1,7 @@
-﻿#if FIVEM
+#if FIVEM
 using CitizenFX.Core.Native;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
 #elif RAGEMP
 using RAGE.Game;
 #elif RPH
@@ -86,6 +88,11 @@ namespace LemonUI.Elements
             {
                 API.RequestStreamedTextureDict(Dictionary, true);
             }
+#elif FIVEM_G9
+            if (!Native.HasStreamedTextureDictLoaded(Dictionary))
+            {
+                Native.RequestStreamedTextureDict(Dictionary, true);
+            }
 #elif RAGEMP
             if (!Invoker.Invoke<bool>(Natives.HasStreamedTextureDictLoaded, Dictionary))
             {
@@ -125,6 +132,8 @@ namespace LemonUI.Elements
             Request();
 #if FIVEM
             API.DrawSprite(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
+#elif FIVEM_G9
+            Native.DrawSprite(Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A, false, false);
 #elif RAGEMP
             Invoker.Invoke(Natives.DrawSprite, Dictionary, Texture, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, Heading, Color.R, Color.G, Color.B, Color.A);
 #elif RPH

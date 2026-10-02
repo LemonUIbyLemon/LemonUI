@@ -1,5 +1,7 @@
 #if FIVEM
 using CitizenFX.Core.UI;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
 #elif RAGEMP
 using RAGE.Game;
 #elif RPH
@@ -169,6 +171,10 @@ namespace LemonUI.TimerBars
             CitizenFX.Core.UI.Screen.Hud.HideComponentThisFrame(HudComponent.AreaName);
             CitizenFX.Core.UI.Screen.Hud.HideComponentThisFrame(HudComponent.StreetName);
             CitizenFX.Core.UI.Screen.Hud.HideComponentThisFrame(HudComponent.VehicleName);
+#elif FIVEM_G9
+            Native.HideHudComponentThisFrame(7);
+            Native.HideHudComponentThisFrame(9);
+            Native.HideHudComponentThisFrame(6);
 #elif RAGEMP
             Invoker.Invoke(Natives.HideHudComponentThisFrame, HudComponent.AreaName);
             Invoker.Invoke(Natives.HideHudComponentThisFrame, HudComponent.StreetName);

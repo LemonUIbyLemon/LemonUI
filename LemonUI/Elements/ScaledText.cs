@@ -13,11 +13,12 @@ using GTA.Native;
 using GTA.UI;
 using Font = GTA.UI.Font;
 #endif
+using CitizenFX.FiveM.Client;
+using LemonUI.Tools;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
-using LemonUI.Tools;
 
 namespace LemonUI.Elements
 {
@@ -152,6 +153,10 @@ namespace LemonUI.Elements
                 API.BeginTextCommandWidth("CELL_EMAIL_BCON");
                 Add();
                 return API.EndTextCommandGetWidth(true) * 1f.ToXScaled();
+#elif FIVEM_G9
+                Native.BeginTextCommandWidth("CELL_EMAIL_BCON");
+                Add();
+                return Native.EndTextCommandGetWidth(true) * 1f.ToXScaled();
 #elif ALTV
                 Alt.Natives.BeginTextCommandGetScreenWidthOfDisplayText("CELL_EMAIL_BCON");
                 Add();
@@ -180,6 +185,8 @@ namespace LemonUI.Elements
             {
 #if FIVEM
                 API.BeginTextCommandLineCount("CELL_EMAIL_BCON");
+#elif FIVEM_G9
+                Native.BeginTextCommandLineCount("CELL_EMAIL_BCON");
 #elif ALTV
                 Alt.Natives.BeginTextCommandGetNumberOfLinesForString("CELL_EMAIL_BCON");
 #elif RAGEMP
@@ -192,6 +199,8 @@ namespace LemonUI.Elements
                 Add();
 #if FIVEM
                 return API.EndTextCommandGetLineCount(relativePosition.X, relativePosition.Y);
+#elif FIVEM_G9
+                return Native.EndTextCommandGetLineCount(relativePosition.X, relativePosition.Y);
 #elif ALTV
                 return Alt.Natives.EndTextCommandGetNumberOfLinesForString(relativePosition.X, relativePosition.Y);
 #elif RAGEMP
@@ -213,6 +222,8 @@ namespace LemonUI.Elements
                 // Height will always be 1080
 #if FIVEM
                 return 1080 * API.GetTextScaleHeight(Scale, (int)Font);
+#elif FIVEM_G9
+                return 1080 * Native.GetTextScaleHeight(Scale, (int)Font);
 #elif ALTV
                 return 1080 * Alt.Natives.GetRenderedCharacterHeight(Scale, (int)Font);
 #elif RAGEMP
@@ -309,6 +320,42 @@ namespace LemonUI.Elements
             else if (Alignment == Alignment.Right)
             {
                 API.SetTextWrap(0f, relativePosition.X);
+            }
+#elif FIVEM_G9
+            foreach (string chunk in chunks)
+            {
+                Native.AddTextComponentString(chunk);
+            }
+            Native.SetTextFont((int)Font);
+            Native.SetTextScale(1f, Scale);
+            Native.SetTextColour(Color.R, Color.G, Color.B, Color.A);
+            Native.SetTextJustification((int)Alignment);
+            if (Shadow)
+            {
+                Native.SetTextDropShadow();
+            }
+            if (Outline)
+            {
+                Native.SetTextOutline();
+            }
+            if (WordWrap > 0)
+            {
+                switch (Alignment)
+                {
+                    case Alignment.Center:
+                        Native.SetTextWrap(relativePosition.X - (realWrap * 0.5f), relativePosition.X + (realWrap * 0.5f));
+                        break;
+                    case Alignment.Left:
+                        Native.SetTextWrap(relativePosition.X, relativePosition.X + realWrap);
+                        break;
+                    case Alignment.Right:
+                        Native.SetTextWrap(relativePosition.X - realWrap, relativePosition.X);
+                        break;
+                }
+            }
+            else if (Alignment == Alignment.Right)
+            {
+                Native.SetTextWrap(0f, relativePosition.X);
             }
 #elif ALTV
             foreach (var chunk in chunks)
@@ -527,6 +574,8 @@ namespace LemonUI.Elements
         {
 #if FIVEM
             API.SetTextEntry("CELL_EMAIL_BCON");
+#elif FIVEM_G9
+            Native.BeginTextCommandDisplayText("CELL_EMAIL_BCON");
 #elif ALTV
             Alt.Natives.BeginTextCommandDisplayText("CELL_EMAIL_BCON");
 #elif RAGEMP
@@ -541,6 +590,8 @@ namespace LemonUI.Elements
 
 #if FIVEM
             API.DrawText(relativePosition.X, relativePosition.Y);
+#elif FIVEM_G9
+            Native.EndTextCommandDisplayText(relativePosition.X, relativePosition.Y, 0);
 #elif ALTV
             Alt.Natives.EndTextCommandDisplayText(relativePosition.X, relativePosition.Y, 0);
 #elif RAGEMP
