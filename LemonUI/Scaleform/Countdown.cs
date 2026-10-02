@@ -2,6 +2,8 @@
 using AltV.Net.Client;
 #elif FIVEM
 using CitizenFX.Core;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
 #elif RAGEMP
 using RAGE.Game;
 #elif RPH
@@ -142,6 +144,8 @@ namespace LemonUI.Scaleform
             lastStepTime = Alt.Natives.GetGameTimer();
 #elif RAGEMP
             lastStepTime = Misc.GetGameTimer();
+#elif FIVEM_G9
+            lastStepTime = Native.GetGameTimer();
 #elif FIVEM || RPH || SHVDN3 || SHVDNC
             lastStepTime = Game.GameTime;
 #endif
@@ -162,6 +166,8 @@ namespace LemonUI.Scaleform
             {
 #if ALTV
                 long currentTime = Alt.Natives.GetGameTimer();
+#elif FIVEM_G9
+                long currentTime = Native.GetGameTimer();
 #elif RAGEMP
                 long currentTime = Misc.GetGameTimer();
 #elif FIVEM || RPH || SHVDN3 || SHVDNC
