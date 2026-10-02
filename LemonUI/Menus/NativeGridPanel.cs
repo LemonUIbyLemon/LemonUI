@@ -2,6 +2,8 @@
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
 #elif ALTV
 using AltV.Net.Client;
 #elif RAGEMP
@@ -307,7 +309,7 @@ namespace LemonUI.Menus
             }
             else
             {
-#if ALTV
+#if ALTV || FIVEM_G9
                 Controls.DisableThisFrame(Control.LookUd);
                 Controls.DisableThisFrame(Control.LookLr);
 #else
@@ -321,6 +323,10 @@ namespace LemonUI.Menus
                 float rX = Game.GetControlNormal(0, Control.ScriptRightAxisX);
                 float rY = Game.GetControlNormal(0, Control.ScriptRightAxisY);
                 float frameTime = Game.LastFrameTime;
+#elif FIVEM_G9
+                float rX = Native.GetControlNormal(0, (int)Control.ScriptRightAxisX);
+                float rY = Native.GetControlNormal(0, (int)Control.ScriptRightAxisY);
+                float frameTime = Native.GetFrameTime();
 #elif ALTV
                 float rX = Alt.Natives.GetControlNormal(0, (int)Control.ScriptRightAxisX);
                 float rY = Alt.Natives.GetControlNormal(0, (int)Control.ScriptRightAxisY);

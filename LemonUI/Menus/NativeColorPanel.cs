@@ -677,7 +677,7 @@ namespace LemonUI.Menus
         public override void Process()
         {
             // If the user pressed one of the keys, move to the left or right
-#if ALTV
+#if ALTV || FIVEM_G9
             if (Controls.IsJustPressed(Control.FrontendLT))
 #else
             if (Controls.IsJustPressed(Control.FrontendLt))
@@ -685,7 +685,7 @@ namespace LemonUI.Menus
             {
                 Previous();
             }
-#if ALTV
+#if ALTV || FIVEM_G9
             else if (Controls.IsJustPressed(Control.FrontendRT))
 #else
             else if (Controls.IsJustPressed(Control.FrontendRt))
@@ -694,7 +694,7 @@ namespace LemonUI.Menus
                 Next();
             }
             // If the user pressed one of the bumpers with the Opacity bar enabled, increase or decrease it
-#if ALTV
+#if ALTV || FIVEM_G9
             else if (ShowOpacity && Controls.IsJustPressed(Control.FrontendLB))
 #else
             else if (ShowOpacity && Controls.IsJustPressed(Control.FrontendLb))
@@ -706,7 +706,7 @@ namespace LemonUI.Menus
                     Sound?.PlayFrontend();
                 }
             }
-#if ALTV
+#if ALTV || FIVEM_G9
             else if (ShowOpacity && Controls.IsJustPressed(Control.FrontendRB))
 #else
             else if (ShowOpacity && Controls.IsJustPressed(Control.FrontendRb))
