@@ -2,6 +2,8 @@
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
 #elif ALTV
 using AltV.Net.Client;
 #elif RAGEMP
@@ -13,7 +15,6 @@ using GTA.Native;
 using GTA.UI;
 using Font = GTA.UI.Font;
 #endif
-using CitizenFX.FiveM.Client;
 using LemonUI.Tools;
 using System;
 using System.Collections.Generic;
