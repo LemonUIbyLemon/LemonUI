@@ -62,7 +62,7 @@ namespace LemonUI
 #if FIVEM
             return API.IsDisabledControlJustPressed(0, (int)control);
 #elif FIVEM_G9
-            return Native.IsControlJustPressed(0, (int)control);
+            return Native.IsDisabledControlJustPressed(0, (int)control);
 #elif ALTV
             return Alt.Natives.IsDisabledControlJustPressed(0, (int)control);
 #elif RAGEMP
