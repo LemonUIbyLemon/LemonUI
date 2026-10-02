@@ -32,9 +32,9 @@ namespace LemonUI.Menus
             {
                 backgroundColor = value;
 
-                foreach (NativeStatsInfo field in fields)
+                foreach (NativeStatsInfo @field in fields)
                 {
-                    field.SetColor(value, foregroundColor);
+                    @field.SetColor(value, foregroundColor);
                 }
             }
         }
@@ -48,9 +48,9 @@ namespace LemonUI.Menus
             {
                 foregroundColor = value;
 
-                foreach (NativeStatsInfo field in fields)
+                foreach (NativeStatsInfo info in fields)
                 {
-                    field.SetColor(backgroundColor, value);
+                    info.SetColor(backgroundColor, value);
                 }
             }
         }
@@ -164,9 +164,9 @@ namespace LemonUI.Menus
         {
             base.Process();
 
-            foreach (NativeStatsInfo info in fields)
+            foreach (NativeStatsInfo @field in fields)
             {
-                info.Draw();
+                @field.Draw();
             }
         }
 

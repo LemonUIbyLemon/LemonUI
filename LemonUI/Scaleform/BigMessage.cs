@@ -1,5 +1,7 @@
 #if FIVEM
 using CitizenFX.Core;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
 #elif RAGEMP
 using RAGE.Game;
 #elif RPH
@@ -100,7 +102,7 @@ namespace LemonUI.Scaleform
                 UpdateInternal();
             }
         }
-#if !RAGEMP && !ALTV
+#if !RAGEMP && !ALTV && !FIVEM_G9
         /// <summary>
         /// The hash of the Weapon as an enum.
         /// </summary>
@@ -196,7 +198,7 @@ namespace LemonUI.Scaleform
         public BigMessage(string title, int colorText, int colorBackground) : this(title, string.Empty, string.Empty, unarmed, colorText, colorBackground, MessageType.Customizable)
         {
         }
-#if !RAGEMP && !ALTV
+#if !RAGEMP && !ALTV && !FIVEM_G9
         /// <summary>
         /// Creates a Weapon Purchase message with a custom text and weapons.
         /// </summary>
@@ -333,6 +335,8 @@ namespace LemonUI.Scaleform
 
 #if ALTV
             long currentTime = Alt.Natives.GetGameTimer();
+#elif FIVEM_G9
+            long currentTime = Native.GetGameTimer();
 #elif RAGEMP
             long currentTime = Misc.GetGameTimer();
 #elif FIVEM || RPH || SHVDN3 || SHVDNC
@@ -345,6 +349,8 @@ namespace LemonUI.Scaleform
         {
 #if ALTV
             long time = Alt.Natives.GetGameTimer();
+#elif FIVEM_G9
+            long time = Native.GetGameTimer();
 #elif RAGEMP
             long time = Misc.GetGameTimer();
 #elif FIVEM || RPH || SHVDN3 || SHVDNC

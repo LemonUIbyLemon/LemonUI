@@ -1,6 +1,8 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
 #elif RAGEMP
 using RAGE.Game;
 #elif ALTV
@@ -75,6 +77,8 @@ namespace LemonUI.Scaleform
                 }
 #if FIVEM
                 return API.GetControlInstructionalButton(2, (int)control, 1);
+#elif FIVEM_G9
+                return Native.GetControlInstructionalButton(2, (int)control, true);
 #elif RAGEMP
                 return Invoker.Invoke<string>(Natives.GetControlInstructionalButton, 2, (int)control, 1);
 #elif RPH

@@ -3,6 +3,11 @@ using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using CitizenFX.Core.UI;
 using Font = CitizenFX.Core.UI.Font;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
+using Font = LemonUI.Elements.Font;
+using CancelEventArgs = System.ComponentModel.CancelEventArgs;
+using CancelEventHandler = System.ComponentModel.CancelEventHandler;
 #elif ALTV
 using AltV.Net.Client;
 using Font = LemonUI.Elements.Font;
@@ -107,7 +112,7 @@ namespace LemonUI.Menus
         /// </summary>
         internal static readonly List<Control> controlsCamera = new List<Control>
         {
-#if ALTV
+#if ALTV || FIVEM_G9
             Control.LookUd,
             Control.LookLr,
 #else
@@ -778,7 +783,7 @@ namespace LemonUI.Menus
                 Control.CursorScrollUp,
                 Control.CursorX,
                 Control.CursorY,
-#if ALTV
+#if ALTV || FIVEM_G9
                 Control.MoveUd,
                 Control.MoveLr,
 #else
@@ -787,7 +792,7 @@ namespace LemonUI.Menus
 #endif
                 // Camera
                 Control.LookBehind,
-#if ALTV
+#if ALTV || FIVEM_G9
                 Control.VehLookBehind,
 #else
                 Control.VehicleLookBehind,
@@ -799,7 +804,7 @@ namespace LemonUI.Menus
                 Control.SpecialAbility,
                 Control.SpecialAbilityPC,
                 Control.SpecialAbilitySecondary,
-#if ALTV
+#if ALTV || FIVEM_G9
                 Control.VehSpecialAbilityFranklin,
                 // Driving
                 Control.VehExit,
@@ -853,7 +858,7 @@ namespace LemonUI.Menus
 #if RPH
                 Control.ScriptedFlyUpDown,
                 Control.ScriptedFlyLeftRight,
-#elif ALTV
+#elif ALTV || FIVEM_G9
                 Control.ScriptedFlyUd,
                 Control.ScriptedFlyLr,
 #else
@@ -1028,6 +1033,8 @@ namespace LemonUI.Menus
             // And set the position of the cursor
 #if FIVEM
             API.SetCursorLocation(pos.X, pos.Y);
+#elif FIVEM_G9
+            Native.SetCursorLocation(pos.X, pos.Y);
 #elif RAGEMP
             Invoker.Invoke(Natives.SetCursorLocation, pos.X, pos.Y);
 #elif RPH
@@ -1172,6 +1179,8 @@ namespace LemonUI.Menus
             // If the controls are disabled, the menu has just been opened or the text input field is active, return
 #if FIVEM
             bool isKeyboardActive = API.UpdateOnscreenKeyboard() == 0;
+#elif FIVEM_G9
+            bool isKeyboardActive = Native.UpdateOnscreenKeyboard() == 0;
 #elif ALTV
             bool isKeyboardActive = Alt.Natives.UpdateOnscreenKeyboard() == 0;
 #elif RAGEMP
@@ -1216,6 +1225,8 @@ namespace LemonUI.Menus
 
 #if ALTV
             long time = Alt.Natives.GetGameTimer();
+#elif FIVEM_G9
+            long time = Native.GetGameTimer();
 #elif RAGEMP
             long time = Misc.GetGameTimer();
 #elif FIVEM || RPH || SHVDN3 || SHVDNC
@@ -1262,6 +1273,9 @@ namespace LemonUI.Menus
                     {
 #if FIVEM || SHVDN3 || SHVDNC
                         GameplayCamera.RelativeHeading += 5;
+#elif FIVEM_G9
+                        float current = Native.GetGameplayCamRelativeHeading();
+                        Native.SetGameplayCamRelativeHeading(current + 5);
 #elif ALTV
                         float current = Alt.Natives.GetGameplayCamRelativeHeading();
                         Alt.Natives.SetGameplayCamRelativeHeading(current + 5);
@@ -1276,6 +1290,9 @@ namespace LemonUI.Menus
                     {
 #if FIVEM || SHVDN3 || SHVDNC
                         GameplayCamera.RelativeHeading -= 5;
+#elif FIVEM_G9
+                        float current = Native.GetGameplayCamRelativeHeading();
+                        Native.SetGameplayCamRelativeHeading(current - 5);
 #elif ALTV
                         float current = Alt.Natives.GetGameplayCamRelativeHeading();
                         Alt.Natives.SetGameplayCamRelativeHeading(current - 5);
@@ -1681,6 +1698,9 @@ namespace LemonUI.Menus
 #if FIVEM
                 API.SetInputExclusive(0, (int)Control.PhoneCancel);
                 API.SetInputExclusive(0, (int)Control.FrontendPause);
+#elif FIVEM_G9
+                Native.SetInputExclusive(0, (int)Control.CellPhoneCancel);
+                Native.SetInputExclusive(0, (int)Control.FrontendPause);
 #elif ALTV
                 Alt.Natives.SetInputExclusive(0, (int)Control.CellPhoneCancel);
                 Alt.Natives.SetInputExclusive(0, (int)Control.FrontendPause);

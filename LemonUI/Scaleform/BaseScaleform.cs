@@ -1,7 +1,8 @@
 #if FIVEM
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
-using System.Threading.Tasks;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
 #elif RAGEMP
 using RAGE.Game;
 #elif ALTV
@@ -11,6 +12,10 @@ using Rage.Native;
 #elif SHVDN3 || SHVDNC
 using GTA;
 using GTA.Native;
+#endif
+
+#if FIVEM_G9 || FIVEM
+using System.Threading.Tasks;
 #endif
 using System;
 
@@ -60,6 +65,8 @@ namespace LemonUI.Scaleform
             {
 #if FIVEM
                 return API.HasScaleformMovieLoaded(Handle);
+#elif FIVEM_G9
+                return Native.HasScaleformMovieLoaded(Handle);
 #elif ALTV
                 return Alt.Natives.HasScaleformMovieLoaded(Handle);
 #elif RAGEMP
@@ -86,6 +93,8 @@ namespace LemonUI.Scaleform
 
 #if FIVEM
             Handle = API.RequestScaleformMovie(Name);
+#elif FIVEM_G9
+            Handle = Native.RequestScaleformMovie(Name);
 #elif ALTV
             Handle = Alt.Natives.RequestScaleformMovie(Name);
 #elif RAGEMP
@@ -105,6 +114,8 @@ namespace LemonUI.Scaleform
         {
 #if FIVEM
             API.ScaleformMovieMethodAddParamInt(number);
+#elif FIVEM_G9
+            Native.ScaleformMovieMethodAddParamInt(number);
 #elif ALT
             Alt.Natives.ScaleformMovieMethodAddParamInt(number);
 #elif RAGEMP
@@ -119,6 +130,8 @@ namespace LemonUI.Scaleform
         {
 #if FIVEM
             API.ScaleformMovieMethodAddParamFloat(number);
+#elif FIVEM_G9
+            Native.ScaleformMovieMethodAddParamFloat(number);
 #elif ALTV
             Alt.Natives.ScaleformMovieMethodAddParamFloat(number);
 #elif RAGEMP
@@ -143,6 +156,8 @@ namespace LemonUI.Scaleform
 
 #if FIVEM
             API.BeginScaleformMovieMethod(Handle, function);
+#elif FIVEM_G9
+            Native.BeginScaleformMovieMethod(Handle, function);
 #elif ALTV
             Alt.Natives.BeginScaleformMovieMethod(Handle, function);
 #elif RAGEMP
@@ -190,6 +205,10 @@ namespace LemonUI.Scaleform
                     API.BeginTextCommandScaleformString("STRING");
                     API.AddTextComponentSubstringPlayerName(objString);
                     API.EndTextCommandScaleformString();
+#elif FIVEM_G9
+                    Native.BeginTextCommandScaleformString("STRING");
+                    Native.AddTextComponentSubstringPlayerName(objString);
+                    Native.EndTextCommandScaleformString();
 #elif ALTV
                     Alt.Natives.BeginTextCommandScaleformString("STRING");
                     Alt.Natives.AddTextComponentSubstringPlayerName(objString);
@@ -212,6 +231,8 @@ namespace LemonUI.Scaleform
                 {
 #if FIVEM
                     API.ScaleformMovieMethodAddParamBool(objBool);
+#elif FIVEM_G9
+                    Native.ScaleformMovieMethodAddParamBool(objBool);
 #elif ALTV
                     Alt.Natives.ScaleformMovieMethodAddParamBool(objBool);
 #elif RAGEMP
@@ -242,6 +263,8 @@ namespace LemonUI.Scaleform
         {
 #if FIVEM
             return API.IsScaleformMovieMethodReturnValueReady(id);
+#elif FIVEM_G9
+            return Native.IsScaleformMovieMethodReturnValueReady(id);
 #elif ALTV
             return Alt.Natives.IsScaleformMovieMethodReturnValueReady(id);
 #elif RAGEMP
@@ -264,6 +287,8 @@ namespace LemonUI.Scaleform
             {
 #if FIVEM
                 return (T)(object)API.GetScaleformMovieMethodReturnValueString(id);
+#elif FIVEM_G9
+                return (T)(object)Native.GetScaleformMovieMethodReturnValueString(id);
 #elif ALTV
                 return (T)(object)Alt.Natives.GetScaleformMovieMethodReturnValueString(id);
 #elif RAGEMP
@@ -278,6 +303,8 @@ namespace LemonUI.Scaleform
             {
 #if FIVEM
                 return (T)(object)API.GetScaleformMovieMethodReturnValueInt(id);
+#elif FIVEM_G9
+                return (T)(object)Native.GetScaleformMovieMethodReturnValueInt(id);
 #elif ALTV
                 return (T)(object)Alt.Natives.GetScaleformMovieMethodReturnValueInt(id);
 #elif RAGEMP
@@ -292,6 +319,8 @@ namespace LemonUI.Scaleform
             {
 #if FIVEM
                 return (T)(object)API.GetScaleformMovieMethodReturnValueBool(id);
+#elif FIVEM_G9
+                return (T)(object)Native.GetScaleformMovieMethodReturnValueBool(id);
 #elif ALTV
                 return (T)(object)Alt.Natives.GetScaleformMovieMethodReturnValueBool(id);
 #elif RAGEMP
@@ -317,6 +346,8 @@ namespace LemonUI.Scaleform
             CallFunctionBase(function, parameters);
 #if FIVEM
             API.EndScaleformMovieMethod();
+#elif FIVEM_G9
+            Native.EndScaleformMovieMethod();
 #elif ALTV
             Alt.Natives.EndScaleformMovieMethod();
 #elif RAGEMP
@@ -327,7 +358,7 @@ namespace LemonUI.Scaleform
             Function.Call((Hash)0xC6796A8FFA375E53);
 #endif
         }
-#if FIVEM || SHVDN3 || SHVDNC
+#if FIVEM || FIVEM_G9 || SHVDN3 || SHVDNC
         /// <summary>
         /// Calls a scaleform function and gets it's return value as soon as is available. 
         /// </summary>
@@ -335,21 +366,23 @@ namespace LemonUI.Scaleform
         /// <param name="parameters">The parameters to call the function with.</param>
         /// <typeparam name="T">The type of return parameter.</typeparam>
         /// <returns>The value returned by the function.</returns>
-        #if FIVEM
+#if FIVEM || FIVEM_G9
         public async Task<T> CallFunction<T>(string function, params object[] parameters)
-        #else
+#else
         public T CallFunction<T>(string function, params object[] parameters)
-        #endif
+#endif
         {
             int id = CallFunctionReturn(function, parameters);
 
             while (!IsValueReady(id))
             {
-                #if FIVEM
+#if FIVEM
                 await BaseScript.Delay(0);
-                #elif SHVDN3 || SHVDNC
+#elif FIVEM_G9
+                await API.Yield();
+#elif SHVDN3 || SHVDNC
                 Script.Yield();
-                #endif
+#endif
             }
 
             return GetValue<T>(id);
@@ -365,6 +398,8 @@ namespace LemonUI.Scaleform
             CallFunctionBase(function, parameters);
 #if FIVEM
             return API.EndScaleformMovieMethodReturnValue();
+#elif FIVEM_G9
+            return Native.EndScaleformMovieMethodReturnValue();
 #elif ALTV
             return Alt.Natives.EndScaleformMovieMethodReturnValue();
 #elif RAGEMP
@@ -391,6 +426,8 @@ namespace LemonUI.Scaleform
             Update();
 #if FIVEM
             API.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 0);
+#elif FIVEM_G9
+            Native.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 0);
 #elif ALTV
             Alt.Natives.DrawScaleformMovieFullscreen(Handle, 255, 255, 255, 255, 0);
 #elif RAGEMP
@@ -417,6 +454,8 @@ namespace LemonUI.Scaleform
             int id = Handle;
 #if FIVEM
             API.SetScaleformMovieAsNoLongerNeeded(ref id);
+#elif FIVEM_G9
+            Native.SetScaleformMovieAsNoLongerNeeded(ref id);
 #elif ALTV
             Alt.Natives.SetScaleformMovieAsNoLongerNeeded(ref id);
 #elif RAGEMP

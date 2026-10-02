@@ -2,6 +2,8 @@
 using AltV.Net.Client;
 #elif FIVEM
 using CitizenFX.Core.Native;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
 #elif RAGEMP
 using RAGE.Game;
 #elif RPH
@@ -45,6 +47,8 @@ namespace LemonUI.Elements
                 Id = Alt.Natives.SetBinkMovie(name);
 #elif FIVEM
                 Id = API.SetBinkMovie(name);
+#elif FIVEM_G9  
+                Id = Native.SetBinkMovie(name);
 #elif RAGEMP
                 Id = Invoker.Invoke<int>(0xfc36643f7a64338f, name);
 #elif RPH
@@ -114,6 +118,9 @@ namespace LemonUI.Elements
 #elif FIVEM
             API.PlayBinkMovie(Id);
             API.DrawBinkMovie(Id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
+#elif FIVEM_G9
+            Native.PlayBinkMovie(Id);
+            Native.DrawBinkMovie(Id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
 #elif RAGEMP
             Invoker.Invoke<int>(0xE178310643033958, Id);
             Invoker.Invoke<int>(0x7118E83EEB9F7238, Id, relativePosition.X, relativePosition.Y, relativeSize.Width, relativeSize.Height, 0.0f, 255, 255, 255, 255);
@@ -142,6 +149,8 @@ namespace LemonUI.Elements
             Alt.Natives.StopBinkMovie(Id);
 #elif FIVEM
             API.StopBinkMovie(Id);
+#elif FIVEM_G9
+            Native.StopBinkMovie(Id);
 #elif RAGEMP
             Invoker.Invoke<int>(0x63606A61DE68898A, Id);
 #elif RPH
@@ -164,6 +173,8 @@ namespace LemonUI.Elements
             Alt.Natives.ReleaseBinkMovie(Id);
 #elif FIVEM
             API.ReleaseBinkMovie(Id);
+#elif FIVEM_G9
+            Native.ReleaseBinkMovie(Id);
 #elif RAGEMP
             Invoker.Invoke<int>(0x04D950EEFA4EED8C, Id);
 #elif RPH

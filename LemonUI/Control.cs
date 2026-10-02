@@ -1,6 +1,6 @@
-﻿// NO MERGE
+// NO MERGE
 
-#if ALTV
+#if ALTV || FIVEM_G9
 
 namespace LemonUI
 {

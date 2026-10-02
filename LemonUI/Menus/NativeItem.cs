@@ -2,7 +2,7 @@
 using Font = CitizenFX.Core.UI.Font;
 #elif RAGEMP
 using Font = RAGE.Game.Font;
-#elif RPH
+#elif RPH || FIVEM_G9
 using Font = LemonUI.Elements.Font;
 #elif SHVDN3 || SHVDNC
 using Font = GTA.UI.Font;

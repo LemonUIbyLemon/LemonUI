@@ -2,6 +2,8 @@
 using AltV.Net.Client;
 #elif FIVEM
 using CitizenFX.Core;
+#elif FIVEM_G9
+using CitizenFX.FiveM.Client;
 #elif RAGEMP
 using RAGE.Game;
 #elif RPH
@@ -107,6 +109,8 @@ namespace LemonUI.Elements
             long time = Alt.Natives.GetGameTimer();
 #elif RAGEMP
             long time = Misc.GetGameTimer();
+#elif FIVEM_G9
+            long time = Native.GetGameTimer();
 #elif FIVEM || RPH || SHVDN3 || SHVDNC
             long time = Game.GameTime;
 #endif
